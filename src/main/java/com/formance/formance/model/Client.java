@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * Client
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-11-29T14:01:24.553265Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-11-29T21:07:15.997193Z[Etc/UTC]")
 public class Client {
   public static final String SERIALIZED_NAME_PUBLIC = "public";
   @SerializedName(SERIALIZED_NAME_PUBLIC)
