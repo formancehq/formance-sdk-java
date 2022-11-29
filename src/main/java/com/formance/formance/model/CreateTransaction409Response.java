@@ -25,7 +25,7 @@ import java.io.IOException;
 /**
  * CreateTransaction409Response
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-11-29T14:01:24.553265Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-11-29T21:07:15.997193Z[Etc/UTC]")
 public class CreateTransaction409Response {
   public static final String SERIALIZED_NAME_ERROR_CODE = "error_code";
   @SerializedName(SERIALIZED_NAME_ERROR_CODE)
