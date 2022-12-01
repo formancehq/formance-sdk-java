@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**data** | [**List&lt;WebhooksConfig&gt;**](WebhooksConfig.md) |  |  |
+|**data** | [**List&lt;ConfigActivated&gt;**](ConfigActivated.md) |  |  |
 
 
 

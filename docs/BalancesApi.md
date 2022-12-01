@@ -39,7 +39,7 @@ public class Example {
         String ledger = "ledger001"; // String | Name of the ledger.
         String address = "users:001"; // String | Filter balances involving given account, either as source or destination.
         String after = "users:003"; // String | Pagination cursor, will return accounts after given address, in descending order.
-        String paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="; // String | Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+        String paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="; // String | Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results.
         try {
             GetBalances200Response result = apiInstance.getBalances(ledger, address, after, paginationToken);
             System.out.println(result);
@@ -62,7 +62,7 @@ public class Example {
 | **ledger** | **String**| Name of the ledger. | |
 | **address** | **String**| Filter balances involving given account, either as source or destination. | [optional] |
 | **after** | **String**| Pagination cursor, will return accounts after given address, in descending order. | [optional] |
-| **paginationToken** | **String**| Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. | [optional] |
+| **paginationToken** | **String**| Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. | [optional] |
 
 ### Return type
 

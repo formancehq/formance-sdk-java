@@ -52,12 +52,14 @@ public interface TransactionsApi {
    * @param account Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $). (optional)
    * @param source Filter transactions with postings involving given account at source (regular expression placed between ^ and $). (optional)
    * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). (optional)
+   * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  (optional)
+   * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).  (optional)
    * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. (optional)
    * @return Call&lt;Void&gt;
    */
   @HEAD("api/ledger/{ledger}/transactions")
   Call<Void> countTransactions(
-    @retrofit2.http.Path("ledger") String ledger, @retrofit2.http.Query("reference") String reference, @retrofit2.http.Query("account") String account, @retrofit2.http.Query("source") String source, @retrofit2.http.Query("destination") String destination, @retrofit2.http.Query("metadata") Object metadata
+    @retrofit2.http.Path("ledger") String ledger, @retrofit2.http.Query("reference") String reference, @retrofit2.http.Query("account") String account, @retrofit2.http.Query("source") String source, @retrofit2.http.Query("destination") String destination, @retrofit2.http.Query("start_time") String startTime, @retrofit2.http.Query("end_time") String endTime, @retrofit2.http.Query("metadata") Object metadata
   );
 
   /**
@@ -115,7 +117,7 @@ public interface TransactionsApi {
    * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). (optional)
    * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  (optional)
    * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).  (optional)
-   * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  (optional)
+   * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  (optional)
    * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. (optional)
    * @return Call&lt;ListTransactionsResponse&gt;
    */

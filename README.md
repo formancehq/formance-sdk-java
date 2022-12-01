@@ -26,7 +26,7 @@ After the client library is installed/deployed, you can use it in your Maven pro
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance</artifactId>
-    <version>v0.2.2</version>
+    <version>v0.2.4</version>
     <scope>compile</scope>
 </dependency>
 
