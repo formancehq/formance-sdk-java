@@ -15,7 +15,7 @@ package com.formance.formance.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.formance.formance.model.Secret;
+import com.formance.formance.model.WebhooksConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,18 +24,18 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
 /**
- * CreateSecretResponse
+ * ConfigResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-02T15:18:57.686855Z[Etc/UTC]")
-public class CreateSecretResponse {
+public class ConfigResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private Secret data;
+  private WebhooksConfig data;
 
-  public CreateSecretResponse() {
+  public ConfigResponse() {
   }
 
-  public CreateSecretResponse data(Secret data) {
+  public ConfigResponse data(WebhooksConfig data) {
     
     this.data = data;
     return this;
@@ -47,12 +47,12 @@ public class CreateSecretResponse {
   **/
   @javax.annotation.Nullable
 
-  public Secret getData() {
+  public WebhooksConfig getData() {
     return data;
   }
 
 
-  public void setData(Secret data) {
+  public void setData(WebhooksConfig data) {
     this.data = data;
   }
 
@@ -65,8 +65,8 @@ public class CreateSecretResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSecretResponse createSecretResponse = (CreateSecretResponse) o;
-    return Objects.equals(this.data, createSecretResponse.data);
+    ConfigResponse configResponse = (ConfigResponse) o;
+    return Objects.equals(this.data, configResponse.data);
   }
 
   @Override
@@ -77,7 +77,7 @@ public class CreateSecretResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSecretResponse {\n");
+    sb.append("class ConfigResponse {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();

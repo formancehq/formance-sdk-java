@@ -264,7 +264,7 @@ public class Example {
         Object metadata = new HashMap(); // Object | Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
         Long balance = 2400L; // Long | Filter accounts by their balance (default operator is gte)
         String balanceOperator = "gte"; // String | Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, or equal
-        String paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="; // String | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+        String paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="; // String | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
         try {
             ListAccountsResponse result = apiInstance.listAccounts(ledger, pageSize, after, address, metadata, balance, balanceOperator, paginationToken);
             System.out.println(result);
@@ -291,7 +291,7 @@ public class Example {
 | **metadata** | [**Object**](.md)| Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional] |
 | **balance** | **Long**| Filter accounts by their balance (default operator is gte) | [optional] |
 | **balanceOperator** | **String**| Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, or equal | [optional] [enum: gte, lte, gt, lt, e] |
-| **paginationToken** | **String**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  | [optional] |
+| **paginationToken** | **String**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  | [optional] |
 
 ### Return type
 

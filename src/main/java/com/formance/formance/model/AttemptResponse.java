@@ -15,7 +15,7 @@ package com.formance.formance.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.formance.formance.model.Secret;
+import com.formance.formance.model.Attempt;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,18 +24,18 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
 /**
- * CreateSecretResponse
+ * AttemptResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-02T15:18:57.686855Z[Etc/UTC]")
-public class CreateSecretResponse {
+public class AttemptResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private Secret data;
+  private Attempt data;
 
-  public CreateSecretResponse() {
+  public AttemptResponse() {
   }
 
-  public CreateSecretResponse data(Secret data) {
+  public AttemptResponse data(Attempt data) {
     
     this.data = data;
     return this;
@@ -47,12 +47,12 @@ public class CreateSecretResponse {
   **/
   @javax.annotation.Nullable
 
-  public Secret getData() {
+  public Attempt getData() {
     return data;
   }
 
 
-  public void setData(Secret data) {
+  public void setData(Attempt data) {
     this.data = data;
   }
 
@@ -65,8 +65,8 @@ public class CreateSecretResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateSecretResponse createSecretResponse = (CreateSecretResponse) o;
-    return Objects.equals(this.data, createSecretResponse.data);
+    AttemptResponse attemptResponse = (AttemptResponse) o;
+    return Objects.equals(this.data, attemptResponse.data);
   }
 
   @Override
@@ -77,7 +77,7 @@ public class CreateSecretResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateSecretResponse {\n");
+    sb.append("class AttemptResponse {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
