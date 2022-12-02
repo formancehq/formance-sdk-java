@@ -8,6 +8,8 @@ build.sbt
 docs/Account.md
 docs/AccountWithVolumesAndBalances.md
 docs/AccountsApi.md
+docs/Attempt.md
+docs/AttemptResponse.md
 docs/BalancesApi.md
 docs/BankingCircleConfig.md
 docs/ChangeOneConfigSecretRequest.md
@@ -19,6 +21,7 @@ docs/ClientsApi.md
 docs/Config.md
 docs/ConfigInfo.md
 docs/ConfigInfoResponse.md
+docs/ConfigResponse.md
 docs/ConfigUser.md
 docs/ConnectorBaseInfo.md
 docs/ConnectorConfig.md
@@ -145,6 +148,8 @@ src/main/java/com/formance/formance/auth/OAuthFlow.java
 src/main/java/com/formance/formance/auth/OAuthOkHttpClient.java
 src/main/java/com/formance/formance/model/Account.java
 src/main/java/com/formance/formance/model/AccountWithVolumesAndBalances.java
+src/main/java/com/formance/formance/model/Attempt.java
+src/main/java/com/formance/formance/model/AttemptResponse.java
 src/main/java/com/formance/formance/model/BankingCircleConfig.java
 src/main/java/com/formance/formance/model/ChangeOneConfigSecretRequest.java
 src/main/java/com/formance/formance/model/Client.java
@@ -154,6 +159,7 @@ src/main/java/com/formance/formance/model/ClientSecret.java
 src/main/java/com/formance/formance/model/Config.java
 src/main/java/com/formance/formance/model/ConfigInfo.java
 src/main/java/com/formance/formance/model/ConfigInfoResponse.java
+src/main/java/com/formance/formance/model/ConfigResponse.java
 src/main/java/com/formance/formance/model/ConfigUser.java
 src/main/java/com/formance/formance/model/ConnectorBaseInfo.java
 src/main/java/com/formance/formance/model/ConnectorConfig.java

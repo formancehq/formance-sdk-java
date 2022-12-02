@@ -15,6 +15,7 @@ package com.formance.formance.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.formance.formance.model.WebhooksConfig;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,62 +24,36 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
 /**
- * ListConnectorsConfigsResponseConnectorKey
+ * ConfigResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-02T16:06:44.667212Z[Etc/UTC]")
-public class ListConnectorsConfigsResponseConnectorKey {
-  public static final String SERIALIZED_NAME_DATATYPE = "datatype";
-  @SerializedName(SERIALIZED_NAME_DATATYPE)
-  private String datatype;
+public class ConfigResponse {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private WebhooksConfig data;
 
-  public static final String SERIALIZED_NAME_REQUIRED = "required";
-  @SerializedName(SERIALIZED_NAME_REQUIRED)
-  private Boolean required;
-
-  public ListConnectorsConfigsResponseConnectorKey() {
+  public ConfigResponse() {
   }
 
-  public ListConnectorsConfigsResponseConnectorKey datatype(String datatype) {
+  public ConfigResponse data(WebhooksConfig data) {
     
-    this.datatype = datatype;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get datatype
-   * @return datatype
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nullable
 
-  public String getDatatype() {
-    return datatype;
+  public WebhooksConfig getData() {
+    return data;
   }
 
 
-  public void setDatatype(String datatype) {
-    this.datatype = datatype;
-  }
-
-
-  public ListConnectorsConfigsResponseConnectorKey required(Boolean required) {
-    
-    this.required = required;
-    return this;
-  }
-
-   /**
-   * Get required
-   * @return required
-  **/
-  @javax.annotation.Nullable
-
-  public Boolean getRequired() {
-    return required;
-  }
-
-
-  public void setRequired(Boolean required) {
-    this.required = required;
+  public void setData(WebhooksConfig data) {
+    this.data = data;
   }
 
 
@@ -90,22 +65,20 @@ public class ListConnectorsConfigsResponseConnectorKey {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ListConnectorsConfigsResponseConnectorKey listConnectorsConfigsResponseConnectorKey = (ListConnectorsConfigsResponseConnectorKey) o;
-    return Objects.equals(this.datatype, listConnectorsConfigsResponseConnectorKey.datatype) &&
-        Objects.equals(this.required, listConnectorsConfigsResponseConnectorKey.required);
+    ConfigResponse configResponse = (ConfigResponse) o;
+    return Objects.equals(this.data, configResponse.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(datatype, required);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ListConnectorsConfigsResponseConnectorKey {\n");
-    sb.append("    datatype: ").append(toIndentedString(datatype)).append("\n");
-    sb.append("    required: ").append(toIndentedString(required)).append("\n");
+    sb.append("class ConfigResponse {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }
