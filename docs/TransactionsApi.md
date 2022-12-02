@@ -90,7 +90,7 @@ null (empty response body)
 
 ## countTransactions
 
-> countTransactions(ledger, reference, account, source, destination, metadata)
+> countTransactions(ledger, reference, account, source, destination, startTime, endTime, metadata)
 
 Count the transactions from a ledger.
 
@@ -120,9 +120,11 @@ public class Example {
         String account = "users:001"; // String | Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
         String source = "users:001"; // String | Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
         String destination = "users:001"; // String | Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+        String startTime = "startTime_example"; // String | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
+        String endTime = "endTime_example"; // String | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
         Object metadata = new HashMap(); // Object | Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
         try {
-            apiInstance.countTransactions(ledger, reference, account, source, destination, metadata);
+            apiInstance.countTransactions(ledger, reference, account, source, destination, startTime, endTime, metadata);
         } catch (ApiException e) {
             System.err.println("Exception when calling TransactionsApi#countTransactions");
             System.err.println("Status code: " + e.getCode());
@@ -144,6 +146,8 @@ public class Example {
 | **account** | **String**| Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $). | [optional] |
 | **source** | **String**| Filter transactions with postings involving given account at source (regular expression placed between ^ and $). | [optional] |
 | **destination** | **String**| Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). | [optional] |
+| **startTime** | **String**| Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  | [optional] |
+| **endTime** | **String**| Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).  | [optional] |
 | **metadata** | [**Object**](.md)| Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional] |
 
 ### Return type
@@ -425,7 +429,7 @@ public class Example {
         String destination = "users:001"; // String | Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
         String startTime = "startTime_example"; // String | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
         String endTime = "endTime_example"; // String | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
-        String paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="; // String | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+        String paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="; // String | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
         Object metadata = new HashMap(); // Object | Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
         try {
             ListTransactionsResponse result = apiInstance.listTransactions(ledger, pageSize, after, reference, account, source, destination, startTime, endTime, paginationToken, metadata);
@@ -455,7 +459,7 @@ public class Example {
 | **destination** | **String**| Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). | [optional] |
 | **startTime** | **String**| Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  | [optional] |
 | **endTime** | **String**| Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).  | [optional] |
-| **paginationToken** | **String**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  | [optional] |
+| **paginationToken** | **String**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  | [optional] |
 | **metadata** | [**Object**](.md)| Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below. | [optional] |
 
 ### Return type

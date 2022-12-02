@@ -15,7 +15,7 @@ package com.formance.formance.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.formance.formance.model.Transaction;
+import com.formance.formance.model.Attempt;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,18 +24,18 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
 /**
- * TransactionResponse
+ * AttemptResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-02T15:55:56.337030Z[Etc/UTC]")
-public class TransactionResponse {
+public class AttemptResponse {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private Transaction data;
+  private Attempt data;
 
-  public TransactionResponse() {
+  public AttemptResponse() {
   }
 
-  public TransactionResponse data(Transaction data) {
+  public AttemptResponse data(Attempt data) {
     
     this.data = data;
     return this;
@@ -45,14 +45,14 @@ public class TransactionResponse {
    * Get data
    * @return data
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
 
-  public Transaction getData() {
+  public Attempt getData() {
     return data;
   }
 
 
-  public void setData(Transaction data) {
+  public void setData(Attempt data) {
     this.data = data;
   }
 
@@ -65,8 +65,8 @@ public class TransactionResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TransactionResponse transactionResponse = (TransactionResponse) o;
-    return Objects.equals(this.data, transactionResponse.data);
+    AttemptResponse attemptResponse = (AttemptResponse) o;
+    return Objects.equals(this.data, attemptResponse.data);
   }
 
   @Override
@@ -77,7 +77,7 @@ public class TransactionResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TransactionResponse {\n");
+    sb.append("class AttemptResponse {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();

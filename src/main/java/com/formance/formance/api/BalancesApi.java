@@ -27,7 +27,7 @@ public interface BalancesApi {
    * @param ledger Name of the ledger. (required)
    * @param address Filter balances involving given account, either as source or destination. (optional)
    * @param after Pagination cursor, will return accounts after given address, in descending order. (optional)
-   * @param paginationToken Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. (optional)
+   * @param paginationToken Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. (optional)
    * @return Call&lt;GetBalances200Response&gt;
    */
   @GET("api/ledger/{ledger}/balances")
