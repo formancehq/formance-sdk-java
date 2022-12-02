@@ -15,6 +15,7 @@ package com.formance.formance.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.formance.formance.model.Attempt;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,62 +24,36 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
 /**
- * PostTransactionScript
+ * AttemptResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-02T15:58:43.712527Z[Etc/UTC]")
-public class PostTransactionScript {
-  public static final String SERIALIZED_NAME_PLAIN = "plain";
-  @SerializedName(SERIALIZED_NAME_PLAIN)
-  private String plain;
+public class AttemptResponse {
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private Attempt data;
 
-  public static final String SERIALIZED_NAME_VARS = "vars";
-  @SerializedName(SERIALIZED_NAME_VARS)
-  private Object vars;
-
-  public PostTransactionScript() {
+  public AttemptResponse() {
   }
 
-  public PostTransactionScript plain(String plain) {
+  public AttemptResponse data(Attempt data) {
     
-    this.plain = plain;
+    this.data = data;
     return this;
   }
 
    /**
-   * Get plain
-   * @return plain
-  **/
-  @javax.annotation.Nonnull
-
-  public String getPlain() {
-    return plain;
-  }
-
-
-  public void setPlain(String plain) {
-    this.plain = plain;
-  }
-
-
-  public PostTransactionScript vars(Object vars) {
-    
-    this.vars = vars;
-    return this;
-  }
-
-   /**
-   * Get vars
-   * @return vars
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nullable
 
-  public Object getVars() {
-    return vars;
+  public Attempt getData() {
+    return data;
   }
 
 
-  public void setVars(Object vars) {
-    this.vars = vars;
+  public void setData(Attempt data) {
+    this.data = data;
   }
 
 
@@ -90,22 +65,20 @@ public class PostTransactionScript {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PostTransactionScript postTransactionScript = (PostTransactionScript) o;
-    return Objects.equals(this.plain, postTransactionScript.plain) &&
-        Objects.equals(this.vars, postTransactionScript.vars);
+    AttemptResponse attemptResponse = (AttemptResponse) o;
+    return Objects.equals(this.data, attemptResponse.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(plain, vars);
+    return Objects.hash(data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PostTransactionScript {\n");
-    sb.append("    plain: ").append(toIndentedString(plain)).append("\n");
-    sb.append("    vars: ").append(toIndentedString(vars)).append("\n");
+    sb.append("class AttemptResponse {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

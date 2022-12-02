@@ -10,12 +10,13 @@ All URIs are relative to *http://localhost*
 | [**deleteOneConfig**](WebhooksApi.md#deleteOneConfig) | **DELETE** api/webhooks/configs/{id} | Delete one config |
 | [**getManyConfigs**](WebhooksApi.md#getManyConfigs) | **GET** api/webhooks/configs | Get many configs |
 | [**insertOneConfig**](WebhooksApi.md#insertOneConfig) | **POST** api/webhooks/configs | Insert a new config  |
+| [**testOneConfig**](WebhooksApi.md#testOneConfig) | **GET** api/webhooks/configs/{id}/test | Test one config |
 
 
 
 ## activateOneConfig
 
-> GetManyConfigs200Response activateOneConfig(id)
+> ConfigResponse activateOneConfig(id)
 
 Activate one config
 
@@ -42,7 +43,7 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
         try {
-            GetManyConfigs200Response result = apiInstance.activateOneConfig(id);
+            ConfigResponse result = apiInstance.activateOneConfig(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhooksApi#activateOneConfig");
@@ -64,7 +65,7 @@ public class Example {
 
 ### Return type
 
-[**GetManyConfigs200Response**](GetManyConfigs200Response.md)
+[**ConfigResponse**](ConfigResponse.md)
 
 ### Authorization
 
@@ -85,11 +86,11 @@ public class Example {
 
 ## changeOneConfigSecret
 
-> GetManyConfigs200Response changeOneConfigSecret(id, changeOneConfigSecretRequest)
+> ConfigResponse changeOneConfigSecret(id, changeOneConfigSecretRequest)
 
 Change the signing secret of a config
 
-Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
 
 ### Example
 
@@ -115,7 +116,7 @@ public class Example {
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
         ChangeOneConfigSecretRequest changeOneConfigSecretRequest = new ChangeOneConfigSecretRequest(); // ChangeOneConfigSecretRequest | 
         try {
-            GetManyConfigs200Response result = apiInstance.changeOneConfigSecret(id, changeOneConfigSecretRequest);
+            ConfigResponse result = apiInstance.changeOneConfigSecret(id, changeOneConfigSecretRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhooksApi#changeOneConfigSecret");
@@ -138,7 +139,7 @@ public class Example {
 
 ### Return type
 
-[**GetManyConfigs200Response**](GetManyConfigs200Response.md)
+[**ConfigResponse**](ConfigResponse.md)
 
 ### Authorization
 
@@ -153,12 +154,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Secret successfully changed. |  -  |
 
 
 ## deactivateOneConfig
 
-> GetManyConfigs200Response deactivateOneConfig(id)
+> ConfigResponse deactivateOneConfig(id)
 
 Deactivate one config
 
@@ -185,7 +186,7 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
         try {
-            GetManyConfigs200Response result = apiInstance.deactivateOneConfig(id);
+            ConfigResponse result = apiInstance.deactivateOneConfig(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhooksApi#deactivateOneConfig");
@@ -207,7 +208,7 @@ public class Example {
 
 ### Return type
 
-[**GetManyConfigs200Response**](GetManyConfigs200Response.md)
+[**ConfigResponse**](ConfigResponse.md)
 
 ### Authorization
 
@@ -291,7 +292,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Config successfully deleted. |  -  |
 
 
 ## getManyConfigs
@@ -369,11 +370,11 @@ public class Example {
 
 ## insertOneConfig
 
-> String insertOneConfig(configUser)
+> ConfigResponse insertOneConfig(configUser)
 
 Insert a new config 
 
-Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint&#39;s verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint&#39;s verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
 
 ### Example
 
@@ -398,7 +399,7 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         ConfigUser configUser = new ConfigUser(); // ConfigUser | 
         try {
-            String result = apiInstance.insertOneConfig(configUser);
+            ConfigResponse result = apiInstance.insertOneConfig(configUser);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhooksApi#insertOneConfig");
@@ -420,7 +421,7 @@ public class Example {
 
 ### Return type
 
-**String**
+[**ConfigResponse**](ConfigResponse.md)
 
 ### Authorization
 
@@ -429,12 +430,83 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: text/plain
+- **Accept**: application/json, text/plain
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Config created successfully, returns its ID. |  -  |
+| **200** | Config created successfully. |  -  |
 | **400** | Bad Request |  -  |
+
+
+## testOneConfig
+
+> AttemptResponse testOneConfig(id)
+
+Test one config
+
+Test one config by sending a webhook to its endpoint. 
+
+### Example
+
+```java
+// Import classes:
+import com.formance.formance.ApiClient;
+import com.formance.formance.ApiException;
+import com.formance.formance.Configuration;
+import com.formance.formance.auth.*;
+import com.formance.formance.models.*;
+import com.formance.formance.api.WebhooksApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure OAuth2 access token for authorization: Authorization
+        OAuth Authorization = (OAuth) defaultClient.getAuthentication("Authorization");
+        Authorization.setAccessToken("YOUR ACCESS TOKEN");
+
+        WebhooksApi apiInstance = new WebhooksApi(defaultClient);
+        String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
+        try {
+            AttemptResponse result = apiInstance.testOneConfig(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhooksApi#testOneConfig");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Config ID | |
+
+### Return type
+
+[**AttemptResponse**](AttemptResponse.md)
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 

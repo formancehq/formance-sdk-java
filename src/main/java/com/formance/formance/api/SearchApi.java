@@ -10,6 +10,7 @@ import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
 import com.formance.formance.model.Query;
+import com.formance.formance.model.Response;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,13 +23,13 @@ public interface SearchApi {
    * Search
    * Search with Query
    * @param query  (required)
-   * @return Call&lt;Void&gt;
+   * @return Call&lt;Response&gt;
    */
   @Headers({
     "Content-Type:application/json"
   })
   @POST("api/search/")
-  Call<Void> search(
+  Call<Response> search(
     @retrofit2.http.Body Query query
   );
 

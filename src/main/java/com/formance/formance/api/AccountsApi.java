@@ -72,7 +72,7 @@ public interface AccountsApi {
    * @param metadata Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below. (optional)
    * @param balance Filter accounts by their balance (default operator is gte) (optional)
    * @param balanceOperator Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, or equal (optional)
-   * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  (optional)
+   * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  (optional)
    * @return Call&lt;ListAccountsResponse&gt;
    */
   @GET("api/ledger/{ledger}/accounts")
