@@ -15,6 +15,7 @@ import com.formance.formance.model.ListConnectorsConfigsResponse;
 import com.formance.formance.model.ListConnectorsResponse;
 import com.formance.formance.model.ListPaymentsResponse;
 import com.formance.formance.model.Payment;
+import com.formance.formance.model.StripeTransferRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +24,20 @@ import java.util.Map;
 import java.util.Set;
 
 public interface PaymentsApi {
+  /**
+   * Transfer funds between Stripe accounts
+   * Execute a transfer between two Stripe accounts
+   * @param stripeTransferRequest  (required)
+   * @return Call&lt;Void&gt;
+   */
+  @Headers({
+    "Content-Type:application/json"
+  })
+  @POST("api/payments/connectors/stripe/transfer")
+  Call<Void> connectorsStripeTransfer(
+    @retrofit2.http.Body StripeTransferRequest stripeTransferRequest
+  );
+
   /**
    * Get all installed connectors
    * Get all installed connectors

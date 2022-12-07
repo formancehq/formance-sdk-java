@@ -9,6 +9,8 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
+import com.formance.formance.model.AddMetadataToAccount409Response;
+import com.formance.formance.model.RunScript400Response;
 import com.formance.formance.model.Script;
 import com.formance.formance.model.ScriptResult;
 
@@ -26,9 +28,7 @@ public interface ScriptApi {
    * @param script  (required)
    * @param preview Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker. (optional)
    * @return Call&lt;ScriptResult&gt;
-   * @deprecated
    */
-  @Deprecated
   @Headers({
     "Content-Type:application/json"
   })

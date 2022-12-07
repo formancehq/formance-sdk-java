@@ -8,6 +8,9 @@ build.sbt
 docs/Account.md
 docs/AccountWithVolumesAndBalances.md
 docs/AccountsApi.md
+docs/AddMetadataToAccount409Response.md
+docs/Attempt.md
+docs/AttemptResponse.md
 docs/BalancesApi.md
 docs/BankingCircleConfig.md
 docs/ChangeOneConfigSecretRequest.md
@@ -19,6 +22,7 @@ docs/ClientsApi.md
 docs/Config.md
 docs/ConfigInfo.md
 docs/ConfigInfoResponse.md
+docs/ConfigResponse.md
 docs/ConfigUser.md
 docs/ConnectorBaseInfo.md
 docs/ConnectorConfig.md
@@ -70,8 +74,6 @@ docs/MappingResponse.md
 docs/ModulrConfig.md
 docs/Payment.md
 docs/PaymentsApi.md
-docs/PostTransaction.md
-docs/PostTransactionScript.md
 docs/Posting.md
 docs/Query.md
 docs/ReadClientResponse.md
@@ -79,6 +81,7 @@ docs/ReadUserResponse.md
 docs/Response.md
 docs/ResponseCursor.md
 docs/ResponseCursorTotal.md
+docs/RunScript400Response.md
 docs/Scope.md
 docs/ScopeAllOf.md
 docs/ScopeOptions.md
@@ -96,6 +99,7 @@ docs/StatsApi.md
 docs/StatsResponse.md
 docs/StripeConfig.md
 docs/StripeTask.md
+docs/StripeTransferRequest.md
 docs/Transaction.md
 docs/TransactionData.md
 docs/TransactionResponse.md
@@ -145,6 +149,9 @@ src/main/java/com/formance/formance/auth/OAuthFlow.java
 src/main/java/com/formance/formance/auth/OAuthOkHttpClient.java
 src/main/java/com/formance/formance/model/Account.java
 src/main/java/com/formance/formance/model/AccountWithVolumesAndBalances.java
+src/main/java/com/formance/formance/model/AddMetadataToAccount409Response.java
+src/main/java/com/formance/formance/model/Attempt.java
+src/main/java/com/formance/formance/model/AttemptResponse.java
 src/main/java/com/formance/formance/model/BankingCircleConfig.java
 src/main/java/com/formance/formance/model/ChangeOneConfigSecretRequest.java
 src/main/java/com/formance/formance/model/Client.java
@@ -154,6 +161,7 @@ src/main/java/com/formance/formance/model/ClientSecret.java
 src/main/java/com/formance/formance/model/Config.java
 src/main/java/com/formance/formance/model/ConfigInfo.java
 src/main/java/com/formance/formance/model/ConfigInfoResponse.java
+src/main/java/com/formance/formance/model/ConfigResponse.java
 src/main/java/com/formance/formance/model/ConfigUser.java
 src/main/java/com/formance/formance/model/ConnectorBaseInfo.java
 src/main/java/com/formance/formance/model/ConnectorConfig.java
@@ -203,8 +211,6 @@ src/main/java/com/formance/formance/model/Mapping.java
 src/main/java/com/formance/formance/model/MappingResponse.java
 src/main/java/com/formance/formance/model/ModulrConfig.java
 src/main/java/com/formance/formance/model/Payment.java
-src/main/java/com/formance/formance/model/PostTransaction.java
-src/main/java/com/formance/formance/model/PostTransactionScript.java
 src/main/java/com/formance/formance/model/Posting.java
 src/main/java/com/formance/formance/model/Query.java
 src/main/java/com/formance/formance/model/ReadClientResponse.java
@@ -212,6 +218,7 @@ src/main/java/com/formance/formance/model/ReadUserResponse.java
 src/main/java/com/formance/formance/model/Response.java
 src/main/java/com/formance/formance/model/ResponseCursor.java
 src/main/java/com/formance/formance/model/ResponseCursorTotal.java
+src/main/java/com/formance/formance/model/RunScript400Response.java
 src/main/java/com/formance/formance/model/Scope.java
 src/main/java/com/formance/formance/model/ScopeAllOf.java
 src/main/java/com/formance/formance/model/ScopeOptions.java
@@ -224,6 +231,7 @@ src/main/java/com/formance/formance/model/Stats.java
 src/main/java/com/formance/formance/model/StatsResponse.java
 src/main/java/com/formance/formance/model/StripeConfig.java
 src/main/java/com/formance/formance/model/StripeTask.java
+src/main/java/com/formance/formance/model/StripeTransferRequest.java
 src/main/java/com/formance/formance/model/Transaction.java
 src/main/java/com/formance/formance/model/TransactionData.java
 src/main/java/com/formance/formance/model/TransactionResponse.java
@@ -234,3 +242,9 @@ src/main/java/com/formance/formance/model/Volume.java
 src/main/java/com/formance/formance/model/WebhooksConfig.java
 src/main/java/com/formance/formance/model/WebhooksCursor.java
 src/main/java/com/formance/formance/model/WiseConfig.java
+src/test/java/com/formance/formance/model/AddMetadataToAccount409ResponseTest.java
+src/test/java/com/formance/formance/model/AttemptResponseTest.java
+src/test/java/com/formance/formance/model/AttemptTest.java
+src/test/java/com/formance/formance/model/ConfigResponseTest.java
+src/test/java/com/formance/formance/model/RunScript400ResponseTest.java
+src/test/java/com/formance/formance/model/StripeTransferRequestTest.java
