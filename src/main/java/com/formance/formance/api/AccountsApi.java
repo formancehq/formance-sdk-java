@@ -9,6 +9,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
+import com.formance.formance.model.AddMetadataToAccount409Response;
 import com.formance.formance.model.GetAccount400Response;
 import com.formance.formance.model.GetAccountResponse;
 import com.formance.formance.model.ListAccounts400Response;

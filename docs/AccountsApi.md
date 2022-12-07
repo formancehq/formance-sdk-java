@@ -82,6 +82,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | No Content |  -  |
 | **400** | Bad Request |  -  |
+| **409** | Conflict |  -  |
 
 
 ## countAccounts
