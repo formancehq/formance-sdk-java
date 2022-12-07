@@ -17,7 +17,7 @@ info:
     and standard method from web, mobile and desktop applications.
     <SecurityDefinitions />
   title: Formance Stack API
-  version: v0.2.2
+  version: v1.0.0-beta.4
   x-logo:
     url: https://avatars.githubusercontent.com/u/84325077?s=200&v=4
     altText: Formance
@@ -457,7 +457,7 @@ paths:
           description: OK
       summary: Show server information.
       tags:
-      - Server
+      - server
       x-accepts: application/json
   /api/ledger/{ledger}/accounts:
     get:
@@ -569,7 +569,7 @@ paths:
           description: Bad Request
       summary: List accounts from a ledger.
       tags:
-      - Accounts
+      - accounts
       x-accepts: application/json
     head:
       operationId: countAccounts
@@ -615,7 +615,7 @@ paths:
               style: simple
       summary: Count the accounts from a ledger.
       tags:
-      - Accounts
+      - accounts
       x-accepts: application/json
   /api/ledger/{ledger}/accounts/{address}:
     get:
@@ -658,7 +658,7 @@ paths:
           description: Bad Request
       summary: Get account by its address.
       tags:
-      - Accounts
+      - accounts
       x-accepts: application/json
   /api/ledger/{ledger}/accounts/{address}/metadata:
     post:
@@ -703,9 +703,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/getAccount_400_response'
           description: Bad Request
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addMetadataToAccount_409_response'
+          description: Conflict
       summary: Add metadata to an account.
       tags:
-      - Accounts
+      - accounts
       x-content-type: application/json
       x-accepts: application/json
   /api/ledger/{ledger}/mapping:
@@ -730,7 +736,7 @@ paths:
           description: OK
       summary: Get the mapping of a ledger.
       tags:
-      - Mapping
+      - mapping
       x-accepts: application/json
     put:
       operationId: updateMapping
@@ -759,12 +765,11 @@ paths:
           description: OK
       summary: Update the mapping of a ledger.
       tags:
-      - Mapping
+      - mapping
       x-content-type: application/json
       x-accepts: application/json
   /api/ledger/{ledger}/script:
     post:
-      deprecated: true
       operationId: runScript
       parameters:
       - description: Name of the ledger.
@@ -798,16 +803,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptResult'
-          description: |
-            On success, it will return a 200 status code, and the resulting transaction under the `transaction` field.
-
-            On failure, it will also return a 200 status code, and the following fields:
-              - `details`: contains a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.
-              - `error_code`: contains the string code of the error
-              - `error_message`: contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runScript_400_response'
+          description: Bad Request
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addMetadataToAccount_409_response'
+          description: Conflict
       summary: Execute a Numscript.
       tags:
-      - Script
+      - script
       x-content-type: application/json
       x-accepts: application/json
   /api/ledger/{ledger}/stats:
@@ -835,7 +846,7 @@ paths:
           description: OK
       summary: Get Stats
       tags:
-      - Stats
+      - stats
       x-accepts: application/json
   /api/ledger/{ledger}/transactions:
     get:
@@ -883,8 +894,8 @@ paths:
           example: ref:001
           type: string
         style: form
-      - description: "Filter transactions with postings involving given account, either\
-          \ as source or destination (regular expression placed between ^ and $)."
+      - description: "Find transactions with postings involving given account, either\
+          \ as source or destination."
         explode: true
         in: query
         name: account
@@ -893,8 +904,7 @@ paths:
           example: users:001
           type: string
         style: form
-      - description: Filter transactions with postings involving given account at
-          source (regular expression placed between ^ and $).
+      - description: Find transactions with postings involving given account at source.
         explode: true
         in: query
         name: source
@@ -903,8 +913,7 @@ paths:
           example: users:001
           type: string
         style: form
-      - description: Filter transactions with postings involving given account at
-          destination (regular expression placed between ^ and $).
+      - description: Find transactions with postings involving given account at destination.
         explode: true
         in: query
         name: destination
@@ -972,7 +981,7 @@ paths:
           description: Bad Request
       summary: List transactions from a ledger.
       tags:
-      - Transactions
+      - transactions
       x-accepts: application/json
     head:
       operationId: countTransactions
@@ -1047,7 +1056,7 @@ paths:
               style: simple
       summary: Count the transactions from a ledger.
       tags:
-      - Transactions
+      - transactions
       x-accepts: application/json
     post:
       operationId: createTransaction
@@ -1075,11 +1084,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostTransaction'
-        description: |
-          The request body must contain one of the following objects:
-            - `postings`: suitable for simple transactions
-            - `script`: enabling more complex transactions with Numscript
+              $ref: '#/components/schemas/TransactionData'
         required: true
       responses:
         "200":
@@ -1088,6 +1093,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/TransactionsResponse'
           description: OK
+        "304":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsResponse'
+          description: Not modified (when preview is enabled)
         "400":
           content:
             application/json:
@@ -1102,7 +1113,7 @@ paths:
           description: Conflict
       summary: Create a new transaction to a ledger.
       tags:
-      - Transactions
+      - transactions
       x-content-type: application/json
       x-accepts: application/json
   /api/ledger/{ledger}/transactions/{txid}:
@@ -1148,7 +1159,7 @@ paths:
           description: Not Found
       summary: Get transaction from a ledger by its ID.
       tags:
-      - Transactions
+      - transactions
       x-accepts: application/json
   /api/ledger/{ledger}/transactions/{txid}/metadata:
     post:
@@ -1194,9 +1205,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/getTransaction_404_response'
           description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addMetadataToAccount_409_response'
+          description: Conflict
       summary: Set the metadata of a transaction by its ID.
       tags:
-      - Transactions
+      - transactions
       x-content-type: application/json
       x-accepts: application/json
   /api/ledger/{ledger}/transactions/{txid}/revert:
@@ -1240,9 +1257,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/getTransaction_404_response'
           description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addMetadataToAccount_409_response'
+          description: Conflict
       summary: Revert a ledger transaction by its ID.
       tags:
-      - Transactions
+      - transactions
       x-accepts: application/json
   /api/ledger/{ledger}/transactions/batch:
     post:
@@ -1284,7 +1307,7 @@ paths:
           description: Conflict
       summary: Create a new batch of transactions to a ledger.
       tags:
-      - Transactions
+      - transactions
       x-content-type: application/json
       x-accepts: application/json
   /api/ledger/{ledger}/balances:
@@ -1346,7 +1369,7 @@ paths:
           description: Bad Request
       summary: Get the balances from a ledger's account
       tags:
-      - Balances
+      - balances
       x-accepts: application/json
   /api/ledger/{ledger}/aggregate/balances:
     get:
@@ -1386,7 +1409,7 @@ paths:
           description: Bad Request
       summary: Get the aggregated balances from selected accounts
       tags:
-      - Balances
+      - balances
       x-accepts: application/json
   /api/payments/payments:
     get:
@@ -1654,6 +1677,24 @@ paths:
       tags:
       - Payments
       x-accepts: application/json
+  /api/payments/connectors/stripe/transfer:
+    post:
+      description: Execute a transfer between two Stripe accounts
+      operationId: connectorsStripeTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StripeTransferRequest'
+        required: true
+      responses:
+        "200":
+          description: Transfer has been executed
+      summary: Transfer funds between Stripe accounts
+      tags:
+      - Payments
+      x-content-type: application/json
+      x-accepts: application/json
   /api/search/:
     post:
       description: Search with Query
@@ -1707,11 +1748,16 @@ paths:
       - Webhooks
       x-accepts: application/json
     post:
-      description: "Insert a new config.\n\nThe endpoint should be a valid https URL\
-        \ and be unique.\n\nThe secret is the endpoint's verification secret. \nIf\
-        \ not passed or empty, a secret is automatically generated. \nThe format is\
-        \ a random string of bytes of size 24, base64 encoded. (larger size after\
-        \ encoding)\n\nAll eventTypes are converted to lower-case when inserted.\n"
+      description: |
+        Insert a new config.
+
+        The endpoint should be a valid https URL and be unique.
+
+        The secret is the endpoint's verification secret.
+        If not passed or empty, a secret is automatically generated.
+        The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+
+        All eventTypes are converted to lower-case when inserted.
       operationId: insertOneConfig
       requestBody:
         content:
@@ -1722,12 +1768,10 @@ paths:
       responses:
         "200":
           content:
-            text/plain:
+            application/json:
               schema:
-                description: Config ID
-                example: 4997257d-dfb6-445b-929c-cbe2ab182818
-                type: string
-          description: "Config created successfully, returns its ID."
+                $ref: '#/components/schemas/ConfigResponse'
+          description: Config created successfully.
         "400":
           content:
             text/plain:
@@ -1740,7 +1784,7 @@ paths:
       tags:
       - Webhooks
       x-content-type: application/json
-      x-accepts: text/plain
+      x-accepts: application/json
   /api/webhooks/configs/{id}:
     delete:
       operationId: deleteOneConfig
@@ -1757,8 +1801,34 @@ paths:
       responses:
         "200":
           content: {}
-          description: OK
+          description: Config successfully deleted.
       summary: Delete one config
+      tags:
+      - Webhooks
+      x-accepts: application/json
+  /api/webhooks/configs/{id}/test:
+    get:
+      description: |
+        Test one config by sending a webhook to its endpoint.
+      operationId: testOneConfig
+      parameters:
+      - description: Config ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 4997257d-dfb6-445b-929c-cbe2ab182818
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptResponse'
+          description: OK
+      summary: Test one config
       tags:
       - Webhooks
       x-accepts: application/json
@@ -1780,7 +1850,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getManyConfigs_200_response'
+                $ref: '#/components/schemas/ConfigResponse'
           description: Config successfully activated.
         "304":
           content: {}
@@ -1807,7 +1877,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getManyConfigs_200_response'
+                $ref: '#/components/schemas/ConfigResponse'
           description: Config successfully deactivated.
         "304":
           content: {}
@@ -1818,9 +1888,11 @@ paths:
       x-accepts: application/json
   /api/webhooks/configs/{id}/secret/change:
     put:
-      description: "Change the signing secret of the endpoint of a config.\n\nIf not\
-        \ passed or empty, a secret is automatically generated. \nThe format is a\
-        \ random string of bytes of size 24, base64 encoded. (larger size after encoding)\n"
+      description: |
+        Change the signing secret of the endpoint of a config.
+
+        If not passed or empty, a secret is automatically generated.
+        The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
       operationId: changeOneConfigSecret
       parameters:
       - description: Config ID
@@ -1842,8 +1914,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getManyConfigs_200_response'
-          description: OK
+                $ref: '#/components/schemas/ConfigResponse'
+          description: Secret successfully changed.
       summary: Change the signing secret of a config
       tags:
       - Webhooks
@@ -2117,9 +2189,9 @@ components:
       type: object
     ScriptResult:
       example:
-        error_message: account had insufficient funds
-        details: https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9
-        error_code: INSUFFICIENT_FUND
+        error_message: error_message
+        details: details
+        error_code: INTERNAL
         transaction:
           reference: ref:001
           metadata:
@@ -2162,7 +2234,6 @@ components:
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         details:
-          example: https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9
           type: string
         error_code:
           enum:
@@ -2170,11 +2241,8 @@ components:
           - INSUFFICIENT_FUND
           - COMPILATION_FAILED
           - NO_SCRIPT
-          - METADATA_OVERRIDE
-          example: INSUFFICIENT_FUND
           type: string
         error_message:
-          example: account had insufficient funds
           type: string
         transaction:
           $ref: '#/components/schemas/Transaction'
@@ -2334,16 +2402,6 @@ components:
           vars:
             user: users:042
       properties:
-        plain:
-          example: "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\
-            \tdestination = $user\n)\n"
-          type: string
-        vars:
-          example:
-            vars:
-              user: users:042
-          properties: {}
-          type: object
         reference:
           description: Reference to attach to the generated transaction
           example: order_1234
@@ -2356,6 +2414,16 @@ components:
               nested:
                 key: value
           nullable: true
+          type: object
+        plain:
+          example: "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\
+            \tdestination = $user\n)\n"
+          type: string
+        vars:
+          example:
+            vars:
+              user: users:042
+          properties: {}
           type: object
       required:
       - plain
@@ -2542,53 +2610,6 @@ components:
       required:
       - transactions
       type: object
-    PostTransaction:
-      example:
-        reference: ref:001
-        metadata:
-          admin: true
-          a:
-            nested:
-              key: value
-        postings:
-        - amount: 100
-          destination: users:002
-          source: users:001
-          asset: COIN
-        - amount: 100
-          destination: users:002
-          source: users:001
-          asset: COIN
-        script:
-          plain: "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\t\
-            destination = $user\n)\n"
-          vars:
-            vars:
-              user: users:042
-        timestamp: 2000-01-23T04:56:07.000+00:00
-      properties:
-        timestamp:
-          format: date-time
-          type: string
-        postings:
-          items:
-            $ref: '#/components/schemas/Posting'
-          type: array
-        script:
-          $ref: '#/components/schemas/PostTransaction_script'
-        reference:
-          example: ref:001
-          type: string
-        metadata:
-          additionalProperties: {}
-          example:
-            admin: true
-            a:
-              nested:
-                key: value
-          nullable: true
-          type: object
-      type: object
     Stats:
       example:
         accounts: 0
@@ -2605,7 +2626,7 @@ components:
     Cursor:
       properties:
         page_size:
-          example: 15
+          example: 1
           type: integer
         has_more:
           example: false
@@ -2614,7 +2635,7 @@ components:
           example: YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=
           type: string
         next:
-          example: ""
+          example: aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==
           type: string
       required:
       - page_size
@@ -3134,6 +3155,31 @@ components:
           example: false
           type: boolean
       type: object
+    StripeTransferRequest:
+      example:
+        amount: 100
+        metadata:
+          order_id: "6735"
+        destination: acct_1Gqj58KZcSIg2N2q
+        asset: USD
+      properties:
+        amount:
+          example: 100
+          type: integer
+        asset:
+          example: USD
+          type: string
+        destination:
+          example: acct_1Gqj58KZcSIg2N2q
+          type: string
+        metadata:
+          description: |
+            A set of key/value pairs that you can attach to a transfer object.
+            It can be useful for storing additional information about the transfer in a structured format.
+          example:
+            order_id: "6735"
+          type: object
+      type: object
     Query:
       example:
         size: 0
@@ -3197,8 +3243,37 @@ components:
             example: TYPE1
             type: string
           type: array
-    webhooksConfig:
+    ConfigResponse:
+      example:
+        data:
+          createdAt: 2022-07-20T07:31:40Z
+          endpoint: https://example.com
+          modifiedAt: 2022-07-20T08:32:59Z
+          active: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          secret: V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3
+          eventTypes:
+          - TYPE1
+          - TYPE2
       properties:
+        data:
+          $ref: '#/components/schemas/webhooksConfig'
+      type: object
+    webhooksConfig:
+      example:
+        createdAt: 2022-07-20T07:31:40Z
+        endpoint: https://example.com
+        modifiedAt: 2022-07-20T08:32:59Z
+        active: true
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        secret: V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3
+        eventTypes:
+        - TYPE1
+        - TYPE2
+      properties:
+        id:
+          format: uuid
+          type: string
         endpoint:
           example: https://example.com
           type: string
@@ -3222,6 +3297,73 @@ components:
           type: string
         modifiedAt:
           example: 2022-07-20T08:32:59Z
+          format: date-time
+          type: string
+    AttemptResponse:
+      example:
+        data:
+          date: 2000-01-23T04:56:07.000+00:00
+          nextRetryAfter: 2000-01-23T04:56:07.000+00:00
+          webhookID: 4997257d-dfb6-445b-929c-cbe2ab182818
+          payload: "{\"data\":\"test\"}"
+          retryAttempt: 1
+          config:
+            createdAt: 2022-07-20T07:31:40Z
+            endpoint: https://example.com
+            modifiedAt: 2022-07-20T08:32:59Z
+            active: true
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            secret: V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3
+            eventTypes:
+            - TYPE1
+            - TYPE2
+          statusCode: 200
+          status: success
+      properties:
+        data:
+          $ref: '#/components/schemas/Attempt'
+      type: object
+    Attempt:
+      example:
+        date: 2000-01-23T04:56:07.000+00:00
+        nextRetryAfter: 2000-01-23T04:56:07.000+00:00
+        webhookID: 4997257d-dfb6-445b-929c-cbe2ab182818
+        payload: "{\"data\":\"test\"}"
+        retryAttempt: 1
+        config:
+          createdAt: 2022-07-20T07:31:40Z
+          endpoint: https://example.com
+          modifiedAt: 2022-07-20T08:32:59Z
+          active: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          secret: V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3
+          eventTypes:
+          - TYPE1
+          - TYPE2
+        statusCode: 200
+        status: success
+      properties:
+        webhookID:
+          example: 4997257d-dfb6-445b-929c-cbe2ab182818
+          type: string
+        date:
+          format: date-time
+          type: string
+        config:
+          $ref: '#/components/schemas/webhooksConfig'
+        payload:
+          example: "{\"data\":\"test\"}"
+          type: string
+        statusCode:
+          example: 200
+          type: integer
+        retryAttempt:
+          example: 1
+          type: integer
+        status:
+          example: success
+          type: string
+        nextRetryAfter:
           format: date-time
           type: string
     webhooksCursor:
@@ -3291,6 +3433,27 @@ components:
           type: string
         error_message:
           example: invalid account address format
+          type: string
+      required:
+      - error_code
+      type: object
+    addMetadataToAccount_409_response:
+      properties:
+        error_code:
+          example: CONFLICT
+          type: string
+        error_message:
+          type: string
+      required:
+      - error_code
+      type: object
+    runScript_400_response:
+      properties:
+        error_code:
+          example: VALIDATION
+          type: string
+        error_message:
+          example: invalid payload
           type: string
       required:
       - error_code
@@ -3493,27 +3656,6 @@ components:
       - lastDigits
       type: object
       example: null
-    PostTransaction_script:
-      example:
-        plain: "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\t\
-          destination = $user\n)\n"
-        vars:
-          vars:
-            user: users:042
-      properties:
-        plain:
-          example: "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\
-            \tdestination = $user\n)\n"
-          type: string
-        vars:
-          example:
-            vars:
-              user: users:042
-          properties: {}
-          type: object
-      required:
-      - plain
-      type: object
     ListConnectorsConfigsResponse_connector_key:
       example:
         datatype: datatype
@@ -3581,6 +3723,13 @@ x-tagGroups:
   - Stats
   - Transactions
   - Balances
+  - server
+  - accounts
+  - mapping
+  - script
+  - stats
+  - transactions
+  - balances
 - name: Payments
   tags:
   - Payments

@@ -86,6 +86,7 @@ null (empty response body)
 | **204** | No Content |  -  |
 | **400** | Bad Request |  -  |
 | **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
 
 
 ## countTransactions
@@ -168,7 +169,7 @@ null (empty response body)
 
 ## createTransaction
 
-> TransactionsResponse createTransaction(ledger, postTransaction, preview)
+> TransactionsResponse createTransaction(ledger, transactionData, preview)
 
 Create a new transaction to a ledger.
 
@@ -194,10 +195,10 @@ public class Example {
 
         TransactionsApi apiInstance = new TransactionsApi(defaultClient);
         String ledger = "ledger001"; // String | Name of the ledger.
-        PostTransaction postTransaction = new PostTransaction(); // PostTransaction | The request body must contain one of the following objects:   - `postings`: suitable for simple transactions   - `script`: enabling more complex transactions with Numscript 
+        TransactionData transactionData = new TransactionData(); // TransactionData | 
         Boolean preview = true; // Boolean | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
         try {
-            TransactionsResponse result = apiInstance.createTransaction(ledger, postTransaction, preview);
+            TransactionsResponse result = apiInstance.createTransaction(ledger, transactionData, preview);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TransactionsApi#createTransaction");
@@ -216,7 +217,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **ledger** | **String**| Name of the ledger. | |
-| **postTransaction** | [**PostTransaction**](PostTransaction.md)| The request body must contain one of the following objects:   - &#x60;postings&#x60;: suitable for simple transactions   - &#x60;script&#x60;: enabling more complex transactions with Numscript  | |
+| **transactionData** | [**TransactionData**](TransactionData.md)|  | |
 | **preview** | **Boolean**| Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker. | [optional] |
 
 ### Return type
@@ -237,6 +238,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+| **304** | Not modified (when preview is enabled) |  -  |
 | **400** | Bad Request |  -  |
 | **409** | Conflict |  -  |
 
@@ -420,9 +422,9 @@ public class Example {
         Integer pageSize = 15; // Integer | The maximum number of results to return per page
         String after = "1234"; // String | Pagination cursor, will return transactions after given txid (in descending order).
         String reference = "ref:001"; // String | Find transactions by reference field.
-        String account = "users:001"; // String | Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
-        String source = "users:001"; // String | Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
-        String destination = "users:001"; // String | Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+        String account = "users:001"; // String | Find transactions with postings involving given account, either as source or destination.
+        String source = "users:001"; // String | Find transactions with postings involving given account at source.
+        String destination = "users:001"; // String | Find transactions with postings involving given account at destination.
         String startTime = "startTime_example"; // String | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
         String endTime = "endTime_example"; // String | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
         String paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="; // String | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
@@ -450,9 +452,9 @@ public class Example {
 | **pageSize** | **Integer**| The maximum number of results to return per page | [optional] [default to 15] |
 | **after** | **String**| Pagination cursor, will return transactions after given txid (in descending order). | [optional] |
 | **reference** | **String**| Find transactions by reference field. | [optional] |
-| **account** | **String**| Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $). | [optional] |
-| **source** | **String**| Filter transactions with postings involving given account at source (regular expression placed between ^ and $). | [optional] |
-| **destination** | **String**| Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). | [optional] |
+| **account** | **String**| Find transactions with postings involving given account, either as source or destination. | [optional] |
+| **source** | **String**| Find transactions with postings involving given account at source. | [optional] |
+| **destination** | **String**| Find transactions with postings involving given account at destination. | [optional] |
 | **startTime** | **String**| Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  | [optional] |
 | **endTime** | **String**| Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).  | [optional] |
 | **paginationToken** | **String**| Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  | [optional] |
@@ -550,4 +552,5 @@ public class Example {
 | **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **404** | Not Found |  -  |
+| **409** | Conflict |  -  |
 
