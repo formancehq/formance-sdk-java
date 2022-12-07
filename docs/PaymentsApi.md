@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**connectorsStripeTransfer**](PaymentsApi.md#connectorsStripeTransfer) | **POST** api/payments/connectors/stripe/transfer | Transfer funds between Stripe accounts |
 | [**getAllConnectors**](PaymentsApi.md#getAllConnectors) | **GET** api/payments/connectors | Get all installed connectors |
 | [**getAllConnectorsConfigs**](PaymentsApi.md#getAllConnectorsConfigs) | **GET** api/payments/connectors/configs | Get all available connectors configs |
 | [**getConnectorTask**](PaymentsApi.md#getConnectorTask) | **GET** api/payments/connectors/{connector}/tasks/{taskId} | Read a specific task of the connector |
@@ -15,6 +16,76 @@ All URIs are relative to *http://localhost*
 | [**resetConnector**](PaymentsApi.md#resetConnector) | **POST** api/payments/connectors/{connector}/reset | Reset connector |
 | [**uninstallConnector**](PaymentsApi.md#uninstallConnector) | **DELETE** api/payments/connectors/{connector} | Uninstall connector |
 
+
+
+## connectorsStripeTransfer
+
+> connectorsStripeTransfer(stripeTransferRequest)
+
+Transfer funds between Stripe accounts
+
+Execute a transfer between two Stripe accounts
+
+### Example
+
+```java
+// Import classes:
+import com.formance.formance.ApiClient;
+import com.formance.formance.ApiException;
+import com.formance.formance.Configuration;
+import com.formance.formance.auth.*;
+import com.formance.formance.models.*;
+import com.formance.formance.api.PaymentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure OAuth2 access token for authorization: Authorization
+        OAuth Authorization = (OAuth) defaultClient.getAuthentication("Authorization");
+        Authorization.setAccessToken("YOUR ACCESS TOKEN");
+
+        PaymentsApi apiInstance = new PaymentsApi(defaultClient);
+        StripeTransferRequest stripeTransferRequest = new StripeTransferRequest(); // StripeTransferRequest | 
+        try {
+            apiInstance.connectorsStripeTransfer(stripeTransferRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaymentsApi#connectorsStripeTransfer");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **stripeTransferRequest** | [**StripeTransferRequest**](StripeTransferRequest.md)|  | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Transfer has been executed |  -  |
 
 
 ## getAllConnectors
