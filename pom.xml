@@ -5,7 +5,7 @@
     <artifactId>formance</artifactId>
     <packaging>jar</packaging>
     <name>formance</name>
-    <version>v1.0.0-beta.4</version>
+    <version>develop</version>
     <url>https://github.com/formancehq/formance-sdk-java</url>
     <description>Ledger Java Client</description>
     <scm>

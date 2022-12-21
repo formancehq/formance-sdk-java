@@ -9,8 +9,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
-import com.formance.formance.model.Query;
-import com.formance.formance.model.Response;
+import com.formance.formance.model.ServerInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,19 +17,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public interface SearchApi {
+public interface DefaultApi {
   /**
-   * Search
-   * Search with Query
-   * @param query  (required)
-   * @return Call&lt;Response&gt;
+   * Get server info
+   * 
+   * @return Call&lt;ServerInfo&gt;
    */
-  @Headers({
-    "Content-Type:application/json"
-  })
-  @POST("api/search/")
-  Call<Response> search(
-    @retrofit2.http.Body Query query
-  );
+  @GET("api/search/_info")
+  Call<ServerInfo> getServerInfo();
+    
 
 }

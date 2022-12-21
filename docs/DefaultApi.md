@@ -1,20 +1,18 @@
-# SearchApi
+# DefaultApi
 
 All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**search**](SearchApi.md#search) | **POST** api/search/ | Search |
+| [**getServerInfo**](DefaultApi.md#getServerInfo) | **GET** api/search/_info | Get server info |
 
 
 
-## search
+## getServerInfo
 
-> Response search(query)
+> ServerInfo getServerInfo()
 
-Search
-
-Search with Query
+Get server info
 
 ### Example
 
@@ -25,7 +23,7 @@ import com.formance.formance.ApiException;
 import com.formance.formance.Configuration;
 import com.formance.formance.auth.*;
 import com.formance.formance.models.*;
-import com.formance.formance.api.SearchApi;
+import com.formance.formance.api.DefaultApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -36,13 +34,12 @@ public class Example {
         OAuth Authorization = (OAuth) defaultClient.getAuthentication("Authorization");
         Authorization.setAccessToken("YOUR ACCESS TOKEN");
 
-        SearchApi apiInstance = new SearchApi(defaultClient);
-        Query query = new Query(); // Query | 
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
         try {
-            Response result = apiInstance.search(query);
+            ServerInfo result = apiInstance.getServerInfo();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling SearchApi#search");
+            System.err.println("Exception when calling DefaultApi#getServerInfo");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -54,14 +51,11 @@ public class Example {
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **query** | [**Query**](Query.md)|  | |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**Response**](Response.md)
+[**ServerInfo**](ServerInfo.md)
 
 ### Authorization
 
@@ -69,12 +63,12 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | Server information |  -  |
 

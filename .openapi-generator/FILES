@@ -36,6 +36,7 @@ docs/CreateTransaction409Response.md
 docs/CreateTransactions400Response.md
 docs/CurrencyCloudConfig.md
 docs/Cursor.md
+docs/DefaultApi.md
 docs/DummyPayConfig.md
 docs/ErrorCode.md
 docs/ErrorResponse.md
@@ -94,6 +95,7 @@ docs/Secret.md
 docs/SecretAllOf.md
 docs/SecretOptions.md
 docs/ServerApi.md
+docs/ServerInfo.md
 docs/Stats.md
 docs/StatsApi.md
 docs/StatsResponse.md
@@ -131,6 +133,7 @@ src/main/java/com/formance/formance/StringUtil.java
 src/main/java/com/formance/formance/api/AccountsApi.java
 src/main/java/com/formance/formance/api/BalancesApi.java
 src/main/java/com/formance/formance/api/ClientsApi.java
+src/main/java/com/formance/formance/api/DefaultApi.java
 src/main/java/com/formance/formance/api/MappingApi.java
 src/main/java/com/formance/formance/api/PaymentsApi.java
 src/main/java/com/formance/formance/api/ScopesApi.java
@@ -227,6 +230,7 @@ src/main/java/com/formance/formance/model/ScriptResult.java
 src/main/java/com/formance/formance/model/Secret.java
 src/main/java/com/formance/formance/model/SecretAllOf.java
 src/main/java/com/formance/formance/model/SecretOptions.java
+src/main/java/com/formance/formance/model/ServerInfo.java
 src/main/java/com/formance/formance/model/Stats.java
 src/main/java/com/formance/formance/model/StatsResponse.java
 src/main/java/com/formance/formance/model/StripeConfig.java
@@ -242,9 +246,5 @@ src/main/java/com/formance/formance/model/Volume.java
 src/main/java/com/formance/formance/model/WebhooksConfig.java
 src/main/java/com/formance/formance/model/WebhooksCursor.java
 src/main/java/com/formance/formance/model/WiseConfig.java
-src/test/java/com/formance/formance/model/AddMetadataToAccount409ResponseTest.java
-src/test/java/com/formance/formance/model/AttemptResponseTest.java
-src/test/java/com/formance/formance/model/AttemptTest.java
-src/test/java/com/formance/formance/model/ConfigResponseTest.java
-src/test/java/com/formance/formance/model/RunScript400ResponseTest.java
-src/test/java/com/formance/formance/model/StripeTransferRequestTest.java
+src/test/java/com/formance/formance/api/DefaultApiTest.java
+src/test/java/com/formance/formance/model/ServerInfoTest.java

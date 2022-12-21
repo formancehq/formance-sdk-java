@@ -23,36 +23,36 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
 /**
- * WebhooksCursor
+ * ServerInfo
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-21T14:26:42.711637Z[Etc/UTC]")
-public class WebhooksCursor {
-  public static final String SERIALIZED_NAME_HAS_MORE = "has_more";
-  @SerializedName(SERIALIZED_NAME_HAS_MORE)
-  private Boolean hasMore;
+public class ServerInfo {
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private String version;
 
-  public WebhooksCursor() {
+  public ServerInfo() {
   }
 
-  public WebhooksCursor hasMore(Boolean hasMore) {
+  public ServerInfo version(String version) {
     
-    this.hasMore = hasMore;
+    this.version = version;
     return this;
   }
 
    /**
-   * Get hasMore
-   * @return hasMore
+   * Get version
+   * @return version
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
 
-  public Boolean getHasMore() {
-    return hasMore;
+  public String getVersion() {
+    return version;
   }
 
 
-  public void setHasMore(Boolean hasMore) {
-    this.hasMore = hasMore;
+  public void setVersion(String version) {
+    this.version = version;
   }
 
 
@@ -64,20 +64,20 @@ public class WebhooksCursor {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhooksCursor webhooksCursor = (WebhooksCursor) o;
-    return Objects.equals(this.hasMore, webhooksCursor.hasMore);
+    ServerInfo serverInfo = (ServerInfo) o;
+    return Objects.equals(this.version, serverInfo.version);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hasMore);
+    return Objects.hash(version);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhooksCursor {\n");
-    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
+    sb.append("class ServerInfo {\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("}");
     return sb.toString();
   }
