@@ -10,7 +10,7 @@ All URIs are relative to *http://localhost*
 
 ## search
 
-> search(query)
+> Response search(query)
 
 Search
 
@@ -39,7 +39,8 @@ public class Example {
         SearchApi apiInstance = new SearchApi(defaultClient);
         Query query = new Query(); // Query | 
         try {
-            apiInstance.search(query);
+            Response result = apiInstance.search(query);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SearchApi#search");
             System.err.println("Status code: " + e.getCode());
@@ -60,7 +61,7 @@ public class Example {
 
 ### Return type
 
-null (empty response body)
+[**Response**](Response.md)
 
 ### Authorization
 
@@ -69,7 +70,7 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 
 ### HTTP response details

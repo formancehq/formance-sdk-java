@@ -10,7 +10,8 @@ import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
 import com.formance.formance.model.ConnectorConfig;
-import com.formance.formance.model.ConnectorTask;
+import com.formance.formance.model.Connectors;
+import com.formance.formance.model.ListConnectorTasks200ResponseInner;
 import com.formance.formance.model.ListConnectorsConfigsResponse;
 import com.formance.formance.model.ListConnectorsResponse;
 import com.formance.formance.model.ListPaymentsResponse;
@@ -61,11 +62,11 @@ public interface PaymentsApi {
    * Get a specific task associated to the connector
    * @param connector The connector code (required)
    * @param taskId The task id (required)
-   * @return Call&lt;ConnectorTask&gt;
+   * @return Call&lt;ListConnectorTasks200ResponseInner&gt;
    */
   @GET("api/payments/connectors/{connector}/tasks/{taskId}")
-  Call<ConnectorTask> getConnectorTask(
-    @retrofit2.http.Path("connector") String connector, @retrofit2.http.Path("taskId") String taskId
+  Call<ListConnectorTasks200ResponseInner> getConnectorTask(
+    @retrofit2.http.Path("connector") Connectors connector, @retrofit2.http.Path("taskId") String taskId
   );
 
   /**
@@ -91,18 +92,18 @@ public interface PaymentsApi {
   })
   @POST("api/payments/connectors/{connector}")
   Call<Void> installConnector(
-    @retrofit2.http.Path("connector") String connector, @retrofit2.http.Body ConnectorConfig connectorConfig
+    @retrofit2.http.Path("connector") Connectors connector, @retrofit2.http.Body ConnectorConfig connectorConfig
   );
 
   /**
    * List connector tasks
    * List all tasks associated with this connector.
    * @param connector The connector code (required)
-   * @return Call&lt;List&lt;ConnectorTask&gt;&gt;
+   * @return Call&lt;List&lt;ListConnectorTasks200ResponseInner&gt;&gt;
    */
   @GET("api/payments/connectors/{connector}/tasks")
-  Call<List<ConnectorTask>> listConnectorTasks(
-    @retrofit2.http.Path("connector") String connector
+  Call<List<ListConnectorTasks200ResponseInner>> listConnectorTasks(
+    @retrofit2.http.Path("connector") Connectors connector
   );
 
   /**
@@ -126,7 +127,7 @@ public interface PaymentsApi {
    */
   @GET("api/payments/connectors/{connector}/config")
   Call<ConnectorConfig> readConnectorConfig(
-    @retrofit2.http.Path("connector") String connector
+    @retrofit2.http.Path("connector") Connectors connector
   );
 
   /**
@@ -137,7 +138,7 @@ public interface PaymentsApi {
    */
   @POST("api/payments/connectors/{connector}/reset")
   Call<Void> resetConnector(
-    @retrofit2.http.Path("connector") String connector
+    @retrofit2.http.Path("connector") Connectors connector
   );
 
   /**
@@ -148,7 +149,7 @@ public interface PaymentsApi {
    */
   @DELETE("api/payments/connectors/{connector}")
   Call<Void> uninstallConnector(
-    @retrofit2.http.Path("connector") String connector
+    @retrofit2.http.Path("connector") Connectors connector
   );
 
 }

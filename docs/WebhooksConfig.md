@@ -13,7 +13,7 @@
 |**eventTypes** | **List&lt;String&gt;** |  |  [optional] |
 |**active** | **Boolean** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
-|**modifiedAt** | **OffsetDateTime** |  |  [optional] |
+|**updatedAt** | **OffsetDateTime** |  |  [optional] |
 
 
 
