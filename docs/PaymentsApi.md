@@ -224,7 +224,7 @@ This endpoint does not need any parameter.
 
 ## getConnectorTask
 
-> ConnectorTask getConnectorTask(connector, taskId)
+> ListConnectorTasks200ResponseInner getConnectorTask(connector, taskId)
 
 Read a specific task of the connector
 
@@ -251,10 +251,10 @@ public class Example {
         Authorization.setAccessToken("YOUR ACCESS TOKEN");
 
         PaymentsApi apiInstance = new PaymentsApi(defaultClient);
-        String connector = "stripe"; // String | The connector code
+        Connectors connector = Connectors.fromValue("STRIPE"); // Connectors | The connector code
         String taskId = "task1"; // String | The task id
         try {
-            ConnectorTask result = apiInstance.getConnectorTask(connector, taskId);
+            ListConnectorTasks200ResponseInner result = apiInstance.getConnectorTask(connector, taskId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PaymentsApi#getConnectorTask");
@@ -272,12 +272,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **connector** | **String**| The connector code | [enum: stripe] |
+| **connector** | [**Connectors**](.md)| The connector code | [enum: STRIPE, DUMMY-PAY, SIE, MODULR, CURRENCY-CLOUD, BANKING-CIRCLE] |
 | **taskId** | **String**| The task id | |
 
 ### Return type
 
-[**ConnectorTask**](ConnectorTask.md)
+[**ListConnectorTasks200ResponseInner**](ListConnectorTasks200ResponseInner.md)
 
 ### Authorization
 
@@ -393,7 +393,7 @@ public class Example {
         Authorization.setAccessToken("YOUR ACCESS TOKEN");
 
         PaymentsApi apiInstance = new PaymentsApi(defaultClient);
-        String connector = "stripe"; // String | The connector code
+        Connectors connector = Connectors.fromValue("STRIPE"); // Connectors | The connector code
         ConnectorConfig connectorConfig = new ConnectorConfig(); // ConnectorConfig | 
         try {
             apiInstance.installConnector(connector, connectorConfig);
@@ -413,7 +413,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **connector** | **String**| The connector code | [enum: stripe, dummypay, wise, modulr, currencycloud] |
+| **connector** | [**Connectors**](.md)| The connector code | [enum: STRIPE, DUMMY-PAY, SIE, MODULR, CURRENCY-CLOUD, BANKING-CIRCLE] |
 | **connectorConfig** | [**ConnectorConfig**](ConnectorConfig.md)|  | |
 
 ### Return type
@@ -438,7 +438,7 @@ null (empty response body)
 
 ## listConnectorTasks
 
-> List&lt;ConnectorTask&gt; listConnectorTasks(connector)
+> List&lt;ListConnectorTasks200ResponseInner&gt; listConnectorTasks(connector)
 
 List connector tasks
 
@@ -465,9 +465,9 @@ public class Example {
         Authorization.setAccessToken("YOUR ACCESS TOKEN");
 
         PaymentsApi apiInstance = new PaymentsApi(defaultClient);
-        String connector = "stripe"; // String | The connector code
+        Connectors connector = Connectors.fromValue("STRIPE"); // Connectors | The connector code
         try {
-            List<ConnectorTask> result = apiInstance.listConnectorTasks(connector);
+            List<ListConnectorTasks200ResponseInner> result = apiInstance.listConnectorTasks(connector);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PaymentsApi#listConnectorTasks");
@@ -485,11 +485,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **connector** | **String**| The connector code | [enum: stripe] |
+| **connector** | [**Connectors**](.md)| The connector code | [enum: STRIPE, DUMMY-PAY, SIE, MODULR, CURRENCY-CLOUD, BANKING-CIRCLE] |
 
 ### Return type
 
-[**List&lt;ConnectorTask&gt;**](ConnectorTask.md)
+[**List&lt;ListConnectorTasks200ResponseInner&gt;**](ListConnectorTasks200ResponseInner.md)
 
 ### Authorization
 
@@ -609,7 +609,7 @@ public class Example {
         Authorization.setAccessToken("YOUR ACCESS TOKEN");
 
         PaymentsApi apiInstance = new PaymentsApi(defaultClient);
-        String connector = "stripe"; // String | The connector code
+        Connectors connector = Connectors.fromValue("STRIPE"); // Connectors | The connector code
         try {
             ConnectorConfig result = apiInstance.readConnectorConfig(connector);
             System.out.println(result);
@@ -629,7 +629,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **connector** | **String**| The connector code | [enum: stripe] |
+| **connector** | [**Connectors**](.md)| The connector code | [enum: STRIPE, DUMMY-PAY, SIE, MODULR, CURRENCY-CLOUD, BANKING-CIRCLE] |
 
 ### Return type
 
@@ -680,7 +680,7 @@ public class Example {
         Authorization.setAccessToken("YOUR ACCESS TOKEN");
 
         PaymentsApi apiInstance = new PaymentsApi(defaultClient);
-        String connector = "stripe"; // String | The connector code
+        Connectors connector = Connectors.fromValue("STRIPE"); // Connectors | The connector code
         try {
             apiInstance.resetConnector(connector);
         } catch (ApiException e) {
@@ -699,7 +699,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **connector** | **String**| The connector code | [enum: stripe] |
+| **connector** | [**Connectors**](.md)| The connector code | [enum: STRIPE, DUMMY-PAY, SIE, MODULR, CURRENCY-CLOUD, BANKING-CIRCLE] |
 
 ### Return type
 
@@ -750,7 +750,7 @@ public class Example {
         Authorization.setAccessToken("YOUR ACCESS TOKEN");
 
         PaymentsApi apiInstance = new PaymentsApi(defaultClient);
-        String connector = "stripe"; // String | The connector code
+        Connectors connector = Connectors.fromValue("STRIPE"); // Connectors | The connector code
         try {
             apiInstance.uninstallConnector(connector);
         } catch (ApiException e) {
@@ -769,7 +769,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **connector** | **String**| The connector code | [enum: stripe] |
+| **connector** | [**Connectors**](.md)| The connector code | [enum: STRIPE, DUMMY-PAY, SIE, MODULR, CURRENCY-CLOUD, BANKING-CIRCLE] |
 
 ### Return type
 

@@ -7,8 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**webhookID** | **String** |  |  [optional] |
-|**date** | **OffsetDateTime** |  |  [optional] |
+|**id** | **UUID** |  |  [optional] |
+|**webhookID** | **UUID** |  |  [optional] |
+|**createdAt** | **OffsetDateTime** |  |  [optional] |
+|**updatedAt** | **OffsetDateTime** |  |  [optional] |
 |**config** | [**WebhooksConfig**](WebhooksConfig.md) |  |  [optional] |
 |**payload** | **String** |  |  [optional] |
 |**statusCode** | **Integer** |  |  [optional] |

@@ -17,7 +17,7 @@ info:
     and standard method from web, mobile and desktop applications.
     <SecurityDefinitions />
   title: Formance Stack API
-  version: v1.0.0-beta.4
+  version: v1.0.0-rc.1
   x-logo:
     url: https://avatars.githubusercontent.com/u/84325077?s=200&v=4
     altText: Formance
@@ -1522,9 +1522,7 @@ paths:
         name: connector
         required: true
         schema:
-          enum:
-          - stripe
-          type: string
+          $ref: '#/components/schemas/Connectors'
         style: simple
       responses:
         "204":
@@ -1543,13 +1541,7 @@ paths:
         name: connector
         required: true
         schema:
-          enum:
-          - stripe
-          - dummypay
-          - wise
-          - modulr
-          - currencycloud
-          type: string
+          $ref: '#/components/schemas/Connectors'
         style: simple
       requestBody:
         content:
@@ -1576,9 +1568,7 @@ paths:
         name: connector
         required: true
         schema:
-          enum:
-          - stripe
-          type: string
+          $ref: '#/components/schemas/Connectors'
         style: simple
       responses:
         "200":
@@ -1603,9 +1593,7 @@ paths:
         name: connector
         required: true
         schema:
-          enum:
-          - stripe
-          type: string
+          $ref: '#/components/schemas/Connectors'
         style: simple
       responses:
         "204":
@@ -1625,9 +1613,7 @@ paths:
         name: connector
         required: true
         schema:
-          enum:
-          - stripe
-          type: string
+          $ref: '#/components/schemas/Connectors'
         style: simple
       responses:
         "200":
@@ -1635,7 +1621,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/ConnectorTask'
+                  $ref: '#/components/schemas/listConnectorTasks_200_response_inner'
                 type: array
           description: Task list
       summary: List connector tasks
@@ -1653,9 +1639,7 @@ paths:
         name: connector
         required: true
         schema:
-          enum:
-          - stripe
-          type: string
+          $ref: '#/components/schemas/Connectors'
         style: simple
       - description: The task id
         example: task1
@@ -1671,7 +1655,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConnectorTask'
+                $ref: '#/components/schemas/listConnectorTasks_200_response_inner'
           description: The specified task
       summary: Read a specific task of the connector
       tags:
@@ -1695,6 +1679,18 @@ paths:
       - Payments
       x-content-type: application/json
       x-accepts: application/json
+  /api/search/_info:
+    get:
+      operationId: getServerInfo
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerInfo'
+          description: Server information
+      summary: Get server info
+      x-accepts: application/json
   /api/search/:
     post:
       description: Search with Query
@@ -1707,6 +1703,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
           description: Success
       summary: Search
       tags:
@@ -2878,6 +2878,15 @@ components:
       required:
       - error_code
       type: object
+    Connectors:
+      enum:
+      - STRIPE
+      - DUMMY-PAY
+      - SIE
+      - MODULR
+      - CURRENCY-CLOUD
+      - BANKING-CIRCLE
+      type: string
     ConnectorConfig:
       oneOf:
       - $ref: '#/components/schemas/StripeConfig'
@@ -2886,9 +2895,6 @@ components:
       - $ref: '#/components/schemas/ModulrConfig'
       - $ref: '#/components/schemas/CurrencyCloudConfig'
       - $ref: '#/components/schemas/BankingCircleConfig'
-    ConnectorTask:
-      oneOf:
-      - $ref: '#/components/schemas/StripeTask'
     StripeConfig:
       properties:
         pollingPeriod:
@@ -3180,6 +3186,60 @@ components:
             order_id: "6735"
           type: object
       type: object
+    ConnectorTaskBase:
+      properties:
+        provider:
+          description: The connector code
+          example: stripe
+          type: string
+        createdAt:
+          description: The date when the task was created
+          example: 2020-01-01T00:00:00Z
+          format: date-time
+          type: string
+        status:
+          description: The task status
+          enum:
+          - stopped
+          - pending
+          - terminated
+          - active
+          - failed
+          example: stopped
+          type: string
+        error:
+          description: The error message if the task failed
+          example: "Error: Something went wrong"
+          type: string
+        state:
+          description: The task state
+          example: {}
+          type: object
+      type: object
+    TaskDescriptorStripe:
+      allOf:
+      - $ref: '#/components/schemas/ConnectorTaskBase'
+      - $ref: '#/components/schemas/TaskDescriptorStripe_allOf'
+    TaskDescriptorWise:
+      allOf:
+      - $ref: '#/components/schemas/ConnectorTaskBase'
+      - $ref: '#/components/schemas/TaskDescriptorWise_allOf'
+    TaskDescriptorModulr:
+      allOf:
+      - $ref: '#/components/schemas/ConnectorTaskBase'
+      - $ref: '#/components/schemas/TaskDescriptorModulr_allOf'
+    TaskDescriptorDummyPay:
+      allOf:
+      - $ref: '#/components/schemas/ConnectorTaskBase'
+      - $ref: '#/components/schemas/TaskDescriptorDummyPay_allOf'
+    TaskDescriptorCurrencyCloud:
+      allOf:
+      - $ref: '#/components/schemas/ConnectorTaskBase'
+      - $ref: '#/components/schemas/TaskDescriptorCurrencyCloud_allOf'
+    TaskDescriptorBankingCircle:
+      allOf:
+      - $ref: '#/components/schemas/ConnectorTaskBase'
+      - $ref: '#/components/schemas/TaskDescriptorBankingCircle_allOf'
     Query:
       example:
         size: 0
@@ -3208,6 +3268,21 @@ components:
           type: string
       type: object
     Response:
+      example:
+        cursor:
+          next: next
+          total:
+            value: 6.027456183070403
+            relation: relation
+          previous: previous
+          data:
+          - ""
+          - ""
+          hasMore: true
+          pageSize: 0.8008281904610115
+        ledger: ledger
+        data: "{}"
+        kind: kind
       properties:
         data:
           description: The payload
@@ -3220,6 +3295,15 @@ components:
         ledger:
           description: The ledger
           type: string
+      type: object
+    ServerInfo:
+      example:
+        version: version
+      properties:
+        version:
+          type: string
+      required:
+      - version
       type: object
     ConfigUser:
       example:
@@ -3246,30 +3330,30 @@ components:
     ConfigResponse:
       example:
         data:
-          createdAt: 2022-07-20T07:31:40Z
+          createdAt: 2000-01-23T04:56:07.000+00:00
           endpoint: https://example.com
-          modifiedAt: 2022-07-20T08:32:59Z
           active: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           secret: V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3
           eventTypes:
           - TYPE1
           - TYPE2
+          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: '#/components/schemas/webhooksConfig'
       type: object
     webhooksConfig:
       example:
-        createdAt: 2022-07-20T07:31:40Z
+        createdAt: 2000-01-23T04:56:07.000+00:00
         endpoint: https://example.com
-        modifiedAt: 2022-07-20T08:32:59Z
         active: true
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         secret: V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3
         eventTypes:
         - TYPE1
         - TYPE2
+        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           format: uuid
@@ -3292,31 +3376,31 @@ components:
           example: true
           type: boolean
         createdAt:
-          example: 2022-07-20T07:31:40Z
           format: date-time
           type: string
-        modifiedAt:
-          example: 2022-07-20T08:32:59Z
+        updatedAt:
           format: date-time
           type: string
     AttemptResponse:
       example:
         data:
-          date: 2000-01-23T04:56:07.000+00:00
           nextRetryAfter: 2000-01-23T04:56:07.000+00:00
-          webhookID: 4997257d-dfb6-445b-929c-cbe2ab182818
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          webhookID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           payload: "{\"data\":\"test\"}"
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           retryAttempt: 1
           config:
-            createdAt: 2022-07-20T07:31:40Z
+            createdAt: 2000-01-23T04:56:07.000+00:00
             endpoint: https://example.com
-            modifiedAt: 2022-07-20T08:32:59Z
             active: true
             id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
             secret: V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3
             eventTypes:
             - TYPE1
             - TYPE2
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          updatedAt: 2000-01-23T04:56:07.000+00:00
           statusCode: 200
           status: success
       properties:
@@ -3325,28 +3409,36 @@ components:
       type: object
     Attempt:
       example:
-        date: 2000-01-23T04:56:07.000+00:00
         nextRetryAfter: 2000-01-23T04:56:07.000+00:00
-        webhookID: 4997257d-dfb6-445b-929c-cbe2ab182818
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        webhookID: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         payload: "{\"data\":\"test\"}"
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         retryAttempt: 1
         config:
-          createdAt: 2022-07-20T07:31:40Z
+          createdAt: 2000-01-23T04:56:07.000+00:00
           endpoint: https://example.com
-          modifiedAt: 2022-07-20T08:32:59Z
           active: true
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           secret: V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3
           eventTypes:
           - TYPE1
           - TYPE2
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
         statusCode: 200
         status: success
       properties:
-        webhookID:
-          example: 4997257d-dfb6-445b-929c-cbe2ab182818
+        id:
+          format: uuid
           type: string
-        date:
+        webhookID:
+          format: uuid
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
           format: date-time
           type: string
         config:
@@ -3584,6 +3676,14 @@ components:
       required:
       - error_code
       type: object
+    listConnectorTasks_200_response_inner:
+      oneOf:
+      - $ref: '#/components/schemas/TaskDescriptorStripe'
+      - $ref: '#/components/schemas/TaskDescriptorWise'
+      - $ref: '#/components/schemas/TaskDescriptorCurrencyCloud'
+      - $ref: '#/components/schemas/TaskDescriptorDummyPay'
+      - $ref: '#/components/schemas/TaskDescriptorModulr'
+      - $ref: '#/components/schemas/TaskDescriptorBankingCircle'
     getManyConfigs_200_response_cursor_allOf:
       properties:
         data:
@@ -3675,7 +3775,100 @@ components:
         key:
           $ref: '#/components/schemas/ListConnectorsConfigsResponse_connector_key'
       type: object
+    TaskDescriptorStripe_allOf_descriptor:
+      properties:
+        name:
+          type: string
+        main:
+          type: boolean
+        account:
+          type: string
+      type: object
+      example: null
+    TaskDescriptorStripe_allOf:
+      properties:
+        descriptor:
+          $ref: '#/components/schemas/TaskDescriptorStripe_allOf_descriptor'
+      type: object
+      example: null
+    TaskDescriptorWise_allOf_descriptor:
+      properties:
+        name:
+          type: string
+        key:
+          type: string
+        profileID:
+          type: integer
+      type: object
+      example: null
+    TaskDescriptorWise_allOf:
+      properties:
+        descriptor:
+          $ref: '#/components/schemas/TaskDescriptorWise_allOf_descriptor'
+      type: object
+      example: null
+    TaskDescriptorModulr_allOf_descriptor:
+      properties:
+        name:
+          type: string
+        key:
+          type: string
+        accountID:
+          type: string
+      type: object
+      example: null
+    TaskDescriptorModulr_allOf:
+      properties:
+        descriptor:
+          $ref: '#/components/schemas/TaskDescriptorModulr_allOf_descriptor'
+      type: object
+      example: null
+    TaskDescriptorDummyPay_allOf_descriptor:
+      properties:
+        name:
+          type: string
+        key:
+          type: string
+        fileName:
+          type: string
+      type: object
+      example: null
+    TaskDescriptorDummyPay_allOf:
+      properties:
+        descriptor:
+          $ref: '#/components/schemas/TaskDescriptorDummyPay_allOf_descriptor'
+      type: object
+      example: null
+    TaskDescriptorCurrencyCloud_allOf_descriptor:
+      properties:
+        name:
+          type: string
+      type: object
+      example: null
+    TaskDescriptorCurrencyCloud_allOf:
+      properties:
+        descriptor:
+          $ref: '#/components/schemas/TaskDescriptorCurrencyCloud_allOf_descriptor'
+      type: object
+      example: null
+    TaskDescriptorBankingCircle_allOf_descriptor:
+      properties:
+        name:
+          type: string
+        key:
+          type: string
+      type: object
+      example: null
+    TaskDescriptorBankingCircle_allOf:
+      properties:
+        descriptor:
+          $ref: '#/components/schemas/TaskDescriptorBankingCircle_allOf_descriptor'
+      type: object
+      example: null
     Response_cursor_total:
+      example:
+        value: 6.027456183070403
+        relation: relation
       properties:
         value:
           type: number
@@ -3683,6 +3876,17 @@ components:
           type: string
       type: object
     Response_cursor:
+      example:
+        next: next
+        total:
+          value: 6.027456183070403
+          relation: relation
+        previous: previous
+        data:
+        - ""
+        - ""
+        hasMore: true
+        pageSize: 0.8008281904610115
       properties:
         pageSize:
           type: number
