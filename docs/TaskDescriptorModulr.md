@@ -12,7 +12,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) | The task status |  [optional] |
 |**error** | **String** | The error message if the task failed |  [optional] |
 |**state** | **Object** | The task state |  [optional] |
-|**descriptor** | [**TaskDescriptorModulrAllOfDescriptor**](TaskDescriptorModulrAllOfDescriptor.md) |  |  [optional] |
+|**descriptor** | [**TaskDescriptorModulrDescriptor**](TaskDescriptorModulrDescriptor.md) |  |  [optional] |
 
 
 
