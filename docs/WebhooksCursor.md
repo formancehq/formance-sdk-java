@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**hasMore** | **Boolean** |  |  [optional] |
+|**hasMore** | **Boolean** |  |  |
+|**data** | [**List&lt;WebhooksConfig&gt;**](WebhooksConfig.md) |  |  |
 
 
 
