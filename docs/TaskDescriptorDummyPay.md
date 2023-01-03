@@ -12,7 +12,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) | The task status |  [optional] |
 |**error** | **String** | The error message if the task failed |  [optional] |
 |**state** | **Object** | The task state |  [optional] |
-|**descriptor** | [**TaskDescriptorDummyPayAllOfDescriptor**](TaskDescriptorDummyPayAllOfDescriptor.md) |  |  [optional] |
+|**descriptor** | [**TaskDescriptorDummyPayDescriptor**](TaskDescriptorDummyPayDescriptor.md) |  |  [optional] |
 
 
 

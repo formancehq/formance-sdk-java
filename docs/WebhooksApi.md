@@ -4,21 +4,23 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**activateOneConfig**](WebhooksApi.md#activateOneConfig) | **PUT** api/webhooks/configs/{id}/activate | Activate one config |
-| [**changeOneConfigSecret**](WebhooksApi.md#changeOneConfigSecret) | **PUT** api/webhooks/configs/{id}/secret/change | Change the signing secret of a config |
-| [**deactivateOneConfig**](WebhooksApi.md#deactivateOneConfig) | **PUT** api/webhooks/configs/{id}/deactivate | Deactivate one config |
-| [**deleteOneConfig**](WebhooksApi.md#deleteOneConfig) | **DELETE** api/webhooks/configs/{id} | Delete one config |
+| [**activateConfig**](WebhooksApi.md#activateConfig) | **PUT** api/webhooks/configs/{id}/activate | Activate one config |
+| [**changeConfigSecret**](WebhooksApi.md#changeConfigSecret) | **PUT** api/webhooks/configs/{id}/secret/change | Change the signing secret of a config |
+| [**deactivateConfig**](WebhooksApi.md#deactivateConfig) | **PUT** api/webhooks/configs/{id}/deactivate | Deactivate one config |
+| [**deleteConfig**](WebhooksApi.md#deleteConfig) | **DELETE** api/webhooks/configs/{id} | Delete one config |
 | [**getManyConfigs**](WebhooksApi.md#getManyConfigs) | **GET** api/webhooks/configs | Get many configs |
-| [**insertOneConfig**](WebhooksApi.md#insertOneConfig) | **POST** api/webhooks/configs | Insert a new config  |
-| [**testOneConfig**](WebhooksApi.md#testOneConfig) | **GET** api/webhooks/configs/{id}/test | Test one config |
+| [**insertConfig**](WebhooksApi.md#insertConfig) | **POST** api/webhooks/configs | Insert a new config |
+| [**testConfig**](WebhooksApi.md#testConfig) | **GET** api/webhooks/configs/{id}/test | Test one config |
 
 
 
-## activateOneConfig
+## activateConfig
 
-> ConfigResponse activateOneConfig(id)
+> ConfigResponse activateConfig(id)
 
 Activate one config
+
+Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ### Example
 
@@ -43,10 +45,10 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
         try {
-            ConfigResponse result = apiInstance.activateOneConfig(id);
+            ConfigResponse result = apiInstance.activateConfig(id);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling WebhooksApi#activateOneConfig");
+            System.err.println("Exception when calling WebhooksApi#activateConfig");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -84,13 +86,13 @@ public class Example {
 | **304** | Config not modified, was already activated. |  -  |
 
 
-## changeOneConfigSecret
+## changeConfigSecret
 
-> ConfigResponse changeOneConfigSecret(id, changeOneConfigSecretRequest)
+> ConfigResponse changeConfigSecret(id, configChangeSecret)
 
 Change the signing secret of a config
 
-Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
 
 ### Example
 
@@ -114,12 +116,12 @@ public class Example {
 
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
-        ChangeOneConfigSecretRequest changeOneConfigSecretRequest = new ChangeOneConfigSecretRequest(); // ChangeOneConfigSecretRequest | 
+        ConfigChangeSecret configChangeSecret = new ConfigChangeSecret(); // ConfigChangeSecret | 
         try {
-            ConfigResponse result = apiInstance.changeOneConfigSecret(id, changeOneConfigSecretRequest);
+            ConfigResponse result = apiInstance.changeConfigSecret(id, configChangeSecret);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling WebhooksApi#changeOneConfigSecret");
+            System.err.println("Exception when calling WebhooksApi#changeConfigSecret");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -135,7 +137,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Config ID | |
-| **changeOneConfigSecretRequest** | [**ChangeOneConfigSecretRequest**](ChangeOneConfigSecretRequest.md)|  | [optional] |
+| **configChangeSecret** | [**ConfigChangeSecret**](ConfigChangeSecret.md)|  | [optional] |
 
 ### Return type
 
@@ -157,11 +159,13 @@ public class Example {
 | **200** | Secret successfully changed. |  -  |
 
 
-## deactivateOneConfig
+## deactivateConfig
 
-> ConfigResponse deactivateOneConfig(id)
+> ConfigResponse deactivateConfig(id)
 
 Deactivate one config
+
+Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ### Example
 
@@ -186,10 +190,10 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
         try {
-            ConfigResponse result = apiInstance.deactivateOneConfig(id);
+            ConfigResponse result = apiInstance.deactivateConfig(id);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling WebhooksApi#deactivateOneConfig");
+            System.err.println("Exception when calling WebhooksApi#deactivateConfig");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -227,11 +231,13 @@ public class Example {
 | **304** | Config not modified, was already deactivated. |  -  |
 
 
-## deleteOneConfig
+## deleteConfig
 
-> deleteOneConfig(id)
+> deleteConfig(id)
 
 Delete one config
+
+Delete a webhooks config by ID.
 
 ### Example
 
@@ -256,9 +262,9 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
         try {
-            apiInstance.deleteOneConfig(id);
+            apiInstance.deleteConfig(id);
         } catch (ApiException e) {
-            System.err.println("Exception when calling WebhooksApi#deleteOneConfig");
+            System.err.println("Exception when calling WebhooksApi#deleteConfig");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -297,7 +303,7 @@ null (empty response body)
 
 ## getManyConfigs
 
-> GetManyConfigs200Response getManyConfigs(id, endpoint)
+> ConfigsResponse getManyConfigs(id, endpoint)
 
 Get many configs
 
@@ -327,7 +333,7 @@ public class Example {
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Optional filter by Config ID
         String endpoint = "https://example.com"; // String | Optional filter by endpoint URL
         try {
-            GetManyConfigs200Response result = apiInstance.getManyConfigs(id, endpoint);
+            ConfigsResponse result = apiInstance.getManyConfigs(id, endpoint);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhooksApi#getManyConfigs");
@@ -350,7 +356,7 @@ public class Example {
 
 ### Return type
 
-[**GetManyConfigs200Response**](GetManyConfigs200Response.md)
+[**ConfigsResponse**](ConfigsResponse.md)
 
 ### Authorization
 
@@ -368,13 +374,13 @@ public class Example {
 | **200** | OK |  -  |
 
 
-## insertOneConfig
+## insertConfig
 
-> ConfigResponse insertOneConfig(configUser)
+> ConfigResponse insertConfig(configUser)
 
-Insert a new config 
+Insert a new config
 
-Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint&#39;s verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint&#39;s verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
 
 ### Example
 
@@ -399,10 +405,10 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         ConfigUser configUser = new ConfigUser(); // ConfigUser | 
         try {
-            ConfigResponse result = apiInstance.insertOneConfig(configUser);
+            ConfigResponse result = apiInstance.insertConfig(configUser);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling WebhooksApi#insertOneConfig");
+            System.err.println("Exception when calling WebhooksApi#insertConfig");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -440,13 +446,13 @@ public class Example {
 | **400** | Bad Request |  -  |
 
 
-## testOneConfig
+## testConfig
 
-> AttemptResponse testOneConfig(id)
+> AttemptResponse testConfig(id)
 
 Test one config
 
-Test one config by sending a webhook to its endpoint. 
+Test a config by sending a webhook to its endpoint.
 
 ### Example
 
@@ -471,10 +477,10 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "4997257d-dfb6-445b-929c-cbe2ab182818"; // String | Config ID
         try {
-            AttemptResponse result = apiInstance.testOneConfig(id);
+            AttemptResponse result = apiInstance.testConfig(id);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling WebhooksApi#testOneConfig");
+            System.err.println("Exception when calling WebhooksApi#testConfig");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());

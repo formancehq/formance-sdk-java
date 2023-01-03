@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'com.formance'
-version = 'v1.0.0-rc.1'
+version = 'v1.0.0-rc.4'
 
 buildscript {
     repositories {
