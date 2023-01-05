@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**endpoint** | **String** |  |  [optional] |
+|**endpoint** | **String** |  |  |
 |**secret** | **String** |  |  [optional] |
-|**eventTypes** | **List&lt;String&gt;** |  |  [optional] |
+|**eventTypes** | **List&lt;String&gt;** |  |  |
 
 
 

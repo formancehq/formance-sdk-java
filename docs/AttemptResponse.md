@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**data** | [**Attempt**](Attempt.md) |  |  [optional] |
+|**data** | [**Attempt**](Attempt.md) |  |  |
 
 
 
