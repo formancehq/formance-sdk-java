@@ -9,6 +9,10 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
+import com.formance.formance.model.Balance;
+import com.formance.formance.model.CreateBalanceResponse;
+import com.formance.formance.model.GetBalanceResponse;
+import com.formance.formance.model.ListBalancesResponse;
 import com.formance.formance.model.ServerInfo;
 
 import java.util.ArrayList;
@@ -19,12 +23,68 @@ import java.util.Set;
 
 public interface DefaultApi {
   /**
+   * Create a balance
+   * 
+   * @param id  (required)
+   * @param body  (optional)
+   * @return Call&lt;CreateBalanceResponse&gt;
+   */
+  @Headers({
+    "Content-Type:application/json"
+  })
+  @POST("api/wallets/wallets/{id}/balances")
+  Call<CreateBalanceResponse> createBalance(
+    @retrofit2.http.Path("id") String id, @retrofit2.http.Body Balance body
+  );
+
+  /**
+   * Get detailed balance
+   * 
+   * @param id  (required)
+   * @param balanceName  (required)
+   * @return Call&lt;GetBalanceResponse&gt;
+   */
+  @GET("api/wallets/wallets/{id}/balances/{balanceName}")
+  Call<GetBalanceResponse> getBalance(
+    @retrofit2.http.Path("id") String id, @retrofit2.http.Path("balanceName") String balanceName
+  );
+
+  /**
+   * Get server info
+   * 
+   * @return Call&lt;ServerInfo&gt;
+   */
+  @GET("api/auth/_info")
+  Call<ServerInfo> getServerInfo();
+    
+
+  /**
+   * List balances of a wallet
+   * 
+   * @param id  (required)
+   * @return Call&lt;ListBalancesResponse&gt;
+   */
+  @GET("api/wallets/wallets/{id}/balances")
+  Call<ListBalancesResponse> listBalances(
+    @retrofit2.http.Path("id") String id
+  );
+
+  /**
    * Get server info
    * 
    * @return Call&lt;ServerInfo&gt;
    */
   @GET("api/search/_info")
-  Call<ServerInfo> getServerInfo();
+  Call<ServerInfo> searchgetServerInfo();
+    
+
+  /**
+   * Get server info
+   * 
+   * @return Call&lt;ServerInfo&gt;
+   */
+  @GET("api/wallets/_info")
+  Call<ServerInfo> walletsgetServerInfo();
     
 
 }
