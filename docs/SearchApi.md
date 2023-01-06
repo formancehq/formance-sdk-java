@@ -14,7 +14,7 @@ All URIs are relative to *http://localhost*
 
 Search
 
-Search with Query
+ElasticSearch query engine
 
 ### Example
 
@@ -77,4 +77,5 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
+| **0** | Error |  -  |
 
