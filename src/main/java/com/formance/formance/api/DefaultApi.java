@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public interface DefaultApi {
   /**
@@ -23,8 +22,17 @@ public interface DefaultApi {
    * 
    * @return Call&lt;ServerInfo&gt;
    */
-  @GET("api/search/_info")
+  @GET("api/auth/_info")
   Call<ServerInfo> getServerInfo();
+    
+
+  /**
+   * Get server info
+   * 
+   * @return Call&lt;ServerInfo&gt;
+   */
+  @GET("api/search/_info")
+  Call<ServerInfo> searchgetServerInfo();
     
 
 }
