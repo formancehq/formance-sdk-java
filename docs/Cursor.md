@@ -7,10 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**pageSize** | **Integer** |  |  |
+|**pageSize** | **Long** |  |  [optional] |
 |**hasMore** | **Boolean** |  |  [optional] |
-|**previous** | **String** |  |  [optional] |
+|**total** | [**Total**](Total.md) |  |  [optional] |
 |**next** | **String** |  |  [optional] |
+|**previous** | **String** |  |  [optional] |
+|**data** | [**List&lt;Object&gt;**](Object.md) |  |  [optional] |
 
 
 

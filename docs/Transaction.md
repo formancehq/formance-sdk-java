@@ -11,7 +11,7 @@
 |**postings** | [**List&lt;Posting&gt;**](Posting.md) |  |  |
 |**reference** | **String** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**txid** | **Integer** |  |  |
+|**txid** | **Long** |  |  |
 |**preCommitVolumes** | **Map&lt;String, Map&lt;String, Volume&gt;&gt;** |  |  [optional] |
 |**postCommitVolumes** | **Map&lt;String, Map&lt;String, Volume&gt;&gt;** |  |  [optional] |
 

@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getMapping**](MappingApi.md#getMapping) | **GET** api/ledger/{ledger}/mapping | Get the mapping of a ledger. |
-| [**updateMapping**](MappingApi.md#updateMapping) | **PUT** api/ledger/{ledger}/mapping | Update the mapping of a ledger. |
+| [**getMapping**](MappingApi.md#getMapping) | **GET** api/ledger/{ledger}/mapping | Get the mapping of a ledger |
+| [**updateMapping**](MappingApi.md#updateMapping) | **PUT** api/ledger/{ledger}/mapping | Update the mapping of a ledger |
 
 
 
@@ -13,7 +13,7 @@ All URIs are relative to *http://localhost*
 
 > MappingResponse getMapping(ledger)
 
-Get the mapping of a ledger.
+Get the mapping of a ledger
 
 ### Example
 
@@ -76,13 +76,14 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+| **0** | Error |  -  |
 
 
 ## updateMapping
 
 > MappingResponse updateMapping(ledger, mapping)
 
-Update the mapping of a ledger.
+Update the mapping of a ledger
 
 ### Example
 
@@ -147,4 +148,5 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+| **0** | Error |  -  |
 

@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**cursor** | [**ListAccountsResponseCursor**](ListAccountsResponseCursor.md) |  |  |
+|**data** | [**List&lt;PaymentsAccount&gt;**](PaymentsAccount.md) |  |  |
 
 
 

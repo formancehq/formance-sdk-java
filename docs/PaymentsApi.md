@@ -12,6 +12,7 @@ All URIs are relative to *http://localhost*
 | [**installConnector**](PaymentsApi.md#installConnector) | **POST** api/payments/connectors/{connector} | Install connector |
 | [**listConnectorTasks**](PaymentsApi.md#listConnectorTasks) | **GET** api/payments/connectors/{connector}/tasks | List connector tasks |
 | [**listPayments**](PaymentsApi.md#listPayments) | **GET** api/payments/payments | Returns a list of payments. |
+| [**paymentslistAccounts**](PaymentsApi.md#paymentslistAccounts) | **GET** api/payments/accounts | Returns a list of accounts. |
 | [**readConnectorConfig**](PaymentsApi.md#readConnectorConfig) | **GET** api/payments/connectors/{connector}/config | Read connector config |
 | [**resetConnector**](PaymentsApi.md#resetConnector) | **POST** api/payments/connectors/{connector}/reset | Reset connector |
 | [**uninstallConnector**](PaymentsApi.md#uninstallConnector) | **DELETE** api/payments/connectors/{connector} | Uninstall connector |
@@ -578,6 +579,79 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A JSON array of payments |  -  |
+
+
+## paymentslistAccounts
+
+> ListAccountsResponse paymentslistAccounts(limit, skip, sort)
+
+Returns a list of accounts.
+
+### Example
+
+```java
+// Import classes:
+import com.formance.formance.ApiClient;
+import com.formance.formance.ApiException;
+import com.formance.formance.Configuration;
+import com.formance.formance.auth.*;
+import com.formance.formance.models.*;
+import com.formance.formance.api.PaymentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost");
+        
+        // Configure OAuth2 access token for authorization: Authorization
+        OAuth Authorization = (OAuth) defaultClient.getAuthentication("Authorization");
+        Authorization.setAccessToken("YOUR ACCESS TOKEN");
+
+        PaymentsApi apiInstance = new PaymentsApi(defaultClient);
+        Integer limit = 10; // Integer | Limit the number of accounts to return, pagination can be achieved in conjunction with 'skip' parameter.
+        Integer skip = 100; // Integer | How many accounts to skip, pagination can be achieved in conjunction with 'limit' parameter.
+        List<String> sort = Arrays.asList(); // List<String> | Field used to sort payments (Default is by date).
+        try {
+            ListAccountsResponse result = apiInstance.paymentslistAccounts(limit, skip, sort);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PaymentsApi#paymentslistAccounts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**| Limit the number of accounts to return, pagination can be achieved in conjunction with &#39;skip&#39; parameter. | [optional] |
+| **skip** | **Integer**| How many accounts to skip, pagination can be achieved in conjunction with &#39;limit&#39; parameter. | [optional] |
+| **sort** | [**List&lt;String&gt;**](String.md)| Field used to sort payments (Default is by date). | [optional] |
+
+### Return type
+
+[**ListAccountsResponse**](ListAccountsResponse.md)
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A JSON array of accounts |  -  |
 
 
 ## readConnectorConfig

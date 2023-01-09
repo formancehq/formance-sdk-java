@@ -10,16 +10,16 @@ import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
 import com.formance.formance.model.ConfigInfoResponse;
+import com.formance.formance.model.ErrorResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public interface ServerApi {
   /**
-   * Show server information.
+   * Show server information
    * 
    * @return Call&lt;ConfigInfoResponse&gt;
    */

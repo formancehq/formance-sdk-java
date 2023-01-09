@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**readStats**](StatsApi.md#readStats) | **GET** api/ledger/{ledger}/stats | Get Stats |
+| [**readStats**](StatsApi.md#readStats) | **GET** api/ledger/{ledger}/stats | Get statistics from a ledger |
 
 
 
@@ -12,9 +12,9 @@ All URIs are relative to *http://localhost*
 
 > StatsResponse readStats(ledger)
 
-Get Stats
+Get statistics from a ledger
 
-Get ledger stats (aggregate metrics on accounts and transactions) The stats for account 
+Get statistics from a ledger. (aggregate metrics on accounts and transactions) 
 
 ### Example
 
@@ -77,4 +77,5 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+| **0** | Error |  -  |
 

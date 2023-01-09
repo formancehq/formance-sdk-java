@@ -4,15 +4,17 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**runScript**](ScriptApi.md#runScript) | **POST** api/ledger/{ledger}/script | Execute a Numscript. |
+| [**runScript**](ScriptApi.md#runScript) | **POST** api/ledger/{ledger}/script | Execute a Numscript |
 
 
 
 ## runScript
 
-> ScriptResult runScript(ledger, script, preview)
+> ScriptResponse runScript(ledger, script, preview)
 
-Execute a Numscript.
+Execute a Numscript
+
+This route is deprecated, and has been merged into &#x60;POST /{ledger}/transactions&#x60;. 
 
 ### Example
 
@@ -39,7 +41,7 @@ public class Example {
         Script script = new Script(); // Script | 
         Boolean preview = true; // Boolean | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
         try {
-            ScriptResult result = apiInstance.runScript(ledger, script, preview);
+            ScriptResponse result = apiInstance.runScript(ledger, script, preview);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ScriptApi#runScript");
@@ -63,7 +65,7 @@ public class Example {
 
 ### Return type
 
-[**ScriptResult**](ScriptResult.md)
+[**ScriptResponse**](ScriptResponse.md)
 
 ### Authorization
 
@@ -78,7 +80,5 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
-| **400** | Bad Request |  -  |
-| **409** | Conflict |  -  |
+| **200** | On success, it will return a 200 status code, and the resulting transaction under the &#x60;transaction&#x60; field.  On failure, it will also return a 200 status code, and the following fields:   - &#x60;details&#x60;: contains a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.   - &#x60;errorCode&#x60; and &#x60;error_code&#x60; (deprecated): contains the string code of the error   - &#x60;errorMessage&#x60; and &#x60;error_message&#x60; (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.  |  -  |
 

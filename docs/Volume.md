@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**input** | **BigDecimal** |  |  |
-|**output** | **BigDecimal** |  |  |
-|**balance** | **BigDecimal** |  |  [optional] |
+|**input** | **Long** |  |  |
+|**output** | **Long** |  |  |
+|**balance** | **Long** |  |  [optional] |
 
 
 

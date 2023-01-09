@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accounts** | **Integer** |  |  |
-|**transactions** | **Integer** |  |  |
+|**accounts** | **Long** |  |  |
+|**transactions** | **Long** |  |  |
 
 
 

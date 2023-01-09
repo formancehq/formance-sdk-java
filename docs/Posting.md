@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amount** | **Integer** |  |  |
+|**amount** | **Long** |  |  |
 |**asset** | **String** |  |  |
 |**destination** | **String** |  |  |
 |**source** | **String** |  |  |

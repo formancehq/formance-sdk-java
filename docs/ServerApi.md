@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getInfo**](ServerApi.md#getInfo) | **GET** api/ledger/_info | Show server information. |
+| [**getInfo**](ServerApi.md#getInfo) | **GET** api/ledger/_info | Show server information |
 
 
 
@@ -12,7 +12,7 @@ All URIs are relative to *http://localhost*
 
 > ConfigInfoResponse getInfo()
 
-Show server information.
+Show server information
 
 ### Example
 
@@ -71,4 +71,5 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+| **0** | Error |  -  |
 

@@ -11,6 +11,7 @@ import okhttp3.MultipartBody;
 
 import com.formance.formance.model.ConnectorConfig;
 import com.formance.formance.model.Connectors;
+import com.formance.formance.model.ListAccountsResponse;
 import com.formance.formance.model.ListConnectorTasks200ResponseInner;
 import com.formance.formance.model.ListConnectorsConfigsResponse;
 import com.formance.formance.model.ListConnectorsResponse;
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public interface PaymentsApi {
   /**
@@ -116,6 +116,19 @@ public interface PaymentsApi {
    */
   @GET("api/payments/payments")
   Call<ListPaymentsResponse> listPayments(
+    @retrofit2.http.Query("limit") Integer limit, @retrofit2.http.Query("skip") Integer skip, @retrofit2.http.Query("sort") List<String> sort
+  );
+
+  /**
+   * Returns a list of accounts.
+   * 
+   * @param limit Limit the number of accounts to return, pagination can be achieved in conjunction with &#39;skip&#39; parameter. (optional)
+   * @param skip How many accounts to skip, pagination can be achieved in conjunction with &#39;limit&#39; parameter. (optional)
+   * @param sort Field used to sort payments (Default is by date). (optional)
+   * @return Call&lt;ListAccountsResponse&gt;
+   */
+  @GET("api/payments/accounts")
+  Call<ListAccountsResponse> paymentslistAccounts(
     @retrofit2.http.Query("limit") Integer limit, @retrofit2.http.Query("skip") Integer skip, @retrofit2.http.Query("sort") List<String> sort
   );
 
