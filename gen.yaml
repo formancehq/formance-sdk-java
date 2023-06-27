@@ -12,5 +12,5 @@ java:
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance
   maxMethodParams: 0
-  ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
+  ossrhURL: https://maven.pkg.github.com/formancehq/formance-sdk-java
   projectName: formance-sdk-java
