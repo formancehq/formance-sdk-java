@@ -75,13 +75,6 @@ publishing {
     }
 }
 
-signing {
-    def signingKey = findProperty("signingKey")
-    def signingPassphrase = findProperty("signingPassphrase")
-    useInMemoryPgpKeys(signingKey, signingPassphrase)
-    sign publishing.publications.maven
-}
-
 javadoc {
     options.encoding = "UTF-8"
 
