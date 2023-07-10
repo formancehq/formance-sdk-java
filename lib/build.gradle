@@ -41,7 +41,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.formance'
             artifactId = 'formance-sdk'
-            version = 'v1.0.20230623-beta.1'
+            version = 'v1.0.20230627'
 
             from components.java
 
@@ -73,6 +73,13 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    def signingKey = findProperty("signingKey")
+    def signingPassphrase = findProperty("signingPassphrase")
+    useInMemoryPgpKeys(signingKey, signingPassphrase)
+    sign publishing.publications.maven
 }
 
 javadoc {
