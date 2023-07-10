@@ -24,9 +24,9 @@ class SDKConfiguration {
 		}});
 	}};
 	public String language = "java";
-	public String openapiDocVersion = "v1.0.20230623";
-	public String sdkVersion = "v1.0.20230627";
-	public String genVersion = "2.58.0";
+	public String openapiDocVersion = "v1.0.20230710";
+	public String sdkVersion = "v1.0.20230710";
+	public String genVersion = "2.58.2";
 	
 	public Map<String, String> getServerVariableDefaults() {
 		return serverDefaults.get(this.serverIdx);

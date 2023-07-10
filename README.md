@@ -6,7 +6,7 @@
 ### Gradle
 
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk-java:v1.0.20230627'
+implementation 'com.formance.formance_sdk:formance-sdk-java:v1.0.20230710'
 ```
 <!-- End SDK Installation -->
 
