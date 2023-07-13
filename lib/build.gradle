@@ -40,7 +40,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.formance'
             artifactId = 'formance-sdk'
-            version = 'v1.0.20230710'
+            version = 'v1.0.20230713.1'
 
             from components.java
 

@@ -1,7 +1,8 @@
-# orchestration
+# flows
 
 ### Available Operations
 
+* [flowsgetServerInfo](#flowsgetserverinfo) - Get server info
 * [cancelEvent](#cancelevent) - Cancel a running workflow
 * [createWorkflow](#createworkflow) - Create workflow
 * [getInstance](#getinstance) - Get a workflow instance by id
@@ -10,9 +11,48 @@
 * [getWorkflow](#getworkflow) - Get a flow by id
 * [listInstances](#listinstances) - List instances of a workflow
 * [listWorkflows](#listworkflows) - List registered workflows
-* [orchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
+
+## flowsgetServerInfo
+
+Get server info
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.FlowsgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.Security;
+
+public class Application {
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .setSecurity(new Security("nobis") {{
+                    authorization = "";
+                }})
+                .build();
+
+            FlowsgetServerInfoResponse res = sdk.flows.flowsgetServerInfo();
+
+            if (res.serverInfo != null) {
+                // handle response
+            }
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+
+### Response
+
+**[com.formance.formance_sdk.models.operations.FlowsgetServerInfoResponse](../../models/operations/FlowsgetServerInfoResponse.md)**
+
 
 ## cancelEvent
 
@@ -32,14 +72,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("veritatis") {{
+                .setSecurity(new Security("enim") {{
                     authorization = "";
                 }})
                 .build();
 
-            CancelEventRequest req = new CancelEventRequest("itaque");            
+            CancelEventRequest req = new CancelEventRequest("omnis");            
 
-            CancelEventResponse res = sdk.orchestration.cancelEvent(req);
+            CancelEventResponse res = sdk.flows.cancelEvent(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -81,23 +121,27 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("incidunt") {{
+                .setSecurity(new Security("nemo") {{
                     authorization = "";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.CreateWorkflowRequest req = new CreateWorkflowRequest(                new java.util.HashMap<String, Object>[]{{
                                 add(new java.util.HashMap<String, Object>() {{
-                                    put("est", "quibusdam");
+                                    put("accusantium", "iure");
+                                    put("culpa", "doloribus");
+                                    put("sapiente", "architecto");
                                 }}),
                                 add(new java.util.HashMap<String, Object>() {{
-                                    put("deserunt", "distinctio");
+                                    put("dolorem", "culpa");
+                                    put("consequuntur", "repellat");
+                                    put("mollitia", "occaecati");
                                 }}),
                             }}) {{
-                name = "Francisco Gleason";
+                name = "Lucy Konopelski";
             }};            
 
-            CreateWorkflowResponse res = sdk.orchestration.createWorkflow(req);
+            CreateWorkflowResponse res = sdk.flows.createWorkflow(req);
 
             if (res.createWorkflowResponse != null) {
                 // handle response
@@ -139,14 +183,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("cupiditate") {{
+                .setSecurity(new Security("error") {{
                     authorization = "";
                 }})
                 .build();
 
-            GetInstanceRequest req = new GetInstanceRequest("quos");            
+            GetInstanceRequest req = new GetInstanceRequest("quia");            
 
-            GetInstanceResponse res = sdk.orchestration.getInstance(req);
+            GetInstanceResponse res = sdk.flows.getInstance(req);
 
             if (res.getWorkflowInstanceResponse != null) {
                 // handle response
@@ -188,14 +232,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("perferendis") {{
+                .setSecurity(new Security("quis") {{
                     authorization = "";
                 }})
                 .build();
 
-            GetInstanceHistoryRequest req = new GetInstanceHistoryRequest("magni");            
+            GetInstanceHistoryRequest req = new GetInstanceHistoryRequest("vitae");            
 
-            GetInstanceHistoryResponse res = sdk.orchestration.getInstanceHistory(req);
+            GetInstanceHistoryResponse res = sdk.flows.getInstanceHistory(req);
 
             if (res.getWorkflowInstanceHistoryResponse != null) {
                 // handle response
@@ -237,14 +281,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("assumenda") {{
+                .setSecurity(new Security("laborum") {{
                     authorization = "";
                 }})
                 .build();
 
-            GetInstanceStageHistoryRequest req = new GetInstanceStageHistoryRequest("ipsam", 4695L);            
+            GetInstanceStageHistoryRequest req = new GetInstanceStageHistoryRequest("animi", 317202L);            
 
-            GetInstanceStageHistoryResponse res = sdk.orchestration.getInstanceStageHistory(req);
+            GetInstanceStageHistoryResponse res = sdk.flows.getInstanceStageHistory(req);
 
             if (res.getWorkflowInstanceHistoryStageResponse != null) {
                 // handle response
@@ -286,14 +330,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("fugit") {{
+                .setSecurity(new Security("odit") {{
                     authorization = "";
                 }})
                 .build();
 
-            GetWorkflowRequest req = new GetWorkflowRequest("dolorum");            
+            GetWorkflowRequest req = new GetWorkflowRequest("quo");            
 
-            GetWorkflowResponse res = sdk.orchestration.getWorkflow(req);
+            GetWorkflowResponse res = sdk.flows.getWorkflow(req);
 
             if (res.getWorkflowResponse != null) {
                 // handle response
@@ -335,17 +379,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("excepturi") {{
+                .setSecurity(new Security("sequi") {{
                     authorization = "";
                 }})
                 .build();
 
             ListInstancesRequest req = new ListInstancesRequest() {{
                 running = false;
-                workflowID = "tempora";
+                workflowID = "tenetur";
             }};            
 
-            ListInstancesResponse res = sdk.orchestration.listInstances(req);
+            ListInstancesResponse res = sdk.flows.listInstances(req);
 
             if (res.listRunsResponse != null) {
                 // handle response
@@ -386,12 +430,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("facilis") {{
+                .setSecurity(new Security("ipsam") {{
                     authorization = "";
                 }})
                 .build();
 
-            ListWorkflowsResponse res = sdk.orchestration.listWorkflows();
+            ListWorkflowsResponse res = sdk.flows.listWorkflows();
 
             if (res.listWorkflowsResponse != null) {
                 // handle response
@@ -407,46 +451,6 @@ public class Application {
 ### Response
 
 **[com.formance.formance_sdk.models.operations.ListWorkflowsResponse](../../models/operations/ListWorkflowsResponse.md)**
-
-
-## orchestrationgetServerInfo
-
-Get server info
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse;
-import com.formance.formance_sdk.models.shared.Security;
-
-public class Application {
-    public static void main(String[] args) {
-        try {
-            SDK sdk = SDK.builder()
-                .setSecurity(new Security("tempore") {{
-                    authorization = "";
-                }})
-                .build();
-
-            OrchestrationgetServerInfoResponse res = sdk.orchestration.orchestrationgetServerInfo();
-
-            if (res.serverInfo != null) {
-                // handle response
-            }
-        } catch (Exception e) {
-            // handle exception
-        }
-    }
-}
-```
-
-
-### Response
-
-**[com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse](../../models/operations/OrchestrationgetServerInfoResponse.md)**
 
 
 ## runWorkflow
@@ -467,20 +471,19 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("labore") {{
+                .setSecurity(new Security("id") {{
                     authorization = "";
                 }})
                 .build();
 
-            RunWorkflowRequest req = new RunWorkflowRequest("delectus") {{
+            RunWorkflowRequest req = new RunWorkflowRequest("possimus") {{
                 requestBody = new java.util.HashMap<String, String>() {{
-                    put("non", "eligendi");
-                    put("sint", "aliquid");
+                    put("quasi", "error");
                 }};
                 wait = false;
             }};            
 
-            RunWorkflowResponse res = sdk.orchestration.runWorkflow(req);
+            RunWorkflowResponse res = sdk.flows.runWorkflow(req);
 
             if (res.runWorkflowResponse != null) {
                 // handle response
@@ -523,16 +526,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("provident") {{
+                .setSecurity(new Security("temporibus") {{
                     authorization = "";
                 }})
                 .build();
 
-            SendEventRequest req = new SendEventRequest("necessitatibus") {{
-                requestBody = new SendEventRequestBody("sint");;
+            SendEventRequest req = new SendEventRequest("laborum") {{
+                requestBody = new SendEventRequestBody("quasi");;
             }};            
 
-            SendEventResponse res = sdk.orchestration.sendEvent(req);
+            SendEventResponse res = sdk.flows.sendEvent(req);
 
             if (res.statusCode == 200) {
                 // handle response

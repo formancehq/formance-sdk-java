@@ -43,8 +43,8 @@ public class SDK {
 	
   	
     public Auth auth;
+    public Flows flows;
     public Ledger ledger;
-    public Orchestration orchestration;
     public Payments payments;
     public Search search;
     public Wallets wallets;
@@ -173,9 +173,9 @@ public class SDK {
 		
 		this.auth = new Auth(this.sdkConfiguration);
 		
-		this.ledger = new Ledger(this.sdkConfiguration);
+		this.flows = new Flows(this.sdkConfiguration);
 		
-		this.orchestration = new Orchestration(this.sdkConfiguration);
+		this.ledger = new Ledger(this.sdkConfiguration);
 		
 		this.payments = new Payments(this.sdkConfiguration);
 		

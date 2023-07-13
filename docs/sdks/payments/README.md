@@ -38,7 +38,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("officia") {{
+                .setSecurity(new Security("deleniti") {{
                     authorization = "";
                 }})
                 .build();
@@ -94,14 +94,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("dolor") {{
+                .setSecurity(new Security("sapiente") {{
                     authorization = "";
                 }})
                 .build();
 
             ConnectorsTransferRequest req = new ConnectorsTransferRequest(                new TransferRequest(100L, "USD", "acct_1Gqj58KZcSIg2N2q") {{
                                 source = "acct_1Gqj58KZcSIg2N2q";
-                            }};, Connector.BANKING_CIRCLE);            
+                            }};, Connector.DUMMY_PAY);            
 
             ConnectorsTransferResponse res = sdk.payments.connectorsTransfer(req);
 
@@ -146,12 +146,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("a") {{
+                .setSecurity(new Security("deserunt") {{
                     authorization = "";
                 }})
                 .build();
 
-            GetConnectorTaskRequest req = new GetConnectorTaskRequest(Connector.CURRENCY_CLOUD, "in");            
+            GetConnectorTaskRequest req = new GetConnectorTaskRequest(Connector.WISE, "vel");            
 
             GetConnectorTaskResponse res = sdk.payments.getConnectorTask(req);
 
@@ -195,12 +195,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("in") {{
+                .setSecurity(new Security("natus") {{
                     authorization = "";
                 }})
                 .build();
 
-            GetPaymentRequest req = new GetPaymentRequest("illum");            
+            GetPaymentRequest req = new GetPaymentRequest("omnis");            
 
             GetPaymentResponse res = sdk.payments.getPayment(req);
 
@@ -251,17 +251,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("maiores") {{
+                .setSecurity(new Security("molestiae") {{
                     authorization = "";
                 }})
                 .build();
 
-            InstallConnectorRequest req = new InstallConnectorRequest(                new CurrencyCloudConfig("XXX", "XXX") {{
+            InstallConnectorRequest req = new InstallConnectorRequest(                new StripeConfig("XXX") {{
                                 apiKey = "XXX";
-                                endpoint = "XXX";
-                                loginID = "XXX";
+                                pageSize = 50L;
                                 pollingPeriod = "60s";
-                            }}, Connector.STRIPE);            
+                            }}, Connector.WISE);            
 
             InstallConnectorResponse res = sdk.payments.installConnector(req);
 
@@ -344,7 +343,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("cumque") {{
+                .setSecurity(new Security("distinctio") {{
                     authorization = "";
                 }})
                 .build();
@@ -386,14 +385,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("facere") {{
+                .setSecurity(new Security("id") {{
                     authorization = "";
                 }})
                 .build();
 
-            ListConnectorTasksRequest req = new ListConnectorTasksRequest(Connector.WISE) {{
+            ListConnectorTasksRequest req = new ListConnectorTasksRequest(Connector.DUMMY_PAY) {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 396506L;
+                pageSize = 290077L;
             }};            
 
             ListConnectorTasksResponse res = sdk.payments.listConnectorTasks(req);
@@ -439,12 +438,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("laborum") {{
+                .setSecurity(new Security("suscipit") {{
                     authorization = "";
                 }})
                 .build();
 
-            ListConnectorsTransfersRequest req = new ListConnectorsTransfersRequest(Connector.BANKING_CIRCLE);            
+            ListConnectorsTransfersRequest req = new ListConnectorsTransfersRequest(Connector.MODULR);            
 
             ListConnectorsTransfersResponse res = sdk.payments.listConnectorsTransfers(req);
 
@@ -488,17 +487,19 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("non") {{
+                .setSecurity(new Security("nobis") {{
                     authorization = "";
                 }})
                 .build();
 
             ListPaymentsRequest req = new ListPaymentsRequest() {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 581273L;
+                pageSize = 428769L;
                 sort = new String[]{{
-                    add("accusamus"),
-                    add("delectus"),
+                    add("aspernatur"),
+                    add("architecto"),
+                    add("magnam"),
+                    add("et"),
                 }};
             }};            
 
@@ -543,7 +544,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("quidem") {{
+                .setSecurity(new Security("excepturi") {{
                     authorization = "";
                 }})
                 .build();
@@ -584,18 +585,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("provident") {{
+                .setSecurity(new Security("ullam") {{
                     authorization = "";
                 }})
                 .build();
 
             PaymentslistAccountsRequest req = new PaymentslistAccountsRequest() {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 725255L;
+                pageSize = 590873L;
                 sort = new String[]{{
-                    add("blanditiis"),
-                    add("deleniti"),
-                    add("sapiente"),
+                    add("sint"),
+                    add("accusantium"),
+                    add("mollitia"),
                 }};
             }};            
 
@@ -642,7 +643,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("amet") {{
+                .setSecurity(new Security("reiciendis") {{
                     authorization = "";
                 }})
                 .build();
@@ -694,7 +695,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("nisi") {{
+                .setSecurity(new Security("ad") {{
                     authorization = "";
                 }})
                 .build();
@@ -744,12 +745,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("natus") {{
+                .setSecurity(new Security("dolor") {{
                     authorization = "";
                 }})
                 .build();
 
-            UninstallConnectorRequest req = new UninstallConnectorRequest(Connector.MODULR);            
+            UninstallConnectorRequest req = new UninstallConnectorRequest(Connector.BANKING_CIRCLE);            
 
             UninstallConnectorResponse res = sdk.payments.uninstallConnector(req);
 
@@ -794,14 +795,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("molestiae") {{
+                .setSecurity(new Security("odit") {{
                     authorization = "";
                 }})
                 .build();
 
             UpdateMetadataRequest req = new UpdateMetadataRequest(                new PaymentMetadata() {{
-                                key = "perferendis";
-                            }};, "nihil");            
+                                key = "nemo";
+                            }};, "quasi");            
 
             UpdateMetadataResponse res = sdk.payments.updateMetadata(req);
 

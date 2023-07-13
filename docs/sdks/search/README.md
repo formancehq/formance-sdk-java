@@ -24,7 +24,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("magnam") {{
+                .setSecurity(new Security("iure") {{
                     authorization = "";
                 }})
                 .build();
@@ -34,19 +34,22 @@ public class Application {
                     add("users:002"),
                     add("users:002"),
                     add("users:002"),
+                    add("users:002"),
                 }};
                 cursor = "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=";
                 ledgers = new String[]{{
                     add("quickstart"),
                     add("quickstart"),
                     add("quickstart"),
+                    add("quickstart"),
                 }};
-                pageSize = 287991L;
+                pageSize = 260341L;
                 policy = "OR";
                 raw = new QueryRaw();;
                 sort = "txid:asc";
-                target = "labore";
+                target = "maxime";
                 terms = new String[]{{
+                    add("destination=central_bank1"),
                     add("destination=central_bank1"),
                     add("destination=central_bank1"),
                 }};
@@ -93,7 +96,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("natus") {{
+                .setSecurity(new Security("facilis") {{
                     authorization = "";
                 }})
                 .build();

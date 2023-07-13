@@ -8,11 +8,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.http.HttpResponse;
 
 
-public class OrchestrationgetServerInfoResponse {
+public class FlowsgetServerInfoResponse {
     
     public String contentType;
 
-    public OrchestrationgetServerInfoResponse withContentType(String contentType) {
+    public FlowsgetServerInfoResponse withContentType(String contentType) {
         this.contentType = contentType;
         return this;
     }
@@ -23,7 +23,7 @@ public class OrchestrationgetServerInfoResponse {
     
     public com.formance.formance_sdk.models.shared.Error error;
 
-    public OrchestrationgetServerInfoResponse withError(com.formance.formance_sdk.models.shared.Error error) {
+    public FlowsgetServerInfoResponse withError(com.formance.formance_sdk.models.shared.Error error) {
         this.error = error;
         return this;
     }
@@ -34,7 +34,7 @@ public class OrchestrationgetServerInfoResponse {
     
     public com.formance.formance_sdk.models.shared.ServerInfo serverInfo;
 
-    public OrchestrationgetServerInfoResponse withServerInfo(com.formance.formance_sdk.models.shared.ServerInfo serverInfo) {
+    public FlowsgetServerInfoResponse withServerInfo(com.formance.formance_sdk.models.shared.ServerInfo serverInfo) {
         this.serverInfo = serverInfo;
         return this;
     }
@@ -42,7 +42,7 @@ public class OrchestrationgetServerInfoResponse {
     
     public Integer statusCode;
 
-    public OrchestrationgetServerInfoResponse withStatusCode(Integer statusCode) {
+    public FlowsgetServerInfoResponse withStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
         return this;
     }
@@ -50,12 +50,12 @@ public class OrchestrationgetServerInfoResponse {
     
     public HttpResponse<byte[]> rawResponse;
 
-    public OrchestrationgetServerInfoResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
+    public FlowsgetServerInfoResponse withRawResponse(HttpResponse<byte[]> rawResponse) {
         this.rawResponse = rawResponse;
         return this;
     }
     
-    public OrchestrationgetServerInfoResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
+    public FlowsgetServerInfoResponse(@JsonProperty("ContentType") String contentType, @JsonProperty("StatusCode") Integer statusCode) {
         this.contentType = contentType;
         this.statusCode = statusCode;
   }
