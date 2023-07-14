@@ -6,12 +6,14 @@
 ### Gradle
 
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk-java:v1.0.20230713.1'
+implementation 'com.formance.formance_sdk:formance-sdk-java:v1.0.20230714.1'
 ```
 <!-- End SDK Installation -->
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```java
 package hello.world;
 

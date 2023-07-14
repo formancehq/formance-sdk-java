@@ -28,7 +28,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.FlowsgetServerInfoResponse flowsgetServerInfo() throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/Flows/_info");
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/orchestration/_info");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
@@ -76,7 +76,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.CancelEventResponse cancelEvent(com.formance.formance_sdk.models.operations.CancelEventRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CancelEventRequest.class, baseUrl, "/api/Flows/instances/{instanceID}/abort", request, null);
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CancelEventRequest.class, baseUrl, "/api/orchestration/instances/{instanceID}/abort", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("PUT");
@@ -118,7 +118,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.CreateWorkflowResponse createWorkflow(com.formance.formance_sdk.models.shared.CreateWorkflowRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/Flows/workflows");
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/orchestration/workflows");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
@@ -168,7 +168,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.GetInstanceResponse getInstance(com.formance.formance_sdk.models.operations.GetInstanceRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetInstanceRequest.class, baseUrl, "/api/Flows/instances/{instanceID}", request, null);
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetInstanceRequest.class, baseUrl, "/api/orchestration/instances/{instanceID}", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
@@ -216,7 +216,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse getInstanceHistory(com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest.class, baseUrl, "/api/Flows/instances/{instanceID}/history", request, null);
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest.class, baseUrl, "/api/orchestration/instances/{instanceID}/history", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
@@ -264,7 +264,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse getInstanceStageHistory(com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest.class, baseUrl, "/api/Flows/instances/{instanceID}/stages/{number}/history", request, null);
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest.class, baseUrl, "/api/orchestration/instances/{instanceID}/stages/{number}/history", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
@@ -312,7 +312,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.GetWorkflowResponse getWorkflow(com.formance.formance_sdk.models.operations.GetWorkflowRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetWorkflowRequest.class, baseUrl, "/api/Flows/workflows/{flowId}", request, null);
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetWorkflowRequest.class, baseUrl, "/api/orchestration/workflows/{flowId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
@@ -360,7 +360,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.ListInstancesResponse listInstances(com.formance.formance_sdk.models.operations.ListInstancesRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/Flows/instances");
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/orchestration/instances");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
@@ -413,7 +413,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.ListWorkflowsResponse listWorkflows() throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/Flows/workflows");
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/orchestration/workflows");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
@@ -461,7 +461,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.RunWorkflowResponse runWorkflow(com.formance.formance_sdk.models.operations.RunWorkflowRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.RunWorkflowRequest.class, baseUrl, "/api/Flows/workflows/{workflowID}/instances", request, null);
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.RunWorkflowRequest.class, baseUrl, "/api/orchestration/workflows/{workflowID}/instances", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
@@ -517,7 +517,7 @@ public class Flows {
      */
     public com.formance.formance_sdk.models.operations.SendEventResponse sendEvent(com.formance.formance_sdk.models.operations.SendEventRequest request) throws Exception {
         String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.SendEventRequest.class, baseUrl, "/api/Flows/instances/{instanceID}/events", request, null);
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.SendEventRequest.class, baseUrl, "/api/orchestration/instances/{instanceID}/events", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
