@@ -2,51 +2,18 @@
 
 ### Available Operations
 
-* [flowsgetServerInfo](#flowsgetserverinfo) - Get server info
 * [cancelEvent](#cancelevent) - Cancel a running workflow
 * [createWorkflow](#createworkflow) - Create workflow
+* [deleteWorkflow](#deleteworkflow) - Delete a flow by id
 * [getInstance](#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](#getinstancestagehistory) - Get a workflow instance stage history
 * [getWorkflow](#getworkflow) - Get a flow by id
 * [listInstances](#listinstances) - List instances of a workflow
 * [listWorkflows](#listworkflows) - List registered workflows
+* [orchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
-
-## flowsgetServerInfo
-
-Get server info
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.FlowsgetServerInfoResponse;
-import com.formance.formance_sdk.models.shared.Security;
-
-public class Application {
-    public static void main(String[] args) {
-        try {
-            SDK sdk = SDK.builder()
-                .setSecurity(new Security("nobis") {{
-                    authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
-                }})
-                .build();
-
-            FlowsgetServerInfoResponse res = sdk.flows.flowsgetServerInfo();
-
-            if (res.serverInfo != null) {
-                // handle response
-            }
-        } catch (Exception e) {
-            // handle exception
-        }
-    }
-}
-```
 
 ## cancelEvent
 
@@ -66,12 +33,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("enim") {{
+                .setSecurity(new Security("nobis") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            CancelEventRequest req = new CancelEventRequest("omnis");            
+            CancelEventRequest req = new CancelEventRequest("enim");            
 
             CancelEventResponse res = sdk.flows.cancelEvent(req);
 
@@ -103,29 +70,66 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("nemo") {{
+                .setSecurity(new Security("omnis") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.CreateWorkflowRequest req = new CreateWorkflowRequest(                new java.util.HashMap<String, Object>[]{{
                                 add(new java.util.HashMap<String, Object>() {{
-                                    put("accusantium", "iure");
-                                    put("culpa", "doloribus");
-                                    put("sapiente", "architecto");
+                                    put("excepturi", "accusantium");
+                                    put("iure", "culpa");
                                 }}),
                                 add(new java.util.HashMap<String, Object>() {{
-                                    put("dolorem", "culpa");
-                                    put("consequuntur", "repellat");
-                                    put("mollitia", "occaecati");
+                                    put("sapiente", "architecto");
+                                    put("mollitia", "dolorem");
+                                    put("culpa", "consequuntur");
+                                    put("repellat", "mollitia");
                                 }}),
                             }}) {{
-                name = "Lucy Konopelski";
+                name = "Francis Jerde";
             }};            
 
             CreateWorkflowResponse res = sdk.flows.createWorkflow(req);
 
             if (res.createWorkflowResponse != null) {
+                // handle response
+            }
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+## deleteWorkflow
+
+Delete a flow by id
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.DeleteWorkflowRequest;
+import com.formance.formance_sdk.models.operations.DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.shared.Security;
+
+public class Application {
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .setSecurity(new Security("velit") {{
+                    authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
+                }})
+                .build();
+
+            DeleteWorkflowRequest req = new DeleteWorkflowRequest("error");            
+
+            DeleteWorkflowResponse res = sdk.flows.deleteWorkflow(req);
+
+            if (res.statusCode == 200) {
                 // handle response
             }
         } catch (Exception e) {
@@ -153,12 +157,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("error") {{
+                .setSecurity(new Security("quia") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetInstanceRequest req = new GetInstanceRequest("quia");            
+            GetInstanceRequest req = new GetInstanceRequest("quis");            
 
             GetInstanceResponse res = sdk.flows.getInstance(req);
 
@@ -190,12 +194,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("quis") {{
+                .setSecurity(new Security("vitae") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetInstanceHistoryRequest req = new GetInstanceHistoryRequest("vitae");            
+            GetInstanceHistoryRequest req = new GetInstanceHistoryRequest("laborum");            
 
             GetInstanceHistoryResponse res = sdk.flows.getInstanceHistory(req);
 
@@ -227,12 +231,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("laborum") {{
+                .setSecurity(new Security("animi") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetInstanceStageHistoryRequest req = new GetInstanceStageHistoryRequest("animi", 317202L);            
+            GetInstanceStageHistoryRequest req = new GetInstanceStageHistoryRequest("enim", 138183L);            
 
             GetInstanceStageHistoryResponse res = sdk.flows.getInstanceStageHistory(req);
 
@@ -264,12 +268,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("odit") {{
+                .setSecurity(new Security("quo") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetWorkflowRequest req = new GetWorkflowRequest("quo");            
+            GetWorkflowRequest req = new GetWorkflowRequest("sequi");            
 
             GetWorkflowResponse res = sdk.flows.getWorkflow(req);
 
@@ -301,14 +305,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("sequi") {{
+                .setSecurity(new Security("tenetur") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
             ListInstancesRequest req = new ListInstancesRequest() {{
                 running = false;
-                workflowID = "tenetur";
+                workflowID = "ipsam";
             }};            
 
             ListInstancesResponse res = sdk.flows.listInstances(req);
@@ -340,7 +344,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("ipsam") {{
+                .setSecurity(new Security("id") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -348,6 +352,40 @@ public class Application {
             ListWorkflowsResponse res = sdk.flows.listWorkflows();
 
             if (res.listWorkflowsResponse != null) {
+                // handle response
+            }
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+## orchestrationgetServerInfo
+
+Get server info
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.Security;
+
+public class Application {
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .setSecurity(new Security("possimus") {{
+                    authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
+                }})
+                .build();
+
+            OrchestrationgetServerInfoResponse res = sdk.flows.orchestrationgetServerInfo();
+
+            if (res.serverInfo != null) {
                 // handle response
             }
         } catch (Exception e) {
@@ -375,14 +413,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("id") {{
+                .setSecurity(new Security("aut") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            RunWorkflowRequest req = new RunWorkflowRequest("possimus") {{
+            RunWorkflowRequest req = new RunWorkflowRequest("quasi") {{
                 requestBody = new java.util.HashMap<String, String>() {{
-                    put("quasi", "error");
+                    put("temporibus", "laborum");
+                    put("quasi", "reiciendis");
+                    put("voluptatibus", "vero");
                 }};
                 wait = false;
             }};            
@@ -418,13 +458,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("temporibus") {{
+                .setSecurity(new Security("nihil") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            SendEventRequest req = new SendEventRequest("laborum") {{
-                requestBody = new SendEventRequestBody("quasi");;
+            SendEventRequest req = new SendEventRequest("praesentium") {{
+                requestBody = new SendEventRequestBody("voluptatibus");;
             }};            
 
             SendEventResponse res = sdk.flows.sendEvent(req);

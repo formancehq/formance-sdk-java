@@ -44,9 +44,9 @@ public class WalletsTransaction {
     }
     
     @JsonProperty("postings")
-    public Posting[] postings;
+    public WalletsPosting[] postings;
 
-    public WalletsTransaction withPostings(Posting[] postings) {
+    public WalletsTransaction withPostings(WalletsPosting[] postings) {
         this.postings = postings;
         return this;
     }
@@ -87,7 +87,7 @@ public class WalletsTransaction {
         return this;
     }
     
-    public WalletsTransaction(@JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("postings") Posting[] postings, @JsonProperty("timestamp") OffsetDateTime timestamp, @JsonProperty("txid") Long txid) {
+    public WalletsTransaction(@JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("postings") WalletsPosting[] postings, @JsonProperty("timestamp") OffsetDateTime timestamp, @JsonProperty("txid") Long txid) {
         this.metadata = metadata;
         this.postings = postings;
         this.timestamp = timestamp;

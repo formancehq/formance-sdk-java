@@ -32,52 +32,6 @@ public class Flows {
 	}
 
     /**
-     * Get server info
-     * @return the response from the API call
-     * @throws Exception if the API call fails
-     */
-    public com.formance.formance_sdk.models.operations.FlowsgetServerInfoResponse flowsgetServerInfo() throws Exception {
-        String baseUrl = this._serverUrl;
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/orchestration/_info");
-        
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("GET");
-        req.setURL(url);
-
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
-        
-        HTTPClient client = this._securityClient;
-        
-        HttpResponse<byte[]> httpRes = client.send(req);
-
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.FlowsgetServerInfoResponse res = new com.formance.formance_sdk.models.operations.FlowsgetServerInfoResponse(contentType, httpRes.statusCode()) {{
-            serverInfo = null;
-            error = null;
-        }};
-        res.rawResponse = httpRes;
-        
-        if (httpRes.statusCode() == 200) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ServerInfo out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.ServerInfo.class);
-                res.serverInfo = out;
-            }
-        }
-        else {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.Error out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.Error.class);
-                res.error = out;
-            }
-        }
-
-        return res;
-    }
-
-    /**
      * Cancel a running workflow
      * Cancel a running workflow
      * @param request the request object containing all of the parameters for the API call
@@ -157,6 +111,48 @@ public class Flows {
                 com.formance.formance_sdk.models.shared.CreateWorkflowResponse out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.CreateWorkflowResponse.class);
                 res.createWorkflowResponse = out;
             }
+        }
+        else {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.shared.Error out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.Error.class);
+                res.error = out;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Delete a flow by id
+     * Delete a flow by id
+     * @param request the request object containing all of the parameters for the API call
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public com.formance.formance_sdk.models.operations.DeleteWorkflowResponse deleteWorkflow(com.formance.formance_sdk.models.operations.DeleteWorkflowRequest request) throws Exception {
+        String baseUrl = this._serverUrl;
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DeleteWorkflowRequest.class, baseUrl, "/api/orchestration/workflows/{flowId}", request, null);
+        
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("DELETE");
+        req.setURL(url);
+
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        
+        HTTPClient client = this._securityClient;
+        
+        HttpResponse<byte[]> httpRes = client.send(req);
+
+        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+
+        com.formance.formance_sdk.models.operations.DeleteWorkflowResponse res = new com.formance.formance_sdk.models.operations.DeleteWorkflowResponse(contentType, httpRes.statusCode()) {{
+            error = null;
+        }};
+        res.rawResponse = httpRes;
+        
+        if (httpRes.statusCode() == 204) {
         }
         else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -449,6 +445,52 @@ public class Flows {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.shared.ListWorkflowsResponse out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.ListWorkflowsResponse.class);
                 res.listWorkflowsResponse = out;
+            }
+        }
+        else {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.shared.Error out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.Error.class);
+                res.error = out;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Get server info
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse orchestrationgetServerInfo() throws Exception {
+        String baseUrl = this._serverUrl;
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/orchestration/_info");
+        
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("GET");
+        req.setURL(url);
+
+        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        
+        HTTPClient client = this._securityClient;
+        
+        HttpResponse<byte[]> httpRes = client.send(req);
+
+        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+
+        com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse res = new com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse(contentType, httpRes.statusCode()) {{
+            serverInfo = null;
+            error = null;
+        }};
+        res.rawResponse = httpRes;
+        
+        if (httpRes.statusCode() == 200) {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.shared.ServerInfo out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.ServerInfo.class);
+                res.serverInfo = out;
             }
         }
         else {

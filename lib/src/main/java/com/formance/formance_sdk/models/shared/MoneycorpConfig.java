@@ -8,28 +8,27 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ModulrConfig {
+public class MoneycorpConfig {
     @JsonProperty("apiKey")
     public String apiKey;
 
-    public ModulrConfig withApiKey(String apiKey) {
+    public MoneycorpConfig withApiKey(String apiKey) {
         this.apiKey = apiKey;
         return this;
     }
     
-    @JsonProperty("apiSecret")
-    public String apiSecret;
+    @JsonProperty("clientID")
+    public String clientID;
 
-    public ModulrConfig withApiSecret(String apiSecret) {
-        this.apiSecret = apiSecret;
+    public MoneycorpConfig withClientID(String clientID) {
+        this.clientID = clientID;
         return this;
     }
     
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("endpoint")
     public String endpoint;
 
-    public ModulrConfig withEndpoint(String endpoint) {
+    public MoneycorpConfig withEndpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -42,13 +41,14 @@ public class ModulrConfig {
     @JsonProperty("pollingPeriod")
     public String pollingPeriod;
 
-    public ModulrConfig withPollingPeriod(String pollingPeriod) {
+    public MoneycorpConfig withPollingPeriod(String pollingPeriod) {
         this.pollingPeriod = pollingPeriod;
         return this;
     }
     
-    public ModulrConfig(@JsonProperty("apiKey") String apiKey, @JsonProperty("apiSecret") String apiSecret) {
+    public MoneycorpConfig(@JsonProperty("apiKey") String apiKey, @JsonProperty("clientID") String clientID, @JsonProperty("endpoint") String endpoint) {
         this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
+        this.clientID = clientID;
+        this.endpoint = endpoint;
   }
 }

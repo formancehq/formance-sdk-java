@@ -38,12 +38,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("facilis") {{
+                .setSecurity(new Security("vero") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            ConfirmHoldRequest req = new ConfirmHoldRequest("perspiciatis") {{
+            ConfirmHoldRequest req = new ConfirmHoldRequest("nostrum") {{
                 confirmHoldRequest = new ConfirmHoldRequest() {{
                     amount = 100L;
                     final_ = true;
@@ -82,15 +82,15 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("voluptatem") {{
+                .setSecurity(new Security("hic") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            CreateBalanceRequest req = new CreateBalanceRequest("porro") {{
-                createBalanceRequest = new CreateBalanceRequest("consequuntur") {{
-                    expiresAt = OffsetDateTime.parse("2021-10-04T07:41:53.553Z");
-                    priority = 50370L;
+            CreateBalanceRequest req = new CreateBalanceRequest("recusandae") {{
+                createBalanceRequest = new CreateBalanceRequest("omnis") {{
+                    expiresAt = OffsetDateTime.parse("2021-10-22T10:35:49.400Z");
+                    priority = 31838L;
                 }};;
             }};            
 
@@ -124,16 +124,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("occaecati") {{
+                .setSecurity(new Security("porro") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.CreateWalletRequest req = new CreateWalletRequest(                new java.util.HashMap<String, String>() {{
-                                put("adipisci", "asperiores");
-                                put("earum", "modi");
-                                put("iste", "dolorum");
-                            }}, "deleniti");            
+                                put("blanditiis", "error");
+                            }}, "eaque");            
 
             CreateWalletResponse res = sdk.wallets.createWallet(req);
 
@@ -169,39 +167,38 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("pariatur") {{
+                .setSecurity(new Security("occaecati") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            CreditWalletRequest req = new CreditWalletRequest("provident") {{
-                creditWalletRequest = new CreditWalletRequest(                new Monetary(750844L, "libero");,                 new java.util.HashMap<String, String>() {{
-                                    put("quaerat", "quos");
-                                    put("aliquid", "dolorem");
-                                    put("dolorem", "dolor");
-                                    put("qui", "ipsum");
+            CreditWalletRequest req = new CreditWalletRequest("rerum") {{
+                creditWalletRequest = new CreditWalletRequest(                new Monetary(237893L, "asperiores");,                 new java.util.HashMap<String, String>() {{
+                                    put("modi", "iste");
+                                    put("dolorum", "deleniti");
+                                    put("pariatur", "provident");
+                                    put("nobis", "libero");
                                 }},                 new Object[]{{
-                                    add(new WalletSubject("reiciendis", "amet") {{
-                                        balance = "cum";
-                                        identifier = "voluptate";
-                                        type = "dignissimos";
+                                    add(new LedgerAccountSubject("dolorem", "dolorem") {{
+                                        identifier = "quos";
+                                        type = "aliquid";
                                     }}),
-                                    add(new WalletSubject("ipsa", "iure") {{
-                                        balance = "numquam";
+                                    add(new LedgerAccountSubject("hic", "excepturi") {{
+                                        identifier = "qui";
+                                        type = "ipsum";
+                                    }}),
+                                    add(new WalletSubject("amet", "dolorum") {{
+                                        balance = "voluptate";
+                                        identifier = "dignissimos";
+                                        type = "reiciendis";
+                                    }}),
+                                    add(new LedgerAccountSubject("ipsa", "iure") {{
                                         identifier = "veritatis";
                                         type = "ipsa";
                                     }}),
-                                    add(new LedgerAccountSubject("quidem", "voluptatibus") {{
-                                        identifier = "quaerat";
-                                        type = "accusamus";
-                                    }}),
-                                    add(new LedgerAccountSubject("atque", "sit") {{
-                                        identifier = "natus";
-                                        type = "eos";
-                                    }}),
                                 }}) {{
-                    balance = "fugiat";
-                    reference = "ab";
+                    balance = "odio";
+                    reference = "quaerat";
                 }};;
             }};            
 
@@ -239,23 +236,25 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("soluta") {{
+                .setSecurity(new Security("accusamus") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            DebitWalletRequest req = new DebitWalletRequest("dolorum") {{
-                debitWalletRequest = new DebitWalletRequest(                new Monetary(478596L, "voluptate");,                 new java.util.HashMap<String, String>() {{
-                                    put("deleniti", "omnis");
-                                    put("necessitatibus", "distinctio");
-                                    put("asperiores", "nihil");
+            DebitWalletRequest req = new DebitWalletRequest("quidem") {{
+                debitWalletRequest = new DebitWalletRequest(                new Monetary(976405L, "voluptas");,                 new java.util.HashMap<String, String>() {{
+                                    put("eos", "atque");
+                                    put("sit", "fugiat");
+                                    put("ab", "soluta");
                                 }}) {{
                     balances = new String[]{{
+                        add("iusto"),
                         add("voluptate"),
+                        add("dolorum"),
                     }};
-                    description = "id";
-                    destination = new WalletSubject("eius", "aspernatur") {{
-                        balance = "perferendis";
+                    description = "deleniti";
+                    destination = new WalletSubject("necessitatibus", "distinctio") {{
+                        balance = "asperiores";
                     }};;
                     pending = false;
                 }};;
@@ -291,12 +290,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("amet") {{
+                .setSecurity(new Security("nihil") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetBalanceRequest req = new GetBalanceRequest("optio", "accusamus");            
+            GetBalanceRequest req = new GetBalanceRequest("ipsum", "voluptate");            
 
             GetBalanceResponse res = sdk.wallets.getBalance(req);
 
@@ -328,7 +327,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("ad") {{
+                .setSecurity(new Security("id") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -365,7 +364,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("suscipit") {{
+                .setSecurity(new Security("eius") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -373,12 +372,10 @@ public class Application {
             GetHoldsRequest req = new GetHoldsRequest() {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 metadata = new java.util.HashMap<String, String>() {{
-                    put("provident", "minima");
-                    put("repellendus", "totam");
-                    put("similique", "alias");
+                    put("perferendis", "amet");
                 }};
-                pageSize = 872651L;
-                walletID = "quaerat";
+                pageSize = 758379L;
+                walletID = "accusamus";
             }};            
 
             GetHoldsResponse res = sdk.wallets.getHolds(req);
@@ -409,15 +406,15 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("tempora") {{
+                .setSecurity(new Security("ad") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
             GetTransactionsRequest req = new GetTransactionsRequest() {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 425451L;
-                walletID = "quod";
+                pageSize = 904425L;
+                walletID = "suscipit";
             }};            
 
             GetTransactionsResponse res = sdk.wallets.getTransactions(req);
@@ -450,12 +447,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("officiis") {{
+                .setSecurity(new Security("deserunt") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetWalletRequest req = new GetWalletRequest("qui");            
+            GetWalletRequest req = new GetWalletRequest("provident");            
 
             GetWalletResponse res = sdk.wallets.getWallet(req);
 
@@ -487,12 +484,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("dolorum") {{
+                .setSecurity(new Security("minima") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetWalletSummaryRequest req = new GetWalletSummaryRequest("a");            
+            GetWalletSummaryRequest req = new GetWalletSummaryRequest("repellendus");            
 
             GetWalletSummaryResponse res = sdk.wallets.getWalletSummary(req);
 
@@ -524,12 +521,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("esse") {{
+                .setSecurity(new Security("totam") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            ListBalancesRequest req = new ListBalancesRequest("harum");            
+            ListBalancesRequest req = new ListBalancesRequest("similique");            
 
             ListBalancesResponse res = sdk.wallets.listBalances(req);
 
@@ -561,7 +558,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("iusto") {{
+                .setSecurity(new Security("alias") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -569,10 +566,13 @@ public class Application {
             ListWalletsRequest req = new ListWalletsRequest() {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 metadata = new java.util.HashMap<String, String>() {{
-                    put("quisquam", "tenetur");
+                    put("quaerat", "tempora");
+                    put("vel", "quod");
+                    put("officiis", "qui");
+                    put("dolorum", "a");
                 }};
-                name = "Kelli Thompson";
-                pageSize = 213312L;
+                name = "Fannie Kub";
+                pageSize = 947371L;
             }};            
 
             ListWalletsResponse res = sdk.wallets.listWallets(req);
@@ -606,15 +606,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("sapiente") {{
+                .setSecurity(new Security("amet") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            UpdateWalletRequest req = new UpdateWalletRequest("totam") {{
+            UpdateWalletRequest req = new UpdateWalletRequest("tempore") {{
                 requestBody = new UpdateWalletRequestBody(                new java.util.HashMap<String, String>() {{
+                                    put("numquam", "enim");
+                                    put("dolorem", "sapiente");
+                                    put("totam", "nihil");
                                     put("sit", "expedita");
-                                    put("neque", "sed");
                                 }});;
             }};            
 
@@ -648,12 +650,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("vel") {{
+                .setSecurity(new Security("neque") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            VoidHoldRequest req = new VoidHoldRequest("libero");            
+            VoidHoldRequest req = new VoidHoldRequest("sed");            
 
             VoidHoldResponse res = sdk.wallets.voidHold(req);
 
@@ -684,7 +686,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("voluptas") {{
+                .setSecurity(new Security("vel") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();

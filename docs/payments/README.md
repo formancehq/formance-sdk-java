@@ -37,7 +37,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("accusantium") {{
+                .setSecurity(new Security("expedita") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -47,7 +47,8 @@ public class Application {
                 asset = "USD";
                 destination = "acct_1Gqj58KZcSIg2N2q";
                 metadata = new java.util.HashMap<String, Object>() {{
-                    put("praesentium", "natus");
+                    put("repellat", "quibusdam");
+                    put("sed", "saepe");
                 }};
             }};            
 
@@ -83,7 +84,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("magni") {{
+                .setSecurity(new Security("pariatur") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -123,12 +124,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("quo") {{
+                .setSecurity(new Security("consequuntur") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetConnectorTaskRequest req = new GetConnectorTaskRequest(Connector.BANKING_CIRCLE, "pariatur");            
+            GetConnectorTaskRequest req = new GetConnectorTaskRequest(Connector.CURRENCY_CLOUD, "natus");            
 
             GetConnectorTaskResponse res = sdk.payments.getConnectorTask(req);
 
@@ -160,12 +161,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("maxime") {{
+                .setSecurity(new Security("magni") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            GetPaymentRequest req = new GetPaymentRequest("ea");            
+            GetPaymentRequest req = new GetPaymentRequest("sunt");            
 
             GetPaymentResponse res = sdk.payments.getPayment(req);
 
@@ -195,7 +196,9 @@ import com.formance.formance_sdk.models.shared.BankingCircleConfig;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.CurrencyCloudConfig;
 import com.formance.formance_sdk.models.shared.DummyPayConfig;
+import com.formance.formance_sdk.models.shared.MangoPayConfig;
 import com.formance.formance_sdk.models.shared.ModulrConfig;
+import com.formance.formance_sdk.models.shared.MoneycorpConfig;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.StripeConfig;
 import com.formance.formance_sdk.models.shared.WiseConfig;
@@ -204,16 +207,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("excepturi") {{
+                .setSecurity(new Security("quo") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            InstallConnectorRequest req = new InstallConnectorRequest(                new StripeConfig("XXX") {{
+            InstallConnectorRequest req = new InstallConnectorRequest(                new MangoPayConfig("XXX", "XXX", "XXX") {{
                                 apiKey = "XXX";
-                                pageSize = 50L;
+                                clientID = "XXX";
+                                endpoint = "XXX";
                                 pollingPeriod = "60s";
-                            }}, Connector.WISE);            
+                            }}, Connector.MANGOPAY);            
 
             InstallConnectorResponse res = sdk.payments.installConnector(req);
 
@@ -244,7 +248,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("accusantium") {{
+                .setSecurity(new Security("maxime") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -278,7 +282,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("ab") {{
+                .setSecurity(new Security("ea") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -314,14 +318,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("maiores") {{
+                .setSecurity(new Security("excepturi") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            ListConnectorTasksRequest req = new ListConnectorTasksRequest(Connector.CURRENCY_CLOUD) {{
+            ListConnectorTasksRequest req = new ListConnectorTasksRequest(Connector.DUMMY_PAY) {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 373291L;
+                pageSize = 407183L;
             }};            
 
             ListConnectorTasksResponse res = sdk.payments.listConnectorTasks(req);
@@ -355,12 +359,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("voluptate") {{
+                .setSecurity(new Security("accusantium") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            ListConnectorsTransfersRequest req = new ListConnectorsTransfersRequest(Connector.WISE);            
+            ListConnectorsTransfersRequest req = new ListConnectorsTransfersRequest(Connector.STRIPE);            
 
             ListConnectorsTransfersResponse res = sdk.payments.listConnectorsTransfers(req);
 
@@ -392,19 +396,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("nam") {{
+                .setSecurity(new Security("maiores") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
             ListPaymentsRequest req = new ListPaymentsRequest() {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 50588L;
+                pageSize = 697429L;
                 sort = new String[]{{
-                    add("nemo"),
-                    add("voluptatibus"),
-                    add("perferendis"),
-                    add("fugiat"),
+                    add("voluptate"),
+                    add("autem"),
                 }};
             }};            
 
@@ -437,7 +439,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("amet") {{
+                .setSecurity(new Security("nam") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -472,17 +474,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("aut") {{
+                .setSecurity(new Security("eaque") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
             PaymentslistAccountsRequest req = new PaymentslistAccountsRequest() {{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 764912L;
+                pageSize = 866383L;
                 sort = new String[]{{
-                    add("hic"),
-                    add("libero"),
+                    add("voluptatibus"),
+                    add("perferendis"),
                 }};
             }};            
 
@@ -517,7 +519,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("nobis") {{
+                .setSecurity(new Security("fugiat") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
@@ -557,12 +559,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("quis") {{
+                .setSecurity(new Security("aut") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            ResetConnectorRequest req = new ResetConnectorRequest(Connector.MODULR);            
+            ResetConnectorRequest req = new ResetConnectorRequest(Connector.MANGOPAY);            
 
             ResetConnectorResponse res = sdk.payments.resetConnector(req);
 
@@ -595,12 +597,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("dignissimos") {{
+                .setSecurity(new Security("corporis") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
-            UninstallConnectorRequest req = new UninstallConnectorRequest(Connector.STRIPE);            
+            UninstallConnectorRequest req = new UninstallConnectorRequest(Connector.MONEYCORP);            
 
             UninstallConnectorResponse res = sdk.payments.uninstallConnector(req);
 
@@ -633,14 +635,14 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("quis") {{
+                .setSecurity(new Security("libero") {{
                     authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
                 }})
                 .build();
 
             UpdateMetadataRequest req = new UpdateMetadataRequest(                new PaymentMetadata() {{
-                                key = "nesciunt";
-                            }};, "eos");            
+                                key = "nobis";
+                            }};, "dolores");            
 
             UpdateMetadataResponse res = sdk.payments.updateMetadata(req);
 
