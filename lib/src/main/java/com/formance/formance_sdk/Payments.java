@@ -4,6 +4,7 @@
 
 package com.formance.formance_sdk;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
@@ -15,10 +16,20 @@ import org.apache.http.NameValuePair;
 
 public class Payments {
 	
-	private SDKConfiguration sdkConfiguration;
+	private HTTPClient _defaultClient;
+	private HTTPClient _securityClient;
+	private String _serverUrl;
+	private String _language;
+	private String _sdkVersion;
+	private String _genVersion;
 
-	public Payments(SDKConfiguration sdkConfiguration) {
-		this.sdkConfiguration = sdkConfiguration;
+	public Payments(HTTPClient defaultClient, HTTPClient securityClient, String serverUrl, String language, String sdkVersion, String genVersion) {
+		this._defaultClient = defaultClient;
+		this._securityClient = securityClient;
+		this._serverUrl = serverUrl;
+		this._language = language;
+		this._sdkVersion = sdkVersion;
+		this._genVersion = genVersion;
 	}
 
     /**
@@ -29,7 +40,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ConnectorsStripeTransferResponse connectorsStripeTransfer(com.formance.formance_sdk.models.shared.StripeTransferRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/payments/connectors/stripe/transfers");
         
         HTTPRequest req = new HTTPRequest();
@@ -42,9 +53,9 @@ public class Payments {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -58,7 +69,7 @@ public class Payments {
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.StripeTransferResponse out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.StripeTransferResponse.class);
+                java.util.Map<String, Object> out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), new TypeReference<java.util.Map<String, Object>>() {});
                 res.stripeTransferResponse = out;
             }
         }
@@ -74,7 +85,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ConnectorsTransferResponse connectorsTransfer(com.formance.formance_sdk.models.operations.ConnectorsTransferRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ConnectorsTransferRequest.class, baseUrl, "/api/payments/connectors/{connector}/transfers", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -87,9 +98,9 @@ public class Payments {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -119,7 +130,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetConnectorTaskResponse getConnectorTask(com.formance.formance_sdk.models.operations.GetConnectorTaskRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetConnectorTaskRequest.class, baseUrl, "/api/payments/connectors/{connector}/tasks/{taskId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -127,9 +138,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -158,7 +169,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetPaymentResponse getPayment(com.formance.formance_sdk.models.operations.GetPaymentRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetPaymentRequest.class, baseUrl, "/api/payments/payments/{paymentId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -166,9 +177,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -198,7 +209,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.InstallConnectorResponse installConnector(com.formance.formance_sdk.models.operations.InstallConnectorRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.InstallConnectorRequest.class, baseUrl, "/api/payments/connectors/{connector}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -211,9 +222,9 @@ public class Payments {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -236,7 +247,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListAllConnectorsResponse listAllConnectors() throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/payments/connectors");
         
         HTTPRequest req = new HTTPRequest();
@@ -244,9 +255,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -275,7 +286,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse listConfigsAvailableConnectors() throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/payments/connectors/configs");
         
         HTTPRequest req = new HTTPRequest();
@@ -283,9 +294,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -315,7 +326,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListConnectorTasksResponse listConnectorTasks(com.formance.formance_sdk.models.operations.ListConnectorTasksRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ListConnectorTasksRequest.class, baseUrl, "/api/payments/connectors/{connector}/tasks", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -323,7 +334,7 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.ListConnectorTasksRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -331,7 +342,7 @@ public class Payments {
             }
         }
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -361,7 +372,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListConnectorsTransfersResponse listConnectorsTransfers(com.formance.formance_sdk.models.operations.ListConnectorsTransfersRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ListConnectorsTransfersRequest.class, baseUrl, "/api/payments/connectors/{connector}/transfers", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -369,9 +380,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -400,7 +411,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListPaymentsResponse listPayments(com.formance.formance_sdk.models.operations.ListPaymentsRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/payments/payments");
         
         HTTPRequest req = new HTTPRequest();
@@ -408,7 +419,7 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.ListPaymentsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -416,7 +427,7 @@ public class Payments {
             }
         }
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -444,7 +455,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse paymentsgetServerInfo() throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/payments/_info");
         
         HTTPRequest req = new HTTPRequest();
@@ -452,9 +463,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -483,7 +494,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse paymentslistAccounts(com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/payments/accounts");
         
         HTTPRequest req = new HTTPRequest();
@@ -491,7 +502,7 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -499,7 +510,7 @@ public class Payments {
             }
         }
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -529,7 +540,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse readConnectorConfig(com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest.class, baseUrl, "/api/payments/connectors/{connector}/config", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -537,9 +548,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -571,7 +582,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ResetConnectorResponse resetConnector(com.formance.formance_sdk.models.operations.ResetConnectorRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ResetConnectorRequest.class, baseUrl, "/api/payments/connectors/{connector}/reset", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -579,9 +590,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -605,7 +616,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.UninstallConnectorResponse uninstallConnector(com.formance.formance_sdk.models.operations.UninstallConnectorRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.UninstallConnectorRequest.class, baseUrl, "/api/payments/connectors/{connector}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -613,9 +624,9 @@ public class Payments {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
@@ -638,7 +649,7 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.UpdateMetadataResponse updateMetadata(com.formance.formance_sdk.models.operations.UpdateMetadataRequest request) throws Exception {
-        String baseUrl = com.formance.formance_sdk.utils.Utils.templateUrl(this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String baseUrl = this._serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.UpdateMetadataRequest.class, baseUrl, "/api/payments/payments/{paymentId}/metadata", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -651,9 +662,9 @@ public class Payments {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s %s", this.sdkConfiguration.language, this.sdkConfiguration.sdkVersion, this.sdkConfiguration.genVersion, this.sdkConfiguration.openapiDocVersion));
+        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
         
-        HTTPClient client = this.sdkConfiguration.securityClient;
+        HTTPClient client = this._securityClient;
         
         HttpResponse<byte[]> httpRes = client.send(req);
 
