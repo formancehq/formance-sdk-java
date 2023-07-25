@@ -4,7 +4,7 @@ generation:
   singleTagPerOp: true
   telemetryEnabled: false
 java:
-  version: v1.0.20230724
+  version: v1.0.20230725
   artifactID: formance-sdk
   companyEmail: info@mycompany.com
   companyName: Formance
