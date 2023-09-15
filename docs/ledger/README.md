@@ -933,7 +933,9 @@ public class Application {
                 }})
                 .build();
 
-            RevertTransactionRequest req = new RevertTransactionRequest("ledger001", 1234L);            
+            RevertTransactionRequest req = new RevertTransactionRequest("ledger001", 1234L) {{
+                disableChecks = false;
+            }};            
 
             RevertTransactionResponse res = sdk.ledger.revertTransaction(req);
 

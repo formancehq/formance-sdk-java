@@ -9,6 +9,17 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
 public class RevertTransactionRequest {
     /**
+     * Allow to disable balances checks
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=disableChecks")
+    public Boolean disableChecks;
+
+    public RevertTransactionRequest withDisableChecks(Boolean disableChecks) {
+        this.disableChecks = disableChecks;
+        return this;
+    }
+    
+    /**
      * Name of the ledger.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
