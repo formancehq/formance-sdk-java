@@ -7,6 +7,7 @@ package com.formance.formance_sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
+
 public class GetBalancesRequest {
     /**
      * Filter balances involving given account, either as source or destination.
@@ -61,7 +62,7 @@ public class GetBalancesRequest {
      * Set to the value of next for the next page of results.
      * Set to the value of previous for the previous page of results.
      * Deprecated, please use `cursor` instead.
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pagination_token")
     @Deprecated

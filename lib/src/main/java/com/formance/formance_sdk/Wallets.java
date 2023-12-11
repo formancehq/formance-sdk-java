@@ -15,20 +15,10 @@ import org.apache.http.NameValuePair;
 
 public class Wallets {
 	
-	private HTTPClient _defaultClient;
-	private HTTPClient _securityClient;
-	private String _serverUrl;
-	private String _language;
-	private String _sdkVersion;
-	private String _genVersion;
+	private SDKConfiguration sdkConfiguration;
 
-	public Wallets(HTTPClient defaultClient, HTTPClient securityClient, String serverUrl, String language, String sdkVersion, String genVersion) {
-		this._defaultClient = defaultClient;
-		this._securityClient = securityClient;
-		this._serverUrl = serverUrl;
-		this._language = language;
-		this._sdkVersion = sdkVersion;
-		this._genVersion = genVersion;
+	public Wallets(SDKConfiguration sdkConfiguration) {
+		this.sdkConfiguration = sdkConfiguration;
 	}
 
     /**
@@ -38,7 +28,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ConfirmHoldResponse confirmHold(com.formance.formance_sdk.models.operations.ConfirmHoldRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ConfirmHoldRequest.class, baseUrl, "/api/wallets/holds/{hold_id}/confirm", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -48,10 +38,9 @@ public class Wallets {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -81,7 +70,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CreateBalanceResponse createBalance(com.formance.formance_sdk.models.operations.CreateBalanceRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CreateBalanceRequest.class, baseUrl, "/api/wallets/wallets/{id}/balances", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -90,11 +79,10 @@ public class Wallets {
         SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(request, "createBalanceRequest", "json");
         req.setBody(serializedRequestBody);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -130,7 +118,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CreateWalletResponse createWallet(com.formance.formance_sdk.models.shared.CreateWalletRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/wallets/wallets");
         
         HTTPRequest req = new HTTPRequest();
@@ -139,11 +127,10 @@ public class Wallets {
         SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(request, "request", "json");
         req.setBody(serializedRequestBody);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -179,7 +166,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CreditWalletResponse creditWallet(com.formance.formance_sdk.models.operations.CreditWalletRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CreditWalletRequest.class, baseUrl, "/api/wallets/wallets/{id}/credit", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -189,10 +176,9 @@ public class Wallets {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -222,7 +208,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.DebitWalletResponse debitWallet(com.formance.formance_sdk.models.operations.DebitWalletRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DebitWalletRequest.class, baseUrl, "/api/wallets/wallets/{id}/debit", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -231,11 +217,10 @@ public class Wallets {
         SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(request, "debitWalletRequest", "json");
         req.setBody(serializedRequestBody);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -273,18 +258,17 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetBalanceResponse getBalance(com.formance.formance_sdk.models.operations.GetBalanceRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetBalanceRequest.class, baseUrl, "/api/wallets/wallets/{id}/balances/{balanceName}", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -320,18 +304,17 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetHoldResponse getHold(com.formance.formance_sdk.models.operations.GetHoldRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetHoldRequest.class, baseUrl, "/api/wallets/holds/{holdID}", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -367,15 +350,15 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetHoldsResponse getHolds(com.formance.formance_sdk.models.operations.GetHoldsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/wallets/holds");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.GetHoldsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -383,8 +366,7 @@ public class Wallets {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -414,15 +396,15 @@ public class Wallets {
     }
 
     public com.formance.formance_sdk.models.operations.GetTransactionsResponse getTransactions(com.formance.formance_sdk.models.operations.GetTransactionsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/wallets/transactions");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.GetTransactionsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -430,8 +412,7 @@ public class Wallets {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -467,18 +448,17 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetWalletResponse getWallet(com.formance.formance_sdk.models.operations.GetWalletRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetWalletRequest.class, baseUrl, "/api/wallets/wallets/{id}", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -516,18 +496,17 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetWalletSummaryResponse getWalletSummary(com.formance.formance_sdk.models.operations.GetWalletSummaryRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetWalletSummaryRequest.class, baseUrl, "/api/wallets/wallets/{id}/summary", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -565,7 +544,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListBalancesResponse listBalances(com.formance.formance_sdk.models.operations.ListBalancesRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ListBalancesRequest.class, baseUrl, "/api/wallets/wallets/{id}/balances", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -573,10 +552,9 @@ public class Wallets {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -604,7 +582,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListWalletsResponse listWallets(com.formance.formance_sdk.models.operations.ListWalletsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/wallets/wallets");
         
         HTTPRequest req = new HTTPRequest();
@@ -612,7 +590,7 @@ public class Wallets {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.ListWalletsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -620,8 +598,7 @@ public class Wallets {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -649,7 +626,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.UpdateWalletResponse updateWallet(com.formance.formance_sdk.models.operations.UpdateWalletRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.UpdateWalletRequest.class, baseUrl, "/api/wallets/wallets/{id}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -659,10 +636,9 @@ public class Wallets {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -692,7 +668,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.VoidHoldResponse voidHold(com.formance.formance_sdk.models.operations.VoidHoldRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.VoidHoldRequest.class, baseUrl, "/api/wallets/holds/{hold_id}/void", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -700,10 +676,9 @@ public class Wallets {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -732,18 +707,17 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse walletsgetServerInfo() throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/wallets/_info");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");

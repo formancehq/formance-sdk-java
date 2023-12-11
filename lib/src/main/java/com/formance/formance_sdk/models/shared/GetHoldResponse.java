@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * GetHoldResponse - Holds
- */
+
 public class GetHoldResponse {
     @JsonProperty("data")
     public ExpandedDebitHold data;

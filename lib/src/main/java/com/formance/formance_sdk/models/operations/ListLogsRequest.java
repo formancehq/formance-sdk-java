@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import java.time.OffsetDateTime;
 
+
 public class ListLogsRequest {
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
@@ -78,7 +79,7 @@ public class ListLogsRequest {
      * No other parameters can be set when this parameter is set.
      * Deprecated, please use `cursor` instead.
      * 
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pagination_token")
     @Deprecated

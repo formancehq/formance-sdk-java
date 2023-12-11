@@ -22,15 +22,30 @@ repositories {
 }
 
 java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11    
     withSourcesJar()
     withJavadocJar()
+}
+
+model {
+    tasks.generatePomFileForMavenPublication {
+        destination = file("$buildDir/pom.xml")
+    }
+}
+
+jar {
+    dependsOn(":$project.name:generatePomFileForMavenPublication")
+    into("META-INF/maven/com.formance/formance-sdk") {
+        from("$buildDir/pom.xml") 
+    }
 }
 
 publishing {
     repositories {
         maven {
             name = "OSSRH"
-            url = 'https://maven.pkg.github.com/formancehq/formance-sdk-java'
+            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
             credentials {
                 username = System.getenv("MAVEN_USERNAME")
                 password = System.getenv("MAVEN_PASSWORD")
@@ -41,7 +56,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.formance'
             artifactId = 'formance-sdk'
-            version = 'v1.0.20230915'
+            version = ''
 
             from components.java
 
@@ -75,11 +90,13 @@ publishing {
     }
 }
 
-signing {
-    def signingKey = findProperty("signingKey")
-    def signingPassphrase = findProperty("signingPassphrase")
-    useInMemoryPgpKeys(signingKey, signingPassphrase)
-    sign publishing.publications.maven
+if (!project.hasProperty('skip.signing')) {
+    signing {
+        def signingKey = findProperty("signingKey")
+        def signingPassphrase = findProperty("signingPassphrase")
+        useInMemoryPgpKeys(signingKey, signingPassphrase)
+        sign publishing.publications.maven
+    }
 }
 
 javadoc {
@@ -88,6 +105,7 @@ javadoc {
     if(JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
+    options.addStringOption('Xdoclint:none', '-quiet')   
 }
 
 dependencies {
@@ -101,16 +119,3 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpmime:4.5.13'
 }
 
-jar {
-    enabled = true
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    manifest {
-
-    }
-
-    from {
-        configurations.runtimeClasspath.collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    }
-}

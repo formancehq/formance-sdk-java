@@ -17,20 +17,10 @@ import org.apache.http.NameValuePair;
 
 public class Ledger {
 	
-	private HTTPClient _defaultClient;
-	private HTTPClient _securityClient;
-	private String _serverUrl;
-	private String _language;
-	private String _sdkVersion;
-	private String _genVersion;
+	private SDKConfiguration sdkConfiguration;
 
-	public Ledger(HTTPClient defaultClient, HTTPClient securityClient, String serverUrl, String language, String sdkVersion, String genVersion) {
-		this._defaultClient = defaultClient;
-		this._securityClient = securityClient;
-		this._serverUrl = serverUrl;
-		this._language = language;
-		this._sdkVersion = sdkVersion;
-		this._genVersion = genVersion;
+	public Ledger(SDKConfiguration sdkConfiguration) {
+		this.sdkConfiguration = sdkConfiguration;
 	}
 
     /**
@@ -40,7 +30,7 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CreateTransactionsResponse createTransactions(com.formance.formance_sdk.models.operations.CreateTransactionsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CreateTransactionsRequest.class, baseUrl, "/api/ledger/{ledger}/transactions/batch", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -52,11 +42,10 @@ public class Ledger {
         }
         req.setBody(serializedRequestBody);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -92,7 +81,7 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse addMetadataOnTransaction(com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest.class, baseUrl, "/api/ledger/{ledger}/transactions/{txid}/metadata", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -102,10 +91,9 @@ public class Ledger {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -135,7 +123,7 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse addMetadataToAccount(com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest.class, baseUrl, "/api/ledger/{ledger}/accounts/{address}/metadata", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -148,10 +136,9 @@ public class Ledger {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -181,7 +168,7 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CountAccountsResponse countAccounts(com.formance.formance_sdk.models.operations.CountAccountsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CountAccountsRequest.class, baseUrl, "/api/ledger/{ledger}/accounts", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -189,7 +176,7 @@ public class Ledger {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.CountAccountsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -197,8 +184,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -230,7 +216,7 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CountTransactionsResponse countTransactions(com.formance.formance_sdk.models.operations.CountTransactionsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CountTransactionsRequest.class, baseUrl, "/api/ledger/{ledger}/transactions", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -238,7 +224,7 @@ public class Ledger {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.CountTransactionsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -246,8 +232,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -279,7 +264,7 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CreateTransactionResponse createTransaction(com.formance.formance_sdk.models.operations.CreateTransactionRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CreateTransactionRequest.class, baseUrl, "/api/ledger/{ledger}/transactions", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -291,8 +276,8 @@ public class Ledger {
         }
         req.setBody(serializedRequestBody);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.CreateTransactionRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -300,8 +285,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -337,18 +321,17 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetAccountResponse getAccount(com.formance.formance_sdk.models.operations.GetAccountRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetAccountRequest.class, baseUrl, "/api/ledger/{ledger}/accounts/{address}", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -384,15 +367,15 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetBalancesResponse getBalances(com.formance.formance_sdk.models.operations.GetBalancesRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetBalancesRequest.class, baseUrl, "/api/ledger/{ledger}/balances", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.GetBalancesRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -400,8 +383,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -437,15 +419,15 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse getBalancesAggregated(com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest.class, baseUrl, "/api/ledger/{ledger}/aggregate/balances", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -453,8 +435,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -489,18 +470,17 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetInfoResponse getInfo() throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/ledger/_info");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -536,18 +516,17 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetLedgerInfoResponse getLedgerInfo(com.formance.formance_sdk.models.operations.GetLedgerInfoRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetLedgerInfoRequest.class, baseUrl, "/api/ledger/{ledger}/_info", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -583,18 +562,17 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetMappingResponse getMapping(com.formance.formance_sdk.models.operations.GetMappingRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetMappingRequest.class, baseUrl, "/api/ledger/{ledger}/mapping", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -630,18 +608,17 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetTransactionResponse getTransaction(com.formance.formance_sdk.models.operations.GetTransactionRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.GetTransactionRequest.class, baseUrl, "/api/ledger/{ledger}/transactions/{txid}", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -678,15 +655,15 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListAccountsResponse listAccounts(com.formance.formance_sdk.models.operations.ListAccountsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ListAccountsRequest.class, baseUrl, "/api/ledger/{ledger}/accounts", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.ListAccountsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -694,8 +671,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -732,15 +708,15 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListLogsResponse listLogs(com.formance.formance_sdk.models.operations.ListLogsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ListLogsRequest.class, baseUrl, "/api/ledger/{ledger}/logs", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.ListLogsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -748,8 +724,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -786,15 +761,15 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListTransactionsResponse listTransactions(com.formance.formance_sdk.models.operations.ListTransactionsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ListTransactionsRequest.class, baseUrl, "/api/ledger/{ledger}/transactions", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.ListTransactionsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -802,8 +777,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -841,18 +815,17 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ReadStatsResponse readStats(com.formance.formance_sdk.models.operations.ReadStatsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ReadStatsRequest.class, baseUrl, "/api/ledger/{ledger}/stats", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -888,15 +861,15 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.RevertTransactionResponse revertTransaction(com.formance.formance_sdk.models.operations.RevertTransactionRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.RevertTransactionRequest.class, baseUrl, "/api/ledger/{ledger}/transactions/{txid}/revert", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("POST");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.RevertTransactionRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -904,8 +877,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -941,11 +913,11 @@ public class Ledger {
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call
      * @throws Exception if the API call fails
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
     public com.formance.formance_sdk.models.operations.RunScriptResponse runScript(com.formance.formance_sdk.models.operations.RunScriptRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.RunScriptRequest.class, baseUrl, "/api/ledger/{ledger}/script", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -958,7 +930,7 @@ public class Ledger {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.RunScriptRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -966,8 +938,7 @@ public class Ledger {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -995,7 +966,7 @@ public class Ledger {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.UpdateMappingResponse updateMapping(com.formance.formance_sdk.models.operations.UpdateMappingRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.UpdateMappingRequest.class, baseUrl, "/api/ledger/{ledger}/mapping", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -1007,11 +978,10 @@ public class Ledger {
         }
         req.setBody(serializedRequestBody);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");

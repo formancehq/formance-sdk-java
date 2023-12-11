@@ -14,20 +14,10 @@ import java.nio.charset.StandardCharsets;
 
 public class Auth {
 	
-	private HTTPClient _defaultClient;
-	private HTTPClient _securityClient;
-	private String _serverUrl;
-	private String _language;
-	private String _sdkVersion;
-	private String _genVersion;
+	private SDKConfiguration sdkConfiguration;
 
-	public Auth(HTTPClient defaultClient, HTTPClient securityClient, String serverUrl, String language, String sdkVersion, String genVersion) {
-		this._defaultClient = defaultClient;
-		this._securityClient = securityClient;
-		this._serverUrl = serverUrl;
-		this._language = language;
-		this._sdkVersion = sdkVersion;
-		this._genVersion = genVersion;
+	public Auth(SDKConfiguration sdkConfiguration) {
+		this.sdkConfiguration = sdkConfiguration;
 	}
 
     /**
@@ -37,7 +27,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.AddScopeToClientResponse addScopeToClient(com.formance.formance_sdk.models.operations.AddScopeToClientRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.AddScopeToClientRequest.class, baseUrl, "/api/auth/clients/{clientId}/scopes/{scopeId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -45,10 +35,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -71,7 +60,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.AddTransientScopeResponse addTransientScope(com.formance.formance_sdk.models.operations.AddTransientScopeRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.AddTransientScopeRequest.class, baseUrl, "/api/auth/scopes/{scopeId}/transient/{transientScopeId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -79,10 +68,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -104,7 +92,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CreateClientResponse createClient(com.formance.formance_sdk.models.shared.CreateClientRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/auth/clients");
         
         HTTPRequest req = new HTTPRequest();
@@ -114,10 +102,9 @@ public class Auth {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -146,7 +133,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CreateScopeResponse createScope(com.formance.formance_sdk.models.shared.CreateScopeRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/auth/scopes");
         
         HTTPRequest req = new HTTPRequest();
@@ -156,10 +143,9 @@ public class Auth {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -187,7 +173,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.CreateSecretResponse createSecret(com.formance.formance_sdk.models.operations.CreateSecretRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.CreateSecretRequest.class, baseUrl, "/api/auth/clients/{clientId}/secrets", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -197,10 +183,9 @@ public class Auth {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -228,7 +213,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.DeleteClientResponse deleteClient(com.formance.formance_sdk.models.operations.DeleteClientRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DeleteClientRequest.class, baseUrl, "/api/auth/clients/{clientId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -236,10 +221,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -262,7 +246,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.DeleteScopeResponse deleteScope(com.formance.formance_sdk.models.operations.DeleteScopeRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DeleteScopeRequest.class, baseUrl, "/api/auth/scopes/{scopeId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -270,10 +254,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -295,7 +278,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.DeleteScopeFromClientResponse deleteScopeFromClient(com.formance.formance_sdk.models.operations.DeleteScopeFromClientRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DeleteScopeFromClientRequest.class, baseUrl, "/api/auth/clients/{clientId}/scopes/{scopeId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -303,10 +286,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -328,7 +310,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.DeleteSecretResponse deleteSecret(com.formance.formance_sdk.models.operations.DeleteSecretRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DeleteSecretRequest.class, baseUrl, "/api/auth/clients/{clientId}/secrets/{secretId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -336,10 +318,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -362,7 +343,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.DeleteTransientScopeResponse deleteTransientScope(com.formance.formance_sdk.models.operations.DeleteTransientScopeRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DeleteTransientScopeRequest.class, baseUrl, "/api/auth/scopes/{scopeId}/transient/{transientScopeId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -370,10 +351,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -394,7 +374,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetServerInfoResponse getServerInfo() throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/auth/_info");
         
         HTTPRequest req = new HTTPRequest();
@@ -402,10 +382,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -432,7 +411,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListClientsResponse listClients() throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/auth/clients");
         
         HTTPRequest req = new HTTPRequest();
@@ -440,10 +419,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -471,7 +449,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListScopesResponse listScopes() throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/auth/scopes");
         
         HTTPRequest req = new HTTPRequest();
@@ -479,10 +457,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -510,7 +487,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ListUsersResponse listUsers() throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/auth/users");
         
         HTTPRequest req = new HTTPRequest();
@@ -518,10 +495,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -549,7 +525,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ReadClientResponse readClient(com.formance.formance_sdk.models.operations.ReadClientRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ReadClientRequest.class, baseUrl, "/api/auth/clients/{clientId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -557,10 +533,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -589,7 +564,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ReadScopeResponse readScope(com.formance.formance_sdk.models.operations.ReadScopeRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ReadScopeRequest.class, baseUrl, "/api/auth/scopes/{scopeId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -597,10 +572,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -629,7 +603,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ReadUserResponse readUser(com.formance.formance_sdk.models.operations.ReadUserRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ReadUserRequest.class, baseUrl, "/api/auth/users/{userId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -637,10 +611,9 @@ public class Auth {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -668,7 +641,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.UpdateClientResponse updateClient(com.formance.formance_sdk.models.operations.UpdateClientRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.UpdateClientRequest.class, baseUrl, "/api/auth/clients/{clientId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -678,10 +651,9 @@ public class Auth {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -710,7 +682,7 @@ public class Auth {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.UpdateScopeResponse updateScope(com.formance.formance_sdk.models.operations.UpdateScopeRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.UpdateScopeRequest.class, baseUrl, "/api/auth/scopes/{scopeId}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -720,10 +692,9 @@ public class Auth {
         req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");

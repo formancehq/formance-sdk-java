@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * ErrorResponse - Error
- */
+
 public class ErrorResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")

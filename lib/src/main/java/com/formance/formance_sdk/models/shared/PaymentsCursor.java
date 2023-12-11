@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * PaymentsCursor - OK
- */
+
 public class PaymentsCursor {
     @JsonProperty("cursor")
     public PaymentsCursorCursor cursor;

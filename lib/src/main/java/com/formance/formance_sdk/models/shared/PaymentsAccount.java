@@ -11,7 +11,16 @@ import com.formance.formance_sdk.utils.DateTimeDeserializer;
 import com.formance.formance_sdk.utils.DateTimeSerializer;
 import java.time.OffsetDateTime;
 
+
 public class PaymentsAccount {
+    @JsonProperty("accountName")
+    public String accountName;
+
+    public PaymentsAccount withAccountName(String accountName) {
+        this.accountName = accountName;
+        return this;
+    }
+    
     @JsonSerialize(using = DateTimeSerializer.class)
     @JsonDeserialize(using = DateTimeDeserializer.class)
     @JsonProperty("createdAt")
@@ -19,6 +28,27 @@ public class PaymentsAccount {
 
     public PaymentsAccount withCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
+        return this;
+    }
+    
+    @JsonProperty("defaultAsset")
+    public String defaultAsset;
+
+    public PaymentsAccount withDefaultAsset(String defaultAsset) {
+        this.defaultAsset = defaultAsset;
+        return this;
+    }
+    
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @JsonProperty("defaultCurrency")
+    @Deprecated
+    public String defaultCurrency;
+
+    @Deprecated
+    public PaymentsAccount withDefaultCurrency(String defaultCurrency) {
+        this.defaultCurrency = defaultCurrency;
         return this;
     }
     
@@ -38,6 +68,14 @@ public class PaymentsAccount {
         return this;
     }
     
+    @JsonProperty("raw")
+    public PaymentsAccountRaw raw;
+
+    public PaymentsAccount withRaw(PaymentsAccountRaw raw) {
+        this.raw = raw;
+        return this;
+    }
+    
     @JsonProperty("reference")
     public String reference;
 
@@ -47,17 +85,21 @@ public class PaymentsAccount {
     }
     
     @JsonProperty("type")
-    public PaymentsAccountType type;
+    public String type;
 
-    public PaymentsAccount withType(PaymentsAccountType type) {
+    public PaymentsAccount withType(String type) {
         this.type = type;
         return this;
     }
     
-    public PaymentsAccount(@JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("provider") Connector provider, @JsonProperty("reference") String reference, @JsonProperty("type") PaymentsAccountType type) {
+    public PaymentsAccount(@JsonProperty("accountName") String accountName, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("defaultAsset") String defaultAsset, @JsonProperty("defaultCurrency") String defaultCurrency, @JsonProperty("id") String id, @JsonProperty("provider") Connector provider, @JsonProperty("raw") PaymentsAccountRaw raw, @JsonProperty("reference") String reference, @JsonProperty("type") String type) {
+        this.accountName = accountName;
         this.createdAt = createdAt;
+        this.defaultAsset = defaultAsset;
+        this.defaultCurrency = defaultCurrency;
         this.id = id;
         this.provider = provider;
+        this.raw = raw;
         this.reference = reference;
         this.type = type;
   }
