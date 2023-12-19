@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * GetHoldsResponse - Holds
- */
+
 public class GetHoldsResponse {
     @JsonProperty("cursor")
     public GetHoldsResponseCursor cursor;

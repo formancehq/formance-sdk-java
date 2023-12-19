@@ -13,12 +13,7 @@ import com.formance.formance_sdk.utils.DateTimeDeserializer;
 import com.formance.formance_sdk.utils.DateTimeSerializer;
 import java.time.OffsetDateTime;
 
-/**
- * PostTransaction - The request body must contain at least one of the following objects:
- *   - `postings`: suitable for simple transactions
- *   - `script`: enabling more complex transactions with Numscript
- * 
- */
+
 public class PostTransaction {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")

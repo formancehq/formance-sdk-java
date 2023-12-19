@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class ActivityStripeTransfer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -28,6 +29,15 @@ public class ActivityStripeTransfer {
     }
     
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("connectorID")
+    public String connectorID;
+
+    public ActivityStripeTransfer withConnectorID(String connectorID) {
+        this.connectorID = connectorID;
+        return this;
+    }
+    
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
     public String destination;
 
@@ -43,10 +53,19 @@ public class ActivityStripeTransfer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    public java.util.Map<String, Object> metadata;
+    public ActivityStripeTransferMetadata metadata;
 
-    public ActivityStripeTransfer withMetadata(java.util.Map<String, Object> metadata) {
+    public ActivityStripeTransfer withMetadata(ActivityStripeTransferMetadata metadata) {
         this.metadata = metadata;
+        return this;
+    }
+    
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("waitingValidation")
+    public Boolean waitingValidation;
+
+    public ActivityStripeTransfer withWaitingValidation(Boolean waitingValidation) {
+        this.waitingValidation = waitingValidation;
         return this;
     }
     

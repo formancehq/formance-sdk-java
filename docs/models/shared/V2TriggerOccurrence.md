@@ -1,0 +1,11 @@
+# V2TriggerOccurrence
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `date`                                                                                    | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `event`                                                                                   | Map<String, *Object*>                                                                     | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `triggerID`                                                                               | *String*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `workflowInstanceID`                                                                      | *String*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |

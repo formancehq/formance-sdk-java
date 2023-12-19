@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * GetBalanceResponse - Balance summary
- */
+
 public class GetBalanceResponse {
     @JsonProperty("data")
     public BalanceWithAssets data;

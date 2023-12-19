@@ -15,20 +15,10 @@ import org.apache.http.NameValuePair;
 
 public class Webhooks {
 	
-	private HTTPClient _defaultClient;
-	private HTTPClient _securityClient;
-	private String _serverUrl;
-	private String _language;
-	private String _sdkVersion;
-	private String _genVersion;
+	private SDKConfiguration sdkConfiguration;
 
-	public Webhooks(HTTPClient defaultClient, HTTPClient securityClient, String serverUrl, String language, String sdkVersion, String genVersion) {
-		this._defaultClient = defaultClient;
-		this._securityClient = securityClient;
-		this._serverUrl = serverUrl;
-		this._language = language;
-		this._sdkVersion = sdkVersion;
-		this._genVersion = genVersion;
+	public Webhooks(SDKConfiguration sdkConfiguration) {
+		this.sdkConfiguration = sdkConfiguration;
 	}
 
     /**
@@ -39,18 +29,17 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ActivateConfigResponse activateConfig(com.formance.formance_sdk.models.operations.ActivateConfigRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ActivateConfigRequest.class, baseUrl, "/api/webhooks/configs/{id}/activate", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("PUT");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -91,7 +80,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse changeConfigSecret(com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest.class, baseUrl, "/api/webhooks/configs/{id}/secret/change", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -100,11 +89,10 @@ public class Webhooks {
         SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(request, "configChangeSecret", "json");
         req.setBody(serializedRequestBody);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -141,18 +129,17 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.DeactivateConfigResponse deactivateConfig(com.formance.formance_sdk.models.operations.DeactivateConfigRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DeactivateConfigRequest.class, baseUrl, "/api/webhooks/configs/{id}/deactivate", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("PUT");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -189,7 +176,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.DeleteConfigResponse deleteConfig(com.formance.formance_sdk.models.operations.DeleteConfigRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.DeleteConfigRequest.class, baseUrl, "/api/webhooks/configs/{id}", request, null);
         
         HTTPRequest req = new HTTPRequest();
@@ -197,10 +184,9 @@ public class Webhooks {
         req.setURL(url);
 
         req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -231,15 +217,15 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetManyConfigsResponse getManyConfigs(com.formance.formance_sdk.models.operations.GetManyConfigsRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/webhooks/configs");
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(com.formance.formance_sdk.models.operations.GetManyConfigsRequest.class, request, null);
         if (queryParams != null) {
             for (NameValuePair queryParam : queryParams) {
@@ -247,8 +233,7 @@ public class Webhooks {
             }
         }
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -294,7 +279,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.InsertConfigResponse insertConfig(com.formance.formance_sdk.models.shared.ConfigUser request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/webhooks/configs");
         
         HTTPRequest req = new HTTPRequest();
@@ -306,11 +291,10 @@ public class Webhooks {
         }
         req.setBody(serializedRequestBody);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
@@ -347,18 +331,17 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.TestConfigResponse testConfig(com.formance.formance_sdk.models.operations.TestConfigRequest request) throws Exception {
-        String baseUrl = this._serverUrl;
+        String baseUrl = this.sdkConfiguration.serverUrl;
         String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.TestConfigRequest.class, baseUrl, "/api/webhooks/configs/{id}/test", request, null);
         
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
 
-        req.addHeader("Accept", "application/json;q=1, application/json;q=0");
-        req.addHeader("user-agent", String.format("speakeasy-sdk/%s %s %s", this._language, this._sdkVersion, this._genVersion));
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
         
-        HTTPClient client = this._securityClient;
-        
+        HTTPClient client = this.sdkConfiguration.defaultClient;
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");

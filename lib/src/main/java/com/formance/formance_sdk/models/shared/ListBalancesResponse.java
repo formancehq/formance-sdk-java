@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * ListBalancesResponse - Balances list
- */
+
 public class ListBalancesResponse {
     @JsonProperty("cursor")
     public ListBalancesResponseCursor cursor;

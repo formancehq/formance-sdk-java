@@ -4,6 +4,8 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -11,15 +13,8 @@ import com.formance.formance_sdk.utils.DateTimeDeserializer;
 import com.formance.formance_sdk.utils.DateTimeSerializer;
 import java.time.OffsetDateTime;
 
-public class Payment {
-    @JsonProperty("accountID")
-    public String accountID;
 
-    public Payment withAccountID(String accountID) {
-        this.accountID = accountID;
-        return this;
-    }
-    
+public class Payment {
     @JsonProperty("adjustments")
     public PaymentAdjustment[] adjustments;
 
@@ -36,6 +31,14 @@ public class Payment {
         return this;
     }
     
+    @JsonProperty("connectorID")
+    public String connectorID;
+
+    public Payment withConnectorID(String connectorID) {
+        this.connectorID = connectorID;
+        return this;
+    }
+    
     @JsonSerialize(using = DateTimeSerializer.class)
     @JsonDeserialize(using = DateTimeDeserializer.class)
     @JsonProperty("createdAt")
@@ -43,6 +46,14 @@ public class Payment {
 
     public Payment withCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
+        return this;
+    }
+    
+    @JsonProperty("destinationAccountID")
+    public String destinationAccountID;
+
+    public Payment withDestinationAccountID(String destinationAccountID) {
+        this.destinationAccountID = destinationAccountID;
         return this;
     }
     
@@ -70,6 +81,7 @@ public class Payment {
         return this;
     }
     
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     public Connector provider;
 
@@ -79,9 +91,9 @@ public class Payment {
     }
     
     @JsonProperty("raw")
-    public java.util.Map<String, Object> raw;
+    public PaymentRaw raw;
 
-    public Payment withRaw(java.util.Map<String, Object> raw) {
+    public Payment withRaw(PaymentRaw raw) {
         this.raw = raw;
         return this;
     }
@@ -102,6 +114,14 @@ public class Payment {
         return this;
     }
     
+    @JsonProperty("sourceAccountID")
+    public String sourceAccountID;
+
+    public Payment withSourceAccountID(String sourceAccountID) {
+        this.sourceAccountID = sourceAccountID;
+        return this;
+    }
+    
     @JsonProperty("status")
     public PaymentStatus status;
 
@@ -118,18 +138,19 @@ public class Payment {
         return this;
     }
     
-    public Payment(@JsonProperty("accountID") String accountID, @JsonProperty("adjustments") PaymentAdjustment[] adjustments, @JsonProperty("asset") String asset, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("initialAmount") Long initialAmount, @JsonProperty("metadata") PaymentMetadata metadata, @JsonProperty("provider") Connector provider, @JsonProperty("raw") java.util.Map<String, Object> raw, @JsonProperty("reference") String reference, @JsonProperty("scheme") PaymentScheme scheme, @JsonProperty("status") PaymentStatus status, @JsonProperty("type") PaymentType type) {
-        this.accountID = accountID;
+    public Payment(@JsonProperty("adjustments") PaymentAdjustment[] adjustments, @JsonProperty("asset") String asset, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("destinationAccountID") String destinationAccountID, @JsonProperty("id") String id, @JsonProperty("initialAmount") Long initialAmount, @JsonProperty("metadata") PaymentMetadata metadata, @JsonProperty("raw") PaymentRaw raw, @JsonProperty("reference") String reference, @JsonProperty("scheme") PaymentScheme scheme, @JsonProperty("sourceAccountID") String sourceAccountID, @JsonProperty("status") PaymentStatus status, @JsonProperty("type") PaymentType type) {
         this.adjustments = adjustments;
         this.asset = asset;
+        this.connectorID = connectorID;
         this.createdAt = createdAt;
+        this.destinationAccountID = destinationAccountID;
         this.id = id;
         this.initialAmount = initialAmount;
         this.metadata = metadata;
-        this.provider = provider;
         this.raw = raw;
         this.reference = reference;
         this.scheme = scheme;
+        this.sourceAccountID = sourceAccountID;
         this.status = status;
         this.type = type;
   }
