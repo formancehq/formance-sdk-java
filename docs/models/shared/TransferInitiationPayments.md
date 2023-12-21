@@ -1,0 +1,11 @@
+# TransferInitiationPayments
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `createdAt`                                                                               | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `error`                                                                                   | *String*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `paymentID`                                                                               | *String*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `status`                                                                                  | [PaymentStatus](../../models/shared/PaymentStatus.md)                                     | :heavy_check_mark:                                                                        | N/A                                                                                       |

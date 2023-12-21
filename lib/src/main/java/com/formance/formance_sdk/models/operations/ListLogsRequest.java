@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import java.time.OffsetDateTime;
 
+
 public class ListLogsRequest {
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
@@ -68,25 +69,6 @@ public class ListLogsRequest {
 
     public ListLogsRequest withPageSize(Long pageSize) {
         this.pageSize = pageSize;
-        return this;
-    }
-    
-    /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
-     * Set to the value of next for the next page of results.
-     * Set to the value of previous for the previous page of results.
-     * No other parameters can be set when this parameter is set.
-     * Deprecated, please use `cursor` instead.
-     * 
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pagination_token")
-    @Deprecated
-    public String paginationToken;
-
-    @Deprecated
-    public ListLogsRequest withPaginationToken(String paginationToken) {
-        this.paginationToken = paginationToken;
         return this;
     }
     

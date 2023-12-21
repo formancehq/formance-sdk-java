@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class WorkflowInstanceHistoryStageOutput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreateTransaction")
@@ -51,6 +52,15 @@ public class WorkflowInstanceHistoryStageOutput {
 
     public WorkflowInstanceHistoryStageOutput withGetWallet(ActivityGetWalletOutput getWallet) {
         this.getWallet = getWallet;
+        return this;
+    }
+    
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ListWallets")
+    public OrchestrationListWalletsResponse listWallets;
+
+    public WorkflowInstanceHistoryStageOutput withListWallets(OrchestrationListWalletsResponse listWallets) {
+        this.listWallets = listWallets;
         return this;
     }
     

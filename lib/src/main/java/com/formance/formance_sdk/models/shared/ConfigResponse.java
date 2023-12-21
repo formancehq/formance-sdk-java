@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * ConfigResponse - Config created successfully.
- */
+
 public class ConfigResponse {
     @JsonProperty("data")
     public WebhooksConfig data;

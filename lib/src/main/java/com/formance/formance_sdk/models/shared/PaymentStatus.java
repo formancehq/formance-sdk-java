@@ -8,11 +8,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum PaymentStatus {
     PENDING("PENDING"),
-    ACTIVE("ACTIVE"),
-    TERMINATED("TERMINATED"),
-    FAILED("FAILED"),
     SUCCEEDED("SUCCEEDED"),
-    CANCELLED("CANCELLED");
+    CANCELLED("CANCELLED"),
+    FAILED("FAILED"),
+    EXPIRED("EXPIRED"),
+    REFUNDED("REFUNDED"),
+    OTHER("OTHER");
 
     @JsonValue
     public final String value;

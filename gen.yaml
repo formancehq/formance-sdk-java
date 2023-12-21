@@ -4,15 +4,14 @@ generation:
   singleTagPerOp: true
   telemetryEnabled: false
 features:
-  version: ""
   java:
-    core: 2.85.2
+    core: 2.94.0
     deprecations: 2.81.1
-    globalSecurity: 2.81.1
+    getRequestBodies: 2.81.1
     globalServerURLs: 2.82.0
     ignores: 2.81.1
 java:
-  version: v1.0.20230915
+  version: v2.0.0-beta.2
   artifactID: formance-sdk
   companyEmail: info@mycompany.com
   companyName: Formance
@@ -20,5 +19,5 @@ java:
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance
   maxMethodParams: 0
-  ossrhURL: https://maven.pkg.github.com/formancehq/formance-sdk-java
+  ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   projectName: formance-sdk-java

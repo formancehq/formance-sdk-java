@@ -6,9 +6,6 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/**
- * Connector - The name of the connector.
- */
 public enum Connector {
     STRIPE("STRIPE"),
     DUMMY_PAY("DUMMY-PAY"),
@@ -17,7 +14,9 @@ public enum Connector {
     CURRENCY_CLOUD("CURRENCY-CLOUD"),
     BANKING_CIRCLE("BANKING-CIRCLE"),
     MANGOPAY("MANGOPAY"),
-    MONEYCORP("MONEYCORP");
+    MONEYCORP("MONEYCORP"),
+    ATLAR("ATLAR"),
+    ADYEN("ADYEN");
 
     @JsonValue
     public final String value;
