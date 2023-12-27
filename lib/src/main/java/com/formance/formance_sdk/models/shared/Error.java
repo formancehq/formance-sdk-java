@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Error - General error
- */
+
 public class Error {
     @JsonProperty("errorCode")
     public ErrorErrorCode errorCode;

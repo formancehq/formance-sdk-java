@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Response - Success
- */
+
 public class Response {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
