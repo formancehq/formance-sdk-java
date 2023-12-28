@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class WorkflowInstanceHistoryStageInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ConfirmHold")
@@ -69,6 +70,15 @@ public class WorkflowInstanceHistoryStageInput {
 
     public WorkflowInstanceHistoryStageInput withGetWallet(ActivityGetWallet getWallet) {
         this.getWallet = getWallet;
+        return this;
+    }
+    
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ListWallets")
+    public ActivityListWallets listWallets;
+
+    public WorkflowInstanceHistoryStageInput withListWallets(ActivityListWallets listWallets) {
+        this.listWallets = listWallets;
         return this;
     }
     

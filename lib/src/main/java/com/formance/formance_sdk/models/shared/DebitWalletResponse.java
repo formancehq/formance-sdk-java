@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * DebitWalletResponse - Wallet successfully debited as a pending hold
- */
+
 public class DebitWalletResponse {
     @JsonProperty("data")
     public Hold data;

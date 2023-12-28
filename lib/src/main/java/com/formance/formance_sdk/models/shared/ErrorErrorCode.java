@@ -8,7 +8,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ErrorErrorCode {
     VALIDATION("VALIDATION"),
-    NOT_FOUND("NOT_FOUND");
+    NOT_FOUND("NOT_FOUND"),
+    INTERNAL("INTERNAL");
 
     @JsonValue
     public final String value;

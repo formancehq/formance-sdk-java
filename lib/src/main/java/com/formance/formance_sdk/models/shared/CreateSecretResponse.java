@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * CreateSecretResponse - Created secret
- */
+
 public class CreateSecretResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")

@@ -13,7 +13,16 @@ import com.formance.formance_sdk.utils.DateTimeDeserializer;
 import com.formance.formance_sdk.utils.DateTimeSerializer;
 import java.time.OffsetDateTime;
 
+
 public class WalletsTransaction {
+    @JsonProperty("id")
+    public Long id;
+
+    public WalletsTransaction withId(Long id) {
+        this.id = id;
+        return this;
+    }
+    
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
     public String ledger;
@@ -44,9 +53,9 @@ public class WalletsTransaction {
     }
     
     @JsonProperty("postings")
-    public WalletsPosting[] postings;
+    public Posting[] postings;
 
-    public WalletsTransaction withPostings(WalletsPosting[] postings) {
+    public WalletsTransaction withPostings(Posting[] postings) {
         this.postings = postings;
         return this;
     }
@@ -79,18 +88,10 @@ public class WalletsTransaction {
         return this;
     }
     
-    @JsonProperty("txid")
-    public Long txid;
-
-    public WalletsTransaction withTxid(Long txid) {
-        this.txid = txid;
-        return this;
-    }
-    
-    public WalletsTransaction(@JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("postings") WalletsPosting[] postings, @JsonProperty("timestamp") OffsetDateTime timestamp, @JsonProperty("txid") Long txid) {
+    public WalletsTransaction(@JsonProperty("id") Long id, @JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("postings") Posting[] postings, @JsonProperty("timestamp") OffsetDateTime timestamp) {
+        this.id = id;
         this.metadata = metadata;
         this.postings = postings;
         this.timestamp = timestamp;
-        this.txid = txid;
   }
 }

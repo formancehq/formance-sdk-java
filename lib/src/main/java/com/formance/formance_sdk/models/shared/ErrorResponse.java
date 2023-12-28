@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * ErrorResponse - Error
- */
+
 public class ErrorResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
@@ -21,7 +19,6 @@ public class ErrorResponse {
         return this;
     }
     
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorCode")
     public ErrorsEnum errorCode;
 
@@ -30,7 +27,6 @@ public class ErrorResponse {
         return this;
     }
     
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
     public String errorMessage;
 
@@ -39,5 +35,8 @@ public class ErrorResponse {
         return this;
     }
     
-    public ErrorResponse(){}
+    public ErrorResponse(@JsonProperty("errorCode") ErrorsEnum errorCode, @JsonProperty("errorMessage") String errorMessage) {
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+  }
 }

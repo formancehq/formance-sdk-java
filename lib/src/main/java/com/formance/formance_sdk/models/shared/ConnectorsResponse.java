@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * ConnectorsResponse - OK
- */
+
 public class ConnectorsResponse {
     @JsonProperty("data")
     public ConnectorsResponseData[] data;

@@ -1,4 +1,6 @@
 <!-- Start SDK Example Usage -->
+
+
 ```java
 package hello.world;
 
@@ -10,12 +12,12 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("corrupti") {{
-                    authorization = "Bearer YOUR_ACCESS_TOKEN_HERE";
+                .setSecurity(new Security("string"){{
+                    authorization = "";
                 }})
                 .build();
 
-            GetVersionsResponse res = sdk.getVersions();
+            GetVersionsResponse res = sdk.sdk.getVersions();
 
             if (res.getVersionsResponse != null) {
                 // handle response

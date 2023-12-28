@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * GetWorkflowInstanceResponse - The workflow instance
- */
+
 public class GetWorkflowInstanceResponse {
     @JsonProperty("data")
     public WorkflowInstance data;

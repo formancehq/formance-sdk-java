@@ -8,15 +8,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum WebhooksErrorsEnum {
     INTERNAL("INTERNAL"),
-    INSUFFICIENT_FUND("INSUFFICIENT_FUND"),
     VALIDATION("VALIDATION"),
-    CONFLICT("CONFLICT"),
-    NO_SCRIPT("NO_SCRIPT"),
-    COMPILATION_FAILED("COMPILATION_FAILED"),
-    METADATA_OVERRIDE("METADATA_OVERRIDE"),
-    NOT_FOUND("NOT_FOUND"),
-    CONTEXT_CANCELLED("CONTEXT_CANCELLED"),
-    STORE("STORE");
+    NOT_FOUND("NOT_FOUND");
 
     @JsonValue
     public final String value;

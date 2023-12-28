@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * GetVersionsResponse - OK
- */
+
 public class GetVersionsResponse {
     @JsonProperty("env")
     public String env;

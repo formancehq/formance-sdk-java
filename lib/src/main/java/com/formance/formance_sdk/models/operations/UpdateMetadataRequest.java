@@ -7,12 +7,13 @@ package com.formance.formance_sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
+
 public class UpdateMetadataRequest {
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public com.formance.formance_sdk.models.shared.PaymentMetadata paymentMetadata;
+    public java.util.Map<String, String> requestBody;
 
-    public UpdateMetadataRequest withPaymentMetadata(com.formance.formance_sdk.models.shared.PaymentMetadata paymentMetadata) {
-        this.paymentMetadata = paymentMetadata;
+    public UpdateMetadataRequest withRequestBody(java.util.Map<String, String> requestBody) {
+        this.requestBody = requestBody;
         return this;
     }
     
@@ -27,8 +28,8 @@ public class UpdateMetadataRequest {
         return this;
     }
     
-    public UpdateMetadataRequest(@JsonProperty("PaymentMetadata") com.formance.formance_sdk.models.shared.PaymentMetadata paymentMetadata, @JsonProperty("paymentId") String paymentId) {
-        this.paymentMetadata = paymentMetadata;
+    public UpdateMetadataRequest(@JsonProperty("RequestBody") java.util.Map<String, String> requestBody, @JsonProperty("paymentId") String paymentId) {
+        this.requestBody = requestBody;
         this.paymentId = paymentId;
   }
 }

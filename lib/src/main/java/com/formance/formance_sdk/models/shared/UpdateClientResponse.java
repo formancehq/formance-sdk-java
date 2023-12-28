@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * UpdateClientResponse - Updated client
- */
+
 public class UpdateClientResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")

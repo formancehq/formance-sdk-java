@@ -7,6 +7,7 @@ package com.formance.formance_sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
+
 public class ListAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
@@ -38,18 +39,6 @@ public class ListAccountsRequest {
 
     public ListAccountsRequest withBalance(Long balance) {
         this.balance = balance;
-        return this;
-    }
-    
-    /**
-     * Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, equal or not.
-     * 
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=balanceOperator")
-    public ListAccountsBalanceOperator balanceOperator;
-
-    public ListAccountsRequest withBalanceOperator(ListAccountsBalanceOperator balanceOperator) {
-        this.balanceOperator = balanceOperator;
         return this;
     }
     
@@ -109,7 +98,7 @@ public class ListAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * Deprecated, please use `cursor` instead.
      * 
-     * @deprecated this field will be removed in a future release, please migrate away from it as soon as possible
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pagination_token")
     @Deprecated

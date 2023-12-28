@@ -6,9 +6,7 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * AccountResponse - OK
- */
+
 public class AccountResponse {
     @JsonProperty("data")
     public AccountWithVolumesAndBalances data;

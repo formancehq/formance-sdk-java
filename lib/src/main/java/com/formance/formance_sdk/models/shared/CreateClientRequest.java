@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class CreateClientRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -59,6 +60,15 @@ public class CreateClientRequest {
 
     public CreateClientRequest withRedirectUris(String[] redirectUris) {
         this.redirectUris = redirectUris;
+        return this;
+    }
+    
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("scopes")
+    public String[] scopes;
+
+    public CreateClientRequest withScopes(String[] scopes) {
+        this.scopes = scopes;
         return this;
     }
     
