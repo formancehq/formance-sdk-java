@@ -48,11 +48,10 @@ public class Search {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.SearchResponse res = new com.formance.formance_sdk.models.operations.SearchResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.SearchResponse res = new com.formance.formance_sdk.models.operations.SearchResponse(contentType, httpRes.statusCode(), httpRes) {{
             response = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -88,11 +87,10 @@ public class Search {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse res = new com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse res = new com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
             serverInfo = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {

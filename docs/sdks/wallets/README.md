@@ -39,19 +39,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ConfirmHoldRequest req = new ConfirmHoldRequest("string"){{
-                confirmHoldRequest = new ConfirmHoldRequest(){{
+            com.formance.formance_sdk.models.operations.ConfirmHoldRequest req = new ConfirmHoldRequest(
+                "string"){{
+                confirmHoldRequest = new ConfirmHoldRequest(
+){{
                     amount = 100L;
                     final_ = true;
-                }};
-            }};            
 
-            ConfirmHoldResponse res = sdk.wallets.confirmHold(req);
+                }};
+
+            }};
+
+            com.formance.formance_sdk.models.operations.ConfirmHoldResponse res = sdk.wallets.confirmHold(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -95,19 +100,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            CreateBalanceRequest req = new CreateBalanceRequest("string"){{
-                createBalanceRequest = new CreateBalanceRequest("string"){{
-                    expiresAt = OffsetDateTime.parse("2023-03-08T09:54:54.366Z");
+            com.formance.formance_sdk.models.operations.CreateBalanceRequest req = new CreateBalanceRequest(
+                "string"){{
+                createBalanceRequest = new CreateBalanceRequest(
+                    "string"){{
+                    expiresAt = OffsetDateTime.parse("2024-03-08T03:22:14.635Z");
                     priority = 851262L;
-                }};
-            }};            
 
-            CreateBalanceResponse res = sdk.wallets.createBalance(req);
+                }};
+
+            }};
+
+            com.formance.formance_sdk.models.operations.CreateBalanceResponse res = sdk.wallets.createBalance(req);
 
             if (res.createBalanceResponse != null) {
                 // handle response
@@ -149,16 +159,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.CreateWalletRequest req = new CreateWalletRequest(new java.util.HashMap<String, String>(){{
-    put("key", "string");
-}}, "string");            
+            com.formance.formance_sdk.models.shared.CreateWalletRequest req = new CreateWalletRequest(
+                new java.util.HashMap<String, String>(
+                ){{
+                    put("key", "string");
+                }},
+                "string");
 
-            CreateWalletResponse res = sdk.wallets.createWallet(req);
+            com.formance.formance_sdk.models.operations.CreateWalletResponse res = sdk.wallets.createWallet(req);
 
             if (res.createWalletResponse != null) {
                 // handle response
@@ -202,23 +216,33 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            CreditWalletRequest req = new CreditWalletRequest("string"){{
-                creditWalletRequest = new CreditWalletRequest(new Monetary(201874L, "string"), new java.util.HashMap<String, String>(){{
-                    put("key", "string");
-                }}, new Object[]{{
-                    add("string"),
-                }}){{
+            com.formance.formance_sdk.models.operations.CreditWalletRequest req = new CreditWalletRequest(
+                "string"){{
+                creditWalletRequest = new CreditWalletRequest(
+                    new Monetary(
+                        201874L,
+                        "string"),
+                    new java.util.HashMap<String, String>(
+                    ){{
+                        put("key", "string");
+                    }},
+                    new Object[]{{
+                        add("string"),
+                    }}){{
                     balance = "string";
                     reference = "string";
-                }};
-            }};            
 
-            CreditWalletResponse res = sdk.wallets.creditWallet(req);
+                }};
+
+            }};
+
+            com.formance.formance_sdk.models.operations.CreditWalletResponse res = sdk.wallets.creditWallet(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -262,25 +286,34 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DebitWalletRequest req = new DebitWalletRequest("string"){{
-                debitWalletRequest = new DebitWalletRequest(new Monetary(245256L, "string"), new java.util.HashMap<String, String>(){{
-                    put("key", "string");
-                }}){{
+            com.formance.formance_sdk.models.operations.DebitWalletRequest req = new DebitWalletRequest(
+                "string"){{
+                debitWalletRequest = new DebitWalletRequest(
+                    new Monetary(
+                        245256L,
+                        "string"),
+                    new java.util.HashMap<String, String>(
+                    ){{
+                        put("key", "string");
+                    }}){{
                     balances = new String[]{{
                         add("string"),
                     }};
                     description = "Enhanced regional synergy";
                     destination = "string";
                     pending = false;
-                }};
-            }};            
 
-            DebitWalletResponse res = sdk.wallets.debitWallet(req);
+                }};
+
+            }};
+
+            com.formance.formance_sdk.models.operations.DebitWalletResponse res = sdk.wallets.debitWallet(req);
 
             if (res.debitWalletResponse != null) {
                 // handle response
@@ -322,14 +355,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetBalanceRequest req = new GetBalanceRequest("string", "string");            
+            com.formance.formance_sdk.models.operations.GetBalanceRequest req = new GetBalanceRequest(
+                "string",
+                "string");
 
-            GetBalanceResponse res = sdk.wallets.getBalance(req);
+            com.formance.formance_sdk.models.operations.GetBalanceResponse res = sdk.wallets.getBalance(req);
 
             if (res.getBalanceResponse != null) {
                 // handle response
@@ -371,14 +407,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetHoldRequest req = new GetHoldRequest("string");            
+            com.formance.formance_sdk.models.operations.GetHoldRequest req = new GetHoldRequest(
+                "string");
 
-            GetHoldResponse res = sdk.wallets.getHold(req);
+            com.formance.formance_sdk.models.operations.GetHoldResponse res = sdk.wallets.getHold(req);
 
             if (res.getHoldResponse != null) {
                 // handle response
@@ -420,21 +458,25 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetHoldsRequest req = new GetHoldsRequest(){{
+            com.formance.formance_sdk.models.operations.GetHoldsRequest req = new GetHoldsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                metadata = new java.util.HashMap<String, String>(){{
+                metadata = new java.util.HashMap<String, String>(
+                ){{
                     put("key", "string");
                 }};
                 pageSize = 692494L;
                 walletID = "string";
-            }};            
 
-            GetHoldsResponse res = sdk.wallets.getHolds(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.GetHoldsResponse res = sdk.wallets.getHolds(req);
 
             if (res.getHoldsResponse != null) {
                 // handle response
@@ -474,18 +516,21 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetTransactionsRequest req = new GetTransactionsRequest(){{
+            com.formance.formance_sdk.models.operations.GetTransactionsRequest req = new GetTransactionsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 680555L;
                 walletID = "string";
-            }};            
 
-            GetTransactionsResponse res = sdk.wallets.getTransactions(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.GetTransactionsResponse res = sdk.wallets.getTransactions(req);
 
             if (res.getTransactionsResponse != null) {
                 // handle response
@@ -527,14 +572,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetWalletRequest req = new GetWalletRequest("string");            
+            com.formance.formance_sdk.models.operations.GetWalletRequest req = new GetWalletRequest(
+                "string");
 
-            GetWalletResponse res = sdk.wallets.getWallet(req);
+            com.formance.formance_sdk.models.operations.GetWalletResponse res = sdk.wallets.getWallet(req);
 
             if (res.getWalletResponse != null) {
                 // handle response
@@ -576,14 +623,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetWalletSummaryRequest req = new GetWalletSummaryRequest("string");            
+            com.formance.formance_sdk.models.operations.GetWalletSummaryRequest req = new GetWalletSummaryRequest(
+                "string");
 
-            GetWalletSummaryResponse res = sdk.wallets.getWalletSummary(req);
+            com.formance.formance_sdk.models.operations.GetWalletSummaryResponse res = sdk.wallets.getWalletSummary(req);
 
             if (res.getWalletSummaryResponse != null) {
                 // handle response
@@ -625,14 +674,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListBalancesRequest req = new ListBalancesRequest("string");            
+            com.formance.formance_sdk.models.operations.ListBalancesRequest req = new ListBalancesRequest(
+                "string");
 
-            ListBalancesResponse res = sdk.wallets.listBalances(req);
+            com.formance.formance_sdk.models.operations.ListBalancesResponse res = sdk.wallets.listBalances(req);
 
             if (res.listBalancesResponse != null) {
                 // handle response
@@ -674,21 +725,25 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListWalletsRequest req = new ListWalletsRequest(){{
+            com.formance.formance_sdk.models.operations.ListWalletsRequest req = new ListWalletsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                metadata = new java.util.HashMap<String, String>(){{
+                metadata = new java.util.HashMap<String, String>(
+                ){{
                     put("key", "string");
                 }};
                 name = "string";
                 pageSize = 412533L;
-            }};            
 
-            ListWalletsResponse res = sdk.wallets.listWallets(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListWalletsResponse res = sdk.wallets.listWallets(req);
 
             if (res.listWalletsResponse != null) {
                 // handle response
@@ -731,18 +786,23 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            UpdateWalletRequest req = new UpdateWalletRequest("string"){{
-                requestBody = new UpdateWalletRequestBody(new java.util.HashMap<String, String>(){{
-                    put("key", "string");
-                }});
-            }};            
+            com.formance.formance_sdk.models.operations.UpdateWalletRequest req = new UpdateWalletRequest(
+                "string"){{
+                requestBody = new UpdateWalletRequestBody(
+                    new java.util.HashMap<String, String>(
+                    ){{
+                        put("key", "string");
+                    }});
 
-            UpdateWalletResponse res = sdk.wallets.updateWallet(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.UpdateWalletResponse res = sdk.wallets.updateWallet(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -784,14 +844,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            VoidHoldRequest req = new VoidHoldRequest("string");            
+            com.formance.formance_sdk.models.operations.VoidHoldRequest req = new VoidHoldRequest(
+                "string");
 
-            VoidHoldResponse res = sdk.wallets.voidHold(req);
+            com.formance.formance_sdk.models.operations.VoidHoldResponse res = sdk.wallets.voidHold(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -832,12 +894,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            WalletsgetServerInfoResponse res = sdk.wallets.walletsgetServerInfo();
+            com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse res = sdk.wallets.walletsgetServerInfo();
 
             if (res.serverInfo != null) {
                 // handle response

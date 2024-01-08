@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AccountsCursor {
     @JsonProperty("cursor")
-    public AccountsCursorCursor cursor;
+    public Cursor cursor;
 
-    public AccountsCursor withCursor(AccountsCursorCursor cursor) {
+    public AccountsCursor withCursor(Cursor cursor) {
         this.cursor = cursor;
         return this;
     }
     
-    public AccountsCursor(@JsonProperty("cursor") AccountsCursorCursor cursor) {
+    public AccountsCursor(@JsonProperty("cursor") Cursor cursor) {
         this.cursor = cursor;
   }
 }

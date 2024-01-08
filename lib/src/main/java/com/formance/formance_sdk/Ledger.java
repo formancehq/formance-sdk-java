@@ -51,12 +51,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreateTransactionsResponse res = new com.formance.formance_sdk.models.operations.CreateTransactionsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreateTransactionsResponse res = new com.formance.formance_sdk.models.operations.CreateTransactionsResponse(contentType, httpRes.statusCode(), httpRes) {{
             transactionsResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -100,11 +99,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse res = new com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse res = new com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse(contentType, httpRes.statusCode(), httpRes) {{
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -146,11 +144,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse res = new com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse res = new com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse(contentType, httpRes.statusCode(), httpRes) {{
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -193,11 +190,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CountAccountsResponse res = new com.formance.formance_sdk.models.operations.CountAccountsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CountAccountsResponse res = new com.formance.formance_sdk.models.operations.CountAccountsResponse(contentType, null, httpRes.statusCode(), httpRes) {{
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             res.headers = httpRes.headers().map().keySet().stream().collect(Collectors.toMap(Function.identity(), k -> httpRes.headers().allValues(k).toArray(new String[0])));
@@ -242,11 +238,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CountTransactionsResponse res = new com.formance.formance_sdk.models.operations.CountTransactionsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CountTransactionsResponse res = new com.formance.formance_sdk.models.operations.CountTransactionsResponse(contentType, null, httpRes.statusCode(), httpRes) {{
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             res.headers = httpRes.headers().map().keySet().stream().collect(Collectors.toMap(Function.identity(), k -> httpRes.headers().allValues(k).toArray(new String[0])));
@@ -296,12 +291,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreateTransactionResponse res = new com.formance.formance_sdk.models.operations.CreateTransactionResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreateTransactionResponse res = new com.formance.formance_sdk.models.operations.CreateTransactionResponse(contentType, httpRes.statusCode(), httpRes) {{
             transactionsResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -343,12 +337,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetAccountResponse res = new com.formance.formance_sdk.models.operations.GetAccountResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetAccountResponse res = new com.formance.formance_sdk.models.operations.GetAccountResponse(contentType, httpRes.statusCode(), httpRes) {{
             accountResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -396,12 +389,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetBalancesResponse res = new com.formance.formance_sdk.models.operations.GetBalancesResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetBalancesResponse res = new com.formance.formance_sdk.models.operations.GetBalancesResponse(contentType, httpRes.statusCode(), httpRes) {{
             balancesCursorResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -449,12 +441,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse res = new com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse res = new com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse(contentType, httpRes.statusCode(), httpRes) {{
             aggregateBalancesResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -495,12 +486,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetInfoResponse res = new com.formance.formance_sdk.models.operations.GetInfoResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetInfoResponse res = new com.formance.formance_sdk.models.operations.GetInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
             configInfoResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -542,12 +532,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetLedgerInfoResponse res = new com.formance.formance_sdk.models.operations.GetLedgerInfoResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetLedgerInfoResponse res = new com.formance.formance_sdk.models.operations.GetLedgerInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
             ledgerInfoResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -589,12 +578,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetMappingResponse res = new com.formance.formance_sdk.models.operations.GetMappingResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetMappingResponse res = new com.formance.formance_sdk.models.operations.GetMappingResponse(contentType, httpRes.statusCode(), httpRes) {{
             mappingResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -636,12 +624,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetTransactionResponse res = new com.formance.formance_sdk.models.operations.GetTransactionResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetTransactionResponse res = new com.formance.formance_sdk.models.operations.GetTransactionResponse(contentType, httpRes.statusCode(), httpRes) {{
             transactionResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -690,12 +677,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListAccountsResponse res = new com.formance.formance_sdk.models.operations.ListAccountsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListAccountsResponse res = new com.formance.formance_sdk.models.operations.ListAccountsResponse(contentType, httpRes.statusCode(), httpRes) {{
             accountsCursorResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -744,12 +730,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListLogsResponse res = new com.formance.formance_sdk.models.operations.ListLogsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListLogsResponse res = new com.formance.formance_sdk.models.operations.ListLogsResponse(contentType, httpRes.statusCode(), httpRes) {{
             logsCursorResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -798,12 +783,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListTransactionsResponse res = new com.formance.formance_sdk.models.operations.ListTransactionsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListTransactionsResponse res = new com.formance.formance_sdk.models.operations.ListTransactionsResponse(contentType, httpRes.statusCode(), httpRes) {{
             transactionsCursorResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -847,12 +831,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ReadStatsResponse res = new com.formance.formance_sdk.models.operations.ReadStatsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ReadStatsResponse res = new com.formance.formance_sdk.models.operations.ReadStatsResponse(contentType, httpRes.statusCode(), httpRes) {{
             statsResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -900,12 +883,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.RevertTransactionResponse res = new com.formance.formance_sdk.models.operations.RevertTransactionResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.RevertTransactionResponse res = new com.formance.formance_sdk.models.operations.RevertTransactionResponse(contentType, httpRes.statusCode(), httpRes) {{
             transactionResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -962,11 +944,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.RunScriptResponse res = new com.formance.formance_sdk.models.operations.RunScriptResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.RunScriptResponse res = new com.formance.formance_sdk.models.operations.RunScriptResponse(contentType, httpRes.statusCode(), httpRes) {{
             scriptResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1006,12 +987,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.UpdateMappingResponse res = new com.formance.formance_sdk.models.operations.UpdateMappingResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.UpdateMappingResponse res = new com.formance.formance_sdk.models.operations.UpdateMappingResponse(contentType, httpRes.statusCode(), httpRes) {{
             mappingResponse = null;
             errorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1069,11 +1049,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse res = new com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse res = new com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1129,11 +1108,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse res = new com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse res = new com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1178,11 +1156,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2CountAccountsResponse res = new com.formance.formance_sdk.models.operations.V2CountAccountsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2CountAccountsResponse res = new com.formance.formance_sdk.models.operations.V2CountAccountsResponse(contentType, null, httpRes.statusCode(), httpRes) {{
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
             res.headers = httpRes.headers().map().keySet().stream().collect(Collectors.toMap(Function.identity(), k -> httpRes.headers().allValues(k).toArray(new String[0])));
@@ -1229,11 +1206,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2CountTransactionsResponse res = new com.formance.formance_sdk.models.operations.V2CountTransactionsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2CountTransactionsResponse res = new com.formance.formance_sdk.models.operations.V2CountTransactionsResponse(contentType, null, httpRes.statusCode(), httpRes) {{
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
             res.headers = httpRes.headers().map().keySet().stream().collect(Collectors.toMap(Function.identity(), k -> httpRes.headers().allValues(k).toArray(new String[0])));
@@ -1274,12 +1250,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2CreateBulkResponse res = new com.formance.formance_sdk.models.operations.V2CreateBulkResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2CreateBulkResponse res = new com.formance.formance_sdk.models.operations.V2CreateBulkResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2BulkResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200 || httpRes.statusCode() == 400) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1323,11 +1298,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2CreateLedgerResponse res = new com.formance.formance_sdk.models.operations.V2CreateLedgerResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2CreateLedgerResponse res = new com.formance.formance_sdk.models.operations.V2CreateLedgerResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1383,12 +1357,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2CreateTransactionResponse res = new com.formance.formance_sdk.models.operations.V2CreateTransactionResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2CreateTransactionResponse res = new com.formance.formance_sdk.models.operations.V2CreateTransactionResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2CreateTransactionResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1431,10 +1404,9 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse res = new com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse res = new com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if ((httpRes.statusCode() >= 200 && httpRes.statusCode() < 300)) {
         }
@@ -1465,11 +1437,10 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse res = new com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse res = new com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if ((httpRes.statusCode() >= 200 && httpRes.statusCode() < 300)) {
         }
@@ -1512,12 +1483,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2GetAccountResponse res = new com.formance.formance_sdk.models.operations.V2GetAccountResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2GetAccountResponse res = new com.formance.formance_sdk.models.operations.V2GetAccountResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2AccountResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1567,12 +1537,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse res = new com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse res = new com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2AggregateBalancesResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1613,12 +1582,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2GetInfoResponse res = new com.formance.formance_sdk.models.operations.V2GetInfoResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2GetInfoResponse res = new com.formance.formance_sdk.models.operations.V2GetInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2ConfigInfoResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1660,12 +1628,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2GetLedgerResponse res = new com.formance.formance_sdk.models.operations.V2GetLedgerResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2GetLedgerResponse res = new com.formance.formance_sdk.models.operations.V2GetLedgerResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2Ledger = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1707,12 +1674,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse res = new com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse res = new com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2LedgerInfoResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1760,12 +1726,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2GetTransactionResponse res = new com.formance.formance_sdk.models.operations.V2GetTransactionResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2GetTransactionResponse res = new com.formance.formance_sdk.models.operations.V2GetTransactionResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2GetTransactionResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1816,12 +1781,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2ListAccountsResponse res = new com.formance.formance_sdk.models.operations.V2ListAccountsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2ListAccountsResponse res = new com.formance.formance_sdk.models.operations.V2ListAccountsResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2AccountsCursorResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1869,12 +1833,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2ListLedgersResponse res = new com.formance.formance_sdk.models.operations.V2ListLedgersResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2ListLedgersResponse res = new com.formance.formance_sdk.models.operations.V2ListLedgersResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2LedgerListResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1925,12 +1888,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2ListLogsResponse res = new com.formance.formance_sdk.models.operations.V2ListLogsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2ListLogsResponse res = new com.formance.formance_sdk.models.operations.V2ListLogsResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2LogsCursorResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1981,12 +1943,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2ListTransactionsResponse res = new com.formance.formance_sdk.models.operations.V2ListTransactionsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2ListTransactionsResponse res = new com.formance.formance_sdk.models.operations.V2ListTransactionsResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2TransactionsCursorResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -2030,12 +1991,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2ReadStatsResponse res = new com.formance.formance_sdk.models.operations.V2ReadStatsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2ReadStatsResponse res = new com.formance.formance_sdk.models.operations.V2ReadStatsResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2StatsResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -2083,12 +2043,11 @@ public class Ledger {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.V2RevertTransactionResponse res = new com.formance.formance_sdk.models.operations.V2RevertTransactionResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.V2RevertTransactionResponse res = new com.formance.formance_sdk.models.operations.V2RevertTransactionResponse(contentType, httpRes.statusCode(), httpRes) {{
             v2RevertTransactionResponse = null;
             v2ErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 201) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {

@@ -57,9 +57,9 @@ public class ResponseCursor {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total")
-    public ResponseCursorTotal total;
+    public Total total;
 
-    public ResponseCursor withTotal(ResponseCursorTotal total) {
+    public ResponseCursor withTotal(Total total) {
         this.total = total;
         return this;
     }

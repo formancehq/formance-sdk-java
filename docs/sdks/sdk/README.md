@@ -38,12 +38,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetVersionsResponse res = sdk.sdk.getVersions();
+            com.formance.formance_sdk.models.operations.GetVersionsResponse res = sdk.getVersions();
 
             if (res.getVersionsResponse != null) {
                 // handle response
@@ -76,12 +77,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetApiAuthWellKnownOpenidConfigurationResponse res = sdk.sdk.getApiAuthWellKnownOpenidConfiguration();
+            com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse res = sdk.getApiAuthWellKnownOpenidConfiguration();
 
             if (res.statusCode == 200) {
                 // handle response

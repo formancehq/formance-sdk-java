@@ -191,11 +191,10 @@ public class SDK {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetVersionsResponse res = new com.formance.formance_sdk.models.operations.GetVersionsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetVersionsResponse res = new com.formance.formance_sdk.models.operations.GetVersionsResponse(contentType, httpRes.statusCode(), httpRes) {{
             getVersionsResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -224,10 +223,9 @@ public class SDK {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse res = new com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse res = new com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
         }

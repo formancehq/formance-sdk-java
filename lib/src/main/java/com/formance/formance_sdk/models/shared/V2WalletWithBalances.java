@@ -14,9 +14,9 @@ import java.time.OffsetDateTime;
 
 public class V2WalletWithBalances {
     @JsonProperty("balances")
-    public V2WalletWithBalancesBalances balances;
+    public Balances balances;
 
-    public V2WalletWithBalances withBalances(V2WalletWithBalancesBalances balances) {
+    public V2WalletWithBalances withBalances(Balances balances) {
         this.balances = balances;
         return this;
     }
@@ -69,7 +69,7 @@ public class V2WalletWithBalances {
         return this;
     }
     
-    public V2WalletWithBalances(@JsonProperty("balances") V2WalletWithBalancesBalances balances, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("ledger") String ledger, @JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("name") String name) {
+    public V2WalletWithBalances(@JsonProperty("balances") Balances balances, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("ledger") String ledger, @JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("name") String name) {
         this.balances = balances;
         this.createdAt = createdAt;
         this.id = id;

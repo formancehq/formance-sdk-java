@@ -30,16 +30,22 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.PolicyRequest req = new PolicyRequest("default", new java.util.HashMap<String, Object>(){{
-    put("key", "string");
-}}, "XXX", "XXX");            
+            com.formance.formance_sdk.models.shared.PolicyRequest req = new PolicyRequest(
+                "default",
+                new java.util.HashMap<String, Object>(
+                ){{
+                    put("key", "string");
+                }},
+                "XXX",
+                "XXX");
 
-            CreatePolicyResponse res = sdk.reconciliation.createPolicy(req);
+            com.formance.formance_sdk.models.operations.CreatePolicyResponse res = sdk.reconciliation.createPolicy(req);
 
             if (res.policyResponse != null) {
                 // handle response
@@ -81,14 +87,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeletePolicyRequest req = new DeletePolicyRequest("string");            
+            com.formance.formance_sdk.models.operations.DeletePolicyRequest req = new DeletePolicyRequest(
+                "string");
 
-            DeletePolicyResponse res = sdk.reconciliation.deletePolicy(req);
+            com.formance.formance_sdk.models.operations.DeletePolicyResponse res = sdk.reconciliation.deletePolicy(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -130,14 +138,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetPolicyRequest req = new GetPolicyRequest("string");            
+            com.formance.formance_sdk.models.operations.GetPolicyRequest req = new GetPolicyRequest(
+                "string");
 
-            GetPolicyResponse res = sdk.reconciliation.getPolicy(req);
+            com.formance.formance_sdk.models.operations.GetPolicyResponse res = sdk.reconciliation.getPolicy(req);
 
             if (res.policyResponse != null) {
                 // handle response
@@ -179,14 +189,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetReconciliationRequest req = new GetReconciliationRequest("string");            
+            com.formance.formance_sdk.models.operations.GetReconciliationRequest req = new GetReconciliationRequest(
+                "string");
 
-            GetReconciliationResponse res = sdk.reconciliation.getReconciliation(req);
+            com.formance.formance_sdk.models.operations.GetReconciliationResponse res = sdk.reconciliation.getReconciliation(req);
 
             if (res.reconciliationResponse != null) {
                 // handle response
@@ -228,17 +240,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListPoliciesRequest req = new ListPoliciesRequest(){{
+            com.formance.formance_sdk.models.operations.ListPoliciesRequest req = new ListPoliciesRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 520028L;
-            }};            
 
-            ListPoliciesResponse res = sdk.reconciliation.listPolicies(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListPoliciesResponse res = sdk.reconciliation.listPolicies(req);
 
             if (res.policiesCursorResponse != null) {
                 // handle response
@@ -280,17 +295,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListReconciliationsRequest req = new ListReconciliationsRequest(){{
+            com.formance.formance_sdk.models.operations.ListReconciliationsRequest req = new ListReconciliationsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 954636L;
-            }};            
 
-            ListReconciliationsResponse res = sdk.reconciliation.listReconciliations(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListReconciliationsResponse res = sdk.reconciliation.listReconciliations(req);
 
             if (res.reconciliationsCursorResponse != null) {
                 // handle response
@@ -334,14 +352,19 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ReconcileRequest req = new ReconcileRequest(new ReconciliationRequest(OffsetDateTime.parse("2021-01-01T00:00:00.000Z"), OffsetDateTime.parse("2021-01-01T00:00:00.000Z")), "string");            
+            com.formance.formance_sdk.models.operations.ReconcileRequest req = new ReconcileRequest(
+                new ReconciliationRequest(
+                    OffsetDateTime.parse("2021-01-01T00:00:00.000Z"),
+                    OffsetDateTime.parse("2021-01-01T00:00:00.000Z")),
+                "string");
 
-            ReconcileResponse res = sdk.reconciliation.reconcile(req);
+            com.formance.formance_sdk.models.operations.ReconcileResponse res = sdk.reconciliation.reconcile(req);
 
             if (res.reconciliationResponse != null) {
                 // handle response
@@ -382,12 +405,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ReconciliationgetServerInfoResponse res = sdk.reconciliation.reconciliationgetServerInfo();
+            com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse res = sdk.reconciliation.reconciliationgetServerInfo();
 
             if (res.serverInfo != null) {
                 // handle response

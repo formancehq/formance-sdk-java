@@ -12,18 +12,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class V2TriggerTest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
-    public V2TriggerTestFilter filter;
+    public Filter filter;
 
-    public V2TriggerTest withFilter(V2TriggerTestFilter filter) {
+    public V2TriggerTest withFilter(Filter filter) {
         this.filter = filter;
         return this;
     }
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("variables")
-    public java.util.Map<String, V2TriggerTestVariables> variables;
+    public java.util.Map<String, Variables> variables;
 
-    public V2TriggerTest withVariables(java.util.Map<String, V2TriggerTestVariables> variables) {
+    public V2TriggerTest withVariables(java.util.Map<String, Variables> variables) {
         this.variables = variables;
         return this;
     }

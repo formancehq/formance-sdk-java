@@ -48,14 +48,14 @@ public class Log {
     }
     
     @JsonProperty("type")
-    public LogType type;
+    public Type type;
 
-    public Log withType(LogType type) {
+    public Log withType(Type type) {
         this.type = type;
         return this;
     }
     
-    public Log(@JsonProperty("data") java.util.Map<String, Object> data, @JsonProperty("date") OffsetDateTime date, @JsonProperty("hash") String hash, @JsonProperty("id") Long id, @JsonProperty("type") LogType type) {
+    public Log(@JsonProperty("data") java.util.Map<String, Object> data, @JsonProperty("date") OffsetDateTime date, @JsonProperty("hash") String hash, @JsonProperty("id") Long id, @JsonProperty("type") Type type) {
         this.data = data;
         this.date = date;
         this.hash = hash;

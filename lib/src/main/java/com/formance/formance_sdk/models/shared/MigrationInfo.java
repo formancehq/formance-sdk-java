@@ -37,9 +37,9 @@ public class MigrationInfo {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    public MigrationInfoState state;
+    public State state;
 
-    public MigrationInfo withState(MigrationInfoState state) {
+    public MigrationInfo withState(State state) {
         this.state = state;
         return this;
     }

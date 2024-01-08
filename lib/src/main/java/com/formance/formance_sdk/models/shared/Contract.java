@@ -20,14 +20,14 @@ public class Contract {
     }
     
     @JsonProperty("expr")
-    public ContractExpr expr;
+    public Expr expr;
 
-    public Contract withExpr(ContractExpr expr) {
+    public Contract withExpr(Expr expr) {
         this.expr = expr;
         return this;
     }
     
-    public Contract(@JsonProperty("expr") ContractExpr expr) {
+    public Contract(@JsonProperty("expr") Expr expr) {
         this.expr = expr;
   }
 }

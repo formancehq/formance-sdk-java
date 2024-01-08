@@ -29,14 +29,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ActivateConfigRequest req = new ActivateConfigRequest("4997257d-dfb6-445b-929c-cbe2ab182818");            
+            com.formance.formance_sdk.models.operations.ActivateConfigRequest req = new ActivateConfigRequest(
+                "4997257d-dfb6-445b-929c-cbe2ab182818");
 
-            ActivateConfigResponse res = sdk.webhooks.activateConfig(req);
+            com.formance.formance_sdk.models.operations.ActivateConfigResponse res = sdk.webhooks.activateConfig(req);
 
             if (res.configResponse != null) {
                 // handle response
@@ -83,16 +85,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ChangeConfigSecretRequest req = new ChangeConfigSecretRequest("4997257d-dfb6-445b-929c-cbe2ab182818"){{
-                configChangeSecret = new ConfigChangeSecret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3");
-            }};            
+            com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest req = new ChangeConfigSecretRequest(
+                "4997257d-dfb6-445b-929c-cbe2ab182818"){{
+                configChangeSecret = new ConfigChangeSecret(
+                    "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3");
 
-            ChangeConfigSecretResponse res = sdk.webhooks.changeConfigSecret(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse res = sdk.webhooks.changeConfigSecret(req);
 
             if (res.configResponse != null) {
                 // handle response
@@ -134,14 +140,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeactivateConfigRequest req = new DeactivateConfigRequest("4997257d-dfb6-445b-929c-cbe2ab182818");            
+            com.formance.formance_sdk.models.operations.DeactivateConfigRequest req = new DeactivateConfigRequest(
+                "4997257d-dfb6-445b-929c-cbe2ab182818");
 
-            DeactivateConfigResponse res = sdk.webhooks.deactivateConfig(req);
+            com.formance.formance_sdk.models.operations.DeactivateConfigResponse res = sdk.webhooks.deactivateConfig(req);
 
             if (res.configResponse != null) {
                 // handle response
@@ -183,14 +191,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeleteConfigRequest req = new DeleteConfigRequest("4997257d-dfb6-445b-929c-cbe2ab182818");            
+            com.formance.formance_sdk.models.operations.DeleteConfigRequest req = new DeleteConfigRequest(
+                "4997257d-dfb6-445b-929c-cbe2ab182818");
 
-            DeleteConfigResponse res = sdk.webhooks.deleteConfig(req);
+            com.formance.formance_sdk.models.operations.DeleteConfigResponse res = sdk.webhooks.deleteConfig(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -232,17 +242,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetManyConfigsRequest req = new GetManyConfigsRequest(){{
+            com.formance.formance_sdk.models.operations.GetManyConfigsRequest req = new GetManyConfigsRequest(
+){{
                 endpoint = "https://example.com";
                 id = "4997257d-dfb6-445b-929c-cbe2ab182818";
-            }};            
 
-            GetManyConfigsResponse res = sdk.webhooks.getManyConfigs(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.GetManyConfigsResponse res = sdk.webhooks.getManyConfigs(req);
 
             if (res.configsResponse != null) {
                 // handle response
@@ -293,19 +306,23 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.ConfigUser req = new ConfigUser("https://example.com", new String[]{{
-    add("TYPE1"),
-    add("TYPE2"),
-}}){{
+            com.formance.formance_sdk.models.shared.ConfigUser req = new ConfigUser(
+                "https://example.com",
+                new String[]{{
+                    add("TYPE1"),
+                    add("TYPE2"),
+                }}){{
                 secret = "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3";
-            }};            
 
-            InsertConfigResponse res = sdk.webhooks.insertConfig(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.InsertConfigResponse res = sdk.webhooks.insertConfig(req);
 
             if (res.configResponse != null) {
                 // handle response
@@ -347,14 +364,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            TestConfigRequest req = new TestConfigRequest("4997257d-dfb6-445b-929c-cbe2ab182818");            
+            com.formance.formance_sdk.models.operations.TestConfigRequest req = new TestConfigRequest(
+                "4997257d-dfb6-445b-929c-cbe2ab182818");
 
-            TestConfigResponse res = sdk.webhooks.testConfig(req);
+            com.formance.formance_sdk.models.operations.TestConfigResponse res = sdk.webhooks.testConfig(req);
 
             if (res.attemptResponse != null) {
                 // handle response

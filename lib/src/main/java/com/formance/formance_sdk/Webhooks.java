@@ -44,12 +44,11 @@ public class Webhooks {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ActivateConfigResponse res = new com.formance.formance_sdk.models.operations.ActivateConfigResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ActivateConfigResponse res = new com.formance.formance_sdk.models.operations.ActivateConfigResponse(contentType, httpRes.statusCode(), httpRes) {{
             configResponse = null;
             webhooksErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -98,12 +97,11 @@ public class Webhooks {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse res = new com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse res = new com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse(contentType, httpRes.statusCode(), httpRes) {{
             configResponse = null;
             webhooksErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -146,12 +144,11 @@ public class Webhooks {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.DeactivateConfigResponse res = new com.formance.formance_sdk.models.operations.DeactivateConfigResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.DeactivateConfigResponse res = new com.formance.formance_sdk.models.operations.DeactivateConfigResponse(contentType, httpRes.statusCode(), httpRes) {{
             configResponse = null;
             webhooksErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -194,11 +191,10 @@ public class Webhooks {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.DeleteConfigResponse res = new com.formance.formance_sdk.models.operations.DeleteConfigResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.DeleteConfigResponse res = new com.formance.formance_sdk.models.operations.DeleteConfigResponse(contentType, httpRes.statusCode(), httpRes) {{
             webhooksErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
         }
@@ -242,12 +238,11 @@ public class Webhooks {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetManyConfigsResponse res = new com.formance.formance_sdk.models.operations.GetManyConfigsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetManyConfigsResponse res = new com.formance.formance_sdk.models.operations.GetManyConfigsResponse(contentType, httpRes.statusCode(), httpRes) {{
             configsResponse = null;
             webhooksErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -304,12 +299,11 @@ public class Webhooks {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.InsertConfigResponse res = new com.formance.formance_sdk.models.operations.InsertConfigResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.InsertConfigResponse res = new com.formance.formance_sdk.models.operations.InsertConfigResponse(contentType, httpRes.statusCode(), httpRes) {{
             configResponse = null;
             webhooksErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -352,12 +346,11 @@ public class Webhooks {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.TestConfigResponse res = new com.formance.formance_sdk.models.operations.TestConfigResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.TestConfigResponse res = new com.formance.formance_sdk.models.operations.TestConfigResponse(contentType, httpRes.statusCode(), httpRes) {{
             attemptResponse = null;
             webhooksErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {

@@ -21,9 +21,9 @@ public class LedgerInfo {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("storage")
-    public LedgerInfoStorage storage;
+    public Storage storage;
 
-    public LedgerInfo withStorage(LedgerInfoStorage storage) {
+    public LedgerInfo withStorage(Storage storage) {
         this.storage = storage;
         return this;
     }

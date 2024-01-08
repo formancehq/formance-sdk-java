@@ -107,9 +107,9 @@ public class V2Payment {
     }
     
     @JsonProperty("scheme")
-    public V2PaymentScheme scheme;
+    public Scheme scheme;
 
-    public V2Payment withScheme(V2PaymentScheme scheme) {
+    public V2Payment withScheme(Scheme scheme) {
         this.scheme = scheme;
         return this;
     }
@@ -138,7 +138,7 @@ public class V2Payment {
         return this;
     }
     
-    public V2Payment(@JsonProperty("adjustments") V2PaymentAdjustment[] adjustments, @JsonProperty("asset") String asset, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("destinationAccountID") String destinationAccountID, @JsonProperty("id") String id, @JsonProperty("initialAmount") Long initialAmount, @JsonProperty("metadata") V2PaymentMetadata metadata, @JsonProperty("raw") V2PaymentRaw raw, @JsonProperty("reference") String reference, @JsonProperty("scheme") V2PaymentScheme scheme, @JsonProperty("sourceAccountID") String sourceAccountID, @JsonProperty("status") V2PaymentStatus status, @JsonProperty("type") V2PaymentType type) {
+    public V2Payment(@JsonProperty("adjustments") V2PaymentAdjustment[] adjustments, @JsonProperty("asset") String asset, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("destinationAccountID") String destinationAccountID, @JsonProperty("id") String id, @JsonProperty("initialAmount") Long initialAmount, @JsonProperty("metadata") V2PaymentMetadata metadata, @JsonProperty("raw") V2PaymentRaw raw, @JsonProperty("reference") String reference, @JsonProperty("scheme") Scheme scheme, @JsonProperty("sourceAccountID") String sourceAccountID, @JsonProperty("status") V2PaymentStatus status, @JsonProperty("type") V2PaymentType type) {
         this.adjustments = adjustments;
         this.asset = asset;
         this.connectorID = connectorID;

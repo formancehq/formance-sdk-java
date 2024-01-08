@@ -99,9 +99,9 @@ public class Payment {
     }
     
     @JsonProperty("raw")
-    public PaymentRaw raw;
+    public Raw raw;
 
-    public Payment withRaw(PaymentRaw raw) {
+    public Payment withRaw(Raw raw) {
         this.raw = raw;
         return this;
     }
@@ -146,7 +146,7 @@ public class Payment {
         return this;
     }
     
-    public Payment(@JsonProperty("adjustments") PaymentAdjustment[] adjustments, @JsonProperty("amount") Long amount, @JsonProperty("asset") String asset, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("destinationAccountID") String destinationAccountID, @JsonProperty("id") String id, @JsonProperty("initialAmount") Long initialAmount, @JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("raw") PaymentRaw raw, @JsonProperty("reference") String reference, @JsonProperty("scheme") PaymentScheme scheme, @JsonProperty("sourceAccountID") String sourceAccountID, @JsonProperty("status") PaymentStatus status, @JsonProperty("type") PaymentType type) {
+    public Payment(@JsonProperty("adjustments") PaymentAdjustment[] adjustments, @JsonProperty("amount") Long amount, @JsonProperty("asset") String asset, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("destinationAccountID") String destinationAccountID, @JsonProperty("id") String id, @JsonProperty("initialAmount") Long initialAmount, @JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("raw") Raw raw, @JsonProperty("reference") String reference, @JsonProperty("scheme") PaymentScheme scheme, @JsonProperty("sourceAccountID") String sourceAccountID, @JsonProperty("status") PaymentStatus status, @JsonProperty("type") PaymentType type) {
         this.adjustments = adjustments;
         this.amount = amount;
         this.asset = asset;

@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UpdateTransferInitiationStatusRequest {
     @JsonProperty("status")
-    public UpdateTransferInitiationStatusRequestStatus status;
+    public Status status;
 
-    public UpdateTransferInitiationStatusRequest withStatus(UpdateTransferInitiationStatusRequestStatus status) {
+    public UpdateTransferInitiationStatusRequest withStatus(Status status) {
         this.status = status;
         return this;
     }
     
-    public UpdateTransferInitiationStatusRequest(@JsonProperty("status") UpdateTransferInitiationStatusRequestStatus status) {
+    public UpdateTransferInitiationStatusRequest(@JsonProperty("status") Status status) {
         this.status = status;
   }
 }

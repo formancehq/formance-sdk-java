@@ -49,12 +49,11 @@ public class Reconciliation {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreatePolicyResponse res = new com.formance.formance_sdk.models.operations.CreatePolicyResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreatePolicyResponse res = new com.formance.formance_sdk.models.operations.CreatePolicyResponse(contentType, httpRes.statusCode(), httpRes) {{
             policyResponse = null;
             reconciliationErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 201) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -97,11 +96,10 @@ public class Reconciliation {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.DeletePolicyResponse res = new com.formance.formance_sdk.models.operations.DeletePolicyResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.DeletePolicyResponse res = new com.formance.formance_sdk.models.operations.DeletePolicyResponse(contentType, httpRes.statusCode(), httpRes) {{
             reconciliationErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -138,12 +136,11 @@ public class Reconciliation {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetPolicyResponse res = new com.formance.formance_sdk.models.operations.GetPolicyResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetPolicyResponse res = new com.formance.formance_sdk.models.operations.GetPolicyResponse(contentType, httpRes.statusCode(), httpRes) {{
             policyResponse = null;
             reconciliationErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -185,12 +182,11 @@ public class Reconciliation {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetReconciliationResponse res = new com.formance.formance_sdk.models.operations.GetReconciliationResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetReconciliationResponse res = new com.formance.formance_sdk.models.operations.GetReconciliationResponse(contentType, httpRes.statusCode(), httpRes) {{
             reconciliationResponse = null;
             reconciliationErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -238,12 +234,11 @@ public class Reconciliation {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListPoliciesResponse res = new com.formance.formance_sdk.models.operations.ListPoliciesResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListPoliciesResponse res = new com.formance.formance_sdk.models.operations.ListPoliciesResponse(contentType, httpRes.statusCode(), httpRes) {{
             policiesCursorResponse = null;
             reconciliationErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -291,12 +286,11 @@ public class Reconciliation {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListReconciliationsResponse res = new com.formance.formance_sdk.models.operations.ListReconciliationsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListReconciliationsResponse res = new com.formance.formance_sdk.models.operations.ListReconciliationsResponse(contentType, httpRes.statusCode(), httpRes) {{
             reconciliationsCursorResponse = null;
             reconciliationErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -344,12 +338,11 @@ public class Reconciliation {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ReconcileResponse res = new com.formance.formance_sdk.models.operations.ReconcileResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ReconcileResponse res = new com.formance.formance_sdk.models.operations.ReconcileResponse(contentType, httpRes.statusCode(), httpRes) {{
             reconciliationResponse = null;
             reconciliationErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -390,12 +383,11 @@ public class Reconciliation {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse res = new com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse res = new com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
             serverInfo = null;
             reconciliationErrorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {

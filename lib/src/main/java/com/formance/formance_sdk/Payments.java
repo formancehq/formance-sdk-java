@@ -49,10 +49,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.AddAccountToPoolResponse res = new com.formance.formance_sdk.models.operations.AddAccountToPoolResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.AddAccountToPoolResponse res = new com.formance.formance_sdk.models.operations.AddAccountToPoolResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -88,11 +87,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ConnectorsTransferResponse res = new com.formance.formance_sdk.models.operations.ConnectorsTransferResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ConnectorsTransferResponse res = new com.formance.formance_sdk.models.operations.ConnectorsTransferResponse(contentType, httpRes.statusCode(), httpRes) {{
             transferResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -133,11 +131,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreateBankAccountResponse res = new com.formance.formance_sdk.models.operations.CreateBankAccountResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreateBankAccountResponse res = new com.formance.formance_sdk.models.operations.CreateBankAccountResponse(contentType, httpRes.statusCode(), httpRes) {{
             bankAccountResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -178,11 +175,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreatePaymentResponse res = new com.formance.formance_sdk.models.operations.CreatePaymentResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreatePaymentResponse res = new com.formance.formance_sdk.models.operations.CreatePaymentResponse(contentType, httpRes.statusCode(), httpRes) {{
             paymentResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -223,11 +219,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreatePoolResponse res = new com.formance.formance_sdk.models.operations.CreatePoolResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreatePoolResponse res = new com.formance.formance_sdk.models.operations.CreatePoolResponse(contentType, httpRes.statusCode(), httpRes) {{
             poolResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -268,11 +263,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse(contentType, httpRes.statusCode(), httpRes) {{
             transferInitiationResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -308,10 +302,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.DeletePoolResponse res = new com.formance.formance_sdk.models.operations.DeletePoolResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.DeletePoolResponse res = new com.formance.formance_sdk.models.operations.DeletePoolResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -342,10 +335,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -381,11 +373,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetAccountBalancesResponse res = new com.formance.formance_sdk.models.operations.GetAccountBalancesResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetAccountBalancesResponse res = new com.formance.formance_sdk.models.operations.GetAccountBalancesResponse(contentType, httpRes.statusCode(), httpRes) {{
             balancesCursor = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -420,11 +411,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetBankAccountResponse res = new com.formance.formance_sdk.models.operations.GetBankAccountResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetBankAccountResponse res = new com.formance.formance_sdk.models.operations.GetBankAccountResponse(contentType, httpRes.statusCode(), httpRes) {{
             bankAccountResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -462,11 +452,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetConnectorTaskResponse res = new com.formance.formance_sdk.models.operations.GetConnectorTaskResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetConnectorTaskResponse res = new com.formance.formance_sdk.models.operations.GetConnectorTaskResponse(contentType, httpRes.statusCode(), httpRes) {{
             taskResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -502,11 +491,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response res = new com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response res = new com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response(contentType, httpRes.statusCode(), httpRes) {{
             taskResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -541,11 +529,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetPaymentResponse res = new com.formance.formance_sdk.models.operations.GetPaymentResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetPaymentResponse res = new com.formance.formance_sdk.models.operations.GetPaymentResponse(contentType, httpRes.statusCode(), httpRes) {{
             paymentResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -580,11 +567,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetPoolResponse res = new com.formance.formance_sdk.models.operations.GetPoolResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetPoolResponse res = new com.formance.formance_sdk.models.operations.GetPoolResponse(contentType, httpRes.statusCode(), httpRes) {{
             poolResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -625,11 +611,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetPoolBalancesResponse res = new com.formance.formance_sdk.models.operations.GetPoolBalancesResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetPoolBalancesResponse res = new com.formance.formance_sdk.models.operations.GetPoolBalancesResponse(contentType, httpRes.statusCode(), httpRes) {{
             poolBalancesResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -664,11 +649,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.GetTransferInitiationResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.GetTransferInitiationResponse(contentType, httpRes.statusCode(), httpRes) {{
             transferInitiationResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -709,11 +693,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.InstallConnectorResponse res = new com.formance.formance_sdk.models.operations.InstallConnectorResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.InstallConnectorResponse res = new com.formance.formance_sdk.models.operations.InstallConnectorResponse(contentType, httpRes.statusCode(), httpRes) {{
             connectorResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 201) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -748,11 +731,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListAllConnectorsResponse res = new com.formance.formance_sdk.models.operations.ListAllConnectorsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListAllConnectorsResponse res = new com.formance.formance_sdk.models.operations.ListAllConnectorsResponse(contentType, httpRes.statusCode(), httpRes) {{
             connectorsResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -794,11 +776,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListBankAccountsResponse res = new com.formance.formance_sdk.models.operations.ListBankAccountsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListBankAccountsResponse res = new com.formance.formance_sdk.models.operations.ListBankAccountsResponse(contentType, httpRes.statusCode(), httpRes) {{
             bankAccountsCursor = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -833,11 +814,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse res = new com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse res = new com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse(contentType, httpRes.statusCode(), httpRes) {{
             connectorsConfigsResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -881,11 +861,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListConnectorTasksResponse res = new com.formance.formance_sdk.models.operations.ListConnectorTasksResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListConnectorTasksResponse res = new com.formance.formance_sdk.models.operations.ListConnectorTasksResponse(contentType, httpRes.statusCode(), httpRes) {{
             tasksCursor = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -927,11 +906,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response res = new com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response res = new com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response(contentType, httpRes.statusCode(), httpRes) {{
             tasksCursor = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -972,11 +950,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListPaymentsResponse res = new com.formance.formance_sdk.models.operations.ListPaymentsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListPaymentsResponse res = new com.formance.formance_sdk.models.operations.ListPaymentsResponse(contentType, httpRes.statusCode(), httpRes) {{
             paymentsCursor = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1017,11 +994,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListPoolsResponse res = new com.formance.formance_sdk.models.operations.ListPoolsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListPoolsResponse res = new com.formance.formance_sdk.models.operations.ListPoolsResponse(contentType, httpRes.statusCode(), httpRes) {{
             poolsCursor = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1062,11 +1038,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse res = new com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse res = new com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse(contentType, httpRes.statusCode(), httpRes) {{
             transferInitiationsCursor = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1101,11 +1076,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse res = new com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse res = new com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse(contentType, httpRes.statusCode(), httpRes) {{
             paymentsAccountResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1139,11 +1113,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse res = new com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse res = new com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
             serverInfo = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1184,11 +1157,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse res = new com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse res = new com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse(contentType, httpRes.statusCode(), httpRes) {{
             accountsCursor = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1226,11 +1198,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse res = new com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse res = new com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse(contentType, httpRes.statusCode(), httpRes) {{
             connectorConfigResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1266,11 +1237,10 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response res = new com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response res = new com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response(contentType, httpRes.statusCode(), httpRes) {{
             connectorConfigResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -1306,10 +1276,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse res = new com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse res = new com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1344,10 +1313,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ResetConnectorResponse res = new com.formance.formance_sdk.models.operations.ResetConnectorResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ResetConnectorResponse res = new com.formance.formance_sdk.models.operations.ResetConnectorResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1380,10 +1348,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ResetConnectorV1Response res = new com.formance.formance_sdk.models.operations.ResetConnectorV1Response(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ResetConnectorV1Response res = new com.formance.formance_sdk.models.operations.ResetConnectorV1Response(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1414,10 +1381,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1453,10 +1419,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse res = new com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse res = new com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1489,10 +1454,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.UninstallConnectorResponse res = new com.formance.formance_sdk.models.operations.UninstallConnectorResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.UninstallConnectorResponse res = new com.formance.formance_sdk.models.operations.UninstallConnectorResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1523,10 +1487,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.UninstallConnectorV1Response res = new com.formance.formance_sdk.models.operations.UninstallConnectorV1Response(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.UninstallConnectorV1Response res = new com.formance.formance_sdk.models.operations.UninstallConnectorV1Response(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1562,10 +1525,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response res = new com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response res = new com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -1600,10 +1562,9 @@ public class Payments {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.UpdateMetadataResponse res = new com.formance.formance_sdk.models.operations.UpdateMetadataResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.UpdateMetadataResponse res = new com.formance.formance_sdk.models.operations.UpdateMetadataResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }

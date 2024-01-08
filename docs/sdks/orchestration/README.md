@@ -57,14 +57,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            CancelEventRequest req = new CancelEventRequest("string");            
+            com.formance.formance_sdk.models.operations.CancelEventRequest req = new CancelEventRequest(
+                "string");
 
-            CancelEventResponse res = sdk.orchestration.cancelEvent(req);
+            com.formance.formance_sdk.models.operations.CancelEventResponse res = sdk.orchestration.cancelEvent(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -106,19 +108,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.TriggerData req = new TriggerData("string", "string"){{
+            com.formance.formance_sdk.models.shared.TriggerData req = new TriggerData(
+                "string",
+                "string"){{
                 filter = "string";
-                vars = new java.util.HashMap<String, Object>(){{
+                vars = new java.util.HashMap<String, Object>(
+                ){{
                     put("key", "string");
                 }};
-            }};            
 
-            CreateTriggerResponse res = sdk.orchestration.createTrigger(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.CreateTriggerResponse res = sdk.orchestration.createTrigger(req);
 
             if (res.createTriggerResponse != null) {
                 // handle response
@@ -160,20 +167,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.CreateWorkflowRequest req = new CreateWorkflowRequest(new java.util.HashMap<String, Object>[]{{
-    add(new java.util.HashMap<String, Object>(){{
-        put("key", "string");
-    }}),
-}}){{
+            com.formance.formance_sdk.models.shared.CreateWorkflowRequest req = new CreateWorkflowRequest(
+                new java.util.HashMap<String, Object>[]{{
+                    add(new java.util.HashMap<String, Object>(
+                    ){{
+                        put("key", "string");
+                    }}),
+                }}){{
                 name = "string";
-            }};            
 
-            CreateWorkflowResponse res = sdk.orchestration.createWorkflow(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.CreateWorkflowResponse res = sdk.orchestration.createWorkflow(req);
 
             if (res.createWorkflowResponse != null) {
                 // handle response
@@ -215,14 +226,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeleteTriggerRequest req = new DeleteTriggerRequest("string");            
+            com.formance.formance_sdk.models.operations.DeleteTriggerRequest req = new DeleteTriggerRequest(
+                "string");
 
-            DeleteTriggerResponse res = sdk.orchestration.deleteTrigger(req);
+            com.formance.formance_sdk.models.operations.DeleteTriggerResponse res = sdk.orchestration.deleteTrigger(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -264,14 +277,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeleteWorkflowRequest req = new DeleteWorkflowRequest("string");            
+            com.formance.formance_sdk.models.operations.DeleteWorkflowRequest req = new DeleteWorkflowRequest(
+                "string");
 
-            DeleteWorkflowResponse res = sdk.orchestration.deleteWorkflow(req);
+            com.formance.formance_sdk.models.operations.DeleteWorkflowResponse res = sdk.orchestration.deleteWorkflow(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -313,14 +328,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetInstanceRequest req = new GetInstanceRequest("string");            
+            com.formance.formance_sdk.models.operations.GetInstanceRequest req = new GetInstanceRequest(
+                "string");
 
-            GetInstanceResponse res = sdk.orchestration.getInstance(req);
+            com.formance.formance_sdk.models.operations.GetInstanceResponse res = sdk.orchestration.getInstance(req);
 
             if (res.getWorkflowInstanceResponse != null) {
                 // handle response
@@ -362,14 +379,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetInstanceHistoryRequest req = new GetInstanceHistoryRequest("string");            
+            com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest req = new GetInstanceHistoryRequest(
+                "string");
 
-            GetInstanceHistoryResponse res = sdk.orchestration.getInstanceHistory(req);
+            com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse res = sdk.orchestration.getInstanceHistory(req);
 
             if (res.getWorkflowInstanceHistoryResponse != null) {
                 // handle response
@@ -411,14 +430,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetInstanceStageHistoryRequest req = new GetInstanceStageHistoryRequest("string", 600636L);            
+            com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest req = new GetInstanceStageHistoryRequest(
+                "string",
+                600636L);
 
-            GetInstanceStageHistoryResponse res = sdk.orchestration.getInstanceStageHistory(req);
+            com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse res = sdk.orchestration.getInstanceStageHistory(req);
 
             if (res.getWorkflowInstanceHistoryStageResponse != null) {
                 // handle response
@@ -460,14 +482,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetWorkflowRequest req = new GetWorkflowRequest("string");            
+            com.formance.formance_sdk.models.operations.GetWorkflowRequest req = new GetWorkflowRequest(
+                "string");
 
-            GetWorkflowResponse res = sdk.orchestration.getWorkflow(req);
+            com.formance.formance_sdk.models.operations.GetWorkflowResponse res = sdk.orchestration.getWorkflow(req);
 
             if (res.getWorkflowResponse != null) {
                 // handle response
@@ -509,17 +533,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListInstancesRequest req = new ListInstancesRequest(){{
+            com.formance.formance_sdk.models.operations.ListInstancesRequest req = new ListInstancesRequest(
+){{
                 running = false;
                 workflowID = "string";
-            }};            
 
-            ListInstancesResponse res = sdk.orchestration.listInstances(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListInstancesResponse res = sdk.orchestration.listInstances(req);
 
             if (res.listRunsResponse != null) {
                 // handle response
@@ -560,12 +587,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListTriggersResponse res = sdk.orchestration.listTriggers();
+            com.formance.formance_sdk.models.operations.ListTriggersResponse res = sdk.orchestration.listTriggers();
 
             if (res.listTriggersResponse != null) {
                 // handle response
@@ -601,14 +629,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListTriggersOccurrencesRequest req = new ListTriggersOccurrencesRequest("string");            
+            com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest req = new ListTriggersOccurrencesRequest(
+                "string");
 
-            ListTriggersOccurrencesResponse res = sdk.orchestration.listTriggersOccurrences(req);
+            com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse res = sdk.orchestration.listTriggersOccurrences(req);
 
             if (res.listTriggersOccurrencesResponse != null) {
                 // handle response
@@ -649,12 +679,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListWorkflowsResponse res = sdk.orchestration.listWorkflows();
+            com.formance.formance_sdk.models.operations.ListWorkflowsResponse res = sdk.orchestration.listWorkflows();
 
             if (res.listWorkflowsResponse != null) {
                 // handle response
@@ -689,12 +720,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            OrchestrationgetServerInfoResponse res = sdk.orchestration.orchestrationgetServerInfo();
+            com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse res = sdk.orchestration.orchestrationgetServerInfo();
 
             if (res.serverInfo != null) {
                 // handle response
@@ -730,14 +762,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ReadTriggerRequest req = new ReadTriggerRequest("string");            
+            com.formance.formance_sdk.models.operations.ReadTriggerRequest req = new ReadTriggerRequest(
+                "string");
 
-            ReadTriggerResponse res = sdk.orchestration.readTrigger(req);
+            com.formance.formance_sdk.models.operations.ReadTriggerResponse res = sdk.orchestration.readTrigger(req);
 
             if (res.readTriggerResponse != null) {
                 // handle response
@@ -779,19 +813,23 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            RunWorkflowRequest req = new RunWorkflowRequest("string"){{
-                requestBody = new java.util.HashMap<String, String>(){{
+            com.formance.formance_sdk.models.operations.RunWorkflowRequest req = new RunWorkflowRequest(
+                "string"){{
+                requestBody = new java.util.HashMap<String, String>(
+                ){{
                     put("key", "string");
                 }};
                 wait = false;
-            }};            
 
-            RunWorkflowResponse res = sdk.orchestration.runWorkflow(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.RunWorkflowResponse res = sdk.orchestration.runWorkflow(req);
 
             if (res.runWorkflowResponse != null) {
                 // handle response
@@ -834,16 +872,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            SendEventRequest req = new SendEventRequest("string"){{
-                requestBody = new SendEventRequestBody("string");
-            }};            
+            com.formance.formance_sdk.models.operations.SendEventRequest req = new SendEventRequest(
+                "string"){{
+                requestBody = new SendEventRequestBody(
+                    "string");
 
-            SendEventResponse res = sdk.orchestration.sendEvent(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.SendEventResponse res = sdk.orchestration.sendEvent(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -885,18 +927,22 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            TestTriggerRequest req = new TestTriggerRequest("string"){{
-                requestBody = new java.util.HashMap<String, Object>(){{
+            com.formance.formance_sdk.models.operations.TestTriggerRequest req = new TestTriggerRequest(
+                "string"){{
+                requestBody = new java.util.HashMap<String, Object>(
+                ){{
                     put("key", "string");
                 }};
-            }};            
 
-            TestTriggerResponse res = sdk.orchestration.testTrigger(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.TestTriggerResponse res = sdk.orchestration.testTrigger(req);
 
             if (res.v2TestTriggerResponse != null) {
                 // handle response
@@ -938,14 +984,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2CancelEventRequest req = new V2CancelEventRequest("string");            
+            com.formance.formance_sdk.models.operations.V2CancelEventRequest req = new V2CancelEventRequest(
+                "string");
 
-            V2CancelEventResponse res = sdk.orchestration.v2CancelEvent(req);
+            com.formance.formance_sdk.models.operations.V2CancelEventResponse res = sdk.orchestration.v2CancelEvent(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -987,19 +1035,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.V2TriggerData req = new V2TriggerData("string", "string"){{
+            com.formance.formance_sdk.models.shared.V2TriggerData req = new V2TriggerData(
+                "string",
+                "string"){{
                 filter = "string";
-                vars = new java.util.HashMap<String, Object>(){{
+                vars = new java.util.HashMap<String, Object>(
+                ){{
                     put("key", "string");
                 }};
-            }};            
 
-            V2CreateTriggerResponse res = sdk.orchestration.v2CreateTrigger(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.V2CreateTriggerResponse res = sdk.orchestration.v2CreateTrigger(req);
 
             if (res.v2CreateTriggerResponse != null) {
                 // handle response
@@ -1041,20 +1094,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest req = new V2CreateWorkflowRequest(new java.util.HashMap<String, Object>[]{{
-    add(new java.util.HashMap<String, Object>(){{
-        put("key", "string");
-    }}),
-}}){{
+            com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest req = new V2CreateWorkflowRequest(
+                new java.util.HashMap<String, Object>[]{{
+                    add(new java.util.HashMap<String, Object>(
+                    ){{
+                        put("key", "string");
+                    }}),
+                }}){{
                 name = "string";
-            }};            
 
-            V2CreateWorkflowResponse res = sdk.orchestration.v2CreateWorkflow(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse res = sdk.orchestration.v2CreateWorkflow(req);
 
             if (res.v2CreateWorkflowResponse != null) {
                 // handle response
@@ -1096,14 +1153,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2DeleteTriggerRequest req = new V2DeleteTriggerRequest("string");            
+            com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest req = new V2DeleteTriggerRequest(
+                "string");
 
-            V2DeleteTriggerResponse res = sdk.orchestration.v2DeleteTrigger(req);
+            com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse res = sdk.orchestration.v2DeleteTrigger(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1145,14 +1204,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2DeleteWorkflowRequest req = new V2DeleteWorkflowRequest("string");            
+            com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest req = new V2DeleteWorkflowRequest(
+                "string");
 
-            V2DeleteWorkflowResponse res = sdk.orchestration.v2DeleteWorkflow(req);
+            com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse res = sdk.orchestration.v2DeleteWorkflow(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1194,14 +1255,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2GetInstanceRequest req = new V2GetInstanceRequest("string");            
+            com.formance.formance_sdk.models.operations.V2GetInstanceRequest req = new V2GetInstanceRequest(
+                "string");
 
-            V2GetInstanceResponse res = sdk.orchestration.v2GetInstance(req);
+            com.formance.formance_sdk.models.operations.V2GetInstanceResponse res = sdk.orchestration.v2GetInstance(req);
 
             if (res.v2GetWorkflowInstanceResponse != null) {
                 // handle response
@@ -1243,14 +1306,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2GetInstanceHistoryRequest req = new V2GetInstanceHistoryRequest("string");            
+            com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest req = new V2GetInstanceHistoryRequest(
+                "string");
 
-            V2GetInstanceHistoryResponse res = sdk.orchestration.v2GetInstanceHistory(req);
+            com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse res = sdk.orchestration.v2GetInstanceHistory(req);
 
             if (res.v2GetWorkflowInstanceHistoryResponse != null) {
                 // handle response
@@ -1292,14 +1357,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2GetInstanceStageHistoryRequest req = new V2GetInstanceStageHistoryRequest("string", 465454L);            
+            com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest req = new V2GetInstanceStageHistoryRequest(
+                "string",
+                465454L);
 
-            V2GetInstanceStageHistoryResponse res = sdk.orchestration.v2GetInstanceStageHistory(req);
+            com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse res = sdk.orchestration.v2GetInstanceStageHistory(req);
 
             if (res.v2GetWorkflowInstanceHistoryStageResponse != null) {
                 // handle response
@@ -1340,12 +1408,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2GetServerInfoResponse res = sdk.orchestration.v2GetServerInfo();
+            com.formance.formance_sdk.models.operations.V2GetServerInfoResponse res = sdk.orchestration.v2GetServerInfo();
 
             if (res.v2ServerInfo != null) {
                 // handle response
@@ -1381,14 +1450,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2GetWorkflowRequest req = new V2GetWorkflowRequest("string");            
+            com.formance.formance_sdk.models.operations.V2GetWorkflowRequest req = new V2GetWorkflowRequest(
+                "string");
 
-            V2GetWorkflowResponse res = sdk.orchestration.v2GetWorkflow(req);
+            com.formance.formance_sdk.models.operations.V2GetWorkflowResponse res = sdk.orchestration.v2GetWorkflow(req);
 
             if (res.v2GetWorkflowResponse != null) {
                 // handle response
@@ -1430,17 +1501,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2ListInstancesRequest req = new V2ListInstancesRequest(){{
+            com.formance.formance_sdk.models.operations.V2ListInstancesRequest req = new V2ListInstancesRequest(
+){{
                 running = false;
                 workflowID = "string";
-            }};            
 
-            V2ListInstancesResponse res = sdk.orchestration.v2ListInstances(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.V2ListInstancesResponse res = sdk.orchestration.v2ListInstances(req);
 
             if (res.v2ListRunsResponse != null) {
                 // handle response
@@ -1481,12 +1555,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2ListTriggersResponse res = sdk.orchestration.v2ListTriggers();
+            com.formance.formance_sdk.models.operations.V2ListTriggersResponse res = sdk.orchestration.v2ListTriggers();
 
             if (res.v2ListTriggersResponse != null) {
                 // handle response
@@ -1522,14 +1597,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2ListTriggersOccurrencesRequest req = new V2ListTriggersOccurrencesRequest("string");            
+            com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest req = new V2ListTriggersOccurrencesRequest(
+                "string");
 
-            V2ListTriggersOccurrencesResponse res = sdk.orchestration.v2ListTriggersOccurrences(req);
+            com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse res = sdk.orchestration.v2ListTriggersOccurrences(req);
 
             if (res.v2ListTriggersOccurrencesResponse != null) {
                 // handle response
@@ -1570,12 +1647,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2ListWorkflowsResponse res = sdk.orchestration.v2ListWorkflows();
+            com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse res = sdk.orchestration.v2ListWorkflows();
 
             if (res.v2ListWorkflowsResponse != null) {
                 // handle response
@@ -1611,14 +1689,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2ReadTriggerRequest req = new V2ReadTriggerRequest("string");            
+            com.formance.formance_sdk.models.operations.V2ReadTriggerRequest req = new V2ReadTriggerRequest(
+                "string");
 
-            V2ReadTriggerResponse res = sdk.orchestration.v2ReadTrigger(req);
+            com.formance.formance_sdk.models.operations.V2ReadTriggerResponse res = sdk.orchestration.v2ReadTrigger(req);
 
             if (res.v2ReadTriggerResponse != null) {
                 // handle response
@@ -1660,19 +1740,23 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2RunWorkflowRequest req = new V2RunWorkflowRequest("string"){{
-                requestBody = new java.util.HashMap<String, String>(){{
+            com.formance.formance_sdk.models.operations.V2RunWorkflowRequest req = new V2RunWorkflowRequest(
+                "string"){{
+                requestBody = new java.util.HashMap<String, String>(
+                ){{
                     put("key", "string");
                 }};
                 wait = false;
-            }};            
 
-            V2RunWorkflowResponse res = sdk.orchestration.v2RunWorkflow(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.V2RunWorkflowResponse res = sdk.orchestration.v2RunWorkflow(req);
 
             if (res.v2RunWorkflowResponse != null) {
                 // handle response
@@ -1715,16 +1799,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            V2SendEventRequest req = new V2SendEventRequest("string"){{
-                requestBody = new V2SendEventRequestBody("string");
-            }};            
+            com.formance.formance_sdk.models.operations.V2SendEventRequest req = new V2SendEventRequest(
+                "string"){{
+                requestBody = new V2SendEventRequestBody(
+                    "string");
 
-            V2SendEventResponse res = sdk.orchestration.v2SendEvent(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.V2SendEventResponse res = sdk.orchestration.v2SendEvent(req);
 
             if (res.statusCode == 200) {
                 // handle response

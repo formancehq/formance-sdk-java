@@ -53,9 +53,9 @@ public class ActivityStripeTransfer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    public ActivityStripeTransferMetadata metadata;
+    public Metadata metadata;
 
-    public ActivityStripeTransfer withMetadata(ActivityStripeTransferMetadata metadata) {
+    public ActivityStripeTransfer withMetadata(Metadata metadata) {
         this.metadata = metadata;
         return this;
     }

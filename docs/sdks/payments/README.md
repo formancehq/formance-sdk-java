@@ -62,14 +62,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            AddAccountToPoolRequest req = new AddAccountToPoolRequest(new AddAccountToPoolRequest("string"), "string");            
+            com.formance.formance_sdk.models.operations.AddAccountToPoolRequest req = new AddAccountToPoolRequest(
+                new AddAccountToPoolRequest(
+                    "string"),
+                "string");
 
-            AddAccountToPoolResponse res = sdk.payments.addAccountToPool(req);
+            com.formance.formance_sdk.models.operations.AddAccountToPoolResponse res = sdk.payments.addAccountToPool(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -113,16 +117,23 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ConnectorsTransferRequest req = new ConnectorsTransferRequest(new TransferRequest(100L, "USD", "acct_1Gqj58KZcSIg2N2q"){{
-source = "acct_1Gqj58KZcSIg2N2q";
-}}, Connector.CURRENCY_CLOUD);            
+            com.formance.formance_sdk.models.operations.ConnectorsTransferRequest req = new ConnectorsTransferRequest(
+                new TransferRequest(
+                    100L,
+                    "USD",
+                    "acct_1Gqj58KZcSIg2N2q"){{
+                    source = "acct_1Gqj58KZcSIg2N2q";
 
-            ConnectorsTransferResponse res = sdk.payments.connectorsTransfer(req);
+                }},
+                Connector.CURRENCY_CLOUD);
+
+            com.formance.formance_sdk.models.operations.ConnectorsTransferResponse res = sdk.payments.connectorsTransfer(req);
 
             if (res.transferResponse != null) {
                 // handle response
@@ -164,21 +175,27 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.BankAccountRequest req = new BankAccountRequest("string", "GB", "My account"){{
+            com.formance.formance_sdk.models.shared.BankAccountRequest req = new BankAccountRequest(
+                "string",
+                "GB",
+                "My account"){{
                 accountNumber = "string";
                 iban = "HU80500236840980904027018003";
-                metadata = new java.util.HashMap<String, String>(){{
+                metadata = new java.util.HashMap<String, String>(
+                ){{
                     put("key", "string");
                 }};
                 swiftBicCode = "string";
-            }};            
 
-            CreateBankAccountResponse res = sdk.payments.createBankAccount(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.CreateBankAccountResponse res = sdk.payments.createBankAccount(req);
 
             if (res.bankAccountResponse != null) {
                 // handle response
@@ -224,17 +241,27 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.PaymentRequest req = new PaymentRequest(100L, "USD", "string", OffsetDateTime.parse("2023-11-09T02:12:55.787Z"), "string", PaymentScheme.GOOGLE_PAY, PaymentStatus.REFUNDED, PaymentType.TRANSFER){{
+            com.formance.formance_sdk.models.shared.PaymentRequest req = new PaymentRequest(
+                100L,
+                "USD",
+                "string",
+                OffsetDateTime.parse("2024-11-09T01:03:21.153Z"),
+                "string",
+                PaymentScheme.GOOGLE_PAY,
+                PaymentStatus.REFUNDED,
+                PaymentType.TRANSFER){{
                 destinationAccountID = "string";
                 sourceAccountID = "string";
-            }};            
 
-            CreatePaymentResponse res = sdk.payments.createPayment(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.CreatePaymentResponse res = sdk.payments.createPayment(req);
 
             if (res.paymentResponse != null) {
                 // handle response
@@ -276,16 +303,19 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.PoolRequest req = new PoolRequest(new String[]{{
-    add("string"),
-}}, "string");            
+            com.formance.formance_sdk.models.shared.PoolRequest req = new PoolRequest(
+                new String[]{{
+                    add("string"),
+                }},
+                "string");
 
-            CreatePoolResponse res = sdk.payments.createPool(req);
+            com.formance.formance_sdk.models.operations.CreatePoolResponse res = sdk.payments.createPool(req);
 
             if (res.poolResponse != null) {
                 // handle response
@@ -330,20 +360,32 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.TransferInitiationRequest req = new TransferInitiationRequest(256698L, "USD", "string", "string", "XXX", OffsetDateTime.parse("2022-06-16T07:20:51.415Z"), "string", TransferInitiationRequestType.PAYOUT, false){{
+            com.formance.formance_sdk.models.shared.TransferInitiationRequest req = new TransferInitiationRequest(
+                256698L,
+                "USD",
+                "string",
+                "string",
+                "XXX",
+                OffsetDateTime.parse("2023-06-16T18:59:33.654Z"),
+                "string",
+                TransferInitiationRequestType.PAYOUT,
+                false){{
                 connectorID = "string";
-                metadata = new java.util.HashMap<String, String>(){{
+                metadata = new java.util.HashMap<String, String>(
+                ){{
                     put("key", "string");
                 }};
                 provider = Connector.MANGOPAY;
-            }};            
 
-            CreateTransferInitiationResponse res = sdk.payments.createTransferInitiation(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse res = sdk.payments.createTransferInitiation(req);
 
             if (res.transferInitiationResponse != null) {
                 // handle response
@@ -385,14 +427,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeletePoolRequest req = new DeletePoolRequest("string");            
+            com.formance.formance_sdk.models.operations.DeletePoolRequest req = new DeletePoolRequest(
+                "string");
 
-            DeletePoolResponse res = sdk.payments.deletePool(req);
+            com.formance.formance_sdk.models.operations.DeletePoolResponse res = sdk.payments.deletePool(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -434,14 +478,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeleteTransferInitiationRequest req = new DeleteTransferInitiationRequest("string");            
+            com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest req = new DeleteTransferInitiationRequest(
+                "string");
 
-            DeleteTransferInitiationResponse res = sdk.payments.deleteTransferInitiation(req);
+            com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse res = sdk.payments.deleteTransferInitiation(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -484,24 +530,27 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetAccountBalancesRequest req = new GetAccountBalancesRequest("string"){{
+            com.formance.formance_sdk.models.operations.GetAccountBalancesRequest req = new GetAccountBalancesRequest(
+                "string"){{
                 asset = "string";
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                from = OffsetDateTime.parse("2022-02-04T20:25:30.152Z");
+                from = OffsetDateTime.parse("2023-02-05T05:11:20.042Z");
                 limit = 743236L;
                 pageSize = 125462L;
                 sort = new String[]{{
                     add("string"),
                 }};
-                to = OffsetDateTime.parse("2022-07-14T20:40:51.017Z");
-            }};            
+                to = OffsetDateTime.parse("2023-07-15T08:57:06.406Z");
 
-            GetAccountBalancesResponse res = sdk.payments.getAccountBalances(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.GetAccountBalancesResponse res = sdk.payments.getAccountBalances(req);
 
             if (res.balancesCursor != null) {
                 // handle response
@@ -543,14 +592,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetBankAccountRequest req = new GetBankAccountRequest("string");            
+            com.formance.formance_sdk.models.operations.GetBankAccountRequest req = new GetBankAccountRequest(
+                "string");
 
-            GetBankAccountResponse res = sdk.payments.getBankAccount(req);
+            com.formance.formance_sdk.models.operations.GetBankAccountResponse res = sdk.payments.getBankAccount(req);
 
             if (res.bankAccountResponse != null) {
                 // handle response
@@ -595,14 +646,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetConnectorTaskRequest req = new GetConnectorTaskRequest(Connector.ATLAR, "string");            
+            com.formance.formance_sdk.models.operations.GetConnectorTaskRequest req = new GetConnectorTaskRequest(
+                Connector.ATLAR,
+                "string");
 
-            GetConnectorTaskResponse res = sdk.payments.getConnectorTask(req);
+            com.formance.formance_sdk.models.operations.GetConnectorTaskResponse res = sdk.payments.getConnectorTask(req);
 
             if (res.taskResponse != null) {
                 // handle response
@@ -645,14 +699,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetConnectorTaskV1Request req = new GetConnectorTaskV1Request(Connector.CURRENCY_CLOUD, "string", "string");            
+            com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request req = new GetConnectorTaskV1Request(
+                Connector.CURRENCY_CLOUD,
+                "string",
+                "string");
 
-            GetConnectorTaskV1Response res = sdk.payments.getConnectorTaskV1(req);
+            com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response res = sdk.payments.getConnectorTaskV1(req);
 
             if (res.taskResponse != null) {
                 // handle response
@@ -694,14 +752,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetPaymentRequest req = new GetPaymentRequest("string");            
+            com.formance.formance_sdk.models.operations.GetPaymentRequest req = new GetPaymentRequest(
+                "string");
 
-            GetPaymentResponse res = sdk.payments.getPayment(req);
+            com.formance.formance_sdk.models.operations.GetPaymentResponse res = sdk.payments.getPayment(req);
 
             if (res.paymentResponse != null) {
                 // handle response
@@ -743,14 +803,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetPoolRequest req = new GetPoolRequest("string");            
+            com.formance.formance_sdk.models.operations.GetPoolRequest req = new GetPoolRequest(
+                "string");
 
-            GetPoolResponse res = sdk.payments.getPool(req);
+            com.formance.formance_sdk.models.operations.GetPoolResponse res = sdk.payments.getPool(req);
 
             if (res.poolResponse != null) {
                 // handle response
@@ -793,14 +855,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetPoolBalancesRequest req = new GetPoolBalancesRequest(OffsetDateTime.parse("2022-05-04T19:57:32.195Z"), "string");            
+            com.formance.formance_sdk.models.operations.GetPoolBalancesRequest req = new GetPoolBalancesRequest(
+                OffsetDateTime.parse("2023-05-05T06:40:23.018Z"),
+                "string");
 
-            GetPoolBalancesResponse res = sdk.payments.getPoolBalances(req);
+            com.formance.formance_sdk.models.operations.GetPoolBalancesResponse res = sdk.payments.getPoolBalances(req);
 
             if (res.poolBalancesResponse != null) {
                 // handle response
@@ -842,14 +907,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetTransferInitiationRequest req = new GetTransferInitiationRequest("string");            
+            com.formance.formance_sdk.models.operations.GetTransferInitiationRequest req = new GetTransferInitiationRequest(
+                "string");
 
-            GetTransferInitiationResponse res = sdk.payments.getTransferInitiation(req);
+            com.formance.formance_sdk.models.operations.GetTransferInitiationResponse res = sdk.payments.getTransferInitiation(req);
 
             if (res.transferInitiationResponse != null) {
                 // handle response
@@ -892,14 +959,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            InstallConnectorRequest req = new InstallConnectorRequest("string", Connector.WISE);            
+            com.formance.formance_sdk.models.operations.InstallConnectorRequest req = new InstallConnectorRequest(
+                "string",
+                Connector.WISE);
 
-            InstallConnectorResponse res = sdk.payments.installConnector(req);
+            com.formance.formance_sdk.models.operations.InstallConnectorResponse res = sdk.payments.installConnector(req);
 
             if (res.connectorResponse != null) {
                 // handle response
@@ -940,12 +1010,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListAllConnectorsResponse res = sdk.payments.listAllConnectors();
+            com.formance.formance_sdk.models.operations.ListAllConnectorsResponse res = sdk.payments.listAllConnectors();
 
             if (res.connectorsResponse != null) {
                 // handle response
@@ -981,20 +1052,23 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListBankAccountsRequest req = new ListBankAccountsRequest(){{
+            com.formance.formance_sdk.models.operations.ListBankAccountsRequest req = new ListBankAccountsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 578999L;
                 sort = new String[]{{
                     add("string"),
                 }};
-            }};            
 
-            ListBankAccountsResponse res = sdk.payments.listBankAccounts(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListBankAccountsResponse res = sdk.payments.listBankAccounts(req);
 
             if (res.bankAccountsCursor != null) {
                 // handle response
@@ -1035,12 +1109,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListConfigsAvailableConnectorsResponse res = sdk.payments.listConfigsAvailableConnectors();
+            com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse res = sdk.payments.listConfigsAvailableConnectors();
 
             if (res.connectorsConfigsResponse != null) {
                 // handle response
@@ -1079,17 +1154,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListConnectorTasksRequest req = new ListConnectorTasksRequest(Connector.WISE){{
+            com.formance.formance_sdk.models.operations.ListConnectorTasksRequest req = new ListConnectorTasksRequest(
+                Connector.WISE){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 501686L;
-            }};            
 
-            ListConnectorTasksResponse res = sdk.payments.listConnectorTasks(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListConnectorTasksResponse res = sdk.payments.listConnectorTasks(req);
 
             if (res.tasksCursor != null) {
                 // handle response
@@ -1132,17 +1210,21 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListConnectorTasksV1Request req = new ListConnectorTasksV1Request(Connector.BANKING_CIRCLE, "string"){{
+            com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request req = new ListConnectorTasksV1Request(
+                Connector.BANKING_CIRCLE,
+                "string"){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 442673L;
-            }};            
 
-            ListConnectorTasksV1Response res = sdk.payments.listConnectorTasksV1(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response res = sdk.payments.listConnectorTasksV1(req);
 
             if (res.tasksCursor != null) {
                 // handle response
@@ -1184,20 +1266,23 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListPaymentsRequest req = new ListPaymentsRequest(){{
+            com.formance.formance_sdk.models.operations.ListPaymentsRequest req = new ListPaymentsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 13778L;
                 sort = new String[]{{
                     add("string"),
                 }};
-            }};            
 
-            ListPaymentsResponse res = sdk.payments.listPayments(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListPaymentsResponse res = sdk.payments.listPayments(req);
 
             if (res.paymentsCursor != null) {
                 // handle response
@@ -1239,21 +1324,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListPoolsRequest req = new ListPoolsRequest(){{
+            com.formance.formance_sdk.models.operations.ListPoolsRequest req = new ListPoolsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 567687L;
                 query = "string";
                 sort = new String[]{{
                     add("string"),
                 }};
-            }};            
 
-            ListPoolsResponse res = sdk.payments.listPools(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListPoolsResponse res = sdk.payments.listPools(req);
 
             if (res.poolsCursor != null) {
                 // handle response
@@ -1295,21 +1383,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListTransferInitiationsRequest req = new ListTransferInitiationsRequest(){{
+            com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest req = new ListTransferInitiationsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 706689L;
                 query = "string";
                 sort = new String[]{{
                     add("string"),
                 }};
-            }};            
 
-            ListTransferInitiationsResponse res = sdk.payments.listTransferInitiations(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse res = sdk.payments.listTransferInitiations(req);
 
             if (res.transferInitiationsCursor != null) {
                 // handle response
@@ -1351,14 +1442,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            PaymentsgetAccountRequest req = new PaymentsgetAccountRequest("string");            
+            com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest req = new PaymentsgetAccountRequest(
+                "string");
 
-            PaymentsgetAccountResponse res = sdk.payments.paymentsgetAccount(req);
+            com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse res = sdk.payments.paymentsgetAccount(req);
 
             if (res.paymentsAccountResponse != null) {
                 // handle response
@@ -1399,12 +1492,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            PaymentsgetServerInfoResponse res = sdk.payments.paymentsgetServerInfo();
+            com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse res = sdk.payments.paymentsgetServerInfo();
 
             if (res.serverInfo != null) {
                 // handle response
@@ -1440,20 +1534,23 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            PaymentslistAccountsRequest req = new PaymentslistAccountsRequest(){{
+            com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest req = new PaymentslistAccountsRequest(
+){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 227071L;
                 sort = new String[]{{
                     add("string"),
                 }};
-            }};            
 
-            PaymentslistAccountsResponse res = sdk.payments.paymentslistAccounts(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse res = sdk.payments.paymentslistAccounts(req);
 
             if (res.accountsCursor != null) {
                 // handle response
@@ -1498,14 +1595,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ReadConnectorConfigRequest req = new ReadConnectorConfigRequest(Connector.ADYEN);            
+            com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest req = new ReadConnectorConfigRequest(
+                Connector.ADYEN);
 
-            ReadConnectorConfigResponse res = sdk.payments.readConnectorConfig(req);
+            com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse res = sdk.payments.readConnectorConfig(req);
 
             if (res.connectorConfigResponse != null) {
                 // handle response
@@ -1548,14 +1647,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ReadConnectorConfigV1Request req = new ReadConnectorConfigV1Request(Connector.CURRENCY_CLOUD, "string");            
+            com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request req = new ReadConnectorConfigV1Request(
+                Connector.CURRENCY_CLOUD,
+                "string");
 
-            ReadConnectorConfigV1Response res = sdk.payments.readConnectorConfigV1(req);
+            com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response res = sdk.payments.readConnectorConfigV1(req);
 
             if (res.connectorConfigResponse != null) {
                 // handle response
@@ -1597,14 +1699,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            RemoveAccountFromPoolRequest req = new RemoveAccountFromPoolRequest("string", "string");            
+            com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest req = new RemoveAccountFromPoolRequest(
+                "string",
+                "string");
 
-            RemoveAccountFromPoolResponse res = sdk.payments.removeAccountFromPool(req);
+            com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse res = sdk.payments.removeAccountFromPool(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1651,14 +1756,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ResetConnectorRequest req = new ResetConnectorRequest(Connector.MONEYCORP);            
+            com.formance.formance_sdk.models.operations.ResetConnectorRequest req = new ResetConnectorRequest(
+                Connector.MONEYCORP);
 
-            ResetConnectorResponse res = sdk.payments.resetConnector(req);
+            com.formance.formance_sdk.models.operations.ResetConnectorResponse res = sdk.payments.resetConnector(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1703,14 +1810,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ResetConnectorV1Request req = new ResetConnectorV1Request(Connector.ADYEN, "string");            
+            com.formance.formance_sdk.models.operations.ResetConnectorV1Request req = new ResetConnectorV1Request(
+                Connector.ADYEN,
+                "string");
 
-            ResetConnectorV1Response res = sdk.payments.resetConnectorV1(req);
+            com.formance.formance_sdk.models.operations.ResetConnectorV1Response res = sdk.payments.resetConnectorV1(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1752,14 +1862,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            RetryTransferInitiationRequest req = new RetryTransferInitiationRequest("string");            
+            com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest req = new RetryTransferInitiationRequest(
+                "string");
 
-            RetryTransferInitiationResponse res = sdk.payments.retryTransferInitiation(req);
+            com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse res = sdk.payments.retryTransferInitiation(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1796,21 +1908,25 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest;
 import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.Status;
 import com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest;
-import com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequestStatus;
 
 public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            UdpateTransferInitiationStatusRequest req = new UdpateTransferInitiationStatusRequest(new UpdateTransferInitiationStatusRequest(UpdateTransferInitiationStatusRequestStatus.VALIDATED), "string");            
+            com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest req = new UdpateTransferInitiationStatusRequest(
+                new UpdateTransferInitiationStatusRequest(
+                    Status.VALIDATED),
+                "string");
 
-            UdpateTransferInitiationStatusResponse res = sdk.payments.udpateTransferInitiationStatus(req);
+            com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse res = sdk.payments.udpateTransferInitiationStatus(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1855,14 +1971,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            UninstallConnectorRequest req = new UninstallConnectorRequest(Connector.WISE);            
+            com.formance.formance_sdk.models.operations.UninstallConnectorRequest req = new UninstallConnectorRequest(
+                Connector.WISE);
 
-            UninstallConnectorResponse res = sdk.payments.uninstallConnector(req);
+            com.formance.formance_sdk.models.operations.UninstallConnectorResponse res = sdk.payments.uninstallConnector(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1905,14 +2023,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            UninstallConnectorV1Request req = new UninstallConnectorV1Request(Connector.ADYEN, "string");            
+            com.formance.formance_sdk.models.operations.UninstallConnectorV1Request req = new UninstallConnectorV1Request(
+                Connector.ADYEN,
+                "string");
 
-            UninstallConnectorV1Response res = sdk.payments.uninstallConnectorV1(req);
+            com.formance.formance_sdk.models.operations.UninstallConnectorV1Response res = sdk.payments.uninstallConnectorV1(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -1955,14 +2076,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            UpdateConnectorConfigV1Request req = new UpdateConnectorConfigV1Request("string", Connector.STRIPE, "string");            
+            com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request req = new UpdateConnectorConfigV1Request(
+                "string",
+                Connector.STRIPE,
+                "string");
 
-            UpdateConnectorConfigV1Response res = sdk.payments.updateConnectorConfigV1(req);
+            com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response res = sdk.payments.updateConnectorConfigV1(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -2004,16 +2129,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            UpdateMetadataRequest req = new UpdateMetadataRequest(new java.util.HashMap<String, String>(){{
-    put("key", "string");
-}}, "string");            
+            com.formance.formance_sdk.models.operations.UpdateMetadataRequest req = new UpdateMetadataRequest(
+                new java.util.HashMap<String, String>(
+                ){{
+                    put("key", "string");
+                }},
+                "string");
 
-            UpdateMetadataResponse res = sdk.payments.updateMetadata(req);
+            com.formance.formance_sdk.models.operations.UpdateMetadataResponse res = sdk.payments.updateMetadata(req);
 
             if (res.statusCode == 200) {
                 // handle response

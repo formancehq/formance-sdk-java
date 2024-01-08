@@ -44,11 +44,10 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreateClientResponse res = new com.formance.formance_sdk.models.operations.CreateClientResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreateClientResponse res = new com.formance.formance_sdk.models.operations.CreateClientResponse(contentType, httpRes.statusCode(), httpRes) {{
             createClientResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 201) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -85,11 +84,10 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.CreateSecretResponse res = new com.formance.formance_sdk.models.operations.CreateSecretResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.CreateSecretResponse res = new com.formance.formance_sdk.models.operations.CreateSecretResponse(contentType, httpRes.statusCode(), httpRes) {{
             createSecretResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -124,10 +122,9 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.DeleteClientResponse res = new com.formance.formance_sdk.models.operations.DeleteClientResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.DeleteClientResponse res = new com.formance.formance_sdk.models.operations.DeleteClientResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -157,10 +154,9 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.DeleteSecretResponse res = new com.formance.formance_sdk.models.operations.DeleteSecretResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.DeleteSecretResponse res = new com.formance.formance_sdk.models.operations.DeleteSecretResponse(contentType, httpRes.statusCode(), httpRes) {{
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 204) {
         }
@@ -189,11 +185,10 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.GetServerInfoResponse res = new com.formance.formance_sdk.models.operations.GetServerInfoResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.GetServerInfoResponse res = new com.formance.formance_sdk.models.operations.GetServerInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
             serverInfo = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -227,11 +222,10 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListClientsResponse res = new com.formance.formance_sdk.models.operations.ListClientsResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListClientsResponse res = new com.formance.formance_sdk.models.operations.ListClientsResponse(contentType, httpRes.statusCode(), httpRes) {{
             listClientsResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -266,11 +260,10 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ListUsersResponse res = new com.formance.formance_sdk.models.operations.ListUsersResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ListUsersResponse res = new com.formance.formance_sdk.models.operations.ListUsersResponse(contentType, httpRes.statusCode(), httpRes) {{
             listUsersResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -305,11 +298,10 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ReadClientResponse res = new com.formance.formance_sdk.models.operations.ReadClientResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ReadClientResponse res = new com.formance.formance_sdk.models.operations.ReadClientResponse(contentType, httpRes.statusCode(), httpRes) {{
             readClientResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -345,11 +337,10 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.ReadUserResponse res = new com.formance.formance_sdk.models.operations.ReadUserResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.ReadUserResponse res = new com.formance.formance_sdk.models.operations.ReadUserResponse(contentType, httpRes.statusCode(), httpRes) {{
             readUserResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -386,11 +377,10 @@ public class Auth {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        com.formance.formance_sdk.models.operations.UpdateClientResponse res = new com.formance.formance_sdk.models.operations.UpdateClientResponse(contentType, httpRes.statusCode()) {{
+        
+        com.formance.formance_sdk.models.operations.UpdateClientResponse res = new com.formance.formance_sdk.models.operations.UpdateClientResponse(contentType, httpRes.statusCode(), httpRes) {{
             updateClientResponse = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {

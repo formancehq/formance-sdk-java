@@ -32,14 +32,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            com.formance.formance_sdk.models.shared.CreateClientRequest req = new CreateClientRequest("string"){{
+            com.formance.formance_sdk.models.shared.CreateClientRequest req = new CreateClientRequest(
+                "string"){{
                 description = "Managed optimizing help-desk";
-                metadata = new java.util.HashMap<String, Object>(){{
+                metadata = new java.util.HashMap<String, Object>(
+                ){{
                     put("key", "string");
                 }};
                 postLogoutRedirectUris = new String[]{{
@@ -53,9 +56,10 @@ public class Application {
                     add("string"),
                 }};
                 trusted = false;
-            }};            
 
-            CreateClientResponse res = sdk.auth.createClient(req);
+            }};
+
+            com.formance.formance_sdk.models.operations.CreateClientResponse res = sdk.auth.createClient(req);
 
             if (res.createClientResponse != null) {
                 // handle response
@@ -98,20 +102,26 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            CreateSecretRequest req = new CreateSecretRequest("string"){{
-                createSecretRequest = new CreateSecretRequest("string"){{
-                    metadata = new java.util.HashMap<String, Object>(){{
+            com.formance.formance_sdk.models.operations.CreateSecretRequest req = new CreateSecretRequest(
+                "string"){{
+                createSecretRequest = new CreateSecretRequest(
+                    "string"){{
+                    metadata = new java.util.HashMap<String, Object>(
+                    ){{
                         put("key", "string");
                     }};
-                }};
-            }};            
 
-            CreateSecretResponse res = sdk.auth.createSecret(req);
+                }};
+
+            }};
+
+            com.formance.formance_sdk.models.operations.CreateSecretResponse res = sdk.auth.createSecret(req);
 
             if (res.createSecretResponse != null) {
                 // handle response
@@ -153,14 +163,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeleteClientRequest req = new DeleteClientRequest("string");            
+            com.formance.formance_sdk.models.operations.DeleteClientRequest req = new DeleteClientRequest(
+                "string");
 
-            DeleteClientResponse res = sdk.auth.deleteClient(req);
+            com.formance.formance_sdk.models.operations.DeleteClientResponse res = sdk.auth.deleteClient(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -202,14 +214,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            DeleteSecretRequest req = new DeleteSecretRequest("string", "string");            
+            com.formance.formance_sdk.models.operations.DeleteSecretRequest req = new DeleteSecretRequest(
+                "string",
+                "string");
 
-            DeleteSecretResponse res = sdk.auth.deleteSecret(req);
+            com.formance.formance_sdk.models.operations.DeleteSecretResponse res = sdk.auth.deleteSecret(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -250,12 +265,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            GetServerInfoResponse res = sdk.auth.getServerInfo();
+            com.formance.formance_sdk.models.operations.GetServerInfoResponse res = sdk.auth.getServerInfo();
 
             if (res.serverInfo != null) {
                 // handle response
@@ -290,12 +306,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListClientsResponse res = sdk.auth.listClients();
+            com.formance.formance_sdk.models.operations.ListClientsResponse res = sdk.auth.listClients();
 
             if (res.listClientsResponse != null) {
                 // handle response
@@ -330,12 +347,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ListUsersResponse res = sdk.auth.listUsers();
+            com.formance.formance_sdk.models.operations.ListUsersResponse res = sdk.auth.listUsers();
 
             if (res.listUsersResponse != null) {
                 // handle response
@@ -371,14 +389,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ReadClientRequest req = new ReadClientRequest("string");            
+            com.formance.formance_sdk.models.operations.ReadClientRequest req = new ReadClientRequest(
+                "string");
 
-            ReadClientResponse res = sdk.auth.readClient(req);
+            com.formance.formance_sdk.models.operations.ReadClientResponse res = sdk.auth.readClient(req);
 
             if (res.readClientResponse != null) {
                 // handle response
@@ -420,14 +440,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            ReadUserRequest req = new ReadUserRequest("string");            
+            com.formance.formance_sdk.models.operations.ReadUserRequest req = new ReadUserRequest(
+                "string");
 
-            ReadUserResponse res = sdk.auth.readUser(req);
+            com.formance.formance_sdk.models.operations.ReadUserResponse res = sdk.auth.readUser(req);
 
             if (res.readUserResponse != null) {
                 // handle response
@@ -470,15 +492,19 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    authorization = "";
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
-            UpdateClientRequest req = new UpdateClientRequest("string"){{
-                updateClientRequest = new UpdateClientRequest("string"){{
+            com.formance.formance_sdk.models.operations.UpdateClientRequest req = new UpdateClientRequest(
+                "string"){{
+                updateClientRequest = new UpdateClientRequest(
+                    "string"){{
                     description = "Secured static model";
-                    metadata = new java.util.HashMap<String, Object>(){{
+                    metadata = new java.util.HashMap<String, Object>(
+                    ){{
                         put("key", "string");
                     }};
                     postLogoutRedirectUris = new String[]{{
@@ -492,10 +518,12 @@ public class Application {
                         add("string"),
                     }};
                     trusted = false;
-                }};
-            }};            
 
-            UpdateClientResponse res = sdk.auth.updateClient(req);
+                }};
+
+            }};
+
+            com.formance.formance_sdk.models.operations.UpdateClientResponse res = sdk.auth.updateClient(req);
 
             if (res.updateClientResponse != null) {
                 // handle response

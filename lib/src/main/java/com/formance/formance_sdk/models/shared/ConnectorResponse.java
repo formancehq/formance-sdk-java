@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ConnectorResponse {
     @JsonProperty("data")
-    public ConnectorResponseData data;
+    public Data data;
 
-    public ConnectorResponse withData(ConnectorResponseData data) {
+    public ConnectorResponse withData(Data data) {
         this.data = data;
         return this;
     }
     
-    public ConnectorResponse(@JsonProperty("data") ConnectorResponseData data) {
+    public ConnectorResponse(@JsonProperty("data") Data data) {
         this.data = data;
   }
 }

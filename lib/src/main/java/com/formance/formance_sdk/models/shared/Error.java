@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Error {
     @JsonProperty("errorCode")
-    public ErrorErrorCode errorCode;
+    public ErrorCode errorCode;
 
-    public Error withErrorCode(ErrorErrorCode errorCode) {
+    public Error withErrorCode(ErrorCode errorCode) {
         this.errorCode = errorCode;
         return this;
     }
@@ -24,7 +24,7 @@ public class Error {
         return this;
     }
     
-    public Error(@JsonProperty("errorCode") ErrorErrorCode errorCode, @JsonProperty("errorMessage") String errorMessage) {
+    public Error(@JsonProperty("errorCode") ErrorCode errorCode, @JsonProperty("errorMessage") String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
   }
