@@ -22,7 +22,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### Gradle
 
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-beta.6'
+implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-beta.8'
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -75,7 +75,6 @@ public class Application {
 * [createSecret](docs/sdks/auth/README.md#createsecret) - Add a secret to a client
 * [deleteClient](docs/sdks/auth/README.md#deleteclient) - Delete client
 * [deleteSecret](docs/sdks/auth/README.md#deletesecret) - Delete a secret from a client
-* [getServerInfo](docs/sdks/auth/README.md#getserverinfo) - Get server info
 * [listClients](docs/sdks/auth/README.md#listclients) - List clients
 * [listUsers](docs/sdks/auth/README.md#listusers) - List users
 * [readClient](docs/sdks/auth/README.md#readclient) - Read client

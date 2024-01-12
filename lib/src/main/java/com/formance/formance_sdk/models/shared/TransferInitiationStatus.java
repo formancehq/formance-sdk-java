@@ -12,7 +12,8 @@ public enum TransferInitiationStatus {
     PROCESSED("PROCESSED"),
     FAILED("FAILED"),
     REJECTED("REJECTED"),
-    VALIDATED("VALIDATED");
+    VALIDATED("VALIDATED"),
+    RETRIED("RETRIED");
 
     @JsonValue
     public final String value;

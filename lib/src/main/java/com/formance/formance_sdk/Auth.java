@@ -165,43 +165,6 @@ public class Auth {
     }
 
     /**
-     * Get server info
-     * @return the response from the API call
-     * @throws Exception if the API call fails
-     */
-    public com.formance.formance_sdk.models.operations.GetServerInfoResponse getServerInfo() throws Exception {
-        String baseUrl = this.sdkConfiguration.serverUrl;
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(baseUrl, "/api/auth/_info");
-        
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("GET");
-        req.setURL(url);
-
-        req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-        
-        HTTPClient client = this.sdkConfiguration.securityClient;
-        
-        HttpResponse<byte[]> httpRes = client.send(req);
-
-        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-        
-        com.formance.formance_sdk.models.operations.GetServerInfoResponse res = new com.formance.formance_sdk.models.operations.GetServerInfoResponse(contentType, httpRes.statusCode(), httpRes) {{
-            serverInfo = null;
-        }};
-        
-        if (httpRes.statusCode() == 200) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ServerInfo out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.ServerInfo.class);
-                res.serverInfo = out;
-            }
-        }
-
-        return res;
-    }
-
-    /**
      * List clients
      * @return the response from the API call
      * @throws Exception if the API call fails

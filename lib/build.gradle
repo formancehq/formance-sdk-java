@@ -56,7 +56,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.formance'
             artifactId = 'formance-sdk'
-            version = 'v2.0.0-beta.6'
+            version = 'v2.0.0-beta.8'
 
             from components.java
 
@@ -78,7 +78,7 @@ publishing {
                     developer {
                         name = 'Formance'
                         organization = 'Formance'
-                        email = 'info@mycompany.com'
+                        email = 'support@formance.com'
                     }
                 }
                 organization {

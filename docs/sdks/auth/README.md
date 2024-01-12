@@ -7,7 +7,6 @@
 * [createSecret](#createsecret) - Add a secret to a client
 * [deleteClient](#deleteclient) - Delete client
 * [deleteSecret](#deletesecret) - Delete a secret from a client
-* [getServerInfo](#getserverinfo) - Get server info
 * [listClients](#listclients) - List clients
 * [listUsers](#listusers) - List users
 * [readClient](#readclient) - Read client
@@ -246,47 +245,6 @@ public class Application {
 ### Response
 
 **[com.formance.formance_sdk.models.operations.DeleteSecretResponse](../../models/operations/DeleteSecretResponse.md)**
-
-
-## getServerInfo
-
-Get server info
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.GetServerInfoResponse;
-import com.formance.formance_sdk.models.shared.Security;
-
-public class Application {
-    public static void main(String[] args) {
-        try {
-            SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
-                .build();
-
-            com.formance.formance_sdk.models.operations.GetServerInfoResponse res = sdk.auth.getServerInfo();
-
-            if (res.serverInfo != null) {
-                // handle response
-            }
-        } catch (Exception e) {
-            // handle exception
-        }
-    }
-}
-```
-
-
-### Response
-
-**[com.formance.formance_sdk.models.operations.GetServerInfoResponse](../../models/operations/GetServerInfoResponse.md)**
 
 
 ## listClients
