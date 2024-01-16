@@ -22,7 +22,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### Gradle
 
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-beta.8'
+implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-beta.9'
 ```
 <!-- End SDK Installation [installation] -->
 

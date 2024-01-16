@@ -7,8 +7,8 @@ package com.formance.formance_sdk.models.shared;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum State {
-    TO_DO("to do"),
-    DONE("done");
+    TO_DO("TO DO"),
+    DONE("DONE");
 
     @JsonValue
     public final String value;
