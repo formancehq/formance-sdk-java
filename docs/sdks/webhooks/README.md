@@ -318,6 +318,7 @@ public class Application {
                     add("TYPE1"),
                     add("TYPE2"),
                 }}){{
+                name = "customer_payment";
                 secret = "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3";
 
             }};

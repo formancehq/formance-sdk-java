@@ -27,6 +27,15 @@ public class ConfigUser {
     }
     
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    public String name;
+
+    public ConfigUser withName(String name) {
+        this.name = name;
+        return this;
+    }
+    
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("secret")
     public String secret;
 
