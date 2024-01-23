@@ -81,6 +81,14 @@ public class TransferInitiation {
         return this;
     }
     
+    @JsonProperty("initialAmount")
+    public Long initialAmount;
+
+    public TransferInitiation withInitialAmount(Long initialAmount) {
+        this.initialAmount = initialAmount;
+        return this;
+    }
+    
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     public java.util.Map<String, String> metadata;
@@ -150,7 +158,7 @@ public class TransferInitiation {
         return this;
     }
     
-    public TransferInitiation(@JsonProperty("amount") Long amount, @JsonProperty("asset") String asset, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("description") String description, @JsonProperty("destinationAccountID") String destinationAccountID, @JsonProperty("error") String error, @JsonProperty("id") String id, @JsonProperty("reference") String reference, @JsonProperty("scheduledAt") OffsetDateTime scheduledAt, @JsonProperty("sourceAccountID") String sourceAccountID, @JsonProperty("status") TransferInitiationStatus status, @JsonProperty("type") TransferInitiationType type) {
+    public TransferInitiation(@JsonProperty("amount") Long amount, @JsonProperty("asset") String asset, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("description") String description, @JsonProperty("destinationAccountID") String destinationAccountID, @JsonProperty("error") String error, @JsonProperty("id") String id, @JsonProperty("initialAmount") Long initialAmount, @JsonProperty("reference") String reference, @JsonProperty("scheduledAt") OffsetDateTime scheduledAt, @JsonProperty("sourceAccountID") String sourceAccountID, @JsonProperty("status") TransferInitiationStatus status, @JsonProperty("type") TransferInitiationType type) {
         this.amount = amount;
         this.asset = asset;
         this.connectorID = connectorID;
@@ -159,6 +167,7 @@ public class TransferInitiation {
         this.destinationAccountID = destinationAccountID;
         this.error = error;
         this.id = id;
+        this.initialAmount = initialAmount;
         this.reference = reference;
         this.scheduledAt = scheduledAt;
         this.sourceAccountID = sourceAccountID;

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: f8052f55-6142-48c9-a8be-700e600d3130
+id: d8bda9b8-93ac-4876-bd7c-9b8e17b87b14
 management:
-  docChecksum: 62528734db388452295a3642ad792516
-  docVersion: v2.0.0-beta.12
+  docChecksum: e3879c02fea2e4914c9d924447572b5d
+  docVersion: v2.0.0-beta.13
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-beta.12
-  configChecksum: 95673ea5b2d0c9566ac5b987492e3f7f
+  releaseVersion: v2.0.0-beta.13
+  configChecksum: 3279db4eb9c555eb324f1cd7ed03718d
 features:
   java:
     core: 3.2.2
@@ -277,6 +277,8 @@ generatedFiles:
   - lib/src/main/java/com/formance/formance_sdk/models/operations/ResetConnectorV1Response.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/RetryTransferInitiationRequest.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/RetryTransferInitiationResponse.java
+  - lib/src/main/java/com/formance/formance_sdk/models/operations/ReverseTransferInitiationRequest.java
+  - lib/src/main/java/com/formance/formance_sdk/models/operations/ReverseTransferInitiationResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UdpateTransferInitiationStatusRequest.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UdpateTransferInitiationStatusResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UninstallConnectorRequest.java
@@ -637,6 +639,7 @@ generatedFiles:
   - lib/src/main/java/com/formance/formance_sdk/models/shared/Cursor.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/AccountsCursor.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/ConnectorConfigResponse.java
+  - lib/src/main/java/com/formance/formance_sdk/models/shared/ReverseTransferInitiationRequest.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/Status.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/UpdateTransferInitiationStatusRequest.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/ReconciliationErrorResponse.java
@@ -912,6 +915,8 @@ generatedFiles:
   - docs/models/operations/ResetConnectorV1Response.md
   - docs/models/operations/RetryTransferInitiationRequest.md
   - docs/models/operations/RetryTransferInitiationResponse.md
+  - docs/models/operations/ReverseTransferInitiationRequest.md
+  - docs/models/operations/ReverseTransferInitiationResponse.md
   - docs/models/operations/UdpateTransferInitiationStatusRequest.md
   - docs/models/operations/UdpateTransferInitiationStatusResponse.md
   - docs/models/operations/UninstallConnectorRequest.md
@@ -1272,6 +1277,7 @@ generatedFiles:
   - docs/models/shared/Cursor.md
   - docs/models/shared/AccountsCursor.md
   - docs/models/shared/ConnectorConfigResponse.md
+  - docs/models/shared/ReverseTransferInitiationRequest.md
   - docs/models/shared/Status.md
   - docs/models/shared/UpdateTransferInitiationStatusRequest.md
   - docs/models/shared/ReconciliationErrorResponse.md

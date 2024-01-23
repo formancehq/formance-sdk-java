@@ -1392,6 +1392,44 @@ public class Payments {
     }
 
     /**
+     * Reverse a transfer initiation
+     * Reverse transfer initiation
+     * @param request the request object containing all of the parameters for the API call
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse reverseTransferInitiation(com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest request) throws Exception {
+        String baseUrl = this.sdkConfiguration.serverUrl;
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest.class, baseUrl, "/api/payments/transfer-initiations/{transferId}/reverse", request, null);
+        
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("POST");
+        req.setURL(url);
+        SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(request, "reverseTransferInitiationRequest", "json");
+        if (serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        req.setBody(serializedRequestBody);
+
+        req.addHeader("Accept", "*/*");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+        
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
+        HttpResponse<byte[]> httpRes = client.send(req);
+
+        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        
+        com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse res = new com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse(contentType, httpRes.statusCode(), httpRes) {{
+        }};
+        
+        if (httpRes.statusCode() == 204) {
+        }
+
+        return res;
+    }
+
+    /**
      * Update the status of a transfer initiation
      * Update a transfer initiation status
      * @param request the request object containing all of the parameters for the API call

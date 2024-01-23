@@ -37,6 +37,7 @@
 * [~~resetConnector~~](#resetconnector) - Reset a connector :warning: **Deprecated**
 * [resetConnectorV1](#resetconnectorv1) - Reset a connector
 * [retryTransferInitiation](#retrytransferinitiation) - Retry a failed transfer initiation
+* [reverseTransferInitiation](#reversetransferinitiation) - Reverse a transfer initiation
 * [udpateTransferInitiationStatus](#udpatetransferinitiationstatus) - Update the status of a transfer initiation
 * [~~uninstallConnector~~](#uninstallconnector) - Uninstall a connector :warning: **Deprecated**
 * [uninstallConnectorV1](#uninstallconnectorv1) - Uninstall a connector
@@ -1893,6 +1894,67 @@ public class Application {
 ### Response
 
 **[com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse](../../models/operations/RetryTransferInitiationResponse.md)**
+
+
+## reverseTransferInitiation
+
+Reverse transfer initiation
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest;
+import com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse;
+import com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest;
+import com.formance.formance_sdk.models.shared.Security;
+
+public class Application {
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
+                }})
+                .build();
+
+            com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest req = new ReverseTransferInitiationRequest(
+                new ReverseTransferInitiationRequest(
+                    327549L,
+                    "USD",
+                    "string",
+                    new java.util.HashMap<String, String>(
+                    ){{
+                        put("key", "string");
+                    }},
+                    "XXX"),
+                "string");
+
+            com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse res = sdk.payments.reverseTransferInitiation(req);
+
+            if (res.statusCode == 200) {
+                // handle response
+            }
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                   | [com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest](../../models/operations/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                                          | The request object to use for the request.                                                                                                  |
+
+
+### Response
+
+**[com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse](../../models/operations/ReverseTransferInitiationResponse.md)**
 
 
 ## udpateTransferInitiationStatus

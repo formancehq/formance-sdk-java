@@ -22,7 +22,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### Gradle
 
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-beta.12'
+implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-beta.13'
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -199,6 +199,7 @@ public class Application {
 * [~~resetConnector~~](docs/sdks/payments/README.md#resetconnector) - Reset a connector :warning: **Deprecated**
 * [resetConnectorV1](docs/sdks/payments/README.md#resetconnectorv1) - Reset a connector
 * [retryTransferInitiation](docs/sdks/payments/README.md#retrytransferinitiation) - Retry a failed transfer initiation
+* [reverseTransferInitiation](docs/sdks/payments/README.md#reversetransferinitiation) - Reverse a transfer initiation
 * [udpateTransferInitiationStatus](docs/sdks/payments/README.md#udpatetransferinitiationstatus) - Update the status of a transfer initiation
 * [~~uninstallConnector~~](docs/sdks/payments/README.md#uninstallconnector) - Uninstall a connector :warning: **Deprecated**
 * [uninstallConnectorV1](docs/sdks/payments/README.md#uninstallconnectorv1) - Uninstall a connector
