@@ -13,14 +13,6 @@ import java.time.OffsetDateTime;
 
 
 public class PaymentAdjustment {
-    @JsonProperty("absolute")
-    public Boolean absolute;
-
-    public PaymentAdjustment withAbsolute(Boolean absolute) {
-        this.absolute = absolute;
-        return this;
-    }
-    
     @JsonProperty("amount")
     public Long amount;
 
@@ -31,11 +23,11 @@ public class PaymentAdjustment {
     
     @JsonSerialize(using = DateTimeSerializer.class)
     @JsonDeserialize(using = DateTimeDeserializer.class)
-    @JsonProperty("date")
-    public OffsetDateTime date;
+    @JsonProperty("createdAt")
+    public OffsetDateTime createdAt;
 
-    public PaymentAdjustment withDate(OffsetDateTime date) {
-        this.date = date;
+    public PaymentAdjustment withCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
     
@@ -47,6 +39,14 @@ public class PaymentAdjustment {
         return this;
     }
     
+    @JsonProperty("reference")
+    public String reference;
+
+    public PaymentAdjustment withReference(String reference) {
+        this.reference = reference;
+        return this;
+    }
+    
     @JsonProperty("status")
     public PaymentStatus status;
 
@@ -55,11 +55,11 @@ public class PaymentAdjustment {
         return this;
     }
     
-    public PaymentAdjustment(@JsonProperty("absolute") Boolean absolute, @JsonProperty("amount") Long amount, @JsonProperty("date") OffsetDateTime date, @JsonProperty("raw") PaymentAdjustmentRaw raw, @JsonProperty("status") PaymentStatus status) {
-        this.absolute = absolute;
+    public PaymentAdjustment(@JsonProperty("amount") Long amount, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("raw") PaymentAdjustmentRaw raw, @JsonProperty("reference") String reference, @JsonProperty("status") PaymentStatus status) {
         this.amount = amount;
-        this.date = date;
+        this.createdAt = createdAt;
         this.raw = raw;
+        this.reference = reference;
         this.status = status;
   }
 }

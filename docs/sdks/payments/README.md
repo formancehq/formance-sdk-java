@@ -255,7 +255,7 @@ public class Application {
                 OffsetDateTime.parse("2024-11-09T01:03:21.153Z"),
                 "string",
                 PaymentScheme.GOOGLE_PAY,
-                PaymentStatus.REFUNDED,
+                PaymentStatus.DISPUTE_WON,
                 PaymentType.TRANSFER){{
                 destinationAccountID = "string";
                 sourceAccountID = "string";

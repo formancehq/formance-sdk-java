@@ -8,7 +8,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 java:
-  version: v2.0.0-beta.16
+  version: v2.0.0-rc.1
   artifactID: formance-sdk
   companyEmail: support@formance.com
   companyName: Formance
