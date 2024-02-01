@@ -85,6 +85,14 @@ public class BankAccount {
         return this;
     }
     
+    @JsonProperty("name")
+    public String name;
+
+    public BankAccount withName(String name) {
+        this.name = name;
+        return this;
+    }
+    
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     public String provider;
@@ -103,10 +111,11 @@ public class BankAccount {
         return this;
     }
     
-    public BankAccount(@JsonProperty("connectorID") String connectorID, @JsonProperty("country") String country, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id) {
+    public BankAccount(@JsonProperty("connectorID") String connectorID, @JsonProperty("country") String country, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("name") String name) {
         this.connectorID = connectorID;
         this.country = country;
         this.createdAt = createdAt;
         this.id = id;
+        this.name = name;
   }
 }

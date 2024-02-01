@@ -37,6 +37,17 @@ public class V2GetBalancesAggregatedRequest {
         return this;
     }
     
+    /**
+     * Use insertion date instead of effective date
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=use_insertion_date")
+    public Boolean useInsertionDate;
+
+    public V2GetBalancesAggregatedRequest withUseInsertionDate(Boolean useInsertionDate) {
+        this.useInsertionDate = useInsertionDate;
+        return this;
+    }
+    
     public V2GetBalancesAggregatedRequest(@JsonProperty("ledger") String ledger) {
         this.ledger = ledger;
   }

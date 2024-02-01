@@ -599,6 +599,7 @@ public class Application {
             com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest req = new GetBalancesAggregatedRequest(
                 "ledger001"){{
                 address = "users:001";
+                useInsertionDate = false;
 
             }};
 
@@ -1902,6 +1903,7 @@ public class Application {
                     put("key", "string");
                 }};
                 pit = OffsetDateTime.parse("2024-12-10T15:05:25.901Z");
+                useInsertionDate = false;
 
             }};
 
