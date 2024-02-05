@@ -22,7 +22,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### Gradle
 
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-rc.2'
+implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-rc.3'
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -173,6 +173,7 @@ public class Application {
 * [createTransferInitiation](docs/sdks/payments/README.md#createtransferinitiation) - Create a TransferInitiation
 * [deletePool](docs/sdks/payments/README.md#deletepool) - Delete a Pool
 * [deleteTransferInitiation](docs/sdks/payments/README.md#deletetransferinitiation) - Delete a transfer initiation
+* [forwardBankAccount](docs/sdks/payments/README.md#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](docs/sdks/payments/README.md#getaccountbalances) - Get account balances
 * [getBankAccount](docs/sdks/payments/README.md#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](docs/sdks/payments/README.md#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**

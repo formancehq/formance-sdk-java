@@ -11,6 +11,7 @@
 * [createTransferInitiation](#createtransferinitiation) - Create a TransferInitiation
 * [deletePool](#deletepool) - Delete a Pool
 * [deleteTransferInitiation](#deletetransferinitiation) - Delete a transfer initiation
+* [forwardBankAccount](#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**
@@ -510,6 +511,60 @@ public class Application {
 ### Response
 
 **[com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse](../../models/operations/DeleteTransferInitiationResponse.md)**
+
+
+## forwardBankAccount
+
+Forward a bank account to a connector
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.ForwardBankAccountRequest;
+import com.formance.formance_sdk.models.operations.ForwardBankAccountResponse;
+import com.formance.formance_sdk.models.shared.ForwardBankAccountRequest;
+import com.formance.formance_sdk.models.shared.Security;
+
+public class Application {
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
+                }})
+                .build();
+
+            com.formance.formance_sdk.models.operations.ForwardBankAccountRequest req = new ForwardBankAccountRequest(
+                new ForwardBankAccountRequest(
+                    "string"),
+                "string");
+
+            com.formance.formance_sdk.models.operations.ForwardBankAccountResponse res = sdk.payments.forwardBankAccount(req);
+
+            if (res.bankAccountResponse != null) {
+                // handle response
+            }
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                     | [com.formance.formance_sdk.models.operations.ForwardBankAccountRequest](../../models/operations/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+
+
+### Response
+
+**[com.formance.formance_sdk.models.operations.ForwardBankAccountResponse](../../models/operations/ForwardBankAccountResponse.md)**
 
 
 ## getAccountBalances

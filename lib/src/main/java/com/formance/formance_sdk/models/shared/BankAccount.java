@@ -33,6 +33,15 @@ public class BankAccount {
         return this;
     }
     
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("adjustments")
+    public BankAccountAdjustment[] adjustments;
+
+    public BankAccount withAdjustments(BankAccountAdjustment[] adjustments) {
+        this.adjustments = adjustments;
+        return this;
+    }
+    
     @JsonProperty("connectorID")
     public String connectorID;
 

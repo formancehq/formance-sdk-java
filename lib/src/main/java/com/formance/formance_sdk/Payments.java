@@ -346,6 +346,49 @@ public class Payments {
     }
 
     /**
+     * Forward a bank account to a connector
+     * @param request the request object containing all of the parameters for the API call
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public com.formance.formance_sdk.models.operations.ForwardBankAccountResponse forwardBankAccount(com.formance.formance_sdk.models.operations.ForwardBankAccountRequest request) throws Exception {
+        String baseUrl = this.sdkConfiguration.serverUrl;
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.ForwardBankAccountRequest.class, baseUrl, "/api/payments/bank-accounts/{bankAccountId}/forward", request, null);
+        
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("POST");
+        req.setURL(url);
+        SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(request, "forwardBankAccountRequest", "json");
+        if (serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        req.setBody(serializedRequestBody);
+
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+        
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
+        HttpResponse<byte[]> httpRes = client.send(req);
+
+        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        
+        com.formance.formance_sdk.models.operations.ForwardBankAccountResponse res = new com.formance.formance_sdk.models.operations.ForwardBankAccountResponse(contentType, httpRes.statusCode(), httpRes) {{
+            bankAccountResponse = null;
+        }};
+        
+        if (httpRes.statusCode() == 200) {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.shared.BankAccountResponse out = mapper.readValue(new String(httpRes.body(), StandardCharsets.UTF_8), com.formance.formance_sdk.models.shared.BankAccountResponse.class);
+                res.bankAccountResponse = out;
+            }
+        }
+
+        return res;
+    }
+
+    /**
      * Get account balances
      * @param request the request object containing all of the parameters for the API call
      * @return the response from the API call

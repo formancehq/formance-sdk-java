@@ -14,10 +14,10 @@ class SDKConfiguration {
 	public String serverUrl;
 	public int serverIdx = 0;
 	public String language = "java";
-	public String openapiDocVersion = "v2.0.0-rc.2";
-	public String sdkVersion = "v2.0.0-rc.2";
+	public String openapiDocVersion = "v2.0.0-rc.3";
+	public String sdkVersion = "v2.0.0-rc.3";
 	public String genVersion = "2.237.2";
-	public String userAgent = "speakeasy-sdk/java v2.0.0-rc.2 2.237.2 v2.0.0-rc.2 com.formance.formance_sdk";
+	public String userAgent = "speakeasy-sdk/java v2.0.0-rc.3 2.237.2 v2.0.0-rc.3 com.formance.formance_sdk";
 	
 	
 }
