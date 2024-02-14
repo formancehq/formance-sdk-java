@@ -12,11 +12,11 @@ import com.formance.formance_sdk.utils.DateTimeSerializer;
 import java.time.OffsetDateTime;
 
 
-public class BankAccountAdjustment {
+public class BankAccountRelatedAccounts {
     @JsonProperty("accountID")
     public String accountID;
 
-    public BankAccountAdjustment withAccountID(String accountID) {
+    public BankAccountRelatedAccounts withAccountID(String accountID) {
         this.accountID = accountID;
         return this;
     }
@@ -24,7 +24,7 @@ public class BankAccountAdjustment {
     @JsonProperty("connectorID")
     public String connectorID;
 
-    public BankAccountAdjustment withConnectorID(String connectorID) {
+    public BankAccountRelatedAccounts withConnectorID(String connectorID) {
         this.connectorID = connectorID;
         return this;
     }
@@ -34,7 +34,7 @@ public class BankAccountAdjustment {
     @JsonProperty("createdAt")
     public OffsetDateTime createdAt;
 
-    public BankAccountAdjustment withCreatedAt(OffsetDateTime createdAt) {
+    public BankAccountRelatedAccounts withCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -42,7 +42,7 @@ public class BankAccountAdjustment {
     @JsonProperty("id")
     public String id;
 
-    public BankAccountAdjustment withId(String id) {
+    public BankAccountRelatedAccounts withId(String id) {
         this.id = id;
         return this;
     }
@@ -50,12 +50,12 @@ public class BankAccountAdjustment {
     @JsonProperty("provider")
     public String provider;
 
-    public BankAccountAdjustment withProvider(String provider) {
+    public BankAccountRelatedAccounts withProvider(String provider) {
         this.provider = provider;
         return this;
     }
     
-    public BankAccountAdjustment(@JsonProperty("accountID") String accountID, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("provider") String provider) {
+    public BankAccountRelatedAccounts(@JsonProperty("accountID") String accountID, @JsonProperty("connectorID") String connectorID, @JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("provider") String provider) {
         this.accountID = accountID;
         this.connectorID = connectorID;
         this.createdAt = createdAt;

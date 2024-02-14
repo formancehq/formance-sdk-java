@@ -42,6 +42,7 @@
 * [udpateTransferInitiationStatus](#udpatetransferinitiationstatus) - Update the status of a transfer initiation
 * [~~uninstallConnector~~](#uninstallconnector) - Uninstall a connector :warning: **Deprecated**
 * [uninstallConnectorV1](#uninstallconnectorv1) - Uninstall a connector
+* [updateBankAccountMetadata](#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](#updatemetadata) - Update metadata
 
@@ -2172,6 +2173,63 @@ public class Application {
 ### Response
 
 **[com.formance.formance_sdk.models.operations.UninstallConnectorV1Response](../../models/operations/UninstallConnectorV1Response.md)**
+
+
+## updateBankAccountMetadata
+
+Update metadata of a bank account
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest;
+import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest;
+
+public class Application {
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .setSecurity(new Security(
+                "string"){{
+                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
+                }})
+                .build();
+
+            com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest req = new UpdateBankAccountMetadataRequest(
+                new UpdateBankAccountMetadataRequest(
+                    new java.util.HashMap<String, String>(
+                    ){{
+                        put("key", "string");
+                    }}),
+                "string");
+
+            com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse res = sdk.payments.updateBankAccountMetadata(req);
+
+            if (res.statusCode == 200) {
+                // handle response
+            }
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                   | [com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest](../../models/operations/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                                                          | The request object to use for the request.                                                                                                  |
+
+
+### Response
+
+**[com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse](../../models/operations/UpdateBankAccountMetadataResponse.md)**
 
 
 ## updateConnectorConfigV1

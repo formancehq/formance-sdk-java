@@ -33,15 +33,6 @@ public class BankAccount {
         return this;
     }
     
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("adjustments")
-    public BankAccountAdjustment[] adjustments;
-
-    public BankAccount withAdjustments(BankAccountAdjustment[] adjustments) {
-        this.adjustments = adjustments;
-        return this;
-    }
-    
     @JsonProperty("connectorID")
     public String connectorID;
 
@@ -108,6 +99,15 @@ public class BankAccount {
 
     public BankAccount withProvider(String provider) {
         this.provider = provider;
+        return this;
+    }
+    
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("relatedAccounts")
+    public BankAccountRelatedAccounts[] relatedAccounts;
+
+    public BankAccount withRelatedAccounts(BankAccountRelatedAccounts[] relatedAccounts) {
+        this.relatedAccounts = relatedAccounts;
         return this;
     }
     

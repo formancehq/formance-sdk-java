@@ -1579,6 +1579,43 @@ public class Payments {
     }
 
     /**
+     * Update metadata of a bank account
+     * @param request the request object containing all of the parameters for the API call
+     * @return the response from the API call
+     * @throws Exception if the API call fails
+     */
+    public com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse updateBankAccountMetadata(com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest request) throws Exception {
+        String baseUrl = this.sdkConfiguration.serverUrl;
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest.class, baseUrl, "/api/payments/bank-accounts/{bankAccountId}/metadata", request, null);
+        
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("PATCH");
+        req.setURL(url);
+        SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(request, "updateBankAccountMetadataRequest", "json");
+        if (serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        req.setBody(serializedRequestBody);
+
+        req.addHeader("Accept", "*/*");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+        
+        HTTPClient client = this.sdkConfiguration.securityClient;
+        
+        HttpResponse<byte[]> httpRes = client.send(req);
+
+        String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
+        
+        com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse res = new com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse(contentType, httpRes.statusCode(), httpRes) {{
+        }};
+        
+        if (httpRes.statusCode() == 204) {
+        }
+
+        return res;
+    }
+
+    /**
      * Update the config of a connector
      * Update connector config
      * @param request the request object containing all of the parameters for the API call

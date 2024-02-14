@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: f253c71d-2cd4-4e6f-885d-b41b8005fdf6
+id: ee77ee15-c45f-4085-8303-71427af9a9fb
 management:
-  docChecksum: 5d24de084aa582df481914f9765a2d91
-  docVersion: v2.0.0-rc.4
+  docChecksum: 9498362bd3de88c7492796ec40c09297
+  docVersion: v2.0.0-rc.7
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.4
-  configChecksum: 241152c80a1478c722dc497bda312e36
+  releaseVersion: v2.0.0-rc.7
+  configChecksum: c0f4066f8ac2a8f404522a6f7d4fe928
 features:
   java:
     core: 3.2.2
@@ -287,6 +287,8 @@ generatedFiles:
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UninstallConnectorResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UninstallConnectorV1Request.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UninstallConnectorV1Response.java
+  - lib/src/main/java/com/formance/formance_sdk/models/operations/UpdateBankAccountMetadataRequest.java
+  - lib/src/main/java/com/formance/formance_sdk/models/operations/UpdateBankAccountMetadataResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UpdateConnectorConfigV1Request.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UpdateConnectorConfigV1Response.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/UpdateMetadataRequest.java
@@ -589,7 +591,7 @@ generatedFiles:
   - lib/src/main/java/com/formance/formance_sdk/models/shared/TransferRequest.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/BankAccountResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/BankAccount.java
-  - lib/src/main/java/com/formance/formance_sdk/models/shared/BankAccountAdjustment.java
+  - lib/src/main/java/com/formance/formance_sdk/models/shared/BankAccountRelatedAccounts.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/BankAccountRequest.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/PaymentResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/Raw.java
@@ -646,6 +648,7 @@ generatedFiles:
   - lib/src/main/java/com/formance/formance_sdk/models/shared/ReverseTransferInitiationRequest.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/Status.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/UpdateTransferInitiationStatusRequest.java
+  - lib/src/main/java/com/formance/formance_sdk/models/shared/UpdateBankAccountMetadataRequest.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/ReconciliationErrorResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/PolicyResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/shared/Policy.java
@@ -929,6 +932,8 @@ generatedFiles:
   - docs/models/operations/UninstallConnectorResponse.md
   - docs/models/operations/UninstallConnectorV1Request.md
   - docs/models/operations/UninstallConnectorV1Response.md
+  - docs/models/operations/UpdateBankAccountMetadataRequest.md
+  - docs/models/operations/UpdateBankAccountMetadataResponse.md
   - docs/models/operations/UpdateConnectorConfigV1Request.md
   - docs/models/operations/UpdateConnectorConfigV1Response.md
   - docs/models/operations/UpdateMetadataRequest.md
@@ -1231,7 +1236,7 @@ generatedFiles:
   - docs/models/shared/TransferRequest.md
   - docs/models/shared/BankAccountResponse.md
   - docs/models/shared/BankAccount.md
-  - docs/models/shared/BankAccountAdjustment.md
+  - docs/models/shared/BankAccountRelatedAccounts.md
   - docs/models/shared/BankAccountRequest.md
   - docs/models/shared/PaymentResponse.md
   - docs/models/shared/Raw.md
@@ -1288,6 +1293,7 @@ generatedFiles:
   - docs/models/shared/ReverseTransferInitiationRequest.md
   - docs/models/shared/Status.md
   - docs/models/shared/UpdateTransferInitiationStatusRequest.md
+  - docs/models/shared/UpdateBankAccountMetadataRequest.md
   - docs/models/shared/ReconciliationErrorResponse.md
   - docs/models/shared/PolicyResponse.md
   - docs/models/shared/Policy.md

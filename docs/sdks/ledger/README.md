@@ -545,6 +545,7 @@ public class Application {
                 address = "users:001";
                 after = "users:003";
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
+                pageSize = 755286L;
 
             }};
 

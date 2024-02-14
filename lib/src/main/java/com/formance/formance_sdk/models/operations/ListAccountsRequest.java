@@ -43,7 +43,7 @@ public class ListAccountsRequest {
     }
     
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests. Maximum page size is set to 1000.
      * Set to the value of next for the next page of results.
      * Set to the value of previous for the previous page of results.
      * No other parameters can be set when this parameter is set.
@@ -92,7 +92,7 @@ public class ListAccountsRequest {
     }
     
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests. Maximum page size is set to 1000.
      * Set to the value of next for the next page of results.
      * Set to the value of previous for the previous page of results.
      * No other parameters can be set when this parameter is set.
