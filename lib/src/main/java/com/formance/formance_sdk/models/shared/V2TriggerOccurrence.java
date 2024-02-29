@@ -4,6 +4,8 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -23,6 +25,15 @@ public class V2TriggerOccurrence {
         return this;
     }
     
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("error")
+    public String error;
+
+    public V2TriggerOccurrence withError(String error) {
+        this.error = error;
+        return this;
+    }
+    
     @JsonProperty("event")
     public java.util.Map<String, Object> event;
 
@@ -39,6 +50,7 @@ public class V2TriggerOccurrence {
         return this;
     }
     
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowInstance")
     public V2WorkflowInstance workflowInstance;
 
@@ -47,6 +59,7 @@ public class V2TriggerOccurrence {
         return this;
     }
     
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowInstanceID")
     public String workflowInstanceID;
 
@@ -55,11 +68,9 @@ public class V2TriggerOccurrence {
         return this;
     }
     
-    public V2TriggerOccurrence(@JsonProperty("date") OffsetDateTime date, @JsonProperty("event") java.util.Map<String, Object> event, @JsonProperty("triggerID") String triggerID, @JsonProperty("workflowInstance") V2WorkflowInstance workflowInstance, @JsonProperty("workflowInstanceID") String workflowInstanceID) {
+    public V2TriggerOccurrence(@JsonProperty("date") OffsetDateTime date, @JsonProperty("event") java.util.Map<String, Object> event, @JsonProperty("triggerID") String triggerID) {
         this.date = date;
         this.event = event;
         this.triggerID = triggerID;
-        this.workflowInstance = workflowInstance;
-        this.workflowInstanceID = workflowInstanceID;
   }
 }
