@@ -28,4 +28,4 @@ java:
   ossrhURL: https://maven.pkg.github.com/formancehq/formance-sdk-java
   outputModelSuffix: output
   projectName: formance-sdk-java
-  templateVersion: v1
+  templateVersion: v2
