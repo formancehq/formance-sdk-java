@@ -1,57 +1,23 @@
 name: Publish
-"on":
-  push:
-    branches:
-      - release/v*.*.*
-      - release/v*.*.*-alpha.*
-      - release/v*.*.*-beta.*
-      - release/v*.*.*-rc.*version
-jobs:
-  Release:
-    name: 'Release'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Extract branch name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/release/}}" >> $GITHUB_OUTPUT
-        id: extract_branch
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.extract_branch.outputs.branch }}
-          release_name: ${{ steps.extract_branch.outputs.branch }}
-          draft: false
-          prerelease: false
-      - run: gh repo edit --default-branch=release/${{ steps.extract_branch.outputs.branch }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.NUMARY_GITHUB_TOKEN }}
 
-  Publish:
-    name: Publish
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    needs:
-      - Release
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: "11"
-          distribution: "corretto"
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-      - name: Publish package
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: -Pskip.signing=true publish
-        env:
-          MAVEN_USERNAME: "flemzord"
-          MAVEN_PASSWORD:  ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+on:
+  push: # Will trigger when the RELEASES.md file is updated by the merged PR from the generation workflow
+    paths:
+      - 'RELEASES.md'
+    branches:
+      - main
+
+jobs:
+  publish:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v14 # Import the SDK publishing workflow to handle publishing to the package managers
+    with:
+      publish_java: true # Tells the publishing action to publish the Java SDK to Maven Central
+      create_release: true
+      use_sonatype_central: true
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+      java_gpg_secret_key: ${{ secrets.JAVA_GPG_SECRET_KEY }}
+      java_gpg_passphrase: ${{ secrets.JAVA_GPG_PASSPHRASE }}
+      ossrh_username: ${{ secrets.OSSRH_USERNAME }}
+      ossrh_password: ${{ secrets.OSSRH_PASSWORD }}
