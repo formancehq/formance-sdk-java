@@ -26,7 +26,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -45,7 +45,7 @@ public class Application {
                 raw = new QueryRaw(
 );
                 sort = "id:asc";
-                target = "string";
+                target = "<value>";
                 terms = new String[]{{
                     add("destination=central_bank1"),
                 }};
@@ -94,7 +94,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();

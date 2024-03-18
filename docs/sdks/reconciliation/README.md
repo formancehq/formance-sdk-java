@@ -31,16 +31,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.PolicyRequest req = new PolicyRequest(
                 "default",
-                new java.util.HashMap<String, Object>(
+                new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }},
                 "XXX",
                 "XXX");
@@ -88,13 +88,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.DeletePolicyRequest req = new DeletePolicyRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.DeletePolicyResponse res = sdk.reconciliation.deletePolicy(req);
 
@@ -139,13 +139,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetPolicyRequest req = new GetPolicyRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetPolicyResponse res = sdk.reconciliation.getPolicy(req);
 
@@ -190,13 +190,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetReconciliationRequest req = new GetReconciliationRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetReconciliationResponse res = sdk.reconciliation.getReconciliation(req);
 
@@ -241,7 +241,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -296,7 +296,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -353,7 +353,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -362,7 +362,7 @@ public class Application {
                 new ReconciliationRequest(
                     OffsetDateTime.parse("2021-01-01T00:00:00.000Z"),
                     OffsetDateTime.parse("2021-01-01T00:00:00.000Z")),
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.ReconcileResponse res = sdk.reconciliation.reconcile(req);
 
@@ -406,7 +406,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();

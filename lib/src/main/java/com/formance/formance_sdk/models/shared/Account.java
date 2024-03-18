@@ -20,9 +20,9 @@ public class Account {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    public java.util.Map<String, Object> metadata;
+    public java.util.Map<String, java.lang.Object> metadata;
 
-    public Account withMetadata(java.util.Map<String, Object> metadata) {
+    public Account withMetadata(java.util.Map<String, java.lang.Object> metadata) {
         this.metadata = metadata;
         return this;
     }

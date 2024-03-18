@@ -17,9 +17,9 @@ public class PolicyRequest {
     }
     
     @JsonProperty("ledgerQuery")
-    public java.util.Map<String, Object> ledgerQuery;
+    public java.util.Map<String, java.lang.Object> ledgerQuery;
 
-    public PolicyRequest withLedgerQuery(java.util.Map<String, Object> ledgerQuery) {
+    public PolicyRequest withLedgerQuery(java.util.Map<String, java.lang.Object> ledgerQuery) {
         this.ledgerQuery = ledgerQuery;
         return this;
     }
@@ -40,7 +40,7 @@ public class PolicyRequest {
         return this;
     }
     
-    public PolicyRequest(@JsonProperty("ledgerName") String ledgerName, @JsonProperty("ledgerQuery") java.util.Map<String, Object> ledgerQuery, @JsonProperty("name") String name, @JsonProperty("paymentsPoolID") String paymentsPoolID) {
+    public PolicyRequest(@JsonProperty("ledgerName") String ledgerName, @JsonProperty("ledgerQuery") java.util.Map<String, java.lang.Object> ledgerQuery, @JsonProperty("name") String name, @JsonProperty("paymentsPoolID") String paymentsPoolID) {
         this.ledgerName = ledgerName;
         this.ledgerQuery = ledgerQuery;
         this.name = name;

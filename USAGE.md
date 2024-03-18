@@ -11,7 +11,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();

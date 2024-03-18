@@ -22,7 +22,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### Gradle
 
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-rc.15'
+implementation 'com.formance.formance_sdk:formance-sdk-java:2.1.0'
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -43,7 +43,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();

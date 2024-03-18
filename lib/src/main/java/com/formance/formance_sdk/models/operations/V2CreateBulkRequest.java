@@ -10,9 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
 public class V2CreateBulkRequest {
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public Object[] requestBody;
+    public java.lang.Object[] requestBody;
 
-    public V2CreateBulkRequest withRequestBody(Object[] requestBody) {
+    public V2CreateBulkRequest withRequestBody(java.lang.Object[] requestBody) {
         this.requestBody = requestBody;
         return this;
     }

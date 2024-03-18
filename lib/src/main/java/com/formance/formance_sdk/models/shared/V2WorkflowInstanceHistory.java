@@ -25,9 +25,9 @@ public class V2WorkflowInstanceHistory {
     }
     
     @JsonProperty("input")
-    public Object input;
+    public java.lang.Object input;
 
-    public V2WorkflowInstanceHistory withInput(Object input) {
+    public V2WorkflowInstanceHistory withInput(java.lang.Object input) {
         this.input = input;
         return this;
     }
@@ -69,7 +69,7 @@ public class V2WorkflowInstanceHistory {
         return this;
     }
     
-    public V2WorkflowInstanceHistory(@JsonProperty("input") Object input, @JsonProperty("name") String name, @JsonProperty("startedAt") OffsetDateTime startedAt, @JsonProperty("terminated") Boolean terminated) {
+    public V2WorkflowInstanceHistory(@JsonProperty("input") java.lang.Object input, @JsonProperty("name") String name, @JsonProperty("startedAt") OffsetDateTime startedAt, @JsonProperty("terminated") Boolean terminated) {
         this.input = input;
         this.name = name;
         this.startedAt = startedAt;

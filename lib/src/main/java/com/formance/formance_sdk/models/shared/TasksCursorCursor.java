@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TasksCursorCursor {
     @JsonProperty("data")
-    public Object[] data;
+    public java.lang.Object[] data;
 
-    public TasksCursorCursor withData(Object[] data) {
+    public TasksCursorCursor withData(java.lang.Object[] data) {
         this.data = data;
         return this;
     }
@@ -52,7 +52,7 @@ public class TasksCursorCursor {
         return this;
     }
     
-    public TasksCursorCursor(@JsonProperty("data") Object[] data, @JsonProperty("hasMore") Boolean hasMore, @JsonProperty("pageSize") Long pageSize) {
+    public TasksCursorCursor(@JsonProperty("data") java.lang.Object[] data, @JsonProperty("hasMore") Boolean hasMore, @JsonProperty("pageSize") Long pageSize) {
         this.data = data;
         this.hasMore = hasMore;
         this.pageSize = pageSize;

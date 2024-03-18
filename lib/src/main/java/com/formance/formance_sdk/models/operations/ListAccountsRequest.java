@@ -72,9 +72,9 @@ public class ListAccountsRequest {
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
-    public java.util.Map<String, Object> metadata;
+    public java.util.Map<String, java.lang.Object> metadata;
 
-    public ListAccountsRequest withMetadata(java.util.Map<String, Object> metadata) {
+    public ListAccountsRequest withMetadata(java.util.Map<String, java.lang.Object> metadata) {
         this.metadata = metadata;
         return this;
     }

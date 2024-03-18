@@ -29,9 +29,9 @@ public class TriggerData {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
-    public java.util.Map<String, Object> vars;
+    public java.util.Map<String, java.lang.Object> vars;
 
-    public TriggerData withVars(java.util.Map<String, Object> vars) {
+    public TriggerData withVars(java.util.Map<String, java.lang.Object> vars) {
         this.vars = vars;
         return this;
     }

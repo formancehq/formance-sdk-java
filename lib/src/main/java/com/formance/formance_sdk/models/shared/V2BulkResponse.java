@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class V2BulkResponse {
     @JsonProperty("data")
-    public Object[] data;
+    public java.lang.Object[] data;
 
-    public V2BulkResponse withData(Object[] data) {
+    public V2BulkResponse withData(java.lang.Object[] data) {
         this.data = data;
         return this;
     }
     
-    public V2BulkResponse(@JsonProperty("data") Object[] data) {
+    public V2BulkResponse(@JsonProperty("data") java.lang.Object[] data) {
         this.data = data;
   }
 }

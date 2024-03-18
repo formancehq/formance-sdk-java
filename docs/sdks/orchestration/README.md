@@ -58,13 +58,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.CancelEventRequest req = new CancelEventRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.CancelEventResponse res = sdk.orchestration.cancelEvent(req);
 
@@ -109,18 +109,18 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.TriggerData req = new TriggerData(
-                "string",
-                "string"){{
-                filter = "string";
-                vars = new java.util.HashMap<String, Object>(
+                "<value>",
+                "<value>"){{
+                filter = "<value>";
+                vars = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
 
             }};
@@ -168,19 +168,19 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.CreateWorkflowRequest req = new CreateWorkflowRequest(
-                new java.util.HashMap<String, Object>[]{{
-                    add(new java.util.HashMap<String, Object>(
+                new java.util.HashMap<String, java.lang.Object>[]{{
+                    add(new java.util.HashMap<String, java.lang.Object>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }}),
                 }}){{
-                name = "string";
+                name = "<value>";
 
             }};
 
@@ -227,13 +227,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.DeleteTriggerRequest req = new DeleteTriggerRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.DeleteTriggerResponse res = sdk.orchestration.deleteTrigger(req);
 
@@ -278,13 +278,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.DeleteWorkflowRequest req = new DeleteWorkflowRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.DeleteWorkflowResponse res = sdk.orchestration.deleteWorkflow(req);
 
@@ -329,13 +329,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetInstanceRequest req = new GetInstanceRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetInstanceResponse res = sdk.orchestration.getInstance(req);
 
@@ -380,13 +380,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest req = new GetInstanceHistoryRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse res = sdk.orchestration.getInstanceHistory(req);
 
@@ -431,13 +431,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest req = new GetInstanceStageHistoryRequest(
-                "string",
+                "<value>",
                 600636L);
 
             com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse res = sdk.orchestration.getInstanceStageHistory(req);
@@ -483,13 +483,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetWorkflowRequest req = new GetWorkflowRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetWorkflowResponse res = sdk.orchestration.getWorkflow(req);
 
@@ -534,7 +534,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -542,7 +542,7 @@ public class Application {
             com.formance.formance_sdk.models.operations.ListInstancesRequest req = new ListInstancesRequest(
 ){{
                 running = false;
-                workflowID = "string";
+                workflowID = "<value>";
 
             }};
 
@@ -588,7 +588,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -630,13 +630,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest req = new ListTriggersOccurrencesRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse res = sdk.orchestration.listTriggersOccurrences(req);
 
@@ -680,7 +680,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -721,7 +721,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -763,13 +763,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.ReadTriggerRequest req = new ReadTriggerRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.ReadTriggerResponse res = sdk.orchestration.readTrigger(req);
 
@@ -814,16 +814,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.RunWorkflowRequest req = new RunWorkflowRequest(
-                "string"){{
+                "<value>"){{
                 requestBody = new java.util.HashMap<String, String>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 wait = false;
 
@@ -873,15 +873,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.SendEventRequest req = new SendEventRequest(
-                "string"){{
+                "<value>"){{
                 requestBody = new SendEventRequestBody(
-                    "string");
+                    "<value>");
 
             }};
 
@@ -928,16 +928,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.TestTriggerRequest req = new TestTriggerRequest(
-                "string"){{
-                requestBody = new java.util.HashMap<String, Object>(
+                "<value>"){{
+                requestBody = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
 
             }};
@@ -985,13 +985,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2CancelEventRequest req = new V2CancelEventRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.V2CancelEventResponse res = sdk.orchestration.v2CancelEvent(req);
 
@@ -1036,18 +1036,18 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.V2TriggerData req = new V2TriggerData(
-                "string",
-                "string"){{
-                filter = "string";
-                vars = new java.util.HashMap<String, Object>(
+                "<value>",
+                "<value>"){{
+                filter = "<value>";
+                vars = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
 
             }};
@@ -1095,19 +1095,19 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest req = new V2CreateWorkflowRequest(
-                new java.util.HashMap<String, Object>[]{{
-                    add(new java.util.HashMap<String, Object>(
+                new java.util.HashMap<String, java.lang.Object>[]{{
+                    add(new java.util.HashMap<String, java.lang.Object>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }}),
                 }}){{
-                name = "string";
+                name = "<value>";
 
             }};
 
@@ -1154,13 +1154,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest req = new V2DeleteTriggerRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse res = sdk.orchestration.v2DeleteTrigger(req);
 
@@ -1205,13 +1205,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest req = new V2DeleteWorkflowRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse res = sdk.orchestration.v2DeleteWorkflow(req);
 
@@ -1256,13 +1256,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2GetInstanceRequest req = new V2GetInstanceRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.V2GetInstanceResponse res = sdk.orchestration.v2GetInstance(req);
 
@@ -1307,13 +1307,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest req = new V2GetInstanceHistoryRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse res = sdk.orchestration.v2GetInstanceHistory(req);
 
@@ -1358,13 +1358,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest req = new V2GetInstanceStageHistoryRequest(
-                "string",
+                "<value>",
                 465454L);
 
             com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse res = sdk.orchestration.v2GetInstanceStageHistory(req);
@@ -1409,7 +1409,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1451,13 +1451,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2GetWorkflowRequest req = new V2GetWorkflowRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.V2GetWorkflowResponse res = sdk.orchestration.v2GetWorkflow(req);
 
@@ -1502,7 +1502,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1510,7 +1510,7 @@ public class Application {
             com.formance.formance_sdk.models.operations.V2ListInstancesRequest req = new V2ListInstancesRequest(
 ){{
                 running = false;
-                workflowID = "string";
+                workflowID = "<value>";
 
             }};
 
@@ -1556,7 +1556,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1598,13 +1598,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest req = new V2ListTriggersOccurrencesRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse res = sdk.orchestration.v2ListTriggersOccurrences(req);
 
@@ -1648,7 +1648,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1690,13 +1690,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2ReadTriggerRequest req = new V2ReadTriggerRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.V2ReadTriggerResponse res = sdk.orchestration.v2ReadTrigger(req);
 
@@ -1741,16 +1741,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2RunWorkflowRequest req = new V2RunWorkflowRequest(
-                "string"){{
+                "<value>"){{
                 requestBody = new java.util.HashMap<String, String>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 wait = false;
 
@@ -1800,15 +1800,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2SendEventRequest req = new V2SendEventRequest(
-                "string"){{
+                "<value>"){{
                 requestBody = new V2SendEventRequestBody(
-                    "string");
+                    "<value>");
 
             }};
 

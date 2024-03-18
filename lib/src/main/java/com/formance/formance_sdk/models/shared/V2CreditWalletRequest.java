@@ -51,14 +51,14 @@ public class V2CreditWalletRequest {
     }
     
     @JsonProperty("sources")
-    public Object[] sources;
+    public java.lang.Object[] sources;
 
-    public V2CreditWalletRequest withSources(Object[] sources) {
+    public V2CreditWalletRequest withSources(java.lang.Object[] sources) {
         this.sources = sources;
         return this;
     }
     
-    public V2CreditWalletRequest(@JsonProperty("amount") V2Monetary amount, @JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("sources") Object[] sources) {
+    public V2CreditWalletRequest(@JsonProperty("amount") V2Monetary amount, @JsonProperty("metadata") java.util.Map<String, String> metadata, @JsonProperty("sources") java.lang.Object[] sources) {
         this.amount = amount;
         this.metadata = metadata;
         this.sources = sources;

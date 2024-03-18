@@ -35,9 +35,9 @@ public class TriggerOccurrence {
     }
     
     @JsonProperty("event")
-    public java.util.Map<String, Object> event;
+    public java.util.Map<String, java.lang.Object> event;
 
-    public TriggerOccurrence withEvent(java.util.Map<String, Object> event) {
+    public TriggerOccurrence withEvent(java.util.Map<String, java.lang.Object> event) {
         this.event = event;
         return this;
     }
@@ -68,7 +68,7 @@ public class TriggerOccurrence {
         return this;
     }
     
-    public TriggerOccurrence(@JsonProperty("date") OffsetDateTime date, @JsonProperty("event") java.util.Map<String, Object> event, @JsonProperty("triggerID") String triggerID) {
+    public TriggerOccurrence(@JsonProperty("date") OffsetDateTime date, @JsonProperty("event") java.util.Map<String, java.lang.Object> event, @JsonProperty("triggerID") String triggerID) {
         this.date = date;
         this.event = event;
         this.triggerID = triggerID;

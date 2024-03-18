@@ -10,9 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
 public class UpdateConnectorConfigV1Request {
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public Object requestBody;
+    public java.lang.Object requestBody;
 
-    public UpdateConnectorConfigV1Request withRequestBody(Object requestBody) {
+    public UpdateConnectorConfigV1Request withRequestBody(java.lang.Object requestBody) {
         this.requestBody = requestBody;
         return this;
     }
@@ -39,7 +39,7 @@ public class UpdateConnectorConfigV1Request {
         return this;
     }
     
-    public UpdateConnectorConfigV1Request(@JsonProperty("RequestBody") Object requestBody, @JsonProperty("connector") com.formance.formance_sdk.models.shared.Connector connector, @JsonProperty("connectorId") String connectorId) {
+    public UpdateConnectorConfigV1Request(@JsonProperty("RequestBody") java.lang.Object requestBody, @JsonProperty("connector") com.formance.formance_sdk.models.shared.Connector connector, @JsonProperty("connectorId") String connectorId) {
         this.requestBody = requestBody;
         this.connector = connector;
         this.connectorId = connectorId;

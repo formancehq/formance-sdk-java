@@ -21,9 +21,9 @@ public class UpdateClientRequest {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    public java.util.Map<String, Object> metadata;
+    public java.util.Map<String, java.lang.Object> metadata;
 
-    public UpdateClientRequest withMetadata(java.util.Map<String, Object> metadata) {
+    public UpdateClientRequest withMetadata(java.util.Map<String, java.lang.Object> metadata) {
         this.metadata = metadata;
         return this;
     }

@@ -5,7 +5,7 @@
 
 | Field                                        | Type                                         | Required                                     | Description                                  | Example                                      |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| `data`                                       | List<*Object*>                               | :heavy_check_mark:                           | N/A                                          |                                              |
+| `data`                                       | List<*java.lang.Object*>                     | :heavy_check_mark:                           | N/A                                          |                                              |
 | `hasMore`                                    | *Boolean*                                    | :heavy_check_mark:                           | N/A                                          | false                                        |
 | `next`                                       | *String*                                     | :heavy_minus_sign:                           | N/A                                          |                                              |
 | `pageSize`                                   | *Long*                                       | :heavy_check_mark:                           | N/A                                          | 15                                           |

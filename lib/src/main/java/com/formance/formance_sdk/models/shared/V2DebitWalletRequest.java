@@ -38,9 +38,9 @@ public class V2DebitWalletRequest {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    public Object destination;
+    public java.lang.Object destination;
 
-    public V2DebitWalletRequest withDestination(Object destination) {
+    public V2DebitWalletRequest withDestination(java.lang.Object destination) {
         this.destination = destination;
         return this;
     }

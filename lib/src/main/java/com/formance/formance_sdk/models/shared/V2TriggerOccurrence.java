@@ -35,9 +35,9 @@ public class V2TriggerOccurrence {
     }
     
     @JsonProperty("event")
-    public java.util.Map<String, Object> event;
+    public java.util.Map<String, java.lang.Object> event;
 
-    public V2TriggerOccurrence withEvent(java.util.Map<String, Object> event) {
+    public V2TriggerOccurrence withEvent(java.util.Map<String, java.lang.Object> event) {
         this.event = event;
         return this;
     }
@@ -68,7 +68,7 @@ public class V2TriggerOccurrence {
         return this;
     }
     
-    public V2TriggerOccurrence(@JsonProperty("date") OffsetDateTime date, @JsonProperty("event") java.util.Map<String, Object> event, @JsonProperty("triggerID") String triggerID) {
+    public V2TriggerOccurrence(@JsonProperty("date") OffsetDateTime date, @JsonProperty("event") java.util.Map<String, java.lang.Object> event, @JsonProperty("triggerID") String triggerID) {
         this.date = date;
         this.event = event;
         this.triggerID = triggerID;

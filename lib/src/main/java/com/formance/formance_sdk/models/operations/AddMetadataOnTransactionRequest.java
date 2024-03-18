@@ -13,9 +13,9 @@ public class AddMetadataOnTransactionRequest {
      * metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public java.util.Map<String, Object> requestBody;
+    public java.util.Map<String, java.lang.Object> requestBody;
 
-    public AddMetadataOnTransactionRequest withRequestBody(java.util.Map<String, Object> requestBody) {
+    public AddMetadataOnTransactionRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
         this.requestBody = requestBody;
         return this;
     }

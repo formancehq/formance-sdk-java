@@ -24,9 +24,9 @@ public class Response {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    public java.util.Map<String, Object> data;
+    public java.util.Map<String, java.lang.Object> data;
 
-    public Response withData(java.util.Map<String, Object> data) {
+    public Response withData(java.util.Map<String, java.lang.Object> data) {
         this.data = data;
         return this;
     }

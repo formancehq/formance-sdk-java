@@ -13,9 +13,9 @@ public class AddMetadataToAccountRequest {
      * metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public java.util.Map<String, Object> requestBody;
+    public java.util.Map<String, java.lang.Object> requestBody;
 
-    public AddMetadataToAccountRequest withRequestBody(java.util.Map<String, Object> requestBody) {
+    public AddMetadataToAccountRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
         this.requestBody = requestBody;
         return this;
     }
@@ -46,7 +46,7 @@ public class AddMetadataToAccountRequest {
         return this;
     }
     
-    public AddMetadataToAccountRequest(@JsonProperty("RequestBody") java.util.Map<String, Object> requestBody, @JsonProperty("address") String address, @JsonProperty("ledger") String ledger) {
+    public AddMetadataToAccountRequest(@JsonProperty("RequestBody") java.util.Map<String, java.lang.Object> requestBody, @JsonProperty("address") String address, @JsonProperty("ledger") String ledger) {
         this.requestBody = requestBody;
         this.address = address;
         this.ledger = ledger;

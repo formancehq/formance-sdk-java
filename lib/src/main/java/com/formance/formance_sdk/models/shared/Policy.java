@@ -40,9 +40,9 @@ public class Policy {
     }
     
     @JsonProperty("ledgerQuery")
-    public java.util.Map<String, Object> ledgerQuery;
+    public java.util.Map<String, java.lang.Object> ledgerQuery;
 
-    public Policy withLedgerQuery(java.util.Map<String, Object> ledgerQuery) {
+    public Policy withLedgerQuery(java.util.Map<String, java.lang.Object> ledgerQuery) {
         this.ledgerQuery = ledgerQuery;
         return this;
     }
@@ -63,7 +63,7 @@ public class Policy {
         return this;
     }
     
-    public Policy(@JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("ledgerName") String ledgerName, @JsonProperty("ledgerQuery") java.util.Map<String, Object> ledgerQuery, @JsonProperty("name") String name, @JsonProperty("paymentsPoolID") String paymentsPoolID) {
+    public Policy(@JsonProperty("createdAt") OffsetDateTime createdAt, @JsonProperty("id") String id, @JsonProperty("ledgerName") String ledgerName, @JsonProperty("ledgerQuery") java.util.Map<String, java.lang.Object> ledgerQuery, @JsonProperty("name") String name, @JsonProperty("paymentsPoolID") String paymentsPoolID) {
         this.createdAt = createdAt;
         this.id = id;
         this.ledgerName = ledgerName;

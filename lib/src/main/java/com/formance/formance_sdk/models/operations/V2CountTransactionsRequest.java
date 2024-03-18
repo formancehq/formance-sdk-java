@@ -11,9 +11,9 @@ import java.time.OffsetDateTime;
 
 public class V2CountTransactionsRequest {
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public java.util.Map<String, Object> requestBody;
+    public java.util.Map<String, java.lang.Object> requestBody;
 
-    public V2CountTransactionsRequest withRequestBody(java.util.Map<String, Object> requestBody) {
+    public V2CountTransactionsRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
         this.requestBody = requestBody;
         return this;
     }

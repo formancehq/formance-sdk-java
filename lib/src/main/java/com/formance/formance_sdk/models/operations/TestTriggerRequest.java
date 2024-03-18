@@ -10,9 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
 public class TestTriggerRequest {
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public java.util.Map<String, Object> requestBody;
+    public java.util.Map<String, java.lang.Object> requestBody;
 
-    public TestTriggerRequest withRequestBody(java.util.Map<String, Object> requestBody) {
+    public TestTriggerRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
         this.requestBody = requestBody;
         return this;
     }

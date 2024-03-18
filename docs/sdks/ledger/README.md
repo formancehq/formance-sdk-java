@@ -68,7 +68,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -89,10 +89,6 @@ public class Application {
                                 source = "users:001";
                             }}),
                         }}){{
-                            metadata = new java.util.HashMap<String, Object>(
-                            ){{
-                                put("key", "string");
-                            }};
                             postings = new com.formance.formance_sdk.models.shared.Posting[]{{
                                 add(new Posting(
                                 100L,
@@ -153,7 +149,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -161,9 +157,9 @@ public class Application {
             com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest req = new AddMetadataOnTransactionRequest(
                 "ledger001",
                 1234L){{
-                requestBody = new java.util.HashMap<String, Object>(
+                requestBody = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
 
             }};
@@ -211,15 +207,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest req = new AddMetadataToAccountRequest(
-                new java.util.HashMap<String, Object>(
+                new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }},
                 "users:001",
                 "ledger001");
@@ -267,7 +263,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -275,9 +271,9 @@ public class Application {
             com.formance.formance_sdk.models.operations.CountAccountsRequest req = new CountAccountsRequest(
                 "ledger001"){{
                 address = "users:.+";
-                metadata = new java.util.HashMap<String, Object>(
+                metadata = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
 
             }};
@@ -327,7 +323,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -392,7 +388,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -400,9 +396,9 @@ public class Application {
             com.formance.formance_sdk.models.operations.CreateTransactionRequest req = new CreateTransactionRequest(
                 new PostTransaction(
 ){{
-                    metadata = new java.util.HashMap<String, Object>(
+                    metadata = new java.util.HashMap<String, java.lang.Object>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }};
                     postings = new com.formance.formance_sdk.models.shared.Posting[]{{
                         add(new Posting(
@@ -426,9 +422,9 @@ send [COIN 10] (
 	destination = $user
 )
 "){{
-                        vars = new java.util.HashMap<String, Object>(
+                        vars = new java.util.HashMap<String, java.lang.Object>(
                         ){{
-                            put("user", "string");
+                            put("user", "users:042");
                         }};
 
                     }};
@@ -483,7 +479,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -535,7 +531,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -592,7 +588,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -646,7 +642,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -688,7 +684,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -739,7 +735,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -790,7 +786,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -842,7 +838,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -853,9 +849,9 @@ public class Application {
                 after = "users:003";
                 balance = 2400L;
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                metadata = new java.util.HashMap<String, Object>(
+                metadata = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 pageSize = 875058L;
                 paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
@@ -906,7 +902,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -965,7 +961,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -977,9 +973,9 @@ public class Application {
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 destination = "users:001";
                 endTime = OffsetDateTime.parse("2023-09-09T05:38:58.239Z");
-                metadata = new java.util.HashMap<String, Object>(
+                metadata = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 pageSize = 1306L;
                 reference = "ref:001";
@@ -1032,7 +1028,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1083,7 +1079,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1142,7 +1138,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1157,14 +1153,14 @@ send [COIN 10] (
 	destination = $user
 )
 "){{
-                    metadata = new java.util.HashMap<String, Object>(
+                    metadata = new java.util.HashMap<String, java.lang.Object>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }};
                     reference = "order_1234";
-                    vars = new java.util.HashMap<String, Object>(
+                    vars = new java.util.HashMap<String, java.lang.Object>(
                     ){{
-                        put("user", "string");
+                        put("user", "users:042");
                     }};
 
                 }},
@@ -1219,7 +1215,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1280,7 +1276,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1288,7 +1284,7 @@ public class Application {
             com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest req = new V2AddMetadataOnTransactionRequest(
                 1234L,
                 "ledger001"){{
-                idempotencyKey = "string";
+                idempotencyKey = "<value>";
                 requestBody = new java.util.HashMap<String, String>(
                 ){{
                     put("admin", "true");
@@ -1340,7 +1336,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1352,7 +1348,7 @@ public class Application {
                 }},
                 "users:001",
                 "ledger001"){{
-                idempotencyKey = "string";
+                idempotencyKey = "<value>";
                 dryRun = true;
 
             }};
@@ -1401,16 +1397,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2CountAccountsRequest req = new V2CountAccountsRequest(
                 "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
+                requestBody = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 pit = OffsetDateTime.parse("2023-11-24T08:09:15.014Z");
 
@@ -1460,16 +1456,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2CountTransactionsRequest req = new V2CountTransactionsRequest(
                 "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
+                requestBody = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 pit = OffsetDateTime.parse("2022-01-19T17:22:57.577Z");
 
@@ -1518,15 +1514,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2CreateBulkRequest req = new V2CreateBulkRequest(
                 "ledger001"){{
-                requestBody = new Object[]{{
-                    add("string"),
+                requestBody = new java.lang.Object[]{{
+                    add("<value>"),
                 }};
 
             }};
@@ -1575,7 +1571,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1584,7 +1580,7 @@ public class Application {
                 "ledger001"){{
                 v2CreateLedgerRequest = new V2CreateLedgerRequest(
 ){{
-                    bucket = "string";
+                    bucket = "<value>";
 
                 }};
 
@@ -1637,7 +1633,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1670,9 +1666,9 @@ send [COIN 10] (
 	destination = $user
 )
 "){{
-                        vars = new java.util.HashMap<String, Object>(
+                        vars = new java.util.HashMap<String, java.lang.Object>(
                         ){{
-                            put("user", "string");
+                            put("user", "users:042");
                         }};
 
                     }};
@@ -1680,7 +1676,7 @@ send [COIN 10] (
 
                 }},
                 "ledger001"){{
-                idempotencyKey = "string";
+                idempotencyKey = "<value>";
                 dryRun = true;
 
             }};
@@ -1728,13 +1724,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest req = new V2DeleteAccountMetadataRequest(
-                "string",
+                "<value>",
                 "foo",
                 "ledger001");
 
@@ -1781,7 +1777,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1835,7 +1831,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1843,7 +1839,7 @@ public class Application {
             com.formance.formance_sdk.models.operations.V2GetAccountRequest req = new V2GetAccountRequest(
                 "users:001",
                 "ledger001"){{
-                expand = "string";
+                expand = "<value>";
                 pit = OffsetDateTime.parse("2022-01-12T20:42:33.400Z");
 
             }};
@@ -1892,16 +1888,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest req = new V2GetBalancesAggregatedRequest(
                 "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
+                requestBody = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 pit = OffsetDateTime.parse("2024-12-10T15:05:25.901Z");
                 useInsertionDate = false;
@@ -1950,7 +1946,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -1992,7 +1988,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -2043,7 +2039,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -2095,7 +2091,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -2103,7 +2099,7 @@ public class Application {
             com.formance.formance_sdk.models.operations.V2GetTransactionRequest req = new V2GetTransactionRequest(
                 1234L,
                 "ledger001"){{
-                expand = "string";
+                expand = "<value>";
                 pit = OffsetDateTime.parse("2023-04-12T09:39:55.552Z");
 
             }};
@@ -2152,19 +2148,19 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2ListAccountsRequest req = new V2ListAccountsRequest(
                 "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
+                requestBody = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                expand = "string";
+                expand = "<value>";
                 pageSize = 26583L;
                 pit = OffsetDateTime.parse("2022-03-24T02:49:23.883Z");
 
@@ -2213,7 +2209,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -2269,16 +2265,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2ListLogsRequest req = new V2ListLogsRequest(
                 "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
+                requestBody = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 549084L;
@@ -2330,19 +2326,19 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.V2ListTransactionsRequest req = new V2ListTransactionsRequest(
                 "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
+                requestBody = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                expand = "string";
+                expand = "<value>";
                 pageSize = 639042L;
                 pit = OffsetDateTime.parse("2024-02-16T01:05:00.445Z");
 
@@ -2392,7 +2388,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -2443,7 +2439,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();

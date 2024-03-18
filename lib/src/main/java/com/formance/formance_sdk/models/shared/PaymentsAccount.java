@@ -87,6 +87,15 @@ public class PaymentsAccount {
         return this;
     }
     
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    public String provider;
+
+    public PaymentsAccount withProvider(String provider) {
+        this.provider = provider;
+        return this;
+    }
+    
     @JsonProperty("raw")
     public PaymentsAccountRaw raw;
 

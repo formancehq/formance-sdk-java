@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TaskResponse {
     @JsonProperty("data")
-    public Object data;
+    public java.lang.Object data;
 
-    public TaskResponse withData(Object data) {
+    public TaskResponse withData(java.lang.Object data) {
         this.data = data;
         return this;
     }
     
-    public TaskResponse(@JsonProperty("data") Object data) {
+    public TaskResponse(@JsonProperty("data") java.lang.Object data) {
         this.data = data;
   }
 }

@@ -20,14 +20,14 @@ public class WorkflowConfig {
     }
     
     @JsonProperty("stages")
-    public java.util.Map<String, Object>[] stages;
+    public java.util.Map<String, java.lang.Object>[] stages;
 
-    public WorkflowConfig withStages(java.util.Map<String, Object>[] stages) {
+    public WorkflowConfig withStages(java.util.Map<String, java.lang.Object>[] stages) {
         this.stages = stages;
         return this;
     }
     
-    public WorkflowConfig(@JsonProperty("stages") java.util.Map<String, Object>[] stages) {
+    public WorkflowConfig(@JsonProperty("stages") java.util.Map<String, java.lang.Object>[] stages) {
         this.stages = stages;
   }
 }

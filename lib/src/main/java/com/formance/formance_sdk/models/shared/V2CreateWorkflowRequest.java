@@ -20,14 +20,14 @@ public class V2CreateWorkflowRequest {
     }
     
     @JsonProperty("stages")
-    public java.util.Map<String, Object>[] stages;
+    public java.util.Map<String, java.lang.Object>[] stages;
 
-    public V2CreateWorkflowRequest withStages(java.util.Map<String, Object>[] stages) {
+    public V2CreateWorkflowRequest withStages(java.util.Map<String, java.lang.Object>[] stages) {
         this.stages = stages;
         return this;
     }
     
-    public V2CreateWorkflowRequest(@JsonProperty("stages") java.util.Map<String, Object>[] stages) {
+    public V2CreateWorkflowRequest(@JsonProperty("stages") java.util.Map<String, java.lang.Object>[] stages) {
         this.stages = stages;
   }
 }

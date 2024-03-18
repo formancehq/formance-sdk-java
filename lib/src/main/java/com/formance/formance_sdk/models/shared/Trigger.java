@@ -52,9 +52,9 @@ public class Trigger {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
-    public java.util.Map<String, Object> vars;
+    public java.util.Map<String, java.lang.Object> vars;
 
-    public Trigger withVars(java.util.Map<String, Object> vars) {
+    public Trigger withVars(java.util.Map<String, java.lang.Object> vars) {
         this.vars = vars;
         return this;
     }

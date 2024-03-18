@@ -8,6 +8,14 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
 
 public class PaymentslistAccountsRequest {
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    public java.util.Map<String, java.lang.Object> requestBody;
+
+    public PaymentslistAccountsRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
+        this.requestBody = requestBody;
+        return this;
+    }
+    
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.

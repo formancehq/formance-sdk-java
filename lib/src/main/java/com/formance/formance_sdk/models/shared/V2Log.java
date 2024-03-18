@@ -14,9 +14,9 @@ import java.time.OffsetDateTime;
 
 public class V2Log {
     @JsonProperty("data")
-    public java.util.Map<String, Object> data;
+    public java.util.Map<String, java.lang.Object> data;
 
-    public V2Log withData(java.util.Map<String, Object> data) {
+    public V2Log withData(java.util.Map<String, java.lang.Object> data) {
         this.data = data;
         return this;
     }
@@ -55,7 +55,7 @@ public class V2Log {
         return this;
     }
     
-    public V2Log(@JsonProperty("data") java.util.Map<String, Object> data, @JsonProperty("date") OffsetDateTime date, @JsonProperty("hash") String hash, @JsonProperty("id") Long id, @JsonProperty("type") V2LogType type) {
+    public V2Log(@JsonProperty("data") java.util.Map<String, java.lang.Object> data, @JsonProperty("date") OffsetDateTime date, @JsonProperty("hash") String hash, @JsonProperty("id") Long id, @JsonProperty("type") V2LogType type) {
         this.data = data;
         this.date = date;
         this.hash = hash;

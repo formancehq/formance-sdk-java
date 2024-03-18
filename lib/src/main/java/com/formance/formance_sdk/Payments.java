@@ -1185,6 +1185,8 @@ public class Payments {
         HTTPRequest req = new HTTPRequest();
         req.setMethod("GET");
         req.setURL(url);
+        SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(request, "requestBody", "json");
+        req.setBody(serializedRequestBody);
 
         req.addHeader("Accept", "application/json");
         req.addHeader("user-agent", this.sdkConfiguration.userAgent);

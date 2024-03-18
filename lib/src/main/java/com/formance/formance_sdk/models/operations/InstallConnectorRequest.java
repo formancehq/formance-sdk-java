@@ -10,9 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 
 public class InstallConnectorRequest {
     @SpeakeasyMetadata("request:mediaType=application/json")
-    public Object requestBody;
+    public java.lang.Object requestBody;
 
-    public InstallConnectorRequest withRequestBody(Object requestBody) {
+    public InstallConnectorRequest withRequestBody(java.lang.Object requestBody) {
         this.requestBody = requestBody;
         return this;
     }
@@ -28,7 +28,7 @@ public class InstallConnectorRequest {
         return this;
     }
     
-    public InstallConnectorRequest(@JsonProperty("RequestBody") Object requestBody, @JsonProperty("connector") com.formance.formance_sdk.models.shared.Connector connector) {
+    public InstallConnectorRequest(@JsonProperty("RequestBody") java.lang.Object requestBody, @JsonProperty("connector") com.formance.formance_sdk.models.shared.Connector connector) {
         this.requestBody = requestBody;
         this.connector = connector;
   }

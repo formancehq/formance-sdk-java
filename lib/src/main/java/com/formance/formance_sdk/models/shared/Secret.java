@@ -36,9 +36,9 @@ public class Secret {
     
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    public java.util.Map<String, Object> metadata;
+    public java.util.Map<String, java.lang.Object> metadata;
 
-    public Secret withMetadata(java.util.Map<String, Object> metadata) {
+    public Secret withMetadata(java.util.Map<String, java.lang.Object> metadata) {
         this.metadata = metadata;
         return this;
     }

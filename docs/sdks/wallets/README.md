@@ -40,13 +40,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.ConfirmHoldRequest req = new ConfirmHoldRequest(
-                "string"){{
+                "<value>"){{
                 confirmHoldRequest = new ConfirmHoldRequest(
 ){{
                     amount = 100L;
@@ -101,15 +101,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.CreateBalanceRequest req = new CreateBalanceRequest(
-                "string"){{
+                "<value>"){{
                 createBalanceRequest = new CreateBalanceRequest(
-                    "string"){{
+                    "<value>"){{
                     expiresAt = OffsetDateTime.parse("2024-03-08T03:22:14.635Z");
                     priority = 851262L;
 
@@ -160,7 +160,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -168,9 +168,9 @@ public class Application {
             com.formance.formance_sdk.models.shared.CreateWalletRequest req = new CreateWalletRequest(
                 new java.util.HashMap<String, String>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }},
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.CreateWalletResponse res = sdk.wallets.createWallet(req);
 
@@ -217,26 +217,26 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.CreditWalletRequest req = new CreditWalletRequest(
-                "string"){{
+                "<value>"){{
                 creditWalletRequest = new CreditWalletRequest(
                     new Monetary(
                         201874L,
-                        "string"),
+                        "<value>"),
                     new java.util.HashMap<String, String>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }},
-                    new Object[]{{
-                        add("string"),
+                    new java.lang.Object[]{{
+                        add("<value>"),
                     }}){{
-                    balance = "string";
-                    reference = "string";
+                    balance = "<value>";
+                    reference = "<value>";
 
                 }};
 
@@ -287,26 +287,26 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.DebitWalletRequest req = new DebitWalletRequest(
-                "string"){{
+                "<value>"){{
                 debitWalletRequest = new DebitWalletRequest(
                     new Monetary(
                         245256L,
-                        "string"),
+                        "<value>"),
                     new java.util.HashMap<String, String>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }}){{
                     balances = new String[]{{
-                        add("string"),
+                        add("<value>"),
                     }};
                     description = "Enhanced regional synergy";
-                    destination = "string";
+                    destination = "<value>";
                     pending = false;
 
                 }};
@@ -356,14 +356,14 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetBalanceRequest req = new GetBalanceRequest(
-                "string",
-                "string");
+                "<value>",
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetBalanceResponse res = sdk.wallets.getBalance(req);
 
@@ -408,13 +408,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetHoldRequest req = new GetHoldRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetHoldResponse res = sdk.wallets.getHold(req);
 
@@ -459,7 +459,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -469,10 +469,10 @@ public class Application {
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 metadata = new java.util.HashMap<String, String>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 pageSize = 692494L;
-                walletID = "string";
+                walletID = "<value>";
 
             }};
 
@@ -517,7 +517,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -526,7 +526,7 @@ public class Application {
 ){{
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 pageSize = 680555L;
-                walletID = "string";
+                walletID = "<value>";
 
             }};
 
@@ -573,13 +573,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetWalletRequest req = new GetWalletRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetWalletResponse res = sdk.wallets.getWallet(req);
 
@@ -624,13 +624,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.GetWalletSummaryRequest req = new GetWalletSummaryRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.GetWalletSummaryResponse res = sdk.wallets.getWalletSummary(req);
 
@@ -675,13 +675,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.ListBalancesRequest req = new ListBalancesRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.ListBalancesResponse res = sdk.wallets.listBalances(req);
 
@@ -726,7 +726,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -736,9 +736,9 @@ public class Application {
                 cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
                 metadata = new java.util.HashMap<String, String>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
-                name = "string";
+                name = "<value>";
                 pageSize = 412533L;
 
             }};
@@ -787,17 +787,17 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.UpdateWalletRequest req = new UpdateWalletRequest(
-                "string"){{
+                "<value>"){{
                 requestBody = new UpdateWalletRequestBody(
                     new java.util.HashMap<String, String>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }});
 
             }};
@@ -845,13 +845,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.VoidHoldRequest req = new VoidHoldRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.VoidHoldResponse res = sdk.wallets.voidHold(req);
 
@@ -895,7 +895,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();

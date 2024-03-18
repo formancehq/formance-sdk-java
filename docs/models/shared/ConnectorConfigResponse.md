@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `data`             | *Object*           | :heavy_check_mark: | N/A                |
+| `data`             | *java.lang.Object* | :heavy_check_mark: | N/A                |

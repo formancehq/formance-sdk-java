@@ -14,9 +14,9 @@ import java.time.OffsetDateTime;
 
 public class Log {
     @JsonProperty("data")
-    public java.util.Map<String, Object> data;
+    public java.util.Map<String, java.lang.Object> data;
 
-    public Log withData(java.util.Map<String, Object> data) {
+    public Log withData(java.util.Map<String, java.lang.Object> data) {
         this.data = data;
         return this;
     }
@@ -55,7 +55,7 @@ public class Log {
         return this;
     }
     
-    public Log(@JsonProperty("data") java.util.Map<String, Object> data, @JsonProperty("date") OffsetDateTime date, @JsonProperty("hash") String hash, @JsonProperty("id") Long id, @JsonProperty("type") Type type) {
+    public Log(@JsonProperty("data") java.util.Map<String, java.lang.Object> data, @JsonProperty("date") OffsetDateTime date, @JsonProperty("hash") String hash, @JsonProperty("id") Long id, @JsonProperty("type") Type type) {
         this.data = data;
         this.date = date;
         this.hash = hash;

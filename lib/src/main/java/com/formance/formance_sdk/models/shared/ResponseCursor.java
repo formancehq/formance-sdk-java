@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ResponseCursor {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    public java.util.Map<String, Object>[] data;
+    public java.util.Map<String, java.lang.Object>[] data;
 
-    public ResponseCursor withData(java.util.Map<String, Object>[] data) {
+    public ResponseCursor withData(java.util.Map<String, java.lang.Object>[] data) {
         this.data = data;
         return this;
     }

@@ -32,27 +32,27 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.shared.CreateClientRequest req = new CreateClientRequest(
-                "string"){{
+                "<value>"){{
                 description = "Managed optimizing help-desk";
-                metadata = new java.util.HashMap<String, Object>(
+                metadata = new java.util.HashMap<String, java.lang.Object>(
                 ){{
-                    put("key", "string");
+                    put("key", "<value>");
                 }};
                 postLogoutRedirectUris = new String[]{{
-                    add("string"),
+                    add("<value>"),
                 }};
                 public_ = false;
                 redirectUris = new String[]{{
-                    add("string"),
+                    add("<value>"),
                 }};
                 scopes = new String[]{{
-                    add("string"),
+                    add("<value>"),
                 }};
                 trusted = false;
 
@@ -102,18 +102,18 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.CreateSecretRequest req = new CreateSecretRequest(
-                "string"){{
+                "<value>"){{
                 createSecretRequest = new CreateSecretRequest(
-                    "string"){{
-                    metadata = new java.util.HashMap<String, Object>(
+                    "<value>"){{
+                    metadata = new java.util.HashMap<String, java.lang.Object>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }};
 
                 }};
@@ -163,13 +163,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.DeleteClientRequest req = new DeleteClientRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.DeleteClientResponse res = sdk.auth.deleteClient(req);
 
@@ -214,14 +214,14 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.DeleteSecretRequest req = new DeleteSecretRequest(
-                "string",
-                "string");
+                "<value>",
+                "<value>");
 
             com.formance.formance_sdk.models.operations.DeleteSecretResponse res = sdk.auth.deleteSecret(req);
 
@@ -265,7 +265,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -306,7 +306,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
@@ -348,13 +348,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.ReadClientRequest req = new ReadClientRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.ReadClientResponse res = sdk.auth.readClient(req);
 
@@ -399,13 +399,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.ReadUserRequest req = new ReadUserRequest(
-                "string");
+                "<value>");
 
             com.formance.formance_sdk.models.operations.ReadUserResponse res = sdk.auth.readUser(req);
 
@@ -451,29 +451,29 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .setSecurity(new Security(
-                "string"){{
+                "<value>"){{
                     authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
                 }})
                 .build();
 
             com.formance.formance_sdk.models.operations.UpdateClientRequest req = new UpdateClientRequest(
-                "string"){{
+                "<value>"){{
                 updateClientRequest = new UpdateClientRequest(
-                    "string"){{
+                    "<value>"){{
                     description = "Secured static model";
-                    metadata = new java.util.HashMap<String, Object>(
+                    metadata = new java.util.HashMap<String, java.lang.Object>(
                     ){{
-                        put("key", "string");
+                        put("key", "<value>");
                     }};
                     postLogoutRedirectUris = new String[]{{
-                        add("string"),
+                        add("<value>"),
                     }};
                     public_ = false;
                     redirectUris = new String[]{{
-                        add("string"),
+                        add("<value>"),
                     }};
                     scopes = new String[]{{
-                        add("string"),
+                        add("<value>"),
                     }};
                     trusted = false;
 

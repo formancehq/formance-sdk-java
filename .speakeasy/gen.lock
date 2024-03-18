@@ -1,18 +1,21 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 5e9a79dbe7142aa90188e21ea54c7198
-  docVersion: v2.0.0-rc.15
-  speakeasyVersion: internal
-  generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.15
-  configChecksum: 3f6f3d2b23363d3dfdeba0d4e918ea66
+  docChecksum: 254f15d23bfd21d49b8db8ecb44639be
+  docVersion: v2.0.0-rc.16
+  speakeasyVersion: 1.209.3
+  generationVersion: 2.281.2
+  releaseVersion: 2.1.0
+  configChecksum: b2132a73db8d3a8d47e14ab8ff66cf1b
+  repoURL: https://github.com/formancehq/formance-sdk-java.git
+  repoSubDirectory: .
+  published: true
 features:
   java:
-    core: 3.2.2
+    core: 3.5.2
     deprecations: 2.81.1
     getRequestBodies: 2.81.1
-    globalSecurity: 2.81.2
+    globalSecurity: 2.81.4
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
@@ -32,6 +35,7 @@ generatedFiles:
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
   - gradlew.bat
+  - settings.gradle
   - lib/build.gradle
   - lib/src/main/java/com/formance/formance_sdk/utils/DateTimeDeserializer.java
   - lib/src/main/java/com/formance/formance_sdk/utils/DateTimeSerializer.java
@@ -55,7 +59,6 @@ generatedFiles:
   - lib/src/main/java/com/formance/formance_sdk/utils/SpeakeasyMetadata.java
   - lib/src/main/java/com/formance/formance_sdk/utils/Types.java
   - lib/src/main/java/com/formance/formance_sdk/utils/Utils.java
-  - settings.gradle
   - lib/src/main/java/com/formance/formance_sdk/models/operations/GetVersionsResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/GetApiAuthWellKnownOpenidConfigurationResponse.java
   - lib/src/main/java/com/formance/formance_sdk/models/operations/CreateClientResponse.java
