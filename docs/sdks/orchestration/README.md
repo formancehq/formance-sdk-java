@@ -1,5 +1,5 @@
 # Orchestration
-(*orchestration*)
+(*orchestration()*)
 
 ### Available Operations
 
@@ -49,28 +49,39 @@ Cancel a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CancelEventRequest;
 import com.formance.formance_sdk.models.operations.CancelEventResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.CancelEventRequest req = new CancelEventRequest(
-                "string");
+            CancelEventRequest req = CancelEventRequest.builder()
+                .instanceID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.CancelEventResponse res = sdk.orchestration.cancelEvent(req);
+            CancelEventResponse res = sdk.orchestration().cancelEvent()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -87,8 +98,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CancelEventResponse](../../models/operations/CancelEventResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CancelEventResponse>](../../models/operations/CancelEventResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createTrigger
 
@@ -100,36 +115,45 @@ Create trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreateTriggerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.TriggerData;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.TriggerData req = new TriggerData(
-                "string",
-                "string"){{
-                filter = "string";
-                vars = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
+            TriggerData req = TriggerData.builder()
+                .event("<value>")
+                .workflowID("<value>")
+                .filter("<value>")
+                .vars(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .build();
 
-            }};
+            CreateTriggerResponse res = sdk.orchestration().createTrigger()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.CreateTriggerResponse res = sdk.orchestration.createTrigger(req);
-
-            if (res.createTriggerResponse != null) {
+            if (res.createTriggerResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -146,8 +170,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateTriggerResponse](../../models/operations/CreateTriggerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateTriggerResponse>](../../models/operations/CreateTriggerResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createWorkflow
 
@@ -159,36 +187,44 @@ Create a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreateWorkflowResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.CreateWorkflowRequest req = new CreateWorkflowRequest(
-                new java.util.HashMap<String, Object>[]{{
-                    add(new java.util.HashMap<String, Object>(
-                    ){{
-                        put("key", "string");
-                    }}),
-                }}){{
-                name = "string";
+            CreateWorkflowRequest req = CreateWorkflowRequest.builder()
+                .stages(java.util.List.of(
+                        java.util.Map.ofEntries(
+                            entry("key", "<value>"))))
+                .name("<value>")
+                .build();
 
-            }};
+            CreateWorkflowResponse res = sdk.orchestration().createWorkflow()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.CreateWorkflowResponse res = sdk.orchestration.createWorkflow(req);
-
-            if (res.createWorkflowResponse != null) {
+            if (res.createWorkflowResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -205,8 +241,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateWorkflowResponse](../../models/operations/CreateWorkflowResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateWorkflowResponse>](../../models/operations/CreateWorkflowResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deleteTrigger
 
@@ -218,28 +258,39 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeleteTriggerRequest;
 import com.formance.formance_sdk.models.operations.DeleteTriggerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeleteTriggerRequest req = new DeleteTriggerRequest(
-                "string");
+            DeleteTriggerRequest req = DeleteTriggerRequest.builder()
+                .triggerID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeleteTriggerResponse res = sdk.orchestration.deleteTrigger(req);
+            DeleteTriggerResponse res = sdk.orchestration().deleteTrigger()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -256,8 +307,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteTriggerResponse](../../models/operations/DeleteTriggerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteTriggerResponse>](../../models/operations/DeleteTriggerResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deleteWorkflow
 
@@ -269,28 +324,39 @@ Delete a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeleteWorkflowRequest;
 import com.formance.formance_sdk.models.operations.DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeleteWorkflowRequest req = new DeleteWorkflowRequest(
-                "string");
+            DeleteWorkflowRequest req = DeleteWorkflowRequest.builder()
+                .flowId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeleteWorkflowResponse res = sdk.orchestration.deleteWorkflow(req);
+            DeleteWorkflowResponse res = sdk.orchestration().deleteWorkflow()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -307,8 +373,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteWorkflowResponse](../../models/operations/DeleteWorkflowResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteWorkflowResponse>](../../models/operations/DeleteWorkflowResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInstance
 
@@ -320,28 +390,41 @@ Get a workflow instance by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetInstanceRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetInstanceRequest req = new GetInstanceRequest(
-                "string");
+            GetInstanceRequest req = GetInstanceRequest.builder()
+                .instanceID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetInstanceResponse res = sdk.orchestration.getInstance(req);
+            GetInstanceResponse res = sdk.orchestration().getInstance()
+                .request(req)
+                .call();
 
-            if (res.getWorkflowInstanceResponse != null) {
+            if (res.getWorkflowInstanceResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -358,8 +441,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetInstanceResponse](../../models/operations/GetInstanceResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetInstanceResponse>](../../models/operations/GetInstanceResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInstanceHistory
 
@@ -371,28 +458,41 @@ Get a workflow instance history by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest req = new GetInstanceHistoryRequest(
-                "string");
+            GetInstanceHistoryRequest req = GetInstanceHistoryRequest.builder()
+                .instanceID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse res = sdk.orchestration.getInstanceHistory(req);
+            GetInstanceHistoryResponse res = sdk.orchestration().getInstanceHistory()
+                .request(req)
+                .call();
 
-            if (res.getWorkflowInstanceHistoryResponse != null) {
+            if (res.getWorkflowInstanceHistoryResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -409,8 +509,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse](../../models/operations/GetInstanceHistoryResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse>](../../models/operations/GetInstanceHistoryResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInstanceStageHistory
 
@@ -422,29 +526,42 @@ Get a workflow instance stage history
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest req = new GetInstanceStageHistoryRequest(
-                "string",
-                600636L);
+            GetInstanceStageHistoryRequest req = GetInstanceStageHistoryRequest.builder()
+                .instanceID("<value>")
+                .number(600636L)
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse res = sdk.orchestration.getInstanceStageHistory(req);
+            GetInstanceStageHistoryResponse res = sdk.orchestration().getInstanceStageHistory()
+                .request(req)
+                .call();
 
-            if (res.getWorkflowInstanceHistoryStageResponse != null) {
+            if (res.getWorkflowInstanceHistoryStageResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -461,8 +578,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse](../../models/operations/GetInstanceStageHistoryResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse>](../../models/operations/GetInstanceStageHistoryResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getWorkflow
 
@@ -474,28 +595,41 @@ Get a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetWorkflowRequest;
 import com.formance.formance_sdk.models.operations.GetWorkflowResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetWorkflowRequest req = new GetWorkflowRequest(
-                "string");
+            GetWorkflowRequest req = GetWorkflowRequest.builder()
+                .flowId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetWorkflowResponse res = sdk.orchestration.getWorkflow(req);
+            GetWorkflowResponse res = sdk.orchestration().getWorkflow()
+                .request(req)
+                .call();
 
-            if (res.getWorkflowResponse != null) {
+            if (res.getWorkflowResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -512,8 +646,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetWorkflowResponse](../../models/operations/GetWorkflowResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetWorkflowResponse>](../../models/operations/GetWorkflowResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listInstances
 
@@ -525,32 +663,42 @@ List instances of a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListInstancesRequest;
 import com.formance.formance_sdk.models.operations.ListInstancesResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListInstancesRequest req = new ListInstancesRequest(
-){{
-                running = false;
-                workflowID = "string";
+            ListInstancesRequest req = ListInstancesRequest.builder()
+                .running(false)
+                .workflowID("<value>")
+                .build();
 
-            }};
+            ListInstancesResponse res = sdk.orchestration().listInstances()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListInstancesResponse res = sdk.orchestration.listInstances(req);
-
-            if (res.listRunsResponse != null) {
+            if (res.listRunsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -567,8 +715,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListInstancesResponse](../../models/operations/ListInstancesResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListInstancesResponse>](../../models/operations/ListInstancesResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listTriggers
 
@@ -580,24 +732,35 @@ List triggers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListTriggersResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListTriggersResponse res = sdk.orchestration.listTriggers();
+            ListTriggersResponse res = sdk.orchestration().listTriggers()
+                .call();
 
-            if (res.listTriggersResponse != null) {
+            if (res.listTriggersResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -608,8 +771,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListTriggersResponse](../../models/operations/ListTriggersResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListTriggersResponse>](../../models/operations/ListTriggersResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listTriggersOccurrences
 
@@ -621,28 +788,41 @@ List triggers occurrences
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest;
 import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest req = new ListTriggersOccurrencesRequest(
-                "string");
+            ListTriggersOccurrencesRequest req = ListTriggersOccurrencesRequest.builder()
+                .triggerID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse res = sdk.orchestration.listTriggersOccurrences(req);
+            ListTriggersOccurrencesResponse res = sdk.orchestration().listTriggersOccurrences()
+                .request(req)
+                .call();
 
-            if (res.listTriggersOccurrencesResponse != null) {
+            if (res.listTriggersOccurrencesResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -659,8 +839,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse](../../models/operations/ListTriggersOccurrencesResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse>](../../models/operations/ListTriggersOccurrencesResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listWorkflows
 
@@ -672,24 +856,35 @@ List registered workflows
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListWorkflowsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListWorkflowsResponse res = sdk.orchestration.listWorkflows();
+            ListWorkflowsResponse res = sdk.orchestration().listWorkflows()
+                .call();
 
-            if (res.listWorkflowsResponse != null) {
+            if (res.listWorkflowsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -700,8 +895,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListWorkflowsResponse](../../models/operations/ListWorkflowsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListWorkflowsResponse>](../../models/operations/ListWorkflowsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## orchestrationgetServerInfo
 
@@ -713,24 +912,35 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse res = sdk.orchestration.orchestrationgetServerInfo();
+            OrchestrationgetServerInfoResponse res = sdk.orchestration().orchestrationgetServerInfo()
+                .call();
 
-            if (res.serverInfo != null) {
+            if (res.serverInfo().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -741,8 +951,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse](../../models/operations/OrchestrationgetServerInfoResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse>](../../models/operations/OrchestrationgetServerInfoResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## readTrigger
 
@@ -754,28 +968,41 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReadTriggerRequest;
 import com.formance.formance_sdk.models.operations.ReadTriggerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReadTriggerRequest req = new ReadTriggerRequest(
-                "string");
+            ReadTriggerRequest req = ReadTriggerRequest.builder()
+                .triggerID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ReadTriggerResponse res = sdk.orchestration.readTrigger(req);
+            ReadTriggerResponse res = sdk.orchestration().readTrigger()
+                .request(req)
+                .call();
 
-            if (res.readTriggerResponse != null) {
+            if (res.readTriggerResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -792,8 +1019,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadTriggerResponse](../../models/operations/ReadTriggerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReadTriggerResponse>](../../models/operations/ReadTriggerResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## runWorkflow
 
@@ -805,35 +1036,44 @@ Run workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.RunWorkflowRequest;
 import com.formance.formance_sdk.models.operations.RunWorkflowResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.RunWorkflowRequest req = new RunWorkflowRequest(
-                "string"){{
-                requestBody = new java.util.HashMap<String, String>(
-                ){{
-                    put("key", "string");
-                }};
-                wait = false;
+            RunWorkflowRequest req = RunWorkflowRequest.builder()
+                .workflowID("<value>")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .wait(false)
+                .build();
 
-            }};
+            RunWorkflowResponse res = sdk.orchestration().runWorkflow()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.RunWorkflowResponse res = sdk.orchestration.runWorkflow(req);
-
-            if (res.runWorkflowResponse != null) {
+            if (res.runWorkflowResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -850,8 +1090,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.RunWorkflowResponse](../../models/operations/RunWorkflowResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.RunWorkflowResponse>](../../models/operations/RunWorkflowResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## sendEvent
 
@@ -863,33 +1107,43 @@ Send an event to a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.SendEventRequest;
 import com.formance.formance_sdk.models.operations.SendEventRequestBody;
 import com.formance.formance_sdk.models.operations.SendEventResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.SendEventRequest req = new SendEventRequest(
-                "string"){{
-                requestBody = new SendEventRequestBody(
-                    "string");
+            SendEventRequest req = SendEventRequest.builder()
+                .instanceID("<value>")
+                .requestBody(SendEventRequestBody.builder()
+                    .name("<value>")
+                    .build())
+                .build();
 
-            }};
+            SendEventResponse res = sdk.orchestration().sendEvent()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.SendEventResponse res = sdk.orchestration.sendEvent(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -906,8 +1160,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.SendEventResponse](../../models/operations/SendEventResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.SendEventResponse>](../../models/operations/SendEventResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## testTrigger
 
@@ -919,34 +1177,43 @@ Test trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.TestTriggerRequest;
 import com.formance.formance_sdk.models.operations.TestTriggerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.TestTriggerRequest req = new TestTriggerRequest(
-                "string"){{
-                requestBody = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
+            TestTriggerRequest req = TestTriggerRequest.builder()
+                .triggerID("<value>")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .build();
 
-            }};
+            TestTriggerResponse res = sdk.orchestration().testTrigger()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.TestTriggerResponse res = sdk.orchestration.testTrigger(req);
-
-            if (res.v2TestTriggerResponse != null) {
+            if (res.v2TestTriggerResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -963,8 +1230,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.TestTriggerResponse](../../models/operations/TestTriggerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.TestTriggerResponse>](../../models/operations/TestTriggerResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CancelEvent
 
@@ -976,28 +1247,39 @@ Cancel a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2CancelEventRequest;
 import com.formance.formance_sdk.models.operations.V2CancelEventResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2CancelEventRequest req = new V2CancelEventRequest(
-                "string");
+            V2CancelEventRequest req = V2CancelEventRequest.builder()
+                .instanceID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2CancelEventResponse res = sdk.orchestration.v2CancelEvent(req);
+            V2CancelEventResponse res = sdk.orchestration().v2CancelEvent()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1014,8 +1296,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CancelEventResponse](../../models/operations/V2CancelEventResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2CancelEventResponse>](../../models/operations/V2CancelEventResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CreateTrigger
 
@@ -1027,36 +1313,45 @@ Create trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2CreateTriggerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.V2TriggerData;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.V2TriggerData req = new V2TriggerData(
-                "string",
-                "string"){{
-                filter = "string";
-                vars = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
+            V2TriggerData req = V2TriggerData.builder()
+                .event("<value>")
+                .workflowID("<value>")
+                .filter("<value>")
+                .vars(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .build();
 
-            }};
+            V2CreateTriggerResponse res = sdk.orchestration().v2CreateTrigger()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2CreateTriggerResponse res = sdk.orchestration.v2CreateTrigger(req);
-
-            if (res.v2CreateTriggerResponse != null) {
+            if (res.v2CreateTriggerResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1073,8 +1368,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CreateTriggerResponse](../../models/operations/V2CreateTriggerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateTriggerResponse>](../../models/operations/V2CreateTriggerResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CreateWorkflow
 
@@ -1086,36 +1385,44 @@ Create a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest req = new V2CreateWorkflowRequest(
-                new java.util.HashMap<String, Object>[]{{
-                    add(new java.util.HashMap<String, Object>(
-                    ){{
-                        put("key", "string");
-                    }}),
-                }}){{
-                name = "string";
+            V2CreateWorkflowRequest req = V2CreateWorkflowRequest.builder()
+                .stages(java.util.List.of(
+                        java.util.Map.ofEntries(
+                            entry("key", "<value>"))))
+                .name("<value>")
+                .build();
 
-            }};
+            V2CreateWorkflowResponse res = sdk.orchestration().v2CreateWorkflow()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse res = sdk.orchestration.v2CreateWorkflow(req);
-
-            if (res.v2CreateWorkflowResponse != null) {
+            if (res.v2CreateWorkflowResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1132,8 +1439,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse](../../models/operations/V2CreateWorkflowResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse>](../../models/operations/V2CreateWorkflowResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2DeleteTrigger
 
@@ -1145,28 +1456,41 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest req = new V2DeleteTriggerRequest(
-                "string");
+            V2DeleteTriggerRequest req = V2DeleteTriggerRequest.builder()
+                .triggerID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse res = sdk.orchestration.v2DeleteTrigger(req);
+            V2DeleteTriggerResponse res = sdk.orchestration().v2DeleteTrigger()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1183,8 +1507,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse](../../models/operations/V2DeleteTriggerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse>](../../models/operations/V2DeleteTriggerResponse.md)**
+### Errors
 
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2Error | 404                                             | application/json                                |
+| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
 
 ## v2DeleteWorkflow
 
@@ -1196,28 +1525,41 @@ Delete a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest req = new V2DeleteWorkflowRequest(
-                "string");
+            V2DeleteWorkflowRequest req = V2DeleteWorkflowRequest.builder()
+                .flowId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse res = sdk.orchestration.v2DeleteWorkflow(req);
+            V2DeleteWorkflowResponse res = sdk.orchestration().v2DeleteWorkflow()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1234,8 +1576,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse](../../models/operations/V2DeleteWorkflowResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse>](../../models/operations/V2DeleteWorkflowResponse.md)**
+### Errors
 
+| Error Object                                    | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2Error | 400,404                                         | application/json                                |
+| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
 
 ## v2GetInstance
 
@@ -1247,28 +1594,41 @@ Get a workflow instance by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetInstanceRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetInstanceRequest req = new V2GetInstanceRequest(
-                "string");
+            V2GetInstanceRequest req = V2GetInstanceRequest.builder()
+                .instanceID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2GetInstanceResponse res = sdk.orchestration.v2GetInstance(req);
+            V2GetInstanceResponse res = sdk.orchestration().v2GetInstance()
+                .request(req)
+                .call();
 
-            if (res.v2GetWorkflowInstanceResponse != null) {
+            if (res.v2GetWorkflowInstanceResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1285,8 +1645,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetInstanceResponse](../../models/operations/V2GetInstanceResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInstanceResponse>](../../models/operations/V2GetInstanceResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetInstanceHistory
 
@@ -1298,28 +1662,41 @@ Get a workflow instance history by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest req = new V2GetInstanceHistoryRequest(
-                "string");
+            V2GetInstanceHistoryRequest req = V2GetInstanceHistoryRequest.builder()
+                .instanceID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse res = sdk.orchestration.v2GetInstanceHistory(req);
+            V2GetInstanceHistoryResponse res = sdk.orchestration().v2GetInstanceHistory()
+                .request(req)
+                .call();
 
-            if (res.v2GetWorkflowInstanceHistoryResponse != null) {
+            if (res.v2GetWorkflowInstanceHistoryResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1336,8 +1713,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse](../../models/operations/V2GetInstanceHistoryResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse>](../../models/operations/V2GetInstanceHistoryResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetInstanceStageHistory
 
@@ -1349,29 +1730,42 @@ Get a workflow instance stage history
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest req = new V2GetInstanceStageHistoryRequest(
-                "string",
-                465454L);
+            V2GetInstanceStageHistoryRequest req = V2GetInstanceStageHistoryRequest.builder()
+                .instanceID("<value>")
+                .number(465454L)
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse res = sdk.orchestration.v2GetInstanceStageHistory(req);
+            V2GetInstanceStageHistoryResponse res = sdk.orchestration().v2GetInstanceStageHistory()
+                .request(req)
+                .call();
 
-            if (res.v2GetWorkflowInstanceHistoryStageResponse != null) {
+            if (res.v2GetWorkflowInstanceHistoryStageResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1388,8 +1782,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse](../../models/operations/V2GetInstanceStageHistoryResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse>](../../models/operations/V2GetInstanceStageHistoryResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetServerInfo
 
@@ -1401,24 +1799,35 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetServerInfoResponse res = sdk.orchestration.v2GetServerInfo();
+            V2GetServerInfoResponse res = sdk.orchestration().v2GetServerInfo()
+                .call();
 
-            if (res.v2ServerInfo != null) {
+            if (res.v2ServerInfo().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1429,8 +1838,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetServerInfoResponse](../../models/operations/V2GetServerInfoResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetServerInfoResponse>](../../models/operations/V2GetServerInfoResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetWorkflow
 
@@ -1442,28 +1855,41 @@ Get a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2GetWorkflowResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetWorkflowRequest req = new V2GetWorkflowRequest(
-                "string");
+            V2GetWorkflowRequest req = V2GetWorkflowRequest.builder()
+                .flowId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2GetWorkflowResponse res = sdk.orchestration.v2GetWorkflow(req);
+            V2GetWorkflowResponse res = sdk.orchestration().v2GetWorkflow()
+                .request(req)
+                .call();
 
-            if (res.v2GetWorkflowResponse != null) {
+            if (res.v2GetWorkflowResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1480,8 +1906,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetWorkflowResponse](../../models/operations/V2GetWorkflowResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetWorkflowResponse>](../../models/operations/V2GetWorkflowResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListInstances
 
@@ -1493,32 +1923,42 @@ List instances of a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ListInstancesRequest;
 import com.formance.formance_sdk.models.operations.V2ListInstancesResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ListInstancesRequest req = new V2ListInstancesRequest(
-){{
-                running = false;
-                workflowID = "string";
+            V2ListInstancesRequest req = V2ListInstancesRequest.builder()
+                .running(false)
+                .workflowID("<value>")
+                .build();
 
-            }};
+            V2ListInstancesResponse res = sdk.orchestration().v2ListInstances()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2ListInstancesResponse res = sdk.orchestration.v2ListInstances(req);
-
-            if (res.v2ListRunsResponse != null) {
+            if (res.v2ListRunsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1535,8 +1975,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListInstancesResponse](../../models/operations/V2ListInstancesResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ListInstancesResponse>](../../models/operations/V2ListInstancesResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListTriggers
 
@@ -1548,24 +1992,35 @@ List triggers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ListTriggersResponse res = sdk.orchestration.v2ListTriggers();
+            V2ListTriggersResponse res = sdk.orchestration().v2ListTriggers()
+                .call();
 
-            if (res.v2ListTriggersResponse != null) {
+            if (res.v2ListTriggersResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1576,8 +2031,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListTriggersResponse](../../models/operations/V2ListTriggersResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ListTriggersResponse>](../../models/operations/V2ListTriggersResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListTriggersOccurrences
 
@@ -1589,28 +2048,41 @@ List triggers occurrences
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest req = new V2ListTriggersOccurrencesRequest(
-                "string");
+            V2ListTriggersOccurrencesRequest req = V2ListTriggersOccurrencesRequest.builder()
+                .triggerID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse res = sdk.orchestration.v2ListTriggersOccurrences(req);
+            V2ListTriggersOccurrencesResponse res = sdk.orchestration().v2ListTriggersOccurrences()
+                .request(req)
+                .call();
 
-            if (res.v2ListTriggersOccurrencesResponse != null) {
+            if (res.v2ListTriggersOccurrencesResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1627,8 +2099,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse](../../models/operations/V2ListTriggersOccurrencesResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse>](../../models/operations/V2ListTriggersOccurrencesResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListWorkflows
 
@@ -1640,24 +2116,35 @@ List registered workflows
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse res = sdk.orchestration.v2ListWorkflows();
+            V2ListWorkflowsResponse res = sdk.orchestration().v2ListWorkflows()
+                .call();
 
-            if (res.v2ListWorkflowsResponse != null) {
+            if (res.v2ListWorkflowsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1668,8 +2155,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse](../../models/operations/V2ListWorkflowsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse>](../../models/operations/V2ListWorkflowsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ReadTrigger
 
@@ -1681,28 +2172,41 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ReadTriggerRequest req = new V2ReadTriggerRequest(
-                "string");
+            V2ReadTriggerRequest req = V2ReadTriggerRequest.builder()
+                .triggerID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2ReadTriggerResponse res = sdk.orchestration.v2ReadTrigger(req);
+            V2ReadTriggerResponse res = sdk.orchestration().v2ReadTrigger()
+                .request(req)
+                .call();
 
-            if (res.v2ReadTriggerResponse != null) {
+            if (res.v2ReadTriggerResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1719,8 +2223,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ReadTriggerResponse](../../models/operations/V2ReadTriggerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ReadTriggerResponse>](../../models/operations/V2ReadTriggerResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2RunWorkflow
 
@@ -1732,35 +2240,44 @@ Run workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2RunWorkflowRequest req = new V2RunWorkflowRequest(
-                "string"){{
-                requestBody = new java.util.HashMap<String, String>(
-                ){{
-                    put("key", "string");
-                }};
-                wait = false;
+            V2RunWorkflowRequest req = V2RunWorkflowRequest.builder()
+                .workflowID("<value>")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .wait(false)
+                .build();
 
-            }};
+            V2RunWorkflowResponse res = sdk.orchestration().v2RunWorkflow()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2RunWorkflowResponse res = sdk.orchestration.v2RunWorkflow(req);
-
-            if (res.v2RunWorkflowResponse != null) {
+            if (res.v2RunWorkflowResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1777,8 +2294,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2RunWorkflowResponse](../../models/operations/V2RunWorkflowResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2RunWorkflowResponse>](../../models/operations/V2RunWorkflowResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2SendEvent
 
@@ -1790,33 +2311,43 @@ Send an event to a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2SendEventRequest;
 import com.formance.formance_sdk.models.operations.V2SendEventRequestBody;
 import com.formance.formance_sdk.models.operations.V2SendEventResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2SendEventRequest req = new V2SendEventRequest(
-                "string"){{
-                requestBody = new V2SendEventRequestBody(
-                    "string");
+            V2SendEventRequest req = V2SendEventRequest.builder()
+                .instanceID("<value>")
+                .requestBody(V2SendEventRequestBody.builder()
+                    .name("<value>")
+                    .build())
+                .build();
 
-            }};
+            V2SendEventResponse res = sdk.orchestration().v2SendEvent()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2SendEventResponse res = sdk.orchestration.v2SendEvent(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1833,5 +2364,9 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2SendEventResponse](../../models/operations/V2SendEventResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2SendEventResponse>](../../models/operations/V2SendEventResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

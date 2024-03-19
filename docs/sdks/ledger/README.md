@@ -1,5 +1,5 @@
 # Ledger
-(*ledger*)
+(*ledger()*)
 
 ### Available Operations
 
@@ -55,66 +55,57 @@ Create a new batch of transactions to a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
 import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Posting;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.TransactionData;
 import com.formance.formance_sdk.models.shared.Transactions;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.CreateTransactionsRequest req = new CreateTransactionsRequest(
-                new Transactions(
-                    new com.formance.formance_sdk.models.shared.TransactionData[]{{
-                        add(new TransactionData(
-                        new com.formance.formance_sdk.models.shared.Posting[]{{
-                            add(new Posting(
-                            100L,
-                            "COIN",
-                            "users:002",
-                            "users:001"){{
-                                amount = 100L;
-                                asset = "COIN";
-                                destination = "users:002";
-                                source = "users:001";
-                            }}),
-                        }}){{
-                            metadata = new java.util.HashMap<String, Object>(
-                            ){{
-                                put("key", "string");
-                            }};
-                            postings = new com.formance.formance_sdk.models.shared.Posting[]{{
-                                add(new Posting(
-                                100L,
-                                "COIN",
-                                "users:002",
-                                "users:001"){{
-                                    amount = 100L;
-                                    asset = "COIN";
-                                    destination = "users:002";
-                                    source = "users:001";
-                                }}),
-                            }};
-                            reference = "ref:001";
-                        }}),
-                    }}),
-                "ledger001");
+            CreateTransactionsRequest req = CreateTransactionsRequest.builder()
+                .transactions(Transactions.builder()
+                        .transactions(java.util.List.of(
+                                TransactionData.builder()
+                                    .postings(java.util.List.of(
+                                            Posting.builder()
+                                                .amount(new BigInteger("100"))
+                                                .asset("COIN")
+                                                .destination("users:002")
+                                                .source("users:001")
+                                                .build()))
+                                    .reference("ref:001")
+                                    .build()))
+                        .build())
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.CreateTransactionsResponse res = sdk.ledger.createTransactions(req);
+            CreateTransactionsResponse res = sdk.ledger().createTransactions()
+                .request(req)
+                .call();
 
-            if (res.transactionsResponse != null) {
+            if (res.transactionsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -131,8 +122,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateTransactionsResponse](../../models/operations/CreateTransactionsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateTransactionsResponse>](../../models/operations/CreateTransactionsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## addMetadataOnTransaction
 
@@ -144,35 +139,42 @@ Set the metadata of a transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest req = new AddMetadataOnTransactionRequest(
-                "ledger001",
-                1234L){{
-                requestBody = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
+            AddMetadataOnTransactionRequest req = AddMetadataOnTransactionRequest.builder()
+                .ledger("ledger001")
+                .txid(new BigInteger("1234"))
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .build();
 
-            }};
+            AddMetadataOnTransactionResponse res = sdk.ledger().addMetadataOnTransaction()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse res = sdk.ledger.addMetadataOnTransaction(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -189,8 +191,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse](../../models/operations/AddMetadataOnTransactionResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse>](../../models/operations/AddMetadataOnTransactionResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## addMetadataToAccount
 
@@ -202,33 +208,44 @@ Add metadata to an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest;
 import com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest req = new AddMetadataToAccountRequest(
-                new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }},
-                "users:001",
-                "ledger001");
+            AddMetadataToAccountRequest req = AddMetadataToAccountRequest.builder()
+                .requestBody(java.util.Map.ofEntries(
+                        entry("key", "<value>")))
+                .address("users:001")
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse res = sdk.ledger.addMetadataToAccount(req);
+            AddMetadataToAccountResponse res = sdk.ledger().addMetadataToAccount()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -245,8 +262,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse](../../models/operations/AddMetadataToAccountResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse>](../../models/operations/AddMetadataToAccountResponse.md)**
+### Errors
 
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | 400,404                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## countAccounts
 
@@ -258,35 +280,42 @@ Count the accounts from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CountAccountsRequest;
 import com.formance.formance_sdk.models.operations.CountAccountsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.CountAccountsRequest req = new CountAccountsRequest(
-                "ledger001"){{
-                address = "users:.+";
-                metadata = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
+            CountAccountsRequest req = CountAccountsRequest.builder()
+                .ledger("ledger001")
+                .address("users:.+")
+                .metadata(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .build();
 
-            }};
+            CountAccountsResponse res = sdk.ledger().countAccounts()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.CountAccountsResponse res = sdk.ledger.countAccounts(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -303,8 +332,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CountAccountsResponse](../../models/operations/CountAccountsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CountAccountsResponse>](../../models/operations/CountAccountsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## countTransactions
 
@@ -316,40 +349,48 @@ Count the transactions from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CountTransactionsRequest;
 import com.formance.formance_sdk.models.operations.CountTransactionsResponse;
 import com.formance.formance_sdk.models.operations.Metadata;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.CountTransactionsRequest req = new CountTransactionsRequest(
-                "ledger001"){{
-                account = "users:001";
-                destination = "users:001";
-                endTime = OffsetDateTime.parse("2022-07-20T14:23:01.272Z");
-                metadata = new Metadata(
-);
-                reference = "ref:001";
-                source = "users:001";
-                startTime = OffsetDateTime.parse("2024-09-26T22:46:35.189Z");
+            CountTransactionsRequest req = CountTransactionsRequest.builder()
+                .ledger("ledger001")
+                .account("users:001")
+                .destination("users:001")
+                .endTime(OffsetDateTime.parse("2022-07-20T14:23:01.272Z"))
+                .metadata(Metadata.builder()
+                    .build())
+                .reference("ref:001")
+                .source("users:001")
+                .startTime(OffsetDateTime.parse("2024-09-26T22:46:35.189Z"))
+                .build();
 
-            }};
+            CountTransactionsResponse res = sdk.ledger().countTransactions()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.CountTransactionsResponse res = sdk.ledger.countTransactions(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -366,8 +407,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CountTransactionsResponse](../../models/operations/CountTransactionsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CountTransactionsResponse>](../../models/operations/CountTransactionsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createTransaction
 
@@ -379,72 +424,72 @@ Create a new transaction to a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreateTransactionRequest;
 import com.formance.formance_sdk.models.operations.CreateTransactionResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.PostTransaction;
 import com.formance.formance_sdk.models.shared.PostTransactionScript;
 import com.formance.formance_sdk.models.shared.Posting;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.CreateTransactionRequest req = new CreateTransactionRequest(
-                new PostTransaction(
-){{
-                    metadata = new java.util.HashMap<String, Object>(
-                    ){{
-                        put("key", "string");
-                    }};
-                    postings = new com.formance.formance_sdk.models.shared.Posting[]{{
-                        add(new Posting(
-                        100L,
-                        "COIN",
-                        "users:002",
-                        "users:001"){{
-                            amount = 100L;
-                            asset = "COIN";
-                            destination = "users:002";
-                            source = "users:001";
-                        }}),
-                    }};
-                    reference = "ref:001";
-                    script = new PostTransactionScript(
-                        "vars {
-account $user
-}
-send [COIN 10] (
-	source = @world
-	destination = $user
-)
-"){{
-                        vars = new java.util.HashMap<String, Object>(
-                        ){{
-                            put("user", "string");
-                        }};
+            CreateTransactionRequest req = CreateTransactionRequest.builder()
+                .postTransaction(PostTransaction.builder()
+                        .metadata(java.util.Map.ofEntries(
+                            entry("key", "<value>")))
+                        .postings(java.util.List.of(
+                            Posting.builder()
+                                .amount(new BigInteger("100"))
+                                .asset("COIN")
+                                .destination("users:002")
+                                .source("users:001")
+                                .build()))
+                        .reference("ref:001")
+                        .script(PostTransactionScript.builder()
+                            .plain("vars {
+                        account $user
+                        }
+                        send [COIN 10] (
+                        	source = @world
+                        	destination = $user
+                        )
+                        ")
+                            .vars(java.util.Map.ofEntries(
+                                entry("user", "users:042")))
+                            .build())
+                        .timestamp(OffsetDateTime.parse("2024-11-28T10:23:22.557Z"))
+                        .build())
+                .ledger("ledger001")
+                .preview(true)
+                .build();
 
-                    }};
-                    timestamp = OffsetDateTime.parse("2024-11-28T10:23:22.557Z");
+            CreateTransactionResponse res = sdk.ledger().createTransaction()
+                .request(req)
+                .call();
 
-                }},
-                "ledger001"){{
-                preview = true;
-
-            }};
-
-            com.formance.formance_sdk.models.operations.CreateTransactionResponse res = sdk.ledger.createTransaction(req);
-
-            if (res.transactionsResponse != null) {
+            if (res.transactionsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -461,8 +506,13 @@ send [COIN 10] (
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateTransactionResponse](../../models/operations/CreateTransactionResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateTransactionResponse>](../../models/operations/CreateTransactionResponse.md)**
+### Errors
 
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | 400                                                   | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## getAccount
 
@@ -474,29 +524,42 @@ Get account by its address
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetAccountRequest;
 import com.formance.formance_sdk.models.operations.GetAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetAccountRequest req = new GetAccountRequest(
-                "users:001",
-                "ledger001");
+            GetAccountRequest req = GetAccountRequest.builder()
+                .address("users:001")
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetAccountResponse res = sdk.ledger.getAccount(req);
+            GetAccountResponse res = sdk.ledger().getAccount()
+                .request(req)
+                .call();
 
-            if (res.accountResponse != null) {
+            if (res.accountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -513,8 +576,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetAccountResponse](../../models/operations/GetAccountResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetAccountResponse>](../../models/operations/GetAccountResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getBalances
 
@@ -526,34 +593,45 @@ Get the balances from a ledger's account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetBalancesResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetBalancesRequest req = new GetBalancesRequest(
-                "ledger001"){{
-                address = "users:001";
-                after = "users:003";
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 755286L;
+            GetBalancesRequest req = GetBalancesRequest.builder()
+                .ledger("ledger001")
+                .address("users:001")
+                .after("users:003")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(755286L)
+                .build();
 
-            }};
+            GetBalancesResponse res = sdk.ledger().getBalances()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.GetBalancesResponse res = sdk.ledger.getBalances(req);
-
-            if (res.balancesCursorResponse != null) {
+            if (res.balancesCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -570,8 +648,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetBalancesResponse](../../models/operations/GetBalancesResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetBalancesResponse>](../../models/operations/GetBalancesResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getBalancesAggregated
 
@@ -583,32 +665,43 @@ Get the aggregated balances from selected accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest req = new GetBalancesAggregatedRequest(
-                "ledger001"){{
-                address = "users:001";
-                useInsertionDate = false;
+            GetBalancesAggregatedRequest req = GetBalancesAggregatedRequest.builder()
+                .ledger("ledger001")
+                .address("users:001")
+                .useInsertionDate(false)
+                .build();
 
-            }};
+            GetBalancesAggregatedResponse res = sdk.ledger().getBalancesAggregated()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse res = sdk.ledger.getBalancesAggregated(req);
-
-            if (res.aggregateBalancesResponse != null) {
+            if (res.aggregateBalancesResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -625,8 +718,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse](../../models/operations/GetBalancesAggregatedResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse>](../../models/operations/GetBalancesAggregatedResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInfo
 
@@ -638,24 +735,35 @@ Show server information
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetInfoResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetInfoResponse res = sdk.ledger.getInfo();
+            GetInfoResponse res = sdk.ledger().getInfo()
+                .call();
 
-            if (res.configInfoResponse != null) {
+            if (res.configInfoResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -666,8 +774,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetInfoResponse](../../models/operations/GetInfoResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetInfoResponse>](../../models/operations/GetInfoResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getLedgerInfo
 
@@ -679,28 +791,41 @@ Get information about a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetLedgerInfoRequest;
 import com.formance.formance_sdk.models.operations.GetLedgerInfoResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetLedgerInfoRequest req = new GetLedgerInfoRequest(
-                "ledger001");
+            GetLedgerInfoRequest req = GetLedgerInfoRequest.builder()
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetLedgerInfoResponse res = sdk.ledger.getLedgerInfo(req);
+            GetLedgerInfoResponse res = sdk.ledger().getLedgerInfo()
+                .request(req)
+                .call();
 
-            if (res.ledgerInfoResponse != null) {
+            if (res.ledgerInfoResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -717,8 +842,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetLedgerInfoResponse](../../models/operations/GetLedgerInfoResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetLedgerInfoResponse>](../../models/operations/GetLedgerInfoResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getMapping
 
@@ -730,28 +859,41 @@ Get the mapping of a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetMappingRequest;
 import com.formance.formance_sdk.models.operations.GetMappingResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetMappingRequest req = new GetMappingRequest(
-                "ledger001");
+            GetMappingRequest req = GetMappingRequest.builder()
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetMappingResponse res = sdk.ledger.getMapping(req);
+            GetMappingResponse res = sdk.ledger().getMapping()
+                .request(req)
+                .call();
 
-            if (res.mappingResponse != null) {
+            if (res.mappingResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -768,8 +910,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetMappingResponse](../../models/operations/GetMappingResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetMappingResponse>](../../models/operations/GetMappingResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getTransaction
 
@@ -781,29 +927,42 @@ Get transaction from a ledger by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetTransactionRequest;
 import com.formance.formance_sdk.models.operations.GetTransactionResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetTransactionRequest req = new GetTransactionRequest(
-                "ledger001",
-                1234L);
+            GetTransactionRequest req = GetTransactionRequest.builder()
+                .ledger("ledger001")
+                .txid(new BigInteger("1234"))
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetTransactionResponse res = sdk.ledger.getTransaction(req);
+            GetTransactionResponse res = sdk.ledger().getTransaction()
+                .request(req)
+                .call();
 
-            if (res.transactionResponse != null) {
+            if (res.transactionResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -820,8 +979,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetTransactionResponse](../../models/operations/GetTransactionResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetTransactionResponse>](../../models/operations/GetTransactionResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listAccounts
 
@@ -833,40 +996,49 @@ List accounts from a ledger, sorted by address in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListAccountsRequest;
 import com.formance.formance_sdk.models.operations.ListAccountsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListAccountsRequest req = new ListAccountsRequest(
-                "ledger001"){{
-                address = "users:.+";
-                after = "users:003";
-                balance = 2400L;
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                metadata = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                pageSize = 875058L;
-                paginationToken = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
+            ListAccountsRequest req = ListAccountsRequest.builder()
+                .ledger("ledger001")
+                .address("users:.+")
+                .after("users:003")
+                .balance(2400L)
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .metadata(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .pageSize(875058L)
+                .paginationToken("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .build();
 
-            }};
+            ListAccountsResponse res = sdk.ledger().listAccounts()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListAccountsResponse res = sdk.ledger.listAccounts(req);
-
-            if (res.accountsCursorResponse != null) {
+            if (res.accountsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -883,8 +1055,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListAccountsResponse](../../models/operations/ListAccountsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListAccountsResponse>](../../models/operations/ListAccountsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listLogs
 
@@ -896,36 +1072,46 @@ List the logs from a ledger, sorted by ID in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListLogsRequest;
 import com.formance.formance_sdk.models.operations.ListLogsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListLogsRequest req = new ListLogsRequest(
-                "ledger001"){{
-                after = "1234";
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                endTime = OffsetDateTime.parse("2023-09-04T18:34:28.222Z");
-                pageSize = 657242L;
-                startTime = OffsetDateTime.parse("2022-11-03T09:19:08.045Z");
+            ListLogsRequest req = ListLogsRequest.builder()
+                .ledger("ledger001")
+                .after("1234")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .endTime(OffsetDateTime.parse("2023-09-04T18:34:28.222Z"))
+                .pageSize(657242L)
+                .startTime(OffsetDateTime.parse("2022-11-03T09:19:08.045Z"))
+                .build();
 
-            }};
+            ListLogsResponse res = sdk.ledger().listLogs()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListLogsResponse res = sdk.ledger.listLogs(req);
-
-            if (res.logsCursorResponse != null) {
+            if (res.logsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -942,8 +1128,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListLogsResponse](../../models/operations/ListLogsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListLogsResponse>](../../models/operations/ListLogsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listTransactions
 
@@ -955,44 +1145,52 @@ List transactions from a ledger, sorted by txid in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListTransactionsRequest;
 import com.formance.formance_sdk.models.operations.ListTransactionsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListTransactionsRequest req = new ListTransactionsRequest(
-                "ledger001"){{
-                account = "users:001";
-                after = "1234";
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                destination = "users:001";
-                endTime = OffsetDateTime.parse("2023-09-09T05:38:58.239Z");
-                metadata = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                pageSize = 1306L;
-                reference = "ref:001";
-                source = "users:001";
-                startTime = OffsetDateTime.parse("2023-12-04T18:07:06.082Z");
+            ListTransactionsRequest req = ListTransactionsRequest.builder()
+                .ledger("ledger001")
+                .account("users:001")
+                .after("1234")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .destination("users:001")
+                .endTime(OffsetDateTime.parse("2023-09-09T05:38:58.239Z"))
+                .metadata(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .pageSize(1306L)
+                .reference("ref:001")
+                .source("users:001")
+                .startTime(OffsetDateTime.parse("2023-12-04T18:07:06.082Z"))
+                .build();
 
-            }};
+            ListTransactionsResponse res = sdk.ledger().listTransactions()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListTransactionsResponse res = sdk.ledger.listTransactions(req);
-
-            if (res.transactionsCursorResponse != null) {
+            if (res.transactionsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1009,8 +1207,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListTransactionsResponse](../../models/operations/ListTransactionsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListTransactionsResponse>](../../models/operations/ListTransactionsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## readStats
 
@@ -1023,28 +1225,41 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReadStatsRequest;
 import com.formance.formance_sdk.models.operations.ReadStatsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReadStatsRequest req = new ReadStatsRequest(
-                "ledger001");
+            ReadStatsRequest req = ReadStatsRequest.builder()
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ReadStatsResponse res = sdk.ledger.readStats(req);
+            ReadStatsResponse res = sdk.ledger().readStats()
+                .request(req)
+                .call();
 
-            if (res.statsResponse != null) {
+            if (res.statsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1061,8 +1276,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadStatsResponse](../../models/operations/ReadStatsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReadStatsResponse>](../../models/operations/ReadStatsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## revertTransaction
 
@@ -1074,32 +1293,43 @@ Revert a ledger transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.RevertTransactionRequest;
 import com.formance.formance_sdk.models.operations.RevertTransactionResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.RevertTransactionRequest req = new RevertTransactionRequest(
-                "ledger001",
-                1234L){{
-                disableChecks = false;
+            RevertTransactionRequest req = RevertTransactionRequest.builder()
+                .ledger("ledger001")
+                .txid(new BigInteger("1234"))
+                .disableChecks(false)
+                .build();
 
-            }};
+            RevertTransactionResponse res = sdk.ledger().revertTransaction()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.RevertTransactionResponse res = sdk.ledger.revertTransaction(req);
-
-            if (res.transactionResponse != null) {
+            if (res.transactionResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1116,8 +1346,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.RevertTransactionResponse](../../models/operations/RevertTransactionResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.RevertTransactionResponse>](../../models/operations/RevertTransactionResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~runScript~~
 
@@ -1132,52 +1366,58 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.RunScriptRequest;
 import com.formance.formance_sdk.models.operations.RunScriptResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Script;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.RunScriptRequest req = new RunScriptRequest(
-                new Script(
-                    "vars {
+            RunScriptRequest req = RunScriptRequest.builder()
+                .script(Script.builder()
+                        .plain("vars {
 account $user
 }
 send [COIN 10] (
 	source = @world
 	destination = $user
 )
-"){{
-                    metadata = new java.util.HashMap<String, Object>(
-                    ){{
-                        put("key", "string");
-                    }};
-                    reference = "order_1234";
-                    vars = new java.util.HashMap<String, Object>(
-                    ){{
-                        put("user", "string");
-                    }};
+")
+                        .metadata(java.util.Map.ofEntries(
+                            entry("key", "<value>")))
+                        .reference("order_1234")
+                        .vars(java.util.Map.ofEntries(
+                            entry("user", "users:042")))
+                        .build())
+                .ledger("ledger001")
+                .preview(true)
+                .build();
 
-                }},
-                "ledger001"){{
-                preview = true;
+            RunScriptResponse res = sdk.ledger().runScript()
+                .request(req)
+                .call();
 
-            }};
-
-            com.formance.formance_sdk.models.operations.RunScriptResponse res = sdk.ledger.runScript(req);
-
-            if (res.scriptResponse != null) {
+            if (res.scriptResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1194,8 +1434,12 @@ send [COIN 10] (
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.RunScriptResponse](../../models/operations/RunScriptResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.RunScriptResponse>](../../models/operations/RunScriptResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## updateMapping
 
@@ -1207,41 +1451,52 @@ Update the mapping of a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.UpdateMappingRequest;
 import com.formance.formance_sdk.models.operations.UpdateMappingResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Contract;
 import com.formance.formance_sdk.models.shared.Expr;
 import com.formance.formance_sdk.models.shared.Mapping;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.UpdateMappingRequest req = new UpdateMappingRequest(
-                new Mapping(
-                    new com.formance.formance_sdk.models.shared.Contract[]{{
-                        add(new Contract(
-                        new Expr(
-                        )){{
-                            account = "users:001";
-                            expr = new Expr(
-                            ){{}};
-                        }}),
-                    }}),
-                "ledger001");
+            UpdateMappingRequest req = UpdateMappingRequest.builder()
+                .mapping(Mapping.builder()
+                        .contracts(java.util.List.of(
+                                Contract.builder()
+                                    .expr(Expr.builder()
+                                            .build())
+                                    .account("users:001")
+                                    .build()))
+                        .build())
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.UpdateMappingResponse res = sdk.ledger.updateMapping(req);
+            UpdateMappingResponse res = sdk.ledger().updateMapping()
+                .request(req)
+                .call();
 
-            if (res.mappingResponse != null) {
+            if (res.mappingResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1258,8 +1513,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UpdateMappingResponse](../../models/operations/UpdateMappingResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateMappingResponse>](../../models/operations/UpdateMappingResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2AddMetadataOnTransaction
 
@@ -1271,37 +1530,46 @@ Set the metadata of a transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest req = new V2AddMetadataOnTransactionRequest(
-                1234L,
-                "ledger001"){{
-                idempotencyKey = "string";
-                requestBody = new java.util.HashMap<String, String>(
-                ){{
-                    put("admin", "true");
-                }};
-                dryRun = true;
+            V2AddMetadataOnTransactionRequest req = V2AddMetadataOnTransactionRequest.builder()
+                .id(new BigInteger("1234"))
+                .ledger("ledger001")
+                .idempotencyKey("<value>")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("admin", "true")))
+                .dryRun(true)
+                .build();
 
-            }};
+            V2AddMetadataOnTransactionResponse res = sdk.ledger().v2AddMetadataOnTransaction()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse res = sdk.ledger.v2AddMetadataOnTransaction(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1318,8 +1586,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse](../../models/operations/V2AddMetadataOnTransactionResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse>](../../models/operations/V2AddMetadataOnTransactionResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400,404                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2AddMetadataToAccount
 
@@ -1331,37 +1604,46 @@ Add metadata to an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest;
 import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest req = new V2AddMetadataToAccountRequest(
-                new java.util.HashMap<String, String>(
-                ){{
-                    put("admin", "true");
-                }},
-                "users:001",
-                "ledger001"){{
-                idempotencyKey = "string";
-                dryRun = true;
+            V2AddMetadataToAccountRequest req = V2AddMetadataToAccountRequest.builder()
+                .requestBody(java.util.Map.ofEntries(
+                        entry("admin", "true")))
+                .address("users:001")
+                .ledger("ledger001")
+                .idempotencyKey("<value>")
+                .dryRun(true)
+                .build();
 
-            }};
+            V2AddMetadataToAccountResponse res = sdk.ledger().v2AddMetadataToAccount()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse res = sdk.ledger.v2AddMetadataToAccount(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1378,8 +1660,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse](../../models/operations/V2AddMetadataToAccountResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse>](../../models/operations/V2AddMetadataToAccountResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400,404                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2CountAccounts
 
@@ -1391,36 +1678,42 @@ Count the accounts from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2CountAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2CountAccountsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2CountAccountsRequest req = new V2CountAccountsRequest(
-                "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                pit = OffsetDateTime.parse("2023-11-24T08:09:15.014Z");
+            V2CountAccountsRequest req = V2CountAccountsRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .pit(OffsetDateTime.parse("2023-11-24T08:09:15.014Z"))
+                .build();
 
-            }};
+            V2CountAccountsResponse res = sdk.ledger().v2CountAccounts()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2CountAccountsResponse res = sdk.ledger.v2CountAccounts(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1437,8 +1730,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CountAccountsResponse](../../models/operations/V2CountAccountsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2CountAccountsResponse>](../../models/operations/V2CountAccountsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CountTransactions
 
@@ -1450,36 +1747,42 @@ Count the transactions from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2CountTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2CountTransactionsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2CountTransactionsRequest req = new V2CountTransactionsRequest(
-                "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                pit = OffsetDateTime.parse("2022-01-19T17:22:57.577Z");
+            V2CountTransactionsRequest req = V2CountTransactionsRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .pit(OffsetDateTime.parse("2022-01-19T17:22:57.577Z"))
+                .build();
 
-            }};
+            V2CountTransactionsResponse res = sdk.ledger().v2CountTransactions()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2CountTransactionsResponse res = sdk.ledger.v2CountTransactions(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1496,8 +1799,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CountTransactionsResponse](../../models/operations/V2CountTransactionsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2CountTransactionsResponse>](../../models/operations/V2CountTransactionsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CreateBulk
 
@@ -1509,33 +1816,54 @@ Bulk request
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
 import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.V2BulkElementAddMetadata;
+import com.formance.formance_sdk.models.shared.V2BulkElementAddMetadataData;
+import com.formance.formance_sdk.models.shared.V2BulkElementCreateTransaction;
+import com.formance.formance_sdk.models.shared.V2BulkElementDeleteMetadata;
+import com.formance.formance_sdk.models.shared.V2BulkElementDeleteMetadataData;
+import com.formance.formance_sdk.models.shared.V2BulkElementRevertTransaction;
+import com.formance.formance_sdk.models.shared.V2BulkElementRevertTransactionData;
+import com.formance.formance_sdk.models.shared.V2PostTransaction;
+import com.formance.formance_sdk.models.shared.V2PostTransactionScript;
+import com.formance.formance_sdk.models.shared.V2Posting;
+import com.formance.formance_sdk.models.shared.V2TargetType;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2CreateBulkRequest req = new V2CreateBulkRequest(
-                "ledger001"){{
-                requestBody = new Object[]{{
-                    add("string"),
-                }};
+            V2CreateBulkRequest req = V2CreateBulkRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.List.of(
+                    new Object()))
+                .build();
 
-            }};
+            V2CreateBulkResponse res = sdk.ledger().v2CreateBulk()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2CreateBulkResponse res = sdk.ledger.v2CreateBulk(req);
-
-            if (res.v2BulkResponse != null) {
+            if (res.v2BulkResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1552,8 +1880,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CreateBulkResponse](../../models/operations/V2CreateBulkResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateBulkResponse>](../../models/operations/V2CreateBulkResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CreateLedger
 
@@ -1565,36 +1897,45 @@ Create a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2CreateLedgerRequest;
 import com.formance.formance_sdk.models.operations.V2CreateLedgerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.V2CreateLedgerRequest;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2CreateLedgerRequest req = new V2CreateLedgerRequest(
-                "ledger001"){{
-                v2CreateLedgerRequest = new V2CreateLedgerRequest(
-){{
-                    bucket = "string";
+            V2CreateLedgerRequest req = V2CreateLedgerRequest.builder()
+                .ledger("ledger001")
+                .v2CreateLedgerRequest(V2CreateLedgerRequest.builder()
+                    .bucket("<value>")
+                    .build())
+                .build();
 
-                }};
+            V2CreateLedgerResponse res = sdk.ledger().v2CreateLedger()
+                .request(req)
+                .call();
 
-            }};
-
-            com.formance.formance_sdk.models.operations.V2CreateLedgerResponse res = sdk.ledger.v2CreateLedger(req);
-
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1611,8 +1952,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CreateLedgerResponse](../../models/operations/V2CreateLedgerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateLedgerResponse>](../../models/operations/V2CreateLedgerResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2CreateTransaction
 
@@ -1624,72 +1970,73 @@ Create a new transaction to a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2CreateTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2CreateTransactionResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.V2PostTransaction;
 import com.formance.formance_sdk.models.shared.V2PostTransactionScript;
 import com.formance.formance_sdk.models.shared.V2Posting;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2CreateTransactionRequest req = new V2CreateTransactionRequest(
-                new V2PostTransaction(
-                    new java.util.HashMap<String, String>(
-                    ){{
-                        put("admin", "true");
-                    }}){{
-                    postings = new com.formance.formance_sdk.models.shared.V2Posting[]{{
-                        add(new V2Posting(
-                        100L,
-                        "COIN",
-                        "users:002",
-                        "users:001"){{
-                            amount = 100L;
-                            asset = "COIN";
-                            destination = "users:002";
-                            source = "users:001";
-                        }}),
-                    }};
-                    reference = "ref:001";
-                    script = new V2PostTransactionScript(
-                        "vars {
-account $user
-}
-send [COIN 10] (
-	source = @world
-	destination = $user
-)
-"){{
-                        vars = new java.util.HashMap<String, Object>(
-                        ){{
-                            put("user", "string");
-                        }};
+            V2CreateTransactionRequest req = V2CreateTransactionRequest.builder()
+                .v2PostTransaction(V2PostTransaction.builder()
+                        .metadata(java.util.Map.ofEntries(
+                                entry("admin", "true")))
+                        .postings(java.util.List.of(
+                            V2Posting.builder()
+                                .amount(new BigInteger("100"))
+                                .asset("COIN")
+                                .destination("users:002")
+                                .source("users:001")
+                                .build()))
+                        .reference("ref:001")
+                        .script(V2PostTransactionScript.builder()
+                            .plain("vars {
+                        account $user
+                        }
+                        send [COIN 10] (
+                        	source = @world
+                        	destination = $user
+                        )
+                        ")
+                            .vars(java.util.Map.ofEntries(
+                                entry("user", "users:042")))
+                            .build())
+                        .timestamp(OffsetDateTime.parse("2024-06-13T20:20:19.652Z"))
+                        .build())
+                .ledger("ledger001")
+                .idempotencyKey("<value>")
+                .dryRun(true)
+                .build();
 
-                    }};
-                    timestamp = OffsetDateTime.parse("2024-06-13T20:20:19.652Z");
+            V2CreateTransactionResponse res = sdk.ledger().v2CreateTransaction()
+                .request(req)
+                .call();
 
-                }},
-                "ledger001"){{
-                idempotencyKey = "string";
-                dryRun = true;
-
-            }};
-
-            com.formance.formance_sdk.models.operations.V2CreateTransactionResponse res = sdk.ledger.v2CreateTransaction(req);
-
-            if (res.v2CreateTransactionResponse != null) {
+            if (res.v2CreateTransactionResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1706,8 +2053,13 @@ send [COIN 10] (
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CreateTransactionResponse](../../models/operations/V2CreateTransactionResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateTransactionResponse>](../../models/operations/V2CreateTransactionResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2DeleteAccountMetadata
 
@@ -1719,30 +2071,41 @@ Delete metadata by key
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest req = new V2DeleteAccountMetadataRequest(
-                "string",
-                "foo",
-                "ledger001");
+            V2DeleteAccountMetadataRequest req = V2DeleteAccountMetadataRequest.builder()
+                .address("<value>")
+                .key("foo")
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse res = sdk.ledger.v2DeleteAccountMetadata(req);
+            V2DeleteAccountMetadataResponse res = sdk.ledger().v2DeleteAccountMetadata()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1759,8 +2122,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse](../../models/operations/V2DeleteAccountMetadataResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse>](../../models/operations/V2DeleteAccountMetadataResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2DeleteTransactionMetadata
 
@@ -1772,30 +2139,43 @@ Delete metadata by key
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest req = new V2DeleteTransactionMetadataRequest(
-                1234L,
-                "foo",
-                "ledger001");
+            V2DeleteTransactionMetadataRequest req = V2DeleteTransactionMetadataRequest.builder()
+                .id(new BigInteger("1234"))
+                .key("foo")
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse res = sdk.ledger.v2DeleteTransactionMetadata(req);
+            V2DeleteTransactionMetadataResponse res = sdk.ledger().v2DeleteTransactionMetadata()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1812,8 +2192,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse](../../models/operations/V2DeleteTransactionMetadataResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse>](../../models/operations/V2DeleteTransactionMetadataResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2GetAccount
 
@@ -1825,34 +2210,44 @@ Get account by its address
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetAccountRequest;
 import com.formance.formance_sdk.models.operations.V2GetAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetAccountRequest req = new V2GetAccountRequest(
-                "users:001",
-                "ledger001"){{
-                expand = "string";
-                pit = OffsetDateTime.parse("2022-01-12T20:42:33.400Z");
+            V2GetAccountRequest req = V2GetAccountRequest.builder()
+                .address("users:001")
+                .ledger("ledger001")
+                .expand("<value>")
+                .pit(OffsetDateTime.parse("2022-01-12T20:42:33.400Z"))
+                .build();
 
-            }};
+            V2GetAccountResponse res = sdk.ledger().v2GetAccount()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2GetAccountResponse res = sdk.ledger.v2GetAccount(req);
-
-            if (res.v2AccountResponse != null) {
+            if (res.v2AccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1869,8 +2264,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetAccountResponse](../../models/operations/V2GetAccountResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetAccountResponse>](../../models/operations/V2GetAccountResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetBalancesAggregated
 
@@ -1882,37 +2281,45 @@ Get the aggregated balances from selected accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest;
 import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest req = new V2GetBalancesAggregatedRequest(
-                "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                pit = OffsetDateTime.parse("2024-12-10T15:05:25.901Z");
-                useInsertionDate = false;
+            V2GetBalancesAggregatedRequest req = V2GetBalancesAggregatedRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .pit(OffsetDateTime.parse("2024-12-10T15:05:25.901Z"))
+                .useInsertionDate(false)
+                .build();
 
-            }};
+            V2GetBalancesAggregatedResponse res = sdk.ledger().v2GetBalancesAggregated()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse res = sdk.ledger.v2GetBalancesAggregated(req);
-
-            if (res.v2AggregateBalancesResponse != null) {
+            if (res.v2AggregateBalancesResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1929,8 +2336,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse](../../models/operations/V2GetBalancesAggregatedResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse>](../../models/operations/V2GetBalancesAggregatedResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetInfo
 
@@ -1942,24 +2353,35 @@ Show server information
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetInfoResponse res = sdk.ledger.v2GetInfo();
+            V2GetInfoResponse res = sdk.ledger().v2GetInfo()
+                .call();
 
-            if (res.v2ConfigInfoResponse != null) {
+            if (res.v2ConfigInfoResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1970,8 +2392,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetInfoResponse](../../models/operations/V2GetInfoResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInfoResponse>](../../models/operations/V2GetInfoResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetLedger
 
@@ -1983,28 +2409,41 @@ Get a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetLedgerRequest;
 import com.formance.formance_sdk.models.operations.V2GetLedgerResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetLedgerRequest req = new V2GetLedgerRequest(
-                "ledger001");
+            V2GetLedgerRequest req = V2GetLedgerRequest.builder()
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2GetLedgerResponse res = sdk.ledger.v2GetLedger(req);
+            V2GetLedgerResponse res = sdk.ledger().v2GetLedger()
+                .request(req)
+                .call();
 
-            if (res.v2Ledger != null) {
+            if (res.v2Ledger().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2021,8 +2460,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetLedgerResponse](../../models/operations/V2GetLedgerResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetLedgerResponse>](../../models/operations/V2GetLedgerResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetLedgerInfo
 
@@ -2034,28 +2477,41 @@ Get information about a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest;
 import com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest req = new V2GetLedgerInfoRequest(
-                "ledger001");
+            V2GetLedgerInfoRequest req = V2GetLedgerInfoRequest.builder()
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse res = sdk.ledger.v2GetLedgerInfo(req);
+            V2GetLedgerInfoResponse res = sdk.ledger().v2GetLedgerInfo()
+                .request(req)
+                .call();
 
-            if (res.v2LedgerInfoResponse != null) {
+            if (res.v2LedgerInfoResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2072,8 +2528,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse](../../models/operations/V2GetLedgerInfoResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse>](../../models/operations/V2GetLedgerInfoResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetTransaction
 
@@ -2085,34 +2545,46 @@ Get transaction from a ledger by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2GetTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2GetTransactionResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2GetTransactionRequest req = new V2GetTransactionRequest(
-                1234L,
-                "ledger001"){{
-                expand = "string";
-                pit = OffsetDateTime.parse("2023-04-12T09:39:55.552Z");
+            V2GetTransactionRequest req = V2GetTransactionRequest.builder()
+                .id(new BigInteger("1234"))
+                .ledger("ledger001")
+                .expand("<value>")
+                .pit(OffsetDateTime.parse("2023-04-12T09:39:55.552Z"))
+                .build();
 
-            }};
+            V2GetTransactionResponse res = sdk.ledger().v2GetTransaction()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2GetTransactionResponse res = sdk.ledger.v2GetTransaction(req);
-
-            if (res.v2GetTransactionResponse != null) {
+            if (res.v2GetTransactionResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2129,8 +2601,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetTransactionResponse](../../models/operations/V2GetTransactionResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetTransactionResponse>](../../models/operations/V2GetTransactionResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 404                                                     | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2ListAccounts
 
@@ -2142,39 +2619,49 @@ List accounts from a ledger, sorted by address in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ListAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2ListAccountsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ListAccountsRequest req = new V2ListAccountsRequest(
-                "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                expand = "string";
-                pageSize = 26583L;
-                pit = OffsetDateTime.parse("2022-03-24T02:49:23.883Z");
+            V2ListAccountsRequest req = V2ListAccountsRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .expand("<value>")
+                .pageSize(26583L)
+                .pit(OffsetDateTime.parse("2022-03-24T02:49:23.883Z"))
+                .build();
 
-            }};
+            V2ListAccountsResponse res = sdk.ledger().v2ListAccounts()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2ListAccountsResponse res = sdk.ledger.v2ListAccounts(req);
-
-            if (res.v2AccountsCursorResponse != null) {
+            if (res.v2AccountsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2191,8 +2678,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListAccountsResponse](../../models/operations/V2ListAccountsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ListAccountsResponse>](../../models/operations/V2ListAccountsResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2ListLedgers
 
@@ -2204,32 +2696,42 @@ List ledgers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ListLedgersRequest;
 import com.formance.formance_sdk.models.operations.V2ListLedgersResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ListLedgersRequest req = new V2ListLedgersRequest(
-){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 748636L;
+            V2ListLedgersRequest req = V2ListLedgersRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(748636L)
+                .build();
 
-            }};
+            V2ListLedgersResponse res = sdk.ledger().v2ListLedgers()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2ListLedgersResponse res = sdk.ledger.v2ListLedgers(req);
-
-            if (res.v2LedgerListResponse != null) {
+            if (res.v2LedgerListResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2246,8 +2748,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListLedgersResponse](../../models/operations/V2ListLedgersResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ListLedgersResponse>](../../models/operations/V2ListLedgersResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListLogs
 
@@ -2259,38 +2765,46 @@ List the logs from a ledger, sorted by ID in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ListLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ListLogsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ListLogsRequest req = new V2ListLogsRequest(
-                "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 549084L;
-                pit = OffsetDateTime.parse("2024-12-11T15:21:13.915Z");
+            V2ListLogsRequest req = V2ListLogsRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(549084L)
+                .pit(OffsetDateTime.parse("2024-12-11T15:21:13.915Z"))
+                .build();
 
-            }};
+            V2ListLogsResponse res = sdk.ledger().v2ListLogs()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2ListLogsResponse res = sdk.ledger.v2ListLogs(req);
-
-            if (res.v2LogsCursorResponse != null) {
+            if (res.v2LogsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2307,8 +2821,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListLogsResponse](../../models/operations/V2ListLogsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ListLogsResponse>](../../models/operations/V2ListLogsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListTransactions
 
@@ -2320,39 +2838,49 @@ List transactions from a ledger, sorted by id in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ListTransactionsRequest req = new V2ListTransactionsRequest(
-                "ledger001"){{
-                requestBody = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                expand = "string";
-                pageSize = 639042L;
-                pit = OffsetDateTime.parse("2024-02-16T01:05:00.445Z");
+            V2ListTransactionsRequest req = V2ListTransactionsRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .expand("<value>")
+                .pageSize(639042L)
+                .pit(OffsetDateTime.parse("2024-02-16T01:05:00.445Z"))
+                .build();
 
-            }};
+            V2ListTransactionsResponse res = sdk.ledger().v2ListTransactions()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2ListTransactionsResponse res = sdk.ledger.v2ListTransactions(req);
-
-            if (res.v2TransactionsCursorResponse != null) {
+            if (res.v2TransactionsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2369,8 +2897,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListTransactionsResponse](../../models/operations/V2ListTransactionsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ListTransactionsResponse>](../../models/operations/V2ListTransactionsResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400,404                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2ReadStats
 
@@ -2383,28 +2916,41 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2ReadStatsRequest;
 import com.formance.formance_sdk.models.operations.V2ReadStatsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2ReadStatsRequest req = new V2ReadStatsRequest(
-                "ledger001");
+            V2ReadStatsRequest req = V2ReadStatsRequest.builder()
+                .ledger("ledger001")
+                .build();
 
-            com.formance.formance_sdk.models.operations.V2ReadStatsResponse res = sdk.ledger.v2ReadStats(req);
+            V2ReadStatsResponse res = sdk.ledger().v2ReadStats()
+                .request(req)
+                .call();
 
-            if (res.v2StatsResponse != null) {
+            if (res.v2StatsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2421,8 +2967,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ReadStatsResponse](../../models/operations/V2ReadStatsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2ReadStatsResponse>](../../models/operations/V2ReadStatsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2RevertTransaction
 
@@ -2434,32 +2984,45 @@ Revert a ledger transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.V2RevertTransactionRequest req = new V2RevertTransactionRequest(
-                1234L,
-                "ledger001"){{
-                force = false;
+            V2RevertTransactionRequest req = V2RevertTransactionRequest.builder()
+                .id(new BigInteger("1234"))
+                .ledger("ledger001")
+                .force(false)
+                .build();
 
-            }};
+            V2RevertTransactionResponse res = sdk.ledger().v2RevertTransaction()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.V2RevertTransactionResponse res = sdk.ledger.v2RevertTransaction(req);
-
-            if (res.v2RevertTransactionResponse != null) {
+            if (res.v2RevertTransactionResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2476,5 +3039,10 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2RevertTransactionResponse](../../models/operations/V2RevertTransactionResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2RevertTransactionResponse>](../../models/operations/V2RevertTransactionResponse.md)**
+### Errors
 
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |

@@ -5,6 +5,6 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `balance`          | *Long*             | :heavy_check_mark: | N/A                |
-| `input`            | *Long*             | :heavy_check_mark: | N/A                |
-| `output`           | *Long*             | :heavy_check_mark: | N/A                |
+| `balance`          | *BigInteger*       | :heavy_check_mark: | N/A                |
+| `input`            | *BigInteger*       | :heavy_check_mark: | N/A                |
+| `output`           | *BigInteger*       | :heavy_check_mark: | N/A                |

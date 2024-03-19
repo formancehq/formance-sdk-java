@@ -31,24 +31,35 @@ Show stack version information
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetVersionsResponse res = sdk.getVersions();
+            GetVersionsResponse res = sdk.getVersions()
+                .call();
 
-            if (res.getVersionsResponse != null) {
+            if (res.getVersionsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -59,8 +70,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetVersionsResponse](../../models/operations/GetVersionsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetVersionsResponse>](../../models/operations/GetVersionsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getApiAuthWellKnownOpenidConfiguration
 
@@ -70,24 +85,33 @@ public class Application {
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse res = sdk.getApiAuthWellKnownOpenidConfiguration();
+            GetApiAuthWellKnownOpenidConfigurationResponse res = sdk.getApiAuthWellKnownOpenidConfiguration()
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -98,5 +122,9 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse](../../models/operations/GetApiAuthWellKnownOpenidConfigurationResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse>](../../models/operations/GetApiAuthWellKnownOpenidConfigurationResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
