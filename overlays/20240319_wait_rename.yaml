@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: Rename wait parameter
+  version: 0.0.0
+actions:
+  - target: $["paths"]["/api/orchestration/workflows/{workflowID}/instances"]["post"]["parameters"][0]
+    update:
+      "x-speakeasy-name-override": "waitForExecution"
+  - target: $["paths"]["/api/orchestration/v2/workflows/{workflowID}/instances"]["post"]["parameters"][0]
+    update:
+      "x-speakeasy-name-override": "waitForExecution"
