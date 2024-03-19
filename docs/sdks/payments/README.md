@@ -1,5 +1,5 @@
 # Payments
-(*payments*)
+(*payments()*)
 
 ### Available Operations
 
@@ -56,31 +56,43 @@ Add an account to a pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.AddAccountToPoolRequest;
 import com.formance.formance_sdk.models.operations.AddAccountToPoolResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.AddAccountToPoolRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.AddAccountToPoolRequest req = new AddAccountToPoolRequest(
-                new AddAccountToPoolRequest(
-                    "string"),
-                "string");
+            AddAccountToPoolRequest req = AddAccountToPoolRequest.builder()
+                .addAccountToPoolRequest(AddAccountToPoolRequest.builder()
+                        .accountID("<value>")
+                        .build())
+                .poolId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.AddAccountToPoolResponse res = sdk.payments.addAccountToPool(req);
+            AddAccountToPoolResponse res = sdk.payments().addAccountToPool()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -97,8 +109,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.AddAccountToPoolResponse](../../models/operations/AddAccountToPoolResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.AddAccountToPoolResponse>](../../models/operations/AddAccountToPoolResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## connectorsTransfer
 
@@ -110,37 +126,49 @@ Execute a transfer between two accounts.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ConnectorsTransferRequest;
 import com.formance.formance_sdk.models.operations.ConnectorsTransferResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.TransferRequest;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ConnectorsTransferRequest req = new ConnectorsTransferRequest(
-                new TransferRequest(
-                    100L,
-                    "USD",
-                    "acct_1Gqj58KZcSIg2N2q"){{
-                    source = "acct_1Gqj58KZcSIg2N2q";
+            ConnectorsTransferRequest req = ConnectorsTransferRequest.builder()
+                .transferRequest(TransferRequest.builder()
+                        .amount(new BigInteger("100"))
+                        .asset("USD")
+                        .destination("acct_1Gqj58KZcSIg2N2q")
+                        .source("acct_1Gqj58KZcSIg2N2q")
+                        .build())
+                .connector(Connector.CURRENCY_CLOUD)
+                .build();
 
-                }},
-                Connector.CURRENCY_CLOUD);
+            ConnectorsTransferResponse res = sdk.payments().connectorsTransfer()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ConnectorsTransferResponse res = sdk.payments.connectorsTransfer(req);
-
-            if (res.transferResponse != null) {
+            if (res.transferResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -157,8 +185,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ConnectorsTransferResponse](../../models/operations/ConnectorsTransferResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ConnectorsTransferResponse>](../../models/operations/ConnectorsTransferResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createBankAccount
 
@@ -170,39 +202,48 @@ Create a bank account in Payments and on the PSP.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreateBankAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.BankAccountRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.BankAccountRequest req = new BankAccountRequest(
-                "string",
-                "GB",
-                "My account"){{
-                accountNumber = "string";
-                iban = "HU80500236840980904027018003";
-                metadata = new java.util.HashMap<String, String>(
-                ){{
-                    put("key", "string");
-                }};
-                swiftBicCode = "string";
+            BankAccountRequest req = BankAccountRequest.builder()
+                .connectorID("<value>")
+                .country("GB")
+                .name("My account")
+                .accountNumber("<value>")
+                .iban("HU80500236840980904027018003")
+                .metadata(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .swiftBicCode("<value>")
+                .build();
 
-            }};
+            CreateBankAccountResponse res = sdk.payments().createBankAccount()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.CreateBankAccountResponse res = sdk.payments.createBankAccount(req);
-
-            if (res.bankAccountResponse != null) {
+            if (res.bankAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -219,8 +260,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateBankAccountResponse](../../models/operations/CreateBankAccountResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateBankAccountResponse>](../../models/operations/CreateBankAccountResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createPayment
 
@@ -232,43 +277,53 @@ Create a payment
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreatePaymentResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.PaymentRequest;
 import com.formance.formance_sdk.models.shared.PaymentScheme;
 import com.formance.formance_sdk.models.shared.PaymentStatus;
 import com.formance.formance_sdk.models.shared.PaymentType;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.PaymentRequest req = new PaymentRequest(
-                100L,
-                "USD",
-                "string",
-                OffsetDateTime.parse("2024-11-09T01:03:21.153Z"),
-                "string",
-                PaymentScheme.GOOGLE_PAY,
-                PaymentStatus.DISPUTE_WON,
-                PaymentType.TRANSFER){{
-                destinationAccountID = "string";
-                sourceAccountID = "string";
+            PaymentRequest req = PaymentRequest.builder()
+                .amount(new BigInteger("100"))
+                .asset("USD")
+                .connectorID("<value>")
+                .createdAt(OffsetDateTime.parse("2024-11-09T01:03:21.153Z"))
+                .reference("<value>")
+                .scheme(PaymentScheme.GOOGLE_PAY)
+                .status(PaymentStatus.DISPUTE_WON)
+                .type(PaymentType.TRANSFER)
+                .destinationAccountID("<value>")
+                .sourceAccountID("<value>")
+                .build();
 
-            }};
+            CreatePaymentResponse res = sdk.payments().createPayment()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.CreatePaymentResponse res = sdk.payments.createPayment(req);
-
-            if (res.paymentResponse != null) {
+            if (res.paymentResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -285,8 +340,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreatePaymentResponse](../../models/operations/CreatePaymentResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreatePaymentResponse>](../../models/operations/CreatePaymentResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createPool
 
@@ -298,31 +357,43 @@ Create a Pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreatePoolResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.PoolRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.PoolRequest req = new PoolRequest(
-                new String[]{{
-                    add("string"),
-                }},
-                "string");
+            PoolRequest req = PoolRequest.builder()
+                .accountIDs(java.util.List.of(
+                        "<value>"))
+                .name("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.CreatePoolResponse res = sdk.payments.createPool(req);
+            CreatePoolResponse res = sdk.payments().createPool()
+                .request(req)
+                .call();
 
-            if (res.poolResponse != null) {
+            if (res.poolResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -339,8 +410,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreatePoolResponse](../../models/operations/CreatePoolResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreatePoolResponse>](../../models/operations/CreatePoolResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createTransferInitiation
 
@@ -352,47 +427,55 @@ Create a transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
 import com.formance.formance_sdk.models.shared.TransferInitiationRequestType;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.TransferInitiationRequest req = new TransferInitiationRequest(
-                256698L,
-                "USD",
-                "string",
-                "string",
-                "XXX",
-                OffsetDateTime.parse("2023-06-16T18:59:33.654Z"),
-                "string",
-                TransferInitiationRequestType.PAYOUT,
-                false){{
-                connectorID = "string";
-                metadata = new java.util.HashMap<String, String>(
-                ){{
-                    put("key", "string");
-                }};
-                provider = Connector.MANGOPAY;
+            TransferInitiationRequest req = TransferInitiationRequest.builder()
+                .amount(new BigInteger("256698"))
+                .asset("USD")
+                .description("<value>")
+                .destinationAccountID("<value>")
+                .reference("XXX")
+                .scheduledAt(OffsetDateTime.parse("2023-06-16T18:59:33.654Z"))
+                .sourceAccountID("<value>")
+                .type(TransferInitiationRequestType.PAYOUT)
+                .validated(false)
+                .connectorID("<value>")
+                .metadata(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .provider(Connector.MANGOPAY)
+                .build();
 
-            }};
+            CreateTransferInitiationResponse res = sdk.payments().createTransferInitiation()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse res = sdk.payments.createTransferInitiation(req);
-
-            if (res.transferInitiationResponse != null) {
+            if (res.transferInitiationResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -409,8 +492,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse](../../models/operations/CreateTransferInitiationResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse>](../../models/operations/CreateTransferInitiationResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deletePool
 
@@ -422,28 +509,39 @@ Delete a pool by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeletePoolRequest;
 import com.formance.formance_sdk.models.operations.DeletePoolResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeletePoolRequest req = new DeletePoolRequest(
-                "string");
+            DeletePoolRequest req = DeletePoolRequest.builder()
+                .poolId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeletePoolResponse res = sdk.payments.deletePool(req);
+            DeletePoolResponse res = sdk.payments().deletePool()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -460,8 +558,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeletePoolResponse](../../models/operations/DeletePoolResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeletePoolResponse>](../../models/operations/DeletePoolResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deleteTransferInitiation
 
@@ -473,28 +575,39 @@ Delete a transfer initiation by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest req = new DeleteTransferInitiationRequest(
-                "string");
+            DeleteTransferInitiationRequest req = DeleteTransferInitiationRequest.builder()
+                .transferId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse res = sdk.payments.deleteTransferInitiation(req);
+            DeleteTransferInitiationResponse res = sdk.payments().deleteTransferInitiation()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -511,8 +624,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse](../../models/operations/DeleteTransferInitiationResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse>](../../models/operations/DeleteTransferInitiationResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## forwardBankAccount
 
@@ -524,31 +641,45 @@ Forward a bank account to a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ForwardBankAccountRequest;
 import com.formance.formance_sdk.models.operations.ForwardBankAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.ForwardBankAccountRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ForwardBankAccountRequest req = new ForwardBankAccountRequest(
-                new ForwardBankAccountRequest(
-                    "string"),
-                "string");
+            ForwardBankAccountRequest req = ForwardBankAccountRequest.builder()
+                .forwardBankAccountRequest(ForwardBankAccountRequest.builder()
+                        .connectorID("<value>")
+                        .build())
+                .bankAccountId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ForwardBankAccountResponse res = sdk.payments.forwardBankAccount(req);
+            ForwardBankAccountResponse res = sdk.payments().forwardBankAccount()
+                .request(req)
+                .call();
 
-            if (res.bankAccountResponse != null) {
+            if (res.bankAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -565,8 +696,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ForwardBankAccountResponse](../../models/operations/ForwardBankAccountResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ForwardBankAccountResponse>](../../models/operations/ForwardBankAccountResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getAccountBalances
 
@@ -578,40 +713,49 @@ Get account balances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetAccountBalancesRequest req = new GetAccountBalancesRequest(
-                "string"){{
-                asset = "string";
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                from = OffsetDateTime.parse("2023-02-05T05:11:20.042Z");
-                limit = 743236L;
-                pageSize = 125462L;
-                sort = new String[]{{
-                    add("string"),
-                }};
-                to = OffsetDateTime.parse("2023-07-15T08:57:06.406Z");
+            GetAccountBalancesRequest req = GetAccountBalancesRequest.builder()
+                .accountId("<value>")
+                .asset("<value>")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .from(OffsetDateTime.parse("2023-02-05T05:11:20.042Z"))
+                .limit(743236L)
+                .pageSize(125462L)
+                .sort(java.util.List.of(
+                    "<value>"))
+                .to(OffsetDateTime.parse("2023-07-15T08:57:06.406Z"))
+                .build();
 
-            }};
+            GetAccountBalancesResponse res = sdk.payments().getAccountBalances()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.GetAccountBalancesResponse res = sdk.payments.getAccountBalances(req);
-
-            if (res.balancesCursor != null) {
+            if (res.balancesCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -628,8 +772,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetAccountBalancesResponse](../../models/operations/GetAccountBalancesResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetAccountBalancesResponse>](../../models/operations/GetAccountBalancesResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getBankAccount
 
@@ -641,28 +789,41 @@ Get a bank account created by user on Formance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetBankAccountRequest;
 import com.formance.formance_sdk.models.operations.GetBankAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetBankAccountRequest req = new GetBankAccountRequest(
-                "string");
+            GetBankAccountRequest req = GetBankAccountRequest.builder()
+                .bankAccountId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetBankAccountResponse res = sdk.payments.getBankAccount(req);
+            GetBankAccountResponse res = sdk.payments().getBankAccount()
+                .request(req)
+                .call();
 
-            if (res.bankAccountResponse != null) {
+            if (res.bankAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -679,8 +840,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetBankAccountResponse](../../models/operations/GetBankAccountResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetBankAccountResponse>](../../models/operations/GetBankAccountResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~getConnectorTask~~
 
@@ -694,30 +859,43 @@ Get a specific task associated to the connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskRequest;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetConnectorTaskRequest req = new GetConnectorTaskRequest(
-                Connector.ATLAR,
-                "string");
+            GetConnectorTaskRequest req = GetConnectorTaskRequest.builder()
+                .connector(Connector.ATLAR)
+                .taskId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetConnectorTaskResponse res = sdk.payments.getConnectorTask(req);
+            GetConnectorTaskResponse res = sdk.payments().getConnectorTask()
+                .request(req)
+                .call();
 
-            if (res.taskResponse != null) {
+            if (res.taskResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -734,8 +912,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetConnectorTaskResponse](../../models/operations/GetConnectorTaskResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetConnectorTaskResponse>](../../models/operations/GetConnectorTaskResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getConnectorTaskV1
 
@@ -747,31 +929,44 @@ Get a specific task associated to the connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request req = new GetConnectorTaskV1Request(
-                Connector.CURRENCY_CLOUD,
-                "string",
-                "string");
+            GetConnectorTaskV1Request req = GetConnectorTaskV1Request.builder()
+                .connector(Connector.CURRENCY_CLOUD)
+                .connectorId("<value>")
+                .taskId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response res = sdk.payments.getConnectorTaskV1(req);
+            GetConnectorTaskV1Response res = sdk.payments().getConnectorTaskV1()
+                .request(req)
+                .call();
 
-            if (res.taskResponse != null) {
+            if (res.taskResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -788,8 +983,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response](../../models/operations/GetConnectorTaskV1Response.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response>](../../models/operations/GetConnectorTaskV1Response.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getPayment
 
@@ -801,28 +1000,41 @@ Get a payment
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetPaymentRequest;
 import com.formance.formance_sdk.models.operations.GetPaymentResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetPaymentRequest req = new GetPaymentRequest(
-                "string");
+            GetPaymentRequest req = GetPaymentRequest.builder()
+                .paymentId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetPaymentResponse res = sdk.payments.getPayment(req);
+            GetPaymentResponse res = sdk.payments().getPayment()
+                .request(req)
+                .call();
 
-            if (res.paymentResponse != null) {
+            if (res.paymentResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -839,8 +1051,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetPaymentResponse](../../models/operations/GetPaymentResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetPaymentResponse>](../../models/operations/GetPaymentResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getPool
 
@@ -852,28 +1068,41 @@ Get a Pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetPoolRequest;
 import com.formance.formance_sdk.models.operations.GetPoolResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetPoolRequest req = new GetPoolRequest(
-                "string");
+            GetPoolRequest req = GetPoolRequest.builder()
+                .poolId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetPoolResponse res = sdk.payments.getPool(req);
+            GetPoolResponse res = sdk.payments().getPool()
+                .request(req)
+                .call();
 
-            if (res.poolResponse != null) {
+            if (res.poolResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -890,8 +1119,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetPoolResponse](../../models/operations/GetPoolResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetPoolResponse>](../../models/operations/GetPoolResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getPoolBalances
 
@@ -903,30 +1136,42 @@ Get pool balances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetPoolBalancesRequest req = new GetPoolBalancesRequest(
-                OffsetDateTime.parse("2023-05-05T06:40:23.018Z"),
-                "string");
+            GetPoolBalancesRequest req = GetPoolBalancesRequest.builder()
+                .at(OffsetDateTime.parse("2023-05-05T06:40:23.018Z"))
+                .poolId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetPoolBalancesResponse res = sdk.payments.getPoolBalances(req);
+            GetPoolBalancesResponse res = sdk.payments().getPoolBalances()
+                .request(req)
+                .call();
 
-            if (res.poolBalancesResponse != null) {
+            if (res.poolBalancesResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -943,8 +1188,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetPoolBalancesResponse](../../models/operations/GetPoolBalancesResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetPoolBalancesResponse>](../../models/operations/GetPoolBalancesResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getTransferInitiation
 
@@ -956,28 +1205,41 @@ Get a transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetTransferInitiationRequest req = new GetTransferInitiationRequest(
-                "string");
+            GetTransferInitiationRequest req = GetTransferInitiationRequest.builder()
+                .transferId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetTransferInitiationResponse res = sdk.payments.getTransferInitiation(req);
+            GetTransferInitiationResponse res = sdk.payments().getTransferInitiation()
+                .request(req)
+                .call();
 
-            if (res.transferInitiationResponse != null) {
+            if (res.transferInitiationResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -994,8 +1256,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetTransferInitiationResponse](../../models/operations/GetTransferInitiationResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetTransferInitiationResponse>](../../models/operations/GetTransferInitiationResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## installConnector
 
@@ -1007,30 +1273,58 @@ Install a connector by its name and config.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.InstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.InstallConnectorResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.AdyenConfig;
+import com.formance.formance_sdk.models.shared.AtlarConfig;
+import com.formance.formance_sdk.models.shared.BankingCircleConfig;
 import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.shared.CurrencyCloudConfig;
+import com.formance.formance_sdk.models.shared.DummyPayConfig;
+import com.formance.formance_sdk.models.shared.MangoPayConfig;
+import com.formance.formance_sdk.models.shared.ModulrConfig;
+import com.formance.formance_sdk.models.shared.MoneycorpConfig;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.StripeConfig;
+import com.formance.formance_sdk.models.shared.WiseConfig;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.InstallConnectorRequest req = new InstallConnectorRequest(
-                "string",
-                Connector.WISE);
+            InstallConnectorRequest req = InstallConnectorRequest.builder()
+                .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
+                            .apiKey("XXX")
+                            .name("My Stripe Account")
+                            .pageSize(50L)
+                            .pollingPeriod("60s")
+                            .build()))
+                .connector(Connector.WISE)
+                .build();
 
-            com.formance.formance_sdk.models.operations.InstallConnectorResponse res = sdk.payments.installConnector(req);
+            InstallConnectorResponse res = sdk.payments().installConnector()
+                .request(req)
+                .call();
 
-            if (res.connectorResponse != null) {
+            if (res.connectorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1047,8 +1341,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.InstallConnectorResponse](../../models/operations/InstallConnectorResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.InstallConnectorResponse>](../../models/operations/InstallConnectorResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listAllConnectors
 
@@ -1060,24 +1358,35 @@ List all installed connectors.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListAllConnectorsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListAllConnectorsResponse res = sdk.payments.listAllConnectors();
+            ListAllConnectorsResponse res = sdk.payments().listAllConnectors()
+                .call();
 
-            if (res.connectorsResponse != null) {
+            if (res.connectorsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1088,8 +1397,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListAllConnectorsResponse](../../models/operations/ListAllConnectorsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListAllConnectorsResponse>](../../models/operations/ListAllConnectorsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listBankAccounts
 
@@ -1101,35 +1414,44 @@ List all bank accounts created by user on Formance.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListBankAccountsRequest;
 import com.formance.formance_sdk.models.operations.ListBankAccountsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListBankAccountsRequest req = new ListBankAccountsRequest(
-){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 578999L;
-                sort = new String[]{{
-                    add("string"),
-                }};
+            ListBankAccountsRequest req = ListBankAccountsRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(578999L)
+                .sort(java.util.List.of(
+                    "<value>"))
+                .build();
 
-            }};
+            ListBankAccountsResponse res = sdk.payments().listBankAccounts()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListBankAccountsResponse res = sdk.payments.listBankAccounts(req);
-
-            if (res.bankAccountsCursor != null) {
+            if (res.bankAccountsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1146,8 +1468,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListBankAccountsResponse](../../models/operations/ListBankAccountsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListBankAccountsResponse>](../../models/operations/ListBankAccountsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listConfigsAvailableConnectors
 
@@ -1159,24 +1485,35 @@ List the configs of each available connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse res = sdk.payments.listConfigsAvailableConnectors();
+            ListConfigsAvailableConnectorsResponse res = sdk.payments().listConfigsAvailableConnectors()
+                .call();
 
-            if (res.connectorsConfigsResponse != null) {
+            if (res.connectorsConfigsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1187,8 +1524,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse](../../models/operations/ListConfigsAvailableConnectorsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse>](../../models/operations/ListConfigsAvailableConnectorsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~listConnectorTasks~~
 
@@ -1202,33 +1543,44 @@ List all tasks associated with this connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksRequest;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListConnectorTasksRequest req = new ListConnectorTasksRequest(
-                Connector.WISE){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 501686L;
+            ListConnectorTasksRequest req = ListConnectorTasksRequest.builder()
+                .connector(Connector.WISE)
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(501686L)
+                .build();
 
-            }};
+            ListConnectorTasksResponse res = sdk.payments().listConnectorTasks()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListConnectorTasksResponse res = sdk.payments.listConnectorTasks(req);
-
-            if (res.tasksCursor != null) {
+            if (res.tasksCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1245,8 +1597,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListConnectorTasksResponse](../../models/operations/ListConnectorTasksResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListConnectorTasksResponse>](../../models/operations/ListConnectorTasksResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listConnectorTasksV1
 
@@ -1258,34 +1614,45 @@ List all tasks associated with this connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request req = new ListConnectorTasksV1Request(
-                Connector.BANKING_CIRCLE,
-                "string"){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 442673L;
+            ListConnectorTasksV1Request req = ListConnectorTasksV1Request.builder()
+                .connector(Connector.BANKING_CIRCLE)
+                .connectorId("<value>")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(442673L)
+                .build();
 
-            }};
+            ListConnectorTasksV1Response res = sdk.payments().listConnectorTasksV1()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response res = sdk.payments.listConnectorTasksV1(req);
-
-            if (res.tasksCursor != null) {
+            if (res.tasksCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1302,8 +1669,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response](../../models/operations/ListConnectorTasksV1Response.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response>](../../models/operations/ListConnectorTasksV1Response.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listPayments
 
@@ -1315,35 +1686,44 @@ List payments
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListPaymentsRequest;
 import com.formance.formance_sdk.models.operations.ListPaymentsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListPaymentsRequest req = new ListPaymentsRequest(
-){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 13778L;
-                sort = new String[]{{
-                    add("string"),
-                }};
+            ListPaymentsRequest req = ListPaymentsRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(13778L)
+                .sort(java.util.List.of(
+                    "<value>"))
+                .build();
 
-            }};
+            ListPaymentsResponse res = sdk.payments().listPayments()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListPaymentsResponse res = sdk.payments.listPayments(req);
-
-            if (res.paymentsCursor != null) {
+            if (res.paymentsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1360,8 +1740,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListPaymentsResponse](../../models/operations/ListPaymentsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListPaymentsResponse>](../../models/operations/ListPaymentsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listPools
 
@@ -1373,36 +1757,45 @@ List Pools
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListPoolsRequest;
 import com.formance.formance_sdk.models.operations.ListPoolsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListPoolsRequest req = new ListPoolsRequest(
-){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 567687L;
-                query = "string";
-                sort = new String[]{{
-                    add("string"),
-                }};
+            ListPoolsRequest req = ListPoolsRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(567687L)
+                .query("<value>")
+                .sort(java.util.List.of(
+                    "<value>"))
+                .build();
 
-            }};
+            ListPoolsResponse res = sdk.payments().listPools()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListPoolsResponse res = sdk.payments.listPools(req);
-
-            if (res.poolsCursor != null) {
+            if (res.poolsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1419,8 +1812,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListPoolsResponse](../../models/operations/ListPoolsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListPoolsResponse>](../../models/operations/ListPoolsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listTransferInitiations
 
@@ -1432,36 +1829,45 @@ List Transfer Initiations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest req = new ListTransferInitiationsRequest(
-){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 706689L;
-                query = "string";
-                sort = new String[]{{
-                    add("string"),
-                }};
+            ListTransferInitiationsRequest req = ListTransferInitiationsRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(706689L)
+                .query("<value>")
+                .sort(java.util.List.of(
+                    "<value>"))
+                .build();
 
-            }};
+            ListTransferInitiationsResponse res = sdk.payments().listTransferInitiations()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse res = sdk.payments.listTransferInitiations(req);
-
-            if (res.transferInitiationsCursor != null) {
+            if (res.transferInitiationsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1478,8 +1884,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse](../../models/operations/ListTransferInitiationsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse>](../../models/operations/ListTransferInitiationsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## paymentsgetAccount
 
@@ -1491,28 +1901,41 @@ Get an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest;
 import com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest req = new PaymentsgetAccountRequest(
-                "string");
+            PaymentsgetAccountRequest req = PaymentsgetAccountRequest.builder()
+                .accountId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse res = sdk.payments.paymentsgetAccount(req);
+            PaymentsgetAccountResponse res = sdk.payments().paymentsgetAccount()
+                .request(req)
+                .call();
 
-            if (res.paymentsAccountResponse != null) {
+            if (res.paymentsAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1529,8 +1952,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse](../../models/operations/PaymentsgetAccountResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse>](../../models/operations/PaymentsgetAccountResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## paymentsgetServerInfo
 
@@ -1542,24 +1969,35 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse res = sdk.payments.paymentsgetServerInfo();
+            PaymentsgetServerInfoResponse res = sdk.payments().paymentsgetServerInfo()
+                .call();
 
-            if (res.serverInfo != null) {
+            if (res.serverInfo().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1570,8 +2008,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse](../../models/operations/PaymentsgetServerInfoResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse>](../../models/operations/PaymentsgetServerInfoResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## paymentslistAccounts
 
@@ -1583,35 +2025,46 @@ List accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest;
 import com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest req = new PaymentslistAccountsRequest(
-){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 227071L;
-                sort = new String[]{{
-                    add("string"),
-                }};
+            PaymentslistAccountsRequest req = PaymentslistAccountsRequest.builder()
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(227071L)
+                .sort(java.util.List.of(
+                    "<value>"))
+                .build();
 
-            }};
+            PaymentslistAccountsResponse res = sdk.payments().paymentslistAccounts()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse res = sdk.payments.paymentslistAccounts(req);
-
-            if (res.accountsCursor != null) {
+            if (res.accountsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1628,8 +2081,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse](../../models/operations/PaymentslistAccountsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse>](../../models/operations/PaymentslistAccountsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~readConnectorConfig~~
 
@@ -1643,29 +2100,42 @@ Read connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest req = new ReadConnectorConfigRequest(
-                Connector.ADYEN);
+            ReadConnectorConfigRequest req = ReadConnectorConfigRequest.builder()
+                .connector(Connector.ADYEN)
+                .build();
 
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse res = sdk.payments.readConnectorConfig(req);
+            ReadConnectorConfigResponse res = sdk.payments().readConnectorConfig()
+                .request(req)
+                .call();
 
-            if (res.connectorConfigResponse != null) {
+            if (res.connectorConfigResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1682,8 +2152,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse](../../models/operations/ReadConnectorConfigResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse>](../../models/operations/ReadConnectorConfigResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## readConnectorConfigV1
 
@@ -1695,30 +2169,43 @@ Read connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request req = new ReadConnectorConfigV1Request(
-                Connector.CURRENCY_CLOUD,
-                "string");
+            ReadConnectorConfigV1Request req = ReadConnectorConfigV1Request.builder()
+                .connector(Connector.CURRENCY_CLOUD)
+                .connectorId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response res = sdk.payments.readConnectorConfigV1(req);
+            ReadConnectorConfigV1Response res = sdk.payments().readConnectorConfigV1()
+                .request(req)
+                .call();
 
-            if (res.connectorConfigResponse != null) {
+            if (res.connectorConfigResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1735,8 +2222,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response](../../models/operations/ReadConnectorConfigV1Response.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response>](../../models/operations/ReadConnectorConfigV1Response.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## removeAccountFromPool
 
@@ -1748,29 +2239,40 @@ Remove an account from a pool by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest;
 import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest req = new RemoveAccountFromPoolRequest(
-                "string",
-                "string");
+            RemoveAccountFromPoolRequest req = RemoveAccountFromPoolRequest.builder()
+                .accountId("<value>")
+                .poolId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse res = sdk.payments.removeAccountFromPool(req);
+            RemoveAccountFromPoolResponse res = sdk.payments().removeAccountFromPool()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1787,8 +2289,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse](../../models/operations/RemoveAccountFromPoolResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse>](../../models/operations/RemoveAccountFromPoolResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~resetConnector~~
 
@@ -1804,29 +2310,40 @@ It will remove the connector and ALL PAYMENTS generated with it.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ResetConnectorRequest;
 import com.formance.formance_sdk.models.operations.ResetConnectorResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ResetConnectorRequest req = new ResetConnectorRequest(
-                Connector.MONEYCORP);
+            ResetConnectorRequest req = ResetConnectorRequest.builder()
+                .connector(Connector.MONEYCORP)
+                .build();
 
-            com.formance.formance_sdk.models.operations.ResetConnectorResponse res = sdk.payments.resetConnector(req);
+            ResetConnectorResponse res = sdk.payments().resetConnector()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1843,8 +2360,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ResetConnectorResponse](../../models/operations/ResetConnectorResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ResetConnectorResponse>](../../models/operations/ResetConnectorResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## resetConnectorV1
 
@@ -1858,30 +2379,41 @@ It will remove the connector and ALL PAYMENTS generated with it.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ResetConnectorV1Request;
 import com.formance.formance_sdk.models.operations.ResetConnectorV1Response;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ResetConnectorV1Request req = new ResetConnectorV1Request(
-                Connector.ADYEN,
-                "string");
+            ResetConnectorV1Request req = ResetConnectorV1Request.builder()
+                .connector(Connector.ADYEN)
+                .connectorId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ResetConnectorV1Response res = sdk.payments.resetConnectorV1(req);
+            ResetConnectorV1Response res = sdk.payments().resetConnectorV1()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1898,8 +2430,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ResetConnectorV1Response](../../models/operations/ResetConnectorV1Response.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ResetConnectorV1Response>](../../models/operations/ResetConnectorV1Response.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## retryTransferInitiation
 
@@ -1911,28 +2447,39 @@ Retry a failed transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest req = new RetryTransferInitiationRequest(
-                "string");
+            RetryTransferInitiationRequest req = RetryTransferInitiationRequest.builder()
+                .transferId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse res = sdk.payments.retryTransferInitiation(req);
+            RetryTransferInitiationResponse res = sdk.payments().retryTransferInitiation()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -1949,8 +2496,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse](../../models/operations/RetryTransferInitiationResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse>](../../models/operations/RetryTransferInitiationResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## reverseTransferInitiation
 
@@ -1962,38 +2513,48 @@ Reverse transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest req = new ReverseTransferInitiationRequest(
-                new ReverseTransferInitiationRequest(
-                    327549L,
-                    "USD",
-                    "string",
-                    new java.util.HashMap<String, String>(
-                    ){{
-                        put("key", "string");
-                    }},
-                    "XXX"),
-                "string");
+            ReverseTransferInitiationRequest req = ReverseTransferInitiationRequest.builder()
+                .reverseTransferInitiationRequest(ReverseTransferInitiationRequest.builder()
+                        .amount(new BigInteger("327549"))
+                        .asset("USD")
+                        .description("<value>")
+                        .metadata(java.util.Map.ofEntries(
+                                entry("key", "<value>")))
+                        .reference("XXX")
+                        .build())
+                .transferId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse res = sdk.payments.reverseTransferInitiation(req);
+            ReverseTransferInitiationResponse res = sdk.payments().reverseTransferInitiation()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2010,8 +2571,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse](../../models/operations/ReverseTransferInitiationResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse>](../../models/operations/ReverseTransferInitiationResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## udpateTransferInitiationStatus
 
@@ -2023,32 +2588,44 @@ Update a transfer initiation status
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest;
 import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.Status;
 import com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest req = new UdpateTransferInitiationStatusRequest(
-                new UpdateTransferInitiationStatusRequest(
-                    Status.VALIDATED),
-                "string");
+            UdpateTransferInitiationStatusRequest req = UdpateTransferInitiationStatusRequest.builder()
+                .updateTransferInitiationStatusRequest(UpdateTransferInitiationStatusRequest.builder()
+                        .status(Status.VALIDATED)
+                        .build())
+                .transferId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse res = sdk.payments.udpateTransferInitiationStatus(req);
+            UdpateTransferInitiationStatusResponse res = sdk.payments().udpateTransferInitiationStatus()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2065,8 +2642,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse](../../models/operations/UdpateTransferInitiationStatusResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse>](../../models/operations/UdpateTransferInitiationStatusResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## ~~uninstallConnector~~
 
@@ -2080,29 +2661,40 @@ Uninstall a connector by its name.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.UninstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.UninstallConnectorResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.UninstallConnectorRequest req = new UninstallConnectorRequest(
-                Connector.WISE);
+            UninstallConnectorRequest req = UninstallConnectorRequest.builder()
+                .connector(Connector.WISE)
+                .build();
 
-            com.formance.formance_sdk.models.operations.UninstallConnectorResponse res = sdk.payments.uninstallConnector(req);
+            UninstallConnectorResponse res = sdk.payments().uninstallConnector()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2119,8 +2711,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UninstallConnectorResponse](../../models/operations/UninstallConnectorResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.UninstallConnectorResponse>](../../models/operations/UninstallConnectorResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## uninstallConnectorV1
 
@@ -2132,30 +2728,41 @@ Uninstall a connector by its name.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.UninstallConnectorV1Request;
 import com.formance.formance_sdk.models.operations.UninstallConnectorV1Response;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.UninstallConnectorV1Request req = new UninstallConnectorV1Request(
-                Connector.ADYEN,
-                "string");
+            UninstallConnectorV1Request req = UninstallConnectorV1Request.builder()
+                .connector(Connector.ADYEN)
+                .connectorId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.UninstallConnectorV1Response res = sdk.payments.uninstallConnectorV1(req);
+            UninstallConnectorV1Response res = sdk.payments().uninstallConnectorV1()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2172,8 +2779,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UninstallConnectorV1Response](../../models/operations/UninstallConnectorV1Response.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.UninstallConnectorV1Response>](../../models/operations/UninstallConnectorV1Response.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## updateBankAccountMetadata
 
@@ -2185,34 +2796,44 @@ Update metadata of a bank account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest;
 import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest req = new UpdateBankAccountMetadataRequest(
-                new UpdateBankAccountMetadataRequest(
-                    new java.util.HashMap<String, String>(
-                    ){{
-                        put("key", "string");
-                    }}),
-                "string");
+            UpdateBankAccountMetadataRequest req = UpdateBankAccountMetadataRequest.builder()
+                .updateBankAccountMetadataRequest(UpdateBankAccountMetadataRequest.builder()
+                        .metadata(java.util.Map.ofEntries(
+                                entry("key", "<value>")))
+                        .build())
+                .bankAccountId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse res = sdk.payments.updateBankAccountMetadata(req);
+            UpdateBankAccountMetadataResponse res = sdk.payments().updateBankAccountMetadata()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2229,8 +2850,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse](../../models/operations/UpdateBankAccountMetadataResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse>](../../models/operations/UpdateBankAccountMetadataResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## updateConnectorConfigV1
 
@@ -2242,31 +2867,57 @@ Update connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request;
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.AdyenConfig;
+import com.formance.formance_sdk.models.shared.AtlarConfig;
+import com.formance.formance_sdk.models.shared.BankingCircleConfig;
 import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.shared.CurrencyCloudConfig;
+import com.formance.formance_sdk.models.shared.DummyPayConfig;
+import com.formance.formance_sdk.models.shared.MangoPayConfig;
+import com.formance.formance_sdk.models.shared.ModulrConfig;
+import com.formance.formance_sdk.models.shared.MoneycorpConfig;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.StripeConfig;
+import com.formance.formance_sdk.models.shared.WiseConfig;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request req = new UpdateConnectorConfigV1Request(
-                "string",
-                Connector.STRIPE,
-                "string");
+            UpdateConnectorConfigV1Request req = UpdateConnectorConfigV1Request.builder()
+                .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
+                            .apiKey("XXX")
+                            .name("My Stripe Account")
+                            .pageSize(50L)
+                            .pollingPeriod("60s")
+                            .build()))
+                .connector(Connector.STRIPE)
+                .connectorId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response res = sdk.payments.updateConnectorConfigV1(req);
+            UpdateConnectorConfigV1Response res = sdk.payments().updateConnectorConfigV1()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2283,8 +2934,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response](../../models/operations/UpdateConnectorConfigV1Response.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response>](../../models/operations/UpdateConnectorConfigV1Response.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## updateMetadata
 
@@ -2296,32 +2951,41 @@ Update metadata
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.UpdateMetadataRequest;
 import com.formance.formance_sdk.models.operations.UpdateMetadataResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.UpdateMetadataRequest req = new UpdateMetadataRequest(
-                new java.util.HashMap<String, String>(
-                ){{
-                    put("key", "string");
-                }},
-                "string");
+            UpdateMetadataRequest req = UpdateMetadataRequest.builder()
+                .requestBody(java.util.Map.ofEntries(
+                        entry("key", "<value>")))
+                .paymentId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.UpdateMetadataResponse res = sdk.payments.updateMetadata(req);
+            UpdateMetadataResponse res = sdk.payments().updateMetadata()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -2338,5 +3002,9 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UpdateMetadataResponse](../../models/operations/UpdateMetadataResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateMetadataResponse>](../../models/operations/UpdateMetadataResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

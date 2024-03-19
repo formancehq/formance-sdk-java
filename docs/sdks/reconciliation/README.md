@@ -1,5 +1,5 @@
 # Reconciliation
-(*reconciliation*)
+(*reconciliation()*)
 
 ### Available Operations
 
@@ -22,34 +22,45 @@ Create a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.PolicyRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.PolicyRequest req = new PolicyRequest(
-                "default",
-                new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }},
-                "XXX",
-                "XXX");
+            PolicyRequest req = PolicyRequest.builder()
+                .ledgerName("default")
+                .ledgerQuery(java.util.Map.ofEntries(
+                        entry("key", "<value>")))
+                .name("XXX")
+                .paymentsPoolID("XXX")
+                .build();
 
-            com.formance.formance_sdk.models.operations.CreatePolicyResponse res = sdk.reconciliation.createPolicy(req);
+            CreatePolicyResponse res = sdk.reconciliation().createPolicy()
+                .request(req)
+                .call();
 
-            if (res.policyResponse != null) {
+            if (res.policyResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -66,8 +77,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreatePolicyResponse](../../models/operations/CreatePolicyResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreatePolicyResponse>](../../models/operations/CreatePolicyResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deletePolicy
 
@@ -79,28 +94,39 @@ Delete a policy by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeletePolicyRequest;
 import com.formance.formance_sdk.models.operations.DeletePolicyResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeletePolicyRequest req = new DeletePolicyRequest(
-                "string");
+            DeletePolicyRequest req = DeletePolicyRequest.builder()
+                .policyID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeletePolicyResponse res = sdk.reconciliation.deletePolicy(req);
+            DeletePolicyResponse res = sdk.reconciliation().deletePolicy()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -117,8 +143,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeletePolicyResponse](../../models/operations/DeletePolicyResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeletePolicyResponse>](../../models/operations/DeletePolicyResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getPolicy
 
@@ -130,28 +160,41 @@ Get a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetPolicyRequest;
 import com.formance.formance_sdk.models.operations.GetPolicyResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetPolicyRequest req = new GetPolicyRequest(
-                "string");
+            GetPolicyRequest req = GetPolicyRequest.builder()
+                .policyID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetPolicyResponse res = sdk.reconciliation.getPolicy(req);
+            GetPolicyResponse res = sdk.reconciliation().getPolicy()
+                .request(req)
+                .call();
 
-            if (res.policyResponse != null) {
+            if (res.policyResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -168,8 +211,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetPolicyResponse](../../models/operations/GetPolicyResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetPolicyResponse>](../../models/operations/GetPolicyResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getReconciliation
 
@@ -181,28 +228,41 @@ Get a reconciliation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetReconciliationRequest;
 import com.formance.formance_sdk.models.operations.GetReconciliationResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetReconciliationRequest req = new GetReconciliationRequest(
-                "string");
+            GetReconciliationRequest req = GetReconciliationRequest.builder()
+                .reconciliationID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.GetReconciliationResponse res = sdk.reconciliation.getReconciliation(req);
+            GetReconciliationResponse res = sdk.reconciliation().getReconciliation()
+                .request(req)
+                .call();
 
-            if (res.reconciliationResponse != null) {
+            if (res.reconciliationResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -219,8 +279,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetReconciliationResponse](../../models/operations/GetReconciliationResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetReconciliationResponse>](../../models/operations/GetReconciliationResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listPolicies
 
@@ -232,32 +296,42 @@ List policies
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListPoliciesRequest;
 import com.formance.formance_sdk.models.operations.ListPoliciesResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListPoliciesRequest req = new ListPoliciesRequest(
-){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 520028L;
+            ListPoliciesRequest req = ListPoliciesRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(520028L)
+                .build();
 
-            }};
+            ListPoliciesResponse res = sdk.reconciliation().listPolicies()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListPoliciesResponse res = sdk.reconciliation.listPolicies(req);
-
-            if (res.policiesCursorResponse != null) {
+            if (res.policiesCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -274,8 +348,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListPoliciesResponse](../../models/operations/ListPoliciesResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListPoliciesResponse>](../../models/operations/ListPoliciesResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listReconciliations
 
@@ -287,32 +365,42 @@ List reconciliations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListReconciliationsRequest;
 import com.formance.formance_sdk.models.operations.ListReconciliationsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListReconciliationsRequest req = new ListReconciliationsRequest(
-){{
-                cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==";
-                pageSize = 954636L;
+            ListReconciliationsRequest req = ListReconciliationsRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(954636L)
+                .build();
 
-            }};
+            ListReconciliationsResponse res = sdk.reconciliation().listReconciliations()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ListReconciliationsResponse res = sdk.reconciliation.listReconciliations(req);
-
-            if (res.reconciliationsCursorResponse != null) {
+            if (res.reconciliationsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -329,8 +417,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListReconciliationsResponse](../../models/operations/ListReconciliationsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListReconciliationsResponse>](../../models/operations/ListReconciliationsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## reconcile
 
@@ -342,33 +434,46 @@ Reconcile using a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReconcileRequest;
 import com.formance.formance_sdk.models.operations.ReconcileResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.ReconciliationRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReconcileRequest req = new ReconcileRequest(
-                new ReconciliationRequest(
-                    OffsetDateTime.parse("2021-01-01T00:00:00.000Z"),
-                    OffsetDateTime.parse("2021-01-01T00:00:00.000Z")),
-                "string");
+            ReconcileRequest req = ReconcileRequest.builder()
+                .reconciliationRequest(ReconciliationRequest.builder()
+                        .reconciledAtLedger(OffsetDateTime.parse("2021-01-01T00:00:00.000Z"))
+                        .reconciledAtPayments(OffsetDateTime.parse("2021-01-01T00:00:00.000Z"))
+                        .build())
+                .policyID("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ReconcileResponse res = sdk.reconciliation.reconcile(req);
+            ReconcileResponse res = sdk.reconciliation().reconcile()
+                .request(req)
+                .call();
 
-            if (res.reconciliationResponse != null) {
+            if (res.reconciliationResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -385,8 +490,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReconcileResponse](../../models/operations/ReconcileResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReconcileResponse>](../../models/operations/ReconcileResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## reconciliationgetServerInfo
 
@@ -398,24 +507,35 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse res = sdk.reconciliation.reconciliationgetServerInfo();
+            ReconciliationgetServerInfoResponse res = sdk.reconciliation().reconciliationgetServerInfo()
+                .call();
 
-            if (res.serverInfo != null) {
+            if (res.serverInfo().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -426,5 +546,9 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse](../../models/operations/ReconciliationgetServerInfoResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse>](../../models/operations/ReconciliationgetServerInfoResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

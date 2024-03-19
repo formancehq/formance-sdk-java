@@ -1,0 +1,12 @@
+# V2ErrorResponse
+
+Error
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `details`                                                                                    | *Optional<? extends String>*                                                                 | :heavy_minus_sign:                                                                           | N/A                                                                                          | https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9 |
+| `errorCode`                                                                                  | [com.formance.formance_sdk.models.shared.V2ErrorsEnum](../../models/shared/V2ErrorsEnum.md)  | :heavy_check_mark:                                                                           | N/A                                                                                          | VALIDATION                                                                                   |
+| `errorMessage`                                                                               | *String*                                                                                     | :heavy_check_mark:                                                                           | N/A                                                                                          | [VALIDATION] invalid 'cursor' query param                                                    |
