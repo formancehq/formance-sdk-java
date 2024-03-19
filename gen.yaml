@@ -5,14 +5,20 @@ generation:
     optionalPropertyRendering: withExample
   fixes:
     nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
   comments: {}
   telemetryEnabled: false
 java:
-  version: v2.0.0-rc.15
+  version: 2.1.0
+  additionalDependencies: []
   artifactID: formance-sdk
   companyEmail: support@formance.com
   companyName: Formance
   companyURL: www.formance.com
+  flattenGlobalSecurity: false
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance
   imports:

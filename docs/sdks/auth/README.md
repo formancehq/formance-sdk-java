@@ -1,5 +1,5 @@
 # Auth
-(*auth*)
+(*auth()*)
 
 ### Available Operations
 
@@ -23,46 +23,52 @@ Create client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreateClientResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.CreateClientRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.CreateClientRequest req = new CreateClientRequest(
-                "string"){{
-                description = "Managed optimizing help-desk";
-                metadata = new java.util.HashMap<String, Object>(
-                ){{
-                    put("key", "string");
-                }};
-                postLogoutRedirectUris = new String[]{{
-                    add("string"),
-                }};
-                public_ = false;
-                redirectUris = new String[]{{
-                    add("string"),
-                }};
-                scopes = new String[]{{
-                    add("string"),
-                }};
-                trusted = false;
+            CreateClientRequest req = CreateClientRequest.builder()
+                .name("<value>")
+                .description("Managed optimizing help-desk")
+                .metadata(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .postLogoutRedirectUris(java.util.List.of(
+                    "<value>"))
+                .public_(false)
+                .redirectUris(java.util.List.of(
+                    "<value>"))
+                .scopes(java.util.List.of(
+                    "<value>"))
+                .trusted(false)
+                .build();
 
-            }};
+            CreateClientResponse res = sdk.auth().createClient()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.CreateClientResponse res = sdk.auth.createClient(req);
-
-            if (res.createClientResponse != null) {
+            if (res.createClientResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -79,8 +85,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateClientResponse](../../models/operations/CreateClientResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateClientResponse>](../../models/operations/CreateClientResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createSecret
 
@@ -92,39 +102,47 @@ Add a secret to a client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.CreateSecretRequest;
 import com.formance.formance_sdk.models.operations.CreateSecretResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.CreateSecretRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.CreateSecretRequest req = new CreateSecretRequest(
-                "string"){{
-                createSecretRequest = new CreateSecretRequest(
-                    "string"){{
-                    metadata = new java.util.HashMap<String, Object>(
-                    ){{
-                        put("key", "string");
-                    }};
+            CreateSecretRequest req = CreateSecretRequest.builder()
+                .clientId("<value>")
+                .createSecretRequest(CreateSecretRequest.builder()
+                    .name("<value>")
+                    .metadata(java.util.Map.ofEntries(
+                        entry("key", "<value>")))
+                    .build())
+                .build();
 
-                }};
+            CreateSecretResponse res = sdk.auth().createSecret()
+                .request(req)
+                .call();
 
-            }};
-
-            com.formance.formance_sdk.models.operations.CreateSecretResponse res = sdk.auth.createSecret(req);
-
-            if (res.createSecretResponse != null) {
+            if (res.createSecretResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -141,8 +159,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateSecretResponse](../../models/operations/CreateSecretResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateSecretResponse>](../../models/operations/CreateSecretResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deleteClient
 
@@ -154,28 +176,39 @@ Delete client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeleteClientRequest;
 import com.formance.formance_sdk.models.operations.DeleteClientResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeleteClientRequest req = new DeleteClientRequest(
-                "string");
+            DeleteClientRequest req = DeleteClientRequest.builder()
+                .clientId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeleteClientResponse res = sdk.auth.deleteClient(req);
+            DeleteClientResponse res = sdk.auth().deleteClient()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -192,8 +225,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteClientResponse](../../models/operations/DeleteClientResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteClientResponse>](../../models/operations/DeleteClientResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deleteSecret
 
@@ -205,29 +242,40 @@ Delete a secret from a client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeleteSecretRequest;
 import com.formance.formance_sdk.models.operations.DeleteSecretResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeleteSecretRequest req = new DeleteSecretRequest(
-                "string",
-                "string");
+            DeleteSecretRequest req = DeleteSecretRequest.builder()
+                .clientId("<value>")
+                .secretId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeleteSecretResponse res = sdk.auth.deleteSecret(req);
+            DeleteSecretResponse res = sdk.auth().deleteSecret()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -244,8 +292,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteSecretResponse](../../models/operations/DeleteSecretResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteSecretResponse>](../../models/operations/DeleteSecretResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listClients
 
@@ -257,24 +309,35 @@ List clients
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListClientsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListClientsResponse res = sdk.auth.listClients();
+            ListClientsResponse res = sdk.auth().listClients()
+                .call();
 
-            if (res.listClientsResponse != null) {
+            if (res.listClientsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -285,8 +348,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListClientsResponse](../../models/operations/ListClientsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListClientsResponse>](../../models/operations/ListClientsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listUsers
 
@@ -298,24 +365,35 @@ List users
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ListUsersResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ListUsersResponse res = sdk.auth.listUsers();
+            ListUsersResponse res = sdk.auth().listUsers()
+                .call();
 
-            if (res.listUsersResponse != null) {
+            if (res.listUsersResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -326,8 +404,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListUsersResponse](../../models/operations/ListUsersResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ListUsersResponse>](../../models/operations/ListUsersResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## readClient
 
@@ -339,28 +421,41 @@ Read client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReadClientRequest;
 import com.formance.formance_sdk.models.operations.ReadClientResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReadClientRequest req = new ReadClientRequest(
-                "string");
+            ReadClientRequest req = ReadClientRequest.builder()
+                .clientId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ReadClientResponse res = sdk.auth.readClient(req);
+            ReadClientResponse res = sdk.auth().readClient()
+                .request(req)
+                .call();
 
-            if (res.readClientResponse != null) {
+            if (res.readClientResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -377,8 +472,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadClientResponse](../../models/operations/ReadClientResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReadClientResponse>](../../models/operations/ReadClientResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## readUser
 
@@ -390,28 +489,41 @@ Read user
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ReadUserRequest;
 import com.formance.formance_sdk.models.operations.ReadUserResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ReadUserRequest req = new ReadUserRequest(
-                "string");
+            ReadUserRequest req = ReadUserRequest.builder()
+                .userId("<value>")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ReadUserResponse res = sdk.auth.readUser(req);
+            ReadUserResponse res = sdk.auth().readUser()
+                .request(req)
+                .call();
 
-            if (res.readUserResponse != null) {
+            if (res.readUserResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -428,8 +540,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadUserResponse](../../models/operations/ReadUserResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ReadUserResponse>](../../models/operations/ReadUserResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## updateClient
 
@@ -441,51 +557,56 @@ Update client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.UpdateClientRequest;
 import com.formance.formance_sdk.models.operations.UpdateClientResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.UpdateClientRequest;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.UpdateClientRequest req = new UpdateClientRequest(
-                "string"){{
-                updateClientRequest = new UpdateClientRequest(
-                    "string"){{
-                    description = "Secured static model";
-                    metadata = new java.util.HashMap<String, Object>(
-                    ){{
-                        put("key", "string");
-                    }};
-                    postLogoutRedirectUris = new String[]{{
-                        add("string"),
-                    }};
-                    public_ = false;
-                    redirectUris = new String[]{{
-                        add("string"),
-                    }};
-                    scopes = new String[]{{
-                        add("string"),
-                    }};
-                    trusted = false;
+            UpdateClientRequest req = UpdateClientRequest.builder()
+                .clientId("<value>")
+                .updateClientRequest(UpdateClientRequest.builder()
+                    .name("<value>")
+                    .description("Secured static model")
+                    .metadata(java.util.Map.ofEntries(
+                        entry("key", "<value>")))
+                    .postLogoutRedirectUris(java.util.List.of(
+                        "<value>"))
+                    .public_(false)
+                    .redirectUris(java.util.List.of(
+                        "<value>"))
+                    .scopes(java.util.List.of(
+                        "<value>"))
+                    .trusted(false)
+                    .build())
+                .build();
 
-                }};
+            UpdateClientResponse res = sdk.auth().updateClient()
+                .request(req)
+                .call();
 
-            }};
-
-            com.formance.formance_sdk.models.operations.UpdateClientResponse res = sdk.auth.updateClient(req);
-
-            if (res.updateClientResponse != null) {
+            if (res.updateClientResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -502,5 +623,9 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UpdateClientResponse](../../models/operations/UpdateClientResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateClientResponse>](../../models/operations/UpdateClientResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
