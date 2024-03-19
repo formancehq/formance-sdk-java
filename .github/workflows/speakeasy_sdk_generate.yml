@@ -33,6 +33,8 @@ jobs:
       publish_java: true
       mode: pr
       force: ${{ github.event.inputs.force }}
+      overlay_docs: | 
+        - ./overlays/20240319_wait_rename.yaml
     secrets:
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
