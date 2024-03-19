@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                    | Type                     | Required                 | Description              |
-| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `running`                | *Boolean*                | :heavy_minus_sign:       | Filter running instances |
-| `workflowID`             | *String*                 | :heavy_minus_sign:       | A workflow id            |
+| Field                         | Type                          | Required                      | Description                   |
+| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
+| `running`                     | *Optional<? extends Boolean>* | :heavy_minus_sign:            | Filter running instances      |
+| `workflowID`                  | *Optional<? extends String>*  | :heavy_minus_sign:            | A workflow id                 |

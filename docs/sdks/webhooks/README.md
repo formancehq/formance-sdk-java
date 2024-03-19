@@ -1,5 +1,5 @@
 # Webhooks
-(*webhooks*)
+(*webhooks()*)
 
 ### Available Operations
 
@@ -21,28 +21,41 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ActivateConfigRequest;
 import com.formance.formance_sdk.models.operations.ActivateConfigResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ActivateConfigRequest req = new ActivateConfigRequest(
-                "4997257d-dfb6-445b-929c-cbe2ab182818");
+            ActivateConfigRequest req = ActivateConfigRequest.builder()
+                .id("4997257d-dfb6-445b-929c-cbe2ab182818")
+                .build();
 
-            com.formance.formance_sdk.models.operations.ActivateConfigResponse res = sdk.webhooks.activateConfig(req);
+            ActivateConfigResponse res = sdk.webhooks().activateConfig()
+                .request(req)
+                .call();
 
-            if (res.configResponse != null) {
+            if (res.configResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -59,8 +72,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ActivateConfigResponse](../../models/operations/ActivateConfigResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ActivateConfigResponse>](../../models/operations/ActivateConfigResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## changeConfigSecret
 
@@ -76,33 +93,47 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest;
 import com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.ConfigChangeSecret;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest req = new ChangeConfigSecretRequest(
-                "4997257d-dfb6-445b-929c-cbe2ab182818"){{
-                configChangeSecret = new ConfigChangeSecret(
-                    "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3");
+            ChangeConfigSecretRequest req = ChangeConfigSecretRequest.builder()
+                .id("4997257d-dfb6-445b-929c-cbe2ab182818")
+                .configChangeSecret(ConfigChangeSecret.builder()
+                    .secret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3")
+                    .build())
+                .build();
 
-            }};
+            ChangeConfigSecretResponse res = sdk.webhooks().changeConfigSecret()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse res = sdk.webhooks.changeConfigSecret(req);
-
-            if (res.configResponse != null) {
+            if (res.configResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -119,8 +150,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse](../../models/operations/ChangeConfigSecretResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse>](../../models/operations/ChangeConfigSecretResponse.md)**
+### Errors
 
+| Error Object                                                  | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 400                                                           | application/json                                              |
+| models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## deactivateConfig
 
@@ -132,28 +168,43 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeactivateConfigRequest;
 import com.formance.formance_sdk.models.operations.DeactivateConfigResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeactivateConfigRequest req = new DeactivateConfigRequest(
-                "4997257d-dfb6-445b-929c-cbe2ab182818");
+            DeactivateConfigRequest req = DeactivateConfigRequest.builder()
+                .id("4997257d-dfb6-445b-929c-cbe2ab182818")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeactivateConfigResponse res = sdk.webhooks.deactivateConfig(req);
+            DeactivateConfigResponse res = sdk.webhooks().deactivateConfig()
+                .request(req)
+                .call();
 
-            if (res.configResponse != null) {
+            if (res.configResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -170,8 +221,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeactivateConfigResponse](../../models/operations/DeactivateConfigResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeactivateConfigResponse>](../../models/operations/DeactivateConfigResponse.md)**
+### Errors
 
+| Error Object                                                  | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 404                                                           | application/json                                              |
+| models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## deleteConfig
 
@@ -183,28 +239,41 @@ Delete a webhooks config by ID.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.DeleteConfigRequest;
 import com.formance.formance_sdk.models.operations.DeleteConfigResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.DeleteConfigRequest req = new DeleteConfigRequest(
-                "4997257d-dfb6-445b-929c-cbe2ab182818");
+            DeleteConfigRequest req = DeleteConfigRequest.builder()
+                .id("4997257d-dfb6-445b-929c-cbe2ab182818")
+                .build();
 
-            com.formance.formance_sdk.models.operations.DeleteConfigResponse res = sdk.webhooks.deleteConfig(req);
+            DeleteConfigResponse res = sdk.webhooks().deleteConfig()
+                .request(req)
+                .call();
 
-            if (res.statusCode == 200) {
-                // handle response
-            }
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -221,8 +290,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteConfigResponse](../../models/operations/DeleteConfigResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteConfigResponse>](../../models/operations/DeleteConfigResponse.md)**
+### Errors
 
+| Error Object                                                  | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 400,404                                                       | application/json                                              |
+| models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## getManyConfigs
 
@@ -234,32 +308,42 @@ Sorted by updated date descending
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetManyConfigsRequest;
 import com.formance.formance_sdk.models.operations.GetManyConfigsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetManyConfigsRequest req = new GetManyConfigsRequest(
-){{
-                endpoint = "https://example.com";
-                id = "4997257d-dfb6-445b-929c-cbe2ab182818";
+            GetManyConfigsRequest req = GetManyConfigsRequest.builder()
+                .endpoint("https://example.com")
+                .id("4997257d-dfb6-445b-929c-cbe2ab182818")
+                .build();
 
-            }};
+            GetManyConfigsResponse res = sdk.webhooks().getManyConfigs()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.GetManyConfigsResponse res = sdk.webhooks.getManyConfigs(req);
-
-            if (res.configsResponse != null) {
+            if (res.configsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -276,8 +360,12 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetManyConfigsResponse](../../models/operations/GetManyConfigsResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.GetManyConfigsResponse>](../../models/operations/GetManyConfigsResponse.md)**
+### Errors
 
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## insertConfig
 
@@ -298,36 +386,48 @@ All eventTypes are converted to lower-case when inserted.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.InsertConfigResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.ConfigUser;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.shared.ConfigUser req = new ConfigUser(
-                "https://example.com",
-                new String[]{{
-                    add("TYPE1"),
-                    add("TYPE2"),
-                }}){{
-                name = "customer_payment";
-                secret = "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3";
+            ConfigUser req = ConfigUser.builder()
+                .endpoint("https://example.com")
+                .eventTypes(java.util.List.of(
+                        "TYPE1",
+                        "TYPE2"))
+                .name("customer_payment")
+                .secret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3")
+                .build();
 
-            }};
+            InsertConfigResponse res = sdk.webhooks().insertConfig()
+                .request(req)
+                .call();
 
-            com.formance.formance_sdk.models.operations.InsertConfigResponse res = sdk.webhooks.insertConfig(req);
-
-            if (res.configResponse != null) {
+            if (res.configResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -344,8 +444,13 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.InsertConfigResponse](../../models/operations/InsertConfigResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.InsertConfigResponse>](../../models/operations/InsertConfigResponse.md)**
+### Errors
 
+| Error Object                                                  | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 400                                                           | application/json                                              |
+| models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## testConfig
 
@@ -357,28 +462,43 @@ Test a config by sending a webhook to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.TestConfigRequest;
 import com.formance.formance_sdk.models.operations.TestConfigResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.TestConfigRequest req = new TestConfigRequest(
-                "4997257d-dfb6-445b-929c-cbe2ab182818");
+            TestConfigRequest req = TestConfigRequest.builder()
+                .id("4997257d-dfb6-445b-929c-cbe2ab182818")
+                .build();
 
-            com.formance.formance_sdk.models.operations.TestConfigResponse res = sdk.webhooks.testConfig(req);
+            TestConfigResponse res = sdk.webhooks().testConfig()
+                .request(req)
+                .call();
 
-            if (res.attemptResponse != null) {
+            if (res.attemptResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -395,5 +515,10 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.TestConfigResponse](../../models/operations/TestConfigResponse.md)**
+**[Optional<? extends com.formance.formance_sdk.models.operations.TestConfigResponse>](../../models/operations/TestConfigResponse.md)**
+### Errors
 
+| Error Object                                                  | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 400,404                                                       | application/json                                              |
+| models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |

@@ -22,7 +22,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### Gradle
 
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-rc.15'
+implementation 'com.formance.formance_sdk:formance-sdk:2.1.0'
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -35,24 +35,35 @@ implementation 'com.formance.formance_sdk:formance-sdk-java:v2.0.0-rc.15'
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
 
 public class Application {
+
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security(
-                "string"){{
-                    authorization = "Bearer <YOUR_ACCESS_TOKEN_HERE>";
-                }})
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
                 .build();
 
-            com.formance.formance_sdk.models.operations.GetVersionsResponse res = sdk.getVersions();
+            GetVersionsResponse res = sdk.getVersions()
+                .call();
 
-            if (res.getVersionsResponse != null) {
+            if (res.getVersionsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
         } catch (Exception e) {
             // handle exception
         }
@@ -69,7 +80,7 @@ public class Application {
 * [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
 * [getApiAuthWellKnownOpenidConfiguration](docs/sdks/sdk/README.md#getapiauthwellknownopenidconfiguration)
 
-### [auth](docs/sdks/auth/README.md)
+### [auth()](docs/sdks/auth/README.md)
 
 * [createClient](docs/sdks/auth/README.md#createclient) - Create client
 * [createSecret](docs/sdks/auth/README.md#createsecret) - Add a secret to a client
@@ -81,7 +92,7 @@ public class Application {
 * [readUser](docs/sdks/auth/README.md#readuser) - Read user
 * [updateClient](docs/sdks/auth/README.md#updateclient) - Update client
 
-### [ledger](docs/sdks/ledger/README.md)
+### [ledger()](docs/sdks/ledger/README.md)
 
 * [createTransactions](docs/sdks/ledger/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/ledger/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -125,7 +136,7 @@ public class Application {
 * [v2ReadStats](docs/sdks/ledger/README.md#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](docs/sdks/ledger/README.md#v2reverttransaction) - Revert a ledger transaction by its ID
 
-### [orchestration](docs/sdks/orchestration/README.md)
+### [orchestration()](docs/sdks/orchestration/README.md)
 
 * [cancelEvent](docs/sdks/orchestration/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/orchestration/README.md#createtrigger) - Create trigger
@@ -163,7 +174,7 @@ public class Application {
 * [v2RunWorkflow](docs/sdks/orchestration/README.md#v2runworkflow) - Run workflow
 * [v2SendEvent](docs/sdks/orchestration/README.md#v2sendevent) - Send an event to a running workflow
 
-### [payments](docs/sdks/payments/README.md)
+### [payments()](docs/sdks/payments/README.md)
 
 * [addAccountToPool](docs/sdks/payments/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/payments/README.md#connectorstransfer) - Transfer funds between Connector accounts
@@ -208,7 +219,7 @@ public class Application {
 * [updateConnectorConfigV1](docs/sdks/payments/README.md#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](docs/sdks/payments/README.md#updatemetadata) - Update metadata
 
-### [reconciliation](docs/sdks/reconciliation/README.md)
+### [reconciliation()](docs/sdks/reconciliation/README.md)
 
 * [createPolicy](docs/sdks/reconciliation/README.md#createpolicy) - Create a policy
 * [deletePolicy](docs/sdks/reconciliation/README.md#deletepolicy) - Delete a policy
@@ -219,12 +230,12 @@ public class Application {
 * [reconcile](docs/sdks/reconciliation/README.md#reconcile) - Reconcile using a policy
 * [reconciliationgetServerInfo](docs/sdks/reconciliation/README.md#reconciliationgetserverinfo) - Get server info
 
-### [search](docs/sdks/search/README.md)
+### [search()](docs/sdks/search/README.md)
 
 * [search](docs/sdks/search/README.md#search) - Search
 * [searchgetServerInfo](docs/sdks/search/README.md#searchgetserverinfo) - Get server info
 
-### [wallets](docs/sdks/wallets/README.md)
+### [wallets()](docs/sdks/wallets/README.md)
 
 * [confirmHold](docs/sdks/wallets/README.md#confirmhold) - Confirm a hold
 * [createBalance](docs/sdks/wallets/README.md#createbalance) - Create a balance
@@ -243,7 +254,7 @@ public class Application {
 * [voidHold](docs/sdks/wallets/README.md#voidhold) - Cancel a hold
 * [walletsgetServerInfo](docs/sdks/wallets/README.md#walletsgetserverinfo) - Get server info
 
-### [webhooks](docs/sdks/webhooks/README.md)
+### [webhooks()](docs/sdks/webhooks/README.md)
 
 * [activateConfig](docs/sdks/webhooks/README.md#activateconfig) - Activate one config
 * [changeConfigSecret](docs/sdks/webhooks/README.md#changeconfigsecret) - Change the signing secret of a config
@@ -257,23 +268,217 @@ public class Application {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-## Server Selection
-
 ### Select Server by Index
 
-You can override the default server globally using the `setServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIndex` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
 
+#### Example
 
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .serverIndex(0)
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
+                .build();
+
+            GetVersionsResponse res = sdk.getVersions()
+                .call();
+
+            if (res.getVersionsResponse().isPresent()) {
+                // handle response
+            }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
 
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `setServerURL` option when initializing the SDK client instance. For example:
+The default server can also be overridden globally by passing a URL to the `serverURL` builder method when initializing the SDK client instance. For example:
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .serverURL("http://localhost")
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
+                .build();
+
+            GetVersionsResponse res = sdk.getVersions()
+                .call();
+
+            if (res.getVersionsResponse().isPresent()) {
+                // handle response
+            }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
 <!-- End Server Selection [server] -->
+
+<!-- Start Error Handling [errors] -->
+## Error Handling
+
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Exception type.
+
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | 400,404                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+
+### Example
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest;
+import com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
+                .build();
+
+            AddMetadataToAccountRequest req = AddMetadataToAccountRequest.builder()
+                .requestBody(java.util.Map.ofEntries(
+                        entry("key", "<value>")))
+                .address("users:001")
+                .ledger("ledger001")
+                .build();
+
+            AddMetadataToAccountResponse res = sdk.ledger().addMetadataToAccount()
+                .request(req)
+                .call();
+
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+<!-- End Error Handling [errors] -->
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name            | Type            | Scheme          |
+| --------------- | --------------- | --------------- |
+| `authorization` | oauth2          | OAuth2 token    |
+
+You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
+                .build();
+
+            GetVersionsResponse res = sdk.getVersions()
+                .call();
+
+            if (res.getVersionsResponse().isPresent()) {
+                // handle response
+            }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
