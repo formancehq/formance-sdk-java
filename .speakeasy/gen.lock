@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: c32567a4e8678469f5a821618463bfae
-  docVersion: v2.0.0-rc.16
+  docChecksum: 75f299a706d765e38cf8badfe1c0e69c
+  docVersion: v2.0.0-rc.17
   speakeasyVersion: 1.215.1
   generationVersion: 2.286.4
-  releaseVersion: 2.2.0
-  configChecksum: 21c43b9303d88abd8dbb62a06b626cdb
+  releaseVersion: 2.2.1
+  configChecksum: 908a3fe21dc4e1ccb89056a238eb80e1
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -925,8 +925,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/Response.java
   - src/main/java/com/formance/formance_sdk/models/shared/QueryRaw.java
   - src/main/java/com/formance/formance_sdk/models/shared/Query.java
-  - src/main/java/com/formance/formance_sdk/models/shared/WalletsErrorResponseErrorCode.java
-  - src/main/java/com/formance/formance_sdk/models/shared/WalletsErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConfirmHoldRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/CreateBalanceResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Balance.java
@@ -964,6 +962,8 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/errors/V2ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/ErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/V2Error.java
+  - src/main/java/com/formance/formance_sdk/models/errors/SchemasErrorCode.java
+  - src/main/java/com/formance/formance_sdk/models/errors/WalletsErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/WebhooksErrorResponse.java
   - docs/models/operations/GetVersionsResponse.md
   - docs/models/operations/GetApiAuthWellKnownOpenidConfigurationResponse.md
@@ -1653,8 +1653,6 @@ generatedFiles:
   - docs/models/shared/Response.md
   - docs/models/shared/QueryRaw.md
   - docs/models/shared/Query.md
-  - docs/models/shared/WalletsErrorResponseErrorCode.md
-  - docs/models/shared/WalletsErrorResponse.md
   - docs/models/shared/ConfirmHoldRequest.md
   - docs/models/shared/CreateBalanceResponse.md
   - docs/models/shared/Balance.md
@@ -1692,6 +1690,8 @@ generatedFiles:
   - docs/models/errors/V2ErrorResponse.md
   - docs/models/errors/ErrorCode.md
   - docs/models/errors/V2Error.md
+  - docs/models/errors/SchemasErrorCode.md
+  - docs/models/errors/WalletsErrorResponse.md
   - docs/models/errors/WebhooksErrorResponse.md
   - docs/sdks/sdk/README.md
   - docs/sdks/auth/README.md

@@ -9,11 +9,14 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 
@@ -42,22 +45,29 @@ public class V2CreditWalletRequest {
     @JsonProperty("sources")
     private java.util.List<V2Subject> sources;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("timestamp")
+    private Optional<? extends OffsetDateTime> timestamp;
+
     public V2CreditWalletRequest(
             @JsonProperty("amount") V2Monetary amount,
             @JsonProperty("balance") Optional<? extends String> balance,
             @JsonProperty("metadata") java.util.Map<String, String> metadata,
             @JsonProperty("reference") Optional<? extends String> reference,
-            @JsonProperty("sources") java.util.List<V2Subject> sources) {
+            @JsonProperty("sources") java.util.List<V2Subject> sources,
+            @JsonProperty("timestamp") Optional<? extends OffsetDateTime> timestamp) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(balance, "balance");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(sources, "sources");
+        Utils.checkNotNull(timestamp, "timestamp");
         this.amount = amount;
         this.balance = balance;
         this.metadata = metadata;
         this.reference = reference;
         this.sources = sources;
+        this.timestamp = timestamp;
     }
 
     public V2Monetary amount() {
@@ -84,6 +94,10 @@ public class V2CreditWalletRequest {
 
     public java.util.List<V2Subject> sources() {
         return sources;
+    }
+
+    public Optional<? extends OffsetDateTime> timestamp() {
+        return timestamp;
     }
 
     public final static Builder builder() {
@@ -140,6 +154,18 @@ public class V2CreditWalletRequest {
         this.sources = sources;
         return this;
     }
+
+    public V2CreditWalletRequest withTimestamp(OffsetDateTime timestamp) {
+        Utils.checkNotNull(timestamp, "timestamp");
+        this.timestamp = Optional.ofNullable(timestamp);
+        return this;
+    }
+
+    public V2CreditWalletRequest withTimestamp(Optional<? extends OffsetDateTime> timestamp) {
+        Utils.checkNotNull(timestamp, "timestamp");
+        this.timestamp = timestamp;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -155,7 +181,8 @@ public class V2CreditWalletRequest {
             java.util.Objects.deepEquals(this.balance, other.balance) &&
             java.util.Objects.deepEquals(this.metadata, other.metadata) &&
             java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.sources, other.sources);
+            java.util.Objects.deepEquals(this.sources, other.sources) &&
+            java.util.Objects.deepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
@@ -165,7 +192,8 @@ public class V2CreditWalletRequest {
             balance,
             metadata,
             reference,
-            sources);
+            sources,
+            timestamp);
     }
     
     @Override
@@ -175,7 +203,8 @@ public class V2CreditWalletRequest {
                 "balance", balance,
                 "metadata", metadata,
                 "reference", reference,
-                "sources", sources);
+                "sources", sources,
+                "timestamp", timestamp);
     }
     
     public final static class Builder {
@@ -188,7 +217,9 @@ public class V2CreditWalletRequest {
  
         private Optional<? extends String> reference = Optional.empty();
  
-        private java.util.List<V2Subject> sources;  
+        private java.util.List<V2Subject> sources;
+ 
+        private Optional<? extends OffsetDateTime> timestamp = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -244,6 +275,18 @@ public class V2CreditWalletRequest {
             this.sources = sources;
             return this;
         }
+
+        public Builder timestamp(OffsetDateTime timestamp) {
+            Utils.checkNotNull(timestamp, "timestamp");
+            this.timestamp = Optional.ofNullable(timestamp);
+            return this;
+        }
+
+        public Builder timestamp(Optional<? extends OffsetDateTime> timestamp) {
+            Utils.checkNotNull(timestamp, "timestamp");
+            this.timestamp = timestamp;
+            return this;
+        }
         
         public V2CreditWalletRequest build() {
             return new V2CreditWalletRequest(
@@ -251,7 +294,8 @@ public class V2CreditWalletRequest {
                 balance,
                 metadata,
                 reference,
-                sources);
+                sources,
+                timestamp);
         }
     }
 }
