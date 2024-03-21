@@ -40,14 +40,14 @@ public class GetTransactionsResponse implements com.formance.formance_sdk.utils.
     /**
      * Error
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.WalletsErrorResponse> walletsErrorResponse;
+    private Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse;
 
     public GetTransactionsResponse(
             String contentType,
             Optional<? extends com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.WalletsErrorResponse> walletsErrorResponse) {
+            Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(getTransactionsResponse, "getTransactionsResponse");
         Utils.checkNotNull(statusCode, "statusCode");
@@ -91,7 +91,7 @@ public class GetTransactionsResponse implements com.formance.formance_sdk.utils.
     /**
      * Error
      */
-    public Optional<? extends com.formance.formance_sdk.models.shared.WalletsErrorResponse> walletsErrorResponse() {
+    public Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse() {
         return walletsErrorResponse;
     }
 
@@ -147,7 +147,7 @@ public class GetTransactionsResponse implements com.formance.formance_sdk.utils.
     /**
      * Error
      */
-    public GetTransactionsResponse withWalletsErrorResponse(com.formance.formance_sdk.models.shared.WalletsErrorResponse walletsErrorResponse) {
+    public GetTransactionsResponse withWalletsErrorResponse(com.formance.formance_sdk.models.errors.WalletsErrorResponse walletsErrorResponse) {
         Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
         this.walletsErrorResponse = Optional.ofNullable(walletsErrorResponse);
         return this;
@@ -156,7 +156,7 @@ public class GetTransactionsResponse implements com.formance.formance_sdk.utils.
     /**
      * Error
      */
-    public GetTransactionsResponse withWalletsErrorResponse(Optional<? extends com.formance.formance_sdk.models.shared.WalletsErrorResponse> walletsErrorResponse) {
+    public GetTransactionsResponse withWalletsErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse) {
         Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
         this.walletsErrorResponse = walletsErrorResponse;
         return this;
@@ -209,7 +209,7 @@ public class GetTransactionsResponse implements com.formance.formance_sdk.utils.
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.WalletsErrorResponse> walletsErrorResponse = Optional.empty();  
+        private Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -263,7 +263,7 @@ public class GetTransactionsResponse implements com.formance.formance_sdk.utils.
         /**
          * Error
          */
-        public Builder walletsErrorResponse(com.formance.formance_sdk.models.shared.WalletsErrorResponse walletsErrorResponse) {
+        public Builder walletsErrorResponse(com.formance.formance_sdk.models.errors.WalletsErrorResponse walletsErrorResponse) {
             Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
             this.walletsErrorResponse = Optional.ofNullable(walletsErrorResponse);
             return this;
@@ -272,7 +272,7 @@ public class GetTransactionsResponse implements com.formance.formance_sdk.utils.
         /**
          * Error
          */
-        public Builder walletsErrorResponse(Optional<? extends com.formance.formance_sdk.models.shared.WalletsErrorResponse> walletsErrorResponse) {
+        public Builder walletsErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse) {
             Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
             this.walletsErrorResponse = walletsErrorResponse;
             return this;

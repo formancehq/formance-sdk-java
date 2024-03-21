@@ -284,6 +284,7 @@ public class Application {
                             new Object()))
                     .balance("<value>")
                     .reference("<value>")
+                    .timestamp(OffsetDateTime.parse("2022-01-17T00:03:10.305Z"))
                     .build())
                 .build();
 
@@ -292,6 +293,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -313,9 +316,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreditWalletResponse>](../../models/operations/CreditWalletResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | 400                                                          | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## debitWallet
 
@@ -370,6 +374,7 @@ public class Application {
                                 .type("<value>")
                                 .build()))
                     .pending(false)
+                    .timestamp(OffsetDateTime.parse("2022-09-06T05:37:17.247Z"))
                     .build())
                 .build();
 
@@ -380,6 +385,8 @@ public class Application {
             if (res.debitWalletResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -401,9 +408,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.DebitWalletResponse>](../../models/operations/DebitWalletResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | 400                                                          | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## getBalance
 

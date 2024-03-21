@@ -9,11 +9,14 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 
@@ -47,25 +50,35 @@ public class V2DebitWalletRequest {
     @JsonProperty("pending")
     private Optional<? extends Boolean> pending;
 
+    /**
+     * cannot be used in conjunction with `pending` property
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("timestamp")
+    private Optional<? extends OffsetDateTime> timestamp;
+
     public V2DebitWalletRequest(
             @JsonProperty("amount") V2Monetary amount,
             @JsonProperty("balances") Optional<? extends java.util.List<String>> balances,
             @JsonProperty("description") Optional<? extends String> description,
             @JsonProperty("destination") Optional<? extends V2Subject> destination,
             @JsonProperty("metadata") java.util.Map<String, String> metadata,
-            @JsonProperty("pending") Optional<? extends Boolean> pending) {
+            @JsonProperty("pending") Optional<? extends Boolean> pending,
+            @JsonProperty("timestamp") Optional<? extends OffsetDateTime> timestamp) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(balances, "balances");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destination, "destination");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(pending, "pending");
+        Utils.checkNotNull(timestamp, "timestamp");
         this.amount = amount;
         this.balances = balances;
         this.description = description;
         this.destination = destination;
         this.metadata = metadata;
         this.pending = pending;
+        this.timestamp = timestamp;
     }
 
     public V2Monetary amount() {
@@ -96,6 +109,13 @@ public class V2DebitWalletRequest {
      */
     public Optional<? extends Boolean> pending() {
         return pending;
+    }
+
+    /**
+     * cannot be used in conjunction with `pending` property
+     */
+    public Optional<? extends OffsetDateTime> timestamp() {
+        return timestamp;
     }
 
     public final static Builder builder() {
@@ -170,6 +190,24 @@ public class V2DebitWalletRequest {
         this.pending = pending;
         return this;
     }
+
+    /**
+     * cannot be used in conjunction with `pending` property
+     */
+    public V2DebitWalletRequest withTimestamp(OffsetDateTime timestamp) {
+        Utils.checkNotNull(timestamp, "timestamp");
+        this.timestamp = Optional.ofNullable(timestamp);
+        return this;
+    }
+
+    /**
+     * cannot be used in conjunction with `pending` property
+     */
+    public V2DebitWalletRequest withTimestamp(Optional<? extends OffsetDateTime> timestamp) {
+        Utils.checkNotNull(timestamp, "timestamp");
+        this.timestamp = timestamp;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -186,7 +224,8 @@ public class V2DebitWalletRequest {
             java.util.Objects.deepEquals(this.description, other.description) &&
             java.util.Objects.deepEquals(this.destination, other.destination) &&
             java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.pending, other.pending);
+            java.util.Objects.deepEquals(this.pending, other.pending) &&
+            java.util.Objects.deepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
@@ -197,7 +236,8 @@ public class V2DebitWalletRequest {
             description,
             destination,
             metadata,
-            pending);
+            pending,
+            timestamp);
     }
     
     @Override
@@ -208,7 +248,8 @@ public class V2DebitWalletRequest {
                 "description", description,
                 "destination", destination,
                 "metadata", metadata,
-                "pending", pending);
+                "pending", pending,
+                "timestamp", timestamp);
     }
     
     public final static class Builder {
@@ -223,7 +264,9 @@ public class V2DebitWalletRequest {
  
         private java.util.Map<String, String> metadata;
  
-        private Optional<? extends Boolean> pending = Optional.empty();  
+        private Optional<? extends Boolean> pending = Optional.empty();
+ 
+        private Optional<? extends OffsetDateTime> timestamp = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -297,6 +340,24 @@ public class V2DebitWalletRequest {
             this.pending = pending;
             return this;
         }
+
+        /**
+         * cannot be used in conjunction with `pending` property
+         */
+        public Builder timestamp(OffsetDateTime timestamp) {
+            Utils.checkNotNull(timestamp, "timestamp");
+            this.timestamp = Optional.ofNullable(timestamp);
+            return this;
+        }
+
+        /**
+         * cannot be used in conjunction with `pending` property
+         */
+        public Builder timestamp(Optional<? extends OffsetDateTime> timestamp) {
+            Utils.checkNotNull(timestamp, "timestamp");
+            this.timestamp = timestamp;
+            return this;
+        }
         
         public V2DebitWalletRequest build() {
             return new V2DebitWalletRequest(
@@ -305,7 +366,8 @@ public class V2DebitWalletRequest {
                 description,
                 destination,
                 metadata,
-                pending);
+                pending,
+                timestamp);
         }
     }
 }
