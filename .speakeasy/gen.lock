@@ -3,21 +3,21 @@ id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
   docChecksum: c32567a4e8678469f5a821618463bfae
   docVersion: v2.0.0-rc.16
-  speakeasyVersion: 1.210.0
-  generationVersion: 2.281.2
-  releaseVersion: 2.1.0
-  configChecksum: ac57a9d9986363fc1c51afc929796050
+  speakeasyVersion: 1.215.1
+  generationVersion: 2.286.4
+  releaseVersion: 2.2.0
+  configChecksum: 21c43b9303d88abd8dbb62a06b626cdb
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
 features:
   java:
     constsAndDefaults: 0.1.1
-    core: 3.15.0
+    core: 3.16.0
     deprecations: 2.81.1
     errors: 0.1.1
     getRequestBodies: 2.81.1
-    globalSecurity: 2.82.4
+    globalSecurity: 2.82.5
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1

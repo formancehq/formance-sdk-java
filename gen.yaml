@@ -12,7 +12,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 java:
-  version: 2.1.0
+  version: 2.2.0
   additionalDependencies: []
   artifactID: formance-sdk
   companyEmail: support@formance.com

@@ -16,9 +16,9 @@ class SDKConfiguration {
     public int serverIdx = 0;
   	public String language = "java";
   	public String openapiDocVersion = "v2.0.0-rc.16";
-  	public String sdkVersion = "2.1.0";
-  	public String genVersion = "2.281.2";
-  	public String userAgent = "speakeasy-sdk/java 2.1.0 2.281.2 v2.0.0-rc.16 com.formance.formance_sdk";
+  	public String sdkVersion = "2.2.0";
+  	public String genVersion = "2.286.4";
+  	public String userAgent = "speakeasy-sdk/java 2.2.0 2.286.4 v2.0.0-rc.16 com.formance.formance_sdk";
   	
   	
     public Optional<RetryConfig> retryConfig = Optional.empty();
