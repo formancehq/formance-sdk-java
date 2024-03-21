@@ -17,7 +17,7 @@ java:
   artifactID: formance-sdk
   companyEmail: support@formance.com
   companyName: Formance
-  companyURL: www.formance.com
+  companyURL: https://www.formance.com
   flattenGlobalSecurity: false
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance
@@ -31,7 +31,7 @@ java:
       webhooks: models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
-  ossrhURL: https://maven.pkg.github.com/formancehq/formance-sdk-java
+  ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   outputModelSuffix: output
   projectName: formance-sdk
   templateVersion: v2
