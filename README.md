@@ -27,7 +27,7 @@ Once published to a repository (local or otherwise), the SDK artifact is used as
 
 Gradle:
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk:2.2.1'
+implementation 'com.formance.formance_sdk:formance-sdk:2.2.2'
 ```
 
 Maven:
@@ -35,7 +35,7 @@ Maven:
 <dependency>
     <groupId>com.formance.formance_sdk</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>2.2.1</version>
+    <version>2.2.2</version>
 </dependency>
 ```
 
