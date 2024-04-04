@@ -21,13 +21,11 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 
 ### Getting started
 
-Speakeasy offers [automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks) of SDK artifacts via GitHub Actions. 
-
-Once published to a repository (local or otherwise), the SDK artifact is used as below:
+The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk:2.2.2'
+implementation 'com.formance.formance_sdk:formance-sdk:2.2.3'
 ```
 
 Maven:
@@ -35,7 +33,7 @@ Maven:
 <dependency>
     <groupId>com.formance.formance_sdk</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>2.2.2</version>
+    <version>2.2.3</version>
 </dependency>
 ```
 
@@ -64,7 +62,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -84,12 +82,10 @@ public class Application {
                     .build())
                 .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+            GetOIDCWellKnownsResponse res = sdk.getOIDCWellKnowns()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
+            // handle response
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -105,8 +101,8 @@ public class Application {
 
 ### [SDK](docs/sdks/sdk/README.md)
 
+* [getOIDCWellKnowns](docs/sdks/sdk/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
 * [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
-* [getApiAuthWellKnownOpenidConfiguration](docs/sdks/sdk/README.md#getapiauthwellknownopenidconfiguration)
 
 ### [auth()](docs/sdks/auth/README.md)
 
@@ -150,6 +146,7 @@ public class Application {
 * [v2CreateLedger](docs/sdks/ledger/README.md#v2createledger) - Create a ledger
 * [v2CreateTransaction](docs/sdks/ledger/README.md#v2createtransaction) - Create a new transaction to a ledger
 * [v2DeleteAccountMetadata](docs/sdks/ledger/README.md#v2deleteaccountmetadata) - Delete metadata by key
+* [v2DeleteLedgerMetadata](docs/sdks/ledger/README.md#v2deleteledgermetadata) - Delete ledger metadata by key
 * [v2DeleteTransactionMetadata](docs/sdks/ledger/README.md#v2deletetransactionmetadata) - Delete metadata by key
 * [v2GetAccount](docs/sdks/ledger/README.md#v2getaccount) - Get account by its address
 * [v2GetBalancesAggregated](docs/sdks/ledger/README.md#v2getbalancesaggregated) - Get the aggregated balances from selected accounts
@@ -163,6 +160,7 @@ public class Application {
 * [v2ListTransactions](docs/sdks/ledger/README.md#v2listtransactions) - List transactions from a ledger
 * [v2ReadStats](docs/sdks/ledger/README.md#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](docs/sdks/ledger/README.md#v2reverttransaction) - Revert a ledger transaction by its ID
+* [v2UpdateLedgerMetadata](docs/sdks/ledger/README.md#v2updateledgermetadata) - Update ledger metadata
 
 ### [orchestration()](docs/sdks/orchestration/README.md)
 
@@ -311,7 +309,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -332,12 +330,10 @@ public class Application {
                     .build())
                 .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+            GetOIDCWellKnownsResponse res = sdk.getOIDCWellKnowns()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
+            // handle response
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -356,7 +352,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -377,12 +373,10 @@ public class Application {
                     .build())
                 .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+            GetOIDCWellKnownsResponse res = sdk.getOIDCWellKnowns()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
+            // handle response
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -472,7 +466,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -492,12 +486,10 @@ public class Application {
                     .build())
                 .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+            GetOIDCWellKnownsResponse res = sdk.getOIDCWellKnowns()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
+            // handle response
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {

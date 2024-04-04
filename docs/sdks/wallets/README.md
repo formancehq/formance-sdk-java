@@ -369,7 +369,7 @@ public class Application {
                     .balances(java.util.List.of(
                         "<value>"))
                     .description("Enhanced regional synergy")
-                    Subject.of(LedgerAccountSubject.builder()
+                    .destination(Subject.of(LedgerAccountSubject.builder()
                                 .identifier("<value>")
                                 .type("<value>")
                                 .build()))

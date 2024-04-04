@@ -18,6 +18,12 @@ import java.util.Optional;
 public class V2RevertTransactionRequest {
 
     /**
+     * Revert transaction at effective date of the original tx
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=atEffectiveDate")
+    private Optional<? extends Boolean> atEffectiveDate;
+
+    /**
      * Force revert
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")
@@ -36,15 +42,25 @@ public class V2RevertTransactionRequest {
     private String ledger;
 
     public V2RevertTransactionRequest(
+            Optional<? extends Boolean> atEffectiveDate,
             Optional<? extends Boolean> force,
             BigInteger id,
             String ledger) {
+        Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
         Utils.checkNotNull(force, "force");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
+        this.atEffectiveDate = atEffectiveDate;
         this.force = force;
         this.id = id;
         this.ledger = ledger;
+    }
+
+    /**
+     * Revert transaction at effective date of the original tx
+     */
+    public Optional<? extends Boolean> atEffectiveDate() {
+        return atEffectiveDate;
     }
 
     /**
@@ -70,6 +86,24 @@ public class V2RevertTransactionRequest {
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    /**
+     * Revert transaction at effective date of the original tx
+     */
+    public V2RevertTransactionRequest withAtEffectiveDate(boolean atEffectiveDate) {
+        Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
+        this.atEffectiveDate = Optional.ofNullable(atEffectiveDate);
+        return this;
+    }
+
+    /**
+     * Revert transaction at effective date of the original tx
+     */
+    public V2RevertTransactionRequest withAtEffectiveDate(Optional<? extends Boolean> atEffectiveDate) {
+        Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
+        this.atEffectiveDate = atEffectiveDate;
+        return this;
     }
 
     /**
@@ -126,6 +160,7 @@ public class V2RevertTransactionRequest {
         }
         V2RevertTransactionRequest other = (V2RevertTransactionRequest) o;
         return 
+            java.util.Objects.deepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
             java.util.Objects.deepEquals(this.force, other.force) &&
             java.util.Objects.deepEquals(this.id, other.id) &&
             java.util.Objects.deepEquals(this.ledger, other.ledger);
@@ -134,6 +169,7 @@ public class V2RevertTransactionRequest {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
+            atEffectiveDate,
             force,
             id,
             ledger);
@@ -142,12 +178,15 @@ public class V2RevertTransactionRequest {
     @Override
     public String toString() {
         return Utils.toString(V2RevertTransactionRequest.class,
+                "atEffectiveDate", atEffectiveDate,
                 "force", force,
                 "id", id,
                 "ledger", ledger);
     }
     
     public final static class Builder {
+ 
+        private Optional<? extends Boolean> atEffectiveDate = Optional.empty();
  
         private Optional<? extends Boolean> force = Optional.empty();
  
@@ -157,6 +196,24 @@ public class V2RevertTransactionRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * Revert transaction at effective date of the original tx
+         */
+        public Builder atEffectiveDate(boolean atEffectiveDate) {
+            Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
+            this.atEffectiveDate = Optional.ofNullable(atEffectiveDate);
+            return this;
+        }
+
+        /**
+         * Revert transaction at effective date of the original tx
+         */
+        public Builder atEffectiveDate(Optional<? extends Boolean> atEffectiveDate) {
+            Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
+            this.atEffectiveDate = atEffectiveDate;
+            return this;
         }
 
         /**
@@ -205,6 +262,7 @@ public class V2RevertTransactionRequest {
         
         public V2RevertTransactionRequest build() {
             return new V2RevertTransactionRequest(
+                atEffectiveDate,
                 force,
                 id,
                 ledger);

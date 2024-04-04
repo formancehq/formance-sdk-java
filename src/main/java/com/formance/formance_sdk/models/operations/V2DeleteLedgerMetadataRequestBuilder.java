@@ -17,16 +17,24 @@ import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class GetApiAuthWellKnownOpenidConfigurationRequestBuilder {
+public class V2DeleteLedgerMetadataRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetApiAuthWellKnownOpenidConfiguration sdk;
+    private V2DeleteLedgerMetadataRequest request;
+    private final SDKMethodInterfaces.MethodCallV2DeleteLedgerMetadata sdk;
 
-    public GetApiAuthWellKnownOpenidConfigurationRequestBuilder(SDKMethodInterfaces.MethodCallGetApiAuthWellKnownOpenidConfiguration sdk) {
+    public V2DeleteLedgerMetadataRequestBuilder(SDKMethodInterfaces.MethodCallV2DeleteLedgerMetadata sdk) {
         this.sdk = sdk;
     }
 
-    public GetApiAuthWellKnownOpenidConfigurationResponse call() throws Exception {
+    public V2DeleteLedgerMetadataRequestBuilder request(V2DeleteLedgerMetadataRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
+        return this;
+    }
 
-        return sdk.getApiAuthWellKnownOpenidConfigurationDirect();
+    public V2DeleteLedgerMetadataResponse call() throws Exception {
+
+        return sdk.v2DeleteLedgerMetadata(
+            request);
     }
 }

@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Response {
+public class V2UpdateLedgerMetadataResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
      * HTTP response content type for this operation
@@ -37,27 +37,19 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
      */
     private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse;
 
-    /**
-     * OK
-     */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse;
-
-    public V2GetLedgerResponse(
+    public V2UpdateLedgerMetadataResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse) {
+            Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.v2ErrorResponse = v2ErrorResponse;
-        this.v2GetLedgerResponse = v2GetLedgerResponse;
     }
 
     /**
@@ -88,13 +80,6 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
         return v2ErrorResponse;
     }
 
-    /**
-     * OK
-     */
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse() {
-        return v2GetLedgerResponse;
-    }
-
     public final static Builder builder() {
         return new Builder();
     }
@@ -102,7 +87,7 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * HTTP response content type for this operation
      */
-    public V2GetLedgerResponse withContentType(String contentType) {
+    public V2UpdateLedgerMetadataResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -111,7 +96,7 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * HTTP response status code for this operation
      */
-    public V2GetLedgerResponse withStatusCode(int statusCode) {
+    public V2UpdateLedgerMetadataResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -120,7 +105,7 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public V2GetLedgerResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public V2UpdateLedgerMetadataResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
@@ -129,7 +114,7 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * Error
      */
-    public V2GetLedgerResponse withV2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
+    public V2UpdateLedgerMetadataResponse withV2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
         Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
         return this;
@@ -138,27 +123,9 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * Error
      */
-    public V2GetLedgerResponse withV2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
+    public V2UpdateLedgerMetadataResponse withV2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
         Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         this.v2ErrorResponse = v2ErrorResponse;
-        return this;
-    }
-
-    /**
-     * OK
-     */
-    public V2GetLedgerResponse withV2GetLedgerResponse(com.formance.formance_sdk.models.shared.V2GetLedgerResponse v2GetLedgerResponse) {
-        Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
-        this.v2GetLedgerResponse = Optional.ofNullable(v2GetLedgerResponse);
-        return this;
-    }
-
-    /**
-     * OK
-     */
-    public V2GetLedgerResponse withV2GetLedgerResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse) {
-        Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
-        this.v2GetLedgerResponse = v2GetLedgerResponse;
         return this;
     }
     
@@ -170,13 +137,12 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        V2GetLedgerResponse other = (V2GetLedgerResponse) o;
+        V2UpdateLedgerMetadataResponse other = (V2UpdateLedgerMetadataResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse) &&
-            java.util.Objects.deepEquals(this.v2GetLedgerResponse, other.v2GetLedgerResponse);
+            java.util.Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
     }
     
     @Override
@@ -185,18 +151,16 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
             contentType,
             statusCode,
             rawResponse,
-            v2ErrorResponse,
-            v2GetLedgerResponse);
+            v2ErrorResponse);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(V2GetLedgerResponse.class,
+        return Utils.toString(V2UpdateLedgerMetadataResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2ErrorResponse", v2ErrorResponse,
-                "v2GetLedgerResponse", v2GetLedgerResponse);
+                "v2ErrorResponse", v2ErrorResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse = Optional.empty();
- 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse = Optional.empty();  
+        private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class V2GetLedgerResponse implements com.formance.formance_sdk.utils.Resp
             this.v2ErrorResponse = v2ErrorResponse;
             return this;
         }
-
-        /**
-         * OK
-         */
-        public Builder v2GetLedgerResponse(com.formance.formance_sdk.models.shared.V2GetLedgerResponse v2GetLedgerResponse) {
-            Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
-            this.v2GetLedgerResponse = Optional.ofNullable(v2GetLedgerResponse);
-            return this;
-        }
-
-        /**
-         * OK
-         */
-        public Builder v2GetLedgerResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse) {
-            Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
-            this.v2GetLedgerResponse = v2GetLedgerResponse;
-            return this;
-        }
         
-        public V2GetLedgerResponse build() {
-            return new V2GetLedgerResponse(
+        public V2UpdateLedgerMetadataResponse build() {
+            return new V2UpdateLedgerMetadataResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                v2ErrorResponse,
-                v2GetLedgerResponse);
+                v2ErrorResponse);
         }
     }
 }

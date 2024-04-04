@@ -23,14 +23,25 @@ public class V2CreateLedgerRequest {
     @JsonProperty("bucket")
     private Optional<? extends String> bucket;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private Optional<? extends java.util.Map<String, String>> metadata;
+
     public V2CreateLedgerRequest(
-            @JsonProperty("bucket") Optional<? extends String> bucket) {
+            @JsonProperty("bucket") Optional<? extends String> bucket,
+            @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata) {
         Utils.checkNotNull(bucket, "bucket");
+        Utils.checkNotNull(metadata, "metadata");
         this.bucket = bucket;
+        this.metadata = metadata;
     }
 
     public Optional<? extends String> bucket() {
         return bucket;
+    }
+
+    public Optional<? extends java.util.Map<String, String>> metadata() {
+        return metadata;
     }
 
     public final static Builder builder() {
@@ -48,6 +59,18 @@ public class V2CreateLedgerRequest {
         this.bucket = bucket;
         return this;
     }
+
+    public V2CreateLedgerRequest withMetadata(java.util.Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+    public V2CreateLedgerRequest withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -59,24 +82,29 @@ public class V2CreateLedgerRequest {
         }
         V2CreateLedgerRequest other = (V2CreateLedgerRequest) o;
         return 
-            java.util.Objects.deepEquals(this.bucket, other.bucket);
+            java.util.Objects.deepEquals(this.bucket, other.bucket) &&
+            java.util.Objects.deepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            bucket);
+            bucket,
+            metadata);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2CreateLedgerRequest.class,
-                "bucket", bucket);
+                "bucket", bucket,
+                "metadata", metadata);
     }
     
     public final static class Builder {
  
-        private Optional<? extends String> bucket = Optional.empty();  
+        private Optional<? extends String> bucket = Optional.empty();
+ 
+        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -93,10 +121,23 @@ public class V2CreateLedgerRequest {
             this.bucket = bucket;
             return this;
         }
+
+        public Builder metadata(java.util.Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
         
         public V2CreateLedgerRequest build() {
             return new V2CreateLedgerRequest(
-                bucket);
+                bucket,
+                metadata);
         }
     }
 }

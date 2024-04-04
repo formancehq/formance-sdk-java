@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 75f299a706d765e38cf8badfe1c0e69c
-  docVersion: v2.0.0-rc.17
-  speakeasyVersion: 1.215.1
-  generationVersion: 2.286.4
-  releaseVersion: 2.2.2
-  configChecksum: 1a86f8bdc9f429be961858e359124674
+  docChecksum: 639075e40f1ea95659f74c09351e6530
+  docVersion: v2.0.0-rc.19
+  speakeasyVersion: 1.235.2
+  generationVersion: 2.298.2
+  releaseVersion: 2.2.3
+  configChecksum: 70ae4a851754eed9fae1c6acd0c224bf
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
 features:
   java:
     constsAndDefaults: 0.1.1
-    core: 3.16.0
+    core: 3.16.4
     deprecations: 2.81.1
     errors: 0.1.1
     getRequestBodies: 2.81.1
@@ -21,7 +21,7 @@ features:
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
-    nameOverrides: 2.81.2
+    nameOverrides: 2.81.3
     unions: 0.0.3
 generatedFiles:
   - src/main/java/com/formance/formance_sdk/SecuritySource.java
@@ -34,8 +34,8 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/Search.java
   - src/main/java/com/formance/formance_sdk/Wallets.java
   - src/main/java/com/formance/formance_sdk/Webhooks.java
+  - src/main/java/com/formance/formance_sdk/models/operations/GetOIDCWellKnownsRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetVersionsRequestBuilder.java
-  - src/main/java/com/formance/formance_sdk/models/operations/GetApiAuthWellKnownOpenidConfigurationRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateClientRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateSecretRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/DeleteClientRequestBuilder.java
@@ -73,6 +73,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2CreateLedgerRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2CreateTransactionRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteAccountMetadataRequestBuilder.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteLedgerMetadataRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteTransactionMetadataRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetAccountRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetBalancesAggregatedRequestBuilder.java
@@ -86,6 +87,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListTransactionsRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ReadStatsRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2RevertTransactionRequestBuilder.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2UpdateLedgerMetadataRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/CancelEventRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateTriggerRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateWorkflowRequestBuilder.java
@@ -237,8 +239,8 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/utils/Types.java
   - src/main/java/com/formance/formance_sdk/utils/Utils.java
   - src/main/java/com/formance/formance_sdk/models/errors/SDKError.java
+  - src/main/java/com/formance/formance_sdk/models/operations/GetOIDCWellKnownsResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetVersionsResponse.java
-  - src/main/java/com/formance/formance_sdk/models/operations/GetApiAuthWellKnownOpenidConfigurationResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateClientResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateSecretRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateSecretResponse.java
@@ -310,6 +312,8 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2CreateTransactionResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteAccountMetadataRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteAccountMetadataResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteLedgerMetadataRequest.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteLedgerMetadataResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteTransactionMetadataRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteTransactionMetadataResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetAccountRequest.java
@@ -335,6 +339,8 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2ReadStatsResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2RevertTransactionRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2RevertTransactionResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2UpdateLedgerMetadataRequest.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2UpdateLedgerMetadataResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CancelEventRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/CancelEventResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateTriggerResponse.java
@@ -620,6 +626,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/V2Volume.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2AggregateBalancesResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2ConfigInfoResponse.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2GetLedgerResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2Ledger.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2LedgerInfoResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2LedgerInfoStorage.java
@@ -965,8 +972,8 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/errors/SchemasErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/WalletsErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/WebhooksErrorResponse.java
+  - docs/models/operations/GetOIDCWellKnownsResponse.md
   - docs/models/operations/GetVersionsResponse.md
-  - docs/models/operations/GetApiAuthWellKnownOpenidConfigurationResponse.md
   - docs/models/operations/CreateClientResponse.md
   - docs/models/operations/CreateSecretRequest.md
   - docs/models/operations/CreateSecretResponse.md
@@ -1038,6 +1045,8 @@ generatedFiles:
   - docs/models/operations/V2CreateTransactionResponse.md
   - docs/models/operations/V2DeleteAccountMetadataRequest.md
   - docs/models/operations/V2DeleteAccountMetadataResponse.md
+  - docs/models/operations/V2DeleteLedgerMetadataRequest.md
+  - docs/models/operations/V2DeleteLedgerMetadataResponse.md
   - docs/models/operations/V2DeleteTransactionMetadataRequest.md
   - docs/models/operations/V2DeleteTransactionMetadataResponse.md
   - docs/models/operations/V2GetAccountRequest.md
@@ -1063,6 +1072,8 @@ generatedFiles:
   - docs/models/operations/V2ReadStatsResponse.md
   - docs/models/operations/V2RevertTransactionRequest.md
   - docs/models/operations/V2RevertTransactionResponse.md
+  - docs/models/operations/V2UpdateLedgerMetadataRequest.md
+  - docs/models/operations/V2UpdateLedgerMetadataResponse.md
   - docs/models/operations/CancelEventRequest.md
   - docs/models/operations/CancelEventResponse.md
   - docs/models/operations/CreateTriggerResponse.md
@@ -1348,6 +1359,7 @@ generatedFiles:
   - docs/models/shared/V2Volume.md
   - docs/models/shared/V2AggregateBalancesResponse.md
   - docs/models/shared/V2ConfigInfoResponse.md
+  - docs/models/shared/V2GetLedgerResponse.md
   - docs/models/shared/V2Ledger.md
   - docs/models/shared/V2LedgerInfoResponse.md
   - docs/models/shared/V2LedgerInfoStorage.md

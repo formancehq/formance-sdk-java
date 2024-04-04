@@ -4,7 +4,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -24,12 +24,10 @@ public class Application {
                     .build())
                 .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+            GetOIDCWellKnownsResponse res = sdk.getOIDCWellKnowns()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
+            // handle response
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {

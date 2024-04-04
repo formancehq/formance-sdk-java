@@ -31,6 +31,7 @@
 * [v2CreateLedger](#v2createledger) - Create a ledger
 * [v2CreateTransaction](#v2createtransaction) - Create a new transaction to a ledger
 * [v2DeleteAccountMetadata](#v2deleteaccountmetadata) - Delete metadata by key
+* [v2DeleteLedgerMetadata](#v2deleteledgermetadata) - Delete ledger metadata by key
 * [v2DeleteTransactionMetadata](#v2deletetransactionmetadata) - Delete metadata by key
 * [v2GetAccount](#v2getaccount) - Get account by its address
 * [v2GetBalancesAggregated](#v2getbalancesaggregated) - Get the aggregated balances from selected accounts
@@ -44,6 +45,7 @@
 * [v2ListTransactions](#v2listtransactions) - List transactions from a ledger
 * [v2ReadStats](#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](#v2reverttransaction) - Revert a ledger transaction by its ID
+* [v2UpdateLedgerMetadata](#v2updateledgermetadata) - Update ledger metadata
 
 ## createTransactions
 
@@ -1924,6 +1926,8 @@ public class Application {
                 .ledger("ledger001")
                 .v2CreateLedgerRequest(V2CreateLedgerRequest.builder()
                     .bucket("<value>")
+                    .metadata(java.util.Map.ofEntries(
+                        entry("admin", "true")))
                     .build())
                 .build();
 
@@ -2128,6 +2132,76 @@ public class Application {
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
+
+## v2DeleteLedgerMetadata
+
+Delete ledger metadata by key
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
+                .build();
+
+            V2DeleteLedgerMetadataRequest req = V2DeleteLedgerMetadataRequest.builder()
+                .key("foo")
+                .ledger("ledger001")
+                .build();
+
+            V2DeleteLedgerMetadataResponse res = sdk.ledger().v2DeleteLedgerMetadata()
+                .request(req)
+                .call();
+
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                             | [com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest](../../models/operations/V2DeleteLedgerMetadataRequest.md) | :heavy_check_mark:                                                                                                                    | The request object to use for the request.                                                                                            |
+
+
+### Response
+
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse>](../../models/operations/V2DeleteLedgerMetadataResponse.md)**
+### Errors
+
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2DeleteTransactionMetadata
 
@@ -2439,7 +2513,7 @@ public class Application {
                 .request(req)
                 .call();
 
-            if (res.v2Ledger().isPresent()) {
+            if (res.v2GetLedgerResponse().isPresent()) {
                 // handle response
             }
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
@@ -3009,6 +3083,7 @@ public class Application {
             V2RevertTransactionRequest req = V2RevertTransactionRequest.builder()
                 .id(new BigInteger("1234"))
                 .ledger("ledger001")
+                .atEffectiveDate(false)
                 .force(false)
                 .build();
 
@@ -3040,6 +3115,77 @@ public class Application {
 ### Response
 
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2RevertTransactionResponse>](../../models/operations/V2RevertTransactionResponse.md)**
+### Errors
+
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+
+## v2UpdateLedgerMetadata
+
+Update ledger metadata
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest;
+import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
+                .build();
+
+            V2UpdateLedgerMetadataRequest req = V2UpdateLedgerMetadataRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("admin", "true")))
+                .build();
+
+            V2UpdateLedgerMetadataResponse res = sdk.ledger().v2UpdateLedgerMetadata()
+                .request(req)
+                .call();
+
+            // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                             | [com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest](../../models/operations/V2UpdateLedgerMetadataRequest.md) | :heavy_check_mark:                                                                                                                    | The request object to use for the request.                                                                                            |
+
+
+### Response
+
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse>](../../models/operations/V2UpdateLedgerMetadataResponse.md)**
 ### Errors
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
