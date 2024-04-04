@@ -39,8 +39,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * 
  */
 public class SDK implements
-            MethodCallGetVersions,
-            MethodCallGetApiAuthWellKnownOpenidConfiguration {
+            MethodCallGetOIDCWellKnowns,
+            MethodCallGetVersions {
     /**
      * SERVERS contains the list of server urls available to the SDK.
      */
@@ -229,6 +229,58 @@ public class SDK implements
         this.wallets = new Wallets(sdkConfiguration);
         this.webhooks = new Webhooks(sdkConfiguration);
     }
+    public com.formance.formance_sdk.models.operations.GetOIDCWellKnownsRequestBuilder getOIDCWellKnowns() {
+        return new com.formance.formance_sdk.models.operations.GetOIDCWellKnownsRequestBuilder(this);
+    }
+
+    /**
+     * Retrieve OpenID connect well-knowns.
+     * @return The response from the API call.
+     * @throws Exception if the API call fails.
+     */
+    public com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() throws Exception {
+
+        String baseUrl = this.sdkConfiguration.serverUrl;
+
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(
+                baseUrl,
+                "/api/auth/.well-known/openid-configuration");
+
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("GET");
+        req.setURL(url);
+
+        req.addHeader("Accept", "*/*");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+
+        HTTPClient client = com.formance.formance_sdk.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
+
+        HttpResponse<InputStream> httpRes = client.send(req);
+
+        String contentType = httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse.Builder resBuilder = 
+            com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
+
+        if (httpRes.statusCode() == 200) {
+        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
+            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
+        }
+
+        return res;
+    }
+
     public com.formance.formance_sdk.models.operations.GetVersionsRequestBuilder getVersions() {
         return new com.formance.formance_sdk.models.operations.GetVersionsRequestBuilder(this);
     }
@@ -290,52 +342,7 @@ public class SDK implements
         return res;
     }
 
-    public com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationRequestBuilder getApiAuthWellKnownOpenidConfiguration() {
-        return new com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationRequestBuilder(this);
-    }
 
-    public com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse getApiAuthWellKnownOpenidConfigurationDirect() throws Exception {
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(
-                baseUrl,
-                "/api/auth/.well-known/openid-configuration");
-
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("GET");
-        req.setURL(url);
-
-        req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-
-        HTTPClient client = com.formance.formance_sdk.utils.Utils.configureSecurityClient(
-                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse.Builder resBuilder = 
-            com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse
-                .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
-
-        com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 200) {
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
-        }
-
-        return res;
-    }
 
 
 

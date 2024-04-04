@@ -5,6 +5,8 @@
 package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -15,6 +17,7 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 
 
 public class V2Ledger {
@@ -25,18 +28,25 @@ public class V2Ledger {
     @JsonProperty("bucket")
     private String bucket;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private Optional<? extends java.util.Map<String, String>> metadata;
+
     @JsonProperty("name")
     private String name;
 
     public V2Ledger(
             @JsonProperty("addedAt") OffsetDateTime addedAt,
             @JsonProperty("bucket") String bucket,
+            @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(addedAt, "addedAt");
         Utils.checkNotNull(bucket, "bucket");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         this.addedAt = addedAt;
         this.bucket = bucket;
+        this.metadata = metadata;
         this.name = name;
     }
 
@@ -46,6 +56,10 @@ public class V2Ledger {
 
     public String bucket() {
         return bucket;
+    }
+
+    public Optional<? extends java.util.Map<String, String>> metadata() {
+        return metadata;
     }
 
     public String name() {
@@ -68,6 +82,18 @@ public class V2Ledger {
         return this;
     }
 
+    public V2Ledger withMetadata(java.util.Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+    public V2Ledger withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public V2Ledger withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -86,6 +112,7 @@ public class V2Ledger {
         return 
             java.util.Objects.deepEquals(this.addedAt, other.addedAt) &&
             java.util.Objects.deepEquals(this.bucket, other.bucket) &&
+            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
             java.util.Objects.deepEquals(this.name, other.name);
     }
     
@@ -94,6 +121,7 @@ public class V2Ledger {
         return java.util.Objects.hash(
             addedAt,
             bucket,
+            metadata,
             name);
     }
     
@@ -102,6 +130,7 @@ public class V2Ledger {
         return Utils.toString(V2Ledger.class,
                 "addedAt", addedAt,
                 "bucket", bucket,
+                "metadata", metadata,
                 "name", name);
     }
     
@@ -110,6 +139,8 @@ public class V2Ledger {
         private OffsetDateTime addedAt;
  
         private String bucket;
+ 
+        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();
  
         private String name;  
         
@@ -129,6 +160,18 @@ public class V2Ledger {
             return this;
         }
 
+        public Builder metadata(java.util.Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -139,6 +182,7 @@ public class V2Ledger {
             return new V2Ledger(
                 addedAt,
                 bucket,
+                metadata,
                 name);
         }
     }

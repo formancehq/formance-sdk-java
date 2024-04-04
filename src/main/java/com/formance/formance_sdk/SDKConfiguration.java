@@ -15,10 +15,10 @@ class SDKConfiguration {
 	  public String serverUrl;
     public int serverIdx = 0;
   	public String language = "java";
-  	public String openapiDocVersion = "v2.0.0-rc.17";
-  	public String sdkVersion = "2.2.2";
-  	public String genVersion = "2.286.4";
-  	public String userAgent = "speakeasy-sdk/java 2.2.2 2.286.4 v2.0.0-rc.17 com.formance.formance_sdk";
+  	public String openapiDocVersion = "v2.0.0-rc.19";
+  	public String sdkVersion = "2.2.3";
+  	public String genVersion = "2.298.2";
+  	public String userAgent = "speakeasy-sdk/java 2.2.3 2.298.2 v2.0.0-rc.19 com.formance.formance_sdk";
   	
   	
     public Optional<RetryConfig> retryConfig = Optional.empty();

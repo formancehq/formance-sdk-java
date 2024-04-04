@@ -14,7 +14,7 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 
 
-public class GetApiAuthWellKnownOpenidConfigurationResponse implements com.formance.formance_sdk.utils.Response {
+public class GetOIDCWellKnownsResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
      * HTTP response content type for this operation
@@ -31,7 +31,7 @@ public class GetApiAuthWellKnownOpenidConfigurationResponse implements com.forma
      */
     private HttpResponse<InputStream> rawResponse;
 
-    public GetApiAuthWellKnownOpenidConfigurationResponse(
+    public GetOIDCWellKnownsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -71,7 +71,7 @@ public class GetApiAuthWellKnownOpenidConfigurationResponse implements com.forma
     /**
      * HTTP response content type for this operation
      */
-    public GetApiAuthWellKnownOpenidConfigurationResponse withContentType(String contentType) {
+    public GetOIDCWellKnownsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -80,7 +80,7 @@ public class GetApiAuthWellKnownOpenidConfigurationResponse implements com.forma
     /**
      * HTTP response status code for this operation
      */
-    public GetApiAuthWellKnownOpenidConfigurationResponse withStatusCode(int statusCode) {
+    public GetOIDCWellKnownsResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -89,7 +89,7 @@ public class GetApiAuthWellKnownOpenidConfigurationResponse implements com.forma
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public GetApiAuthWellKnownOpenidConfigurationResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public GetOIDCWellKnownsResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
@@ -103,7 +103,7 @@ public class GetApiAuthWellKnownOpenidConfigurationResponse implements com.forma
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetApiAuthWellKnownOpenidConfigurationResponse other = (GetApiAuthWellKnownOpenidConfigurationResponse) o;
+        GetOIDCWellKnownsResponse other = (GetOIDCWellKnownsResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
@@ -120,7 +120,7 @@ public class GetApiAuthWellKnownOpenidConfigurationResponse implements com.forma
     
     @Override
     public String toString() {
-        return Utils.toString(GetApiAuthWellKnownOpenidConfigurationResponse.class,
+        return Utils.toString(GetOIDCWellKnownsResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
@@ -165,8 +165,8 @@ public class GetApiAuthWellKnownOpenidConfigurationResponse implements com.forma
             return this;
         }
         
-        public GetApiAuthWellKnownOpenidConfigurationResponse build() {
-            return new GetApiAuthWellKnownOpenidConfigurationResponse(
+        public GetOIDCWellKnownsResponse build() {
+            return new GetOIDCWellKnownsResponse(
                 contentType,
                 statusCode,
                 rawResponse);

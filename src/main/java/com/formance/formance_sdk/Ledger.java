@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.time.OffsetDateTime;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -54,6 +53,7 @@ public class Ledger implements
             MethodCallV2CreateLedger,
             MethodCallV2CreateTransaction,
             MethodCallV2DeleteAccountMetadata,
+            MethodCallV2DeleteLedgerMetadata,
             MethodCallV2DeleteTransactionMetadata,
             MethodCallV2GetAccount,
             MethodCallV2GetBalancesAggregated,
@@ -66,7 +66,8 @@ public class Ledger implements
             MethodCallV2ListLogs,
             MethodCallV2ListTransactions,
             MethodCallV2ReadStats,
-            MethodCallV2RevertTransaction {
+            MethodCallV2RevertTransaction,
+            MethodCallV2UpdateLedgerMetadata {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -1751,7 +1752,7 @@ public class Ledger implements
             }
         }
 
-        java.util.Map<String, java.util.List<String>> headers = com.formance.formance_sdk.utils.Utils.getHeaders(request);
+        java.util.Map<String, java.util.List<String>> headers = com.formance.formance_sdk.utils.Utils.getHeaders(request, null);
         if (headers != null) {
             for (java.util.Map.Entry<String, java.util.List<String>> header : headers.entrySet()) {
                 for (String value : header.getValue()) {
@@ -1853,7 +1854,7 @@ public class Ledger implements
             }
         }
 
-        java.util.Map<String, java.util.List<String>> headers = com.formance.formance_sdk.utils.Utils.getHeaders(request);
+        java.util.Map<String, java.util.List<String>> headers = com.formance.formance_sdk.utils.Utils.getHeaders(request, null);
         if (headers != null) {
             for (java.util.Map.Entry<String, java.util.List<String>> header : headers.entrySet()) {
                 for (String value : header.getValue()) {
@@ -2290,7 +2291,7 @@ public class Ledger implements
             }
         }
 
-        java.util.Map<String, java.util.List<String>> headers = com.formance.formance_sdk.utils.Utils.getHeaders(request);
+        java.util.Map<String, java.util.List<String>> headers = com.formance.formance_sdk.utils.Utils.getHeaders(request, null);
         if (headers != null) {
             for (java.util.Map.Entry<String, java.util.List<String>> header : headers.entrySet()) {
                 for (String value : header.getValue()) {
@@ -2409,6 +2410,83 @@ public class Ledger implements
         if ((httpRes.statusCode() >= 200 && httpRes.statusCode() < 300)) {
         } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
             throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
+        }
+
+        return res;
+    }
+
+
+    public com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequestBuilder v2DeleteLedgerMetadata() {
+        return new com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequestBuilder(this);
+    }
+
+    /**
+     * Delete ledger metadata by key
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call.
+     * @throws Exception if the API call fails.
+     */
+    public com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse v2DeleteLedgerMetadata(
+            com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest request) throws Exception {
+
+        String baseUrl = this.sdkConfiguration.serverUrl;
+
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(
+                com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest.class,
+                baseUrl,
+                "/api/ledger/v2/{ledger}/metadata/{key}",
+                request, null);
+
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("DELETE");
+        req.setURL(url);
+
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+
+        HTTPClient client = com.formance.formance_sdk.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
+
+        HttpResponse<InputStream> httpRes = client.send(req);
+
+        String contentType = httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse.Builder resBuilder = 
+            com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
+
+        if (httpRes.statusCode() == 204) {
+        } else if (httpRes.statusCode() == 400) {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                throw out;
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+            }
+        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
+            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
+        }else {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+            }
         }
 
         return res;
@@ -2789,10 +2867,10 @@ public class Ledger implements
         if (httpRes.statusCode() == 200) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2Ledger out = mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2GetLedgerResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2Ledger>() {});
-                res.withV2Ledger(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.shared.V2GetLedgerResponse>() {});
+                res.withV2GetLedgerResponse(java.util.Optional.ofNullable(out));
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3500,6 +3578,88 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
+        } else if (httpRes.statusCode() == 400) {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                throw out;
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+            }
+        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
+            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
+        }else {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+            }
+        }
+
+        return res;
+    }
+
+
+    public com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequestBuilder v2UpdateLedgerMetadata() {
+        return new com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequestBuilder(this);
+    }
+
+    /**
+     * Update ledger metadata
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call.
+     * @throws Exception if the API call fails.
+     */
+    public com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse v2UpdateLedgerMetadata(
+            com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest request) throws Exception {
+
+        String baseUrl = this.sdkConfiguration.serverUrl;
+
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(
+                com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest.class,
+                baseUrl,
+                "/api/ledger/v2/{ledger}/metadata",
+                request, null);
+
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("PUT");
+        req.setURL(url);
+        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
+            new TypeReference<com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest>() {});
+        SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(
+                _convertedRequest, "requestBody", "json", false);
+        req.setBody(serializedRequestBody);
+
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+
+        HTTPClient client = com.formance.formance_sdk.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
+
+        HttpResponse<InputStream> httpRes = client.send(req);
+
+        String contentType = httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse.Builder resBuilder = 
+            com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
+
+        if (httpRes.statusCode() == 204) {
         } else if (httpRes.statusCode() == 400) {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();

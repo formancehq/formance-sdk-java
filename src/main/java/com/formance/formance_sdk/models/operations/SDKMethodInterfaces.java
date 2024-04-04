@@ -14,13 +14,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SDKMethodInterfaces {
 
-    public interface MethodCallGetVersions {
-        com.formance.formance_sdk.models.operations.GetVersionsResponse getVersionsDirect() throws Exception;
+    public interface MethodCallGetOIDCWellKnowns {
+        com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() throws Exception;
     }
 
 
-    public interface MethodCallGetApiAuthWellKnownOpenidConfiguration {
-        com.formance.formance_sdk.models.operations.GetApiAuthWellKnownOpenidConfigurationResponse getApiAuthWellKnownOpenidConfigurationDirect() throws Exception;
+    public interface MethodCallGetVersions {
+        com.formance.formance_sdk.models.operations.GetVersionsResponse getVersionsDirect() throws Exception;
     }
 
 
@@ -243,6 +243,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallV2DeleteLedgerMetadata {
+        com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse v2DeleteLedgerMetadata(
+            com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest request) throws Exception;
+    }
+
+
     public interface MethodCallV2DeleteTransactionMetadata {
         com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse v2DeleteTransactionMetadata(
             com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest request) throws Exception;
@@ -317,6 +323,12 @@ public class SDKMethodInterfaces {
     public interface MethodCallV2RevertTransaction {
         com.formance.formance_sdk.models.operations.V2RevertTransactionResponse v2RevertTransaction(
             com.formance.formance_sdk.models.operations.V2RevertTransactionRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2UpdateLedgerMetadata {
+        com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse v2UpdateLedgerMetadata(
+            com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest request) throws Exception;
     }
 
 
