@@ -59,6 +59,8 @@ public class Application {
             if (res.policyResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -80,9 +82,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreatePolicyResponse>](../../models/operations/CreatePolicyResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                        | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ReconciliationErrorResponse | default                                                             | application/json                                                    |
+| models/errors/SDKError                                              | 4xx-5xx                                                             | */*                                                                 |
 
 ## deletePolicy
 
@@ -125,6 +128,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -146,9 +151,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.DeletePolicyResponse>](../../models/operations/DeletePolicyResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                        | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ReconciliationErrorResponse | default                                                             | application/json                                                    |
+| models/errors/SDKError                                              | 4xx-5xx                                                             | */*                                                                 |
 
 ## getPolicy
 
@@ -193,6 +199,8 @@ public class Application {
             if (res.policyResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -214,9 +222,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetPolicyResponse>](../../models/operations/GetPolicyResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                        | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ReconciliationErrorResponse | default                                                             | application/json                                                    |
+| models/errors/SDKError                                              | 4xx-5xx                                                             | */*                                                                 |
 
 ## getReconciliation
 
@@ -261,6 +270,8 @@ public class Application {
             if (res.reconciliationResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -282,9 +293,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetReconciliationResponse>](../../models/operations/GetReconciliationResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                        | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ReconciliationErrorResponse | default                                                             | application/json                                                    |
+| models/errors/SDKError                                              | 4xx-5xx                                                             | */*                                                                 |
 
 ## listPolicies
 
@@ -330,6 +342,8 @@ public class Application {
             if (res.policiesCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -351,9 +365,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListPoliciesResponse>](../../models/operations/ListPoliciesResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                        | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ReconciliationErrorResponse | default                                                             | application/json                                                    |
+| models/errors/SDKError                                              | 4xx-5xx                                                             | */*                                                                 |
 
 ## listReconciliations
 
@@ -399,6 +414,8 @@ public class Application {
             if (res.reconciliationsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -420,9 +437,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListReconciliationsResponse>](../../models/operations/ListReconciliationsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                        | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ReconciliationErrorResponse | default                                                             | application/json                                                    |
+| models/errors/SDKError                                              | 4xx-5xx                                                             | */*                                                                 |
 
 ## reconcile
 
@@ -472,6 +490,8 @@ public class Application {
             if (res.reconciliationResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -493,9 +513,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ReconcileResponse>](../../models/operations/ReconcileResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                        | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ReconciliationErrorResponse | default                                                             | application/json                                                    |
+| models/errors/SDKError                                              | 4xx-5xx                                                             | */*                                                                 |
 
 ## reconciliationgetServerInfo
 
@@ -534,6 +555,8 @@ public class Application {
             if (res.serverInfo().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -549,6 +572,7 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse>](../../models/operations/ReconciliationgetServerInfoResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                        | Status Code                                                         | Content Type                                                        |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ReconciliationErrorResponse | default                                                             | application/json                                                    |
+| models/errors/SDKError                                              | 4xx-5xx                                                             | */*                                                                 |

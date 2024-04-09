@@ -37,27 +37,19 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse;
-
     public GetWalletSummaryResponse(
             String contentType,
             Optional<? extends com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(getWalletSummaryResponse, "getWalletSummaryResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
         this.contentType = contentType;
         this.getWalletSummaryResponse = getWalletSummaryResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.walletsErrorResponse = walletsErrorResponse;
     }
 
     /**
@@ -86,13 +78,6 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse() {
-        return walletsErrorResponse;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * Error
-     */
-    public GetWalletSummaryResponse withWalletsErrorResponse(com.formance.formance_sdk.models.errors.WalletsErrorResponse walletsErrorResponse) {
-        Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
-        this.walletsErrorResponse = Optional.ofNullable(walletsErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public GetWalletSummaryResponse withWalletsErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse) {
-        Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
-        this.walletsErrorResponse = walletsErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.getWalletSummaryResponse, other.getWalletSummaryResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.walletsErrorResponse, other.walletsErrorResponse);
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
             contentType,
             getWalletSummaryResponse,
             statusCode,
-            rawResponse,
-            walletsErrorResponse);
+            rawResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
                 "contentType", contentType,
                 "getWalletSummaryResponse", getWalletSummaryResponse,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "walletsErrorResponse", walletsErrorResponse);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * Error
-         */
-        public Builder walletsErrorResponse(com.formance.formance_sdk.models.errors.WalletsErrorResponse walletsErrorResponse) {
-            Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
-            this.walletsErrorResponse = Optional.ofNullable(walletsErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder walletsErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.WalletsErrorResponse> walletsErrorResponse) {
-            Utils.checkNotNull(walletsErrorResponse, "walletsErrorResponse");
-            this.walletsErrorResponse = walletsErrorResponse;
-            return this;
-        }
         
         public GetWalletSummaryResponse build() {
             return new GetWalletSummaryResponse(
                 contentType,
                 getWalletSummaryResponse,
                 statusCode,
-                rawResponse,
-                walletsErrorResponse);
+                rawResponse);
         }
     }
 }

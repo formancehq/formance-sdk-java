@@ -33,11 +33,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * General error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error;
-
-    /**
      * List of triggers
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse;
@@ -46,17 +41,14 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error,
             Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v2Error, "v2Error");
         Utils.checkNotNull(v2ListTriggersResponse, "v2ListTriggersResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v2Error = v2Error;
         this.v2ListTriggersResponse = v2ListTriggersResponse;
     }
 
@@ -79,13 +71,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * General error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error() {
-        return v2Error;
     }
 
     /**
@@ -127,24 +112,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
     }
 
     /**
-     * General error
-     */
-    public V2ListTriggersResponse withV2Error(com.formance.formance_sdk.models.errors.V2Error v2Error) {
-        Utils.checkNotNull(v2Error, "v2Error");
-        this.v2Error = Optional.ofNullable(v2Error);
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public V2ListTriggersResponse withV2Error(Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
-        Utils.checkNotNull(v2Error, "v2Error");
-        this.v2Error = v2Error;
-        return this;
-    }
-
-    /**
      * List of triggers
      */
     public V2ListTriggersResponse withV2ListTriggersResponse(com.formance.formance_sdk.models.shared.V2ListTriggersResponse v2ListTriggersResponse) {
@@ -175,7 +142,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2Error, other.v2Error) &&
             java.util.Objects.deepEquals(this.v2ListTriggersResponse, other.v2ListTriggersResponse);
     }
     
@@ -185,7 +151,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
             contentType,
             statusCode,
             rawResponse,
-            v2Error,
             v2ListTriggersResponse);
     }
     
@@ -195,7 +160,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2Error", v2Error,
                 "v2ListTriggersResponse", v2ListTriggersResponse);
     }
     
@@ -206,8 +170,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
         private Integer statusCode;
  
         private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error = Optional.empty();
  
         private Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse = Optional.empty();  
         
@@ -243,24 +205,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
         }
 
         /**
-         * General error
-         */
-        public Builder v2Error(com.formance.formance_sdk.models.errors.V2Error v2Error) {
-            Utils.checkNotNull(v2Error, "v2Error");
-            this.v2Error = Optional.ofNullable(v2Error);
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder v2Error(Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
-            Utils.checkNotNull(v2Error, "v2Error");
-            this.v2Error = v2Error;
-            return this;
-        }
-
-        /**
          * List of triggers
          */
         public Builder v2ListTriggersResponse(com.formance.formance_sdk.models.shared.V2ListTriggersResponse v2ListTriggersResponse) {
@@ -283,7 +227,6 @@ public class V2ListTriggersResponse implements com.formance.formance_sdk.utils.R
                 contentType,
                 statusCode,
                 rawResponse,
-                v2Error,
                 v2ListTriggersResponse);
         }
     }

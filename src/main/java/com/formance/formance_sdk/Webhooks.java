@@ -96,15 +96,13 @@ public class Webhooks implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                res.withWebhooksErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -182,25 +180,13 @@ public class Webhooks implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                res.withWebhooksErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -269,25 +255,13 @@ public class Webhooks implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 404) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                res.withWebhooksErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -347,25 +321,13 @@ public class Webhooks implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 200) {
-        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 404) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                res.withWebhooksErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -440,15 +402,13 @@ public class Webhooks implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                res.withWebhooksErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -532,25 +492,13 @@ public class Webhooks implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                res.withWebhooksErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -619,25 +567,13 @@ public class Webhooks implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 404) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.WebhooksErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
-                res.withWebhooksErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }

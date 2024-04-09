@@ -12,7 +12,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 public class CountTransactionsResponse implements com.formance.formance_sdk.utils.Response {
@@ -21,11 +20,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
      * HTTP response content type for this operation
      */
     private String contentType;
-
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse;
 
     private java.util.Map<String, java.util.List<String>> headers;
 
@@ -41,17 +35,14 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
 
     public CountTransactionsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse,
             java.util.Map<String, java.util.List<String>> headers,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(errorResponse, "errorResponse");
         headers = Utils.emptyMapIfNull(headers);
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.errorResponse = errorResponse;
         this.headers = headers;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
@@ -62,13 +53,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse() {
-        return errorResponse;
     }
 
     public java.util.Map<String, java.util.List<String>> headers() {
@@ -99,24 +83,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
     public CountTransactionsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public CountTransactionsResponse withErrorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = Optional.ofNullable(errorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public CountTransactionsResponse withErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = errorResponse;
         return this;
     }
 
@@ -155,7 +121,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
         CountTransactionsResponse other = (CountTransactionsResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.errorResponse, other.errorResponse) &&
             java.util.Objects.deepEquals(this.headers, other.headers) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
@@ -165,7 +130,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            errorResponse,
             headers,
             statusCode,
             rawResponse);
@@ -175,7 +139,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
     public String toString() {
         return Utils.toString(CountTransactionsResponse.class,
                 "contentType", contentType,
-                "errorResponse", errorResponse,
                 "headers", headers,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
@@ -184,8 +147,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse = Optional.empty();
  
         private java.util.Map<String, java.util.List<String>> headers;
  
@@ -203,24 +164,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = Optional.ofNullable(errorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = errorResponse;
             return this;
         }
 
@@ -251,7 +194,6 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
         public CountTransactionsResponse build() {
             return new CountTransactionsResponse(
                 contentType,
-                errorResponse,
                 headers,
                 statusCode,
                 rawResponse);

@@ -23,11 +23,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     private String contentType;
 
     /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse;
-
-    /**
      * OK
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse;
@@ -44,17 +39,14 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
 
     public ReadStatsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse,
             Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(errorResponse, "errorResponse");
         Utils.checkNotNull(statsResponse, "statsResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.errorResponse = errorResponse;
         this.statsResponse = statsResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
@@ -65,13 +57,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse() {
-        return errorResponse;
     }
 
     /**
@@ -105,24 +90,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     public ReadStatsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public ReadStatsResponse withErrorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = Optional.ofNullable(errorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public ReadStatsResponse withErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = errorResponse;
         return this;
     }
 
@@ -173,7 +140,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
         ReadStatsResponse other = (ReadStatsResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.errorResponse, other.errorResponse) &&
             java.util.Objects.deepEquals(this.statsResponse, other.statsResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
@@ -183,7 +149,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            errorResponse,
             statsResponse,
             statusCode,
             rawResponse);
@@ -193,7 +158,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     public String toString() {
         return Utils.toString(ReadStatsResponse.class,
                 "contentType", contentType,
-                "errorResponse", errorResponse,
                 "statsResponse", statsResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
@@ -202,8 +166,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse = Optional.empty();
  
         private Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse = Optional.empty();
  
@@ -221,24 +183,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = Optional.ofNullable(errorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = errorResponse;
             return this;
         }
 
@@ -281,7 +225,6 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
         public ReadStatsResponse build() {
             return new ReadStatsResponse(
                 contentType,
-                errorResponse,
                 statsResponse,
                 statusCode,
                 rawResponse);

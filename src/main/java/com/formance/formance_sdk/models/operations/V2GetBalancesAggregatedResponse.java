@@ -37,27 +37,19 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse;
 
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse;
-
     public V2GetBalancesAggregatedResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
+            Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(v2AggregateBalancesResponse, "v2AggregateBalancesResponse");
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.v2AggregateBalancesResponse = v2AggregateBalancesResponse;
-        this.v2ErrorResponse = v2ErrorResponse;
     }
 
     /**
@@ -86,13 +78,6 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
      */
     public Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse() {
         return v2AggregateBalancesResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse() {
-        return v2ErrorResponse;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
         this.v2AggregateBalancesResponse = v2AggregateBalancesResponse;
         return this;
     }
-
-    /**
-     * Error
-     */
-    public V2GetBalancesAggregatedResponse withV2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public V2GetBalancesAggregatedResponse withV2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = v2ErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2AggregateBalancesResponse, other.v2AggregateBalancesResponse) &&
-            java.util.Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
+            java.util.Objects.deepEquals(this.v2AggregateBalancesResponse, other.v2AggregateBalancesResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
             contentType,
             statusCode,
             rawResponse,
-            v2AggregateBalancesResponse,
-            v2ErrorResponse);
+            v2AggregateBalancesResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2AggregateBalancesResponse", v2AggregateBalancesResponse,
-                "v2ErrorResponse", v2ErrorResponse);
+                "v2AggregateBalancesResponse", v2AggregateBalancesResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse = Optional.empty();
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse = Optional.empty();  
+        private Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
             this.v2AggregateBalancesResponse = v2AggregateBalancesResponse;
             return this;
         }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = v2ErrorResponse;
-            return this;
-        }
         
         public V2GetBalancesAggregatedResponse build() {
             return new V2GetBalancesAggregatedResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                v2AggregateBalancesResponse,
-                v2ErrorResponse);
+                v2AggregateBalancesResponse);
         }
     }
 }

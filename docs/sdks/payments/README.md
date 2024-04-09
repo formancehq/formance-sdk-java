@@ -157,7 +157,7 @@ public class Application {
                         .destination("acct_1Gqj58KZcSIg2N2q")
                         .source("acct_1Gqj58KZcSIg2N2q")
                         .build())
-                .connector(Connector.CURRENCY_CLOUD)
+                .connector(Connector.BANKING_CIRCLE)
                 .build();
 
             ConnectorsTransferResponse res = sdk.payments().connectorsTransfer()
@@ -883,7 +883,7 @@ public class Application {
                 .build();
 
             GetConnectorTaskRequest req = GetConnectorTaskRequest.builder()
-                .connector(Connector.ATLAR)
+                .connector(Connector.ADYEN)
                 .taskId("<value>")
                 .build();
 
@@ -953,7 +953,7 @@ public class Application {
                 .build();
 
             GetConnectorTaskV1Request req = GetConnectorTaskV1Request.builder()
-                .connector(Connector.CURRENCY_CLOUD)
+                .connector(Connector.BANKING_CIRCLE)
                 .connectorId("<value>")
                 .taskId("<value>")
                 .build();
@@ -1283,6 +1283,7 @@ import com.formance.formance_sdk.models.shared.BankingCircleConfig;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.CurrencyCloudConfig;
 import com.formance.formance_sdk.models.shared.DummyPayConfig;
+import com.formance.formance_sdk.models.shared.GenericConfig;
 import com.formance.formance_sdk.models.shared.MangoPayConfig;
 import com.formance.formance_sdk.models.shared.ModulrConfig;
 import com.formance.formance_sdk.models.shared.MoneycorpConfig;
@@ -1567,7 +1568,7 @@ public class Application {
                 .build();
 
             ListConnectorTasksRequest req = ListConnectorTasksRequest.builder()
-                .connector(Connector.WISE)
+                .connector(Connector.MODULR)
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(501686L)
                 .build();
@@ -2124,7 +2125,7 @@ public class Application {
                 .build();
 
             ReadConnectorConfigRequest req = ReadConnectorConfigRequest.builder()
-                .connector(Connector.ADYEN)
+                .connector(Connector.GENERIC)
                 .build();
 
             ReadConnectorConfigResponse res = sdk.payments().readConnectorConfig()
@@ -2334,7 +2335,7 @@ public class Application {
                 .build();
 
             ResetConnectorRequest req = ResetConnectorRequest.builder()
-                .connector(Connector.MONEYCORP)
+                .connector(Connector.ATLAR)
                 .build();
 
             ResetConnectorResponse res = sdk.payments().resetConnector()
@@ -2403,7 +2404,7 @@ public class Application {
                 .build();
 
             ResetConnectorV1Request req = ResetConnectorV1Request.builder()
-                .connector(Connector.ADYEN)
+                .connector(Connector.GENERIC)
                 .connectorId("<value>")
                 .build();
 
@@ -2685,7 +2686,7 @@ public class Application {
                 .build();
 
             UninstallConnectorRequest req = UninstallConnectorRequest.builder()
-                .connector(Connector.WISE)
+                .connector(Connector.MODULR)
                 .build();
 
             UninstallConnectorResponse res = sdk.payments().uninstallConnector()
@@ -2752,7 +2753,7 @@ public class Application {
                 .build();
 
             UninstallConnectorV1Request req = UninstallConnectorV1Request.builder()
-                .connector(Connector.ADYEN)
+                .connector(Connector.GENERIC)
                 .connectorId("<value>")
                 .build();
 
@@ -2877,6 +2878,7 @@ import com.formance.formance_sdk.models.shared.BankingCircleConfig;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.CurrencyCloudConfig;
 import com.formance.formance_sdk.models.shared.DummyPayConfig;
+import com.formance.formance_sdk.models.shared.GenericConfig;
 import com.formance.formance_sdk.models.shared.MangoPayConfig;
 import com.formance.formance_sdk.models.shared.ModulrConfig;
 import com.formance.formance_sdk.models.shared.MoneycorpConfig;

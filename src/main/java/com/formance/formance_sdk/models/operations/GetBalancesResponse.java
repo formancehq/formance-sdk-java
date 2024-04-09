@@ -28,11 +28,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
     private String contentType;
 
     /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -45,17 +40,14 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
     public GetBalancesResponse(
             Optional<? extends com.formance.formance_sdk.models.shared.BalancesCursorResponse> balancesCursorResponse,
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(balancesCursorResponse, "balancesCursorResponse");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(errorResponse, "errorResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.balancesCursorResponse = balancesCursorResponse;
         this.contentType = contentType;
-        this.errorResponse = errorResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -72,13 +64,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse() {
-        return errorResponse;
     }
 
     /**
@@ -127,24 +112,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
     }
 
     /**
-     * Error
-     */
-    public GetBalancesResponse withErrorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = Optional.ofNullable(errorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public GetBalancesResponse withErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = errorResponse;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
     public GetBalancesResponse withStatusCode(int statusCode) {
@@ -174,7 +141,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
         return 
             java.util.Objects.deepEquals(this.balancesCursorResponse, other.balancesCursorResponse) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.errorResponse, other.errorResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -184,7 +150,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
         return java.util.Objects.hash(
             balancesCursorResponse,
             contentType,
-            errorResponse,
             statusCode,
             rawResponse);
     }
@@ -194,7 +159,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
         return Utils.toString(GetBalancesResponse.class,
                 "balancesCursorResponse", balancesCursorResponse,
                 "contentType", contentType,
-                "errorResponse", errorResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -204,8 +168,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
         private Optional<? extends com.formance.formance_sdk.models.shared.BalancesCursorResponse> balancesCursorResponse = Optional.empty();
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -243,24 +205,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
         }
 
         /**
-         * Error
-         */
-        public Builder errorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = Optional.ofNullable(errorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = errorResponse;
-            return this;
-        }
-
-        /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
@@ -282,7 +226,6 @@ public class GetBalancesResponse implements com.formance.formance_sdk.utils.Resp
             return new GetBalancesResponse(
                 balancesCursorResponse,
                 contentType,
-                errorResponse,
                 statusCode,
                 rawResponse);
         }

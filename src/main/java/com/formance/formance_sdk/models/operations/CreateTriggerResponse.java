@@ -28,11 +28,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
     private Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse;
 
     /**
-     * General error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.shared.Error> error;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -45,17 +40,14 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
     public CreateTriggerResponse(
             String contentType,
             Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(createTriggerResponse, "createTriggerResponse");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
         this.createTriggerResponse = createTriggerResponse;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -72,13 +64,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
      */
     public Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse() {
         return createTriggerResponse;
-    }
-
-    /**
-     * General error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.shared.Error> error() {
-        return error;
     }
 
     /**
@@ -127,24 +112,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
     }
 
     /**
-     * General error
-     */
-    public CreateTriggerResponse withError(com.formance.formance_sdk.models.shared.Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public CreateTriggerResponse withError(Optional<? extends com.formance.formance_sdk.models.shared.Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
     public CreateTriggerResponse withStatusCode(int statusCode) {
@@ -174,7 +141,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.createTriggerResponse, other.createTriggerResponse) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -184,7 +150,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
         return java.util.Objects.hash(
             contentType,
             createTriggerResponse,
-            error,
             statusCode,
             rawResponse);
     }
@@ -194,7 +159,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
         return Utils.toString(CreateTriggerResponse.class,
                 "contentType", contentType,
                 "createTriggerResponse", createTriggerResponse,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -204,8 +168,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
         private String contentType;
  
         private Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse = Optional.empty();
- 
-        private Optional<? extends com.formance.formance_sdk.models.shared.Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -243,24 +205,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
         }
 
         /**
-         * General error
-         */
-        public Builder error(com.formance.formance_sdk.models.shared.Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder error(Optional<? extends com.formance.formance_sdk.models.shared.Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
-            return this;
-        }
-
-        /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
@@ -282,7 +226,6 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
             return new CreateTriggerResponse(
                 contentType,
                 createTriggerResponse,
-                error,
                 statusCode,
                 rawResponse);
         }

@@ -37,27 +37,19 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2AccountResponse> v2AccountResponse;
 
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse;
-
     public V2GetAccountResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2AccountResponse> v2AccountResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
+            Optional<? extends com.formance.formance_sdk.models.shared.V2AccountResponse> v2AccountResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(v2AccountResponse, "v2AccountResponse");
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.v2AccountResponse = v2AccountResponse;
-        this.v2ErrorResponse = v2ErrorResponse;
     }
 
     /**
@@ -86,13 +78,6 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
      */
     public Optional<? extends com.formance.formance_sdk.models.shared.V2AccountResponse> v2AccountResponse() {
         return v2AccountResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse() {
-        return v2ErrorResponse;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
         this.v2AccountResponse = v2AccountResponse;
         return this;
     }
-
-    /**
-     * Error
-     */
-    public V2GetAccountResponse withV2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public V2GetAccountResponse withV2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = v2ErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2AccountResponse, other.v2AccountResponse) &&
-            java.util.Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
+            java.util.Objects.deepEquals(this.v2AccountResponse, other.v2AccountResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
             contentType,
             statusCode,
             rawResponse,
-            v2AccountResponse,
-            v2ErrorResponse);
+            v2AccountResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2AccountResponse", v2AccountResponse,
-                "v2ErrorResponse", v2ErrorResponse);
+                "v2AccountResponse", v2AccountResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2AccountResponse> v2AccountResponse = Optional.empty();
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse = Optional.empty();  
+        private Optional<? extends com.formance.formance_sdk.models.shared.V2AccountResponse> v2AccountResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
             this.v2AccountResponse = v2AccountResponse;
             return this;
         }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = v2ErrorResponse;
-            return this;
-        }
         
         public V2GetAccountResponse build() {
             return new V2GetAccountResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                v2AccountResponse,
-                v2ErrorResponse);
+                v2AccountResponse);
         }
     }
 }

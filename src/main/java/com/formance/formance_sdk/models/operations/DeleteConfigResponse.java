@@ -12,7 +12,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Response {
@@ -32,24 +31,16 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse;
-
     public DeleteConfigResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.webhooksErrorResponse = webhooksErrorResponse;
     }
 
     /**
@@ -71,13 +62,6 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse() {
-        return webhooksErrorResponse;
     }
 
     public final static Builder builder() {
@@ -110,24 +94,6 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * Error
-     */
-    public DeleteConfigResponse withWebhooksErrorResponse(com.formance.formance_sdk.models.errors.WebhooksErrorResponse webhooksErrorResponse) {
-        Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
-        this.webhooksErrorResponse = Optional.ofNullable(webhooksErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public DeleteConfigResponse withWebhooksErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse) {
-        Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
-        this.webhooksErrorResponse = webhooksErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -141,8 +107,7 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.webhooksErrorResponse, other.webhooksErrorResponse);
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -150,8 +115,7 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
         return java.util.Objects.hash(
             contentType,
             statusCode,
-            rawResponse,
-            webhooksErrorResponse);
+            rawResponse);
     }
     
     @Override
@@ -159,8 +123,7 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
         return Utils.toString(DeleteConfigResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "webhooksErrorResponse", webhooksErrorResponse);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -169,9 +132,7 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -203,31 +164,12 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * Error
-         */
-        public Builder webhooksErrorResponse(com.formance.formance_sdk.models.errors.WebhooksErrorResponse webhooksErrorResponse) {
-            Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
-            this.webhooksErrorResponse = Optional.ofNullable(webhooksErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder webhooksErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse) {
-            Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
-            this.webhooksErrorResponse = webhooksErrorResponse;
-            return this;
-        }
         
         public DeleteConfigResponse build() {
             return new DeleteConfigResponse(
                 contentType,
                 statusCode,
-                rawResponse,
-                webhooksErrorResponse);
+                rawResponse);
         }
     }
 }

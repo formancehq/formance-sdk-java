@@ -37,27 +37,19 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Error response
-     */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse;
-
     public CreatePolicyResponse(
             String contentType,
             Optional<? extends com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(policyResponse, "policyResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
         this.contentType = contentType;
         this.policyResponse = policyResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.reconciliationErrorResponse = reconciliationErrorResponse;
     }
 
     /**
@@ -86,13 +78,6 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * Error response
-     */
-    public Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse() {
-        return reconciliationErrorResponse;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * Error response
-     */
-    public CreatePolicyResponse withReconciliationErrorResponse(com.formance.formance_sdk.models.shared.ReconciliationErrorResponse reconciliationErrorResponse) {
-        Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
-        this.reconciliationErrorResponse = Optional.ofNullable(reconciliationErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error response
-     */
-    public CreatePolicyResponse withReconciliationErrorResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse) {
-        Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
-        this.reconciliationErrorResponse = reconciliationErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.policyResponse, other.policyResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.reconciliationErrorResponse, other.reconciliationErrorResponse);
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
             contentType,
             policyResponse,
             statusCode,
-            rawResponse,
-            reconciliationErrorResponse);
+            rawResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
                 "contentType", contentType,
                 "policyResponse", policyResponse,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "reconciliationErrorResponse", reconciliationErrorResponse);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * Error response
-         */
-        public Builder reconciliationErrorResponse(com.formance.formance_sdk.models.shared.ReconciliationErrorResponse reconciliationErrorResponse) {
-            Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
-            this.reconciliationErrorResponse = Optional.ofNullable(reconciliationErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error response
-         */
-        public Builder reconciliationErrorResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse) {
-            Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
-            this.reconciliationErrorResponse = reconciliationErrorResponse;
-            return this;
-        }
         
         public CreatePolicyResponse build() {
             return new CreatePolicyResponse(
                 contentType,
                 policyResponse,
                 statusCode,
-                rawResponse,
-                reconciliationErrorResponse);
+                rawResponse);
         }
     }
 }

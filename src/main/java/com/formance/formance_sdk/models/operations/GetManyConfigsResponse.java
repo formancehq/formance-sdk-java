@@ -37,27 +37,19 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse;
-
     public GetManyConfigsResponse(
             Optional<? extends com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse,
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(configsResponse, "configsResponse");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
         this.configsResponse = configsResponse;
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.webhooksErrorResponse = webhooksErrorResponse;
     }
 
     /**
@@ -86,13 +78,6 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse() {
-        return webhooksErrorResponse;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * Error
-     */
-    public GetManyConfigsResponse withWebhooksErrorResponse(com.formance.formance_sdk.models.errors.WebhooksErrorResponse webhooksErrorResponse) {
-        Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
-        this.webhooksErrorResponse = Optional.ofNullable(webhooksErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public GetManyConfigsResponse withWebhooksErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse) {
-        Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
-        this.webhooksErrorResponse = webhooksErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
             java.util.Objects.deepEquals(this.configsResponse, other.configsResponse) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.webhooksErrorResponse, other.webhooksErrorResponse);
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
             configsResponse,
             contentType,
             statusCode,
-            rawResponse,
-            webhooksErrorResponse);
+            rawResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
                 "configsResponse", configsResponse,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "webhooksErrorResponse", webhooksErrorResponse);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * Error
-         */
-        public Builder webhooksErrorResponse(com.formance.formance_sdk.models.errors.WebhooksErrorResponse webhooksErrorResponse) {
-            Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
-            this.webhooksErrorResponse = Optional.ofNullable(webhooksErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder webhooksErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.WebhooksErrorResponse> webhooksErrorResponse) {
-            Utils.checkNotNull(webhooksErrorResponse, "webhooksErrorResponse");
-            this.webhooksErrorResponse = webhooksErrorResponse;
-            return this;
-        }
         
         public GetManyConfigsResponse build() {
             return new GetManyConfigsResponse(
                 configsResponse,
                 contentType,
                 statusCode,
-                rawResponse,
-                webhooksErrorResponse);
+                rawResponse);
         }
     }
 }

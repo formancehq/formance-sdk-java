@@ -23,11 +23,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
     private String contentType;
 
     /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -44,17 +39,14 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
 
     public CreateTransactionResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(errorResponse, "errorResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(transactionsResponse, "transactionsResponse");
         this.contentType = contentType;
-        this.errorResponse = errorResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.transactionsResponse = transactionsResponse;
@@ -65,13 +57,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse() {
-        return errorResponse;
     }
 
     /**
@@ -105,24 +90,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
     public CreateTransactionResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public CreateTransactionResponse withErrorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = Optional.ofNullable(errorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public CreateTransactionResponse withErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = errorResponse;
         return this;
     }
 
@@ -173,7 +140,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
         CreateTransactionResponse other = (CreateTransactionResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.errorResponse, other.errorResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
             java.util.Objects.deepEquals(this.transactionsResponse, other.transactionsResponse);
@@ -183,7 +149,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            errorResponse,
             statusCode,
             rawResponse,
             transactionsResponse);
@@ -193,7 +158,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
     public String toString() {
         return Utils.toString(CreateTransactionResponse.class,
                 "contentType", contentType,
-                "errorResponse", errorResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "transactionsResponse", transactionsResponse);
@@ -202,8 +166,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -221,24 +183,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = Optional.ofNullable(errorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = errorResponse;
             return this;
         }
 
@@ -281,7 +225,6 @@ public class CreateTransactionResponse implements com.formance.formance_sdk.util
         public CreateTransactionResponse build() {
             return new CreateTransactionResponse(
                 contentType,
-                errorResponse,
                 statusCode,
                 rawResponse,
                 transactionsResponse);

@@ -23,11 +23,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
     private String contentType;
 
     /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -44,17 +39,14 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
 
     public ListTransactionsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends com.formance.formance_sdk.models.shared.TransactionsCursorResponse> transactionsCursorResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(errorResponse, "errorResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(transactionsCursorResponse, "transactionsCursorResponse");
         this.contentType = contentType;
-        this.errorResponse = errorResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.transactionsCursorResponse = transactionsCursorResponse;
@@ -65,13 +57,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse() {
-        return errorResponse;
     }
 
     /**
@@ -105,24 +90,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
     public ListTransactionsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public ListTransactionsResponse withErrorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = Optional.ofNullable(errorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public ListTransactionsResponse withErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = errorResponse;
         return this;
     }
 
@@ -173,7 +140,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
         ListTransactionsResponse other = (ListTransactionsResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.errorResponse, other.errorResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
             java.util.Objects.deepEquals(this.transactionsCursorResponse, other.transactionsCursorResponse);
@@ -183,7 +149,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            errorResponse,
             statusCode,
             rawResponse,
             transactionsCursorResponse);
@@ -193,7 +158,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
     public String toString() {
         return Utils.toString(ListTransactionsResponse.class,
                 "contentType", contentType,
-                "errorResponse", errorResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "transactionsCursorResponse", transactionsCursorResponse);
@@ -202,8 +166,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -221,24 +183,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = Optional.ofNullable(errorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = errorResponse;
             return this;
         }
 
@@ -281,7 +225,6 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
         public ListTransactionsResponse build() {
             return new ListTransactionsResponse(
                 contentType,
-                errorResponse,
                 statusCode,
                 rawResponse,
                 transactionsCursorResponse);

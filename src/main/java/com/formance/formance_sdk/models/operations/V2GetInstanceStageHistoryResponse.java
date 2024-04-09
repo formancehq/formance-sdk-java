@@ -33,11 +33,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * General error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error;
-
-    /**
      * The workflow instance stage history
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse> v2GetWorkflowInstanceHistoryStageResponse;
@@ -46,17 +41,14 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error,
             Optional<? extends com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse> v2GetWorkflowInstanceHistoryStageResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v2Error, "v2Error");
         Utils.checkNotNull(v2GetWorkflowInstanceHistoryStageResponse, "v2GetWorkflowInstanceHistoryStageResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v2Error = v2Error;
         this.v2GetWorkflowInstanceHistoryStageResponse = v2GetWorkflowInstanceHistoryStageResponse;
     }
 
@@ -79,13 +71,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * General error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error() {
-        return v2Error;
     }
 
     /**
@@ -127,24 +112,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
     }
 
     /**
-     * General error
-     */
-    public V2GetInstanceStageHistoryResponse withV2Error(com.formance.formance_sdk.models.errors.V2Error v2Error) {
-        Utils.checkNotNull(v2Error, "v2Error");
-        this.v2Error = Optional.ofNullable(v2Error);
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public V2GetInstanceStageHistoryResponse withV2Error(Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
-        Utils.checkNotNull(v2Error, "v2Error");
-        this.v2Error = v2Error;
-        return this;
-    }
-
-    /**
      * The workflow instance stage history
      */
     public V2GetInstanceStageHistoryResponse withV2GetWorkflowInstanceHistoryStageResponse(com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse v2GetWorkflowInstanceHistoryStageResponse) {
@@ -175,7 +142,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2Error, other.v2Error) &&
             java.util.Objects.deepEquals(this.v2GetWorkflowInstanceHistoryStageResponse, other.v2GetWorkflowInstanceHistoryStageResponse);
     }
     
@@ -185,7 +151,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
             contentType,
             statusCode,
             rawResponse,
-            v2Error,
             v2GetWorkflowInstanceHistoryStageResponse);
     }
     
@@ -195,7 +160,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2Error", v2Error,
                 "v2GetWorkflowInstanceHistoryStageResponse", v2GetWorkflowInstanceHistoryStageResponse);
     }
     
@@ -206,8 +170,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
         private Integer statusCode;
  
         private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error = Optional.empty();
  
         private Optional<? extends com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse> v2GetWorkflowInstanceHistoryStageResponse = Optional.empty();  
         
@@ -243,24 +205,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
         }
 
         /**
-         * General error
-         */
-        public Builder v2Error(com.formance.formance_sdk.models.errors.V2Error v2Error) {
-            Utils.checkNotNull(v2Error, "v2Error");
-            this.v2Error = Optional.ofNullable(v2Error);
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder v2Error(Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
-            Utils.checkNotNull(v2Error, "v2Error");
-            this.v2Error = v2Error;
-            return this;
-        }
-
-        /**
          * The workflow instance stage history
          */
         public Builder v2GetWorkflowInstanceHistoryStageResponse(com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse v2GetWorkflowInstanceHistoryStageResponse) {
@@ -283,7 +227,6 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
                 contentType,
                 statusCode,
                 rawResponse,
-                v2Error,
                 v2GetWorkflowInstanceHistoryStageResponse);
         }
     }
