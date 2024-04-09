@@ -23,11 +23,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
     private String contentType;
 
     /**
-     * General error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.shared.Error> error;
-
-    /**
      * List of triggers
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse;
@@ -44,17 +39,14 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
 
     public ListTriggersResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.Error> error,
             Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(listTriggersResponse, "listTriggersResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.error = error;
         this.listTriggersResponse = listTriggersResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
@@ -65,13 +57,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * General error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.shared.Error> error() {
-        return error;
     }
 
     /**
@@ -105,24 +90,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
     public ListTriggersResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public ListTriggersResponse withError(com.formance.formance_sdk.models.shared.Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public ListTriggersResponse withError(Optional<? extends com.formance.formance_sdk.models.shared.Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -173,7 +140,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
         ListTriggersResponse other = (ListTriggersResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.listTriggersResponse, other.listTriggersResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
@@ -183,7 +149,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            error,
             listTriggersResponse,
             statusCode,
             rawResponse);
@@ -193,7 +158,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
     public String toString() {
         return Utils.toString(ListTriggersResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "listTriggersResponse", listTriggersResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
@@ -202,8 +166,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.shared.Error> error = Optional.empty();
  
         private Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse = Optional.empty();
  
@@ -221,24 +183,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder error(com.formance.formance_sdk.models.shared.Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder error(Optional<? extends com.formance.formance_sdk.models.shared.Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -281,7 +225,6 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
         public ListTriggersResponse build() {
             return new ListTriggersResponse(
                 contentType,
-                error,
                 listTriggersResponse,
                 statusCode,
                 rawResponse);

@@ -103,15 +103,13 @@ public class Reconciliation implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationErrorResponse out = mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationErrorResponse>() {});
-                res.withReconciliationErrorResponse(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -171,15 +169,13 @@ public class Reconciliation implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 204) {
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationErrorResponse out = mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationErrorResponse>() {});
-                res.withReconciliationErrorResponse(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -247,15 +243,13 @@ public class Reconciliation implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationErrorResponse out = mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationErrorResponse>() {});
-                res.withReconciliationErrorResponse(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -323,15 +317,13 @@ public class Reconciliation implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationErrorResponse out = mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationErrorResponse>() {});
-                res.withReconciliationErrorResponse(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -405,15 +397,13 @@ public class Reconciliation implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationErrorResponse out = mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationErrorResponse>() {});
-                res.withReconciliationErrorResponse(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -487,15 +477,13 @@ public class Reconciliation implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationErrorResponse out = mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationErrorResponse>() {});
-                res.withReconciliationErrorResponse(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -572,15 +560,13 @@ public class Reconciliation implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationErrorResponse out = mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationErrorResponse>() {});
-                res.withReconciliationErrorResponse(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -644,15 +630,13 @@ public class Reconciliation implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationErrorResponse out = mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationErrorResponse>() {});
-                res.withReconciliationErrorResponse(java.util.Optional.ofNullable(out));
+                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }

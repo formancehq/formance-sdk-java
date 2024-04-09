@@ -12,7 +12,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 public class AddMetadataToAccountResponse implements com.formance.formance_sdk.utils.Response {
@@ -21,11 +20,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
      * HTTP response content type for this operation
      */
     private String contentType;
-
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse;
 
     /**
      * HTTP response status code for this operation
@@ -39,15 +33,12 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
 
     public AddMetadataToAccountResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(errorResponse, "errorResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.errorResponse = errorResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -57,13 +48,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse() {
-        return errorResponse;
     }
 
     /**
@@ -90,24 +74,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
     public AddMetadataToAccountResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public AddMetadataToAccountResponse withErrorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = Optional.ofNullable(errorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public AddMetadataToAccountResponse withErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-        Utils.checkNotNull(errorResponse, "errorResponse");
-        this.errorResponse = errorResponse;
         return this;
     }
 
@@ -140,7 +106,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
         AddMetadataToAccountResponse other = (AddMetadataToAccountResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.errorResponse, other.errorResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -149,7 +114,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            errorResponse,
             statusCode,
             rawResponse);
     }
@@ -158,7 +122,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
     public String toString() {
         return Utils.toString(AddMetadataToAccountResponse.class,
                 "contentType", contentType,
-                "errorResponse", errorResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -166,8 +129,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -183,24 +144,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = Optional.ofNullable(errorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder errorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
-            Utils.checkNotNull(errorResponse, "errorResponse");
-            this.errorResponse = errorResponse;
             return this;
         }
 
@@ -225,7 +168,6 @@ public class AddMetadataToAccountResponse implements com.formance.formance_sdk.u
         public AddMetadataToAccountResponse build() {
             return new AddMetadataToAccountResponse(
                 contentType,
-                errorResponse,
                 statusCode,
                 rawResponse);
         }

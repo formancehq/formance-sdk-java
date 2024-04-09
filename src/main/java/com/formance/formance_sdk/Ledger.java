@@ -141,15 +141,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -213,15 +211,13 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 204) {
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -288,25 +284,13 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 204) {
-        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 404) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -379,15 +363,13 @@ public class Ledger implements
                     .keySet()
                     .stream()
                     .collect(Collectors.toMap(Function.identity(), k -> httpRes.headers().allValues(k))));
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -460,15 +442,13 @@ public class Ledger implements
                     .keySet()
                     .stream()
                     .collect(Collectors.toMap(Function.identity(), k -> httpRes.headers().allValues(k))));
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -552,25 +532,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -638,15 +606,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -722,15 +688,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -806,15 +770,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -878,15 +840,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -954,15 +914,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1030,15 +988,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1106,15 +1062,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1191,15 +1145,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1276,15 +1228,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1361,15 +1311,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1439,15 +1387,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1523,15 +1469,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1619,7 +1563,7 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
+        }else {
             throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }
 
@@ -1693,15 +1637,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                res.withErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1782,25 +1724,13 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 204) {
-        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 404) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1884,25 +1814,13 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 204) {
-        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 404) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -1980,15 +1898,13 @@ public class Ledger implements
                     .keySet()
                     .stream()
                     .collect(Collectors.toMap(Function.identity(), k -> httpRes.headers().allValues(k))));
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2066,15 +1982,13 @@ public class Ledger implements
                     .keySet()
                     .stream()
                     .collect(Collectors.toMap(Function.identity(), k -> httpRes.headers().allValues(k))));
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2147,15 +2061,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2219,25 +2131,13 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 204) {
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2330,25 +2230,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2408,7 +2296,7 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if ((httpRes.statusCode() >= 200 && httpRes.statusCode() < 300)) {
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
+        }else {
             throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }
 
@@ -2465,25 +2353,13 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 204) {
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2543,25 +2419,13 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if ((httpRes.statusCode() >= 200 && httpRes.statusCode() < 300)) {
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2637,15 +2501,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2726,15 +2588,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2798,15 +2658,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2874,15 +2732,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -2950,15 +2806,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3034,25 +2888,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 404) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3134,25 +2976,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3226,15 +3056,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3316,15 +3144,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3406,25 +3232,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 400 || httpRes.statusCode() == 404) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3494,15 +3308,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3578,25 +3390,13 @@ public class Ledger implements
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
@@ -3660,25 +3460,13 @@ public class Ledger implements
         res.withRawResponse(httpRes);
 
         if (httpRes.statusCode() == 204) {
-        } else if (httpRes.statusCode() == 400) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                throw out;
-            } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
-            }
-        } else if ((httpRes.statusCode() >= 400 && httpRes.statusCode() < 500) || (httpRes.statusCode() >= 500 && httpRes.statusCode() < 600)) {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }else {
             if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
                 ObjectMapper mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
-                res.withV2ErrorResponse(java.util.Optional.ofNullable(out));
+                throw out;
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }

@@ -12,7 +12,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 public class V2CountTransactionsResponse implements com.formance.formance_sdk.utils.Response {
@@ -34,27 +33,19 @@ public class V2CountTransactionsResponse implements com.formance.formance_sdk.ut
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse;
-
     public V2CountTransactionsResponse(
             String contentType,
             java.util.Map<String, java.util.List<String>> headers,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         headers = Utils.emptyMapIfNull(headers);
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         this.contentType = contentType;
         this.headers = headers;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v2ErrorResponse = v2ErrorResponse;
     }
 
     /**
@@ -80,13 +71,6 @@ public class V2CountTransactionsResponse implements com.formance.formance_sdk.ut
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse() {
-        return v2ErrorResponse;
     }
 
     public final static Builder builder() {
@@ -125,24 +109,6 @@ public class V2CountTransactionsResponse implements com.formance.formance_sdk.ut
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * Error
-     */
-    public V2CountTransactionsResponse withV2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public V2CountTransactionsResponse withV2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = v2ErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -157,8 +123,7 @@ public class V2CountTransactionsResponse implements com.formance.formance_sdk.ut
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.headers, other.headers) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -167,8 +132,7 @@ public class V2CountTransactionsResponse implements com.formance.formance_sdk.ut
             contentType,
             headers,
             statusCode,
-            rawResponse,
-            v2ErrorResponse);
+            rawResponse);
     }
     
     @Override
@@ -177,8 +141,7 @@ public class V2CountTransactionsResponse implements com.formance.formance_sdk.ut
                 "contentType", contentType,
                 "headers", headers,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "v2ErrorResponse", v2ErrorResponse);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -189,9 +152,7 @@ public class V2CountTransactionsResponse implements com.formance.formance_sdk.ut
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -229,32 +190,13 @@ public class V2CountTransactionsResponse implements com.formance.formance_sdk.ut
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = v2ErrorResponse;
-            return this;
-        }
         
         public V2CountTransactionsResponse build() {
             return new V2CountTransactionsResponse(
                 contentType,
                 headers,
                 statusCode,
-                rawResponse,
-                v2ErrorResponse);
+                rawResponse);
         }
     }
 }

@@ -25,7 +25,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk:2.2.3'
+implementation 'com.formance.formance_sdk:formance-sdk:2.2.4'
 ```
 
 Maven:
@@ -33,7 +33,7 @@ Maven:
 <dependency>
     <groupId>com.formance.formance_sdk</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>2.2.3</version>
+    <version>2.2.4</version>
 </dependency>
 ```
 
@@ -394,7 +394,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object                                          | Status Code                                           | Content Type                                          |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | 400,404                                               | application/json                                      |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
 | models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ### Example
@@ -404,10 +404,13 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest;
-import com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse;
+import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
+import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
 import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Posting;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.TransactionData;
+import com.formance.formance_sdk.models.shared.Transactions;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -425,18 +428,30 @@ public class Application {
                     .build())
                 .build();
 
-            AddMetadataToAccountRequest req = AddMetadataToAccountRequest.builder()
-                .requestBody(java.util.Map.ofEntries(
-                        entry("key", "<value>")))
-                .address("users:001")
+            CreateTransactionsRequest req = CreateTransactionsRequest.builder()
+                .transactions(Transactions.builder()
+                        .transactions(java.util.List.of(
+                                TransactionData.builder()
+                                    .postings(java.util.List.of(
+                                            Posting.builder()
+                                                .amount(new BigInteger("100"))
+                                                .asset("COIN")
+                                                .destination("users:002")
+                                                .source("users:001")
+                                                .build()))
+                                    .reference("ref:001")
+                                    .build()))
+                        .build())
                 .ledger("ledger001")
                 .build();
 
-            AddMetadataToAccountResponse res = sdk.ledger().addMetadataToAccount()
+            CreateTransactionsResponse res = sdk.ledger().createTransactions()
                 .request(req)
                 .call();
 
-            // handle response
+            if (res.transactionsResponse().isPresent()) {
+                // handle response
+            }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {

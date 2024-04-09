@@ -106,6 +106,8 @@ public class Application {
             if (res.transactionsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -127,9 +129,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateTransactionsResponse>](../../models/operations/CreateTransactionsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## addMetadataOnTransaction
 
@@ -175,6 +178,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -196,9 +201,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse>](../../models/operations/AddMetadataOnTransactionResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## addMetadataToAccount
 
@@ -269,7 +275,7 @@ public class Application {
 
 | Error Object                                          | Status Code                                           | Content Type                                          |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | 400,404                                               | application/json                                      |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
 | models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## countAccounts
@@ -316,6 +322,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -337,9 +345,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CountAccountsResponse>](../../models/operations/CountAccountsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## countTransactions
 
@@ -391,6 +400,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -412,9 +423,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CountTransactionsResponse>](../../models/operations/CountTransactionsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## createTransaction
 
@@ -513,7 +525,7 @@ public class Application {
 
 | Error Object                                          | Status Code                                           | Content Type                                          |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | 400                                                   | application/json                                      |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
 | models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## getAccount
@@ -560,6 +572,8 @@ public class Application {
             if (res.accountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -581,9 +595,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetAccountResponse>](../../models/operations/GetAccountResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## getBalances
 
@@ -632,6 +647,8 @@ public class Application {
             if (res.balancesCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -653,9 +670,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetBalancesResponse>](../../models/operations/GetBalancesResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## getBalancesAggregated
 
@@ -702,6 +720,8 @@ public class Application {
             if (res.aggregateBalancesResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -723,9 +743,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse>](../../models/operations/GetBalancesAggregatedResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## getInfo
 
@@ -764,6 +785,8 @@ public class Application {
             if (res.configInfoResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -779,9 +802,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetInfoResponse>](../../models/operations/GetInfoResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## getLedgerInfo
 
@@ -826,6 +850,8 @@ public class Application {
             if (res.ledgerInfoResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -847,9 +873,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetLedgerInfoResponse>](../../models/operations/GetLedgerInfoResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## getMapping
 
@@ -894,6 +921,8 @@ public class Application {
             if (res.mappingResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -915,9 +944,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetMappingResponse>](../../models/operations/GetMappingResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## getTransaction
 
@@ -963,6 +993,8 @@ public class Application {
             if (res.transactionResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -984,9 +1016,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetTransactionResponse>](../../models/operations/GetTransactionResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## listAccounts
 
@@ -1039,6 +1072,8 @@ public class Application {
             if (res.accountsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1060,9 +1095,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListAccountsResponse>](../../models/operations/ListAccountsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## listLogs
 
@@ -1112,6 +1148,8 @@ public class Application {
             if (res.logsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1133,9 +1171,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListLogsResponse>](../../models/operations/ListLogsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## listTransactions
 
@@ -1191,6 +1230,8 @@ public class Application {
             if (res.transactionsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1212,9 +1253,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListTransactionsResponse>](../../models/operations/ListTransactionsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## readStats
 
@@ -1260,6 +1302,8 @@ public class Application {
             if (res.statsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1281,9 +1325,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ReadStatsResponse>](../../models/operations/ReadStatsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## revertTransaction
 
@@ -1330,6 +1375,8 @@ public class Application {
             if (res.transactionResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1351,9 +1398,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.RevertTransactionResponse>](../../models/operations/RevertTransactionResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## ~~runScript~~
 
@@ -1497,6 +1545,8 @@ public class Application {
             if (res.mappingResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1518,9 +1568,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UpdateMappingResponse>](../../models/operations/UpdateMappingResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                          | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
+| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
 
 ## v2AddMetadataOnTransaction
 
@@ -1593,7 +1644,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400,404                                                 | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2AddMetadataToAccount
@@ -1667,7 +1718,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400,404                                                 | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2CountAccounts
@@ -1714,6 +1765,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1735,9 +1788,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CountAccountsResponse>](../../models/operations/V2CountAccountsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2CountTransactions
 
@@ -1783,6 +1837,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1804,9 +1860,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CountTransactionsResponse>](../../models/operations/V2CountTransactionsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2CreateBulk
 
@@ -1864,6 +1921,8 @@ public class Application {
             if (res.v2BulkResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1885,9 +1944,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateBulkResponse>](../../models/operations/V2CreateBulkResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2CreateLedger
 
@@ -1961,7 +2021,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2CreateTransaction
@@ -2062,7 +2122,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2DeleteAccountMetadata
@@ -2200,7 +2260,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2DeleteTransactionMetadata
@@ -2271,7 +2331,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2GetAccount
@@ -2320,6 +2380,8 @@ public class Application {
             if (res.v2AccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -2341,9 +2403,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetAccountResponse>](../../models/operations/V2GetAccountResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2GetBalancesAggregated
 
@@ -2392,6 +2455,8 @@ public class Application {
             if (res.v2AggregateBalancesResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -2413,9 +2478,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse>](../../models/operations/V2GetBalancesAggregatedResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2GetInfo
 
@@ -2454,6 +2520,8 @@ public class Application {
             if (res.v2ConfigInfoResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -2469,9 +2537,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInfoResponse>](../../models/operations/V2GetInfoResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2GetLedger
 
@@ -2516,6 +2585,8 @@ public class Application {
             if (res.v2GetLedgerResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -2537,9 +2608,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetLedgerResponse>](../../models/operations/V2GetLedgerResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2GetLedgerInfo
 
@@ -2584,6 +2656,8 @@ public class Application {
             if (res.v2LedgerInfoResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -2605,9 +2679,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse>](../../models/operations/V2GetLedgerInfoResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2GetTransaction
 
@@ -2680,7 +2755,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 404                                                     | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2ListAccounts
@@ -2757,7 +2832,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2ListLedgers
@@ -2804,6 +2879,8 @@ public class Application {
             if (res.v2LedgerListResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -2825,9 +2902,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListLedgersResponse>](../../models/operations/V2ListLedgersResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2ListLogs
 
@@ -2877,6 +2955,8 @@ public class Application {
             if (res.v2LogsCursorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -2898,9 +2978,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListLogsResponse>](../../models/operations/V2ListLogsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2ListTransactions
 
@@ -2976,7 +3057,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400,404                                                 | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2ReadStats
@@ -3023,6 +3104,8 @@ public class Application {
             if (res.v2StatsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -3044,9 +3127,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ReadStatsResponse>](../../models/operations/V2ReadStatsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2RevertTransaction
 
@@ -3119,7 +3203,7 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
 
 ## v2UpdateLedgerMetadata
@@ -3190,5 +3274,5 @@ public class Application {
 
 | Error Object                                            | Status Code                                             | Content Type                                            |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | 400                                                     | application/json                                        |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
 | models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |

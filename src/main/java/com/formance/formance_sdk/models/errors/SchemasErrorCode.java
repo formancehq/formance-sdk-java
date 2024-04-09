@@ -15,9 +15,8 @@ import java.math.BigInteger;
 
 public enum SchemasErrorCode {
     VALIDATION("VALIDATION"),
-    INTERNAL_ERROR("INTERNAL_ERROR"),
-    INSUFFICIENT_FUND("INSUFFICIENT_FUND"),
-    HOLD_CLOSED("HOLD_CLOSED");
+    NOT_FOUND("NOT_FOUND"),
+    INTERNAL("INTERNAL");
 
     @JsonValue
     private final String value;

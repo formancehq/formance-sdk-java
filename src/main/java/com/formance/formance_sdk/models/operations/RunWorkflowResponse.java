@@ -23,11 +23,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
     private String contentType;
 
     /**
-     * General error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.shared.Error> error;
-
-    /**
      * The workflow instance
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse;
@@ -44,17 +39,14 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
 
     public RunWorkflowResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.Error> error,
             Optional<? extends com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(runWorkflowResponse, "runWorkflowResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.error = error;
         this.runWorkflowResponse = runWorkflowResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
@@ -65,13 +57,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * General error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.shared.Error> error() {
-        return error;
     }
 
     /**
@@ -105,24 +90,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
     public RunWorkflowResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public RunWorkflowResponse withError(com.formance.formance_sdk.models.shared.Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public RunWorkflowResponse withError(Optional<? extends com.formance.formance_sdk.models.shared.Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -173,7 +140,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
         RunWorkflowResponse other = (RunWorkflowResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.runWorkflowResponse, other.runWorkflowResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
@@ -183,7 +149,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            error,
             runWorkflowResponse,
             statusCode,
             rawResponse);
@@ -193,7 +158,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
     public String toString() {
         return Utils.toString(RunWorkflowResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "runWorkflowResponse", runWorkflowResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
@@ -202,8 +166,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.shared.Error> error = Optional.empty();
  
         private Optional<? extends com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse = Optional.empty();
  
@@ -221,24 +183,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder error(com.formance.formance_sdk.models.shared.Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder error(Optional<? extends com.formance.formance_sdk.models.shared.Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -281,7 +225,6 @@ public class RunWorkflowResponse implements com.formance.formance_sdk.utils.Resp
         public RunWorkflowResponse build() {
             return new RunWorkflowResponse(
                 contentType,
-                error,
                 runWorkflowResponse,
                 statusCode,
                 rawResponse);

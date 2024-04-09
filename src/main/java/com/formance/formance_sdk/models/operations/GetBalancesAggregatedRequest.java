@@ -32,7 +32,7 @@ public class GetBalancesAggregatedRequest {
     /**
      * Use insertion date instead of effective date
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=use_insertion_date")
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=useInsertionDate")
     private Optional<? extends Boolean> useInsertionDate;
 
     public GetBalancesAggregatedRequest(

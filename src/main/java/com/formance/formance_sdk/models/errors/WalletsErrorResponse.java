@@ -20,13 +20,13 @@ import java.net.http.HttpResponse;
 public class WalletsErrorResponse extends RuntimeException {
 
     @JsonProperty("errorCode")
-    private SchemasErrorCode errorCode;
+    private SchemasWalletsErrorResponseErrorCode errorCode;
 
     @JsonProperty("errorMessage")
     private String errorMessage;
 
     public WalletsErrorResponse(
-            @JsonProperty("errorCode") SchemasErrorCode errorCode,
+            @JsonProperty("errorCode") SchemasWalletsErrorResponseErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
@@ -34,7 +34,7 @@ public class WalletsErrorResponse extends RuntimeException {
         this.errorMessage = errorMessage;
     }
 
-    public SchemasErrorCode errorCode(){
+    public SchemasWalletsErrorResponseErrorCode errorCode(){
         return errorCode;
     }
 
@@ -46,7 +46,7 @@ public class WalletsErrorResponse extends RuntimeException {
         return new Builder();
     }
 
-    public WalletsErrorResponse withErrorCode(SchemasErrorCode errorCode) {
+    public WalletsErrorResponse withErrorCode(SchemasWalletsErrorResponseErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
@@ -88,7 +88,7 @@ public class WalletsErrorResponse extends RuntimeException {
 
     public final static class Builder {
 
-        private SchemasErrorCode errorCode;
+        private SchemasWalletsErrorResponseErrorCode errorCode;
 
         private String errorMessage;
 
@@ -96,7 +96,7 @@ public class WalletsErrorResponse extends RuntimeException {
           // force use of static builder() method
         }
 
-        public Builder errorCode(SchemasErrorCode errorCode) {
+        public Builder errorCode(SchemasWalletsErrorResponseErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;

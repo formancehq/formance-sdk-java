@@ -37,27 +37,19 @@ public class V2CreateTransactionResponse implements com.formance.formance_sdk.ut
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse;
 
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse;
-
     public V2CreateTransactionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
+            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.v2CreateTransactionResponse = v2CreateTransactionResponse;
-        this.v2ErrorResponse = v2ErrorResponse;
     }
 
     /**
@@ -86,13 +78,6 @@ public class V2CreateTransactionResponse implements com.formance.formance_sdk.ut
      */
     public Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse() {
         return v2CreateTransactionResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse() {
-        return v2ErrorResponse;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class V2CreateTransactionResponse implements com.formance.formance_sdk.ut
         this.v2CreateTransactionResponse = v2CreateTransactionResponse;
         return this;
     }
-
-    /**
-     * Error
-     */
-    public V2CreateTransactionResponse withV2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public V2CreateTransactionResponse withV2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = v2ErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class V2CreateTransactionResponse implements com.formance.formance_sdk.ut
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2CreateTransactionResponse, other.v2CreateTransactionResponse) &&
-            java.util.Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
+            java.util.Objects.deepEquals(this.v2CreateTransactionResponse, other.v2CreateTransactionResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class V2CreateTransactionResponse implements com.formance.formance_sdk.ut
             contentType,
             statusCode,
             rawResponse,
-            v2CreateTransactionResponse,
-            v2ErrorResponse);
+            v2CreateTransactionResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class V2CreateTransactionResponse implements com.formance.formance_sdk.ut
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2CreateTransactionResponse", v2CreateTransactionResponse,
-                "v2ErrorResponse", v2ErrorResponse);
+                "v2CreateTransactionResponse", v2CreateTransactionResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class V2CreateTransactionResponse implements com.formance.formance_sdk.ut
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse = Optional.empty();
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse = Optional.empty();  
+        private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class V2CreateTransactionResponse implements com.formance.formance_sdk.ut
             this.v2CreateTransactionResponse = v2CreateTransactionResponse;
             return this;
         }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = v2ErrorResponse;
-            return this;
-        }
         
         public V2CreateTransactionResponse build() {
             return new V2CreateTransactionResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                v2CreateTransactionResponse,
-                v2ErrorResponse);
+                v2CreateTransactionResponse);
         }
     }
 }

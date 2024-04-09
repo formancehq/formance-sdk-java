@@ -79,6 +79,11 @@ public class ConnectorConfig {
         Utils.checkNotNull(value, "value");
         return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<AdyenConfig>(){}));
     }
+
+    public static ConnectorConfig of(GenericConfig value) {
+        Utils.checkNotNull(value, "value");
+        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GenericConfig>(){}));
+    }
     
     /**
      * Returns an instance of one of these types:
@@ -93,6 +98,7 @@ public class ConnectorConfig {
      * <li>{@code MoneycorpConfig}</li>
      * <li>{@code AtlarConfig}</li>
      * <li>{@code AdyenConfig}</li>
+     * <li>{@code GenericConfig}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -141,7 +147,8 @@ public class ConnectorConfig {
                   Utils.TypeReferenceWithShape.of(new TypeReference<MangoPayConfig>() {}, Utils.JsonShape.DEFAULT),
                   Utils.TypeReferenceWithShape.of(new TypeReference<MoneycorpConfig>() {}, Utils.JsonShape.DEFAULT),
                   Utils.TypeReferenceWithShape.of(new TypeReference<AtlarConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<AdyenConfig>() {}, Utils.JsonShape.DEFAULT));
+                  Utils.TypeReferenceWithShape.of(new TypeReference<AdyenConfig>() {}, Utils.JsonShape.DEFAULT),
+                  Utils.TypeReferenceWithShape.of(new TypeReference<GenericConfig>() {}, Utils.JsonShape.DEFAULT));
         }
     }
     

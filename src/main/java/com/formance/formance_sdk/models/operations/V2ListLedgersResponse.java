@@ -33,11 +33,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse;
-
-    /**
      * OK
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2LedgerListResponse> v2LedgerListResponse;
@@ -46,17 +41,14 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse,
             Optional<? extends com.formance.formance_sdk.models.shared.V2LedgerListResponse> v2LedgerListResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         Utils.checkNotNull(v2LedgerListResponse, "v2LedgerListResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v2ErrorResponse = v2ErrorResponse;
         this.v2LedgerListResponse = v2LedgerListResponse;
     }
 
@@ -79,13 +71,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse() {
-        return v2ErrorResponse;
     }
 
     /**
@@ -127,24 +112,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
     }
 
     /**
-     * Error
-     */
-    public V2ListLedgersResponse withV2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public V2ListLedgersResponse withV2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = v2ErrorResponse;
-        return this;
-    }
-
-    /**
      * OK
      */
     public V2ListLedgersResponse withV2LedgerListResponse(com.formance.formance_sdk.models.shared.V2LedgerListResponse v2LedgerListResponse) {
@@ -175,7 +142,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse) &&
             java.util.Objects.deepEquals(this.v2LedgerListResponse, other.v2LedgerListResponse);
     }
     
@@ -185,7 +151,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
             contentType,
             statusCode,
             rawResponse,
-            v2ErrorResponse,
             v2LedgerListResponse);
     }
     
@@ -195,7 +160,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2ErrorResponse", v2ErrorResponse,
                 "v2LedgerListResponse", v2LedgerListResponse);
     }
     
@@ -206,8 +170,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
         private Integer statusCode;
  
         private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse = Optional.empty();
  
         private Optional<? extends com.formance.formance_sdk.models.shared.V2LedgerListResponse> v2LedgerListResponse = Optional.empty();  
         
@@ -243,24 +205,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
         }
 
         /**
-         * Error
-         */
-        public Builder v2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = v2ErrorResponse;
-            return this;
-        }
-
-        /**
          * OK
          */
         public Builder v2LedgerListResponse(com.formance.formance_sdk.models.shared.V2LedgerListResponse v2LedgerListResponse) {
@@ -283,7 +227,6 @@ public class V2ListLedgersResponse implements com.formance.formance_sdk.utils.Re
                 contentType,
                 statusCode,
                 rawResponse,
-                v2ErrorResponse,
                 v2LedgerListResponse);
         }
     }

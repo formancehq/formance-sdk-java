@@ -12,7 +12,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 public class CancelEventResponse implements com.formance.formance_sdk.utils.Response {
@@ -21,11 +20,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
      * HTTP response content type for this operation
      */
     private String contentType;
-
-    /**
-     * General error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.shared.Error> error;
 
     /**
      * HTTP response status code for this operation
@@ -39,15 +33,12 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
 
     public CancelEventResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -57,13 +48,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
      */
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * General error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.shared.Error> error() {
-        return error;
     }
 
     /**
@@ -90,24 +74,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
     public CancelEventResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public CancelEventResponse withError(com.formance.formance_sdk.models.shared.Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public CancelEventResponse withError(Optional<? extends com.formance.formance_sdk.models.shared.Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -140,7 +106,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
         CancelEventResponse other = (CancelEventResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -149,7 +114,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            error,
             statusCode,
             rawResponse);
     }
@@ -158,7 +122,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
     public String toString() {
         return Utils.toString(CancelEventResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -166,8 +129,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends com.formance.formance_sdk.models.shared.Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -183,24 +144,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder error(com.formance.formance_sdk.models.shared.Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder error(Optional<? extends com.formance.formance_sdk.models.shared.Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -225,7 +168,6 @@ public class CancelEventResponse implements com.formance.formance_sdk.utils.Resp
         public CancelEventResponse build() {
             return new CancelEventResponse(
                 contentType,
-                error,
                 statusCode,
                 rawResponse);
         }

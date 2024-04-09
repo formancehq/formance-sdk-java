@@ -66,6 +66,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -87,9 +89,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ConfirmHoldResponse>](../../models/operations/ConfirmHoldResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## createBalance
 
@@ -140,6 +143,8 @@ public class Application {
             if (res.createBalanceResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -161,9 +166,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateBalanceResponse>](../../models/operations/CreateBalanceResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## createWallet
 
@@ -210,6 +216,8 @@ public class Application {
             if (res.createWalletResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -231,9 +239,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateWalletResponse>](../../models/operations/CreateWalletResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## creditWallet
 
@@ -318,7 +327,7 @@ public class Application {
 
 | Error Object                                                 | Status Code                                                  | Content Type                                                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | 400                                                          | application/json                                             |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
 | models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## debitWallet
@@ -410,7 +419,7 @@ public class Application {
 
 | Error Object                                                 | Status Code                                                  | Content Type                                                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | 400                                                          | application/json                                             |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
 | models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## getBalance
@@ -457,6 +466,8 @@ public class Application {
             if (res.getBalanceResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -478,9 +489,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetBalanceResponse>](../../models/operations/GetBalanceResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## getHold
 
@@ -525,6 +537,8 @@ public class Application {
             if (res.getHoldResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -546,9 +560,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetHoldResponse>](../../models/operations/GetHoldResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## getHolds
 
@@ -597,6 +612,8 @@ public class Application {
             if (res.getHoldsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -618,9 +635,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetHoldsResponse>](../../models/operations/GetHoldsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## getTransactions
 
@@ -665,6 +683,8 @@ public class Application {
             if (res.getTransactionsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -686,9 +706,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetTransactionsResponse>](../../models/operations/GetTransactionsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## getWallet
 
@@ -733,6 +754,8 @@ public class Application {
             if (res.getWalletResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -754,9 +777,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetWalletResponse>](../../models/operations/GetWalletResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## getWalletSummary
 
@@ -801,6 +825,8 @@ public class Application {
             if (res.getWalletSummaryResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -822,9 +848,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetWalletSummaryResponse>](../../models/operations/GetWalletSummaryResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## listBalances
 
@@ -941,6 +968,8 @@ public class Application {
             if (res.listWalletsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -962,9 +991,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListWalletsResponse>](../../models/operations/ListWalletsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## updateWallet
 
@@ -1012,6 +1042,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1033,9 +1065,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UpdateWalletResponse>](../../models/operations/UpdateWalletResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## voidHold
 
@@ -1078,6 +1111,8 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1099,9 +1134,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.VoidHoldResponse>](../../models/operations/VoidHoldResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
 
 ## walletsgetServerInfo
 
@@ -1140,6 +1176,8 @@ public class Application {
             if (res.serverInfo().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -1155,6 +1193,7 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse>](../../models/operations/WalletsgetServerInfoResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                 | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
+| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |

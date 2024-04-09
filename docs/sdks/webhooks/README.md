@@ -54,6 +54,8 @@ public class Application {
             if (res.configResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -75,9 +77,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ActivateConfigResponse>](../../models/operations/ActivateConfigResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                  | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | default                                                       | application/json                                              |
+| models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## changeConfigSecret
 
@@ -155,7 +158,7 @@ public class Application {
 
 | Error Object                                                  | Status Code                                                   | Content Type                                                  |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 400                                                           | application/json                                              |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | default                                                       | application/json                                              |
 | models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## deactivateConfig
@@ -226,7 +229,7 @@ public class Application {
 
 | Error Object                                                  | Status Code                                                   | Content Type                                                  |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 404                                                           | application/json                                              |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | default                                                       | application/json                                              |
 | models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## deleteConfig
@@ -295,7 +298,7 @@ public class Application {
 
 | Error Object                                                  | Status Code                                                   | Content Type                                                  |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 400,404                                                       | application/json                                              |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | default                                                       | application/json                                              |
 | models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## getManyConfigs
@@ -342,6 +345,8 @@ public class Application {
             if (res.configsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
+            // handle exception
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -363,9 +368,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetManyConfigsResponse>](../../models/operations/GetManyConfigsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                  | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | default                                                       | application/json                                              |
+| models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## insertConfig
 
@@ -449,7 +455,7 @@ public class Application {
 
 | Error Object                                                  | Status Code                                                   | Content Type                                                  |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 400                                                           | application/json                                              |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | default                                                       | application/json                                              |
 | models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |
 
 ## testConfig
@@ -520,5 +526,5 @@ public class Application {
 
 | Error Object                                                  | Status Code                                                   | Content Type                                                  |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | 400,404                                                       | application/json                                              |
+| com.formance.formance_sdk.models.errors.WebhooksErrorResponse | default                                                       | application/json                                              |
 | models/errors/SDKError                                        | 4xx-5xx                                                       | */*                                                           |

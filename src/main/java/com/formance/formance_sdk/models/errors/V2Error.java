@@ -20,13 +20,13 @@ import java.net.http.HttpResponse;
 public class V2Error extends RuntimeException {
 
     @JsonProperty("errorCode")
-    private ErrorCode errorCode;
+    private SchemasErrorCode errorCode;
 
     @JsonProperty("errorMessage")
     private String errorMessage;
 
     public V2Error(
-            @JsonProperty("errorCode") ErrorCode errorCode,
+            @JsonProperty("errorCode") SchemasErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
@@ -34,7 +34,7 @@ public class V2Error extends RuntimeException {
         this.errorMessage = errorMessage;
     }
 
-    public ErrorCode errorCode(){
+    public SchemasErrorCode errorCode(){
         return errorCode;
     }
 
@@ -46,7 +46,7 @@ public class V2Error extends RuntimeException {
         return new Builder();
     }
 
-    public V2Error withErrorCode(ErrorCode errorCode) {
+    public V2Error withErrorCode(SchemasErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
@@ -88,7 +88,7 @@ public class V2Error extends RuntimeException {
 
     public final static class Builder {
 
-        private ErrorCode errorCode;
+        private SchemasErrorCode errorCode;
 
         private String errorMessage;
 
@@ -96,7 +96,7 @@ public class V2Error extends RuntimeException {
           // force use of static builder() method
         }
 
-        public Builder errorCode(ErrorCode errorCode) {
+        public Builder errorCode(SchemasErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;

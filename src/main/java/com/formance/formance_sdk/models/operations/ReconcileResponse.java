@@ -37,27 +37,19 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Error response
-     */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse;
-
     public ReconcileResponse(
             String contentType,
             Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(reconciliationResponse, "reconciliationResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
         this.contentType = contentType;
         this.reconciliationResponse = reconciliationResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.reconciliationErrorResponse = reconciliationErrorResponse;
     }
 
     /**
@@ -86,13 +78,6 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * Error response
-     */
-    public Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse() {
-        return reconciliationErrorResponse;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
         this.rawResponse = rawResponse;
         return this;
     }
-
-    /**
-     * Error response
-     */
-    public ReconcileResponse withReconciliationErrorResponse(com.formance.formance_sdk.models.shared.ReconciliationErrorResponse reconciliationErrorResponse) {
-        Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
-        this.reconciliationErrorResponse = Optional.ofNullable(reconciliationErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error response
-     */
-    public ReconcileResponse withReconciliationErrorResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse) {
-        Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
-        this.reconciliationErrorResponse = reconciliationErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.reconciliationResponse, other.reconciliationResponse) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.reconciliationErrorResponse, other.reconciliationErrorResponse);
+            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
             contentType,
             reconciliationResponse,
             statusCode,
-            rawResponse,
-            reconciliationErrorResponse);
+            rawResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
                 "contentType", contentType,
                 "reconciliationResponse", reconciliationResponse,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "reconciliationErrorResponse", reconciliationErrorResponse);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * Error response
-         */
-        public Builder reconciliationErrorResponse(com.formance.formance_sdk.models.shared.ReconciliationErrorResponse reconciliationErrorResponse) {
-            Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
-            this.reconciliationErrorResponse = Optional.ofNullable(reconciliationErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error response
-         */
-        public Builder reconciliationErrorResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationErrorResponse> reconciliationErrorResponse) {
-            Utils.checkNotNull(reconciliationErrorResponse, "reconciliationErrorResponse");
-            this.reconciliationErrorResponse = reconciliationErrorResponse;
-            return this;
-        }
         
         public ReconcileResponse build() {
             return new ReconcileResponse(
                 contentType,
                 reconciliationResponse,
                 statusCode,
-                rawResponse,
-                reconciliationErrorResponse);
+                rawResponse);
         }
     }
 }

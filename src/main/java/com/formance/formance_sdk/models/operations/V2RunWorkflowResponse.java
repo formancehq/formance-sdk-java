@@ -33,11 +33,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * General error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error;
-
-    /**
      * The workflow instance
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2RunWorkflowResponse> v2RunWorkflowResponse;
@@ -46,17 +41,14 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error,
             Optional<? extends com.formance.formance_sdk.models.shared.V2RunWorkflowResponse> v2RunWorkflowResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v2Error, "v2Error");
         Utils.checkNotNull(v2RunWorkflowResponse, "v2RunWorkflowResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v2Error = v2Error;
         this.v2RunWorkflowResponse = v2RunWorkflowResponse;
     }
 
@@ -79,13 +71,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
      */
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * General error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error() {
-        return v2Error;
     }
 
     /**
@@ -127,24 +112,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
     }
 
     /**
-     * General error
-     */
-    public V2RunWorkflowResponse withV2Error(com.formance.formance_sdk.models.errors.V2Error v2Error) {
-        Utils.checkNotNull(v2Error, "v2Error");
-        this.v2Error = Optional.ofNullable(v2Error);
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public V2RunWorkflowResponse withV2Error(Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
-        Utils.checkNotNull(v2Error, "v2Error");
-        this.v2Error = v2Error;
-        return this;
-    }
-
-    /**
      * The workflow instance
      */
     public V2RunWorkflowResponse withV2RunWorkflowResponse(com.formance.formance_sdk.models.shared.V2RunWorkflowResponse v2RunWorkflowResponse) {
@@ -175,7 +142,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2Error, other.v2Error) &&
             java.util.Objects.deepEquals(this.v2RunWorkflowResponse, other.v2RunWorkflowResponse);
     }
     
@@ -185,7 +151,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
             contentType,
             statusCode,
             rawResponse,
-            v2Error,
             v2RunWorkflowResponse);
     }
     
@@ -195,7 +160,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2Error", v2Error,
                 "v2RunWorkflowResponse", v2RunWorkflowResponse);
     }
     
@@ -206,8 +170,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
         private Integer statusCode;
  
         private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error = Optional.empty();
  
         private Optional<? extends com.formance.formance_sdk.models.shared.V2RunWorkflowResponse> v2RunWorkflowResponse = Optional.empty();  
         
@@ -243,24 +205,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
         }
 
         /**
-         * General error
-         */
-        public Builder v2Error(com.formance.formance_sdk.models.errors.V2Error v2Error) {
-            Utils.checkNotNull(v2Error, "v2Error");
-            this.v2Error = Optional.ofNullable(v2Error);
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder v2Error(Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
-            Utils.checkNotNull(v2Error, "v2Error");
-            this.v2Error = v2Error;
-            return this;
-        }
-
-        /**
          * The workflow instance
          */
         public Builder v2RunWorkflowResponse(com.formance.formance_sdk.models.shared.V2RunWorkflowResponse v2RunWorkflowResponse) {
@@ -283,7 +227,6 @@ public class V2RunWorkflowResponse implements com.formance.formance_sdk.utils.Re
                 contentType,
                 statusCode,
                 rawResponse,
-                v2Error,
                 v2RunWorkflowResponse);
         }
     }

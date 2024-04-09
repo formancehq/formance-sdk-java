@@ -37,27 +37,19 @@ public class V2CreateTriggerResponse implements com.formance.formance_sdk.utils.
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse;
 
-    /**
-     * General error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error;
-
     public V2CreateTriggerResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
+            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(v2CreateTriggerResponse, "v2CreateTriggerResponse");
-        Utils.checkNotNull(v2Error, "v2Error");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.v2CreateTriggerResponse = v2CreateTriggerResponse;
-        this.v2Error = v2Error;
     }
 
     /**
@@ -86,13 +78,6 @@ public class V2CreateTriggerResponse implements com.formance.formance_sdk.utils.
      */
     public Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse() {
         return v2CreateTriggerResponse;
-    }
-
-    /**
-     * General error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error() {
-        return v2Error;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class V2CreateTriggerResponse implements com.formance.formance_sdk.utils.
         this.v2CreateTriggerResponse = v2CreateTriggerResponse;
         return this;
     }
-
-    /**
-     * General error
-     */
-    public V2CreateTriggerResponse withV2Error(com.formance.formance_sdk.models.errors.V2Error v2Error) {
-        Utils.checkNotNull(v2Error, "v2Error");
-        this.v2Error = Optional.ofNullable(v2Error);
-        return this;
-    }
-
-    /**
-     * General error
-     */
-    public V2CreateTriggerResponse withV2Error(Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
-        Utils.checkNotNull(v2Error, "v2Error");
-        this.v2Error = v2Error;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class V2CreateTriggerResponse implements com.formance.formance_sdk.utils.
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2CreateTriggerResponse, other.v2CreateTriggerResponse) &&
-            java.util.Objects.deepEquals(this.v2Error, other.v2Error);
+            java.util.Objects.deepEquals(this.v2CreateTriggerResponse, other.v2CreateTriggerResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class V2CreateTriggerResponse implements com.formance.formance_sdk.utils.
             contentType,
             statusCode,
             rawResponse,
-            v2CreateTriggerResponse,
-            v2Error);
+            v2CreateTriggerResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class V2CreateTriggerResponse implements com.formance.formance_sdk.utils.
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2CreateTriggerResponse", v2CreateTriggerResponse,
-                "v2Error", v2Error);
+                "v2CreateTriggerResponse", v2CreateTriggerResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class V2CreateTriggerResponse implements com.formance.formance_sdk.utils.
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse = Optional.empty();
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error = Optional.empty();  
+        private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class V2CreateTriggerResponse implements com.formance.formance_sdk.utils.
             this.v2CreateTriggerResponse = v2CreateTriggerResponse;
             return this;
         }
-
-        /**
-         * General error
-         */
-        public Builder v2Error(com.formance.formance_sdk.models.errors.V2Error v2Error) {
-            Utils.checkNotNull(v2Error, "v2Error");
-            this.v2Error = Optional.ofNullable(v2Error);
-            return this;
-        }
-
-        /**
-         * General error
-         */
-        public Builder v2Error(Optional<? extends com.formance.formance_sdk.models.errors.V2Error> v2Error) {
-            Utils.checkNotNull(v2Error, "v2Error");
-            this.v2Error = v2Error;
-            return this;
-        }
         
         public V2CreateTriggerResponse build() {
             return new V2CreateTriggerResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                v2CreateTriggerResponse,
-                v2Error);
+                v2CreateTriggerResponse);
         }
     }
 }

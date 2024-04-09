@@ -23,7 +23,8 @@ public enum Connector {
     MANGOPAY("MANGOPAY"),
     MONEYCORP("MONEYCORP"),
     ATLAR("ATLAR"),
-    ADYEN("ADYEN");
+    ADYEN("ADYEN"),
+    GENERIC("GENERIC");
 
     @JsonValue
     private final String value;

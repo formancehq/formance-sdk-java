@@ -37,27 +37,19 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2AccountsCursorResponse> v2AccountsCursorResponse;
 
-    /**
-     * Error
-     */
-    private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse;
-
     public V2ListAccountsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2AccountsCursorResponse> v2AccountsCursorResponse,
-            Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
+            Optional<? extends com.formance.formance_sdk.models.shared.V2AccountsCursorResponse> v2AccountsCursorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(v2AccountsCursorResponse, "v2AccountsCursorResponse");
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.v2AccountsCursorResponse = v2AccountsCursorResponse;
-        this.v2ErrorResponse = v2ErrorResponse;
     }
 
     /**
@@ -86,13 +78,6 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
      */
     public Optional<? extends com.formance.formance_sdk.models.shared.V2AccountsCursorResponse> v2AccountsCursorResponse() {
         return v2AccountsCursorResponse;
-    }
-
-    /**
-     * Error
-     */
-    public Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse() {
-        return v2ErrorResponse;
     }
 
     public final static Builder builder() {
@@ -143,24 +128,6 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
         this.v2AccountsCursorResponse = v2AccountsCursorResponse;
         return this;
     }
-
-    /**
-     * Error
-     */
-    public V2ListAccountsResponse withV2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public V2ListAccountsResponse withV2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-        Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-        this.v2ErrorResponse = v2ErrorResponse;
-        return this;
-    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -175,8 +142,7 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2AccountsCursorResponse, other.v2AccountsCursorResponse) &&
-            java.util.Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
+            java.util.Objects.deepEquals(this.v2AccountsCursorResponse, other.v2AccountsCursorResponse);
     }
     
     @Override
@@ -185,8 +151,7 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
             contentType,
             statusCode,
             rawResponse,
-            v2AccountsCursorResponse,
-            v2ErrorResponse);
+            v2AccountsCursorResponse);
     }
     
     @Override
@@ -195,8 +160,7 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2AccountsCursorResponse", v2AccountsCursorResponse,
-                "v2ErrorResponse", v2ErrorResponse);
+                "v2AccountsCursorResponse", v2AccountsCursorResponse);
     }
     
     public final static class Builder {
@@ -207,9 +171,7 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2AccountsCursorResponse> v2AccountsCursorResponse = Optional.empty();
- 
-        private Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse = Optional.empty();  
+        private Optional<? extends com.formance.formance_sdk.models.shared.V2AccountsCursorResponse> v2AccountsCursorResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -259,32 +221,13 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
             this.v2AccountsCursorResponse = v2AccountsCursorResponse;
             return this;
         }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(com.formance.formance_sdk.models.errors.V2ErrorResponse v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = Optional.ofNullable(v2ErrorResponse);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder v2ErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.V2ErrorResponse> v2ErrorResponse) {
-            Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
-            this.v2ErrorResponse = v2ErrorResponse;
-            return this;
-        }
         
         public V2ListAccountsResponse build() {
             return new V2ListAccountsResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                v2AccountsCursorResponse,
-                v2ErrorResponse);
+                v2AccountsCursorResponse);
         }
     }
 }

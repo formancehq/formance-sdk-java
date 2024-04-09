@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 639075e40f1ea95659f74c09351e6530
-  docVersion: v2.0.0-rc.19
-  speakeasyVersion: 1.235.2
-  generationVersion: 2.298.2
-  releaseVersion: 2.2.3
-  configChecksum: 70ae4a851754eed9fae1c6acd0c224bf
+  docChecksum: 2bda1c0de27222ed64207f609072c1c9
+  docVersion: v2.0.0-rc.20
+  speakeasyVersion: 1.244.1
+  generationVersion: 2.301.2
+  releaseVersion: 2.2.4
+  configChecksum: b16a96f6d882f36ea4bab184dd2c1849
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -648,8 +648,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/V2StatsResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2Stats.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2RevertTransactionResponse.java
-  - src/main/java/com/formance/formance_sdk/models/shared/ErrorCode.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Error.java
   - src/main/java/com/formance/formance_sdk/models/shared/CreateTriggerResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Trigger.java
   - src/main/java/com/formance/formance_sdk/models/shared/TriggerData.java
@@ -889,6 +887,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/MoneycorpConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/AtlarConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/AdyenConfig.java
+  - src/main/java/com/formance/formance_sdk/models/shared/GenericConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorsResponseData.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorsResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/BankAccountsCursorCursor.java
@@ -916,7 +915,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/Status.java
   - src/main/java/com/formance/formance_sdk/models/shared/UpdateTransferInitiationStatusRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/UpdateBankAccountMetadataRequest.java
-  - src/main/java/com/formance/formance_sdk/models/shared/ReconciliationErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/PolicyResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Policy.java
   - src/main/java/com/formance/formance_sdk/models/shared/PolicyRequest.java
@@ -955,9 +953,9 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/ListBalancesResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ListWalletsResponseCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/ListWalletsResponse.java
-  - src/main/java/com/formance/formance_sdk/models/shared/WebhooksErrorsEnum.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConfigResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/WebhooksConfig.java
+  - src/main/java/com/formance/formance_sdk/models/shared/WebhooksErrorsEnum.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConfigChangeSecret.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConfigsResponseCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConfigsResponse.java
@@ -968,8 +966,11 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/errors/ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/V2ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/ErrorCode.java
-  - src/main/java/com/formance/formance_sdk/models/errors/V2Error.java
+  - src/main/java/com/formance/formance_sdk/models/errors/Error.java
   - src/main/java/com/formance/formance_sdk/models/errors/SchemasErrorCode.java
+  - src/main/java/com/formance/formance_sdk/models/errors/V2Error.java
+  - src/main/java/com/formance/formance_sdk/models/errors/ReconciliationErrorResponse.java
+  - src/main/java/com/formance/formance_sdk/models/errors/SchemasWalletsErrorResponseErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/WalletsErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/WebhooksErrorResponse.java
   - docs/models/operations/GetOIDCWellKnownsResponse.md
@@ -1381,8 +1382,6 @@ generatedFiles:
   - docs/models/shared/V2StatsResponse.md
   - docs/models/shared/V2Stats.md
   - docs/models/shared/V2RevertTransactionResponse.md
-  - docs/models/shared/ErrorCode.md
-  - docs/models/shared/Error.md
   - docs/models/shared/CreateTriggerResponse.md
   - docs/models/shared/Trigger.md
   - docs/models/shared/TriggerData.md
@@ -1622,6 +1621,7 @@ generatedFiles:
   - docs/models/shared/MoneycorpConfig.md
   - docs/models/shared/AtlarConfig.md
   - docs/models/shared/AdyenConfig.md
+  - docs/models/shared/GenericConfig.md
   - docs/models/shared/ConnectorsResponseData.md
   - docs/models/shared/ConnectorsResponse.md
   - docs/models/shared/BankAccountsCursorCursor.md
@@ -1649,7 +1649,6 @@ generatedFiles:
   - docs/models/shared/Status.md
   - docs/models/shared/UpdateTransferInitiationStatusRequest.md
   - docs/models/shared/UpdateBankAccountMetadataRequest.md
-  - docs/models/shared/ReconciliationErrorResponse.md
   - docs/models/shared/PolicyResponse.md
   - docs/models/shared/Policy.md
   - docs/models/shared/PolicyRequest.md
@@ -1688,9 +1687,9 @@ generatedFiles:
   - docs/models/shared/ListBalancesResponse.md
   - docs/models/shared/ListWalletsResponseCursor.md
   - docs/models/shared/ListWalletsResponse.md
-  - docs/models/shared/WebhooksErrorsEnum.md
   - docs/models/shared/ConfigResponse.md
   - docs/models/shared/WebhooksConfig.md
+  - docs/models/shared/WebhooksErrorsEnum.md
   - docs/models/shared/ConfigChangeSecret.md
   - docs/models/shared/ConfigsResponseCursor.md
   - docs/models/shared/ConfigsResponse.md
@@ -1701,8 +1700,11 @@ generatedFiles:
   - docs/models/errors/ErrorResponse.md
   - docs/models/errors/V2ErrorResponse.md
   - docs/models/errors/ErrorCode.md
-  - docs/models/errors/V2Error.md
+  - docs/models/errors/Error.md
   - docs/models/errors/SchemasErrorCode.md
+  - docs/models/errors/V2Error.md
+  - docs/models/errors/ReconciliationErrorResponse.md
+  - docs/models/errors/SchemasWalletsErrorResponseErrorCode.md
   - docs/models/errors/WalletsErrorResponse.md
   - docs/models/errors/WebhooksErrorResponse.md
   - docs/sdks/sdk/README.md
