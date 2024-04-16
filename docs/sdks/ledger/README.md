@@ -39,6 +39,7 @@
 * [v2GetLedger](#v2getledger) - Get a ledger
 * [v2GetLedgerInfo](#v2getledgerinfo) - Get information about a ledger
 * [v2GetTransaction](#v2gettransaction) - Get transaction from a ledger by its ID
+* [v2GetVolumesWithBalances](#v2getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [v2ListAccounts](#v2listaccounts) - List accounts from a ledger
 * [v2ListLedgers](#v2listledgers) - List ledgers
 * [v2ListLogs](#v2listlogs) - List the logs from a ledger
@@ -2751,6 +2752,85 @@ public class Application {
 ### Response
 
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetTransactionResponse>](../../models/operations/V2GetTransactionResponse.md)**
+### Errors
+
+| Error Object                                            | Status Code                                             | Content Type                                            |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
+| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+
+## v2GetVolumesWithBalances
+
+Get list of volumes with balances for (account/asset)
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest;
+import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .build())
+                .build();
+
+            V2GetVolumesWithBalancesRequest req = V2GetVolumesWithBalancesRequest.builder()
+                .ledger("ledger001")
+                .requestBody(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .endTime(OffsetDateTime.parse("2022-12-08T23:50:32.246Z"))
+                .groupBy(873782L)
+                .insertionDate(false)
+                .pageSize(636101L)
+                .startTime(OffsetDateTime.parse("2023-04-11T14:27:28.359Z"))
+                .build();
+
+            V2GetVolumesWithBalancesResponse res = sdk.ledger().v2GetVolumesWithBalances()
+                .request(req)
+                .call();
+
+            if (res.v2VolumesWithBalanceCursorResponse().isPresent()) {
+                // handle response
+            }
+        } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
+            // handle exception
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                 | [com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest](../../models/operations/V2GetVolumesWithBalancesRequest.md) | :heavy_check_mark:                                                                                                                        | The request object to use for the request.                                                                                                |
+
+
+### Response
+
+**[Optional<? extends com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse>](../../models/operations/V2GetVolumesWithBalancesResponse.md)**
 ### Errors
 
 | Error Object                                            | Status Code                                             | Content Type                                            |

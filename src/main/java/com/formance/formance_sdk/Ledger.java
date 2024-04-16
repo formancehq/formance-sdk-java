@@ -61,6 +61,7 @@ public class Ledger implements
             MethodCallV2GetLedger,
             MethodCallV2GetLedgerInfo,
             MethodCallV2GetTransaction,
+            MethodCallV2GetVolumesWithBalances,
             MethodCallV2ListAccounts,
             MethodCallV2ListLedgers,
             MethodCallV2ListLogs,
@@ -2885,6 +2886,93 @@ public class Ledger implements
                     Utils.toUtf8AndClose(httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetTransactionResponse>() {});
                 res.withV2GetTransactionResponse(java.util.Optional.ofNullable(out));
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+            }
+        }else {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.V2ErrorResponse out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                throw out;
+            } else {
+                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+            }
+        }
+
+        return res;
+    }
+
+
+    public com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequestBuilder v2GetVolumesWithBalances() {
+        return new com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequestBuilder(this);
+    }
+
+    /**
+     * Get list of volumes with balances for (account/asset)
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call.
+     * @throws Exception if the API call fails.
+     */
+    public com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse v2GetVolumesWithBalances(
+            com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest request) throws Exception {
+
+        String baseUrl = this.sdkConfiguration.serverUrl;
+
+        String url = com.formance.formance_sdk.utils.Utils.generateURL(
+                com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest.class,
+                baseUrl,
+                "/api/ledger/v2/{ledger}/volumes",
+                request, null);
+
+        HTTPRequest req = new HTTPRequest();
+        req.setMethod("GET");
+        req.setURL(url);
+        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
+            new TypeReference<com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest>() {});
+        SerializedBody serializedRequestBody = com.formance.formance_sdk.utils.Utils.serializeRequestBody(
+                _convertedRequest, "requestBody", "json", false);
+        req.setBody(serializedRequestBody);
+
+        req.addHeader("Accept", "application/json");
+        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
+
+        java.util.List<NameValuePair> queryParams = com.formance.formance_sdk.utils.Utils.getQueryParams(
+                com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest.class, request, null);
+        if (queryParams != null) {
+            for (NameValuePair queryParam : queryParams) {
+                req.addQueryParam(queryParam);
+            }
+        }
+
+        HTTPClient client = com.formance.formance_sdk.utils.Utils.configureSecurityClient(
+                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
+
+        HttpResponse<InputStream> httpRes = client.send(req);
+
+        String contentType = httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse.Builder resBuilder = 
+            com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse
+                .builder()
+                .contentType(contentType)
+                .statusCode(httpRes.statusCode())
+                .rawResponse(httpRes);
+
+        com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse res = resBuilder.build();
+
+        res.withRawResponse(httpRes);
+
+        if (httpRes.statusCode() == 200) {
+            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
+                ObjectMapper mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse out = mapper.readValue(
+                    Utils.toUtf8AndClose(httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse>() {});
+                res.withV2VolumesWithBalanceCursorResponse(java.util.Optional.ofNullable(out));
             } else {
                 throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
             }
