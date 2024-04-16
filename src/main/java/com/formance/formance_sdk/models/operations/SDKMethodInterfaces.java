@@ -290,6 +290,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallV2GetVolumesWithBalances {
+        com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse v2GetVolumesWithBalances(
+            com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest request) throws Exception;
+    }
+
+
     public interface MethodCallV2ListAccounts {
         com.formance.formance_sdk.models.operations.V2ListAccountsResponse v2ListAccounts(
             com.formance.formance_sdk.models.operations.V2ListAccountsRequest request) throws Exception;
