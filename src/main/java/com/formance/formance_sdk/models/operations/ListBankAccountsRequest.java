@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -41,6 +43,7 @@ public class ListBankAccountsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
     private Optional<? extends java.util.List<String>> sort;
 
+    @JsonCreator
     public ListBankAccountsRequest(
             Optional<? extends String> cursor,
             Optional<? extends Long> pageSize,
@@ -52,6 +55,10 @@ public class ListBankAccountsRequest {
         this.pageSize = pageSize;
         this.sort = sort;
     }
+    
+    public ListBankAccountsRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -60,6 +67,7 @@ public class ListBankAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -68,6 +76,7 @@ public class ListBankAccountsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -75,6 +84,7 @@ public class ListBankAccountsRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> sort() {
         return sort;
     }

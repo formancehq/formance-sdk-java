@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,6 +40,7 @@ public class AccountWithVolumesAndBalances {
     @JsonProperty("volumes")
     private Optional<? extends java.util.Map<String, Volume>> volumes;
 
+    @JsonCreator
     public AccountWithVolumesAndBalances(
             @JsonProperty("address") String address,
             @JsonProperty("balances") Optional<? extends java.util.Map<String, BigInteger>> balances,
@@ -55,23 +58,33 @@ public class AccountWithVolumesAndBalances {
         this.type = type;
         this.volumes = volumes;
     }
+    
+    public AccountWithVolumesAndBalances(
+            String address) {
+        this(address, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public String address() {
         return address;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, BigInteger>> balances() {
         return balances;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends String> type() {
         return type;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, Volume>> volumes() {
         return volumes;
     }

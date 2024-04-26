@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -28,6 +30,7 @@ public class V2DeleteLedgerMetadataRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public V2DeleteLedgerMetadataRequest(
             String key,
             String ledger) {
@@ -40,6 +43,7 @@ public class V2DeleteLedgerMetadataRequest {
     /**
      * Key to remove.
      */
+    @JsonIgnore
     public String key() {
         return key;
     }
@@ -47,6 +51,7 @@ public class V2DeleteLedgerMetadataRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

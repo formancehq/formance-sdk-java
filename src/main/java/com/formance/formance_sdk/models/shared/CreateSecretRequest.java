@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,6 +28,7 @@ public class CreateSecretRequest {
     @JsonProperty("name")
     private String name;
 
+    @JsonCreator
     public CreateSecretRequest(
             @JsonProperty("metadata") Optional<? extends java.util.Map<String, java.lang.Object>> metadata,
             @JsonProperty("name") String name) {
@@ -34,11 +37,18 @@ public class CreateSecretRequest {
         this.metadata = metadata;
         this.name = name;
     }
+    
+    public CreateSecretRequest(
+            String name) {
+        this(Optional.empty(), name);
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,6 +51,7 @@ public class ActivityStripeTransfer {
     @JsonProperty("waitingValidation")
     private Optional<? extends Boolean> waitingValidation;
 
+    @JsonCreator
     public ActivityStripeTransfer(
             @JsonProperty("amount") Optional<? extends BigInteger> amount,
             @JsonProperty("asset") Optional<? extends String> asset,
@@ -69,19 +72,27 @@ public class ActivityStripeTransfer {
         this.metadata = metadata;
         this.waitingValidation = waitingValidation;
     }
+    
+    public ActivityStripeTransfer() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends BigInteger> amount() {
         return amount;
     }
 
+    @JsonIgnore
     public Optional<? extends String> asset() {
         return asset;
     }
 
+    @JsonIgnore
     public Optional<? extends String> connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public Optional<? extends String> destination() {
         return destination;
     }
@@ -91,10 +102,12 @@ public class ActivityStripeTransfer {
      * It can be useful for storing additional information about the transfer in a structured format.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Metadata> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends Boolean> waitingValidation() {
         return waitingValidation;
     }

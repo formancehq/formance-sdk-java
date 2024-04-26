@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,6 +40,7 @@ public class Script {
     @JsonProperty("vars")
     private Optional<? extends java.util.Map<String, java.lang.Object>> vars;
 
+    @JsonCreator
     public Script(
             @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata,
             @JsonProperty("plain") String plain,
@@ -52,11 +55,18 @@ public class Script {
         this.reference = reference;
         this.vars = vars;
     }
+    
+    public Script(
+            String plain) {
+        this(JsonNullable.undefined(), plain, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String plain() {
         return plain;
     }
@@ -64,10 +74,12 @@ public class Script {
     /**
      * Reference to attach to the generated transaction
      */
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> vars() {
         return vars;
     }

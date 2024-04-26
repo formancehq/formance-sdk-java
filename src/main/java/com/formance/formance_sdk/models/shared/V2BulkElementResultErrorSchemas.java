@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,6 +34,7 @@ public class V2BulkElementResultErrorSchemas {
     @JsonProperty("responseType")
     private String responseType;
 
+    @JsonCreator
     public V2BulkElementResultErrorSchemas(
             @JsonProperty("errorCode") String errorCode,
             @JsonProperty("errorDescription") String errorDescription,
@@ -46,19 +49,30 @@ public class V2BulkElementResultErrorSchemas {
         this.errorDetails = errorDetails;
         this.responseType = responseType;
     }
+    
+    public V2BulkElementResultErrorSchemas(
+            String errorCode,
+            String errorDescription,
+            String responseType) {
+        this(errorCode, errorDescription, Optional.empty(), responseType);
+    }
 
+    @JsonIgnore
     public String errorCode() {
         return errorCode;
     }
 
+    @JsonIgnore
     public String errorDescription() {
         return errorDescription;
     }
 
+    @JsonIgnore
     public Optional<? extends String> errorDetails() {
         return errorDetails;
     }
 
+    @JsonIgnore
     public String responseType() {
         return responseType;
     }

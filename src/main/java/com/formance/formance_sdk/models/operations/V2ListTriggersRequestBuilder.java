@@ -19,14 +19,22 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V2ListTriggersRequestBuilder {
 
+    private V2ListTriggersRequest request;
     private final SDKMethodInterfaces.MethodCallV2ListTriggers sdk;
 
     public V2ListTriggersRequestBuilder(SDKMethodInterfaces.MethodCallV2ListTriggers sdk) {
         this.sdk = sdk;
     }
 
+    public V2ListTriggersRequestBuilder request(V2ListTriggersRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
+        return this;
+    }
+
     public V2ListTriggersResponse call() throws Exception {
 
-        return sdk.v2ListTriggersDirect();
+        return sdk.v2ListTriggers(
+            request);
     }
 }

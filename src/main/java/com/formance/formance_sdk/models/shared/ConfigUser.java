@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,6 +35,7 @@ public class ConfigUser {
     @JsonProperty("secret")
     private Optional<? extends String> secret;
 
+    @JsonCreator
     public ConfigUser(
             @JsonProperty("endpoint") String endpoint,
             @JsonProperty("eventTypes") java.util.List<String> eventTypes,
@@ -47,19 +50,29 @@ public class ConfigUser {
         this.name = name;
         this.secret = secret;
     }
+    
+    public ConfigUser(
+            String endpoint,
+            java.util.List<String> eventTypes) {
+        this(endpoint, eventTypes, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    @JsonIgnore
     public java.util.List<String> eventTypes() {
         return eventTypes;
     }
 
+    @JsonIgnore
     public Optional<? extends String> name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends String> secret() {
         return secret;
     }

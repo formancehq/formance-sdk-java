@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -36,21 +38,36 @@ public class ListPaymentsRequest {
     private Optional<? extends Long> pageSize;
 
     /**
+     * Filters used to filter resources.
+     * 
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=query")
+    private Optional<? extends String> query;
+
+    /**
      * Fields used to sort payments (default is date:desc).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
     private Optional<? extends java.util.List<String>> sort;
 
+    @JsonCreator
     public ListPaymentsRequest(
             Optional<? extends String> cursor,
             Optional<? extends Long> pageSize,
+            Optional<? extends String> query,
             Optional<? extends java.util.List<String>> sort) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
+        Utils.checkNotNull(query, "query");
         Utils.checkNotNull(sort, "sort");
         this.cursor = cursor;
         this.pageSize = pageSize;
+        this.query = query;
         this.sort = sort;
+    }
+    
+    public ListPaymentsRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -60,6 +77,7 @@ public class ListPaymentsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -68,13 +86,24 @@ public class ListPaymentsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
 
     /**
+     * Filters used to filter resources.
+     * 
+     */
+    @JsonIgnore
+    public Optional<? extends String> query() {
+        return query;
+    }
+
+    /**
      * Fields used to sort payments (default is date:desc).
      */
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> sort() {
         return sort;
     }
@@ -130,6 +159,26 @@ public class ListPaymentsRequest {
     }
 
     /**
+     * Filters used to filter resources.
+     * 
+     */
+    public ListPaymentsRequest withQuery(String query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+    /**
+     * Filters used to filter resources.
+     * 
+     */
+    public ListPaymentsRequest withQuery(Optional<? extends String> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
+    /**
      * Fields used to sort payments (default is date:desc).
      */
     public ListPaymentsRequest withSort(java.util.List<String> sort) {
@@ -159,6 +208,7 @@ public class ListPaymentsRequest {
         return 
             java.util.Objects.deepEquals(this.cursor, other.cursor) &&
             java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
+            java.util.Objects.deepEquals(this.query, other.query) &&
             java.util.Objects.deepEquals(this.sort, other.sort);
     }
     
@@ -167,6 +217,7 @@ public class ListPaymentsRequest {
         return java.util.Objects.hash(
             cursor,
             pageSize,
+            query,
             sort);
     }
     
@@ -175,6 +226,7 @@ public class ListPaymentsRequest {
         return Utils.toString(ListPaymentsRequest.class,
                 "cursor", cursor,
                 "pageSize", pageSize,
+                "query", query,
                 "sort", sort);
     }
     
@@ -183,6 +235,8 @@ public class ListPaymentsRequest {
         private Optional<? extends String> cursor = Optional.empty();
  
         private Optional<? extends Long> pageSize;
+ 
+        private Optional<? extends String> query = Optional.empty();
  
         private Optional<? extends java.util.List<String>> sort = Optional.empty();  
         
@@ -237,6 +291,26 @@ public class ListPaymentsRequest {
         }
 
         /**
+         * Filters used to filter resources.
+         * 
+         */
+        public Builder query(String query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        /**
+         * Filters used to filter resources.
+         * 
+         */
+        public Builder query(Optional<? extends String> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
+        /**
          * Fields used to sort payments (default is date:desc).
          */
         public Builder sort(java.util.List<String> sort) {
@@ -261,6 +335,7 @@ public class ListPaymentsRequest {
             return new ListPaymentsRequest(
                 cursor,
                 pageSize,
+                query,
                 sort);
         }
 

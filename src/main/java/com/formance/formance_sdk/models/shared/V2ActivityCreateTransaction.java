@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +29,7 @@ public class V2ActivityCreateTransaction {
     @JsonProperty("ledger")
     private Optional<? extends String> ledger;
 
+    @JsonCreator
     public V2ActivityCreateTransaction(
             @JsonProperty("data") Optional<? extends V2PostTransaction> data,
             @JsonProperty("ledger") Optional<? extends String> ledger) {
@@ -35,11 +38,17 @@ public class V2ActivityCreateTransaction {
         this.data = data;
         this.ledger = ledger;
     }
+    
+    public V2ActivityCreateTransaction() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends V2PostTransaction> data() {
         return data;
     }
 
+    @JsonIgnore
     public Optional<? extends String> ledger() {
         return ledger;
     }

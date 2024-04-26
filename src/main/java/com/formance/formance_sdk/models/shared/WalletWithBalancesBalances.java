@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class WalletWithBalancesBalances {
     @JsonProperty("main")
     private AssetHolder main;
 
+    @JsonCreator
     public WalletWithBalancesBalances(
             @JsonProperty("main") AssetHolder main) {
         Utils.checkNotNull(main, "main");
         this.main = main;
     }
 
+    @JsonIgnore
     public AssetHolder main() {
         return main;
     }

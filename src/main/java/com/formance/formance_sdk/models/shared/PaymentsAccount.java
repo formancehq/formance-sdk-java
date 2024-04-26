@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -64,8 +66,9 @@ public class PaymentsAccount {
     private String reference;
 
     @JsonProperty("type")
-    private String type;
+    private AccountType type;
 
+    @JsonCreator
     public PaymentsAccount(
             @JsonProperty("accountName") String accountName,
             @JsonProperty("connectorID") String connectorID,
@@ -78,7 +81,7 @@ public class PaymentsAccount {
             @JsonProperty("provider") Optional<? extends String> provider,
             @JsonProperty("raw") Optional<? extends PaymentsAccountRaw> raw,
             @JsonProperty("reference") String reference,
-            @JsonProperty("type") String type) {
+            @JsonProperty("type") AccountType type) {
         Utils.checkNotNull(accountName, "accountName");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -104,19 +107,35 @@ public class PaymentsAccount {
         this.reference = reference;
         this.type = type;
     }
+    
+    public PaymentsAccount(
+            String accountName,
+            String connectorID,
+            OffsetDateTime createdAt,
+            String defaultAsset,
+            String defaultCurrency,
+            String id,
+            String reference,
+            AccountType type) {
+        this(accountName, connectorID, createdAt, defaultAsset, defaultCurrency, id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), reference, type);
+    }
 
+    @JsonIgnore
     public String accountName() {
         return accountName;
     }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String defaultAsset() {
         return defaultAsset;
     }
@@ -125,35 +144,43 @@ public class PaymentsAccount {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public String defaultCurrency() {
         return defaultCurrency;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> pools() {
         return pools;
     }
 
+    @JsonIgnore
     public Optional<? extends String> provider() {
         return provider;
     }
 
+    @JsonIgnore
     public Optional<? extends PaymentsAccountRaw> raw() {
         return raw;
     }
 
+    @JsonIgnore
     public String reference() {
         return reference;
     }
 
-    public String type() {
+    @JsonIgnore
+    public AccountType type() {
         return type;
     }
 
@@ -255,7 +282,7 @@ public class PaymentsAccount {
         return this;
     }
 
-    public PaymentsAccount withType(String type) {
+    public PaymentsAccount withType(AccountType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -344,7 +371,7 @@ public class PaymentsAccount {
  
         private String reference;
  
-        private String type;  
+        private AccountType type;  
         
         private Builder() {
           // force use of static builder() method
@@ -444,7 +471,7 @@ public class PaymentsAccount {
             return this;
         }
 
-        public Builder type(String type) {
+        public Builder type(AccountType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -26,6 +28,7 @@ public class CreateSecretRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=clientId")
     private String clientId;
 
+    @JsonCreator
     public CreateSecretRequest(
             Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest,
             String clientId) {
@@ -34,7 +37,13 @@ public class CreateSecretRequest {
         this.createSecretRequest = createSecretRequest;
         this.clientId = clientId;
     }
+    
+    public CreateSecretRequest(
+            String clientId) {
+        this(Optional.empty(), clientId);
+    }
 
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest() {
         return createSecretRequest;
     }
@@ -42,6 +51,7 @@ public class CreateSecretRequest {
     /**
      * Client ID
      */
+    @JsonIgnore
     public String clientId() {
         return clientId;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ public class TestTriggerResponse implements com.formance.formance_sdk.utils.Resp
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2TestTriggerResponse> v2TestTriggerResponse;
 
+    @JsonCreator
     public TestTriggerResponse(
             String contentType,
             int statusCode,
@@ -51,10 +54,18 @@ public class TestTriggerResponse implements com.formance.formance_sdk.utils.Resp
         this.rawResponse = rawResponse;
         this.v2TestTriggerResponse = v2TestTriggerResponse;
     }
+    
+    public TestTriggerResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +73,7 @@ public class TestTriggerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -69,6 +81,7 @@ public class TestTriggerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -76,6 +89,7 @@ public class TestTriggerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * Test a trigger
      */
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.V2TestTriggerResponse> v2TestTriggerResponse() {
         return v2TestTriggerResponse;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ public class V2GetWorkflowResponse implements com.formance.formance_sdk.utils.Re
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2GetWorkflowResponse> v2GetWorkflowResponse;
 
+    @JsonCreator
     public V2GetWorkflowResponse(
             String contentType,
             int statusCode,
@@ -51,10 +54,18 @@ public class V2GetWorkflowResponse implements com.formance.formance_sdk.utils.Re
         this.rawResponse = rawResponse;
         this.v2GetWorkflowResponse = v2GetWorkflowResponse;
     }
+    
+    public V2GetWorkflowResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +73,7 @@ public class V2GetWorkflowResponse implements com.formance.formance_sdk.utils.Re
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -69,6 +81,7 @@ public class V2GetWorkflowResponse implements com.formance.formance_sdk.utils.Re
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -76,6 +89,7 @@ public class V2GetWorkflowResponse implements com.formance.formance_sdk.utils.Re
     /**
      * The workflow
      */
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.V2GetWorkflowResponse> v2GetWorkflowResponse() {
         return v2GetWorkflowResponse;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +29,7 @@ public class Total {
     @JsonProperty("value")
     private Optional<? extends Long> value;
 
+    @JsonCreator
     public Total(
             @JsonProperty("relation") Optional<? extends String> relation,
             @JsonProperty("value") Optional<? extends Long> value) {
@@ -35,11 +38,17 @@ public class Total {
         this.relation = relation;
         this.value = value;
     }
+    
+    public Total() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> relation() {
         return relation;
     }
 
+    @JsonIgnore
     public Optional<? extends Long> value() {
         return value;
     }

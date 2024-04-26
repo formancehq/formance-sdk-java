@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.errors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -25,6 +27,7 @@ public class Error extends RuntimeException {
     @JsonProperty("errorMessage")
     private String errorMessage;
 
+    @JsonCreator
     public Error(
             @JsonProperty("errorCode") ErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {

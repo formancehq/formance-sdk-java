@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -70,6 +72,7 @@ public class V2Payment {
     @JsonProperty("type")
     private V2PaymentType type;
 
+    @JsonCreator
     public V2Payment(
             @JsonProperty("adjustments") java.util.List<V2PaymentAdjustment> adjustments,
             @JsonProperty("asset") String asset,
@@ -117,63 +120,94 @@ public class V2Payment {
         this.status = status;
         this.type = type;
     }
+    
+    public V2Payment(
+            java.util.List<V2PaymentAdjustment> adjustments,
+            String asset,
+            String connectorID,
+            OffsetDateTime createdAt,
+            String destinationAccountID,
+            String id,
+            BigInteger initialAmount,
+            String reference,
+            Scheme scheme,
+            String sourceAccountID,
+            V2PaymentStatus status,
+            V2PaymentType type) {
+        this(adjustments, asset, connectorID, createdAt, destinationAccountID, id, initialAmount, Optional.empty(), Optional.empty(), Optional.empty(), reference, scheme, sourceAccountID, status, type);
+    }
 
+    @JsonIgnore
     public java.util.List<V2PaymentAdjustment> adjustments() {
         return adjustments;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String destinationAccountID() {
         return destinationAccountID;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public BigInteger initialAmount() {
         return initialAmount;
     }
 
+    @JsonIgnore
     public Optional<? extends V2PaymentMetadata> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends V2Connector> provider() {
         return provider;
     }
 
+    @JsonIgnore
     public Optional<? extends V2PaymentRaw> raw() {
         return raw;
     }
 
+    @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    @JsonIgnore
     public Scheme scheme() {
         return scheme;
     }
 
+    @JsonIgnore
     public String sourceAccountID() {
         return sourceAccountID;
     }
 
+    @JsonIgnore
     public V2PaymentStatus status() {
         return status;
     }
 
+    @JsonIgnore
     public V2PaymentType type() {
         return type;
     }

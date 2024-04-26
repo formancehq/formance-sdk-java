@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,6 +43,7 @@ public class ModulrConfig {
     @JsonProperty("pollingPeriod")
     private Optional<? extends String> pollingPeriod;
 
+    @JsonCreator
     public ModulrConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("apiSecret") String apiSecret,
@@ -58,19 +61,30 @@ public class ModulrConfig {
         this.name = name;
         this.pollingPeriod = pollingPeriod;
     }
+    
+    public ModulrConfig(
+            String apiKey,
+            String apiSecret,
+            String name) {
+        this(apiKey, apiSecret, Optional.empty(), name, Optional.empty());
+    }
 
+    @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    @JsonIgnore
     public String apiSecret() {
         return apiSecret;
     }
 
+    @JsonIgnore
     public Optional<? extends String> endpoint() {
         return endpoint;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
@@ -79,6 +93,7 @@ public class ModulrConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,6 +31,7 @@ public class TaskStripeDescriptor {
     @JsonProperty("name")
     private String name;
 
+    @JsonCreator
     public TaskStripeDescriptor(
             @JsonProperty("account") String account,
             @JsonProperty("main") Optional<? extends Boolean> main,
@@ -40,15 +43,24 @@ public class TaskStripeDescriptor {
         this.main = main;
         this.name = name;
     }
+    
+    public TaskStripeDescriptor(
+            String account,
+            String name) {
+        this(account, Optional.empty(), name);
+    }
 
+    @JsonIgnore
     public String account() {
         return account;
     }
 
+    @JsonIgnore
     public Optional<? extends Boolean> main() {
         return main;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }

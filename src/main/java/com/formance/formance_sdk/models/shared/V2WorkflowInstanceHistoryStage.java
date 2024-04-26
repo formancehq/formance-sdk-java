@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -57,6 +59,7 @@ public class V2WorkflowInstanceHistoryStage {
     @JsonProperty("terminatedAt")
     private Optional<? extends OffsetDateTime> terminatedAt;
 
+    @JsonCreator
     public V2WorkflowInstanceHistoryStage(
             @JsonProperty("attempt") long attempt,
             @JsonProperty("error") Optional<? extends String> error,
@@ -89,43 +92,62 @@ public class V2WorkflowInstanceHistoryStage {
         this.terminated = terminated;
         this.terminatedAt = terminatedAt;
     }
+    
+    public V2WorkflowInstanceHistoryStage(
+            long attempt,
+            V2WorkflowInstanceHistoryStageInput input,
+            String name,
+            OffsetDateTime startedAt,
+            boolean terminated) {
+        this(attempt, Optional.empty(), input, Optional.empty(), name, Optional.empty(), Optional.empty(), startedAt, terminated, Optional.empty());
+    }
 
+    @JsonIgnore
     public long attempt() {
         return attempt;
     }
 
+    @JsonIgnore
     public Optional<? extends String> error() {
         return error;
     }
 
+    @JsonIgnore
     public V2WorkflowInstanceHistoryStageInput input() {
         return input;
     }
 
+    @JsonIgnore
     public Optional<? extends String> lastFailure() {
         return lastFailure;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> nextExecution() {
         return nextExecution;
     }
 
+    @JsonIgnore
     public Optional<? extends V2WorkflowInstanceHistoryStageOutput> output() {
         return output;
     }
 
+    @JsonIgnore
     public OffsetDateTime startedAt() {
         return startedAt;
     }
 
+    @JsonIgnore
     public boolean terminated() {
         return terminated;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> terminatedAt() {
         return terminatedAt;
     }

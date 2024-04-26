@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -36,6 +38,7 @@ public class V2GetTransactionRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<? extends OffsetDateTime> pit;
 
+    @JsonCreator
     public V2GetTransactionRequest(
             Optional<? extends String> expand,
             BigInteger id,
@@ -50,7 +53,14 @@ public class V2GetTransactionRequest {
         this.ledger = ledger;
         this.pit = pit;
     }
+    
+    public V2GetTransactionRequest(
+            BigInteger id,
+            String ledger) {
+        this(Optional.empty(), id, ledger, Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> expand() {
         return expand;
     }
@@ -58,6 +68,7 @@ public class V2GetTransactionRequest {
     /**
      * Transaction ID.
      */
+    @JsonIgnore
     public BigInteger id() {
         return id;
     }
@@ -65,10 +76,12 @@ public class V2GetTransactionRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> pit() {
         return pit;
     }

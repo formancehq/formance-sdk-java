@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -28,6 +30,7 @@ public class V2Monetary {
     @JsonProperty("asset")
     private String asset;
 
+    @JsonCreator
     public V2Monetary(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset) {
@@ -40,6 +43,7 @@ public class V2Monetary {
     /**
      * The amount of the monetary value.
      */
+    @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
@@ -47,6 +51,7 @@ public class V2Monetary {
     /**
      * The asset of the monetary value.
      */
+    @JsonIgnore
     public String asset() {
         return asset;
     }

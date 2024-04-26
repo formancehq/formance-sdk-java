@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.errors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,6 +34,7 @@ public class V2ErrorResponse extends RuntimeException {
     @JsonProperty("errorMessage")
     private String errorMessage;
 
+    @JsonCreator
     public V2ErrorResponse(
             @JsonProperty("details") Optional<? extends String> details,
             @JsonProperty("errorCode") com.formance.formance_sdk.models.shared.V2ErrorsEnum errorCode,
@@ -42,6 +45,12 @@ public class V2ErrorResponse extends RuntimeException {
         this.details = details;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
+    }
+    
+    public V2ErrorResponse(
+            com.formance.formance_sdk.models.shared.V2ErrorsEnum errorCode,
+            String errorMessage) {
+        this(Optional.empty(), errorCode, errorMessage);
     }
 
     public Optional<? extends String> details(){

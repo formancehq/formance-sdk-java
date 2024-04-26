@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -34,6 +36,7 @@ public class WiseConfig {
     @JsonProperty("pollingPeriod")
     private Optional<? extends String> pollingPeriod;
 
+    @JsonCreator
     public WiseConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("name") String name,
@@ -45,11 +48,19 @@ public class WiseConfig {
         this.name = name;
         this.pollingPeriod = pollingPeriod;
     }
+    
+    public WiseConfig(
+            String apiKey,
+            String name) {
+        this(apiKey, name, Optional.empty());
+    }
 
+    @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
@@ -58,6 +69,7 @@ public class WiseConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }

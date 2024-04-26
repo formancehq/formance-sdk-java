@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,6 +45,7 @@ public class ResponseCursor {
     @JsonProperty("total")
     private Optional<? extends Total> total;
 
+    @JsonCreator
     public ResponseCursor(
             @JsonProperty("data") Optional<? extends java.util.List<java.util.Map<String, java.lang.Object>>> data,
             @JsonProperty("hasMore") Optional<? extends Boolean> hasMore,
@@ -63,27 +66,37 @@ public class ResponseCursor {
         this.previous = previous;
         this.total = total;
     }
+    
+    public ResponseCursor() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<java.util.Map<String, java.lang.Object>>> data() {
         return data;
     }
 
+    @JsonIgnore
     public Optional<? extends Boolean> hasMore() {
         return hasMore;
     }
 
+    @JsonIgnore
     public Optional<? extends String> next() {
         return next;
     }
 
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
 
+    @JsonIgnore
     public Optional<? extends String> previous() {
         return previous;
     }
 
+    @JsonIgnore
     public Optional<? extends Total> total() {
         return total;
     }

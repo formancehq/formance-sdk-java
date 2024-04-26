@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class Key {
     @JsonProperty("required")
     private boolean required;
 
+    @JsonCreator
     public Key(
             @JsonProperty("dataType") String dataType,
             @JsonProperty("required") boolean required) {
@@ -31,10 +34,12 @@ public class Key {
         this.required = required;
     }
 
+    @JsonIgnore
     public String dataType() {
         return dataType;
     }
 
+    @JsonIgnore
     public boolean required() {
         return required;
     }

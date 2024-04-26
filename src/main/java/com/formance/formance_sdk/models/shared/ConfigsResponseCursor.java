@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class ConfigsResponseCursor {
     @JsonProperty("hasMore")
     private boolean hasMore;
 
+    @JsonCreator
     public ConfigsResponseCursor(
             @JsonProperty("data") java.util.List<WebhooksConfig> data,
             @JsonProperty("hasMore") boolean hasMore) {
@@ -31,10 +34,12 @@ public class ConfigsResponseCursor {
         this.hasMore = hasMore;
     }
 
+    @JsonIgnore
     public java.util.List<WebhooksConfig> data() {
         return data;
     }
 
+    @JsonIgnore
     public boolean hasMore() {
         return hasMore;
     }

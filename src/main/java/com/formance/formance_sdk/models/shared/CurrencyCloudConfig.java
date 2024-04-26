@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -46,6 +48,7 @@ public class CurrencyCloudConfig {
     @JsonProperty("pollingPeriod")
     private Optional<? extends String> pollingPeriod;
 
+    @JsonCreator
     public CurrencyCloudConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("endpoint") Optional<? extends String> endpoint,
@@ -63,7 +66,15 @@ public class CurrencyCloudConfig {
         this.name = name;
         this.pollingPeriod = pollingPeriod;
     }
+    
+    public CurrencyCloudConfig(
+            String apiKey,
+            String loginID,
+            String name) {
+        this(apiKey, Optional.empty(), loginID, name, Optional.empty());
+    }
 
+    @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
@@ -71,6 +82,7 @@ public class CurrencyCloudConfig {
     /**
      * The endpoint to use for the API. Defaults to https://devapi.currencycloud.com
      */
+    @JsonIgnore
     public Optional<? extends String> endpoint() {
         return endpoint;
     }
@@ -78,10 +90,12 @@ public class CurrencyCloudConfig {
     /**
      * Username of the API Key holder
      */
+    @JsonIgnore
     public String loginID() {
         return loginID;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
@@ -89,6 +103,7 @@ public class CurrencyCloudConfig {
     /**
      * The frequency at which the connector will fetch transactions
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }

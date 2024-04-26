@@ -5,6 +5,7 @@
 
 * [addAccountToPool](#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](#connectorstransfer) - Transfer funds between Connector accounts
+* [createAccount](#createaccount) - Create an account
 * [createBankAccount](#createbankaccount) - Create a BankAccount in Payments and on the PSP
 * [createPayment](#createpayment) - Create a payment
 * [createPool](#createpool) - Create a Pool
@@ -75,7 +76,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -146,7 +147,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -192,6 +193,82 @@ public class Application {
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/SDKError | 4xx-5xx                | */*                    |
 
+## createAccount
+
+Create an account
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.CreateAccountResponse;
+import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.AccountRequest;
+import com.formance.formance_sdk.models.shared.AccountType;
+import com.formance.formance_sdk.models.shared.Security;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.Optional;
+import static java.util.Map.entry;
+
+public class Application {
+
+    public static void main(String[] args) {
+        try {
+            SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .build())
+                .build();
+
+            AccountRequest req = AccountRequest.builder()
+                .connectorID("<value>")
+                .createdAt(OffsetDateTime.parse("2024-08-19T02:15:08.668Z"))
+                .reference("<value>")
+                .type(AccountType.UNKNOWN)
+                .accountName("<value>")
+                .defaultAsset("<value>")
+                .metadata(java.util.Map.ofEntries(
+                    entry("key", "<value>")))
+                .build();
+
+            CreateAccountResponse res = sdk.payments().createAccount()
+                .request(req)
+                .call();
+
+            if (res.paymentsAccountResponse().isPresent()) {
+                // handle response
+            }
+        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            // handle exception
+        } catch (Exception e) {
+            // handle exception
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `request`                                                                                       | [com.formance.formance_sdk.models.shared.AccountRequest](../../models/shared/AccountRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+
+
+### Response
+
+**[Optional<? extends com.formance.formance_sdk.models.operations.CreateAccountResponse>](../../models/operations/CreateAccountResponse.md)**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
+
 ## createBankAccount
 
 Create a bank account in Payments and on the PSP.
@@ -220,7 +297,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -298,7 +375,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -375,7 +452,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -447,7 +524,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -527,7 +604,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -593,7 +670,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -660,7 +737,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -731,7 +808,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -807,7 +884,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -878,7 +955,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -948,7 +1025,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1018,7 +1095,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1086,7 +1163,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1154,7 +1231,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1223,7 +1300,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1303,7 +1380,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1376,7 +1453,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1433,7 +1510,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1503,7 +1580,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1563,7 +1640,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1634,7 +1711,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1705,13 +1782,14 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
             ListPaymentsRequest req = ListPaymentsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(13778L)
+                .query("<value>")
                 .sort(java.util.List.of(
                     "<value>"))
                 .build();
@@ -1776,7 +1854,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1848,7 +1926,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1920,7 +1998,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1987,7 +2065,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2044,7 +2122,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2120,7 +2198,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2189,7 +2267,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2258,7 +2336,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2330,7 +2408,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2399,7 +2477,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2466,7 +2544,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2533,7 +2611,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2609,7 +2687,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2681,7 +2759,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2748,7 +2826,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2816,7 +2894,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2898,7 +2976,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2971,7 +3049,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -47,6 +49,7 @@ public class ListConnectorTasksV1Request {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<? extends Long> pageSize;
 
+    @JsonCreator
     public ListConnectorTasksV1Request(
             com.formance.formance_sdk.models.shared.Connector connector,
             String connectorId,
@@ -61,10 +64,17 @@ public class ListConnectorTasksV1Request {
         this.cursor = cursor;
         this.pageSize = pageSize;
     }
+    
+    public ListConnectorTasksV1Request(
+            com.formance.formance_sdk.models.shared.Connector connector,
+            String connectorId) {
+        this(connector, connectorId, Optional.empty(), Optional.empty());
+    }
 
     /**
      * The name of the connector.
      */
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.Connector connector() {
         return connector;
     }
@@ -72,6 +82,7 @@ public class ListConnectorTasksV1Request {
     /**
      * The connector ID.
      */
+    @JsonIgnore
     public String connectorId() {
         return connectorId;
     }
@@ -83,6 +94,7 @@ public class ListConnectorTasksV1Request {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -91,6 +103,7 @@ public class ListConnectorTasksV1Request {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }

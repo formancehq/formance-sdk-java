@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,6 +38,7 @@ public class BalanceWithAssets {
     @JsonProperty("priority")
     private Optional<? extends BigInteger> priority;
 
+    @JsonCreator
     public BalanceWithAssets(
             @JsonProperty("assets") java.util.Map<String, BigInteger> assets,
             @JsonProperty("expiresAt") Optional<? extends OffsetDateTime> expiresAt,
@@ -50,19 +53,29 @@ public class BalanceWithAssets {
         this.name = name;
         this.priority = priority;
     }
+    
+    public BalanceWithAssets(
+            java.util.Map<String, BigInteger> assets,
+            String name) {
+        this(assets, Optional.empty(), name, Optional.empty());
+    }
 
+    @JsonIgnore
     public java.util.Map<String, BigInteger> assets() {
         return assets;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> expiresAt() {
         return expiresAt;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends BigInteger> priority() {
         return priority;
     }

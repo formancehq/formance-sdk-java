@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,6 +55,7 @@ public class Attempt {
     @JsonProperty("webhookID")
     private String webhookID;
 
+    @JsonCreator
     public Attempt(
             @JsonProperty("config") WebhooksConfig config,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -85,43 +88,66 @@ public class Attempt {
         this.updatedAt = updatedAt;
         this.webhookID = webhookID;
     }
+    
+    public Attempt(
+            WebhooksConfig config,
+            OffsetDateTime createdAt,
+            String id,
+            String payload,
+            long retryAttempt,
+            String status,
+            long statusCode,
+            OffsetDateTime updatedAt,
+            String webhookID) {
+        this(config, createdAt, id, Optional.empty(), payload, retryAttempt, status, statusCode, updatedAt, webhookID);
+    }
 
+    @JsonIgnore
     public WebhooksConfig config() {
         return config;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> nextRetryAfter() {
         return nextRetryAfter;
     }
 
+    @JsonIgnore
     public String payload() {
         return payload;
     }
 
+    @JsonIgnore
     public long retryAttempt() {
         return retryAttempt;
     }
 
+    @JsonIgnore
     public String status() {
         return status;
     }
 
+    @JsonIgnore
     public long statusCode() {
         return statusCode;
     }
 
+    @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }
 
+    @JsonIgnore
     public String webhookID() {
         return webhookID;
     }

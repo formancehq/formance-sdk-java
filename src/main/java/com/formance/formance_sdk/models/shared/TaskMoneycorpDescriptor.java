@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,6 +33,7 @@ public class TaskMoneycorpDescriptor {
     @JsonProperty("name")
     private Optional<? extends String> name;
 
+    @JsonCreator
     public TaskMoneycorpDescriptor(
             @JsonProperty("accountID") Optional<? extends String> accountID,
             @JsonProperty("key") Optional<? extends String> key,
@@ -42,15 +45,22 @@ public class TaskMoneycorpDescriptor {
         this.key = key;
         this.name = name;
     }
+    
+    public TaskMoneycorpDescriptor() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> accountID() {
         return accountID;
     }
 
+    @JsonIgnore
     public Optional<? extends String> key() {
         return key;
     }
 
+    @JsonIgnore
     public Optional<? extends String> name() {
         return name;
     }

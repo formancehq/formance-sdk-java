@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class UpdateTransferInitiationStatusRequest {
     @JsonProperty("status")
     private Status status;
 
+    @JsonCreator
     public UpdateTransferInitiationStatusRequest(
             @JsonProperty("status") Status status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
     }
 
+    @JsonIgnore
     public Status status() {
         return status;
     }

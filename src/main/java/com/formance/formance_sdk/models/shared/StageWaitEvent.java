@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class StageWaitEvent {
     @JsonProperty("event")
     private String event;
 
+    @JsonCreator
     public StageWaitEvent(
             @JsonProperty("event") String event) {
         Utils.checkNotNull(event, "event");
         this.event = event;
     }
 
+    @JsonIgnore
     public String event() {
         return event;
     }

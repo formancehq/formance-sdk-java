@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -23,6 +25,7 @@ public class ConfirmHoldRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=hold_id")
     private String holdId;
 
+    @JsonCreator
     public ConfirmHoldRequest(
             Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest,
             String holdId) {
@@ -31,11 +34,18 @@ public class ConfirmHoldRequest {
         this.confirmHoldRequest = confirmHoldRequest;
         this.holdId = holdId;
     }
+    
+    public ConfirmHoldRequest(
+            String holdId) {
+        this(Optional.empty(), holdId);
+    }
 
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest() {
         return confirmHoldRequest;
     }
 
+    @JsonIgnore
     public String holdId() {
         return holdId;
     }

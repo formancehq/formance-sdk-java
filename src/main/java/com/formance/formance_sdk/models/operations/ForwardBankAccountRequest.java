@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -25,6 +27,7 @@ public class ForwardBankAccountRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=bankAccountId")
     private String bankAccountId;
 
+    @JsonCreator
     public ForwardBankAccountRequest(
             com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest,
             String bankAccountId) {
@@ -34,6 +37,7 @@ public class ForwardBankAccountRequest {
         this.bankAccountId = bankAccountId;
     }
 
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest() {
         return forwardBankAccountRequest;
     }
@@ -41,6 +45,7 @@ public class ForwardBankAccountRequest {
     /**
      * The bank account ID.
      */
+    @JsonIgnore
     public String bankAccountId() {
         return bankAccountId;
     }

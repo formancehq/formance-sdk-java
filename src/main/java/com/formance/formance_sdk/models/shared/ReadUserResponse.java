@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,12 +25,18 @@ public class ReadUserResponse {
     @JsonProperty("data")
     private Optional<? extends User> data;
 
+    @JsonCreator
     public ReadUserResponse(
             @JsonProperty("data") Optional<? extends User> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
+    
+    public ReadUserResponse() {
+        this(Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends User> data() {
         return data;
     }

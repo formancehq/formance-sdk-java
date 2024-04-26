@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,6 +28,7 @@ public class Contract {
     @JsonProperty("expr")
     private Expr expr;
 
+    @JsonCreator
     public Contract(
             @JsonProperty("account") Optional<? extends String> account,
             @JsonProperty("expr") Expr expr) {
@@ -34,11 +37,18 @@ public class Contract {
         this.account = account;
         this.expr = expr;
     }
+    
+    public Contract(
+            Expr expr) {
+        this(Optional.empty(), expr);
+    }
 
+    @JsonIgnore
     public Optional<? extends String> account() {
         return account;
     }
 
+    @JsonIgnore
     public Expr expr() {
         return expr;
     }

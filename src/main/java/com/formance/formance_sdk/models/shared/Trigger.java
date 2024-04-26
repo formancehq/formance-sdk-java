@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -42,6 +44,7 @@ public class Trigger {
     @JsonProperty("workflowID")
     private String workflowID;
 
+    @JsonCreator
     public Trigger(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("event") String event,
@@ -62,27 +65,41 @@ public class Trigger {
         this.vars = vars;
         this.workflowID = workflowID;
     }
+    
+    public Trigger(
+            OffsetDateTime createdAt,
+            String event,
+            String id,
+            String workflowID) {
+        this(createdAt, event, Optional.empty(), id, Optional.empty(), workflowID);
+    }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String event() {
         return event;
     }
 
+    @JsonIgnore
     public Optional<? extends String> filter() {
         return filter;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> vars() {
         return vars;
     }
 
+    @JsonIgnore
     public String workflowID() {
         return workflowID;
     }

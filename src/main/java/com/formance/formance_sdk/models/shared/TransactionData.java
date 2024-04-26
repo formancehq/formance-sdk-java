@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,6 +40,7 @@ public class TransactionData {
     @JsonProperty("timestamp")
     private Optional<? extends OffsetDateTime> timestamp;
 
+    @JsonCreator
     public TransactionData(
             @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata,
             @JsonProperty("postings") java.util.List<Posting> postings,
@@ -52,19 +55,28 @@ public class TransactionData {
         this.reference = reference;
         this.timestamp = timestamp;
     }
+    
+    public TransactionData(
+            java.util.List<Posting> postings) {
+        this(JsonNullable.undefined(), postings, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public java.util.List<Posting> postings() {
         return postings;
     }
 
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> timestamp() {
         return timestamp;
     }

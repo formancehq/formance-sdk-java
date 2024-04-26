@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -48,6 +50,7 @@ public class Transaction {
     @JsonProperty("txid")
     private BigInteger txid;
 
+    @JsonCreator
     public Transaction(
             @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata,
             @JsonProperty("postCommitVolumes") Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes,
@@ -71,31 +74,45 @@ public class Transaction {
         this.timestamp = timestamp;
         this.txid = txid;
     }
+    
+    public Transaction(
+            java.util.List<Posting> postings,
+            OffsetDateTime timestamp,
+            BigInteger txid) {
+        this(JsonNullable.undefined(), Optional.empty(), postings, Optional.empty(), Optional.empty(), timestamp, txid);
+    }
 
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes() {
         return postCommitVolumes;
     }
 
+    @JsonIgnore
     public java.util.List<Posting> postings() {
         return postings;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes() {
         return preCommitVolumes;
     }
 
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
     }
 
+    @JsonIgnore
     public BigInteger txid() {
         return txid;
     }

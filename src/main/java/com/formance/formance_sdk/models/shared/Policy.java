@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -37,6 +39,7 @@ public class Policy {
     @JsonProperty("paymentsPoolID")
     private String paymentsPoolID;
 
+    @JsonCreator
     public Policy(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
@@ -58,26 +61,32 @@ public class Policy {
         this.paymentsPoolID = paymentsPoolID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public String ledgerName() {
         return ledgerName;
     }
 
+    @JsonIgnore
     public java.util.Map<String, java.lang.Object> ledgerQuery() {
         return ledgerQuery;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public String paymentsPoolID() {
         return paymentsPoolID;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,6 +40,7 @@ public class TransferInitiationAdjusments {
     @JsonProperty("status")
     private TransferInitiationStatus status;
 
+    @JsonCreator
     public TransferInitiationAdjusments(
             @JsonProperty("adjustmentID") String adjustmentID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -55,23 +58,36 @@ public class TransferInitiationAdjusments {
         this.metadata = metadata;
         this.status = status;
     }
+    
+    public TransferInitiationAdjusments(
+            String adjustmentID,
+            OffsetDateTime createdAt,
+            String error,
+            TransferInitiationStatus status) {
+        this(adjustmentID, createdAt, error, JsonNullable.undefined(), status);
+    }
 
+    @JsonIgnore
     public String adjustmentID() {
         return adjustmentID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String error() {
         return error;
     }
 
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public TransferInitiationStatus status() {
         return status;
     }

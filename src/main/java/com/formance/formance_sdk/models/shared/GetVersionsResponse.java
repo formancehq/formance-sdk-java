@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -25,6 +27,7 @@ public class GetVersionsResponse {
     @JsonProperty("versions")
     private java.util.List<Version> versions;
 
+    @JsonCreator
     public GetVersionsResponse(
             @JsonProperty("env") String env,
             @JsonProperty("region") String region,
@@ -37,14 +40,17 @@ public class GetVersionsResponse {
         this.versions = versions;
     }
 
+    @JsonIgnore
     public String env() {
         return env;
     }
 
+    @JsonIgnore
     public String region() {
         return region;
     }
 
+    @JsonIgnore
     public java.util.List<Version> versions() {
         return versions;
     }

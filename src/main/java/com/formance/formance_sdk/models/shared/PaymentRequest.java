@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -54,6 +56,7 @@ public class PaymentRequest {
     @JsonProperty("type")
     private PaymentType type;
 
+    @JsonCreator
     public PaymentRequest(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
@@ -86,43 +89,65 @@ public class PaymentRequest {
         this.status = status;
         this.type = type;
     }
+    
+    public PaymentRequest(
+            BigInteger amount,
+            String asset,
+            String connectorID,
+            OffsetDateTime createdAt,
+            String reference,
+            PaymentScheme scheme,
+            PaymentStatus status,
+            PaymentType type) {
+        this(amount, asset, connectorID, createdAt, Optional.empty(), reference, scheme, Optional.empty(), status, type);
+    }
 
+    @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public Optional<? extends String> destinationAccountID() {
         return destinationAccountID;
     }
 
+    @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    @JsonIgnore
     public PaymentScheme scheme() {
         return scheme;
     }
 
+    @JsonIgnore
     public Optional<? extends String> sourceAccountID() {
         return sourceAccountID;
     }
 
+    @JsonIgnore
     public PaymentStatus status() {
         return status;
     }
 
+    @JsonIgnore
     public PaymentType type() {
         return type;
     }

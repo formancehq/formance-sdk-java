@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +32,7 @@ public class Response {
     @JsonProperty("data")
     private Optional<? extends java.util.Map<String, java.lang.Object>> data;
 
+    @JsonCreator
     public Response(
             @JsonProperty("cursor") Optional<? extends ResponseCursor> cursor,
             @JsonProperty("data") Optional<? extends java.util.Map<String, java.lang.Object>> data) {
@@ -38,7 +41,12 @@ public class Response {
         this.cursor = cursor;
         this.data = data;
     }
+    
+    public Response() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends ResponseCursor> cursor() {
         return cursor;
     }
@@ -46,6 +54,7 @@ public class Response {
     /**
      * The payload
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> data() {
         return data;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -18,6 +20,23 @@ import java.util.Optional;
 public class V2ListInstancesRequest {
 
     /**
+     * Parameter used in pagination requests.
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     * 
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
+    private Optional<? extends String> cursor;
+
+    /**
+     * The maximum number of results to return per page.
+     * 
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
+    private Optional<? extends Long> pageSize;
+
+    /**
      * Filter running instances
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=running")
@@ -29,18 +48,51 @@ public class V2ListInstancesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=workflowID")
     private Optional<? extends String> workflowID;
 
+    @JsonCreator
     public V2ListInstancesRequest(
+            Optional<? extends String> cursor,
+            Optional<? extends Long> pageSize,
             Optional<? extends Boolean> running,
             Optional<? extends String> workflowID) {
+        Utils.checkNotNull(cursor, "cursor");
+        Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(running, "running");
         Utils.checkNotNull(workflowID, "workflowID");
+        this.cursor = cursor;
+        this.pageSize = pageSize;
         this.running = running;
         this.workflowID = workflowID;
+    }
+    
+    public V2ListInstancesRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Parameter used in pagination requests.
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     * 
+     */
+    @JsonIgnore
+    public Optional<? extends String> cursor() {
+        return cursor;
+    }
+
+    /**
+     * The maximum number of results to return per page.
+     * 
+     */
+    @JsonIgnore
+    public Optional<? extends Long> pageSize() {
+        return pageSize;
     }
 
     /**
      * Filter running instances
      */
+    @JsonIgnore
     public Optional<? extends Boolean> running() {
         return running;
     }
@@ -48,12 +100,59 @@ public class V2ListInstancesRequest {
     /**
      * A workflow id
      */
+    @JsonIgnore
     public Optional<? extends String> workflowID() {
         return workflowID;
     }
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    /**
+     * Parameter used in pagination requests.
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     * 
+     */
+    public V2ListInstancesRequest withCursor(String cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = Optional.ofNullable(cursor);
+        return this;
+    }
+
+    /**
+     * Parameter used in pagination requests.
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     * 
+     */
+    public V2ListInstancesRequest withCursor(Optional<? extends String> cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
+        return this;
+    }
+
+    /**
+     * The maximum number of results to return per page.
+     * 
+     */
+    public V2ListInstancesRequest withPageSize(long pageSize) {
+        Utils.checkNotNull(pageSize, "pageSize");
+        this.pageSize = Optional.ofNullable(pageSize);
+        return this;
+    }
+
+    /**
+     * The maximum number of results to return per page.
+     * 
+     */
+    public V2ListInstancesRequest withPageSize(Optional<? extends Long> pageSize) {
+        Utils.checkNotNull(pageSize, "pageSize");
+        this.pageSize = pageSize;
+        return this;
     }
 
     /**
@@ -102,6 +201,8 @@ public class V2ListInstancesRequest {
         }
         V2ListInstancesRequest other = (V2ListInstancesRequest) o;
         return 
+            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
+            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
             java.util.Objects.deepEquals(this.running, other.running) &&
             java.util.Objects.deepEquals(this.workflowID, other.workflowID);
     }
@@ -109,6 +210,8 @@ public class V2ListInstancesRequest {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
+            cursor,
+            pageSize,
             running,
             workflowID);
     }
@@ -116,11 +219,17 @@ public class V2ListInstancesRequest {
     @Override
     public String toString() {
         return Utils.toString(V2ListInstancesRequest.class,
+                "cursor", cursor,
+                "pageSize", pageSize,
                 "running", running,
                 "workflowID", workflowID);
     }
     
     public final static class Builder {
+ 
+        private Optional<? extends String> cursor = Optional.empty();
+ 
+        private Optional<? extends Long> pageSize = Optional.empty();
  
         private Optional<? extends Boolean> running = Optional.empty();
  
@@ -128,6 +237,52 @@ public class V2ListInstancesRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * Parameter used in pagination requests.
+         * Set to the value of next for the next page of results.
+         * Set to the value of previous for the previous page of results.
+         * No other parameters can be set when this parameter is set.
+         * 
+         */
+        public Builder cursor(String cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = Optional.ofNullable(cursor);
+            return this;
+        }
+
+        /**
+         * Parameter used in pagination requests.
+         * Set to the value of next for the next page of results.
+         * Set to the value of previous for the previous page of results.
+         * No other parameters can be set when this parameter is set.
+         * 
+         */
+        public Builder cursor(Optional<? extends String> cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = cursor;
+            return this;
+        }
+
+        /**
+         * The maximum number of results to return per page.
+         * 
+         */
+        public Builder pageSize(long pageSize) {
+            Utils.checkNotNull(pageSize, "pageSize");
+            this.pageSize = Optional.ofNullable(pageSize);
+            return this;
+        }
+
+        /**
+         * The maximum number of results to return per page.
+         * 
+         */
+        public Builder pageSize(Optional<? extends Long> pageSize) {
+            Utils.checkNotNull(pageSize, "pageSize");
+            this.pageSize = pageSize;
+            return this;
         }
 
         /**
@@ -168,6 +323,8 @@ public class V2ListInstancesRequest {
         
         public V2ListInstancesRequest build() {
             return new V2ListInstancesRequest(
+                cursor,
+                pageSize,
                 running,
                 workflowID);
         }

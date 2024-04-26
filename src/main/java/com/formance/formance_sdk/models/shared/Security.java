@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -20,12 +22,14 @@ public class Security {
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,name=Authorization")
     private String authorization;
 
+    @JsonCreator
     public Security(
             String authorization) {
         Utils.checkNotNull(authorization, "authorization");
         this.authorization = authorization;
     }
 
+    @JsonIgnore
     public String authorization() {
         return authorization;
     }

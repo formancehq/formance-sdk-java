@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -64,6 +66,7 @@ public class ListLogsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
     private Optional<? extends OffsetDateTime> startTime;
 
+    @JsonCreator
     public ListLogsRequest(
             Optional<? extends String> after,
             Optional<? extends String> cursor,
@@ -84,10 +87,16 @@ public class ListLogsRequest {
         this.pageSize = pageSize;
         this.startTime = startTime;
     }
+    
+    public ListLogsRequest(
+            String ledger) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty());
+    }
 
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
      */
+    @JsonIgnore
     public Optional<? extends String> after() {
         return after;
     }
@@ -99,6 +108,7 @@ public class ListLogsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -108,6 +118,7 @@ public class ListLogsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> endTime() {
         return endTime;
     }
@@ -115,6 +126,7 @@ public class ListLogsRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -123,6 +135,7 @@ public class ListLogsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -132,6 +145,7 @@ public class ListLogsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> startTime() {
         return startTime;
     }

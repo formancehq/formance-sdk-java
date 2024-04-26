@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class GetBankAccountRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=bankAccountId")
     private String bankAccountId;
 
+    @JsonCreator
     public GetBankAccountRequest(
             String bankAccountId) {
         Utils.checkNotNull(bankAccountId, "bankAccountId");
@@ -31,6 +34,7 @@ public class GetBankAccountRequest {
     /**
      * The bank account ID.
      */
+    @JsonIgnore
     public String bankAccountId() {
         return bankAccountId;
     }

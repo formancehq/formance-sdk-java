@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,6 +39,7 @@ public class V2ListWalletsResponseCursor {
     @JsonProperty("previous")
     private Optional<? extends String> previous;
 
+    @JsonCreator
     public V2ListWalletsResponseCursor(
             @JsonProperty("data") java.util.List<V2Wallet> data,
             @JsonProperty("hasMore") Optional<? extends Boolean> hasMore,
@@ -54,23 +57,34 @@ public class V2ListWalletsResponseCursor {
         this.pageSize = pageSize;
         this.previous = previous;
     }
+    
+    public V2ListWalletsResponseCursor(
+            java.util.List<V2Wallet> data,
+            long pageSize) {
+        this(data, Optional.empty(), Optional.empty(), pageSize, Optional.empty());
+    }
 
+    @JsonIgnore
     public java.util.List<V2Wallet> data() {
         return data;
     }
 
+    @JsonIgnore
     public Optional<? extends Boolean> hasMore() {
         return hasMore;
     }
 
+    @JsonIgnore
     public Optional<? extends String> next() {
         return next;
     }
 
+    @JsonIgnore
     public long pageSize() {
         return pageSize;
     }
 
+    @JsonIgnore
     public Optional<? extends String> previous() {
         return previous;
     }

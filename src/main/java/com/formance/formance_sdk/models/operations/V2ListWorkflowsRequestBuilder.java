@@ -19,14 +19,22 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V2ListWorkflowsRequestBuilder {
 
+    private V2ListWorkflowsRequest request;
     private final SDKMethodInterfaces.MethodCallV2ListWorkflows sdk;
 
     public V2ListWorkflowsRequestBuilder(SDKMethodInterfaces.MethodCallV2ListWorkflows sdk) {
         this.sdk = sdk;
     }
 
+    public V2ListWorkflowsRequestBuilder request(V2ListWorkflowsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
+        return this;
+    }
+
     public V2ListWorkflowsResponse call() throws Exception {
 
-        return sdk.v2ListWorkflowsDirect();
+        return sdk.v2ListWorkflows(
+            request);
     }
 }

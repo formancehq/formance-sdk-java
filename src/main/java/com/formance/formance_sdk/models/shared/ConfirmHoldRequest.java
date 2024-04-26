@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,6 +35,7 @@ public class ConfirmHoldRequest {
     @JsonProperty("final")
     private Optional<? extends Boolean> final_;
 
+    @JsonCreator
     public ConfirmHoldRequest(
             @JsonProperty("amount") Optional<? extends BigInteger> amount,
             @JsonProperty("final") Optional<? extends Boolean> final_) {
@@ -41,10 +44,15 @@ public class ConfirmHoldRequest {
         this.amount = amount;
         this.final_ = final_;
     }
+    
+    public ConfirmHoldRequest() {
+        this(Optional.empty(), Optional.empty());
+    }
 
     /**
      * Define the amount to transfer.
      */
+    @JsonIgnore
     public Optional<? extends BigInteger> amount() {
         return amount;
     }
@@ -52,6 +60,7 @@ public class ConfirmHoldRequest {
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> final_() {
         return final_;
     }

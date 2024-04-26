@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -45,6 +47,7 @@ public class BankAccountRequest {
     @JsonProperty("swiftBicCode")
     private Optional<? extends String> swiftBicCode;
 
+    @JsonCreator
     public BankAccountRequest(
             @JsonProperty("accountNumber") Optional<? extends String> accountNumber,
             @JsonProperty("connectorID") String connectorID,
@@ -68,31 +71,45 @@ public class BankAccountRequest {
         this.name = name;
         this.swiftBicCode = swiftBicCode;
     }
+    
+    public BankAccountRequest(
+            String connectorID,
+            String country,
+            String name) {
+        this(Optional.empty(), connectorID, country, Optional.empty(), JsonNullable.undefined(), name, Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> accountNumber() {
         return accountNumber;
     }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public String country() {
         return country;
     }
 
+    @JsonIgnore
     public Optional<? extends String> iban() {
         return iban;
     }
 
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends String> swiftBicCode() {
         return swiftBicCode;
     }

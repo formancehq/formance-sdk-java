@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class LedgerStorage {
     @JsonProperty("ledgers")
     private java.util.List<String> ledgers;
 
+    @JsonCreator
     public LedgerStorage(
             @JsonProperty("driver") String driver,
             @JsonProperty("ledgers") java.util.List<String> ledgers) {
@@ -31,10 +34,12 @@ public class LedgerStorage {
         this.ledgers = ledgers;
     }
 
+    @JsonIgnore
     public String driver() {
         return driver;
     }
 
+    @JsonIgnore
     public java.util.List<String> ledgers() {
         return ledgers;
     }

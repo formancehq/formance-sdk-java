@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -70,6 +72,7 @@ public class CountTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
     private Optional<? extends OffsetDateTime> startTime;
 
+    @JsonCreator
     public CountTransactionsRequest(
             Optional<? extends String> account,
             Optional<? extends String> destination,
@@ -96,10 +99,16 @@ public class CountTransactionsRequest {
         this.source = source;
         this.startTime = startTime;
     }
+    
+    public CountTransactionsRequest(
+            String ledger) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
+    @JsonIgnore
     public Optional<? extends String> account() {
         return account;
     }
@@ -107,6 +116,7 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
+    @JsonIgnore
     public Optional<? extends String> destination() {
         return destination;
     }
@@ -116,6 +126,7 @@ public class CountTransactionsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> endTime() {
         return endTime;
     }
@@ -123,6 +134,7 @@ public class CountTransactionsRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -130,6 +142,7 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @JsonIgnore
     public Optional<? extends Metadata> metadata() {
         return metadata;
     }
@@ -137,6 +150,7 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions by reference field.
      */
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
@@ -144,6 +158,7 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
+    @JsonIgnore
     public Optional<? extends String> source() {
         return source;
     }
@@ -153,6 +168,7 @@ public class CountTransactionsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> startTime() {
         return startTime;
     }

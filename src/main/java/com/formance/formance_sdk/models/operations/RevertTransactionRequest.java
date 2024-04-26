@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -35,6 +37,7 @@ public class RevertTransactionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=txid")
     private BigInteger txid;
 
+    @JsonCreator
     public RevertTransactionRequest(
             Optional<? extends Boolean> disableChecks,
             String ledger,
@@ -46,10 +49,17 @@ public class RevertTransactionRequest {
         this.ledger = ledger;
         this.txid = txid;
     }
+    
+    public RevertTransactionRequest(
+            String ledger,
+            BigInteger txid) {
+        this(Optional.empty(), ledger, txid);
+    }
 
     /**
      * Allow to disable balances checks
      */
+    @JsonIgnore
     public Optional<? extends Boolean> disableChecks() {
         return disableChecks;
     }
@@ -57,6 +67,7 @@ public class RevertTransactionRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -64,6 +75,7 @@ public class RevertTransactionRequest {
     /**
      * Transaction ID.
      */
+    @JsonIgnore
     public BigInteger txid() {
         return txid;
     }

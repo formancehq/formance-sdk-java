@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +29,7 @@ public class V2LedgerInfo {
     @JsonProperty("storage")
     private Optional<? extends V2LedgerInfoStorage> storage;
 
+    @JsonCreator
     public V2LedgerInfo(
             @JsonProperty("name") Optional<? extends String> name,
             @JsonProperty("storage") Optional<? extends V2LedgerInfoStorage> storage) {
@@ -35,11 +38,17 @@ public class V2LedgerInfo {
         this.name = name;
         this.storage = storage;
     }
+    
+    public V2LedgerInfo() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends V2LedgerInfoStorage> storage() {
         return storage;
     }

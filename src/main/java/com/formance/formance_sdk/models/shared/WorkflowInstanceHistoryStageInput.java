@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -63,6 +65,7 @@ public class WorkflowInstanceHistoryStageInput {
     @JsonProperty("VoidHold")
     private Optional<? extends ActivityVoidHold> voidHold;
 
+    @JsonCreator
     public WorkflowInstanceHistoryStageInput(
             @JsonProperty("ConfirmHold") Optional<? extends ActivityConfirmHold> confirmHold,
             @JsonProperty("CreateTransaction") Optional<? extends ActivityCreateTransaction> createTransaction,
@@ -98,47 +101,62 @@ public class WorkflowInstanceHistoryStageInput {
         this.stripeTransfer = stripeTransfer;
         this.voidHold = voidHold;
     }
+    
+    public WorkflowInstanceHistoryStageInput() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends ActivityConfirmHold> confirmHold() {
         return confirmHold;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityCreateTransaction> createTransaction() {
         return createTransaction;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityCreditWallet> creditWallet() {
         return creditWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityDebitWallet> debitWallet() {
         return debitWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityGetAccount> getAccount() {
         return getAccount;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityGetPayment> getPayment() {
         return getPayment;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityGetWallet> getWallet() {
         return getWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityListWallets> listWallets() {
         return listWallets;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityRevertTransaction> revertTransaction() {
         return revertTransaction;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityStripeTransfer> stripeTransfer() {
         return stripeTransfer;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityVoidHold> voidHold() {
         return voidHold;
     }

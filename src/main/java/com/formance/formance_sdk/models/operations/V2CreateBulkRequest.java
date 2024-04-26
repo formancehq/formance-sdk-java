@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -26,6 +28,7 @@ public class V2CreateBulkRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public V2CreateBulkRequest(
             Optional<? extends java.util.List<com.formance.formance_sdk.models.shared.V2BulkElement>> requestBody,
             String ledger) {
@@ -34,7 +37,13 @@ public class V2CreateBulkRequest {
         this.requestBody = requestBody;
         this.ledger = ledger;
     }
+    
+    public V2CreateBulkRequest(
+            String ledger) {
+        this(Optional.empty(), ledger);
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<com.formance.formance_sdk.models.shared.V2BulkElement>> requestBody() {
         return requestBody;
     }
@@ -42,6 +51,7 @@ public class V2CreateBulkRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

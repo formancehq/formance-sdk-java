@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class RetryTransferInitiationRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transferId")
     private String transferId;
 
+    @JsonCreator
     public RetryTransferInitiationRequest(
             String transferId) {
         Utils.checkNotNull(transferId, "transferId");
@@ -31,6 +34,7 @@ public class RetryTransferInitiationRequest {
     /**
      * The transfer ID.
      */
+    @JsonIgnore
     public String transferId() {
         return transferId;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class V2AssetHolder {
     @JsonProperty("assets")
     private java.util.Map<String, BigInteger> assets;
 
+    @JsonCreator
     public V2AssetHolder(
             @JsonProperty("assets") java.util.Map<String, BigInteger> assets) {
         assets = Utils.emptyMapIfNull(assets);
         this.assets = assets;
     }
 
+    @JsonIgnore
     public java.util.Map<String, BigInteger> assets() {
         return assets;
     }

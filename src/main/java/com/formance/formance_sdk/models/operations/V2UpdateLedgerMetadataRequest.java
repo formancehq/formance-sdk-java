@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -26,6 +28,7 @@ public class V2UpdateLedgerMetadataRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public V2UpdateLedgerMetadataRequest(
             Optional<? extends java.util.Map<String, String>> requestBody,
             String ledger) {
@@ -34,7 +37,13 @@ public class V2UpdateLedgerMetadataRequest {
         this.requestBody = requestBody;
         this.ledger = ledger;
     }
+    
+    public V2UpdateLedgerMetadataRequest(
+            String ledger) {
+        this(Optional.empty(), ledger);
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> requestBody() {
         return requestBody;
     }
@@ -42,6 +51,7 @@ public class V2UpdateLedgerMetadataRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

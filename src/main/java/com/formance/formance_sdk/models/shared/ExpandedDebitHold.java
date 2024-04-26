@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -56,6 +58,7 @@ public class ExpandedDebitHold {
     @JsonProperty("walletID")
     private String walletID;
 
+    @JsonCreator
     public ExpandedDebitHold(
             @JsonProperty("description") String description,
             @JsonProperty("destination") Optional<? extends Subject> destination,
@@ -79,11 +82,23 @@ public class ExpandedDebitHold {
         this.remaining = remaining;
         this.walletID = walletID;
     }
+    
+    public ExpandedDebitHold(
+            String description,
+            String id,
+            java.util.Map<String, String> metadata,
+            BigInteger originalAmount,
+            BigInteger remaining,
+            String walletID) {
+        this(description, Optional.empty(), id, metadata, originalAmount, remaining, walletID);
+    }
 
+    @JsonIgnore
     public String description() {
         return description;
     }
 
+    @JsonIgnore
     public Optional<? extends Subject> destination() {
         return destination;
     }
@@ -91,6 +106,7 @@ public class ExpandedDebitHold {
     /**
      * The unique ID of the hold.
      */
+    @JsonIgnore
     public String id() {
         return id;
     }
@@ -98,6 +114,7 @@ public class ExpandedDebitHold {
     /**
      * Metadata associated with the hold.
      */
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
@@ -105,6 +122,7 @@ public class ExpandedDebitHold {
     /**
      * Original amount on hold
      */
+    @JsonIgnore
     public BigInteger originalAmount() {
         return originalAmount;
     }
@@ -112,6 +130,7 @@ public class ExpandedDebitHold {
     /**
      * Remaining amount on hold
      */
+    @JsonIgnore
     public BigInteger remaining() {
         return remaining;
     }
@@ -119,6 +138,7 @@ public class ExpandedDebitHold {
     /**
      * The ID of the wallet the hold is associated with.
      */
+    @JsonIgnore
     public String walletID() {
         return walletID;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,6 +37,7 @@ public class ReverseTransferInitiationRequest {
     @JsonProperty("reference")
     private String reference;
 
+    @JsonCreator
     public ReverseTransferInitiationRequest(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
@@ -52,23 +55,36 @@ public class ReverseTransferInitiationRequest {
         this.metadata = metadata;
         this.reference = reference;
     }
+    
+    public ReverseTransferInitiationRequest(
+            BigInteger amount,
+            String asset,
+            String description,
+            String reference) {
+        this(amount, asset, description, Optional.empty(), reference);
+    }
 
+    @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public String description() {
         return description;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String reference() {
         return reference;
     }

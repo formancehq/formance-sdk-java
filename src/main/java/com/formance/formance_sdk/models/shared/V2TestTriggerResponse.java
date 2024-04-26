@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class V2TestTriggerResponse {
     @JsonProperty("data")
     private V2TriggerTest data;
 
+    @JsonCreator
     public V2TestTriggerResponse(
             @JsonProperty("data") V2TriggerTest data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
+    @JsonIgnore
     public V2TriggerTest data() {
         return data;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public GetPoolResponse(
             String contentType,
             Optional<? extends com.formance.formance_sdk.models.shared.PoolResponse> poolResponse,
@@ -51,10 +54,18 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
+    
+    public GetPoolResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +73,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
     /**
      * OK
      */
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.PoolResponse> poolResponse() {
         return poolResponse;
     }
@@ -69,6 +81,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -76,6 +89,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }

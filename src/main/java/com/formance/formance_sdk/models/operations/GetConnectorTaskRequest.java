@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -28,6 +30,7 @@ public class GetConnectorTaskRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=taskId")
     private String taskId;
 
+    @JsonCreator
     public GetConnectorTaskRequest(
             com.formance.formance_sdk.models.shared.Connector connector,
             String taskId) {
@@ -40,6 +43,7 @@ public class GetConnectorTaskRequest {
     /**
      * The name of the connector.
      */
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.Connector connector() {
         return connector;
     }
@@ -47,6 +51,7 @@ public class GetConnectorTaskRequest {
     /**
      * The task ID.
      */
+    @JsonIgnore
     public String taskId() {
         return taskId;
     }

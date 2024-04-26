@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -31,6 +33,7 @@ public class UpdateConnectorConfigV1Request {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connectorId")
     private String connectorId;
 
+    @JsonCreator
     public UpdateConnectorConfigV1Request(
             com.formance.formance_sdk.models.shared.ConnectorConfig connectorConfig,
             com.formance.formance_sdk.models.shared.Connector connector,
@@ -43,6 +46,7 @@ public class UpdateConnectorConfigV1Request {
         this.connectorId = connectorId;
     }
 
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.ConnectorConfig connectorConfig() {
         return connectorConfig;
     }
@@ -50,6 +54,7 @@ public class UpdateConnectorConfigV1Request {
     /**
      * The name of the connector.
      */
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.Connector connector() {
         return connector;
     }
@@ -57,6 +62,7 @@ public class UpdateConnectorConfigV1Request {
     /**
      * The connector ID.
      */
+    @JsonIgnore
     public String connectorId() {
         return connectorId;
     }

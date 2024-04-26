@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,12 +25,18 @@ public class V2PaymentMetadata {
     @JsonProperty("key")
     private Optional<? extends String> key;
 
+    @JsonCreator
     public V2PaymentMetadata(
             @JsonProperty("key") Optional<? extends String> key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
     }
+    
+    public V2PaymentMetadata() {
+        this(Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> key() {
         return key;
     }

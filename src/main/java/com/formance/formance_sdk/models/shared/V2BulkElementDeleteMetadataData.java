@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -25,6 +27,7 @@ public class V2BulkElementDeleteMetadataData {
     @JsonProperty("targetType")
     private V2TargetType targetType;
 
+    @JsonCreator
     public V2BulkElementDeleteMetadataData(
             @JsonProperty("key") String key,
             @JsonProperty("targetId") V2TargetId targetId,
@@ -37,14 +40,17 @@ public class V2BulkElementDeleteMetadataData {
         this.targetType = targetType;
     }
 
+    @JsonIgnore
     public String key() {
         return key;
     }
 
+    @JsonIgnore
     public V2TargetId targetId() {
         return targetId;
     }
 
+    @JsonIgnore
     public V2TargetType targetType() {
         return targetType;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,6 +49,7 @@ public class WorkflowInstanceHistoryStageOutput {
     @JsonProperty("RevertTransaction")
     private Optional<? extends ActivityRevertTransactionOutput> revertTransaction;
 
+    @JsonCreator
     public WorkflowInstanceHistoryStageOutput(
             @JsonProperty("CreateTransaction") Optional<? extends ActivityCreateTransactionOutput> createTransaction,
             @JsonProperty("DebitWallet") Optional<? extends ActivityDebitWalletOutput> debitWallet,
@@ -70,31 +73,42 @@ public class WorkflowInstanceHistoryStageOutput {
         this.listWallets = listWallets;
         this.revertTransaction = revertTransaction;
     }
+    
+    public WorkflowInstanceHistoryStageOutput() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends ActivityCreateTransactionOutput> createTransaction() {
         return createTransaction;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityDebitWalletOutput> debitWallet() {
         return debitWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityGetAccountOutput> getAccount() {
         return getAccount;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityGetPaymentOutput> getPayment() {
         return getPayment;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityGetWalletOutput> getWallet() {
         return getWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends OrchestrationListWalletsResponse> listWallets() {
         return listWallets;
     }
 
+    @JsonIgnore
     public Optional<? extends ActivityRevertTransactionOutput> revertTransaction() {
         return revertTransaction;
     }

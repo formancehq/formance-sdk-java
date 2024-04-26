@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,6 +33,7 @@ public class TaskWiseDescriptor {
     @JsonProperty("profileID")
     private Optional<? extends Long> profileID;
 
+    @JsonCreator
     public TaskWiseDescriptor(
             @JsonProperty("key") Optional<? extends String> key,
             @JsonProperty("name") Optional<? extends String> name,
@@ -42,15 +45,22 @@ public class TaskWiseDescriptor {
         this.name = name;
         this.profileID = profileID;
     }
+    
+    public TaskWiseDescriptor() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> key() {
         return key;
     }
 
+    @JsonIgnore
     public Optional<? extends String> name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends Long> profileID() {
         return profileID;
     }

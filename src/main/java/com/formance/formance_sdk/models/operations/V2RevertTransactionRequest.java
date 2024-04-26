@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -41,6 +43,7 @@ public class V2RevertTransactionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public V2RevertTransactionRequest(
             Optional<? extends Boolean> atEffectiveDate,
             Optional<? extends Boolean> force,
@@ -55,10 +58,17 @@ public class V2RevertTransactionRequest {
         this.id = id;
         this.ledger = ledger;
     }
+    
+    public V2RevertTransactionRequest(
+            BigInteger id,
+            String ledger) {
+        this(Optional.empty(), Optional.empty(), id, ledger);
+    }
 
     /**
      * Revert transaction at effective date of the original tx
      */
+    @JsonIgnore
     public Optional<? extends Boolean> atEffectiveDate() {
         return atEffectiveDate;
     }
@@ -66,6 +76,7 @@ public class V2RevertTransactionRequest {
     /**
      * Force revert
      */
+    @JsonIgnore
     public Optional<? extends Boolean> force() {
         return force;
     }
@@ -73,6 +84,7 @@ public class V2RevertTransactionRequest {
     /**
      * Transaction ID.
      */
+    @JsonIgnore
     public BigInteger id() {
         return id;
     }
@@ -80,6 +92,7 @@ public class V2RevertTransactionRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

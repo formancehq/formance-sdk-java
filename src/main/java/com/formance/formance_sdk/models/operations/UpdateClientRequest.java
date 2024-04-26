@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -26,6 +28,7 @@ public class UpdateClientRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=clientId")
     private String clientId;
 
+    @JsonCreator
     public UpdateClientRequest(
             Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientRequest> updateClientRequest,
             String clientId) {
@@ -34,7 +37,13 @@ public class UpdateClientRequest {
         this.updateClientRequest = updateClientRequest;
         this.clientId = clientId;
     }
+    
+    public UpdateClientRequest(
+            String clientId) {
+        this(Optional.empty(), clientId);
+    }
 
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientRequest> updateClientRequest() {
         return updateClientRequest;
     }
@@ -42,6 +51,7 @@ public class UpdateClientRequest {
     /**
      * Client ID
      */
+    @JsonIgnore
     public String clientId() {
         return clientId;
     }

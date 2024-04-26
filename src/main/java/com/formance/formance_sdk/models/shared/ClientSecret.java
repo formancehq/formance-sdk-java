@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,6 +34,7 @@ public class ClientSecret {
     @JsonProperty("name")
     private String name;
 
+    @JsonCreator
     public ClientSecret(
             @JsonProperty("id") String id,
             @JsonProperty("lastDigits") String lastDigits,
@@ -46,19 +49,30 @@ public class ClientSecret {
         this.metadata = metadata;
         this.name = name;
     }
+    
+    public ClientSecret(
+            String id,
+            String lastDigits,
+            String name) {
+        this(id, lastDigits, Optional.empty(), name);
+    }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public String lastDigits() {
         return lastDigits;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }

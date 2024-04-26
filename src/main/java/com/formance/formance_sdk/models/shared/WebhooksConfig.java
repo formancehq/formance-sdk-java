@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -40,6 +42,7 @@ public class WebhooksConfig {
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
+    @JsonCreator
     public WebhooksConfig(
             @JsonProperty("active") boolean active,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -64,30 +67,37 @@ public class WebhooksConfig {
         this.updatedAt = updatedAt;
     }
 
+    @JsonIgnore
     public boolean active() {
         return active;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    @JsonIgnore
     public java.util.List<String> eventTypes() {
         return eventTypes;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public String secret() {
         return secret;
     }
 
+    @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -31,6 +33,7 @@ public class TransferInitiationPayments {
     @JsonProperty("status")
     private TransferInitiationStatus status;
 
+    @JsonCreator
     public TransferInitiationPayments(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("error") String error,
@@ -46,18 +49,22 @@ public class TransferInitiationPayments {
         this.status = status;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String error() {
         return error;
     }
 
+    @JsonIgnore
     public String paymentID() {
         return paymentID;
     }
 
+    @JsonIgnore
     public TransferInitiationStatus status() {
         return status;
     }

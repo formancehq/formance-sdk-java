@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,6 +37,7 @@ public class ScriptResponse {
     @JsonProperty("transaction")
     private Optional<? extends Transaction> transaction;
 
+    @JsonCreator
     public ScriptResponse(
             @JsonProperty("details") Optional<? extends String> details,
             @JsonProperty("errorCode") Optional<? extends ErrorsEnum> errorCode,
@@ -49,19 +52,27 @@ public class ScriptResponse {
         this.errorMessage = errorMessage;
         this.transaction = transaction;
     }
+    
+    public ScriptResponse() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> details() {
         return details;
     }
 
+    @JsonIgnore
     public Optional<? extends ErrorsEnum> errorCode() {
         return errorCode;
     }
 
+    @JsonIgnore
     public Optional<? extends String> errorMessage() {
         return errorMessage;
     }
 
+    @JsonIgnore
     public Optional<? extends Transaction> transaction() {
         return transaction;
     }

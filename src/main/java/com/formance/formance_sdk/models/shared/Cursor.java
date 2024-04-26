@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,6 +38,7 @@ public class Cursor {
     @JsonProperty("previous")
     private Optional<? extends String> previous;
 
+    @JsonCreator
     public Cursor(
             @JsonProperty("data") java.util.List<PaymentsAccount> data,
             @JsonProperty("hasMore") boolean hasMore,
@@ -53,23 +56,35 @@ public class Cursor {
         this.pageSize = pageSize;
         this.previous = previous;
     }
+    
+    public Cursor(
+            java.util.List<PaymentsAccount> data,
+            boolean hasMore,
+            long pageSize) {
+        this(data, hasMore, Optional.empty(), pageSize, Optional.empty());
+    }
 
+    @JsonIgnore
     public java.util.List<PaymentsAccount> data() {
         return data;
     }
 
+    @JsonIgnore
     public boolean hasMore() {
         return hasMore;
     }
 
+    @JsonIgnore
     public Optional<? extends String> next() {
         return next;
     }
 
+    @JsonIgnore
     public long pageSize() {
         return pageSize;
     }
 
+    @JsonIgnore
     public Optional<? extends String> previous() {
         return previous;
     }

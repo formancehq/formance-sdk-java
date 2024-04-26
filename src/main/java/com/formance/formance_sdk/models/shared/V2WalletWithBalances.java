@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -43,6 +45,7 @@ public class V2WalletWithBalances {
     @JsonProperty("name")
     private String name;
 
+    @JsonCreator
     public V2WalletWithBalances(
             @JsonProperty("balances") Balances balances,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -64,10 +67,12 @@ public class V2WalletWithBalances {
         this.name = name;
     }
 
+    @JsonIgnore
     public Balances balances() {
         return balances;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -75,10 +80,12 @@ public class V2WalletWithBalances {
     /**
      * The unique ID of the wallet.
      */
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -86,10 +93,12 @@ public class V2WalletWithBalances {
     /**
      * Metadata associated with the wallet.
      */
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }

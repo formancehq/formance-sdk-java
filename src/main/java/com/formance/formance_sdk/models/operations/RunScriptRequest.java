@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -32,6 +34,7 @@ public class RunScriptRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")
     private Optional<? extends Boolean> preview;
 
+    @JsonCreator
     public RunScriptRequest(
             com.formance.formance_sdk.models.shared.Script script,
             String ledger,
@@ -43,7 +46,14 @@ public class RunScriptRequest {
         this.ledger = ledger;
         this.preview = preview;
     }
+    
+    public RunScriptRequest(
+            com.formance.formance_sdk.models.shared.Script script,
+            String ledger) {
+        this(script, ledger, Optional.empty());
+    }
 
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.Script script() {
         return script;
     }
@@ -51,6 +61,7 @@ public class RunScriptRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -58,6 +69,7 @@ public class RunScriptRequest {
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> preview() {
         return preview;
     }

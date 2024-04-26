@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -77,6 +79,7 @@ public class TransferInitiation {
     @JsonProperty("type")
     private TransferInitiationType type;
 
+    @JsonCreator
     public TransferInitiation(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
@@ -130,71 +133,106 @@ public class TransferInitiation {
         this.status = status;
         this.type = type;
     }
+    
+    public TransferInitiation(
+            BigInteger amount,
+            String asset,
+            String connectorID,
+            OffsetDateTime createdAt,
+            String description,
+            String destinationAccountID,
+            String error,
+            String id,
+            BigInteger initialAmount,
+            String reference,
+            OffsetDateTime scheduledAt,
+            String sourceAccountID,
+            TransferInitiationStatus status,
+            TransferInitiationType type) {
+        this(amount, asset, connectorID, createdAt, description, destinationAccountID, error, id, initialAmount, JsonNullable.undefined(), reference, Optional.empty(), Optional.empty(), scheduledAt, sourceAccountID, status, type);
+    }
 
+    @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String description() {
         return description;
     }
 
+    @JsonIgnore
     public String destinationAccountID() {
         return destinationAccountID;
     }
 
+    @JsonIgnore
     public String error() {
         return error;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public BigInteger initialAmount() {
         return initialAmount;
     }
 
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<TransferInitiationAdjusments>> relatedAdjustments() {
         return relatedAdjustments;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<TransferInitiationPayments>> relatedPayments() {
         return relatedPayments;
     }
 
+    @JsonIgnore
     public OffsetDateTime scheduledAt() {
         return scheduledAt;
     }
 
+    @JsonIgnore
     public String sourceAccountID() {
         return sourceAccountID;
     }
 
+    @JsonIgnore
     public TransferInitiationStatus status() {
         return status;
     }
 
+    @JsonIgnore
     public TransferInitiationType type() {
         return type;
     }

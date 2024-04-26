@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -34,6 +36,7 @@ public class BankAccountRelatedAccounts {
     @JsonProperty("provider")
     private String provider;
 
+    @JsonCreator
     public BankAccountRelatedAccounts(
             @JsonProperty("accountID") String accountID,
             @JsonProperty("connectorID") String connectorID,
@@ -52,22 +55,27 @@ public class BankAccountRelatedAccounts {
         this.provider = provider;
     }
 
+    @JsonIgnore
     public String accountID() {
         return accountID;
     }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public String provider() {
         return provider;
     }

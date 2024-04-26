@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -40,6 +42,7 @@ public class MangoPayConfig {
     @JsonProperty("pollingPeriod")
     private Optional<? extends String> pollingPeriod;
 
+    @JsonCreator
     public MangoPayConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("clientID") String clientID,
@@ -57,19 +60,31 @@ public class MangoPayConfig {
         this.name = name;
         this.pollingPeriod = pollingPeriod;
     }
+    
+    public MangoPayConfig(
+            String apiKey,
+            String clientID,
+            String endpoint,
+            String name) {
+        this(apiKey, clientID, endpoint, name, Optional.empty());
+    }
 
+    @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    @JsonIgnore
     public String clientID() {
         return clientID;
     }
 
+    @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
@@ -78,6 +93,7 @@ public class MangoPayConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }

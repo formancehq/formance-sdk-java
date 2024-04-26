@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -42,6 +44,7 @@ public class StripeConfig {
     @JsonProperty("pollingPeriod")
     private Optional<? extends String> pollingPeriod;
 
+    @JsonCreator
     public StripeConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("name") String name,
@@ -56,11 +59,19 @@ public class StripeConfig {
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
     }
+    
+    public StripeConfig(
+            String apiKey,
+            String name) {
+        this(apiKey, name, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
@@ -69,6 +80,7 @@ public class StripeConfig {
      * Number of BalanceTransaction to fetch at each polling interval.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -77,6 +89,7 @@ public class StripeConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }

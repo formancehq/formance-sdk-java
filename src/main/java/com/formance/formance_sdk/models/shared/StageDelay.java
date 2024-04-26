@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +32,7 @@ public class StageDelay {
     @JsonProperty("until")
     private Optional<? extends OffsetDateTime> until;
 
+    @JsonCreator
     public StageDelay(
             @JsonProperty("duration") Optional<? extends String> duration,
             @JsonProperty("until") Optional<? extends OffsetDateTime> until) {
@@ -38,11 +41,17 @@ public class StageDelay {
         this.duration = duration;
         this.until = until;
     }
+    
+    public StageDelay() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> duration() {
         return duration;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> until() {
         return until;
     }

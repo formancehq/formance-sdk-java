@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class ReadConnectorConfigRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
     private com.formance.formance_sdk.models.shared.Connector connector;
 
+    @JsonCreator
     public ReadConnectorConfigRequest(
             com.formance.formance_sdk.models.shared.Connector connector) {
         Utils.checkNotNull(connector, "connector");
@@ -31,6 +34,7 @@ public class ReadConnectorConfigRequest {
     /**
      * The name of the connector.
      */
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.Connector connector() {
         return connector;
     }

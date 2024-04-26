@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +29,7 @@ public class Variables {
     @JsonProperty("value")
     private Optional<? extends String> value;
 
+    @JsonCreator
     public Variables(
             @JsonProperty("error") Optional<? extends String> error,
             @JsonProperty("value") Optional<? extends String> value) {
@@ -35,11 +38,17 @@ public class Variables {
         this.error = error;
         this.value = value;
     }
+    
+    public Variables() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> error() {
         return error;
     }
 
+    @JsonIgnore
     public Optional<? extends String> value() {
         return value;
     }

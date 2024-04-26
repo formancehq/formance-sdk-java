@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,6 +43,7 @@ public class V2PostTransaction {
     @JsonProperty("timestamp")
     private Optional<? extends OffsetDateTime> timestamp;
 
+    @JsonCreator
     public V2PostTransaction(
             @JsonProperty("metadata") java.util.Map<String, String> metadata,
             @JsonProperty("postings") Optional<? extends java.util.List<V2Posting>> postings,
@@ -58,23 +61,33 @@ public class V2PostTransaction {
         this.script = script;
         this.timestamp = timestamp;
     }
+    
+    public V2PostTransaction(
+            java.util.Map<String, String> metadata) {
+        this(metadata, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<V2Posting>> postings() {
         return postings;
     }
 
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public Optional<? extends V2PostTransactionScript> script() {
         return script;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> timestamp() {
         return timestamp;
     }

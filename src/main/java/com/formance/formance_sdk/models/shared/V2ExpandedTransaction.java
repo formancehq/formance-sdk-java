@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,6 +51,7 @@ public class V2ExpandedTransaction {
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
+    @JsonCreator
     public V2ExpandedTransaction(
             @JsonProperty("id") BigInteger id,
             @JsonProperty("metadata") java.util.Map<String, String> metadata,
@@ -75,35 +78,52 @@ public class V2ExpandedTransaction {
         this.reverted = reverted;
         this.timestamp = timestamp;
     }
+    
+    public V2ExpandedTransaction(
+            BigInteger id,
+            java.util.Map<String, String> metadata,
+            java.util.List<V2Posting> postings,
+            boolean reverted,
+            OffsetDateTime timestamp) {
+        this(id, metadata, Optional.empty(), postings, Optional.empty(), Optional.empty(), reverted, timestamp);
+    }
 
+    @JsonIgnore
     public BigInteger id() {
         return id;
     }
 
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.Map<String, V2Volume>>> postCommitVolumes() {
         return postCommitVolumes;
     }
 
+    @JsonIgnore
     public java.util.List<V2Posting> postings() {
         return postings;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.Map<String, V2Volume>>> preCommitVolumes() {
         return preCommitVolumes;
     }
 
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public boolean reverted() {
         return reverted;
     }
 
+    @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -26,6 +28,7 @@ public class TestTriggerRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=triggerID")
     private String triggerID;
 
+    @JsonCreator
     public TestTriggerRequest(
             Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
             String triggerID) {
@@ -34,7 +37,13 @@ public class TestTriggerRequest {
         this.requestBody = requestBody;
         this.triggerID = triggerID;
     }
+    
+    public TestTriggerRequest(
+            String triggerID) {
+        this(Optional.empty(), triggerID);
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
         return requestBody;
     }
@@ -42,6 +51,7 @@ public class TestTriggerRequest {
     /**
      * The trigger id
      */
+    @JsonIgnore
     public String triggerID() {
         return triggerID;
     }

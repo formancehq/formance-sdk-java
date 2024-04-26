@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,6 +28,7 @@ public class V2StageSendSourceWallet {
     @JsonProperty("id")
     private String id;
 
+    @JsonCreator
     public V2StageSendSourceWallet(
             @JsonProperty("balance") Optional<? extends String> balance,
             @JsonProperty("id") String id) {
@@ -34,11 +37,18 @@ public class V2StageSendSourceWallet {
         this.balance = balance;
         this.id = id;
     }
+    
+    public V2StageSendSourceWallet(
+            String id) {
+        this(Optional.empty(), id);
+    }
 
+    @JsonIgnore
     public Optional<? extends String> balance() {
         return balance;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }

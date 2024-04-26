@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,6 +51,7 @@ public class V2CreditWalletRequest {
     @JsonProperty("timestamp")
     private Optional<? extends OffsetDateTime> timestamp;
 
+    @JsonCreator
     public V2CreditWalletRequest(
             @JsonProperty("amount") V2Monetary amount,
             @JsonProperty("balance") Optional<? extends String> balance,
@@ -69,7 +72,15 @@ public class V2CreditWalletRequest {
         this.sources = sources;
         this.timestamp = timestamp;
     }
+    
+    public V2CreditWalletRequest(
+            V2Monetary amount,
+            java.util.Map<String, String> metadata,
+            java.util.List<V2Subject> sources) {
+        this(amount, Optional.empty(), metadata, Optional.empty(), sources, Optional.empty());
+    }
 
+    @JsonIgnore
     public V2Monetary amount() {
         return amount;
     }
@@ -77,6 +88,7 @@ public class V2CreditWalletRequest {
     /**
      * The balance to credit
      */
+    @JsonIgnore
     public Optional<? extends String> balance() {
         return balance;
     }
@@ -84,18 +96,22 @@ public class V2CreditWalletRequest {
     /**
      * Metadata associated with the wallet.
      */
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public java.util.List<V2Subject> sources() {
         return sources;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> timestamp() {
         return timestamp;
     }

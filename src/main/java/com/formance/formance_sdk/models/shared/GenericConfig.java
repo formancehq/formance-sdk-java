@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,6 +39,7 @@ public class GenericConfig {
     @JsonProperty("pollingPeriod")
     private Optional<? extends String> pollingPeriod;
 
+    @JsonCreator
     public GenericConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("endpoint") String endpoint,
@@ -51,15 +54,25 @@ public class GenericConfig {
         this.name = name;
         this.pollingPeriod = pollingPeriod;
     }
+    
+    public GenericConfig(
+            String apiKey,
+            String endpoint,
+            String name) {
+        this(apiKey, endpoint, name, Optional.empty());
+    }
 
+    @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
@@ -68,6 +81,7 @@ public class GenericConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }

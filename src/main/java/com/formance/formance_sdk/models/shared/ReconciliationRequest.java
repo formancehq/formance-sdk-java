@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -25,6 +27,7 @@ public class ReconciliationRequest {
     @JsonProperty("reconciledAtPayments")
     private OffsetDateTime reconciledAtPayments;
 
+    @JsonCreator
     public ReconciliationRequest(
             @JsonProperty("reconciledAtLedger") OffsetDateTime reconciledAtLedger,
             @JsonProperty("reconciledAtPayments") OffsetDateTime reconciledAtPayments) {
@@ -34,10 +37,12 @@ public class ReconciliationRequest {
         this.reconciledAtPayments = reconciledAtPayments;
     }
 
+    @JsonIgnore
     public OffsetDateTime reconciledAtLedger() {
         return reconciledAtLedger;
     }
 
+    @JsonIgnore
     public OffsetDateTime reconciledAtPayments() {
         return reconciledAtPayments;
     }

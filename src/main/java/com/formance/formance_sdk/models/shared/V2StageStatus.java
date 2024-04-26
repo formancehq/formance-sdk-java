@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,6 +41,7 @@ public class V2StageStatus {
     @JsonProperty("terminatedAt")
     private Optional<? extends OffsetDateTime> terminatedAt;
 
+    @JsonCreator
     public V2StageStatus(
             @JsonProperty("error") Optional<? extends String> error,
             @JsonProperty("instanceID") String instanceID,
@@ -56,23 +59,35 @@ public class V2StageStatus {
         this.startedAt = startedAt;
         this.terminatedAt = terminatedAt;
     }
+    
+    public V2StageStatus(
+            String instanceID,
+            double stage,
+            OffsetDateTime startedAt) {
+        this(Optional.empty(), instanceID, stage, startedAt, Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> error() {
         return error;
     }
 
+    @JsonIgnore
     public String instanceID() {
         return instanceID;
     }
 
+    @JsonIgnore
     public double stage() {
         return stage;
     }
 
+    @JsonIgnore
     public OffsetDateTime startedAt() {
         return startedAt;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> terminatedAt() {
         return terminatedAt;
     }

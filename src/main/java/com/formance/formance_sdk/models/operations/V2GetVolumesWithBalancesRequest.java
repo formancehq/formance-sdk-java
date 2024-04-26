@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -62,6 +64,7 @@ public class V2GetVolumesWithBalancesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
     private Optional<? extends OffsetDateTime> startTime;
 
+    @JsonCreator
     public V2GetVolumesWithBalancesRequest(
             Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
             Optional<? extends String> cursor,
@@ -88,7 +91,13 @@ public class V2GetVolumesWithBalancesRequest {
         this.pageSize = pageSize;
         this.startTime = startTime;
     }
+    
+    public V2GetVolumesWithBalancesRequest(
+            String ledger) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
         return requestBody;
     }
@@ -100,10 +109,12 @@ public class V2GetVolumesWithBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> endTime() {
         return endTime;
     }
@@ -111,6 +122,7 @@ public class V2GetVolumesWithBalancesRequest {
     /**
      * Group volumes and balance by the level of the segment of the address
      */
+    @JsonIgnore
     public Optional<? extends Long> groupBy() {
         return groupBy;
     }
@@ -118,6 +130,7 @@ public class V2GetVolumesWithBalancesRequest {
     /**
      * Use insertion date instead of effective date
      */
+    @JsonIgnore
     public Optional<? extends Boolean> insertionDate() {
         return insertionDate;
     }
@@ -125,6 +138,7 @@ public class V2GetVolumesWithBalancesRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -133,10 +147,12 @@ public class V2GetVolumesWithBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> startTime() {
         return startTime;
     }

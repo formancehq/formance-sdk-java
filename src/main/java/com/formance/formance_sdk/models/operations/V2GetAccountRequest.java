@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -40,6 +42,7 @@ public class V2GetAccountRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<? extends OffsetDateTime> pit;
 
+    @JsonCreator
     public V2GetAccountRequest(
             String address,
             Optional<? extends String> expand,
@@ -54,6 +57,12 @@ public class V2GetAccountRequest {
         this.ledger = ledger;
         this.pit = pit;
     }
+    
+    public V2GetAccountRequest(
+            String address,
+            String ledger) {
+        this(address, Optional.empty(), ledger, Optional.empty());
+    }
 
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
@@ -62,10 +71,12 @@ public class V2GetAccountRequest {
      * ```
      * 
      */
+    @JsonIgnore
     public String address() {
         return address;
     }
 
+    @JsonIgnore
     public Optional<? extends String> expand() {
         return expand;
     }
@@ -73,10 +84,12 @@ public class V2GetAccountRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> pit() {
         return pit;
     }

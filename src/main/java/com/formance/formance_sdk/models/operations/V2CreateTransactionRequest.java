@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -44,6 +46,7 @@ public class V2CreateTransactionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public V2CreateTransactionRequest(
             Optional<? extends String> idempotencyKey,
             com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction,
@@ -58,10 +61,17 @@ public class V2CreateTransactionRequest {
         this.dryRun = dryRun;
         this.ledger = ledger;
     }
+    
+    public V2CreateTransactionRequest(
+            com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction,
+            String ledger) {
+        this(Optional.empty(), v2PostTransaction, Optional.empty(), ledger);
+    }
 
     /**
      * Use an idempotency key
      */
+    @JsonIgnore
     public Optional<? extends String> idempotencyKey() {
         return idempotencyKey;
     }
@@ -72,6 +82,7 @@ public class V2CreateTransactionRequest {
      *   - `script`: enabling more complex transactions with Numscript
      * 
      */
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction() {
         return v2PostTransaction;
     }
@@ -79,6 +90,7 @@ public class V2CreateTransactionRequest {
     /**
      * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> dryRun() {
         return dryRun;
     }
@@ -86,6 +98,7 @@ public class V2CreateTransactionRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -78,6 +80,7 @@ public class ListAccountsRequest {
     @Deprecated
     private Optional<? extends String> paginationToken;
 
+    @JsonCreator
     public ListAccountsRequest(
             Optional<? extends String> address,
             Optional<? extends String> after,
@@ -104,10 +107,16 @@ public class ListAccountsRequest {
         this.pageSize = pageSize;
         this.paginationToken = paginationToken;
     }
+    
+    public ListAccountsRequest(
+            String ledger) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
+    @JsonIgnore
     public Optional<? extends String> address() {
         return address;
     }
@@ -115,6 +124,7 @@ public class ListAccountsRequest {
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
+    @JsonIgnore
     public Optional<? extends String> after() {
         return after;
     }
@@ -122,6 +132,7 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by their balance (default operator is gte)
      */
+    @JsonIgnore
     public Optional<? extends Long> balance() {
         return balance;
     }
@@ -133,6 +144,7 @@ public class ListAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -140,6 +152,7 @@ public class ListAccountsRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -147,6 +160,7 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
@@ -155,6 +169,7 @@ public class ListAccountsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -169,6 +184,7 @@ public class ListAccountsRequest {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public Optional<? extends String> paginationToken() {
         return paginationToken;
     }
