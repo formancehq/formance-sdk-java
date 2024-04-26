@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -34,6 +36,7 @@ public class Log {
     @JsonProperty("type")
     private Type type;
 
+    @JsonCreator
     public Log(
             @JsonProperty("data") java.util.Map<String, java.lang.Object> data,
             @JsonProperty("date") OffsetDateTime date,
@@ -52,22 +55,27 @@ public class Log {
         this.type = type;
     }
 
+    @JsonIgnore
     public java.util.Map<String, java.lang.Object> data() {
         return data;
     }
 
+    @JsonIgnore
     public OffsetDateTime date() {
         return date;
     }
 
+    @JsonIgnore
     public String hash() {
         return hash;
     }
 
+    @JsonIgnore
     public long id() {
         return id;
     }
 
+    @JsonIgnore
     public Type type() {
         return type;
     }

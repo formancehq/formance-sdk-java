@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -28,6 +30,7 @@ public class GetTransactionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=txid")
     private BigInteger txid;
 
+    @JsonCreator
     public GetTransactionRequest(
             String ledger,
             BigInteger txid) {
@@ -40,6 +43,7 @@ public class GetTransactionRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -47,6 +51,7 @@ public class GetTransactionRequest {
     /**
      * Transaction ID.
      */
+    @JsonIgnore
     public BigInteger txid() {
         return txid;
     }

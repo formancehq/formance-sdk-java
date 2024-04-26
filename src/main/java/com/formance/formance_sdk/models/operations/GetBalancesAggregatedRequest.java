@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -35,6 +37,7 @@ public class GetBalancesAggregatedRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=useInsertionDate")
     private Optional<? extends Boolean> useInsertionDate;
 
+    @JsonCreator
     public GetBalancesAggregatedRequest(
             Optional<? extends String> address,
             String ledger,
@@ -46,10 +49,16 @@ public class GetBalancesAggregatedRequest {
         this.ledger = ledger;
         this.useInsertionDate = useInsertionDate;
     }
+    
+    public GetBalancesAggregatedRequest(
+            String ledger) {
+        this(Optional.empty(), ledger, Optional.empty());
+    }
 
     /**
      * Filter balances involving given account, either as source or destination.
      */
+    @JsonIgnore
     public Optional<? extends String> address() {
         return address;
     }
@@ -57,6 +66,7 @@ public class GetBalancesAggregatedRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -64,6 +74,7 @@ public class GetBalancesAggregatedRequest {
     /**
      * Use insertion date instead of effective date
      */
+    @JsonIgnore
     public Optional<? extends Boolean> useInsertionDate() {
         return useInsertionDate;
     }

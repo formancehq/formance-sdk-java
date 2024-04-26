@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class BalancesCursor {
     @JsonProperty("cursor")
     private BalancesCursorCursor cursor;
 
+    @JsonCreator
     public BalancesCursor(
             @JsonProperty("cursor") BalancesCursorCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
     }
 
+    @JsonIgnore
     public BalancesCursorCursor cursor() {
         return cursor;
     }

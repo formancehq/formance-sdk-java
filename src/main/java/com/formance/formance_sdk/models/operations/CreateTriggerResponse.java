@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public CreateTriggerResponse(
             String contentType,
             Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse,
@@ -51,10 +54,18 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
+    
+    public CreateTriggerResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse);
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +73,7 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
     /**
      * Created trigger
      */
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse() {
         return createTriggerResponse;
     }
@@ -69,6 +81,7 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -76,6 +89,7 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }

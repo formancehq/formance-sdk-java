@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -55,6 +57,7 @@ public class Query {
     @JsonProperty("terms")
     private Optional<? extends java.util.List<String>> terms;
 
+    @JsonCreator
     public Query(
             @JsonProperty("after") Optional<? extends java.util.List<String>> after,
             @JsonProperty("cursor") Optional<? extends String> cursor,
@@ -84,39 +87,52 @@ public class Query {
         this.target = target;
         this.terms = terms;
     }
+    
+    public Query() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> after() {
         return after;
     }
 
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> ledgers() {
         return ledgers;
     }
 
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
 
+    @JsonIgnore
     public Optional<? extends String> policy() {
         return policy;
     }
 
+    @JsonIgnore
     public Optional<? extends QueryRaw> raw() {
         return raw;
     }
 
+    @JsonIgnore
     public Optional<? extends String> sort() {
         return sort;
     }
 
+    @JsonIgnore
     public Optional<? extends String> target() {
         return target;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> terms() {
         return terms;
     }

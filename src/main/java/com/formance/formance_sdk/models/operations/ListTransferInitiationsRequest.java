@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -48,6 +50,7 @@ public class ListTransferInitiationsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
     private Optional<? extends java.util.List<String>> sort;
 
+    @JsonCreator
     public ListTransferInitiationsRequest(
             Optional<? extends String> cursor,
             Optional<? extends Long> pageSize,
@@ -62,6 +65,10 @@ public class ListTransferInitiationsRequest {
         this.query = query;
         this.sort = sort;
     }
+    
+    public ListTransferInitiationsRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -70,6 +77,7 @@ public class ListTransferInitiationsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -78,6 +86,7 @@ public class ListTransferInitiationsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -86,6 +95,7 @@ public class ListTransferInitiationsRequest {
      * Filters used to filter resources.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> query() {
         return query;
     }
@@ -93,6 +103,7 @@ public class ListTransferInitiationsRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> sort() {
         return sort;
     }

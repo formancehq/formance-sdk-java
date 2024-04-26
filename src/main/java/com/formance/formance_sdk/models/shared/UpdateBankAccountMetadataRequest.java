@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,12 +25,18 @@ public class UpdateBankAccountMetadataRequest {
     @JsonProperty("metadata")
     private Optional<? extends java.util.Map<String, String>> metadata;
 
+    @JsonCreator
     public UpdateBankAccountMetadataRequest(
             @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
     }
+    
+    public UpdateBankAccountMetadataRequest() {
+        this(Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class V2ListWalletsResponse {
     @JsonProperty("cursor")
     private V2ListWalletsResponseCursor cursor;
 
+    @JsonCreator
     public V2ListWalletsResponse(
             @JsonProperty("cursor") V2ListWalletsResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
     }
 
+    @JsonIgnore
     public V2ListWalletsResponseCursor cursor() {
         return cursor;
     }

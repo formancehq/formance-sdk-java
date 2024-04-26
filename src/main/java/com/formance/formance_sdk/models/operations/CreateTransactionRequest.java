@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -38,6 +40,7 @@ public class CreateTransactionRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")
     private Optional<? extends Boolean> preview;
 
+    @JsonCreator
     public CreateTransactionRequest(
             com.formance.formance_sdk.models.shared.PostTransaction postTransaction,
             String ledger,
@@ -49,6 +52,12 @@ public class CreateTransactionRequest {
         this.ledger = ledger;
         this.preview = preview;
     }
+    
+    public CreateTransactionRequest(
+            com.formance.formance_sdk.models.shared.PostTransaction postTransaction,
+            String ledger) {
+        this(postTransaction, ledger, Optional.empty());
+    }
 
     /**
      * The request body must contain at least one of the following objects:
@@ -56,6 +65,7 @@ public class CreateTransactionRequest {
      *   - `script`: enabling more complex transactions with Numscript
      * 
      */
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.PostTransaction postTransaction() {
         return postTransaction;
     }
@@ -63,6 +73,7 @@ public class CreateTransactionRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -70,6 +81,7 @@ public class CreateTransactionRequest {
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> preview() {
         return preview;
     }

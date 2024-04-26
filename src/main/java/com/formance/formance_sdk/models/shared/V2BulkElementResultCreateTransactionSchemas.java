@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class V2BulkElementResultCreateTransactionSchemas {
     @JsonProperty("responseType")
     private String responseType;
 
+    @JsonCreator
     public V2BulkElementResultCreateTransactionSchemas(
             @JsonProperty("data") V2Transaction data,
             @JsonProperty("responseType") String responseType) {
@@ -31,10 +34,12 @@ public class V2BulkElementResultCreateTransactionSchemas {
         this.responseType = responseType;
     }
 
+    @JsonIgnore
     public V2Transaction data() {
         return data;
     }
 
+    @JsonIgnore
     public String responseType() {
         return responseType;
     }

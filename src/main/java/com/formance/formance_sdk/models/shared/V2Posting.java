@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -28,6 +30,7 @@ public class V2Posting {
     @JsonProperty("source")
     private String source;
 
+    @JsonCreator
     public V2Posting(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
@@ -43,18 +46,22 @@ public class V2Posting {
         this.source = source;
     }
 
+    @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public String destination() {
         return destination;
     }
 
+    @JsonIgnore
     public String source() {
         return source;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -26,6 +28,7 @@ public class SendEventRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=instanceID")
     private String instanceID;
 
+    @JsonCreator
     public SendEventRequest(
             Optional<? extends SendEventRequestBody> requestBody,
             String instanceID) {
@@ -34,7 +37,13 @@ public class SendEventRequest {
         this.requestBody = requestBody;
         this.instanceID = instanceID;
     }
+    
+    public SendEventRequest(
+            String instanceID) {
+        this(Optional.empty(), instanceID);
+    }
 
+    @JsonIgnore
     public Optional<? extends SendEventRequestBody> requestBody() {
         return requestBody;
     }
@@ -42,6 +51,7 @@ public class SendEventRequest {
     /**
      * The instance id
      */
+    @JsonIgnore
     public String instanceID() {
         return instanceID;
     }

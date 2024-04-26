@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +29,7 @@ public class V2CreateLedgerRequest {
     @JsonProperty("metadata")
     private Optional<? extends java.util.Map<String, String>> metadata;
 
+    @JsonCreator
     public V2CreateLedgerRequest(
             @JsonProperty("bucket") Optional<? extends String> bucket,
             @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata) {
@@ -35,11 +38,17 @@ public class V2CreateLedgerRequest {
         this.bucket = bucket;
         this.metadata = metadata;
     }
+    
+    public V2CreateLedgerRequest() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> bucket() {
         return bucket;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }

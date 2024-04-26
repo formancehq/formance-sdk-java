@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -50,6 +52,7 @@ public class CreateClientRequest {
     @JsonProperty("trusted")
     private Optional<? extends Boolean> trusted;
 
+    @JsonCreator
     public CreateClientRequest(
             @JsonProperty("description") Optional<? extends String> description,
             @JsonProperty("metadata") Optional<? extends java.util.Map<String, java.lang.Object>> metadata,
@@ -76,35 +79,48 @@ public class CreateClientRequest {
         this.scopes = scopes;
         this.trusted = trusted;
     }
+    
+    public CreateClientRequest(
+            String name) {
+        this(Optional.empty(), Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> description() {
         return description;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> postLogoutRedirectUris() {
         return postLogoutRedirectUris;
     }
 
+    @JsonIgnore
     public Optional<? extends Boolean> public_() {
         return public_;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> redirectUris() {
         return redirectUris;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> scopes() {
         return scopes;
     }
 
+    @JsonIgnore
     public Optional<? extends Boolean> trusted() {
         return trusted;
     }

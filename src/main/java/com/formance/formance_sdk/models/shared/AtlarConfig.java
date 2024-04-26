@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -71,6 +73,7 @@ public class AtlarConfig {
     @JsonProperty("transferInitiationStatusPollingPeriod")
     private Optional<? extends String> transferInitiationStatusPollingPeriod;
 
+    @JsonCreator
     public AtlarConfig(
             @JsonProperty("accessKey") String accessKey,
             @JsonProperty("baseUrl") Optional<? extends String> baseUrl,
@@ -94,12 +97,20 @@ public class AtlarConfig {
         this.secret = secret;
         this.transferInitiationStatusPollingPeriod = transferInitiationStatusPollingPeriod;
     }
+    
+    public AtlarConfig(
+            String accessKey,
+            String name,
+            String secret) {
+        this(accessKey, Optional.empty(), name, Optional.empty(), Optional.empty(), secret, Optional.empty());
+    }
 
     /**
      * The access key used by the connector for authorizing requests to the Atlar API.
      * You can obtain it along with the associated secret from the Atlar dashboard.
      * 
      */
+    @JsonIgnore
     public String accessKey() {
         return accessKey;
     }
@@ -108,10 +119,12 @@ public class AtlarConfig {
      * The base URL the client uses for making requests towards the Atlar API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> baseUrl() {
         return baseUrl;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
@@ -120,6 +133,7 @@ public class AtlarConfig {
      * Number of items to fetch when querying paginated APIs.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -128,6 +142,7 @@ public class AtlarConfig {
      * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }
@@ -137,6 +152,7 @@ public class AtlarConfig {
      * You can obtain it along with the associated access key from the Atlar dashboard.
      * 
      */
+    @JsonIgnore
     public String secret() {
         return secret;
     }
@@ -145,6 +161,7 @@ public class AtlarConfig {
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> transferInitiationStatusPollingPeriod() {
         return transferInitiationStatusPollingPeriod;
     }

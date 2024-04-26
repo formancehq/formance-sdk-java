@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class SendEventRequestBody {
     @JsonProperty("name")
     private String name;
 
+    @JsonCreator
     public SendEventRequestBody(
             @JsonProperty("name") String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }

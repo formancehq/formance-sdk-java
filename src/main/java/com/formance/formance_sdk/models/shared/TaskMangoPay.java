@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,6 +49,7 @@ public class TaskMangoPay {
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
+    @JsonCreator
     public TaskMangoPay(
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -73,35 +76,54 @@ public class TaskMangoPay {
         this.status = status;
         this.updatedAt = updatedAt;
     }
+    
+    public TaskMangoPay(
+            String connectorID,
+            OffsetDateTime createdAt,
+            TaskMangoPayDescriptor descriptor,
+            String id,
+            TaskMangoPayState state,
+            PaymentStatus status,
+            OffsetDateTime updatedAt) {
+        this(connectorID, createdAt, descriptor, Optional.empty(), id, state, status, updatedAt);
+    }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public TaskMangoPayDescriptor descriptor() {
         return descriptor;
     }
 
+    @JsonIgnore
     public Optional<? extends String> error() {
         return error;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public TaskMangoPayState state() {
         return state;
     }
 
+    @JsonIgnore
     public PaymentStatus status() {
         return status;
     }
 
+    @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,6 +40,7 @@ public class MigrationInfo {
     @JsonProperty("version")
     private Optional<? extends Long> version;
 
+    @JsonCreator
     public MigrationInfo(
             @JsonProperty("date") Optional<? extends OffsetDateTime> date,
             @JsonProperty("name") Optional<? extends String> name,
@@ -52,19 +55,27 @@ public class MigrationInfo {
         this.state = state;
         this.version = version;
     }
+    
+    public MigrationInfo() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> date() {
         return date;
     }
 
+    @JsonIgnore
     public Optional<? extends String> name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends State> state() {
         return state;
     }
 
+    @JsonIgnore
     public Optional<? extends Long> version() {
         return version;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -57,6 +59,7 @@ public class DebitWalletRequest {
     @JsonProperty("timestamp")
     private Optional<? extends OffsetDateTime> timestamp;
 
+    @JsonCreator
     public DebitWalletRequest(
             @JsonProperty("amount") Monetary amount,
             @JsonProperty("balances") Optional<? extends java.util.List<String>> balances,
@@ -80,19 +83,29 @@ public class DebitWalletRequest {
         this.pending = pending;
         this.timestamp = timestamp;
     }
+    
+    public DebitWalletRequest(
+            Monetary amount,
+            java.util.Map<String, String> metadata) {
+        this(amount, Optional.empty(), Optional.empty(), Optional.empty(), metadata, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Monetary amount() {
         return amount;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> balances() {
         return balances;
     }
 
+    @JsonIgnore
     public Optional<? extends String> description() {
         return description;
     }
 
+    @JsonIgnore
     public Optional<? extends Subject> destination() {
         return destination;
     }
@@ -100,6 +113,7 @@ public class DebitWalletRequest {
     /**
      * Metadata associated with the wallet.
      */
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
@@ -107,6 +121,7 @@ public class DebitWalletRequest {
     /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> pending() {
         return pending;
     }
@@ -114,6 +129,7 @@ public class DebitWalletRequest {
     /**
      * cannot be used in conjunction with `pending` property
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> timestamp() {
         return timestamp;
     }

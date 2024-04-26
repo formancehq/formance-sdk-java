@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -47,6 +49,7 @@ public class V2AddMetadataOnTransactionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public V2AddMetadataOnTransactionRequest(
             Optional<? extends String> idempotencyKey,
             Optional<? extends java.util.Map<String, String>> requestBody,
@@ -64,10 +67,17 @@ public class V2AddMetadataOnTransactionRequest {
         this.id = id;
         this.ledger = ledger;
     }
+    
+    public V2AddMetadataOnTransactionRequest(
+            BigInteger id,
+            String ledger) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), id, ledger);
+    }
 
     /**
      * Use an idempotency key
      */
+    @JsonIgnore
     public Optional<? extends String> idempotencyKey() {
         return idempotencyKey;
     }
@@ -75,6 +85,7 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * metadata
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> requestBody() {
         return requestBody;
     }
@@ -82,6 +93,7 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> dryRun() {
         return dryRun;
     }
@@ -89,6 +101,7 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * Transaction ID.
      */
+    @JsonIgnore
     public BigInteger id() {
         return id;
     }
@@ -96,6 +109,7 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

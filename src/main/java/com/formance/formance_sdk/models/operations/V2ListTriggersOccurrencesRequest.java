@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -12,9 +14,27 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Optional;
 
 
 public class V2ListTriggersOccurrencesRequest {
+
+    /**
+     * Parameter used in pagination requests.
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     * 
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
+    private Optional<? extends String> cursor;
+
+    /**
+     * The maximum number of results to return per page.
+     * 
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
+    private Optional<? extends Long> pageSize;
 
     /**
      * The trigger id
@@ -22,21 +42,101 @@ public class V2ListTriggersOccurrencesRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=triggerID")
     private String triggerID;
 
+    @JsonCreator
+    public V2ListTriggersOccurrencesRequest(
+            Optional<? extends String> cursor,
+            Optional<? extends Long> pageSize,
+            String triggerID) {
+        Utils.checkNotNull(cursor, "cursor");
+        Utils.checkNotNull(pageSize, "pageSize");
+        Utils.checkNotNull(triggerID, "triggerID");
+        this.cursor = cursor;
+        this.pageSize = pageSize;
+        this.triggerID = triggerID;
+    }
+    
     public V2ListTriggersOccurrencesRequest(
             String triggerID) {
-        Utils.checkNotNull(triggerID, "triggerID");
-        this.triggerID = triggerID;
+        this(Optional.empty(), Optional.empty(), triggerID);
+    }
+
+    /**
+     * Parameter used in pagination requests.
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     * 
+     */
+    @JsonIgnore
+    public Optional<? extends String> cursor() {
+        return cursor;
+    }
+
+    /**
+     * The maximum number of results to return per page.
+     * 
+     */
+    @JsonIgnore
+    public Optional<? extends Long> pageSize() {
+        return pageSize;
     }
 
     /**
      * The trigger id
      */
+    @JsonIgnore
     public String triggerID() {
         return triggerID;
     }
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    /**
+     * Parameter used in pagination requests.
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     * 
+     */
+    public V2ListTriggersOccurrencesRequest withCursor(String cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = Optional.ofNullable(cursor);
+        return this;
+    }
+
+    /**
+     * Parameter used in pagination requests.
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     * 
+     */
+    public V2ListTriggersOccurrencesRequest withCursor(Optional<? extends String> cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
+        return this;
+    }
+
+    /**
+     * The maximum number of results to return per page.
+     * 
+     */
+    public V2ListTriggersOccurrencesRequest withPageSize(long pageSize) {
+        Utils.checkNotNull(pageSize, "pageSize");
+        this.pageSize = Optional.ofNullable(pageSize);
+        return this;
+    }
+
+    /**
+     * The maximum number of results to return per page.
+     * 
+     */
+    public V2ListTriggersOccurrencesRequest withPageSize(Optional<? extends Long> pageSize) {
+        Utils.checkNotNull(pageSize, "pageSize");
+        this.pageSize = pageSize;
+        return this;
     }
 
     /**
@@ -58,27 +158,83 @@ public class V2ListTriggersOccurrencesRequest {
         }
         V2ListTriggersOccurrencesRequest other = (V2ListTriggersOccurrencesRequest) o;
         return 
+            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
+            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
             java.util.Objects.deepEquals(this.triggerID, other.triggerID);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
+            cursor,
+            pageSize,
             triggerID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListTriggersOccurrencesRequest.class,
+                "cursor", cursor,
+                "pageSize", pageSize,
                 "triggerID", triggerID);
     }
     
     public final static class Builder {
  
+        private Optional<? extends String> cursor = Optional.empty();
+ 
+        private Optional<? extends Long> pageSize = Optional.empty();
+ 
         private String triggerID;  
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * Parameter used in pagination requests.
+         * Set to the value of next for the next page of results.
+         * Set to the value of previous for the previous page of results.
+         * No other parameters can be set when this parameter is set.
+         * 
+         */
+        public Builder cursor(String cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = Optional.ofNullable(cursor);
+            return this;
+        }
+
+        /**
+         * Parameter used in pagination requests.
+         * Set to the value of next for the next page of results.
+         * Set to the value of previous for the previous page of results.
+         * No other parameters can be set when this parameter is set.
+         * 
+         */
+        public Builder cursor(Optional<? extends String> cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = cursor;
+            return this;
+        }
+
+        /**
+         * The maximum number of results to return per page.
+         * 
+         */
+        public Builder pageSize(long pageSize) {
+            Utils.checkNotNull(pageSize, "pageSize");
+            this.pageSize = Optional.ofNullable(pageSize);
+            return this;
+        }
+
+        /**
+         * The maximum number of results to return per page.
+         * 
+         */
+        public Builder pageSize(Optional<? extends Long> pageSize) {
+            Utils.checkNotNull(pageSize, "pageSize");
+            this.pageSize = pageSize;
+            return this;
         }
 
         /**
@@ -92,6 +248,8 @@ public class V2ListTriggersOccurrencesRequest {
         
         public V2ListTriggersOccurrencesRequest build() {
             return new V2ListTriggersOccurrencesRequest(
+                cursor,
+                pageSize,
                 triggerID);
         }
     }

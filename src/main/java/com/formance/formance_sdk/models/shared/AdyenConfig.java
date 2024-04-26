@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,6 +43,7 @@ public class AdyenConfig {
     @JsonProperty("pollingPeriod")
     private Optional<? extends String> pollingPeriod;
 
+    @JsonCreator
     public AdyenConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("hmacKey") String hmacKey,
@@ -58,19 +61,30 @@ public class AdyenConfig {
         this.name = name;
         this.pollingPeriod = pollingPeriod;
     }
+    
+    public AdyenConfig(
+            String apiKey,
+            String hmacKey,
+            String name) {
+        this(apiKey, hmacKey, Optional.empty(), name, Optional.empty());
+    }
 
+    @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    @JsonIgnore
     public String hmacKey() {
         return hmacKey;
     }
 
+    @JsonIgnore
     public Optional<? extends String> liveEndpointPrefix() {
         return liveEndpointPrefix;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
@@ -79,6 +93,7 @@ public class AdyenConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }

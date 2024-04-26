@@ -1,21 +1,21 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 745fb0d6111aa2e77df9d43b27f39181
-  docVersion: v2.0.0-rc.22
-  speakeasyVersion: 1.253.1
-  generationVersion: 2.306.0
-  releaseVersion: 2.2.5
-  configChecksum: 5949efc9fda36441e1c4c60bc49c2872
+  docChecksum: dca7ba9ff001feb25f6ad3cfb9c6944d
+  docVersion: v2.0.0-rc.24
+  speakeasyVersion: 1.274.1
+  generationVersion: 2.314.0
+  releaseVersion: 2.3.0
+  configChecksum: 09a9787d62655d7b04fa46c261da5b06
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
 features:
   java:
     constsAndDefaults: 0.1.1
-    core: 3.16.4
+    core: 3.18.0
     deprecations: 2.81.1
-    errors: 0.1.1
+    errors: 0.1.2
     getRequestBodies: 2.81.1
     globalSecurity: 2.82.5
     globalServerURLs: 2.82.1
@@ -126,6 +126,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2SendEventRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/AddAccountToPoolRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/ConnectorsTransferRequestBuilder.java
+  - src/main/java/com/formance/formance_sdk/models/operations/CreateAccountRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateBankAccountRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreatePaymentRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreatePoolRequestBuilder.java
@@ -216,6 +217,8 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/utils/HTTPClient.java
   - src/main/java/com/formance/formance_sdk/utils/HTTPRequest.java
   - src/main/java/com/formance/formance_sdk/utils/HeaderMetadata.java
+  - src/main/java/com/formance/formance_sdk/utils/Hook.java
+  - src/main/java/com/formance/formance_sdk/utils/Hooks.java
   - src/main/java/com/formance/formance_sdk/utils/JSON.java
   - src/main/java/com/formance/formance_sdk/utils/LazySingletonValue.java
   - src/main/java/com/formance/formance_sdk/utils/Metadata.java
@@ -234,7 +237,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/utils/SecurityMetadata.java
   - src/main/java/com/formance/formance_sdk/utils/SerializedBody.java
   - src/main/java/com/formance/formance_sdk/utils/SpeakeasyHTTPClient.java
-  - src/main/java/com/formance/formance_sdk/utils/SpeakeasyHTTPSecurityClient.java
   - src/main/java/com/formance/formance_sdk/utils/SpeakeasyMetadata.java
   - src/main/java/com/formance/formance_sdk/utils/TypedObject.java
   - src/main/java/com/formance/formance_sdk/utils/Types.java
@@ -395,9 +397,11 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetWorkflowResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListInstancesRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListInstancesResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2ListTriggersRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListTriggersResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListTriggersOccurrencesRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListTriggersOccurrencesResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2ListWorkflowsRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListWorkflowsResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ReadTriggerRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ReadTriggerResponse.java
@@ -410,6 +414,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/AddAccountToPoolResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/ConnectorsTransferRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/ConnectorsTransferResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/CreateAccountResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateBankAccountResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreatePaymentResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreatePoolResponse.java
@@ -823,6 +828,11 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/TransferResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Connector.java
   - src/main/java/com/formance/formance_sdk/models/shared/TransferRequest.java
+  - src/main/java/com/formance/formance_sdk/models/shared/PaymentsAccountResponse.java
+  - src/main/java/com/formance/formance_sdk/models/shared/PaymentsAccountRaw.java
+  - src/main/java/com/formance/formance_sdk/models/shared/PaymentsAccount.java
+  - src/main/java/com/formance/formance_sdk/models/shared/AccountType.java
+  - src/main/java/com/formance/formance_sdk/models/shared/AccountRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/BankAccountResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/BankAccount.java
   - src/main/java/com/formance/formance_sdk/models/shared/BankAccountRelatedAccounts.java
@@ -911,9 +921,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/PoolsCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/TransferInitiationsCursorCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/TransferInitiationsCursor.java
-  - src/main/java/com/formance/formance_sdk/models/shared/PaymentsAccountResponse.java
-  - src/main/java/com/formance/formance_sdk/models/shared/PaymentsAccountRaw.java
-  - src/main/java/com/formance/formance_sdk/models/shared/PaymentsAccount.java
   - src/main/java/com/formance/formance_sdk/models/shared/Cursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/AccountsCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorConfigResponse.java
@@ -1134,9 +1141,11 @@ generatedFiles:
   - docs/models/operations/V2GetWorkflowResponse.md
   - docs/models/operations/V2ListInstancesRequest.md
   - docs/models/operations/V2ListInstancesResponse.md
+  - docs/models/operations/V2ListTriggersRequest.md
   - docs/models/operations/V2ListTriggersResponse.md
   - docs/models/operations/V2ListTriggersOccurrencesRequest.md
   - docs/models/operations/V2ListTriggersOccurrencesResponse.md
+  - docs/models/operations/V2ListWorkflowsRequest.md
   - docs/models/operations/V2ListWorkflowsResponse.md
   - docs/models/operations/V2ReadTriggerRequest.md
   - docs/models/operations/V2ReadTriggerResponse.md
@@ -1149,6 +1158,7 @@ generatedFiles:
   - docs/models/operations/AddAccountToPoolResponse.md
   - docs/models/operations/ConnectorsTransferRequest.md
   - docs/models/operations/ConnectorsTransferResponse.md
+  - docs/models/operations/CreateAccountResponse.md
   - docs/models/operations/CreateBankAccountResponse.md
   - docs/models/operations/CreatePaymentResponse.md
   - docs/models/operations/CreatePoolResponse.md
@@ -1562,6 +1572,11 @@ generatedFiles:
   - docs/models/shared/TransferResponse.md
   - docs/models/shared/Connector.md
   - docs/models/shared/TransferRequest.md
+  - docs/models/shared/PaymentsAccountResponse.md
+  - docs/models/shared/PaymentsAccountRaw.md
+  - docs/models/shared/PaymentsAccount.md
+  - docs/models/shared/AccountType.md
+  - docs/models/shared/AccountRequest.md
   - docs/models/shared/BankAccountResponse.md
   - docs/models/shared/BankAccount.md
   - docs/models/shared/BankAccountRelatedAccounts.md
@@ -1650,9 +1665,6 @@ generatedFiles:
   - docs/models/shared/PoolsCursor.md
   - docs/models/shared/TransferInitiationsCursorCursor.md
   - docs/models/shared/TransferInitiationsCursor.md
-  - docs/models/shared/PaymentsAccountResponse.md
-  - docs/models/shared/PaymentsAccountRaw.md
-  - docs/models/shared/PaymentsAccount.md
   - docs/models/shared/Cursor.md
   - docs/models/shared/AccountsCursor.md
   - docs/models/shared/ConnectorConfigResponse.md

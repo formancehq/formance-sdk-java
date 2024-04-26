@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -31,6 +33,7 @@ public class V2Workflow {
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
+    @JsonCreator
     public V2Workflow(
             @JsonProperty("config") V2WorkflowConfig config,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -46,18 +49,22 @@ public class V2Workflow {
         this.updatedAt = updatedAt;
     }
 
+    @JsonIgnore
     public V2WorkflowConfig config() {
         return config;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }

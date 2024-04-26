@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -45,6 +47,7 @@ public class DummyPayConfig {
     @JsonProperty("prefixFileToIngest")
     private Optional<? extends String> prefixFileToIngest;
 
+    @JsonCreator
     public DummyPayConfig(
             @JsonProperty("directory") String directory,
             @JsonProperty("filePollingPeriod") Optional<? extends String> filePollingPeriod,
@@ -65,7 +68,14 @@ public class DummyPayConfig {
         this.numberOfPaymentsPreGenerated = numberOfPaymentsPreGenerated;
         this.prefixFileToIngest = prefixFileToIngest;
     }
+    
+    public DummyPayConfig(
+            String directory,
+            String name) {
+        this(directory, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public String directory() {
         return directory;
     }
@@ -73,22 +83,27 @@ public class DummyPayConfig {
     /**
      * The frequency at which the connector will try to fetch new payment objects from the directory
      */
+    @JsonIgnore
     public Optional<? extends String> filePollingPeriod() {
         return filePollingPeriod;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends Long> numberOfAccountsPreGenerated() {
         return numberOfAccountsPreGenerated;
     }
 
+    @JsonIgnore
     public Optional<? extends Long> numberOfPaymentsPreGenerated() {
         return numberOfPaymentsPreGenerated;
     }
 
+    @JsonIgnore
     public Optional<? extends String> prefixFileToIngest() {
         return prefixFileToIngest;
     }

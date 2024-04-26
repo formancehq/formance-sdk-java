@@ -12,9 +12,10 @@ generation:
   comments: {}
   telemetryEnabled: false
 java:
-  version: 2.2.5
+  version: 2.3.0
   additionalDependencies: []
   artifactID: formance-sdk
+  clientServerStatusCodesAsErrors: true
   companyEmail: support@formance.com
   companyName: Formance
   companyURL: https://www.formance.com

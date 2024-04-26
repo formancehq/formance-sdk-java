@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +32,7 @@ public class V2BulkElementDeleteMetadata {
     @JsonProperty("ik")
     private Optional<? extends String> ik;
 
+    @JsonCreator
     public V2BulkElementDeleteMetadata(
             @JsonProperty("action") String action,
             @JsonProperty("data") Optional<? extends V2BulkElementDeleteMetadataData> data,
@@ -41,15 +44,23 @@ public class V2BulkElementDeleteMetadata {
         this.data = data;
         this.ik = ik;
     }
+    
+    public V2BulkElementDeleteMetadata(
+            String action) {
+        this(action, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public String action() {
         return action;
     }
 
+    @JsonIgnore
     public Optional<? extends V2BulkElementDeleteMetadataData> data() {
         return data;
     }
 
+    @JsonIgnore
     public Optional<? extends String> ik() {
         return ik;
     }

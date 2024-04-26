@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -34,6 +36,7 @@ public class V2ListLedgersRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<? extends Long> pageSize;
 
+    @JsonCreator
     public V2ListLedgersRequest(
             Optional<? extends String> cursor,
             Optional<? extends Long> pageSize) {
@@ -41,6 +44,10 @@ public class V2ListLedgersRequest {
         Utils.checkNotNull(pageSize, "pageSize");
         this.cursor = cursor;
         this.pageSize = pageSize;
+    }
+    
+    public V2ListLedgersRequest() {
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -50,6 +57,7 @@ public class V2ListLedgersRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -58,6 +66,7 @@ public class V2ListLedgersRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }

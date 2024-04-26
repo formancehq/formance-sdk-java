@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,6 +55,7 @@ public class Reconciliation {
     @JsonProperty("status")
     private String status;
 
+    @JsonCreator
     public Reconciliation(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("driftBalances") java.util.Map<String, BigInteger> driftBalances,
@@ -85,43 +88,66 @@ public class Reconciliation {
         this.reconciledAtPayments = reconciledAtPayments;
         this.status = status;
     }
+    
+    public Reconciliation(
+            OffsetDateTime createdAt,
+            java.util.Map<String, BigInteger> driftBalances,
+            String id,
+            java.util.Map<String, BigInteger> ledgerBalances,
+            java.util.Map<String, BigInteger> paymentsBalances,
+            String policyID,
+            OffsetDateTime reconciledAtLedger,
+            OffsetDateTime reconciledAtPayments,
+            String status) {
+        this(createdAt, driftBalances, Optional.empty(), id, ledgerBalances, paymentsBalances, policyID, reconciledAtLedger, reconciledAtPayments, status);
+    }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public java.util.Map<String, BigInteger> driftBalances() {
         return driftBalances;
     }
 
+    @JsonIgnore
     public Optional<? extends String> error() {
         return error;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public java.util.Map<String, BigInteger> ledgerBalances() {
         return ledgerBalances;
     }
 
+    @JsonIgnore
     public java.util.Map<String, BigInteger> paymentsBalances() {
         return paymentsBalances;
     }
 
+    @JsonIgnore
     public String policyID() {
         return policyID;
     }
 
+    @JsonIgnore
     public OffsetDateTime reconciledAtLedger() {
         return reconciledAtLedger;
     }
 
+    @JsonIgnore
     public OffsetDateTime reconciledAtPayments() {
         return reconciledAtPayments;
     }
 
+    @JsonIgnore
     public String status() {
         return status;
     }

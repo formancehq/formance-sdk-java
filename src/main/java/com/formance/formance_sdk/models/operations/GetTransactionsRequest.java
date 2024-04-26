@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -40,6 +42,7 @@ public class GetTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=walletID")
     private Optional<? extends String> walletID;
 
+    @JsonCreator
     public GetTransactionsRequest(
             Optional<? extends String> cursor,
             Optional<? extends Long> pageSize,
@@ -51,6 +54,10 @@ public class GetTransactionsRequest {
         this.pageSize = pageSize;
         this.walletID = walletID;
     }
+    
+    public GetTransactionsRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Parameter used in pagination requests.
@@ -59,6 +66,7 @@ public class GetTransactionsRequest {
      * No other parameters can be set when the cursor is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -66,6 +74,7 @@ public class GetTransactionsRequest {
     /**
      * The maximum number of results to return per page
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -73,6 +82,7 @@ public class GetTransactionsRequest {
     /**
      * A wallet ID to filter on
      */
+    @JsonIgnore
     public Optional<? extends String> walletID() {
         return walletID;
     }

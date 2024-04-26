@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -35,6 +37,7 @@ public class CountAccountsRequest {
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
     private Optional<? extends java.util.Map<String, java.lang.Object>> metadata;
 
+    @JsonCreator
     public CountAccountsRequest(
             Optional<? extends String> address,
             String ledger,
@@ -46,10 +49,16 @@ public class CountAccountsRequest {
         this.ledger = ledger;
         this.metadata = metadata;
     }
+    
+    public CountAccountsRequest(
+            String ledger) {
+        this(Optional.empty(), ledger, Optional.empty());
+    }
 
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
+    @JsonIgnore
     public Optional<? extends String> address() {
         return address;
     }
@@ -57,6 +66,7 @@ public class CountAccountsRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -64,6 +74,7 @@ public class CountAccountsRequest {
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,6 +34,7 @@ public class TransferRequest {
     @JsonProperty("source")
     private Optional<? extends String> source;
 
+    @JsonCreator
     public TransferRequest(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
@@ -46,19 +49,30 @@ public class TransferRequest {
         this.destination = destination;
         this.source = source;
     }
+    
+    public TransferRequest(
+            BigInteger amount,
+            String asset,
+            String destination) {
+        this(amount, asset, destination, Optional.empty());
+    }
 
+    @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public String destination() {
         return destination;
     }
 
+    @JsonIgnore
     public Optional<? extends String> source() {
         return source;
     }

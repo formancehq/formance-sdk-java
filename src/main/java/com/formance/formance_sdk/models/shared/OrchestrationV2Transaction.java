@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,6 +40,7 @@ public class OrchestrationV2Transaction {
     @JsonProperty("txid")
     private BigInteger txid;
 
+    @JsonCreator
     public OrchestrationV2Transaction(
             @JsonProperty("metadata") java.util.Map<String, String> metadata,
             @JsonProperty("postings") java.util.List<V2Posting> postings,
@@ -55,23 +58,36 @@ public class OrchestrationV2Transaction {
         this.timestamp = timestamp;
         this.txid = txid;
     }
+    
+    public OrchestrationV2Transaction(
+            java.util.Map<String, String> metadata,
+            java.util.List<V2Posting> postings,
+            OffsetDateTime timestamp,
+            BigInteger txid) {
+        this(metadata, postings, Optional.empty(), timestamp, txid);
+    }
 
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public java.util.List<V2Posting> postings() {
         return postings;
     }
 
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
     }
 
+    @JsonIgnore
     public BigInteger txid() {
         return txid;
     }

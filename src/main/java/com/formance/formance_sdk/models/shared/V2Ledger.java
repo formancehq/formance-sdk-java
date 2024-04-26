@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,6 +37,7 @@ public class V2Ledger {
     @JsonProperty("name")
     private String name;
 
+    @JsonCreator
     public V2Ledger(
             @JsonProperty("addedAt") OffsetDateTime addedAt,
             @JsonProperty("bucket") String bucket,
@@ -49,19 +52,30 @@ public class V2Ledger {
         this.metadata = metadata;
         this.name = name;
     }
+    
+    public V2Ledger(
+            OffsetDateTime addedAt,
+            String bucket,
+            String name) {
+        this(addedAt, bucket, Optional.empty(), name);
+    }
 
+    @JsonIgnore
     public OffsetDateTime addedAt() {
         return addedAt;
     }
 
+    @JsonIgnore
     public String bucket() {
         return bucket;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }

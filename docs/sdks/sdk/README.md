@@ -48,7 +48,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -102,7 +102,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 

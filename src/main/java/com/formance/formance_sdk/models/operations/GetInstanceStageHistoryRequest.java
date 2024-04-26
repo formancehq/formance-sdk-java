@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -28,6 +30,7 @@ public class GetInstanceStageHistoryRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=number")
     private long number;
 
+    @JsonCreator
     public GetInstanceStageHistoryRequest(
             String instanceID,
             long number) {
@@ -40,6 +43,7 @@ public class GetInstanceStageHistoryRequest {
     /**
      * The instance id
      */
+    @JsonIgnore
     public String instanceID() {
         return instanceID;
     }
@@ -47,6 +51,7 @@ public class GetInstanceStageHistoryRequest {
     /**
      * The stage number
      */
+    @JsonIgnore
     public long number() {
         return number;
     }

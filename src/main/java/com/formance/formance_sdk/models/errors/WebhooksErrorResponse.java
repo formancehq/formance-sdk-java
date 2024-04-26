@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.errors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,6 +34,7 @@ public class WebhooksErrorResponse extends RuntimeException {
     @JsonProperty("errorMessage")
     private String errorMessage;
 
+    @JsonCreator
     public WebhooksErrorResponse(
             @JsonProperty("details") Optional<? extends String> details,
             @JsonProperty("errorCode") com.formance.formance_sdk.models.shared.WebhooksErrorsEnum errorCode,
@@ -42,6 +45,12 @@ public class WebhooksErrorResponse extends RuntimeException {
         this.details = details;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
+    }
+    
+    public WebhooksErrorResponse(
+            com.formance.formance_sdk.models.shared.WebhooksErrorsEnum errorCode,
+            String errorMessage) {
+        this(Optional.empty(), errorCode, errorMessage);
     }
 
     public Optional<? extends String> details(){

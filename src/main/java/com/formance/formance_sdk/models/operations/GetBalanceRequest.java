@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class GetBalanceRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
 
+    @JsonCreator
     public GetBalanceRequest(
             String balanceName,
             String id) {
@@ -31,10 +34,12 @@ public class GetBalanceRequest {
         this.id = id;
     }
 
+    @JsonIgnore
     public String balanceName() {
         return balanceName;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }

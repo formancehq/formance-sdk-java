@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -34,6 +36,7 @@ public class ListReconciliationsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<? extends Long> pageSize;
 
+    @JsonCreator
     public ListReconciliationsRequest(
             Optional<? extends String> cursor,
             Optional<? extends Long> pageSize) {
@@ -41,6 +44,10 @@ public class ListReconciliationsRequest {
         Utils.checkNotNull(pageSize, "pageSize");
         this.cursor = cursor;
         this.pageSize = pageSize;
+    }
+    
+    public ListReconciliationsRequest() {
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -50,6 +57,7 @@ public class ListReconciliationsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -58,6 +66,7 @@ public class ListReconciliationsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }

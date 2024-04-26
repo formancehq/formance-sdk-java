@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class UpdateWalletRequestBody {
     @JsonProperty("metadata")
     private java.util.Map<String, String> metadata;
 
+    @JsonCreator
     public UpdateWalletRequestBody(
             @JsonProperty("metadata") java.util.Map<String, String> metadata) {
         metadata = Utils.emptyMapIfNull(metadata);
@@ -31,6 +34,7 @@ public class UpdateWalletRequestBody {
     /**
      * Custom metadata to attach to this wallet.
      */
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }

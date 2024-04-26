@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class V2LedgerAccountSubject {
     @JsonProperty("type")
     private String type;
 
+    @JsonCreator
     public V2LedgerAccountSubject(
             @JsonProperty("identifier") String identifier,
             @JsonProperty("type") String type) {
@@ -31,10 +34,12 @@ public class V2LedgerAccountSubject {
         this.type = type;
     }
 
+    @JsonIgnore
     public String identifier() {
         return identifier;
     }
 
+    @JsonIgnore
     public String type() {
         return type;
     }

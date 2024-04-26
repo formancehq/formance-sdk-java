@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -30,6 +32,7 @@ public class GetPoolBalancesRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=poolId")
     private String poolId;
 
+    @JsonCreator
     public GetPoolBalancesRequest(
             OffsetDateTime at,
             String poolId) {
@@ -43,6 +46,7 @@ public class GetPoolBalancesRequest {
      * Filter balances by date.
      * 
      */
+    @JsonIgnore
     public OffsetDateTime at() {
         return at;
     }
@@ -50,6 +54,7 @@ public class GetPoolBalancesRequest {
     /**
      * The pool ID.
      */
+    @JsonIgnore
     public String poolId() {
         return poolId;
     }

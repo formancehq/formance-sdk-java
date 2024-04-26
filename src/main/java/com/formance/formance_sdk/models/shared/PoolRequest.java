@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class PoolRequest {
     @JsonProperty("name")
     private String name;
 
+    @JsonCreator
     public PoolRequest(
             @JsonProperty("accountIDs") java.util.List<String> accountIDs,
             @JsonProperty("name") String name) {
@@ -31,10 +34,12 @@ public class PoolRequest {
         this.name = name;
     }
 
+    @JsonIgnore
     public java.util.List<String> accountIDs() {
         return accountIDs;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }

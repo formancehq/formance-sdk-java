@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -50,6 +52,7 @@ public class V2ListAccountsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<? extends OffsetDateTime> pit;
 
+    @JsonCreator
     public V2ListAccountsRequest(
             Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
             Optional<? extends String> cursor,
@@ -70,7 +73,13 @@ public class V2ListAccountsRequest {
         this.pageSize = pageSize;
         this.pit = pit;
     }
+    
+    public V2ListAccountsRequest(
+            String ledger) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
         return requestBody;
     }
@@ -82,10 +91,12 @@ public class V2ListAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
 
+    @JsonIgnore
     public Optional<? extends String> expand() {
         return expand;
     }
@@ -93,6 +104,7 @@ public class V2ListAccountsRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -101,10 +113,12 @@ public class V2ListAccountsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> pit() {
         return pit;
     }

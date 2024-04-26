@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class DeleteClientRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=clientId")
     private String clientId;
 
+    @JsonCreator
     public DeleteClientRequest(
             String clientId) {
         Utils.checkNotNull(clientId, "clientId");
@@ -31,6 +34,7 @@ public class DeleteClientRequest {
     /**
      * Client ID
      */
+    @JsonIgnore
     public String clientId() {
         return clientId;
     }

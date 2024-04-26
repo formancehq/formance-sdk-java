@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,12 +25,18 @@ public class LedgerInfoResponse {
     @JsonProperty("data")
     private Optional<? extends LedgerInfo> data;
 
+    @JsonCreator
     public LedgerInfoResponse(
             @JsonProperty("data") Optional<? extends LedgerInfo> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
+    
+    public LedgerInfoResponse() {
+        this(Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends LedgerInfo> data() {
         return data;
     }

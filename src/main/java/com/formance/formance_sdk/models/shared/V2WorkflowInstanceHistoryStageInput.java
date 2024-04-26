@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -59,6 +61,7 @@ public class V2WorkflowInstanceHistoryStageInput {
     @JsonProperty("VoidHold")
     private Optional<? extends V2ActivityVoidHold> voidHold;
 
+    @JsonCreator
     public V2WorkflowInstanceHistoryStageInput(
             @JsonProperty("ConfirmHold") Optional<? extends V2ActivityConfirmHold> confirmHold,
             @JsonProperty("CreateTransaction") Optional<? extends V2ActivityCreateTransaction> createTransaction,
@@ -91,43 +94,57 @@ public class V2WorkflowInstanceHistoryStageInput {
         this.stripeTransfer = stripeTransfer;
         this.voidHold = voidHold;
     }
+    
+    public V2WorkflowInstanceHistoryStageInput() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityConfirmHold> confirmHold() {
         return confirmHold;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityCreateTransaction> createTransaction() {
         return createTransaction;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityCreditWallet> creditWallet() {
         return creditWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityDebitWallet> debitWallet() {
         return debitWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityGetAccount> getAccount() {
         return getAccount;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityGetPayment> getPayment() {
         return getPayment;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityGetWallet> getWallet() {
         return getWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityListWallets> listWallets() {
         return listWallets;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityStripeTransfer> stripeTransfer() {
         return stripeTransfer;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityVoidHold> voidHold() {
         return voidHold;
     }

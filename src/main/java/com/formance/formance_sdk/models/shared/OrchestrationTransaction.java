@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,6 +43,7 @@ public class OrchestrationTransaction {
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
+    @JsonCreator
     public OrchestrationTransaction(
             @JsonProperty("id") BigInteger id,
             @JsonProperty("metadata") java.util.Map<String, String> metadata,
@@ -61,27 +64,42 @@ public class OrchestrationTransaction {
         this.reverted = reverted;
         this.timestamp = timestamp;
     }
+    
+    public OrchestrationTransaction(
+            BigInteger id,
+            java.util.Map<String, String> metadata,
+            java.util.List<Posting> postings,
+            boolean reverted,
+            OffsetDateTime timestamp) {
+        this(id, metadata, postings, Optional.empty(), reverted, timestamp);
+    }
 
+    @JsonIgnore
     public BigInteger id() {
         return id;
     }
 
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public java.util.List<Posting> postings() {
         return postings;
     }
 
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public boolean reverted() {
         return reverted;
     }
 
+    @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
     }

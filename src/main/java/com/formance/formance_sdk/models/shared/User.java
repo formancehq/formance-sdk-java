@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,6 +33,7 @@ public class User {
     @JsonProperty("subject")
     private Optional<? extends String> subject;
 
+    @JsonCreator
     public User(
             @JsonProperty("email") Optional<? extends String> email,
             @JsonProperty("id") Optional<? extends String> id,
@@ -42,15 +45,22 @@ public class User {
         this.id = id;
         this.subject = subject;
     }
+    
+    public User() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> email() {
         return email;
     }
 
+    @JsonIgnore
     public Optional<? extends String> id() {
         return id;
     }
 
+    @JsonIgnore
     public Optional<? extends String> subject() {
         return subject;
     }

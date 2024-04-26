@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -31,6 +33,7 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public DeleteConfigResponse(
             String contentType,
             int statusCode,
@@ -46,6 +49,7 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -53,6 +57,7 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -60,6 +65,7 @@ public class DeleteConfigResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }

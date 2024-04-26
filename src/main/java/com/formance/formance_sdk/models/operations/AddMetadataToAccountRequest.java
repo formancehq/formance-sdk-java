@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -39,6 +41,7 @@ public class AddMetadataToAccountRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public AddMetadataToAccountRequest(
             Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
             String address,
@@ -50,10 +53,17 @@ public class AddMetadataToAccountRequest {
         this.address = address;
         this.ledger = ledger;
     }
+    
+    public AddMetadataToAccountRequest(
+            String address,
+            String ledger) {
+        this(Optional.empty(), address, ledger);
+    }
 
     /**
      * metadata
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
         return requestBody;
     }
@@ -65,6 +75,7 @@ public class AddMetadataToAccountRequest {
      * ```
      * 
      */
+    @JsonIgnore
     public String address() {
         return address;
     }
@@ -72,6 +83,7 @@ public class AddMetadataToAccountRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

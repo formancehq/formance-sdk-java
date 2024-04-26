@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,12 +25,18 @@ public class V2LedgerInfoStorage {
     @JsonProperty("migrations")
     private Optional<? extends java.util.List<V2MigrationInfo>> migrations;
 
+    @JsonCreator
     public V2LedgerInfoStorage(
             @JsonProperty("migrations") Optional<? extends java.util.List<V2MigrationInfo>> migrations) {
         Utils.checkNotNull(migrations, "migrations");
         this.migrations = migrations;
     }
+    
+    public V2LedgerInfoStorage() {
+        this(Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<V2MigrationInfo>> migrations() {
         return migrations;
     }

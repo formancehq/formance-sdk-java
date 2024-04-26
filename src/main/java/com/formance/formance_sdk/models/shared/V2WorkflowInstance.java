@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,6 +51,7 @@ public class V2WorkflowInstance {
     @JsonProperty("workflowID")
     private String workflowID;
 
+    @JsonCreator
     public V2WorkflowInstance(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("error") Optional<? extends String> error,
@@ -75,35 +78,52 @@ public class V2WorkflowInstance {
         this.updatedAt = updatedAt;
         this.workflowID = workflowID;
     }
+    
+    public V2WorkflowInstance(
+            OffsetDateTime createdAt,
+            String id,
+            boolean terminated,
+            OffsetDateTime updatedAt,
+            String workflowID) {
+        this(createdAt, Optional.empty(), id, Optional.empty(), terminated, Optional.empty(), updatedAt, workflowID);
+    }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public Optional<? extends String> error() {
         return error;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<V2StageStatus>> status() {
         return status;
     }
 
+    @JsonIgnore
     public boolean terminated() {
         return terminated;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> terminatedAt() {
         return terminatedAt;
     }
 
+    @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }
 
+    @JsonIgnore
     public String workflowID() {
         return workflowID;
     }

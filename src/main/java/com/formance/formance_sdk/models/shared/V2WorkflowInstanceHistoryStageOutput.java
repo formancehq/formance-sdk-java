@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,6 +45,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
     @JsonProperty("ListWallets")
     private Optional<? extends V2ListWalletsResponse> listWallets;
 
+    @JsonCreator
     public V2WorkflowInstanceHistoryStageOutput(
             @JsonProperty("CreateTransaction") Optional<? extends V2ActivityCreateTransactionOutput> createTransaction,
             @JsonProperty("DebitWallet") Optional<? extends V2ActivityDebitWalletOutput> debitWallet,
@@ -63,27 +66,37 @@ public class V2WorkflowInstanceHistoryStageOutput {
         this.getWallet = getWallet;
         this.listWallets = listWallets;
     }
+    
+    public V2WorkflowInstanceHistoryStageOutput() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityCreateTransactionOutput> createTransaction() {
         return createTransaction;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityDebitWalletOutput> debitWallet() {
         return debitWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityGetAccountOutput> getAccount() {
         return getAccount;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityGetPaymentOutput> getPayment() {
         return getPayment;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ActivityGetWalletOutput> getWallet() {
         return getWallet;
     }
 
+    @JsonIgnore
     public Optional<? extends V2ListWalletsResponse> listWallets() {
         return listWallets;
     }

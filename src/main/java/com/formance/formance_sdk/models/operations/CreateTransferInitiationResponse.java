@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ public class CreateTransferInitiationResponse implements com.formance.formance_s
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse;
 
+    @JsonCreator
     public CreateTransferInitiationResponse(
             String contentType,
             int statusCode,
@@ -51,10 +54,18 @@ public class CreateTransferInitiationResponse implements com.formance.formance_s
         this.rawResponse = rawResponse;
         this.transferInitiationResponse = transferInitiationResponse;
     }
+    
+    public CreateTransferInitiationResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +73,7 @@ public class CreateTransferInitiationResponse implements com.formance.formance_s
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -69,6 +81,7 @@ public class CreateTransferInitiationResponse implements com.formance.formance_s
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -76,6 +89,7 @@ public class CreateTransferInitiationResponse implements com.formance.formance_s
     /**
      * OK
      */
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse() {
         return transferInitiationResponse;
     }

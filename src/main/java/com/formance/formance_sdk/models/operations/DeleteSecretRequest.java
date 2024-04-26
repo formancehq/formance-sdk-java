@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -28,6 +30,7 @@ public class DeleteSecretRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=secretId")
     private String secretId;
 
+    @JsonCreator
     public DeleteSecretRequest(
             String clientId,
             String secretId) {
@@ -40,6 +43,7 @@ public class DeleteSecretRequest {
     /**
      * Client ID
      */
+    @JsonIgnore
     public String clientId() {
         return clientId;
     }
@@ -47,6 +51,7 @@ public class DeleteSecretRequest {
     /**
      * Secret ID
      */
+    @JsonIgnore
     public String secretId() {
         return secretId;
     }

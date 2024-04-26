@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -44,6 +46,7 @@ public class V2Hold {
     @JsonProperty("walletID")
     private String walletID;
 
+    @JsonCreator
     public V2Hold(
             @JsonProperty("description") String description,
             @JsonProperty("destination") Optional<? extends V2Subject> destination,
@@ -61,11 +64,21 @@ public class V2Hold {
         this.metadata = metadata;
         this.walletID = walletID;
     }
+    
+    public V2Hold(
+            String description,
+            String id,
+            java.util.Map<String, String> metadata,
+            String walletID) {
+        this(description, Optional.empty(), id, metadata, walletID);
+    }
 
+    @JsonIgnore
     public String description() {
         return description;
     }
 
+    @JsonIgnore
     public Optional<? extends V2Subject> destination() {
         return destination;
     }
@@ -73,6 +86,7 @@ public class V2Hold {
     /**
      * The unique ID of the hold.
      */
+    @JsonIgnore
     public String id() {
         return id;
     }
@@ -80,6 +94,7 @@ public class V2Hold {
     /**
      * Metadata associated with the hold.
      */
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
@@ -87,6 +102,7 @@ public class V2Hold {
     /**
      * The ID of the wallet the hold is associated with.
      */
+    @JsonIgnore
     public String walletID() {
         return walletID;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +29,7 @@ public class V2TriggerTest {
     @JsonProperty("variables")
     private Optional<? extends java.util.Map<String, Variables>> variables;
 
+    @JsonCreator
     public V2TriggerTest(
             @JsonProperty("filter") Optional<? extends Filter> filter,
             @JsonProperty("variables") Optional<? extends java.util.Map<String, Variables>> variables) {
@@ -35,11 +38,17 @@ public class V2TriggerTest {
         this.filter = filter;
         this.variables = variables;
     }
+    
+    public V2TriggerTest() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends Filter> filter() {
         return filter;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, Variables>> variables() {
         return variables;
     }

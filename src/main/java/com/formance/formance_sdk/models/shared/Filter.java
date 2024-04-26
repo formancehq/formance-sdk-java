@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +29,7 @@ public class Filter {
     @JsonProperty("match")
     private Optional<? extends Boolean> match;
 
+    @JsonCreator
     public Filter(
             @JsonProperty("error") Optional<? extends String> error,
             @JsonProperty("match") Optional<? extends Boolean> match) {
@@ -35,11 +38,17 @@ public class Filter {
         this.error = error;
         this.match = match;
     }
+    
+    public Filter() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> error() {
         return error;
     }
 
+    @JsonIgnore
     public Optional<? extends Boolean> match() {
         return match;
     }

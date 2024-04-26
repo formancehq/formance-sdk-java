@@ -10,13 +10,18 @@ import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
+import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
+import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
+import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
 import com.formance.formance_sdk.utils.JSON;
+import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.RetryConfig;
 import com.formance.formance_sdk.utils.SpeakeasyHTTPClient;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
@@ -41,6 +46,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class SDK implements
             MethodCallGetOIDCWellKnowns,
             MethodCallGetVersions {
+
+
     /**
      * SERVERS contains the list of server urls available to the SDK.
      */
@@ -188,6 +195,11 @@ public class SDK implements
             this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
             return this;
         }
+        // Visible for testing, will be accessed via reflection
+        void _hooks(com.formance.formance_sdk.utils.Hooks hooks) {
+            sdkConfiguration.setHooks(hooks);    
+        }
+        
         /**
          * Builds a new instance of the SDK.
          * @return The SDK instance.
@@ -196,9 +208,9 @@ public class SDK implements
             if (sdkConfiguration.defaultClient == null) {
                 sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
             }
-	    if (sdkConfiguration.securitySource == null) {
-	    	sdkConfiguration.securitySource = SecuritySource.of(null);
-	    }
+	        if (sdkConfiguration.securitySource == null) {
+	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
+	        }
             if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
                 sdkConfiguration.serverUrl = SERVERS[0];
                 sdkConfiguration.serverIdx = 0;
@@ -209,7 +221,7 @@ public class SDK implements
             return new SDK(sdkConfiguration);
         }
     }
-
+    
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
      * @return The SDK builder instance.
@@ -228,282 +240,189 @@ public class SDK implements
         this.search = new Search(sdkConfiguration);
         this.wallets = new Wallets(sdkConfiguration);
         this.webhooks = new Webhooks(sdkConfiguration);
+        this.sdkConfiguration.initialize();
     }
+    /**
+     * Retrieve OpenID connect well-knowns.
+     * @return The call builder
+     */
     public com.formance.formance_sdk.models.operations.GetOIDCWellKnownsRequestBuilder getOIDCWellKnowns() {
         return new com.formance.formance_sdk.models.operations.GetOIDCWellKnownsRequestBuilder(this);
     }
 
     /**
      * Retrieve OpenID connect well-knowns.
-     * @return The response from the API call.
-     * @throws Exception if the API call fails.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() throws Exception {
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(
-                baseUrl,
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
                 "/api/auth/.well-known/openid-configuration");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "*/*")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
 
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("GET");
-        req.setURL(url);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
 
-        req.addHeader("Accept", "*/*");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-
-        HTTPClient client = com.formance.formance_sdk.utils.Utils.configureSecurityClient(
-                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("getOIDCWellKnowns", sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("getOIDCWellKnowns", sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("getOIDCWellKnowns", sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("getOIDCWellKnowns", sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse.Builder resBuilder = 
+        com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse.Builder _resBuilder = 
             com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse
                 .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 200) {
-        }else {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
+        com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            // no content 
+            return _res;
         }
-
-        return res;
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
     }
 
+    /**
+     * Show stack version information
+     * @return The call builder
+     */
     public com.formance.formance_sdk.models.operations.GetVersionsRequestBuilder getVersions() {
         return new com.formance.formance_sdk.models.operations.GetVersionsRequestBuilder(this);
     }
 
     /**
      * Show stack version information
-     * @return The response from the API call.
-     * @throws Exception if the API call fails.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
      */
     public com.formance.formance_sdk.models.operations.GetVersionsResponse getVersionsDirect() throws Exception {
-
-        String baseUrl = this.sdkConfiguration.serverUrl;
-
-        String url = com.formance.formance_sdk.utils.Utils.generateURL(
-                baseUrl,
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
                 "/versions");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
 
-        HTTPRequest req = new HTTPRequest();
-        req.setMethod("GET");
-        req.setURL(url);
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
 
-        req.addHeader("Accept", "application/json");
-        req.addHeader("user-agent", this.sdkConfiguration.userAgent);
-
-        HTTPClient client = com.formance.formance_sdk.utils.Utils.configureSecurityClient(
-                this.sdkConfiguration.defaultClient, this.sdkConfiguration.securitySource.getSecurity());
-
-        HttpResponse<InputStream> httpRes = client.send(req);
-
-        String contentType = httpRes
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("getVersions", sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("getVersions", sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("getVersions", sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("getVersions", sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetVersionsResponse.Builder resBuilder = 
+        com.formance.formance_sdk.models.operations.GetVersionsResponse.Builder _resBuilder = 
             com.formance.formance_sdk.models.operations.GetVersionsResponse
                 .builder()
-                .contentType(contentType)
-                .statusCode(httpRes.statusCode())
-                .rawResponse(httpRes);
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetVersionsResponse res = resBuilder.build();
-
-        res.withRawResponse(httpRes);
-
-        if (httpRes.statusCode() == 200) {
-            if (com.formance.formance_sdk.utils.Utils.matchContentType(contentType, "application/json")) {
-                ObjectMapper mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetVersionsResponse out = mapper.readValue(
-                    Utils.toUtf8AndClose(httpRes.body()),
+        com.formance.formance_sdk.models.operations.GetVersionsResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.shared.GetVersionsResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetVersionsResponse>() {});
-                res.withGetVersionsResponse(java.util.Optional.ofNullable(out));
+                _res.withGetVersionsResponse(java.util.Optional.ofNullable(_out));
+                return _res;
             } else {
-                throw new SDKError(httpRes, httpRes.statusCode(), "Unknown content-type received: " + contentType, Utils.toByteArrayAndClose(httpRes.body()));
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
             }
-        }else {
-            throw new SDKError(httpRes, httpRes.statusCode(), "API error occurred", Utils.toByteArrayAndClose(httpRes.body()));
         }
-
-        return res;
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

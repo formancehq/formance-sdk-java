@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -35,6 +37,7 @@ public class AddMetadataOnTransactionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=txid")
     private BigInteger txid;
 
+    @JsonCreator
     public AddMetadataOnTransactionRequest(
             JsonNullable<? extends java.util.Map<String, java.lang.Object>> requestBody,
             String ledger,
@@ -46,10 +49,17 @@ public class AddMetadataOnTransactionRequest {
         this.ledger = ledger;
         this.txid = txid;
     }
+    
+    public AddMetadataOnTransactionRequest(
+            String ledger,
+            BigInteger txid) {
+        this(JsonNullable.undefined(), ledger, txid);
+    }
 
     /**
      * metadata
      */
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, java.lang.Object>> requestBody() {
         return requestBody;
     }
@@ -57,6 +67,7 @@ public class AddMetadataOnTransactionRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -64,6 +75,7 @@ public class AddMetadataOnTransactionRequest {
     /**
      * Transaction ID.
      */
+    @JsonIgnore
     public BigInteger txid() {
         return txid;
     }

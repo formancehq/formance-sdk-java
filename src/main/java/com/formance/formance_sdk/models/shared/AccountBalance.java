@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -41,6 +43,7 @@ public class AccountBalance {
     @JsonProperty("lastUpdatedAt")
     private OffsetDateTime lastUpdatedAt;
 
+    @JsonCreator
     public AccountBalance(
             @JsonProperty("accountId") String accountId,
             @JsonProperty("asset") String asset,
@@ -62,18 +65,22 @@ public class AccountBalance {
         this.lastUpdatedAt = lastUpdatedAt;
     }
 
+    @JsonIgnore
     public String accountId() {
         return accountId;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public BigInteger balance() {
         return balance;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -82,10 +89,12 @@ public class AccountBalance {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @JsonIgnore
     public String currency() {
         return currency;
     }
 
+    @JsonIgnore
     public OffsetDateTime lastUpdatedAt() {
         return lastUpdatedAt;
     }

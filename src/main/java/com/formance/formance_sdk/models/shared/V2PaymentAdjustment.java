@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -34,6 +36,7 @@ public class V2PaymentAdjustment {
     @JsonProperty("status")
     private V2PaymentStatus status;
 
+    @JsonCreator
     public V2PaymentAdjustment(
             @JsonProperty("absolute") boolean absolute,
             @JsonProperty("amount") BigInteger amount,
@@ -52,22 +55,27 @@ public class V2PaymentAdjustment {
         this.status = status;
     }
 
+    @JsonIgnore
     public boolean absolute() {
         return absolute;
     }
 
+    @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    @JsonIgnore
     public OffsetDateTime date() {
         return date;
     }
 
+    @JsonIgnore
     public V2PaymentAdjustmentRaw raw() {
         return raw;
     }
 
+    @JsonIgnore
     public V2PaymentStatus status() {
         return status;
     }

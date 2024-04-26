@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,6 +35,7 @@ public class OrchestrationAccount {
     @JsonProperty("volumes")
     private Optional<? extends java.util.Map<String, Volume>> volumes;
 
+    @JsonCreator
     public OrchestrationAccount(
             @JsonProperty("address") String address,
             @JsonProperty("effectiveVolumes") Optional<? extends java.util.Map<String, Volume>> effectiveVolumes,
@@ -47,19 +50,29 @@ public class OrchestrationAccount {
         this.metadata = metadata;
         this.volumes = volumes;
     }
+    
+    public OrchestrationAccount(
+            String address,
+            java.util.Map<String, String> metadata) {
+        this(address, Optional.empty(), metadata, Optional.empty());
+    }
 
+    @JsonIgnore
     public String address() {
         return address;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, Volume>> effectiveVolumes() {
         return effectiveVolumes;
     }
 
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, Volume>> volumes() {
         return volumes;
     }

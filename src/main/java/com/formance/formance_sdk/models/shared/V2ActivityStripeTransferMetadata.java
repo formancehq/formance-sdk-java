@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -20,6 +22,7 @@ import java.math.BigInteger;
 
 public class V2ActivityStripeTransferMetadata {
 
+    @JsonCreator
     public V2ActivityStripeTransferMetadata() {
         
         

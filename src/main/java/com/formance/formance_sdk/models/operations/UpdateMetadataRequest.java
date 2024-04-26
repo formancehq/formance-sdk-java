@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -26,6 +28,7 @@ public class UpdateMetadataRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
     private String paymentId;
 
+    @JsonCreator
     public UpdateMetadataRequest(
             Optional<? extends java.util.Map<String, String>> requestBody,
             String paymentId) {
@@ -34,7 +37,13 @@ public class UpdateMetadataRequest {
         this.requestBody = requestBody;
         this.paymentId = paymentId;
     }
+    
+    public UpdateMetadataRequest(
+            String paymentId) {
+        this(Optional.empty(), paymentId);
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> requestBody() {
         return requestBody;
     }
@@ -42,6 +51,7 @@ public class UpdateMetadataRequest {
     /**
      * The payment ID.
      */
+    @JsonIgnore
     public String paymentId() {
         return paymentId;
     }

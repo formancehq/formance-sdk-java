@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -70,6 +72,7 @@ public class OrchestrationPayment {
     @JsonProperty("type")
     private OrchestrationPaymentType type;
 
+    @JsonCreator
     public OrchestrationPayment(
             @JsonProperty("adjustments") java.util.List<OrchestrationPaymentAdjustment> adjustments,
             @JsonProperty("asset") String asset,
@@ -117,63 +120,94 @@ public class OrchestrationPayment {
         this.status = status;
         this.type = type;
     }
+    
+    public OrchestrationPayment(
+            java.util.List<OrchestrationPaymentAdjustment> adjustments,
+            String asset,
+            String connectorID,
+            OffsetDateTime createdAt,
+            String destinationAccountID,
+            String id,
+            BigInteger initialAmount,
+            String reference,
+            OrchestrationPaymentScheme scheme,
+            String sourceAccountID,
+            OrchestrationPaymentStatus status,
+            OrchestrationPaymentType type) {
+        this(adjustments, asset, connectorID, createdAt, destinationAccountID, id, initialAmount, Optional.empty(), Optional.empty(), Optional.empty(), reference, scheme, sourceAccountID, status, type);
+    }
 
+    @JsonIgnore
     public java.util.List<OrchestrationPaymentAdjustment> adjustments() {
         return adjustments;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String destinationAccountID() {
         return destinationAccountID;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public BigInteger initialAmount() {
         return initialAmount;
     }
 
+    @JsonIgnore
     public Optional<? extends OrchestrationPaymentMetadata> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends OrchestrationConnector> provider() {
         return provider;
     }
 
+    @JsonIgnore
     public Optional<? extends OrchestrationPaymentRaw> raw() {
         return raw;
     }
 
+    @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    @JsonIgnore
     public OrchestrationPaymentScheme scheme() {
         return scheme;
     }
 
+    @JsonIgnore
     public String sourceAccountID() {
         return sourceAccountID;
     }
 
+    @JsonIgnore
     public OrchestrationPaymentStatus status() {
         return status;
     }
 
+    @JsonIgnore
     public OrchestrationPaymentType type() {
         return type;
     }

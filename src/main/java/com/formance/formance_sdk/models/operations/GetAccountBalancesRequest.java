@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -78,6 +80,7 @@ public class GetAccountBalancesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=to")
     private Optional<? extends OffsetDateTime> to;
 
+    @JsonCreator
     public GetAccountBalancesRequest(
             String accountId,
             Optional<? extends String> asset,
@@ -104,10 +107,16 @@ public class GetAccountBalancesRequest {
         this.sort = sort;
         this.to = to;
     }
+    
+    public GetAccountBalancesRequest(
+            String accountId) {
+        this(accountId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * The account ID.
      */
+    @JsonIgnore
     public String accountId() {
         return accountId;
     }
@@ -117,6 +126,7 @@ public class GetAccountBalancesRequest {
      * If not specified, all account's balances will be returned.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> asset() {
         return asset;
     }
@@ -128,6 +138,7 @@ public class GetAccountBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -137,6 +148,7 @@ public class GetAccountBalancesRequest {
      * If not specified, all account's balances will be returned.
      * 
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> from() {
         return from;
     }
@@ -144,6 +156,7 @@ public class GetAccountBalancesRequest {
     /**
      * The maximum number of results to return per page.
      */
+    @JsonIgnore
     public Optional<? extends Long> limit() {
         return limit;
     }
@@ -152,6 +165,7 @@ public class GetAccountBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -159,6 +173,7 @@ public class GetAccountBalancesRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
+    @JsonIgnore
     public Optional<? extends java.util.List<String>> sort() {
         return sort;
     }
@@ -168,6 +183,7 @@ public class GetAccountBalancesRequest {
      * If not specified, default will be set to now.
      * 
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> to() {
         return to;
     }

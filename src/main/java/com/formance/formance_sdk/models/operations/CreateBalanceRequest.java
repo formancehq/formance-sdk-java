@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -23,6 +25,7 @@ public class CreateBalanceRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
 
+    @JsonCreator
     public CreateBalanceRequest(
             Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest,
             String id) {
@@ -31,11 +34,18 @@ public class CreateBalanceRequest {
         this.createBalanceRequest = createBalanceRequest;
         this.id = id;
     }
+    
+    public CreateBalanceRequest(
+            String id) {
+        this(Optional.empty(), id);
+    }
 
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest() {
         return createBalanceRequest;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }

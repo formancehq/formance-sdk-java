@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,6 +28,7 @@ public class V2CreateWorkflowRequest {
     @JsonProperty("stages")
     private java.util.List<java.util.Map<String, java.lang.Object>> stages;
 
+    @JsonCreator
     public V2CreateWorkflowRequest(
             @JsonProperty("name") Optional<? extends String> name,
             @JsonProperty("stages") java.util.List<java.util.Map<String, java.lang.Object>> stages) {
@@ -34,11 +37,18 @@ public class V2CreateWorkflowRequest {
         this.name = name;
         this.stages = stages;
     }
+    
+    public V2CreateWorkflowRequest(
+            java.util.List<java.util.Map<String, java.lang.Object>> stages) {
+        this(Optional.empty(), stages);
+    }
 
+    @JsonIgnore
     public Optional<? extends String> name() {
         return name;
     }
 
+    @JsonIgnore
     public java.util.List<java.util.Map<String, java.lang.Object>> stages() {
         return stages;
     }

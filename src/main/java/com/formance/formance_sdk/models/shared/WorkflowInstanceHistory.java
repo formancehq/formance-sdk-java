@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -42,6 +44,7 @@ public class WorkflowInstanceHistory {
     @JsonProperty("terminatedAt")
     private Optional<? extends OffsetDateTime> terminatedAt;
 
+    @JsonCreator
     public WorkflowInstanceHistory(
             @JsonProperty("error") Optional<? extends String> error,
             @JsonProperty("input") Stage input,
@@ -62,27 +65,41 @@ public class WorkflowInstanceHistory {
         this.terminated = terminated;
         this.terminatedAt = terminatedAt;
     }
+    
+    public WorkflowInstanceHistory(
+            Stage input,
+            String name,
+            OffsetDateTime startedAt,
+            boolean terminated) {
+        this(Optional.empty(), input, name, startedAt, terminated, Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> error() {
         return error;
     }
 
+    @JsonIgnore
     public Stage input() {
         return input;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public OffsetDateTime startedAt() {
         return startedAt;
     }
 
+    @JsonIgnore
     public boolean terminated() {
         return terminated;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> terminatedAt() {
         return terminatedAt;
     }

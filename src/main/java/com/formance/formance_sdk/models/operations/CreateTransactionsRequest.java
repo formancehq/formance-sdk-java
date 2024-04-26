@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -25,6 +27,7 @@ public class CreateTransactionsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public CreateTransactionsRequest(
             com.formance.formance_sdk.models.shared.Transactions transactions,
             String ledger) {
@@ -34,6 +37,7 @@ public class CreateTransactionsRequest {
         this.ledger = ledger;
     }
 
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.Transactions transactions() {
         return transactions;
     }
@@ -41,6 +45,7 @@ public class CreateTransactionsRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

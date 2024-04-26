@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -25,6 +27,7 @@ public class UdpateTransferInitiationStatusRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transferId")
     private String transferId;
 
+    @JsonCreator
     public UdpateTransferInitiationStatusRequest(
             com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest,
             String transferId) {
@@ -34,6 +37,7 @@ public class UdpateTransferInitiationStatusRequest {
         this.transferId = transferId;
     }
 
+    @JsonIgnore
     public com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest() {
         return updateTransferInitiationStatusRequest;
     }
@@ -41,6 +45,7 @@ public class UdpateTransferInitiationStatusRequest {
     /**
      * The transfer ID.
      */
+    @JsonIgnore
     public String transferId() {
         return transferId;
     }

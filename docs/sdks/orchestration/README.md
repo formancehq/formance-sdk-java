@@ -67,7 +67,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -136,7 +136,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -211,7 +211,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -285,7 +285,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -354,7 +354,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -423,7 +423,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -494,7 +494,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -565,7 +565,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -637,7 +637,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -708,7 +708,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -779,7 +779,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -839,7 +839,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -909,7 +909,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -968,7 +968,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1028,7 +1028,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1099,7 +1099,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1174,7 +1174,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1246,7 +1246,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1319,7 +1319,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1388,7 +1388,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1463,7 +1463,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1537,7 +1537,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1606,7 +1606,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1675,7 +1675,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1746,7 +1746,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1817,7 +1817,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1888,7 +1888,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -1948,7 +1948,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2019,11 +2019,13 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
             V2ListInstancesRequest req = V2ListInstancesRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(437740L)
                 .running(false)
                 .workflowID("<value>")
                 .build();
@@ -2074,6 +2076,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.V2ListTriggersRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2090,11 +2093,17 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
+            V2ListTriggersRequest req = V2ListTriggersRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(877214L)
+                .build();
+
             V2ListTriggersResponse res = sdk.orchestration().v2ListTriggers()
+                .request(req)
                 .call();
 
             if (res.v2ListTriggersResponse().isPresent()) {
@@ -2110,6 +2119,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                             | [com.formance.formance_sdk.models.operations.V2ListTriggersRequest](../../models/operations/V2ListTriggersRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
 
 
 ### Response
@@ -2150,12 +2165,14 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
             V2ListTriggersOccurrencesRequest req = V2ListTriggersOccurrencesRequest.builder()
                 .triggerID("<value>")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(934225L)
                 .build();
 
             V2ListTriggersOccurrencesResponse res = sdk.orchestration().v2ListTriggersOccurrences()
@@ -2204,6 +2221,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest;
 import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2220,11 +2238,17 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
+            V2ListWorkflowsRequest req = V2ListWorkflowsRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(196850L)
+                .build();
+
             V2ListWorkflowsResponse res = sdk.orchestration().v2ListWorkflows()
+                .request(req)
                 .call();
 
             if (res.v2ListWorkflowsResponse().isPresent()) {
@@ -2240,6 +2264,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                               | [com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest](../../models/operations/V2ListWorkflowsRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
 
 
 ### Response
@@ -2280,7 +2310,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2351,7 +2381,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -2426,7 +2456,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 

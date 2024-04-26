@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class Transactions {
     @JsonProperty("transactions")
     private java.util.List<TransactionData> transactions;
 
+    @JsonCreator
     public Transactions(
             @JsonProperty("transactions") java.util.List<TransactionData> transactions) {
         Utils.checkNotNull(transactions, "transactions");
         this.transactions = transactions;
     }
 
+    @JsonIgnore
     public java.util.List<TransactionData> transactions() {
         return transactions;
     }

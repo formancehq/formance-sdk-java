@@ -509,7 +509,8 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallV2ListTriggers {
-        com.formance.formance_sdk.models.operations.V2ListTriggersResponse v2ListTriggersDirect() throws Exception;
+        com.formance.formance_sdk.models.operations.V2ListTriggersResponse v2ListTriggers(
+            com.formance.formance_sdk.models.operations.V2ListTriggersRequest request) throws Exception;
     }
 
 
@@ -520,7 +521,8 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallV2ListWorkflows {
-        com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse v2ListWorkflowsDirect() throws Exception;
+        com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse v2ListWorkflows(
+            com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest request) throws Exception;
     }
 
 
@@ -551,6 +553,12 @@ public class SDKMethodInterfaces {
     public interface MethodCallConnectorsTransfer {
         com.formance.formance_sdk.models.operations.ConnectorsTransferResponse connectorsTransfer(
             com.formance.formance_sdk.models.operations.ConnectorsTransferRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallCreateAccount {
+        com.formance.formance_sdk.models.operations.CreateAccountResponse createAccount(
+            com.formance.formance_sdk.models.shared.AccountRequest request) throws Exception;
     }
 
 

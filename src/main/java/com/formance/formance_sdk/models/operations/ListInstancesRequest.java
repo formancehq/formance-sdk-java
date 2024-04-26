@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -29,6 +31,7 @@ public class ListInstancesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=workflowID")
     private Optional<? extends String> workflowID;
 
+    @JsonCreator
     public ListInstancesRequest(
             Optional<? extends Boolean> running,
             Optional<? extends String> workflowID) {
@@ -37,10 +40,15 @@ public class ListInstancesRequest {
         this.running = running;
         this.workflowID = workflowID;
     }
+    
+    public ListInstancesRequest() {
+        this(Optional.empty(), Optional.empty());
+    }
 
     /**
      * Filter running instances
      */
+    @JsonIgnore
     public Optional<? extends Boolean> running() {
         return running;
     }
@@ -48,6 +56,7 @@ public class ListInstancesRequest {
     /**
      * A workflow id
      */
+    @JsonIgnore
     public Optional<? extends String> workflowID() {
         return workflowID;
     }

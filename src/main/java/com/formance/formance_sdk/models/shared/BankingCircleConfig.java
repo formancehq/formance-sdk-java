@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,6 +51,7 @@ public class BankingCircleConfig {
     @JsonProperty("username")
     private String username;
 
+    @JsonCreator
     public BankingCircleConfig(
             @JsonProperty("authorizationEndpoint") String authorizationEndpoint,
             @JsonProperty("endpoint") String endpoint,
@@ -75,19 +78,34 @@ public class BankingCircleConfig {
         this.userCertificateKey = userCertificateKey;
         this.username = username;
     }
+    
+    public BankingCircleConfig(
+            String authorizationEndpoint,
+            String endpoint,
+            String name,
+            String password,
+            String userCertificate,
+            String userCertificateKey,
+            String username) {
+        this(authorizationEndpoint, endpoint, name, password, Optional.empty(), userCertificate, userCertificateKey, username);
+    }
 
+    @JsonIgnore
     public String authorizationEndpoint() {
         return authorizationEndpoint;
     }
 
+    @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public String password() {
         return password;
     }
@@ -96,18 +114,22 @@ public class BankingCircleConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> pollingPeriod() {
         return pollingPeriod;
     }
 
+    @JsonIgnore
     public String userCertificate() {
         return userCertificate;
     }
 
+    @JsonIgnore
     public String userCertificateKey() {
         return userCertificateKey;
     }
 
+    @JsonIgnore
     public String username() {
         return username;
     }

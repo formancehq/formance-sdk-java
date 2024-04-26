@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class ActivateConfigRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
 
+    @JsonCreator
     public ActivateConfigRequest(
             String id) {
         Utils.checkNotNull(id, "id");
@@ -31,6 +34,7 @@ public class ActivateConfigRequest {
     /**
      * Config ID
      */
+    @JsonIgnore
     public String id() {
         return id;
     }

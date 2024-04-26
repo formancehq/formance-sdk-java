@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -46,6 +48,7 @@ public class GetHoldsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=walletID")
     private Optional<? extends String> walletID;
 
+    @JsonCreator
     public GetHoldsRequest(
             Optional<? extends String> cursor,
             Optional<? extends java.util.Map<String, String>> metadata,
@@ -60,6 +63,10 @@ public class GetHoldsRequest {
         this.pageSize = pageSize;
         this.walletID = walletID;
     }
+    
+    public GetHoldsRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Parameter used in pagination requests.
@@ -68,6 +75,7 @@ public class GetHoldsRequest {
      * No other parameters can be set when the pagination token is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -75,6 +83,7 @@ public class GetHoldsRequest {
     /**
      * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
@@ -82,6 +91,7 @@ public class GetHoldsRequest {
     /**
      * The maximum number of results to return per page
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -89,6 +99,7 @@ public class GetHoldsRequest {
     /**
      * The wallet to filter on
      */
+    @JsonIgnore
     public Optional<? extends String> walletID() {
         return walletID;
     }

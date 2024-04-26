@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class DeletePolicyRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=policyID")
     private String policyID;
 
+    @JsonCreator
     public DeletePolicyRequest(
             String policyID) {
         Utils.checkNotNull(policyID, "policyID");
@@ -31,6 +34,7 @@ public class DeletePolicyRequest {
     /**
      * The policy ID.
      */
+    @JsonIgnore
     public String policyID() {
         return policyID;
     }

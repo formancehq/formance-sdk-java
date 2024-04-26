@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -30,6 +32,7 @@ public class V2CountTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<? extends OffsetDateTime> pit;
 
+    @JsonCreator
     public V2CountTransactionsRequest(
             Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
             String ledger,
@@ -41,7 +44,13 @@ public class V2CountTransactionsRequest {
         this.ledger = ledger;
         this.pit = pit;
     }
+    
+    public V2CountTransactionsRequest(
+            String ledger) {
+        this(Optional.empty(), ledger, Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
         return requestBody;
     }
@@ -49,10 +58,12 @@ public class V2CountTransactionsRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> pit() {
         return pit;
     }

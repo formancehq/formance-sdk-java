@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
@@ -94,6 +96,7 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
     private Optional<? extends OffsetDateTime> startTime;
 
+    @JsonCreator
     public ListTransactionsRequest(
             Optional<? extends String> account,
             Optional<? extends String> after,
@@ -129,10 +132,16 @@ public class ListTransactionsRequest {
         this.source = source;
         this.startTime = startTime;
     }
+    
+    public ListTransactionsRequest(
+            String ledger) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
+    @JsonIgnore
     public Optional<? extends String> account() {
         return account;
     }
@@ -140,6 +149,7 @@ public class ListTransactionsRequest {
     /**
      * Pagination cursor, will return transactions after given txid (in descending order).
      */
+    @JsonIgnore
     public Optional<? extends String> after() {
         return after;
     }
@@ -151,6 +161,7 @@ public class ListTransactionsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
     }
@@ -158,6 +169,7 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
+    @JsonIgnore
     public Optional<? extends String> destination() {
         return destination;
     }
@@ -167,6 +179,7 @@ public class ListTransactionsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> endTime() {
         return endTime;
     }
@@ -174,6 +187,7 @@ public class ListTransactionsRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
@@ -181,6 +195,7 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
         return metadata;
     }
@@ -189,6 +204,7 @@ public class ListTransactionsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @JsonIgnore
     public Optional<? extends Long> pageSize() {
         return pageSize;
     }
@@ -196,6 +212,7 @@ public class ListTransactionsRequest {
     /**
      * Find transactions by reference field.
      */
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
@@ -203,6 +220,7 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
+    @JsonIgnore
     public Optional<? extends String> source() {
         return source;
     }
@@ -212,6 +230,7 @@ public class ListTransactionsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> startTime() {
         return startTime;
     }

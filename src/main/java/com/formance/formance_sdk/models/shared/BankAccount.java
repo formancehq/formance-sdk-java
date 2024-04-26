@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -66,6 +68,7 @@ public class BankAccount {
     @JsonProperty("swiftBicCode")
     private Optional<? extends String> swiftBicCode;
 
+    @JsonCreator
     public BankAccount(
             @JsonProperty("accountID") Optional<? extends String> accountID,
             @JsonProperty("accountNumber") Optional<? extends String> accountNumber,
@@ -104,51 +107,72 @@ public class BankAccount {
         this.relatedAccounts = relatedAccounts;
         this.swiftBicCode = swiftBicCode;
     }
+    
+    public BankAccount(
+            String connectorID,
+            String country,
+            OffsetDateTime createdAt,
+            String id,
+            String name) {
+        this(Optional.empty(), Optional.empty(), connectorID, country, createdAt, Optional.empty(), id, JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> accountID() {
         return accountID;
     }
 
+    @JsonIgnore
     public Optional<? extends String> accountNumber() {
         return accountNumber;
     }
 
+    @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public String country() {
         return country;
     }
 
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public Optional<? extends String> iban() {
         return iban;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends String> provider() {
         return provider;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<BankAccountRelatedAccounts>> relatedAccounts() {
         return relatedAccounts;
     }
 
+    @JsonIgnore
     public Optional<? extends String> swiftBicCode() {
         return swiftBicCode;
     }

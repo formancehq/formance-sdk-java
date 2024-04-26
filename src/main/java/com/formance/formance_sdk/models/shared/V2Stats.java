@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,6 +24,7 @@ public class V2Stats {
     @JsonProperty("transactions")
     private BigInteger transactions;
 
+    @JsonCreator
     public V2Stats(
             @JsonProperty("accounts") long accounts,
             @JsonProperty("transactions") BigInteger transactions) {
@@ -31,10 +34,12 @@ public class V2Stats {
         this.transactions = transactions;
     }
 
+    @JsonIgnore
     public long accounts() {
         return accounts;
     }
 
+    @JsonIgnore
     public BigInteger transactions() {
         return transactions;
     }

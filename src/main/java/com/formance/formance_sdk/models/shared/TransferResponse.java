@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,12 +25,18 @@ public class TransferResponse {
     @JsonProperty("id")
     private Optional<? extends String> id;
 
+    @JsonCreator
     public TransferResponse(
             @JsonProperty("id") Optional<? extends String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
     }
+    
+    public TransferResponse() {
+        this(Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> id() {
         return id;
     }

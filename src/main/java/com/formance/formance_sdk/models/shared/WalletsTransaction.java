@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,6 +55,7 @@ public class WalletsTransaction {
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
+    @JsonCreator
     public WalletsTransaction(
             @JsonProperty("id") long id,
             @JsonProperty("ledger") Optional<? extends String> ledger,
@@ -79,11 +82,21 @@ public class WalletsTransaction {
         this.reference = reference;
         this.timestamp = timestamp;
     }
+    
+    public WalletsTransaction(
+            long id,
+            java.util.Map<String, String> metadata,
+            java.util.List<Posting> postings,
+            OffsetDateTime timestamp) {
+        this(id, Optional.empty(), metadata, Optional.empty(), postings, Optional.empty(), Optional.empty(), timestamp);
+    }
 
+    @JsonIgnore
     public long id() {
         return id;
     }
 
+    @JsonIgnore
     public Optional<? extends String> ledger() {
         return ledger;
     }
@@ -91,26 +104,32 @@ public class WalletsTransaction {
     /**
      * Metadata associated with the wallet.
      */
+    @JsonIgnore
     public java.util.Map<String, String> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes() {
         return postCommitVolumes;
     }
 
+    @JsonIgnore
     public java.util.List<Posting> postings() {
         return postings;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes() {
         return preCommitVolumes;
     }
 
+    @JsonIgnore
     public Optional<? extends String> reference() {
         return reference;
     }
 
+    @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -25,6 +27,7 @@ public class WalletsVolume {
     @JsonProperty("output")
     private BigInteger output;
 
+    @JsonCreator
     public WalletsVolume(
             @JsonProperty("balance") BigInteger balance,
             @JsonProperty("input") BigInteger input,
@@ -37,14 +40,17 @@ public class WalletsVolume {
         this.output = output;
     }
 
+    @JsonIgnore
     public BigInteger balance() {
         return balance;
     }
 
+    @JsonIgnore
     public BigInteger input() {
         return input;
     }
 
+    @JsonIgnore
     public BigInteger output() {
         return output;
     }

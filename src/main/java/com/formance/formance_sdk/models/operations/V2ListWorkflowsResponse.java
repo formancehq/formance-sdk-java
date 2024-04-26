@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ public class V2ListWorkflowsResponse implements com.formance.formance_sdk.utils.
      */
     private Optional<? extends com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse> v2ListWorkflowsResponse;
 
+    @JsonCreator
     public V2ListWorkflowsResponse(
             String contentType,
             int statusCode,
@@ -51,10 +54,18 @@ public class V2ListWorkflowsResponse implements com.formance.formance_sdk.utils.
         this.rawResponse = rawResponse;
         this.v2ListWorkflowsResponse = v2ListWorkflowsResponse;
     }
+    
+    public V2ListWorkflowsResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -62,6 +73,7 @@ public class V2ListWorkflowsResponse implements com.formance.formance_sdk.utils.
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -69,6 +81,7 @@ public class V2ListWorkflowsResponse implements com.formance.formance_sdk.utils.
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -76,6 +89,7 @@ public class V2ListWorkflowsResponse implements com.formance.formance_sdk.utils.
     /**
      * List of workflows
      */
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse> v2ListWorkflowsResponse() {
         return v2ListWorkflowsResponse;
     }

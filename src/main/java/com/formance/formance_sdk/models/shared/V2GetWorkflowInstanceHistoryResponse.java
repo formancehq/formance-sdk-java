@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -19,12 +21,14 @@ public class V2GetWorkflowInstanceHistoryResponse {
     @JsonProperty("data")
     private java.util.List<V2WorkflowInstanceHistory> data;
 
+    @JsonCreator
     public V2GetWorkflowInstanceHistoryResponse(
             @JsonProperty("data") java.util.List<V2WorkflowInstanceHistory> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
+    @JsonIgnore
     public java.util.List<V2WorkflowInstanceHistory> data() {
         return data;
     }

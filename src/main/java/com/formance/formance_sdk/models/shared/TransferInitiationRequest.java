@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -62,6 +64,7 @@ public class TransferInitiationRequest {
     @JsonProperty("validated")
     private boolean validated;
 
+    @JsonCreator
     public TransferInitiationRequest(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
@@ -100,51 +103,76 @@ public class TransferInitiationRequest {
         this.type = type;
         this.validated = validated;
     }
+    
+    public TransferInitiationRequest(
+            BigInteger amount,
+            String asset,
+            String description,
+            String destinationAccountID,
+            String reference,
+            OffsetDateTime scheduledAt,
+            String sourceAccountID,
+            TransferInitiationRequestType type,
+            boolean validated) {
+        this(amount, asset, Optional.empty(), description, destinationAccountID, JsonNullable.undefined(), Optional.empty(), reference, scheduledAt, sourceAccountID, type, validated);
+    }
 
+    @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    @JsonIgnore
     public Optional<? extends String> connectorID() {
         return connectorID;
     }
 
+    @JsonIgnore
     public String description() {
         return description;
     }
 
+    @JsonIgnore
     public String destinationAccountID() {
         return destinationAccountID;
     }
 
+    @JsonIgnore
     public JsonNullable<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends Connector> provider() {
         return provider;
     }
 
+    @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    @JsonIgnore
     public OffsetDateTime scheduledAt() {
         return scheduledAt;
     }
 
+    @JsonIgnore
     public String sourceAccountID() {
         return sourceAccountID;
     }
 
+    @JsonIgnore
     public TransferInitiationRequestType type() {
         return type;
     }
 
+    @JsonIgnore
     public boolean validated() {
         return validated;
     }

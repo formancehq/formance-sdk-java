@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -34,6 +36,7 @@ public class V2DeleteTransactionMetadataRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @JsonCreator
     public V2DeleteTransactionMetadataRequest(
             BigInteger id,
             String key,
@@ -49,6 +52,7 @@ public class V2DeleteTransactionMetadataRequest {
     /**
      * Transaction ID.
      */
+    @JsonIgnore
     public BigInteger id() {
         return id;
     }
@@ -56,6 +60,7 @@ public class V2DeleteTransactionMetadataRequest {
     /**
      * The key to remove.
      */
+    @JsonIgnore
     public String key() {
         return key;
     }
@@ -63,6 +68,7 @@ public class V2DeleteTransactionMetadataRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }

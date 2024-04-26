@@ -25,7 +25,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk:2.2.5'
+implementation 'com.formance.formance_sdk:formance-sdk:2.3.0'
 ```
 
 Maven:
@@ -33,7 +33,7 @@ Maven:
 <dependency>
     <groupId>com.formance.formance_sdk</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>2.2.5</version>
+    <version>2.3.0</version>
 </dependency>
 ```
 
@@ -78,7 +78,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -205,6 +205,7 @@ public class Application {
 
 * [addAccountToPool](docs/sdks/payments/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/payments/README.md#connectorstransfer) - Transfer funds between Connector accounts
+* [createAccount](docs/sdks/payments/README.md#createaccount) - Create an account
 * [createBankAccount](docs/sdks/payments/README.md#createbankaccount) - Create a BankAccount in Payments and on the PSP
 * [createPayment](docs/sdks/payments/README.md#createpayment) - Create a payment
 * [createPool](docs/sdks/payments/README.md#createpool) - Create a Pool
@@ -327,7 +328,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .serverIndex(0)
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -370,7 +371,7 @@ public class Application {
             SDK sdk = SDK.builder()
                 .serverURL("http://localhost")
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -425,7 +426,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 
@@ -498,7 +499,7 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("Bearer <YOUR_ACCESS_TOKEN_HERE>")
+                    .authorization("<YOUR_AUTHORIZATION_HERE>")
                     .build())
                 .build();
 

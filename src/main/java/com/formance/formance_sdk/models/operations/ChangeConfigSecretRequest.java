@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -26,6 +28,7 @@ public class ChangeConfigSecretRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
 
+    @JsonCreator
     public ChangeConfigSecretRequest(
             Optional<? extends com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret,
             String id) {
@@ -34,7 +37,13 @@ public class ChangeConfigSecretRequest {
         this.configChangeSecret = configChangeSecret;
         this.id = id;
     }
+    
+    public ChangeConfigSecretRequest(
+            String id) {
+        this(Optional.empty(), id);
+    }
 
+    @JsonIgnore
     public Optional<? extends com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret() {
         return configChangeSecret;
     }
@@ -42,6 +51,7 @@ public class ChangeConfigSecretRequest {
     /**
      * Config ID
      */
+    @JsonIgnore
     public String id() {
         return id;
     }

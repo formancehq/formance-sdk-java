@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -32,6 +34,7 @@ public class RunWorkflowRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workflowID")
     private String workflowID;
 
+    @JsonCreator
     public RunWorkflowRequest(
             Optional<? extends java.util.Map<String, String>> requestBody,
             Optional<? extends Boolean> waitForExecution,
@@ -43,7 +46,13 @@ public class RunWorkflowRequest {
         this.waitForExecution = waitForExecution;
         this.workflowID = workflowID;
     }
+    
+    public RunWorkflowRequest(
+            String workflowID) {
+        this(Optional.empty(), Optional.empty(), workflowID);
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> requestBody() {
         return requestBody;
     }
@@ -51,6 +60,7 @@ public class RunWorkflowRequest {
     /**
      * Wait end of the workflow before return
      */
+    @JsonIgnore
     public Optional<? extends Boolean> waitForExecution() {
         return waitForExecution;
     }
@@ -58,6 +68,7 @@ public class RunWorkflowRequest {
     /**
      * The flow id
      */
+    @JsonIgnore
     public String workflowID() {
         return workflowID;
     }

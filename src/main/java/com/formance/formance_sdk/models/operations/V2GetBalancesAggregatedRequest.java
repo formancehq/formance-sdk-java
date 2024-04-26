@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -36,6 +38,7 @@ public class V2GetBalancesAggregatedRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=useInsertionDate")
     private Optional<? extends Boolean> useInsertionDate;
 
+    @JsonCreator
     public V2GetBalancesAggregatedRequest(
             Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
             String ledger,
@@ -50,7 +53,13 @@ public class V2GetBalancesAggregatedRequest {
         this.pit = pit;
         this.useInsertionDate = useInsertionDate;
     }
+    
+    public V2GetBalancesAggregatedRequest(
+            String ledger) {
+        this(Optional.empty(), ledger, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
         return requestBody;
     }
@@ -58,10 +67,12 @@ public class V2GetBalancesAggregatedRequest {
     /**
      * Name of the ledger.
      */
+    @JsonIgnore
     public String ledger() {
         return ledger;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> pit() {
         return pit;
     }
@@ -69,6 +80,7 @@ public class V2GetBalancesAggregatedRequest {
     /**
      * Use insertion date instead of effective date
      */
+    @JsonIgnore
     public Optional<? extends Boolean> useInsertionDate() {
         return useInsertionDate;
     }

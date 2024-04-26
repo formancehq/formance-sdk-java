@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,6 +31,7 @@ public class V2Volume {
     @JsonProperty("output")
     private BigInteger output;
 
+    @JsonCreator
     public V2Volume(
             @JsonProperty("balance") Optional<? extends BigInteger> balance,
             @JsonProperty("input") BigInteger input,
@@ -40,15 +43,24 @@ public class V2Volume {
         this.input = input;
         this.output = output;
     }
+    
+    public V2Volume(
+            BigInteger input,
+            BigInteger output) {
+        this(Optional.empty(), input, output);
+    }
 
+    @JsonIgnore
     public Optional<? extends BigInteger> balance() {
         return balance;
     }
 
+    @JsonIgnore
     public BigInteger input() {
         return input;
     }
 
+    @JsonIgnore
     public BigInteger output() {
         return output;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -42,6 +44,7 @@ public class StageSend {
     @JsonProperty("timestamp")
     private Optional<? extends OffsetDateTime> timestamp;
 
+    @JsonCreator
     public StageSend(
             @JsonProperty("amount") Optional<? extends Monetary> amount,
             @JsonProperty("destination") Optional<? extends StageSendDestination> destination,
@@ -59,23 +62,32 @@ public class StageSend {
         this.source = source;
         this.timestamp = timestamp;
     }
+    
+    public StageSend() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends Monetary> amount() {
         return amount;
     }
 
+    @JsonIgnore
     public Optional<? extends StageSendDestination> destination() {
         return destination;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, String>> metadata() {
         return metadata;
     }
 
+    @JsonIgnore
     public Optional<? extends StageSendSource> source() {
         return source;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> timestamp() {
         return timestamp;
     }

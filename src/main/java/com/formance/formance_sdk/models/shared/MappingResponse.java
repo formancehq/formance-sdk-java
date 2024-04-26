@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,12 +25,18 @@ public class MappingResponse {
     @JsonProperty("data")
     private JsonNullable<? extends Mapping> data;
 
+    @JsonCreator
     public MappingResponse(
             @JsonProperty("data") JsonNullable<? extends Mapping> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
+    
+    public MappingResponse() {
+        this(JsonNullable.undefined());
+    }
 
+    @JsonIgnore
     public JsonNullable<? extends Mapping> data() {
         return data;
     }

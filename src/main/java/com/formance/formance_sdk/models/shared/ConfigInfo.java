@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
@@ -25,6 +27,7 @@ public class ConfigInfo {
     @JsonProperty("version")
     private String version;
 
+    @JsonCreator
     public ConfigInfo(
             @JsonProperty("config") Config config,
             @JsonProperty("server") String server,
@@ -37,14 +40,17 @@ public class ConfigInfo {
         this.version = version;
     }
 
+    @JsonIgnore
     public Config config() {
         return config;
     }
 
+    @JsonIgnore
     public String server() {
         return server;
     }
 
+    @JsonIgnore
     public String version() {
         return version;
     }

@@ -4,7 +4,9 @@
 
 package com.formance.formance_sdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,12 +25,18 @@ public class ActivityListWallets {
     @JsonProperty("name")
     private Optional<? extends String> name;
 
+    @JsonCreator
     public ActivityListWallets(
             @JsonProperty("name") Optional<? extends String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
     }
+    
+    public ActivityListWallets() {
+        this(Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> name() {
         return name;
     }
