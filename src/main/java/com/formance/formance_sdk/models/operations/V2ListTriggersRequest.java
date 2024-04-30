@@ -30,6 +30,12 @@ public class V2ListTriggersRequest {
     private Optional<? extends String> cursor;
 
     /**
+     * search by name
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=name")
+    private Optional<? extends String> name;
+
+    /**
      * The maximum number of results to return per page.
      * 
      */
@@ -39,15 +45,18 @@ public class V2ListTriggersRequest {
     @JsonCreator
     public V2ListTriggersRequest(
             Optional<? extends String> cursor,
+            Optional<? extends String> name,
             Optional<? extends Long> pageSize) {
         Utils.checkNotNull(cursor, "cursor");
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         this.cursor = cursor;
+        this.name = name;
         this.pageSize = pageSize;
     }
     
     public V2ListTriggersRequest() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -60,6 +69,14 @@ public class V2ListTriggersRequest {
     @JsonIgnore
     public Optional<? extends String> cursor() {
         return cursor;
+    }
+
+    /**
+     * search by name
+     */
+    @JsonIgnore
+    public Optional<? extends String> name() {
+        return name;
     }
 
     /**
@@ -102,6 +119,24 @@ public class V2ListTriggersRequest {
     }
 
     /**
+     * search by name
+     */
+    public V2ListTriggersRequest withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+    /**
+     * search by name
+     */
+    public V2ListTriggersRequest withName(Optional<? extends String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
+        return this;
+    }
+
+    /**
      * The maximum number of results to return per page.
      * 
      */
@@ -132,6 +167,7 @@ public class V2ListTriggersRequest {
         V2ListTriggersRequest other = (V2ListTriggersRequest) o;
         return 
             java.util.Objects.deepEquals(this.cursor, other.cursor) &&
+            java.util.Objects.deepEquals(this.name, other.name) &&
             java.util.Objects.deepEquals(this.pageSize, other.pageSize);
     }
     
@@ -139,6 +175,7 @@ public class V2ListTriggersRequest {
     public int hashCode() {
         return java.util.Objects.hash(
             cursor,
+            name,
             pageSize);
     }
     
@@ -146,12 +183,15 @@ public class V2ListTriggersRequest {
     public String toString() {
         return Utils.toString(V2ListTriggersRequest.class,
                 "cursor", cursor,
+                "name", name,
                 "pageSize", pageSize);
     }
     
     public final static class Builder {
  
         private Optional<? extends String> cursor = Optional.empty();
+ 
+        private Optional<? extends String> name = Optional.empty();
  
         private Optional<? extends Long> pageSize = Optional.empty();  
         
@@ -186,6 +226,24 @@ public class V2ListTriggersRequest {
         }
 
         /**
+         * search by name
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * search by name
+         */
+        public Builder name(Optional<? extends String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
+            return this;
+        }
+
+        /**
          * The maximum number of results to return per page.
          * 
          */
@@ -208,6 +266,7 @@ public class V2ListTriggersRequest {
         public V2ListTriggersRequest build() {
             return new V2ListTriggersRequest(
                 cursor,
+                name,
                 pageSize);
         }
     }

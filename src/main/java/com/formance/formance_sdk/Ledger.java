@@ -2056,7 +2056,7 @@ public class Ledger implements
 
         com.formance.formance_sdk.models.operations.RevertTransactionResponse _res = _resBuilder.build();
         
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 ObjectMapper _mapper = JSON.getMapper();
                 com.formance.formance_sdk.models.shared.TransactionResponse _out = _mapper.readValue(

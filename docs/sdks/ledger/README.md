@@ -130,10 +130,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateTransactionsResponse>](../../models/operations/CreateTransactionsResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## addMetadataOnTransaction
 
@@ -202,10 +202,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse>](../../models/operations/AddMetadataOnTransactionResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## addMetadataToAccount
 
@@ -274,10 +274,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse>](../../models/operations/AddMetadataToAccountResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## countAccounts
 
@@ -346,10 +346,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CountAccountsResponse>](../../models/operations/CountAccountsResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## countTransactions
 
@@ -424,10 +424,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CountTransactionsResponse>](../../models/operations/CountTransactionsResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## createTransaction
 
@@ -524,10 +524,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateTransactionResponse>](../../models/operations/CreateTransactionResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## getAccount
 
@@ -596,10 +596,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetAccountResponse>](../../models/operations/GetAccountResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## getBalances
 
@@ -671,10 +671,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetBalancesResponse>](../../models/operations/GetBalancesResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## getBalancesAggregated
 
@@ -744,10 +744,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse>](../../models/operations/GetBalancesAggregatedResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## getInfo
 
@@ -803,10 +803,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetInfoResponse>](../../models/operations/GetInfoResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## getLedgerInfo
 
@@ -874,10 +874,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetLedgerInfoResponse>](../../models/operations/GetLedgerInfoResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## getMapping
 
@@ -945,10 +945,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetMappingResponse>](../../models/operations/GetMappingResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## getTransaction
 
@@ -1017,10 +1017,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetTransactionResponse>](../../models/operations/GetTransactionResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## listAccounts
 
@@ -1096,10 +1096,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListAccountsResponse>](../../models/operations/ListAccountsResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## listLogs
 
@@ -1172,10 +1172,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListLogsResponse>](../../models/operations/ListLogsResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## listTransactions
 
@@ -1254,10 +1254,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListTransactionsResponse>](../../models/operations/ListTransactionsResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## readStats
 
@@ -1326,10 +1326,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ReadStatsResponse>](../../models/operations/ReadStatsResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## revertTransaction
 
@@ -1399,10 +1399,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.RevertTransactionResponse>](../../models/operations/RevertTransactionResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## ~~runScript~~
 
@@ -1569,10 +1569,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UpdateMappingResponse>](../../models/operations/UpdateMappingResponse.md)**
 ### Errors
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ## v2AddMetadataOnTransaction
 
@@ -1643,10 +1643,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse>](../../models/operations/V2AddMetadataOnTransactionResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2AddMetadataToAccount
 
@@ -1717,10 +1717,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse>](../../models/operations/V2AddMetadataToAccountResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2CountAccounts
 
@@ -1789,10 +1789,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CountAccountsResponse>](../../models/operations/V2CountAccountsResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2CountTransactions
 
@@ -1861,10 +1861,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CountTransactionsResponse>](../../models/operations/V2CountTransactionsResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2CreateBulk
 
@@ -1945,10 +1945,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateBulkResponse>](../../models/operations/V2CreateBulkResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2CreateLedger
 
@@ -2020,10 +2020,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateLedgerResponse>](../../models/operations/V2CreateLedgerResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2CreateTransaction
 
@@ -2121,10 +2121,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateTransactionResponse>](../../models/operations/V2CreateTransactionResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2DeleteAccountMetadata
 
@@ -2259,10 +2259,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse>](../../models/operations/V2DeleteLedgerMetadataResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2DeleteTransactionMetadata
 
@@ -2330,10 +2330,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse>](../../models/operations/V2DeleteTransactionMetadataResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2GetAccount
 
@@ -2404,10 +2404,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetAccountResponse>](../../models/operations/V2GetAccountResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2GetBalancesAggregated
 
@@ -2479,10 +2479,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse>](../../models/operations/V2GetBalancesAggregatedResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2GetInfo
 
@@ -2538,10 +2538,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInfoResponse>](../../models/operations/V2GetInfoResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2GetLedger
 
@@ -2609,10 +2609,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetLedgerResponse>](../../models/operations/V2GetLedgerResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2GetLedgerInfo
 
@@ -2680,10 +2680,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse>](../../models/operations/V2GetLedgerInfoResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2GetTransaction
 
@@ -2754,10 +2754,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetTransactionResponse>](../../models/operations/V2GetTransactionResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2GetVolumesWithBalances
 
@@ -2833,10 +2833,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse>](../../models/operations/V2GetVolumesWithBalancesResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2ListAccounts
 
@@ -2910,10 +2910,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListAccountsResponse>](../../models/operations/V2ListAccountsResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2ListLedgers
 
@@ -2982,10 +2982,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListLedgersResponse>](../../models/operations/V2ListLedgersResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2ListLogs
 
@@ -3058,10 +3058,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListLogsResponse>](../../models/operations/V2ListLogsResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2ListTransactions
 
@@ -3135,10 +3135,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListTransactionsResponse>](../../models/operations/V2ListTransactionsResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2ReadStats
 
@@ -3207,10 +3207,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ReadStatsResponse>](../../models/operations/V2ReadStatsResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2RevertTransaction
 
@@ -3281,10 +3281,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2RevertTransactionResponse>](../../models/operations/V2RevertTransactionResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |
 
 ## v2UpdateLedgerMetadata
 
@@ -3352,7 +3352,7 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse>](../../models/operations/V2UpdateLedgerMetadataResponse.md)**
 ### Errors
 
-| Error Object                                            | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2ErrorResponse | default                                                 | application/json                                        |
-| models/errors/SDKError                                  | 4xx-5xx                                                 | */*                                                     |
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4xx-5xx                       | */*                           |

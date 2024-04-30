@@ -1193,10 +1193,12 @@ public class Orchestration implements
     /**
      * List triggers
      * List triggers
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListTriggersResponse listTriggersDirect() throws Exception {
+    public com.formance.formance_sdk.models.operations.ListTriggersResponse listTriggers(
+            com.formance.formance_sdk.models.operations.ListTriggersRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1206,6 +1208,11 @@ public class Orchestration implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                com.formance.formance_sdk.models.operations.ListTriggersRequest.class,
+                request, 
+                null));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());

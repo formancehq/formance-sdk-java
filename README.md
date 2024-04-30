@@ -25,7 +25,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk:2.3.0'
+implementation 'com.formance.formance_sdk:formance-sdk:2.3.1'
 ```
 
 Maven:
@@ -33,7 +33,7 @@ Maven:
 <dependency>
     <groupId>com.formance.formance_sdk</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>2.3.0</version>
+    <version>2.3.1</version>
 </dependency>
 ```
 
@@ -394,10 +394,10 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Exception type.
 
-| Error Object                                          | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| com.formance.formance_sdk.models.errors.ErrorResponse | default                                               | application/json                                      |
-| models/errors/SDKError                                | 4xx-5xx                                               | */*                                                   |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4xx-5xx                     | */*                         |
 
 ### Example
 

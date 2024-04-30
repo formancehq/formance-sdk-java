@@ -103,10 +103,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CancelEventResponse>](../../models/operations/CancelEventResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createTrigger
 
@@ -144,6 +144,7 @@ public class Application {
                 .event("<value>")
                 .workflowID("<value>")
                 .filter("<value>")
+                .name("<value>")
                 .vars(java.util.Map.ofEntries(
                     entry("key", "<value>")))
                 .build();
@@ -178,10 +179,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateTriggerResponse>](../../models/operations/CreateTriggerResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## createWorkflow
 
@@ -252,10 +253,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateWorkflowResponse>](../../models/operations/CreateWorkflowResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deleteTrigger
 
@@ -321,10 +322,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.DeleteTriggerResponse>](../../models/operations/DeleteTriggerResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## deleteWorkflow
 
@@ -390,10 +391,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.DeleteWorkflowResponse>](../../models/operations/DeleteWorkflowResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInstance
 
@@ -461,10 +462,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetInstanceResponse>](../../models/operations/GetInstanceResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInstanceHistory
 
@@ -532,10 +533,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse>](../../models/operations/GetInstanceHistoryResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getInstanceStageHistory
 
@@ -604,10 +605,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse>](../../models/operations/GetInstanceStageHistoryResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## getWorkflow
 
@@ -675,10 +676,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetWorkflowResponse>](../../models/operations/GetWorkflowResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listInstances
 
@@ -747,10 +748,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListInstancesResponse>](../../models/operations/ListInstancesResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listTriggers
 
@@ -763,6 +764,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.operations.ListTriggersRequest;
 import com.formance.formance_sdk.models.operations.ListTriggersResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
@@ -783,7 +785,12 @@ public class Application {
                     .build())
                 .build();
 
+            ListTriggersRequest req = ListTriggersRequest.builder()
+                .name("<value>")
+                .build();
+
             ListTriggersResponse res = sdk.orchestration().listTriggers()
+                .request(req)
                 .call();
 
             if (res.listTriggersResponse().isPresent()) {
@@ -800,16 +807,22 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.ListTriggersRequest](../../models/operations/ListTriggersRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+
 
 ### Response
 
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListTriggersResponse>](../../models/operations/ListTriggersResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listTriggersOccurrences
 
@@ -877,10 +890,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse>](../../models/operations/ListTriggersOccurrencesResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## listWorkflows
 
@@ -936,10 +949,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListWorkflowsResponse>](../../models/operations/ListWorkflowsResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## orchestrationgetServerInfo
 
@@ -995,10 +1008,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse>](../../models/operations/OrchestrationgetServerInfoResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## readTrigger
 
@@ -1066,10 +1079,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ReadTriggerResponse>](../../models/operations/ReadTriggerResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## runWorkflow
 
@@ -1140,10 +1153,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.RunWorkflowResponse>](../../models/operations/RunWorkflowResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## sendEvent
 
@@ -1213,10 +1226,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.SendEventResponse>](../../models/operations/SendEventResponse.md)**
 ### Errors
 
-| Error Object                                  | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| com.formance.formance_sdk.models.errors.Error | default                                       | application/json                              |
-| models/errors/SDKError                        | 4xx-5xx                                       | */*                                           |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## testTrigger
 
@@ -1286,10 +1299,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.TestTriggerResponse>](../../models/operations/TestTriggerResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CancelEvent
 
@@ -1355,10 +1368,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CancelEventResponse>](../../models/operations/V2CancelEventResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CreateTrigger
 
@@ -1396,6 +1409,7 @@ public class Application {
                 .event("<value>")
                 .workflowID("<value>")
                 .filter("<value>")
+                .name("<value>")
                 .vars(java.util.Map.ofEntries(
                     entry("key", "<value>")))
                 .build();
@@ -1430,10 +1444,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateTriggerResponse>](../../models/operations/V2CreateTriggerResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2CreateWorkflow
 
@@ -1504,10 +1518,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse>](../../models/operations/V2CreateWorkflowResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2DeleteTrigger
 
@@ -1573,10 +1587,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse>](../../models/operations/V2DeleteTriggerResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2DeleteWorkflow
 
@@ -1642,10 +1656,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse>](../../models/operations/V2DeleteWorkflowResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetInstance
 
@@ -1713,10 +1727,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInstanceResponse>](../../models/operations/V2GetInstanceResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetInstanceHistory
 
@@ -1784,10 +1798,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse>](../../models/operations/V2GetInstanceHistoryResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetInstanceStageHistory
 
@@ -1856,10 +1870,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse>](../../models/operations/V2GetInstanceStageHistoryResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetServerInfo
 
@@ -1915,10 +1929,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetServerInfoResponse>](../../models/operations/V2GetServerInfoResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2GetWorkflow
 
@@ -1986,10 +2000,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2GetWorkflowResponse>](../../models/operations/V2GetWorkflowResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListInstances
 
@@ -2060,10 +2074,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListInstancesResponse>](../../models/operations/V2ListInstancesResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListTriggers
 
@@ -2099,6 +2113,7 @@ public class Application {
 
             V2ListTriggersRequest req = V2ListTriggersRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .name("<value>")
                 .pageSize(877214L)
                 .build();
 
@@ -2132,10 +2147,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListTriggersResponse>](../../models/operations/V2ListTriggersResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListTriggersOccurrences
 
@@ -2205,10 +2220,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse>](../../models/operations/V2ListTriggersOccurrencesResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ListWorkflows
 
@@ -2277,10 +2292,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse>](../../models/operations/V2ListWorkflowsResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2ReadTrigger
 
@@ -2348,10 +2363,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2ReadTriggerResponse>](../../models/operations/V2ReadTriggerResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2RunWorkflow
 
@@ -2422,10 +2437,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2RunWorkflowResponse>](../../models/operations/V2RunWorkflowResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ## v2SendEvent
 
@@ -2495,7 +2510,7 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.V2SendEventResponse>](../../models/operations/V2SendEventResponse.md)**
 ### Errors
 
-| Error Object                                    | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| com.formance.formance_sdk.models.errors.V2Error | default                                         | application/json                                |
-| models/errors/SDKError                          | 4xx-5xx                                         | */*                                             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/V2Error  | default                | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |

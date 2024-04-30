@@ -38,6 +38,10 @@ public class Trigger {
     private String id;
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private Optional<? extends String> name;
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
     private Optional<? extends java.util.Map<String, java.lang.Object>> vars;
 
@@ -50,18 +54,21 @@ public class Trigger {
             @JsonProperty("event") String event,
             @JsonProperty("filter") Optional<? extends String> filter,
             @JsonProperty("id") String id,
+            @JsonProperty("name") Optional<? extends String> name,
             @JsonProperty("vars") Optional<? extends java.util.Map<String, java.lang.Object>> vars,
             @JsonProperty("workflowID") String workflowID) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(event, "event");
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(vars, "vars");
         Utils.checkNotNull(workflowID, "workflowID");
         this.createdAt = createdAt;
         this.event = event;
         this.filter = filter;
         this.id = id;
+        this.name = name;
         this.vars = vars;
         this.workflowID = workflowID;
     }
@@ -71,7 +78,7 @@ public class Trigger {
             String event,
             String id,
             String workflowID) {
-        this(createdAt, event, Optional.empty(), id, Optional.empty(), workflowID);
+        this(createdAt, event, Optional.empty(), id, Optional.empty(), Optional.empty(), workflowID);
     }
 
     @JsonIgnore
@@ -92,6 +99,11 @@ public class Trigger {
     @JsonIgnore
     public String id() {
         return id;
+    }
+
+    @JsonIgnore
+    public Optional<? extends String> name() {
+        return name;
     }
 
     @JsonIgnore
@@ -138,6 +150,18 @@ public class Trigger {
         return this;
     }
 
+    public Trigger withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+    public Trigger withName(Optional<? extends String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
+        return this;
+    }
+
     public Trigger withVars(java.util.Map<String, java.lang.Object> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = Optional.ofNullable(vars);
@@ -170,6 +194,7 @@ public class Trigger {
             java.util.Objects.deepEquals(this.event, other.event) &&
             java.util.Objects.deepEquals(this.filter, other.filter) &&
             java.util.Objects.deepEquals(this.id, other.id) &&
+            java.util.Objects.deepEquals(this.name, other.name) &&
             java.util.Objects.deepEquals(this.vars, other.vars) &&
             java.util.Objects.deepEquals(this.workflowID, other.workflowID);
     }
@@ -181,6 +206,7 @@ public class Trigger {
             event,
             filter,
             id,
+            name,
             vars,
             workflowID);
     }
@@ -192,6 +218,7 @@ public class Trigger {
                 "event", event,
                 "filter", filter,
                 "id", id,
+                "name", name,
                 "vars", vars,
                 "workflowID", workflowID);
     }
@@ -205,6 +232,8 @@ public class Trigger {
         private Optional<? extends String> filter = Optional.empty();
  
         private String id;
+ 
+        private Optional<? extends String> name = Optional.empty();
  
         private Optional<? extends java.util.Map<String, java.lang.Object>> vars = Optional.empty();
  
@@ -244,6 +273,18 @@ public class Trigger {
             return this;
         }
 
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        public Builder name(Optional<? extends String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
+            return this;
+        }
+
         public Builder vars(java.util.Map<String, java.lang.Object> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
@@ -268,6 +309,7 @@ public class Trigger {
                 event,
                 filter,
                 id,
+                name,
                 vars,
                 workflowID);
         }
