@@ -399,7 +399,8 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallListTriggers {
-        com.formance.formance_sdk.models.operations.ListTriggersResponse listTriggersDirect() throws Exception;
+        com.formance.formance_sdk.models.operations.ListTriggersResponse listTriggers(
+            com.formance.formance_sdk.models.operations.ListTriggersRequest request) throws Exception;
     }
 
 

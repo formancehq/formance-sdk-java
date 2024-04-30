@@ -89,10 +89,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ConfirmHoldResponse>](../../models/operations/ConfirmHoldResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## createBalance
 
@@ -166,10 +166,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateBalanceResponse>](../../models/operations/CreateBalanceResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## createWallet
 
@@ -239,10 +239,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateWalletResponse>](../../models/operations/CreateWalletResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## creditWallet
 
@@ -325,10 +325,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreditWalletResponse>](../../models/operations/CreditWalletResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## debitWallet
 
@@ -417,10 +417,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.DebitWalletResponse>](../../models/operations/DebitWalletResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## getBalance
 
@@ -489,10 +489,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetBalanceResponse>](../../models/operations/GetBalanceResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## getHold
 
@@ -560,10 +560,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetHoldResponse>](../../models/operations/GetHoldResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## getHolds
 
@@ -635,10 +635,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetHoldsResponse>](../../models/operations/GetHoldsResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## getTransactions
 
@@ -706,10 +706,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetTransactionsResponse>](../../models/operations/GetTransactionsResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## getWallet
 
@@ -777,10 +777,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetWalletResponse>](../../models/operations/GetWalletResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## getWalletSummary
 
@@ -848,10 +848,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetWalletSummaryResponse>](../../models/operations/GetWalletSummaryResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## listBalances
 
@@ -991,10 +991,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListWalletsResponse>](../../models/operations/ListWalletsResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## updateWallet
 
@@ -1065,10 +1065,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UpdateWalletResponse>](../../models/operations/UpdateWalletResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## voidHold
 
@@ -1134,10 +1134,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.VoidHoldResponse>](../../models/operations/VoidHoldResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
 
 ## walletsgetServerInfo
 
@@ -1193,7 +1193,7 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse>](../../models/operations/WalletsgetServerInfoResponse.md)**
 ### Errors
 
-| Error Object                                                 | Status Code                                                  | Content Type                                                 |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| com.formance.formance_sdk.models.errors.WalletsErrorResponse | default                                                      | application/json                                             |
-| models/errors/SDKError                                       | 4xx-5xx                                                      | */*                                                          |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| models/errors/WalletsErrorResponse | default                            | application/json                   |
+| models/errors/SDKError             | 4xx-5xx                            | */*                                |
