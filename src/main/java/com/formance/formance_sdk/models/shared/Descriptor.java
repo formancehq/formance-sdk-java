@@ -43,14 +43,16 @@ public class Descriptor {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> key() {
-        return key;
+    public Optional<String> key() {
+        return (Optional<String>) key;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
     public final static Builder builder() {

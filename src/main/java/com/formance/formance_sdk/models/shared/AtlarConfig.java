@@ -119,9 +119,10 @@ public class AtlarConfig {
      * The base URL the client uses for making requests towards the Atlar API.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> baseUrl() {
-        return baseUrl;
+    public Optional<String> baseUrl() {
+        return (Optional<String>) baseUrl;
     }
 
     @JsonIgnore
@@ -133,18 +134,20 @@ public class AtlarConfig {
      * Number of items to fetch when querying paginated APIs.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
      * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> pollingPeriod() {
-        return pollingPeriod;
+    public Optional<String> pollingPeriod() {
+        return (Optional<String>) pollingPeriod;
     }
 
     /**
@@ -161,9 +164,10 @@ public class AtlarConfig {
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> transferInitiationStatusPollingPeriod() {
-        return transferInitiationStatusPollingPeriod;
+    public Optional<String> transferInitiationStatusPollingPeriod() {
+        return (Optional<String>) transferInitiationStatusPollingPeriod;
     }
 
     public final static Builder builder() {

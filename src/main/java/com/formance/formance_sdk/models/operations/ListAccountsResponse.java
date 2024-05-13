@@ -65,9 +65,10 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursorResponse> accountsCursorResponse() {
-        return accountsCursorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.AccountsCursorResponse> accountsCursorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.AccountsCursorResponse>) accountsCursorResponse;
     }
 
     /**

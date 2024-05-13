@@ -40,9 +40,10 @@ public class ConfirmHoldRequest {
         this(Optional.empty(), holdId);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest() {
-        return confirmHoldRequest;
+    public Optional<com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfirmHoldRequest>) confirmHoldRequest;
     }
 
     @JsonIgnore

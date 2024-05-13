@@ -141,17 +141,19 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> account() {
-        return account;
+    public Optional<String> account() {
+        return (Optional<String>) account;
     }
 
     /**
      * Pagination cursor, will return transactions after given txid (in descending order).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> after() {
-        return after;
+    public Optional<String> after() {
+        return (Optional<String>) after;
     }
 
     /**
@@ -161,17 +163,19 @@ public class ListTransactionsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> destination() {
-        return destination;
+    public Optional<String> destination() {
+        return (Optional<String>) destination;
     }
 
     /**
@@ -179,9 +183,10 @@ public class ListTransactionsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> endTime() {
-        return endTime;
+    public Optional<OffsetDateTime> endTime() {
+        return (Optional<OffsetDateTime>) endTime;
     }
 
     /**
@@ -195,34 +200,38 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
      * Find transactions by reference field.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> source() {
-        return source;
+    public Optional<String> source() {
+        return (Optional<String>) source;
     }
 
     /**
@@ -230,9 +239,10 @@ public class ListTransactionsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> startTime() {
-        return startTime;
+    public Optional<OffsetDateTime> startTime() {
+        return (Optional<OffsetDateTime>) startTime;
     }
 
     public final static Builder builder() {

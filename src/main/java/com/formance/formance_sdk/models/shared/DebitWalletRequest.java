@@ -95,19 +95,22 @@ public class DebitWalletRequest {
         return amount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> balances() {
-        return balances;
+    public Optional<java.util.List<String>> balances() {
+        return (Optional<java.util.List<String>>) balances;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> description() {
-        return description;
+    public Optional<String> description() {
+        return (Optional<String>) description;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Subject> destination() {
-        return destination;
+    public Optional<Subject> destination() {
+        return (Optional<Subject>) destination;
     }
 
     /**
@@ -121,17 +124,19 @@ public class DebitWalletRequest {
     /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> pending() {
-        return pending;
+    public Optional<Boolean> pending() {
+        return (Optional<Boolean>) pending;
     }
 
     /**
      * cannot be used in conjunction with `pending` property
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> timestamp() {
-        return timestamp;
+    public Optional<OffsetDateTime> timestamp() {
+        return (Optional<OffsetDateTime>) timestamp;
     }
 
     public final static Builder builder() {

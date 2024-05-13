@@ -36,9 +36,10 @@ public class ListUsersResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<User>> data() {
-        return data;
+    public Optional<java.util.List<User>> data() {
+        return (Optional<java.util.List<User>>) data;
     }
 
     public final static Builder builder() {

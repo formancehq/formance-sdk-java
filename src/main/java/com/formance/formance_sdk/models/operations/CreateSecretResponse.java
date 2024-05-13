@@ -73,9 +73,10 @@ public class CreateSecretResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Created secret
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretResponse> createSecretResponse() {
-        return createSecretResponse;
+    public Optional<com.formance.formance_sdk.models.shared.CreateSecretResponse> createSecretResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.CreateSecretResponse>) createSecretResponse;
     }
 
     /**

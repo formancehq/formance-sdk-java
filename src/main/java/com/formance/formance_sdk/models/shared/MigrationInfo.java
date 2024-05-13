@@ -60,24 +60,28 @@ public class MigrationInfo {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> date() {
-        return date;
+    public Optional<OffsetDateTime> date() {
+        return (Optional<OffsetDateTime>) date;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends State> state() {
-        return state;
+    public Optional<State> state() {
+        return (Optional<State>) state;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> version() {
-        return version;
+    public Optional<Long> version() {
+        return (Optional<Long>) version;
     }
 
     public final static Builder builder() {

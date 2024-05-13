@@ -65,9 +65,10 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConnectorConfigResponse> connectorConfigResponse() {
-        return connectorConfigResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConnectorConfigResponse> connectorConfigResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConnectorConfigResponse>) connectorConfigResponse;
     }
 
     /**

@@ -60,9 +60,10 @@ public class V2GetTransactionRequest {
         this(Optional.empty(), id, ledger, Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> expand() {
-        return expand;
+    public Optional<String> expand() {
+        return (Optional<String>) expand;
     }
 
     /**
@@ -81,9 +82,10 @@ public class V2GetTransactionRequest {
         return ledger;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> pit() {
-        return pit;
+    public Optional<OffsetDateTime> pit() {
+        return (Optional<OffsetDateTime>) pit;
     }
 
     public final static Builder builder() {

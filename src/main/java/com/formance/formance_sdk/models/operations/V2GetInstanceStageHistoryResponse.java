@@ -89,9 +89,10 @@ public class V2GetInstanceStageHistoryResponse implements com.formance.formance_
     /**
      * The workflow instance stage history
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse> v2GetWorkflowInstanceHistoryStageResponse() {
-        return v2GetWorkflowInstanceHistoryStageResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse> v2GetWorkflowInstanceHistoryStageResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse>) v2GetWorkflowInstanceHistoryStageResponse;
     }
 
     public final static Builder builder() {

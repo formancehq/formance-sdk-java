@@ -89,9 +89,10 @@ public class V2ListTriggersOccurrencesResponse implements com.formance.formance_
     /**
      * List of triggers occurrences
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse() {
-        return v2ListTriggersOccurrencesResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse>) v2ListTriggersOccurrencesResponse;
     }
 
     public final static Builder builder() {

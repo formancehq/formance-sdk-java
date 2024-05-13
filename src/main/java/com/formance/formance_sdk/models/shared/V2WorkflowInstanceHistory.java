@@ -74,9 +74,10 @@ public class V2WorkflowInstanceHistory {
         this(Optional.empty(), input, name, startedAt, terminated, Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     @JsonIgnore
@@ -99,9 +100,10 @@ public class V2WorkflowInstanceHistory {
         return terminated;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> terminatedAt() {
-        return terminatedAt;
+    public Optional<OffsetDateTime> terminatedAt() {
+        return (Optional<OffsetDateTime>) terminatedAt;
     }
 
     public final static Builder builder() {

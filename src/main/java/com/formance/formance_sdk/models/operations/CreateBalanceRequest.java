@@ -40,9 +40,10 @@ public class CreateBalanceRequest {
         this(Optional.empty(), id);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest() {
-        return createBalanceRequest;
+    public Optional<com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.CreateBalanceRequest>) createBalanceRequest;
     }
 
     @JsonIgnore

@@ -117,9 +117,10 @@ public class Attempt {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> nextRetryAfter() {
-        return nextRetryAfter;
+    public Optional<OffsetDateTime> nextRetryAfter() {
+        return (Optional<OffsetDateTime>) nextRetryAfter;
     }
 
     @JsonIgnore

@@ -89,9 +89,10 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
     /**
      * List of workflow instances
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2ListRunsResponse> v2ListRunsResponse() {
-        return v2ListRunsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2ListRunsResponse> v2ListRunsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2ListRunsResponse>) v2ListRunsResponse;
     }
 
     public final static Builder builder() {

@@ -43,14 +43,16 @@ public class V2ActivityCreateTransaction {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2PostTransaction> data() {
-        return data;
+    public Optional<V2PostTransaction> data() {
+        return (Optional<V2PostTransaction>) data;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ledger() {
-        return ledger;
+    public Optional<String> ledger() {
+        return (Optional<String>) ledger;
     }
 
     public final static Builder builder() {

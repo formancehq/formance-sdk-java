@@ -55,14 +55,16 @@ public class V2BulkElementRevertTransaction {
         return action;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2BulkElementRevertTransactionData> data() {
-        return data;
+    public Optional<V2BulkElementRevertTransactionData> data() {
+        return (Optional<V2BulkElementRevertTransactionData>) data;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ik() {
-        return ik;
+    public Optional<String> ik() {
+        return (Optional<String>) ik;
     }
 
     public final static Builder builder() {

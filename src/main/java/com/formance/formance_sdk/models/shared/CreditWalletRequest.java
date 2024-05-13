@@ -88,9 +88,10 @@ public class CreditWalletRequest {
     /**
      * The balance to credit
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> balance() {
-        return balance;
+    public Optional<String> balance() {
+        return (Optional<String>) balance;
     }
 
     /**
@@ -101,9 +102,10 @@ public class CreditWalletRequest {
         return metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
     @JsonIgnore
@@ -111,9 +113,10 @@ public class CreditWalletRequest {
         return sources;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> timestamp() {
-        return timestamp;
+    public Optional<OffsetDateTime> timestamp() {
+        return (Optional<OffsetDateTime>) timestamp;
     }
 
     public final static Builder builder() {

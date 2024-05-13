@@ -73,9 +73,10 @@ public class GetPaymentResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.PaymentResponse> paymentResponse() {
-        return paymentResponse;
+    public Optional<com.formance.formance_sdk.models.shared.PaymentResponse> paymentResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.PaymentResponse>) paymentResponse;
     }
 
     /**

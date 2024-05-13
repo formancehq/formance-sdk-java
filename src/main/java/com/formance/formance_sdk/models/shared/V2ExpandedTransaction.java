@@ -98,9 +98,10 @@ public class V2ExpandedTransaction {
         return metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.Map<String, V2Volume>>> postCommitVolumes() {
-        return postCommitVolumes;
+    public Optional<java.util.Map<String, java.util.Map<String, V2Volume>>> postCommitVolumes() {
+        return (Optional<java.util.Map<String, java.util.Map<String, V2Volume>>>) postCommitVolumes;
     }
 
     @JsonIgnore
@@ -108,14 +109,16 @@ public class V2ExpandedTransaction {
         return postings;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.Map<String, V2Volume>>> preCommitVolumes() {
-        return preCommitVolumes;
+    public Optional<java.util.Map<String, java.util.Map<String, V2Volume>>> preCommitVolumes() {
+        return (Optional<java.util.Map<String, java.util.Map<String, V2Volume>>>) preCommitVolumes;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
     @JsonIgnore

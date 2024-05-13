@@ -43,9 +43,10 @@ public class V2SendEventRequest {
         this(Optional.empty(), instanceID);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2SendEventRequestBody> requestBody() {
-        return requestBody;
+    public Optional<V2SendEventRequestBody> requestBody() {
+        return (Optional<V2SendEventRequestBody>) requestBody;
     }
 
     /**

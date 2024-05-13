@@ -112,7 +112,7 @@ public class Payments implements
             throw new Exception("Request body is required");
         }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -164,12 +164,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -277,12 +284,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -388,12 +402,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -499,12 +520,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -610,12 +638,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -721,12 +756,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -832,12 +874,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -873,7 +922,7 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -925,12 +974,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -966,7 +1022,7 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -1018,12 +1074,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1129,12 +1192,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1237,12 +1307,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1340,12 +1417,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1449,12 +1533,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1554,12 +1645,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1657,12 +1755,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1760,12 +1865,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1868,12 +1980,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -1971,12 +2090,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2084,12 +2210,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2185,12 +2318,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2293,12 +2433,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2394,12 +2541,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2508,12 +2662,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2618,12 +2779,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2724,12 +2892,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2830,12 +3005,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -2936,12 +3118,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3039,12 +3228,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3138,12 +3334,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3249,12 +3452,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3358,12 +3568,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3463,12 +3680,19 @@ public class Payments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3504,7 +3728,7 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -3556,12 +3780,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3605,7 +3836,7 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -3657,12 +3888,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3702,7 +3940,7 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -3754,12 +3992,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3795,7 +4040,7 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -3847,12 +4092,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3896,7 +4148,7 @@ public class Payments implements
             throw new Exception("Request body is required");
         }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -3948,12 +4200,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -3997,7 +4256,7 @@ public class Payments implements
             throw new Exception("Request body is required");
         }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -4049,12 +4308,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -4094,7 +4360,7 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -4146,12 +4412,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -4187,7 +4460,7 @@ public class Payments implements
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -4239,12 +4512,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -4286,7 +4566,7 @@ public class Payments implements
             throw new Exception("Request body is required");
         }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -4338,12 +4618,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -4387,7 +4674,7 @@ public class Payments implements
             throw new Exception("Request body is required");
         }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -4439,12 +4726,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 
@@ -4486,7 +4780,7 @@ public class Payments implements
             throw new Exception("Request body is required");
         }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
@@ -4538,12 +4832,19 @@ public class Payments implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                ObjectMapper _mapper = JSON.getMapper();
+                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = _mapper.readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
-                    "API error occurred", 
+                    "Unexpected content-type received: " + _contentType, 
                     Utils.toByteArrayAndClose(_httpRes.body()));
+            }
         }
         throw new SDKError(
             _httpRes, 

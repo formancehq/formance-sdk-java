@@ -74,9 +74,10 @@ public class BalancesCursorResponseCursor {
         return hasMore;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> next() {
-        return next;
+    public Optional<String> next() {
+        return (Optional<String>) next;
     }
 
     @JsonIgnore
@@ -84,9 +85,10 @@ public class BalancesCursorResponseCursor {
         return pageSize;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> previous() {
-        return previous;
+    public Optional<String> previous() {
+        return (Optional<String>) previous;
     }
 
     public final static Builder builder() {

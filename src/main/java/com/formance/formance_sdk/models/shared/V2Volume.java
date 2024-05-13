@@ -50,9 +50,10 @@ public class V2Volume {
         this(Optional.empty(), input, output);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends BigInteger> balance() {
-        return balance;
+    public Optional<BigInteger> balance() {
+        return (Optional<BigInteger>) balance;
     }
 
     @JsonIgnore

@@ -67,29 +67,34 @@ public class V2StageSend {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2Monetary> amount() {
-        return amount;
+    public Optional<V2Monetary> amount() {
+        return (Optional<V2Monetary>) amount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2StageSendDestination> destination() {
-        return destination;
+    public Optional<V2StageSendDestination> destination() {
+        return (Optional<V2StageSendDestination>) destination;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, String>> metadata() {
+        return (Optional<java.util.Map<String, String>>) metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2StageSendSource> source() {
-        return source;
+    public Optional<V2StageSendSource> source() {
+        return (Optional<V2StageSendSource>) source;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> timestamp() {
-        return timestamp;
+    public Optional<OffsetDateTime> timestamp() {
+        return (Optional<OffsetDateTime>) timestamp;
     }
 
     public final static Builder builder() {

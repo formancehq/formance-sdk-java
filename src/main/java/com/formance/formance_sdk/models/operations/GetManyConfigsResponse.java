@@ -65,9 +65,10 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse() {
-        return configsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfigsResponse>) configsResponse;
     }
 
     /**

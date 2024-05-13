@@ -73,9 +73,10 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.PoolsCursor> poolsCursor() {
-        return poolsCursor;
+    public Optional<com.formance.formance_sdk.models.shared.PoolsCursor> poolsCursor() {
+        return (Optional<com.formance.formance_sdk.models.shared.PoolsCursor>) poolsCursor;
     }
 
     /**

@@ -80,18 +80,20 @@ public class StripeConfig {
      * Number of BalanceTransaction to fetch at each polling interval.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> pollingPeriod() {
-        return pollingPeriod;
+    public Optional<String> pollingPeriod() {
+        return (Optional<String>) pollingPeriod;
     }
 
     public final static Builder builder() {

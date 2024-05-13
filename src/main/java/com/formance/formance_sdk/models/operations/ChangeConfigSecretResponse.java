@@ -65,9 +65,10 @@ public class ChangeConfigSecretResponse implements com.formance.formance_sdk.uti
     /**
      * Secret successfully changed.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
-        return configResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfigResponse>) configResponse;
     }
 
     /**

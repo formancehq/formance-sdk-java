@@ -61,9 +61,10 @@ public class TransactionData {
         this(JsonNullable.undefined(), postings, Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, java.lang.Object>> metadata() {
+        return (JsonNullable<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
     @JsonIgnore
@@ -71,14 +72,16 @@ public class TransactionData {
         return postings;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> timestamp() {
-        return timestamp;
+    public Optional<OffsetDateTime> timestamp() {
+        return (Optional<OffsetDateTime>) timestamp;
     }
 
     public final static Builder builder() {

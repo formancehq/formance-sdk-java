@@ -36,9 +36,10 @@ public class LedgerInfoResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends LedgerInfo> data() {
-        return data;
+    public Optional<LedgerInfo> data() {
+        return (Optional<LedgerInfo>) data;
     }
 
     public final static Builder builder() {

@@ -65,9 +65,10 @@ public class ForwardBankAccountResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse() {
-        return bankAccountResponse;
+    public Optional<com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.BankAccountResponse>) bankAccountResponse;
     }
 
     /**

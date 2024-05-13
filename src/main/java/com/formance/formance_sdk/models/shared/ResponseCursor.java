@@ -71,34 +71,40 @@ public class ResponseCursor {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<java.util.Map<String, java.lang.Object>>> data() {
-        return data;
+    public Optional<java.util.List<java.util.Map<String, java.lang.Object>>> data() {
+        return (Optional<java.util.List<java.util.Map<String, java.lang.Object>>>) data;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> hasMore() {
-        return hasMore;
+    public Optional<Boolean> hasMore() {
+        return (Optional<Boolean>) hasMore;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> next() {
-        return next;
+    public Optional<String> next() {
+        return (Optional<String>) next;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> previous() {
-        return previous;
+    public Optional<String> previous() {
+        return (Optional<String>) previous;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Total> total() {
-        return total;
+    public Optional<Total> total() {
+        return (Optional<Total>) total;
     }
 
     public final static Builder builder() {

@@ -73,9 +73,10 @@ public class ListWorkflowsResponse implements com.formance.formance_sdk.utils.Re
     /**
      * List of workflows
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ListWorkflowsResponse> listWorkflowsResponse() {
-        return listWorkflowsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ListWorkflowsResponse> listWorkflowsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ListWorkflowsResponse>) listWorkflowsResponse;
     }
 
     /**

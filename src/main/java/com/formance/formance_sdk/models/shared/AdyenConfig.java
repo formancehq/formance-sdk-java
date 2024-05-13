@@ -79,9 +79,10 @@ public class AdyenConfig {
         return hmacKey;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> liveEndpointPrefix() {
-        return liveEndpointPrefix;
+    public Optional<String> liveEndpointPrefix() {
+        return (Optional<String>) liveEndpointPrefix;
     }
 
     @JsonIgnore
@@ -93,9 +94,10 @@ public class AdyenConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> pollingPeriod() {
-        return pollingPeriod;
+    public Optional<String> pollingPeriod() {
+        return (Optional<String>) pollingPeriod;
     }
 
     public final static Builder builder() {

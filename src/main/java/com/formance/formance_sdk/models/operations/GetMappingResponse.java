@@ -73,9 +73,10 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.MappingResponse> mappingResponse() {
-        return mappingResponse;
+    public Optional<com.formance.formance_sdk.models.shared.MappingResponse> mappingResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.MappingResponse>) mappingResponse;
     }
 
     /**

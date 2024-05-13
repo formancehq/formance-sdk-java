@@ -43,9 +43,10 @@ public class Contract {
         this(Optional.empty(), expr);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> account() {
-        return account;
+    public Optional<String> account() {
+        return (Optional<String>) account;
     }
 
     @JsonIgnore

@@ -58,21 +58,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.AddAccountToPoolRequest;
-import com.formance.formance_sdk.models.operations.AddAccountToPoolResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.AddAccountToPoolRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -84,7 +82,7 @@ public class Application {
                 .addAccountToPoolRequest(AddAccountToPoolRequest.builder()
                         .accountID("<value>")
                         .build())
-                .poolId("<value>")
+                .poolId("XXX")
                 .build();
 
             AddAccountToPoolResponse res = sdk.payments().addAccountToPool()
@@ -92,10 +90,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -113,9 +116,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.AddAccountToPoolResponse>](../../models/operations/AddAccountToPoolResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## connectorsTransfer
 
@@ -128,22 +132,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ConnectorsTransferRequest;
-import com.formance.formance_sdk.models.operations.ConnectorsTransferResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.TransferRequest;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -168,10 +169,15 @@ public class Application {
             if (res.transferResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -189,9 +195,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ConnectorsTransferResponse>](../../models/operations/ConnectorsTransferResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## createAccount
 
@@ -204,21 +211,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreateAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.AccountRequest;
-import com.formance.formance_sdk.models.shared.AccountType;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -231,10 +236,6 @@ public class Application {
                 .createdAt(OffsetDateTime.parse("2024-08-19T02:15:08.668Z"))
                 .reference("<value>")
                 .type(AccountType.UNKNOWN)
-                .accountName("<value>")
-                .defaultAsset("<value>")
-                .metadata(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .build();
 
             CreateAccountResponse res = sdk.payments().createAccount()
@@ -244,10 +245,15 @@ public class Application {
             if (res.paymentsAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -265,9 +271,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateAccountResponse>](../../models/operations/CreateAccountResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## createBankAccount
 
@@ -280,20 +287,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreateBankAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.BankAccountRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -305,11 +311,6 @@ public class Application {
                 .connectorID("<value>")
                 .country("GB")
                 .name("My account")
-                .accountNumber("<value>")
-                .iban("HU80500236840980904027018003")
-                .metadata(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .swiftBicCode("<value>")
                 .build();
 
             CreateBankAccountResponse res = sdk.payments().createBankAccount()
@@ -319,10 +320,15 @@ public class Application {
             if (res.bankAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -340,9 +346,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateBankAccountResponse>](../../models/operations/CreateBankAccountResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## createPayment
 
@@ -355,23 +362,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreatePaymentResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.PaymentRequest;
-import com.formance.formance_sdk.models.shared.PaymentScheme;
-import com.formance.formance_sdk.models.shared.PaymentStatus;
-import com.formance.formance_sdk.models.shared.PaymentType;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -388,8 +391,6 @@ public class Application {
                 .scheme(PaymentScheme.GOOGLE_PAY)
                 .status(PaymentStatus.DISPUTE_WON)
                 .type(PaymentType.TRANSFER)
-                .destinationAccountID("<value>")
-                .sourceAccountID("<value>")
                 .build();
 
             CreatePaymentResponse res = sdk.payments().createPayment()
@@ -399,10 +400,15 @@ public class Application {
             if (res.paymentResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -420,9 +426,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreatePaymentResponse>](../../models/operations/CreatePaymentResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## createPool
 
@@ -435,20 +442,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreatePoolResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.PoolRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -469,10 +475,15 @@ public class Application {
             if (res.poolResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -490,9 +501,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreatePoolResponse>](../../models/operations/CreatePoolResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## createTransferInitiation
 
@@ -505,22 +517,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
-import com.formance.formance_sdk.models.shared.TransferInitiationRequestType;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -538,10 +547,6 @@ public class Application {
                 .sourceAccountID("<value>")
                 .type(TransferInitiationRequestType.PAYOUT)
                 .validated(false)
-                .connectorID("<value>")
-                .metadata(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .provider(Connector.MANGOPAY)
                 .build();
 
             CreateTransferInitiationResponse res = sdk.payments().createTransferInitiation()
@@ -551,10 +556,15 @@ public class Application {
             if (res.transferInitiationResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -572,9 +582,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse>](../../models/operations/CreateTransferInitiationResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## deletePool
 
@@ -587,8 +598,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.DeletePoolRequest;
-import com.formance.formance_sdk.models.operations.DeletePoolResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -596,11 +605,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -609,7 +619,7 @@ public class Application {
                 .build();
 
             DeletePoolRequest req = DeletePoolRequest.builder()
-                .poolId("<value>")
+                .poolId("XXX")
                 .build();
 
             DeletePoolResponse res = sdk.payments().deletePool()
@@ -617,10 +627,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -638,9 +653,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.DeletePoolResponse>](../../models/operations/DeletePoolResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## deleteTransferInitiation
 
@@ -653,8 +669,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest;
-import com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -662,11 +676,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -675,7 +690,7 @@ public class Application {
                 .build();
 
             DeleteTransferInitiationRequest req = DeleteTransferInitiationRequest.builder()
-                .transferId("<value>")
+                .transferId("XXX")
                 .build();
 
             DeleteTransferInitiationResponse res = sdk.payments().deleteTransferInitiation()
@@ -683,10 +698,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -704,9 +724,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse>](../../models/operations/DeleteTransferInitiationResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## forwardBankAccount
 
@@ -719,21 +740,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ForwardBankAccountRequest;
-import com.formance.formance_sdk.models.operations.ForwardBankAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.ForwardBankAccountRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -745,7 +764,7 @@ public class Application {
                 .forwardBankAccountRequest(ForwardBankAccountRequest.builder()
                         .connectorID("<value>")
                         .build())
-                .bankAccountId("<value>")
+                .bankAccountId("XXX")
                 .build();
 
             ForwardBankAccountResponse res = sdk.payments().forwardBankAccount()
@@ -755,10 +774,15 @@ public class Application {
             if (res.bankAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -776,9 +800,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ForwardBankAccountResponse>](../../models/operations/ForwardBankAccountResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## getAccountBalances
 
@@ -791,8 +816,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetAccountBalancesRequest;
-import com.formance.formance_sdk.models.operations.GetAccountBalancesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -800,11 +823,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -813,15 +837,12 @@ public class Application {
                 .build();
 
             GetAccountBalancesRequest req = GetAccountBalancesRequest.builder()
-                .accountId("<value>")
-                .asset("<value>")
+                .accountId("XXX")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .from(OffsetDateTime.parse("2023-02-05T05:11:20.042Z"))
-                .limit(743236L)
-                .pageSize(125462L)
+                .pageSize(100L)
                 .sort(java.util.List.of(
-                    "<value>"))
-                .to(OffsetDateTime.parse("2023-07-15T08:57:06.406Z"))
+                    "date:asc",
+                    "status:desc"))
                 .build();
 
             GetAccountBalancesResponse res = sdk.payments().getAccountBalances()
@@ -831,10 +852,15 @@ public class Application {
             if (res.balancesCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -852,9 +878,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetAccountBalancesResponse>](../../models/operations/GetAccountBalancesResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## getBankAccount
 
@@ -867,8 +894,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetBankAccountRequest;
-import com.formance.formance_sdk.models.operations.GetBankAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -876,11 +901,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -889,7 +915,7 @@ public class Application {
                 .build();
 
             GetBankAccountRequest req = GetBankAccountRequest.builder()
-                .bankAccountId("<value>")
+                .bankAccountId("XXX")
                 .build();
 
             GetBankAccountResponse res = sdk.payments().getBankAccount()
@@ -899,10 +925,15 @@ public class Application {
             if (res.bankAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -920,9 +951,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetBankAccountResponse>](../../models/operations/GetBankAccountResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## ~~getConnectorTask~~
 
@@ -937,21 +969,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetConnectorTaskRequest;
-import com.formance.formance_sdk.models.operations.GetConnectorTaskResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -961,7 +991,7 @@ public class Application {
 
             GetConnectorTaskRequest req = GetConnectorTaskRequest.builder()
                 .connector(Connector.ADYEN)
-                .taskId("<value>")
+                .taskId("task1")
                 .build();
 
             GetConnectorTaskResponse res = sdk.payments().getConnectorTask()
@@ -971,10 +1001,15 @@ public class Application {
             if (res.taskResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -992,9 +1027,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetConnectorTaskResponse>](../../models/operations/GetConnectorTaskResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## getConnectorTaskV1
 
@@ -1007,21 +1043,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request;
-import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1031,8 +1065,8 @@ public class Application {
 
             GetConnectorTaskV1Request req = GetConnectorTaskV1Request.builder()
                 .connector(Connector.BANKING_CIRCLE)
-                .connectorId("<value>")
-                .taskId("<value>")
+                .connectorId("XXX")
+                .taskId("task1")
                 .build();
 
             GetConnectorTaskV1Response res = sdk.payments().getConnectorTaskV1()
@@ -1042,10 +1076,15 @@ public class Application {
             if (res.taskResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1063,9 +1102,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response>](../../models/operations/GetConnectorTaskV1Response.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## getPayment
 
@@ -1078,8 +1118,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetPaymentRequest;
-import com.formance.formance_sdk.models.operations.GetPaymentResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1087,11 +1125,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1100,7 +1139,7 @@ public class Application {
                 .build();
 
             GetPaymentRequest req = GetPaymentRequest.builder()
-                .paymentId("<value>")
+                .paymentId("XXX")
                 .build();
 
             GetPaymentResponse res = sdk.payments().getPayment()
@@ -1110,10 +1149,15 @@ public class Application {
             if (res.paymentResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1131,9 +1175,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetPaymentResponse>](../../models/operations/GetPaymentResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## getPool
 
@@ -1146,8 +1191,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetPoolRequest;
-import com.formance.formance_sdk.models.operations.GetPoolResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1155,11 +1198,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1168,7 +1212,7 @@ public class Application {
                 .build();
 
             GetPoolRequest req = GetPoolRequest.builder()
-                .poolId("<value>")
+                .poolId("XXX")
                 .build();
 
             GetPoolResponse res = sdk.payments().getPool()
@@ -1178,10 +1222,15 @@ public class Application {
             if (res.poolResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1199,9 +1248,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetPoolResponse>](../../models/operations/GetPoolResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## getPoolBalances
 
@@ -1214,8 +1264,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetPoolBalancesRequest;
-import com.formance.formance_sdk.models.operations.GetPoolBalancesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1223,11 +1271,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1237,7 +1286,7 @@ public class Application {
 
             GetPoolBalancesRequest req = GetPoolBalancesRequest.builder()
                 .at(OffsetDateTime.parse("2023-05-05T06:40:23.018Z"))
-                .poolId("<value>")
+                .poolId("XXX")
                 .build();
 
             GetPoolBalancesResponse res = sdk.payments().getPoolBalances()
@@ -1247,10 +1296,15 @@ public class Application {
             if (res.poolBalancesResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1268,9 +1322,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetPoolBalancesResponse>](../../models/operations/GetPoolBalancesResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## getTransferInitiation
 
@@ -1283,8 +1338,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetTransferInitiationRequest;
-import com.formance.formance_sdk.models.operations.GetTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1292,11 +1345,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1305,7 +1359,7 @@ public class Application {
                 .build();
 
             GetTransferInitiationRequest req = GetTransferInitiationRequest.builder()
-                .transferId("<value>")
+                .transferId("XXX")
                 .build();
 
             GetTransferInitiationResponse res = sdk.payments().getTransferInitiation()
@@ -1315,10 +1369,15 @@ public class Application {
             if (res.transferInitiationResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1336,9 +1395,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.GetTransferInitiationResponse>](../../models/operations/GetTransferInitiationResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## installConnector
 
@@ -1351,32 +1411,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.InstallConnectorRequest;
-import com.formance.formance_sdk.models.operations.InstallConnectorResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.AdyenConfig;
-import com.formance.formance_sdk.models.shared.AtlarConfig;
-import com.formance.formance_sdk.models.shared.BankingCircleConfig;
-import com.formance.formance_sdk.models.shared.Connector;
-import com.formance.formance_sdk.models.shared.CurrencyCloudConfig;
-import com.formance.formance_sdk.models.shared.DummyPayConfig;
-import com.formance.formance_sdk.models.shared.GenericConfig;
-import com.formance.formance_sdk.models.shared.MangoPayConfig;
-import com.formance.formance_sdk.models.shared.ModulrConfig;
-import com.formance.formance_sdk.models.shared.MoneycorpConfig;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.StripeConfig;
-import com.formance.formance_sdk.models.shared.WiseConfig;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1385,13 +1432,12 @@ public class Application {
                 .build();
 
             InstallConnectorRequest req = InstallConnectorRequest.builder()
-                .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
+                .connectorConfig(ConnectorConfig.of(WiseConfig.builder()
                             .apiKey("XXX")
-                            .name("My Stripe Account")
-                            .pageSize(50L)
+                            .name("My Wise Account")
                             .pollingPeriod("60s")
                             .build()))
-                .connector(Connector.WISE)
+                .connector(Connector.ADYEN)
                 .build();
 
             InstallConnectorResponse res = sdk.payments().installConnector()
@@ -1401,10 +1447,15 @@ public class Application {
             if (res.connectorResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1422,9 +1473,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.InstallConnectorResponse>](../../models/operations/InstallConnectorResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## listAllConnectors
 
@@ -1437,7 +1489,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListAllConnectorsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1445,11 +1496,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1463,10 +1515,15 @@ public class Application {
             if (res.connectorsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1478,9 +1535,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListAllConnectorsResponse>](../../models/operations/ListAllConnectorsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## listBankAccounts
 
@@ -1493,8 +1551,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListBankAccountsRequest;
-import com.formance.formance_sdk.models.operations.ListBankAccountsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1502,11 +1558,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1516,9 +1573,10 @@ public class Application {
 
             ListBankAccountsRequest req = ListBankAccountsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(578999L)
+                .pageSize(100L)
                 .sort(java.util.List.of(
-                    "<value>"))
+                    "date:asc",
+                    "status:desc"))
                 .build();
 
             ListBankAccountsResponse res = sdk.payments().listBankAccounts()
@@ -1528,10 +1586,15 @@ public class Application {
             if (res.bankAccountsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1549,9 +1612,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListBankAccountsResponse>](../../models/operations/ListBankAccountsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## listConfigsAvailableConnectors
 
@@ -1564,7 +1628,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1572,11 +1635,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1590,10 +1654,15 @@ public class Application {
             if (res.connectorsConfigsResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1605,9 +1674,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse>](../../models/operations/ListConfigsAvailableConnectorsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## ~~listConnectorTasks~~
 
@@ -1622,21 +1692,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListConnectorTasksRequest;
-import com.formance.formance_sdk.models.operations.ListConnectorTasksResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1647,7 +1715,7 @@ public class Application {
             ListConnectorTasksRequest req = ListConnectorTasksRequest.builder()
                 .connector(Connector.MODULR)
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(501686L)
+                .pageSize(100L)
                 .build();
 
             ListConnectorTasksResponse res = sdk.payments().listConnectorTasks()
@@ -1657,10 +1725,15 @@ public class Application {
             if (res.tasksCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1678,9 +1751,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListConnectorTasksResponse>](../../models/operations/ListConnectorTasksResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## listConnectorTasksV1
 
@@ -1693,21 +1767,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request;
-import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1717,9 +1789,9 @@ public class Application {
 
             ListConnectorTasksV1Request req = ListConnectorTasksV1Request.builder()
                 .connector(Connector.BANKING_CIRCLE)
-                .connectorId("<value>")
+                .connectorId("XXX")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(442673L)
+                .pageSize(100L)
                 .build();
 
             ListConnectorTasksV1Response res = sdk.payments().listConnectorTasksV1()
@@ -1729,10 +1801,15 @@ public class Application {
             if (res.tasksCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1750,9 +1827,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response>](../../models/operations/ListConnectorTasksV1Response.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## listPayments
 
@@ -1765,8 +1843,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListPaymentsRequest;
-import com.formance.formance_sdk.models.operations.ListPaymentsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1774,11 +1850,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1788,10 +1865,10 @@ public class Application {
 
             ListPaymentsRequest req = ListPaymentsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(13778L)
-                .query("<value>")
+                .pageSize(100L)
                 .sort(java.util.List.of(
-                    "<value>"))
+                    "date:asc",
+                    "status:desc"))
                 .build();
 
             ListPaymentsResponse res = sdk.payments().listPayments()
@@ -1801,10 +1878,15 @@ public class Application {
             if (res.paymentsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1822,9 +1904,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListPaymentsResponse>](../../models/operations/ListPaymentsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## listPools
 
@@ -1837,8 +1920,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListPoolsRequest;
-import com.formance.formance_sdk.models.operations.ListPoolsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1846,11 +1927,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1860,10 +1942,10 @@ public class Application {
 
             ListPoolsRequest req = ListPoolsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(567687L)
-                .query("<value>")
+                .pageSize(100L)
                 .sort(java.util.List.of(
-                    "<value>"))
+                    "date:asc",
+                    "status:desc"))
                 .build();
 
             ListPoolsResponse res = sdk.payments().listPools()
@@ -1873,10 +1955,15 @@ public class Application {
             if (res.poolsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1894,9 +1981,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListPoolsResponse>](../../models/operations/ListPoolsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## listTransferInitiations
 
@@ -1909,8 +1997,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest;
-import com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1918,11 +2004,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1932,10 +2019,10 @@ public class Application {
 
             ListTransferInitiationsRequest req = ListTransferInitiationsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(706689L)
-                .query("<value>")
+                .pageSize(100L)
                 .sort(java.util.List.of(
-                    "<value>"))
+                    "date:asc",
+                    "status:desc"))
                 .build();
 
             ListTransferInitiationsResponse res = sdk.payments().listTransferInitiations()
@@ -1945,10 +2032,15 @@ public class Application {
             if (res.transferInitiationsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1966,9 +2058,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse>](../../models/operations/ListTransferInitiationsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## paymentsgetAccount
 
@@ -1981,8 +2074,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest;
-import com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -1990,11 +2081,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2003,7 +2095,7 @@ public class Application {
                 .build();
 
             PaymentsgetAccountRequest req = PaymentsgetAccountRequest.builder()
-                .accountId("<value>")
+                .accountId("XXX")
                 .build();
 
             PaymentsgetAccountResponse res = sdk.payments().paymentsgetAccount()
@@ -2013,10 +2105,15 @@ public class Application {
             if (res.paymentsAccountResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2034,9 +2131,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse>](../../models/operations/PaymentsgetAccountResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## paymentsgetServerInfo
 
@@ -2049,7 +2147,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -2057,11 +2154,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2075,10 +2173,15 @@ public class Application {
             if (res.serverInfo().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2090,9 +2193,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse>](../../models/operations/PaymentsgetServerInfoResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## paymentslistAccounts
 
@@ -2105,8 +2209,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest;
-import com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -2114,11 +2216,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2127,12 +2230,11 @@ public class Application {
                 .build();
 
             PaymentslistAccountsRequest req = PaymentslistAccountsRequest.builder()
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(227071L)
+                .pageSize(100L)
                 .sort(java.util.List.of(
-                    "<value>"))
+                    "date:asc",
+                    "status:desc"))
                 .build();
 
             PaymentslistAccountsResponse res = sdk.payments().paymentslistAccounts()
@@ -2142,10 +2244,15 @@ public class Application {
             if (res.accountsCursor().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2163,9 +2270,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse>](../../models/operations/PaymentslistAccountsResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## ~~readConnectorConfig~~
 
@@ -2180,21 +2288,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest;
-import com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2213,10 +2319,15 @@ public class Application {
             if (res.connectorConfigResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2234,9 +2345,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse>](../../models/operations/ReadConnectorConfigResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## readConnectorConfigV1
 
@@ -2249,21 +2361,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request;
-import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2273,7 +2383,7 @@ public class Application {
 
             ReadConnectorConfigV1Request req = ReadConnectorConfigV1Request.builder()
                 .connector(Connector.CURRENCY_CLOUD)
-                .connectorId("<value>")
+                .connectorId("XXX")
                 .build();
 
             ReadConnectorConfigV1Response res = sdk.payments().readConnectorConfigV1()
@@ -2283,10 +2393,15 @@ public class Application {
             if (res.connectorConfigResponse().isPresent()) {
                 // handle response
             }
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2304,9 +2419,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response>](../../models/operations/ReadConnectorConfigV1Response.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## removeAccountFromPool
 
@@ -2319,8 +2435,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest;
-import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -2328,11 +2442,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2341,8 +2456,8 @@ public class Application {
                 .build();
 
             RemoveAccountFromPoolRequest req = RemoveAccountFromPoolRequest.builder()
-                .accountId("<value>")
-                .poolId("<value>")
+                .accountId("XXX")
+                .poolId("XXX")
                 .build();
 
             RemoveAccountFromPoolResponse res = sdk.payments().removeAccountFromPool()
@@ -2350,10 +2465,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2371,9 +2491,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse>](../../models/operations/RemoveAccountFromPoolResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## ~~resetConnector~~
 
@@ -2390,21 +2511,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ResetConnectorRequest;
-import com.formance.formance_sdk.models.operations.ResetConnectorResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2421,10 +2540,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2442,9 +2566,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ResetConnectorResponse>](../../models/operations/ResetConnectorResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## resetConnectorV1
 
@@ -2459,21 +2584,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ResetConnectorV1Request;
-import com.formance.formance_sdk.models.operations.ResetConnectorV1Response;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2483,7 +2606,7 @@ public class Application {
 
             ResetConnectorV1Request req = ResetConnectorV1Request.builder()
                 .connector(Connector.GENERIC)
-                .connectorId("<value>")
+                .connectorId("XXX")
                 .build();
 
             ResetConnectorV1Response res = sdk.payments().resetConnectorV1()
@@ -2491,10 +2614,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2512,9 +2640,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ResetConnectorV1Response>](../../models/operations/ResetConnectorV1Response.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## retryTransferInitiation
 
@@ -2527,8 +2656,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest;
-import com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -2536,11 +2663,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2549,7 +2677,7 @@ public class Application {
                 .build();
 
             RetryTransferInitiationRequest req = RetryTransferInitiationRequest.builder()
-                .transferId("<value>")
+                .transferId("XXX")
                 .build();
 
             RetryTransferInitiationResponse res = sdk.payments().retryTransferInitiation()
@@ -2557,10 +2685,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2578,9 +2711,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse>](../../models/operations/RetryTransferInitiationResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## reverseTransferInitiation
 
@@ -2593,21 +2727,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest;
-import com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2624,7 +2756,7 @@ public class Application {
                                 entry("key", "<value>")))
                         .reference("XXX")
                         .build())
-                .transferId("<value>")
+                .transferId("XXX")
                 .build();
 
             ReverseTransferInitiationResponse res = sdk.payments().reverseTransferInitiation()
@@ -2632,10 +2764,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2653,9 +2790,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse>](../../models/operations/ReverseTransferInitiationResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## udpateTransferInitiationStatus
 
@@ -2668,22 +2806,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest;
-import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.Status;
-import com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2695,7 +2830,7 @@ public class Application {
                 .updateTransferInitiationStatusRequest(UpdateTransferInitiationStatusRequest.builder()
                         .status(Status.VALIDATED)
                         .build())
-                .transferId("<value>")
+                .transferId("XXX")
                 .build();
 
             UdpateTransferInitiationStatusResponse res = sdk.payments().udpateTransferInitiationStatus()
@@ -2703,10 +2838,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2724,9 +2864,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse>](../../models/operations/UdpateTransferInitiationStatusResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## ~~uninstallConnector~~
 
@@ -2741,21 +2882,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.UninstallConnectorRequest;
-import com.formance.formance_sdk.models.operations.UninstallConnectorResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2772,10 +2911,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2793,9 +2937,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UninstallConnectorResponse>](../../models/operations/UninstallConnectorResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## uninstallConnectorV1
 
@@ -2808,21 +2953,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.UninstallConnectorV1Request;
-import com.formance.formance_sdk.models.operations.UninstallConnectorV1Response;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2832,7 +2975,7 @@ public class Application {
 
             UninstallConnectorV1Request req = UninstallConnectorV1Request.builder()
                 .connector(Connector.GENERIC)
-                .connectorId("<value>")
+                .connectorId("XXX")
                 .build();
 
             UninstallConnectorV1Response res = sdk.payments().uninstallConnectorV1()
@@ -2840,10 +2983,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2861,9 +3009,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UninstallConnectorV1Response>](../../models/operations/UninstallConnectorV1Response.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## updateBankAccountMetadata
 
@@ -2876,21 +3025,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest;
-import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2903,7 +3050,7 @@ public class Application {
                         .metadata(java.util.Map.ofEntries(
                                 entry("key", "<value>")))
                         .build())
-                .bankAccountId("<value>")
+                .bankAccountId("XXX")
                 .build();
 
             UpdateBankAccountMetadataResponse res = sdk.payments().updateBankAccountMetadata()
@@ -2911,10 +3058,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2932,9 +3084,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse>](../../models/operations/UpdateBankAccountMetadataResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## updateConnectorConfigV1
 
@@ -2947,32 +3100,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request;
-import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.AdyenConfig;
-import com.formance.formance_sdk.models.shared.AtlarConfig;
-import com.formance.formance_sdk.models.shared.BankingCircleConfig;
-import com.formance.formance_sdk.models.shared.Connector;
-import com.formance.formance_sdk.models.shared.CurrencyCloudConfig;
-import com.formance.formance_sdk.models.shared.DummyPayConfig;
-import com.formance.formance_sdk.models.shared.GenericConfig;
-import com.formance.formance_sdk.models.shared.MangoPayConfig;
-import com.formance.formance_sdk.models.shared.ModulrConfig;
-import com.formance.formance_sdk.models.shared.MoneycorpConfig;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.StripeConfig;
-import com.formance.formance_sdk.models.shared.WiseConfig;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2988,7 +3128,7 @@ public class Application {
                             .pollingPeriod("60s")
                             .build()))
                 .connector(Connector.STRIPE)
-                .connectorId("<value>")
+                .connectorId("XXX")
                 .build();
 
             UpdateConnectorConfigV1Response res = sdk.payments().updateConnectorConfigV1()
@@ -2996,10 +3136,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -3017,9 +3162,10 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response>](../../models/operations/UpdateConnectorConfigV1Response.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
 
 ## updateMetadata
 
@@ -3032,8 +3178,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.UpdateMetadataRequest;
-import com.formance.formance_sdk.models.operations.UpdateMetadataResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -3041,11 +3185,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -3056,7 +3201,7 @@ public class Application {
             UpdateMetadataRequest req = UpdateMetadataRequest.builder()
                 .requestBody(java.util.Map.ofEntries(
                         entry("key", "<value>")))
-                .paymentId("<value>")
+                .paymentId("XXX")
                 .build();
 
             UpdateMetadataResponse res = sdk.payments().updateMetadata()
@@ -3064,10 +3209,15 @@ public class Application {
                 .call();
 
             // handle response
+        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
+            // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -3085,6 +3235,7 @@ public class Application {
 **[Optional<? extends com.formance.formance_sdk.models.operations.UpdateMetadataResponse>](../../models/operations/UpdateMetadataResponse.md)**
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                        | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4xx-5xx                             | */*                                 |

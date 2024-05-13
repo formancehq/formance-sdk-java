@@ -36,9 +36,10 @@ public class V2LedgerInfoStorage {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<V2MigrationInfo>> migrations() {
-        return migrations;
+    public Optional<java.util.List<V2MigrationInfo>> migrations() {
+        return (Optional<java.util.List<V2MigrationInfo>>) migrations;
     }
 
     public final static Builder builder() {

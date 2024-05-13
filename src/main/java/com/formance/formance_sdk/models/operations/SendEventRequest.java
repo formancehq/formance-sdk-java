@@ -43,9 +43,10 @@ public class SendEventRequest {
         this(Optional.empty(), instanceID);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends SendEventRequestBody> requestBody() {
-        return requestBody;
+    public Optional<SendEventRequestBody> requestBody() {
+        return (Optional<SendEventRequestBody>) requestBody;
     }
 
     /**

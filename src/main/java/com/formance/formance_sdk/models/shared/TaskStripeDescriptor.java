@@ -55,9 +55,10 @@ public class TaskStripeDescriptor {
         return account;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> main() {
-        return main;
+    public Optional<Boolean> main() {
+        return (Optional<Boolean>) main;
     }
 
     @JsonIgnore

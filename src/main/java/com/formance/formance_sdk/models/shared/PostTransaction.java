@@ -68,29 +68,34 @@ public class PostTransaction {
         this(JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, java.lang.Object>> metadata() {
+        return (JsonNullable<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<Posting>> postings() {
-        return postings;
+    public Optional<java.util.List<Posting>> postings() {
+        return (Optional<java.util.List<Posting>>) postings;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends PostTransactionScript> script() {
-        return script;
+    public Optional<PostTransactionScript> script() {
+        return (Optional<PostTransactionScript>) script;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> timestamp() {
-        return timestamp;
+    public Optional<OffsetDateTime> timestamp() {
+        return (Optional<OffsetDateTime>) timestamp;
     }
 
     public final static Builder builder() {

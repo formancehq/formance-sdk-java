@@ -59,9 +59,10 @@ public class V2GetBalancesAggregatedRequest {
         this(Optional.empty(), ledger, Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
     }
 
     /**
@@ -72,17 +73,19 @@ public class V2GetBalancesAggregatedRequest {
         return ledger;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> pit() {
-        return pit;
+    public Optional<OffsetDateTime> pit() {
+        return (Optional<OffsetDateTime>) pit;
     }
 
     /**
      * Use insertion date instead of effective date
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> useInsertionDate() {
-        return useInsertionDate;
+    public Optional<Boolean> useInsertionDate() {
+        return (Optional<Boolean>) useInsertionDate;
     }
 
     public final static Builder builder() {

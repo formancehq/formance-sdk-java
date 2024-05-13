@@ -73,9 +73,10 @@ public class CreateBalanceResponse implements com.formance.formance_sdk.utils.Re
     /**
      * Created balance
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceResponse> createBalanceResponse() {
-        return createBalanceResponse;
+    public Optional<com.formance.formance_sdk.models.shared.CreateBalanceResponse> createBalanceResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.CreateBalanceResponse>) createBalanceResponse;
     }
 
     /**

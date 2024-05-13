@@ -48,17 +48,19 @@ public class GetManyConfigsRequest {
     /**
      * Optional filter by endpoint URL
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> endpoint() {
-        return endpoint;
+    public Optional<String> endpoint() {
+        return (Optional<String>) endpoint;
     }
 
     /**
      * Optional filter by Config ID
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> id() {
-        return id;
+    public Optional<String> id() {
+        return (Optional<String>) id;
     }
 
     public final static Builder builder() {

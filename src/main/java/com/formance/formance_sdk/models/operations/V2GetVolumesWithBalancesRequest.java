@@ -97,9 +97,10 @@ public class V2GetVolumesWithBalancesRequest {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
     }
 
     /**
@@ -109,30 +110,34 @@ public class V2GetVolumesWithBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> endTime() {
-        return endTime;
+    public Optional<OffsetDateTime> endTime() {
+        return (Optional<OffsetDateTime>) endTime;
     }
 
     /**
      * Group volumes and balance by the level of the segment of the address
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> groupBy() {
-        return groupBy;
+    public Optional<Long> groupBy() {
+        return (Optional<Long>) groupBy;
     }
 
     /**
      * Use insertion date instead of effective date
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> insertionDate() {
-        return insertionDate;
+    public Optional<Boolean> insertionDate() {
+        return (Optional<Boolean>) insertionDate;
     }
 
     /**
@@ -147,14 +152,16 @@ public class V2GetVolumesWithBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> startTime() {
-        return startTime;
+    public Optional<OffsetDateTime> startTime() {
+        return (Optional<OffsetDateTime>) startTime;
     }
 
     public final static Builder builder() {

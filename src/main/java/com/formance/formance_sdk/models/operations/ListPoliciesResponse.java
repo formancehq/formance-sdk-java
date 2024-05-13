@@ -73,9 +73,10 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.PoliciesCursorResponse> policiesCursorResponse() {
-        return policiesCursorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.PoliciesCursorResponse> policiesCursorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.PoliciesCursorResponse>) policiesCursorResponse;
     }
 
     /**

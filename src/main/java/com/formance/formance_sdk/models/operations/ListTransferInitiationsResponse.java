@@ -89,9 +89,10 @@ public class ListTransferInitiationsResponse implements com.formance.formance_sd
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationsCursor> transferInitiationsCursor() {
-        return transferInitiationsCursor;
+    public Optional<com.formance.formance_sdk.models.shared.TransferInitiationsCursor> transferInitiationsCursor() {
+        return (Optional<com.formance.formance_sdk.models.shared.TransferInitiationsCursor>) transferInitiationsCursor;
     }
 
     public final static Builder builder() {

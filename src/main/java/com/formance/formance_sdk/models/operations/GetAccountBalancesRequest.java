@@ -126,9 +126,10 @@ public class GetAccountBalancesRequest {
      * If not specified, all account's balances will be returned.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> asset() {
-        return asset;
+    public Optional<String> asset() {
+        return (Optional<String>) asset;
     }
 
     /**
@@ -138,9 +139,10 @@ public class GetAccountBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
@@ -148,34 +150,38 @@ public class GetAccountBalancesRequest {
      * If not specified, all account's balances will be returned.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> from() {
-        return from;
+    public Optional<OffsetDateTime> from() {
+        return (Optional<OffsetDateTime>) from;
     }
 
     /**
      * The maximum number of results to return per page.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> limit() {
-        return limit;
+    public Optional<Long> limit() {
+        return (Optional<Long>) limit;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
      * Fields used to sort payments (default is date:desc).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> sort() {
-        return sort;
+    public Optional<java.util.List<String>> sort() {
+        return (Optional<java.util.List<String>>) sort;
     }
 
     /**
@@ -183,9 +189,10 @@ public class GetAccountBalancesRequest {
      * If not specified, default will be set to now.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> to() {
-        return to;
+    public Optional<OffsetDateTime> to() {
+        return (Optional<OffsetDateTime>) to;
     }
 
     public final static Builder builder() {

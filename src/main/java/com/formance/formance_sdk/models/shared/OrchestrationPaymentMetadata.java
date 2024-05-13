@@ -36,9 +36,10 @@ public class OrchestrationPaymentMetadata {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> key() {
-        return key;
+    public Optional<String> key() {
+        return (Optional<String>) key;
     }
 
     public final static Builder builder() {

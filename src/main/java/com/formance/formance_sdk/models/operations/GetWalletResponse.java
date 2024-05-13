@@ -73,9 +73,10 @@ public class GetWalletResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * Wallet
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse() {
-        return getWalletResponse;
+    public Optional<com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetWalletResponse>) getWalletResponse;
     }
 
     /**

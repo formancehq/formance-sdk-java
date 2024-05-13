@@ -89,9 +89,10 @@ public class V2ListWorkflowsResponse implements com.formance.formance_sdk.utils.
     /**
      * List of workflows
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse> v2ListWorkflowsResponse() {
-        return v2ListWorkflowsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse> v2ListWorkflowsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse>) v2ListWorkflowsResponse;
     }
 
     public final static Builder builder() {

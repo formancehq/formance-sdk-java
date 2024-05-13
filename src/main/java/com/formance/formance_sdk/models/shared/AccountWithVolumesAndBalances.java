@@ -69,24 +69,28 @@ public class AccountWithVolumesAndBalances {
         return address;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, BigInteger>> balances() {
-        return balances;
+    public Optional<java.util.Map<String, BigInteger>> balances() {
+        return (Optional<java.util.Map<String, BigInteger>>) balances;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> type() {
-        return type;
+    public Optional<String> type() {
+        return (Optional<String>) type;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, Volume>> volumes() {
-        return volumes;
+    public Optional<java.util.Map<String, Volume>> volumes() {
+        return (Optional<java.util.Map<String, Volume>>) volumes;
     }
 
     public final static Builder builder() {

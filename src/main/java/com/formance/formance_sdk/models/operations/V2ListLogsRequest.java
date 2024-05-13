@@ -73,9 +73,10 @@ public class V2ListLogsRequest {
         this(Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
     }
 
     /**
@@ -85,9 +86,10 @@ public class V2ListLogsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
@@ -102,14 +104,16 @@ public class V2ListLogsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> pit() {
-        return pit;
+    public Optional<OffsetDateTime> pit() {
+        return (Optional<OffsetDateTime>) pit;
     }
 
     public final static Builder builder() {

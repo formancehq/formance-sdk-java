@@ -73,9 +73,10 @@ public class SearchResponse implements com.formance.formance_sdk.utils.Response 
     /**
      * Success
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.Response> response() {
-        return response;
+    public Optional<com.formance.formance_sdk.models.shared.Response> response() {
+        return (Optional<com.formance.formance_sdk.models.shared.Response>) response;
     }
 
     /**

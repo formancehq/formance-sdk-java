@@ -43,9 +43,10 @@ public class CreateSecretRequest {
         this(Optional.empty(), name);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
     @JsonIgnore

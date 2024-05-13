@@ -89,9 +89,10 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse() {
-        return v2AggregateBalancesResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse>) v2AggregateBalancesResponse;
     }
 
     public final static Builder builder() {

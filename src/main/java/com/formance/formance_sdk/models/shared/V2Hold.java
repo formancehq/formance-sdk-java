@@ -78,9 +78,10 @@ public class V2Hold {
         return description;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2Subject> destination() {
-        return destination;
+    public Optional<V2Subject> destination() {
+        return (Optional<V2Subject>) destination;
     }
 
     /**

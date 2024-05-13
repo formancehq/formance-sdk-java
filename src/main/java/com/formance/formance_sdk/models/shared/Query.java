@@ -92,49 +92,58 @@ public class Query {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> after() {
-        return after;
+    public Optional<java.util.List<String>> after() {
+        return (Optional<java.util.List<String>>) after;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> ledgers() {
-        return ledgers;
+    public Optional<java.util.List<String>> ledgers() {
+        return (Optional<java.util.List<String>>) ledgers;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> policy() {
-        return policy;
+    public Optional<String> policy() {
+        return (Optional<String>) policy;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends QueryRaw> raw() {
-        return raw;
+    public Optional<QueryRaw> raw() {
+        return (Optional<QueryRaw>) raw;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> sort() {
-        return sort;
+    public Optional<String> sort() {
+        return (Optional<String>) sort;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> target() {
-        return target;
+    public Optional<String> target() {
+        return (Optional<String>) target;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> terms() {
-        return terms;
+    public Optional<java.util.List<String>> terms() {
+        return (Optional<java.util.List<String>>) terms;
     }
 
     public final static Builder builder() {

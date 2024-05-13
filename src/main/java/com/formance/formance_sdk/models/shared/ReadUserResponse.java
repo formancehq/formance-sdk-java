@@ -36,9 +36,10 @@ public class ReadUserResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends User> data() {
-        return data;
+    public Optional<User> data() {
+        return (Optional<User>) data;
     }
 
     public final static Builder builder() {

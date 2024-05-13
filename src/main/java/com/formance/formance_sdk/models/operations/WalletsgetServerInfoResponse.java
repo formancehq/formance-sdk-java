@@ -73,9 +73,10 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
     /**
      * Server information
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ServerInfo> serverInfo() {
-        return serverInfo;
+    public Optional<com.formance.formance_sdk.models.shared.ServerInfo> serverInfo() {
+        return (Optional<com.formance.formance_sdk.models.shared.ServerInfo>) serverInfo;
     }
 
     /**

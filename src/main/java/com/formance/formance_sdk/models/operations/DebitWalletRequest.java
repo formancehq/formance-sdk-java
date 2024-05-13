@@ -40,9 +40,10 @@ public class DebitWalletRequest {
         this(Optional.empty(), id);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest() {
-        return debitWalletRequest;
+    public Optional<com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.DebitWalletRequest>) debitWalletRequest;
     }
 
     @JsonIgnore

@@ -89,9 +89,10 @@ public class V2GetTransactionResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2GetTransactionResponse> v2GetTransactionResponse() {
-        return v2GetTransactionResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2GetTransactionResponse> v2GetTransactionResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2GetTransactionResponse>) v2GetTransactionResponse;
     }
 
     public final static Builder builder() {

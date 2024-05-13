@@ -73,9 +73,10 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse() {
-        return policyResponse;
+    public Optional<com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.PolicyResponse>) policyResponse;
     }
 
     /**

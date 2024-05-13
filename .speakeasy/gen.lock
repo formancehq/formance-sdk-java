@@ -1,27 +1,31 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: be215a4f573351c204ef2d3b06226127
-  docVersion: v2.0.0-rc.26
-  speakeasyVersion: 1.277.0
-  generationVersion: 2.317.0
-  releaseVersion: 2.3.1
-  configChecksum: d3ca8243913f52c56e45498ff68ba13c
+  docChecksum: 9fda875c62dd59c321a5bb23620012a9
+  docVersion: v2.0.0-rc.27
+  speakeasyVersion: 1.286.0
+  generationVersion: 2.326.3
+  releaseVersion: 2.4.0
+  configChecksum: 380b7dac13fcb6daaa4d31788c871ff0
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
 features:
   java:
+    additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.18.0
+    core: 3.19.5
     deprecations: 2.81.1
     errors: 0.1.2
     getRequestBodies: 2.81.1
     globalSecurity: 2.82.5
+    globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
     nameOverrides: 2.81.3
+    nullables: 0.1.0
+    sdkHooks: 0.1.0
     unions: 0.0.3
 generatedFiles:
   - src/main/java/com/formance/formance_sdk/SecuritySource.java
@@ -825,6 +829,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/V2ListWorkflowsResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2ReadTriggerResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2RunWorkflowResponse.java
+  - src/main/java/com/formance/formance_sdk/models/shared/PaymentsErrorsEnum.java
   - src/main/java/com/formance/formance_sdk/models/shared/AddAccountToPoolRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/TransferResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Connector.java
@@ -983,6 +988,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/errors/Error.java
   - src/main/java/com/formance/formance_sdk/models/errors/SchemasErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/V2Error.java
+  - src/main/java/com/formance/formance_sdk/models/errors/PaymentsErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/ReconciliationErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/SchemasWalletsErrorResponseErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/WalletsErrorResponse.java
@@ -1570,6 +1576,7 @@ generatedFiles:
   - docs/models/shared/V2ListWorkflowsResponse.md
   - docs/models/shared/V2ReadTriggerResponse.md
   - docs/models/shared/V2RunWorkflowResponse.md
+  - docs/models/shared/PaymentsErrorsEnum.md
   - docs/models/shared/AddAccountToPoolRequest.md
   - docs/models/shared/TransferResponse.md
   - docs/models/shared/Connector.md
@@ -1728,6 +1735,7 @@ generatedFiles:
   - docs/models/errors/Error.md
   - docs/models/errors/SchemasErrorCode.md
   - docs/models/errors/V2Error.md
+  - docs/models/errors/PaymentsErrorResponse.md
   - docs/models/errors/ReconciliationErrorResponse.md
   - docs/models/errors/SchemasWalletsErrorResponseErrorCode.md
   - docs/models/errors/WalletsErrorResponse.md

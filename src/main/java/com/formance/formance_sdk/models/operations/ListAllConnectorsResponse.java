@@ -65,9 +65,10 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsResponse> connectorsResponse() {
-        return connectorsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConnectorsResponse> connectorsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConnectorsResponse>) connectorsResponse;
     }
 
     /**

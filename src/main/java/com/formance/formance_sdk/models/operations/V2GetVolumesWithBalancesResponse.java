@@ -89,9 +89,10 @@ public class V2GetVolumesWithBalancesResponse implements com.formance.formance_s
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse> v2VolumesWithBalanceCursorResponse() {
-        return v2VolumesWithBalanceCursorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse> v2VolumesWithBalanceCursorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse>) v2VolumesWithBalanceCursorResponse;
     }
 
     public final static Builder builder() {

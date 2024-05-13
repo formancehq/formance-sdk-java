@@ -22,8 +22,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ActivateConfigRequest;
-import com.formance.formance_sdk.models.operations.ActivateConfigResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -31,11 +29,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -56,10 +55,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -97,21 +99,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest;
-import com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.ConfigChangeSecret;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -135,10 +135,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -172,8 +175,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.DeactivateConfigRequest;
-import com.formance.formance_sdk.models.operations.DeactivateConfigResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -181,11 +182,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -206,10 +208,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -243,8 +248,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.DeleteConfigRequest;
-import com.formance.formance_sdk.models.operations.DeleteConfigResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -252,11 +255,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -275,10 +279,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -312,8 +319,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetManyConfigsRequest;
-import com.formance.formance_sdk.models.operations.GetManyConfigsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -321,11 +326,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -347,10 +353,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -393,20 +402,19 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.InsertConfigResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.ConfigUser;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -432,10 +440,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -469,8 +480,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.TestConfigRequest;
-import com.formance.formance_sdk.models.operations.TestConfigResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -478,11 +487,12 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -503,10 +513,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }

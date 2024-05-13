@@ -99,54 +99,64 @@ public class V2WorkflowInstanceHistoryStageInput {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityConfirmHold> confirmHold() {
-        return confirmHold;
+    public Optional<V2ActivityConfirmHold> confirmHold() {
+        return (Optional<V2ActivityConfirmHold>) confirmHold;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityCreateTransaction> createTransaction() {
-        return createTransaction;
+    public Optional<V2ActivityCreateTransaction> createTransaction() {
+        return (Optional<V2ActivityCreateTransaction>) createTransaction;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityCreditWallet> creditWallet() {
-        return creditWallet;
+    public Optional<V2ActivityCreditWallet> creditWallet() {
+        return (Optional<V2ActivityCreditWallet>) creditWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityDebitWallet> debitWallet() {
-        return debitWallet;
+    public Optional<V2ActivityDebitWallet> debitWallet() {
+        return (Optional<V2ActivityDebitWallet>) debitWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityGetAccount> getAccount() {
-        return getAccount;
+    public Optional<V2ActivityGetAccount> getAccount() {
+        return (Optional<V2ActivityGetAccount>) getAccount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityGetPayment> getPayment() {
-        return getPayment;
+    public Optional<V2ActivityGetPayment> getPayment() {
+        return (Optional<V2ActivityGetPayment>) getPayment;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityGetWallet> getWallet() {
-        return getWallet;
+    public Optional<V2ActivityGetWallet> getWallet() {
+        return (Optional<V2ActivityGetWallet>) getWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityListWallets> listWallets() {
-        return listWallets;
+    public Optional<V2ActivityListWallets> listWallets() {
+        return (Optional<V2ActivityListWallets>) listWallets;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityStripeTransfer> stripeTransfer() {
-        return stripeTransfer;
+    public Optional<V2ActivityStripeTransfer> stripeTransfer() {
+        return (Optional<V2ActivityStripeTransfer>) stripeTransfer;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityVoidHold> voidHold() {
-        return voidHold;
+    public Optional<V2ActivityVoidHold> voidHold() {
+        return (Optional<V2ActivityVoidHold>) voidHold;
     }
 
     public final static Builder builder() {

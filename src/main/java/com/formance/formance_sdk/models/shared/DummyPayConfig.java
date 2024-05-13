@@ -83,9 +83,10 @@ public class DummyPayConfig {
     /**
      * The frequency at which the connector will try to fetch new payment objects from the directory
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> filePollingPeriod() {
-        return filePollingPeriod;
+    public Optional<String> filePollingPeriod() {
+        return (Optional<String>) filePollingPeriod;
     }
 
     @JsonIgnore
@@ -93,19 +94,22 @@ public class DummyPayConfig {
         return name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> numberOfAccountsPreGenerated() {
-        return numberOfAccountsPreGenerated;
+    public Optional<Long> numberOfAccountsPreGenerated() {
+        return (Optional<Long>) numberOfAccountsPreGenerated;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> numberOfPaymentsPreGenerated() {
-        return numberOfPaymentsPreGenerated;
+    public Optional<Long> numberOfPaymentsPreGenerated() {
+        return (Optional<Long>) numberOfPaymentsPreGenerated;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> prefixFileToIngest() {
-        return prefixFileToIngest;
+    public Optional<String> prefixFileToIngest() {
+        return (Optional<String>) prefixFileToIngest;
     }
 
     public final static Builder builder() {

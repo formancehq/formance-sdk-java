@@ -106,59 +106,70 @@ public class WorkflowInstanceHistoryStageInput {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityConfirmHold> confirmHold() {
-        return confirmHold;
+    public Optional<ActivityConfirmHold> confirmHold() {
+        return (Optional<ActivityConfirmHold>) confirmHold;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityCreateTransaction> createTransaction() {
-        return createTransaction;
+    public Optional<ActivityCreateTransaction> createTransaction() {
+        return (Optional<ActivityCreateTransaction>) createTransaction;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityCreditWallet> creditWallet() {
-        return creditWallet;
+    public Optional<ActivityCreditWallet> creditWallet() {
+        return (Optional<ActivityCreditWallet>) creditWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityDebitWallet> debitWallet() {
-        return debitWallet;
+    public Optional<ActivityDebitWallet> debitWallet() {
+        return (Optional<ActivityDebitWallet>) debitWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetAccount> getAccount() {
-        return getAccount;
+    public Optional<ActivityGetAccount> getAccount() {
+        return (Optional<ActivityGetAccount>) getAccount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetPayment> getPayment() {
-        return getPayment;
+    public Optional<ActivityGetPayment> getPayment() {
+        return (Optional<ActivityGetPayment>) getPayment;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetWallet> getWallet() {
-        return getWallet;
+    public Optional<ActivityGetWallet> getWallet() {
+        return (Optional<ActivityGetWallet>) getWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityListWallets> listWallets() {
-        return listWallets;
+    public Optional<ActivityListWallets> listWallets() {
+        return (Optional<ActivityListWallets>) listWallets;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityRevertTransaction> revertTransaction() {
-        return revertTransaction;
+    public Optional<ActivityRevertTransaction> revertTransaction() {
+        return (Optional<ActivityRevertTransaction>) revertTransaction;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityStripeTransfer> stripeTransfer() {
-        return stripeTransfer;
+    public Optional<ActivityStripeTransfer> stripeTransfer() {
+        return (Optional<ActivityStripeTransfer>) stripeTransfer;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityVoidHold> voidHold() {
-        return voidHold;
+    public Optional<ActivityVoidHold> voidHold() {
+        return (Optional<ActivityVoidHold>) voidHold;
     }
 
     public final static Builder builder() {

@@ -36,9 +36,10 @@ public class CreateSecretResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Secret> data() {
-        return data;
+    public Optional<Secret> data() {
+        return (Optional<Secret>) data;
     }
 
     public final static Builder builder() {

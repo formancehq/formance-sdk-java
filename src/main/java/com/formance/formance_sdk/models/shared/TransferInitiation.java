@@ -197,9 +197,10 @@ public class TransferInitiation {
         return initialAmount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, String>> metadata() {
+        return (JsonNullable<java.util.Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -207,14 +208,16 @@ public class TransferInitiation {
         return reference;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<TransferInitiationAdjusments>> relatedAdjustments() {
-        return relatedAdjustments;
+    public Optional<java.util.List<TransferInitiationAdjusments>> relatedAdjustments() {
+        return (Optional<java.util.List<TransferInitiationAdjusments>>) relatedAdjustments;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<TransferInitiationPayments>> relatedPayments() {
-        return relatedPayments;
+    public Optional<java.util.List<TransferInitiationPayments>> relatedPayments() {
+        return (Optional<java.util.List<TransferInitiationPayments>>) relatedPayments;
     }
 
     @JsonIgnore

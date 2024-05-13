@@ -73,9 +73,10 @@ public class CreateTriggerResponse implements com.formance.formance_sdk.utils.Re
     /**
      * Created trigger
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse() {
-        return createTriggerResponse;
+    public Optional<com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.CreateTriggerResponse>) createTriggerResponse;
     }
 
     /**

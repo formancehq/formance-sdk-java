@@ -73,9 +73,10 @@ public class GetVersionsResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.GetVersionsResponse> getVersionsResponse() {
-        return getVersionsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.GetVersionsResponse> getVersionsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetVersionsResponse>) getVersionsResponse;
     }
 
     /**

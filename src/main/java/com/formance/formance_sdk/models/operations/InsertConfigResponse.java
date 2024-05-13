@@ -65,9 +65,10 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Config created successfully.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
-        return configResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfigResponse>) configResponse;
     }
 
     /**

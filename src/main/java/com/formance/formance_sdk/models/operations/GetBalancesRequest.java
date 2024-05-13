@@ -82,17 +82,19 @@ public class GetBalancesRequest {
     /**
      * Filter balances involving given account, either as source or destination.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> address() {
-        return address;
+    public Optional<String> address() {
+        return (Optional<String>) address;
     }
 
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> after() {
-        return after;
+    public Optional<String> after() {
+        return (Optional<String>) after;
     }
 
     /**
@@ -102,9 +104,10 @@ public class GetBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
@@ -119,9 +122,10 @@ public class GetBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     public final static Builder builder() {

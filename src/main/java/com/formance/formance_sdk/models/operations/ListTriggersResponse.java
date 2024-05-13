@@ -73,9 +73,10 @@ public class ListTriggersResponse implements com.formance.formance_sdk.utils.Res
     /**
      * List of triggers
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse() {
-        return listTriggersResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ListTriggersResponse>) listTriggersResponse;
     }
 
     /**

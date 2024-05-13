@@ -43,14 +43,16 @@ public class V2CreateLedgerRequest {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> bucket() {
-        return bucket;
+    public Optional<String> bucket() {
+        return (Optional<String>) bucket;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, String>> metadata() {
+        return (Optional<java.util.Map<String, String>>) metadata;
     }
 
     public final static Builder builder() {

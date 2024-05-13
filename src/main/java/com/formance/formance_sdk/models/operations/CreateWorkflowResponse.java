@@ -73,9 +73,10 @@ public class CreateWorkflowResponse implements com.formance.formance_sdk.utils.R
     /**
      * Created workflow
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowResponse> createWorkflowResponse() {
-        return createWorkflowResponse;
+    public Optional<com.formance.formance_sdk.models.shared.CreateWorkflowResponse> createWorkflowResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.CreateWorkflowResponse>) createWorkflowResponse;
     }
 
     /**

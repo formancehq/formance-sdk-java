@@ -89,9 +89,10 @@ public class OrchestrationTransaction {
         return postings;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
     @JsonIgnore

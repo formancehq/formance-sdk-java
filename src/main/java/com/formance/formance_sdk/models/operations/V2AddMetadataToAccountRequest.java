@@ -82,9 +82,10 @@ public class V2AddMetadataToAccountRequest {
     /**
      * Use an idempotency key
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> idempotencyKey() {
-        return idempotencyKey;
+    public Optional<String> idempotencyKey() {
+        return (Optional<String>) idempotencyKey;
     }
 
     /**
@@ -110,9 +111,10 @@ public class V2AddMetadataToAccountRequest {
     /**
      * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> dryRun() {
-        return dryRun;
+    public Optional<Boolean> dryRun() {
+        return (Optional<Boolean>) dryRun;
     }
 
     /**

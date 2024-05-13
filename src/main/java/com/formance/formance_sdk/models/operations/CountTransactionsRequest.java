@@ -108,17 +108,19 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> account() {
-        return account;
+    public Optional<String> account() {
+        return (Optional<String>) account;
     }
 
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> destination() {
-        return destination;
+    public Optional<String> destination() {
+        return (Optional<String>) destination;
     }
 
     /**
@@ -126,9 +128,10 @@ public class CountTransactionsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> endTime() {
-        return endTime;
+    public Optional<OffsetDateTime> endTime() {
+        return (Optional<OffsetDateTime>) endTime;
     }
 
     /**
@@ -142,25 +145,28 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Metadata> metadata() {
-        return metadata;
+    public Optional<Metadata> metadata() {
+        return (Optional<Metadata>) metadata;
     }
 
     /**
      * Filter transactions by reference field.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> source() {
-        return source;
+    public Optional<String> source() {
+        return (Optional<String>) source;
     }
 
     /**
@@ -168,9 +174,10 @@ public class CountTransactionsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> startTime() {
-        return startTime;
+    public Optional<OffsetDateTime> startTime() {
+        return (Optional<OffsetDateTime>) startTime;
     }
 
     public final static Builder builder() {

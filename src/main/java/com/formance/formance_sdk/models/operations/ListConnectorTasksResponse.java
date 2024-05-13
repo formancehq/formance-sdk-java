@@ -89,9 +89,10 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor() {
-        return tasksCursor;
+    public Optional<com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor() {
+        return (Optional<com.formance.formance_sdk.models.shared.TasksCursor>) tasksCursor;
     }
 
     public final static Builder builder() {

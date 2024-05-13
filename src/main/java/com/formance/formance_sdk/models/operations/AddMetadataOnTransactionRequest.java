@@ -59,9 +59,10 @@ public class AddMetadataOnTransactionRequest {
     /**
      * metadata
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, java.lang.Object>> requestBody() {
-        return requestBody;
+    public JsonNullable<java.util.Map<String, java.lang.Object>> requestBody() {
+        return (JsonNullable<java.util.Map<String, java.lang.Object>>) requestBody;
     }
 
     /**

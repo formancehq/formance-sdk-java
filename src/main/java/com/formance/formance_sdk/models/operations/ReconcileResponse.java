@@ -73,9 +73,10 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse() {
-        return reconciliationResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ReconciliationResponse>) reconciliationResponse;
     }
 
     /**

@@ -79,9 +79,10 @@ public class V2TriggerOccurrence {
         return date;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     @JsonIgnore
@@ -94,14 +95,16 @@ public class V2TriggerOccurrence {
         return triggerID;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2WorkflowInstance> workflowInstance() {
-        return workflowInstance;
+    public Optional<V2WorkflowInstance> workflowInstance() {
+        return (Optional<V2WorkflowInstance>) workflowInstance;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> workflowInstanceID() {
-        return workflowInstanceID;
+    public Optional<String> workflowInstanceID() {
+        return (Optional<String>) workflowInstanceID;
     }
 
     public final static Builder builder() {

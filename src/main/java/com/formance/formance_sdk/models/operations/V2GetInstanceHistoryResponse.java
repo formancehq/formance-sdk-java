@@ -89,9 +89,10 @@ public class V2GetInstanceHistoryResponse implements com.formance.formance_sdk.u
     /**
      * The workflow instance history
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse> v2GetWorkflowInstanceHistoryResponse() {
-        return v2GetWorkflowInstanceHistoryResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse> v2GetWorkflowInstanceHistoryResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse>) v2GetWorkflowInstanceHistoryResponse;
     }
 
     public final static Builder builder() {

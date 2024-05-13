@@ -69,9 +69,10 @@ public class WiseConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> pollingPeriod() {
-        return pollingPeriod;
+    public Optional<String> pollingPeriod() {
+        return (Optional<String>) pollingPeriod;
     }
 
     public final static Builder builder() {

@@ -43,14 +43,16 @@ public class Filter {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> match() {
-        return match;
+    public Optional<Boolean> match() {
+        return (Optional<Boolean>) match;
     }
 
     public final static Builder builder() {

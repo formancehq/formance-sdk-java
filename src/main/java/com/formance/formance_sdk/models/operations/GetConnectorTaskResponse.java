@@ -89,9 +89,10 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.TaskResponse> taskResponse() {
-        return taskResponse;
+    public Optional<com.formance.formance_sdk.models.shared.TaskResponse> taskResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.TaskResponse>) taskResponse;
     }
 
     public final static Builder builder() {

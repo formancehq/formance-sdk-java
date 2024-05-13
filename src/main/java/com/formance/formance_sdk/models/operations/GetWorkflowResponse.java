@@ -73,9 +73,10 @@ public class GetWorkflowResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * The workflow
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowResponse> getWorkflowResponse() {
-        return getWorkflowResponse;
+    public Optional<com.formance.formance_sdk.models.shared.GetWorkflowResponse> getWorkflowResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetWorkflowResponse>) getWorkflowResponse;
     }
 
     /**

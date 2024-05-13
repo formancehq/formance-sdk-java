@@ -73,9 +73,10 @@ public class GetHoldResponse implements com.formance.formance_sdk.utils.Response
     /**
      * Holds
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.GetHoldResponse> getHoldResponse() {
-        return getHoldResponse;
+    public Optional<com.formance.formance_sdk.models.shared.GetHoldResponse> getHoldResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetHoldResponse>) getHoldResponse;
     }
 
     /**

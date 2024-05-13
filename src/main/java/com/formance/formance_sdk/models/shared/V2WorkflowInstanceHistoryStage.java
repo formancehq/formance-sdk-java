@@ -107,9 +107,10 @@ public class V2WorkflowInstanceHistoryStage {
         return attempt;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     @JsonIgnore
@@ -117,9 +118,10 @@ public class V2WorkflowInstanceHistoryStage {
         return input;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> lastFailure() {
-        return lastFailure;
+    public Optional<String> lastFailure() {
+        return (Optional<String>) lastFailure;
     }
 
     @JsonIgnore
@@ -127,14 +129,16 @@ public class V2WorkflowInstanceHistoryStage {
         return name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> nextExecution() {
-        return nextExecution;
+    public Optional<OffsetDateTime> nextExecution() {
+        return (Optional<OffsetDateTime>) nextExecution;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2WorkflowInstanceHistoryStageOutput> output() {
-        return output;
+    public Optional<V2WorkflowInstanceHistoryStageOutput> output() {
+        return (Optional<V2WorkflowInstanceHistoryStageOutput>) output;
     }
 
     @JsonIgnore
@@ -147,9 +151,10 @@ public class V2WorkflowInstanceHistoryStage {
         return terminated;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> terminatedAt() {
-        return terminatedAt;
+    public Optional<OffsetDateTime> terminatedAt() {
+        return (Optional<OffsetDateTime>) terminatedAt;
     }
 
     public final static Builder builder() {

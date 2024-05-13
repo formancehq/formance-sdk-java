@@ -36,9 +36,10 @@ public class TransferResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> id() {
-        return id;
+    public Optional<String> id() {
+        return (Optional<String>) id;
     }
 
     public final static Builder builder() {

@@ -50,19 +50,22 @@ public class V2StageSendDestination {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2StageSendDestinationAccount> account() {
-        return account;
+    public Optional<V2StageSendDestinationAccount> account() {
+        return (Optional<V2StageSendDestinationAccount>) account;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2StageSendDestinationPayment> payment() {
-        return payment;
+    public Optional<V2StageSendDestinationPayment> payment() {
+        return (Optional<V2StageSendDestinationPayment>) payment;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2StageSendDestinationWallet> wallet() {
-        return wallet;
+    public Optional<V2StageSendDestinationWallet> wallet() {
+        return (Optional<V2StageSendDestinationWallet>) wallet;
     }
 
     public final static Builder builder() {

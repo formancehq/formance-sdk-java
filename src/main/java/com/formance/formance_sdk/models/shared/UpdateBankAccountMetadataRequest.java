@@ -36,9 +36,10 @@ public class UpdateBankAccountMetadataRequest {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, String>> metadata() {
+        return (Optional<java.util.Map<String, String>>) metadata;
     }
 
     public final static Builder builder() {

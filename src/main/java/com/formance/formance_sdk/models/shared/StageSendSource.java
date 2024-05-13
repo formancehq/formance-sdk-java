@@ -50,19 +50,22 @@ public class StageSendSource {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends StageSendSourceAccount> account() {
-        return account;
+    public Optional<StageSendSourceAccount> account() {
+        return (Optional<StageSendSourceAccount>) account;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends StageSendSourcePayment> payment() {
-        return payment;
+    public Optional<StageSendSourcePayment> payment() {
+        return (Optional<StageSendSourcePayment>) payment;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends StageSendSourceWallet> wallet() {
-        return wallet;
+    public Optional<StageSendSourceWallet> wallet() {
+        return (Optional<StageSendSourceWallet>) wallet;
     }
 
     public final static Builder builder() {

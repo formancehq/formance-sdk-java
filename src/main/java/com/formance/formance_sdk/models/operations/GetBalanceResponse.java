@@ -73,9 +73,10 @@ public class GetBalanceResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * Balance summary
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.GetBalanceResponse> getBalanceResponse() {
-        return getBalanceResponse;
+    public Optional<com.formance.formance_sdk.models.shared.GetBalanceResponse> getBalanceResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetBalanceResponse>) getBalanceResponse;
     }
 
     /**

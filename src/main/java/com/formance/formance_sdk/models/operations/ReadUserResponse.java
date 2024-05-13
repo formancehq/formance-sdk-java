@@ -73,9 +73,10 @@ public class ReadUserResponse implements com.formance.formance_sdk.utils.Respons
     /**
      * Retrieved user
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ReadUserResponse> readUserResponse() {
-        return readUserResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ReadUserResponse> readUserResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ReadUserResponse>) readUserResponse;
     }
 
     /**

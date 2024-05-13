@@ -65,9 +65,10 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.AttemptResponse> attemptResponse() {
-        return attemptResponse;
+    public Optional<com.formance.formance_sdk.models.shared.AttemptResponse> attemptResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.AttemptResponse>) attemptResponse;
     }
 
     /**

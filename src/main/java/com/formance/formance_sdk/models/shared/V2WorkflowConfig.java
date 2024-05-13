@@ -43,9 +43,10 @@ public class V2WorkflowConfig {
         this(Optional.empty(), stages);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
     @JsonIgnore

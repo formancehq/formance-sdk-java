@@ -43,9 +43,10 @@ public class UpdateClientRequest {
         this(Optional.empty(), clientId);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientRequest> updateClientRequest() {
-        return updateClientRequest;
+    public Optional<com.formance.formance_sdk.models.shared.UpdateClientRequest> updateClientRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.UpdateClientRequest>) updateClientRequest;
     }
 
     /**

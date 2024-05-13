@@ -73,9 +73,10 @@ public class DebitWalletResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * Wallet successfully debited as a pending hold
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletResponse> debitWalletResponse() {
-        return debitWalletResponse;
+    public Optional<com.formance.formance_sdk.models.shared.DebitWalletResponse> debitWalletResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.DebitWalletResponse>) debitWalletResponse;
     }
 
     /**

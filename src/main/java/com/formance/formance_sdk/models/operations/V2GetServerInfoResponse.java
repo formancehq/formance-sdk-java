@@ -89,9 +89,10 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
     /**
      * Server information
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2ServerInfo> v2ServerInfo() {
-        return v2ServerInfo;
+    public Optional<com.formance.formance_sdk.models.shared.V2ServerInfo> v2ServerInfo() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2ServerInfo>) v2ServerInfo;
     }
 
     public final static Builder builder() {

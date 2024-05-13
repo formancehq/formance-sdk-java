@@ -36,9 +36,10 @@ public class V2LedgerInfoResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2LedgerInfo> data() {
-        return data;
+    public Optional<V2LedgerInfo> data() {
+        return (Optional<V2LedgerInfo>) data;
     }
 
     public final static Builder builder() {

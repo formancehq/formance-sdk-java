@@ -73,9 +73,10 @@ public class ListBalancesResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Balances list
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ListBalancesResponse> listBalancesResponse() {
-        return listBalancesResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ListBalancesResponse> listBalancesResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ListBalancesResponse>) listBalancesResponse;
     }
 
     /**

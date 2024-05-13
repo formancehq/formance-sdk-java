@@ -89,9 +89,10 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.TransactionResponse> transactionResponse() {
-        return transactionResponse;
+    public Optional<com.formance.formance_sdk.models.shared.TransactionResponse> transactionResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.TransactionResponse>) transactionResponse;
     }
 
     public final static Builder builder() {

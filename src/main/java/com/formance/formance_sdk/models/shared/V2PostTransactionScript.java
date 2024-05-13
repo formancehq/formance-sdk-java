@@ -48,9 +48,10 @@ public class V2PostTransactionScript {
         return plain;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> vars() {
-        return vars;
+    public Optional<java.util.Map<String, java.lang.Object>> vars() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) vars;
     }
 
     public final static Builder builder() {

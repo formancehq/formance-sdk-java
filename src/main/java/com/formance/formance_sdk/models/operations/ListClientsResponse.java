@@ -73,9 +73,10 @@ public class ListClientsResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * List of clients
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ListClientsResponse> listClientsResponse() {
-        return listClientsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ListClientsResponse> listClientsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ListClientsResponse>) listClientsResponse;
     }
 
     /**

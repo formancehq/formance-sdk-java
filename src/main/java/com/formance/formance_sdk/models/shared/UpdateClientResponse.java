@@ -36,9 +36,10 @@ public class UpdateClientResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Client> data() {
-        return data;
+    public Optional<Client> data() {
+        return (Optional<Client>) data;
     }
 
     public final static Builder builder() {

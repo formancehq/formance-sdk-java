@@ -43,14 +43,16 @@ public class ActivityDebitWallet {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends DebitWalletRequest> data() {
-        return data;
+    public Optional<DebitWalletRequest> data() {
+        return (Optional<DebitWalletRequest>) data;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> id() {
-        return id;
+    public Optional<String> id() {
+        return (Optional<String>) id;
     }
 
     public final static Builder builder() {

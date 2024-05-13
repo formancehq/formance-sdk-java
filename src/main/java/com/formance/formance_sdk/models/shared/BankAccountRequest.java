@@ -79,9 +79,10 @@ public class BankAccountRequest {
         this(Optional.empty(), connectorID, country, Optional.empty(), JsonNullable.undefined(), name, Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> accountNumber() {
-        return accountNumber;
+    public Optional<String> accountNumber() {
+        return (Optional<String>) accountNumber;
     }
 
     @JsonIgnore
@@ -94,14 +95,16 @@ public class BankAccountRequest {
         return country;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> iban() {
-        return iban;
+    public Optional<String> iban() {
+        return (Optional<String>) iban;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, String>> metadata() {
+        return (JsonNullable<java.util.Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -109,9 +112,10 @@ public class BankAccountRequest {
         return name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> swiftBicCode() {
-        return swiftBicCode;
+    public Optional<String> swiftBicCode() {
+        return (Optional<String>) swiftBicCode;
     }
 
     public final static Builder builder() {

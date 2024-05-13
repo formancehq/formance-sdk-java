@@ -73,9 +73,10 @@ public class ReadClientResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * Retrieved client
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ReadClientResponse> readClientResponse() {
-        return readClientResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ReadClientResponse> readClientResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ReadClientResponse>) readClientResponse;
     }
 
     /**

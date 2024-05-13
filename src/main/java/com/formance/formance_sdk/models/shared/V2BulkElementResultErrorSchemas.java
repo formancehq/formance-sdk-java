@@ -67,9 +67,10 @@ public class V2BulkElementResultErrorSchemas {
         return errorDescription;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> errorDetails() {
-        return errorDetails;
+    public Optional<String> errorDetails() {
+        return (Optional<String>) errorDetails;
     }
 
     @JsonIgnore

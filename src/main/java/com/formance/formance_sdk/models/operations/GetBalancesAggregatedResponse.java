@@ -65,9 +65,10 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.AggregateBalancesResponse> aggregateBalancesResponse() {
-        return aggregateBalancesResponse;
+    public Optional<com.formance.formance_sdk.models.shared.AggregateBalancesResponse> aggregateBalancesResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.AggregateBalancesResponse>) aggregateBalancesResponse;
     }
 
     /**

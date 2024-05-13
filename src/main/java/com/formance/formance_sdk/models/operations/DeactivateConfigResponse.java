@@ -65,9 +65,10 @@ public class DeactivateConfigResponse implements com.formance.formance_sdk.utils
     /**
      * Config successfully deactivated.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
-        return configResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfigResponse>) configResponse;
     }
 
     /**

@@ -65,9 +65,10 @@ public class GetInfoResponse implements com.formance.formance_sdk.utils.Response
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfigInfoResponse> configInfoResponse() {
-        return configInfoResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConfigInfoResponse> configInfoResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfigInfoResponse>) configInfoResponse;
     }
 
     /**

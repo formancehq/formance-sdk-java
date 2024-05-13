@@ -82,9 +82,10 @@ public class CurrencyCloudConfig {
     /**
      * The endpoint to use for the API. Defaults to https://devapi.currencycloud.com
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> endpoint() {
-        return endpoint;
+    public Optional<String> endpoint() {
+        return (Optional<String>) endpoint;
     }
 
     /**
@@ -103,9 +104,10 @@ public class CurrencyCloudConfig {
     /**
      * The frequency at which the connector will fetch transactions
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> pollingPeriod() {
-        return pollingPeriod;
+    public Optional<String> pollingPeriod() {
+        return (Optional<String>) pollingPeriod;
     }
 
     public final static Builder builder() {

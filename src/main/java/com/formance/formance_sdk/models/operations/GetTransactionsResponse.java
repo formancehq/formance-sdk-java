@@ -73,9 +73,10 @@ public class GetTransactionsResponse implements com.formance.formance_sdk.utils.
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse() {
-        return getTransactionsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetTransactionsResponse>) getTransactionsResponse;
     }
 
     /**

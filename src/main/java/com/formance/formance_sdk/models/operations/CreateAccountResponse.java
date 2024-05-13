@@ -89,9 +89,10 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.PaymentsAccountResponse> paymentsAccountResponse() {
-        return paymentsAccountResponse;
+    public Optional<com.formance.formance_sdk.models.shared.PaymentsAccountResponse> paymentsAccountResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.PaymentsAccountResponse>) paymentsAccountResponse;
     }
 
     public final static Builder builder() {

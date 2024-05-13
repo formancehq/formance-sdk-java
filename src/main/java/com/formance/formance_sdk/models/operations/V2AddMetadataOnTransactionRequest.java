@@ -77,25 +77,28 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * Use an idempotency key
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> idempotencyKey() {
-        return idempotencyKey;
+    public Optional<String> idempotencyKey() {
+        return (Optional<String>) idempotencyKey;
     }
 
     /**
      * metadata
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, String>> requestBody() {
+        return (Optional<java.util.Map<String, String>>) requestBody;
     }
 
     /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> dryRun() {
-        return dryRun;
+    public Optional<Boolean> dryRun() {
+        return (Optional<Boolean>) dryRun;
     }
 
     /**

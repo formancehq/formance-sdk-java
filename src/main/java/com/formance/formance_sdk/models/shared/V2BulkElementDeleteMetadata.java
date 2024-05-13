@@ -55,14 +55,16 @@ public class V2BulkElementDeleteMetadata {
         return action;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2BulkElementDeleteMetadataData> data() {
-        return data;
+    public Optional<V2BulkElementDeleteMetadataData> data() {
+        return (Optional<V2BulkElementDeleteMetadataData>) data;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ik() {
-        return ik;
+    public Optional<String> ik() {
+        return (Optional<String>) ik;
     }
 
     public final static Builder builder() {

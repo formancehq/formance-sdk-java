@@ -73,9 +73,10 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.LogsCursorResponse> logsCursorResponse() {
-        return logsCursorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.LogsCursorResponse> logsCursorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.LogsCursorResponse>) logsCursorResponse;
     }
 
     /**

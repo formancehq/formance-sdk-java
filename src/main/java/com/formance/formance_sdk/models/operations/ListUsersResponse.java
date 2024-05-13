@@ -73,9 +73,10 @@ public class ListUsersResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * List of users
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ListUsersResponse> listUsersResponse() {
-        return listUsersResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ListUsersResponse> listUsersResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ListUsersResponse>) listUsersResponse;
     }
 
     /**

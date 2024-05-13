@@ -89,9 +89,10 @@ public class V2ListAccountsResponse implements com.formance.formance_sdk.utils.R
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2AccountsCursorResponse> v2AccountsCursorResponse() {
-        return v2AccountsCursorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2AccountsCursorResponse> v2AccountsCursorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2AccountsCursorResponse>) v2AccountsCursorResponse;
     }
 
     public final static Builder builder() {

@@ -65,9 +65,10 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse() {
-        return bankAccountResponse;
+    public Optional<com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.BankAccountResponse>) bankAccountResponse;
     }
 
     /**

@@ -43,9 +43,10 @@ public class TestTriggerRequest {
         this(Optional.empty(), triggerID);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
     }
 
     /**

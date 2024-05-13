@@ -67,9 +67,10 @@ public class V2StageStatus {
         this(Optional.empty(), instanceID, stage, startedAt, Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     @JsonIgnore
@@ -87,9 +88,10 @@ public class V2StageStatus {
         return startedAt;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> terminatedAt() {
-        return terminatedAt;
+    public Optional<OffsetDateTime> terminatedAt() {
+        return (Optional<OffsetDateTime>) terminatedAt;
     }
 
     public final static Builder builder() {

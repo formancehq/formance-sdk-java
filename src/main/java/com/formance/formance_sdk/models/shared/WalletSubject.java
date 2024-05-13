@@ -50,9 +50,10 @@ public class WalletSubject {
         this(Optional.empty(), identifier, type);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> balance() {
-        return balance;
+    public Optional<String> balance() {
+        return (Optional<String>) balance;
     }
 
     @JsonIgnore

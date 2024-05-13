@@ -65,9 +65,10 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursor> accountsCursor() {
-        return accountsCursor;
+    public Optional<com.formance.formance_sdk.models.shared.AccountsCursor> accountsCursor() {
+        return (Optional<com.formance.formance_sdk.models.shared.AccountsCursor>) accountsCursor;
     }
 
     /**

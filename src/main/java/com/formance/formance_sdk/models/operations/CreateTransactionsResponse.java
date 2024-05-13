@@ -89,9 +89,10 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse() {
-        return transactionsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.TransactionsResponse>) transactionsResponse;
     }
 
     public final static Builder builder() {

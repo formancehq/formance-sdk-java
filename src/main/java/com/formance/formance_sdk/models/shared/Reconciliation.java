@@ -112,9 +112,10 @@ public class Reconciliation {
         return driftBalances;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     @JsonIgnore

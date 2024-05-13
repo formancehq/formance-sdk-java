@@ -79,9 +79,10 @@ public class ModulrConfig {
         return apiSecret;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> endpoint() {
-        return endpoint;
+    public Optional<String> endpoint() {
+        return (Optional<String>) endpoint;
     }
 
     @JsonIgnore
@@ -93,9 +94,10 @@ public class ModulrConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> pollingPeriod() {
-        return pollingPeriod;
+    public Optional<String> pollingPeriod() {
+        return (Optional<String>) pollingPeriod;
     }
 
     public final static Builder builder() {

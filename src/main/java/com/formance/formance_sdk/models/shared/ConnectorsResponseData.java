@@ -62,9 +62,10 @@ public class ConnectorsResponseData {
         return connectorID;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> enabled() {
-        return enabled;
+    public Optional<Boolean> enabled() {
+        return (Optional<Boolean>) enabled;
     }
 
     @JsonIgnore

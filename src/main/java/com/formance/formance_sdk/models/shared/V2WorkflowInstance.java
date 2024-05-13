@@ -93,9 +93,10 @@ public class V2WorkflowInstance {
         return createdAt;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     @JsonIgnore
@@ -103,9 +104,10 @@ public class V2WorkflowInstance {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<V2StageStatus>> status() {
-        return status;
+    public Optional<java.util.List<V2StageStatus>> status() {
+        return (Optional<java.util.List<V2StageStatus>>) status;
     }
 
     @JsonIgnore
@@ -113,9 +115,10 @@ public class V2WorkflowInstance {
         return terminated;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> terminatedAt() {
-        return terminatedAt;
+    public Optional<OffsetDateTime> terminatedAt() {
+        return (Optional<OffsetDateTime>) terminatedAt;
     }
 
     @JsonIgnore

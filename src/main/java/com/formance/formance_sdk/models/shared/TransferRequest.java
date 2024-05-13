@@ -72,9 +72,10 @@ public class TransferRequest {
         return destination;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> source() {
-        return source;
+    public Optional<String> source() {
+        return (Optional<String>) source;
     }
 
     public final static Builder builder() {

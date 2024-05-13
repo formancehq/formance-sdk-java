@@ -36,9 +36,10 @@ public class MappingResponse {
         this(JsonNullable.undefined());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends Mapping> data() {
-        return data;
+    public JsonNullable<Mapping> data() {
+        return (JsonNullable<Mapping>) data;
     }
 
     public final static Builder builder() {

@@ -50,19 +50,22 @@ public class User {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> email() {
-        return email;
+    public Optional<String> email() {
+        return (Optional<String>) email;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> id() {
-        return id;
+    public Optional<String> id() {
+        return (Optional<String>) id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> subject() {
-        return subject;
+    public Optional<String> subject() {
+        return (Optional<String>) subject;
     }
 
     public final static Builder builder() {

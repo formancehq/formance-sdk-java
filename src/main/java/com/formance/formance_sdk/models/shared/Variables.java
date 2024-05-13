@@ -43,14 +43,16 @@ public class Variables {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> value() {
-        return value;
+    public Optional<String> value() {
+        return (Optional<String>) value;
     }
 
     public final static Builder builder() {

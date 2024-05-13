@@ -73,9 +73,10 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.PoolResponse> poolResponse() {
-        return poolResponse;
+    public Optional<com.formance.formance_sdk.models.shared.PoolResponse> poolResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.PoolResponse>) poolResponse;
     }
 
     /**
