@@ -19,7 +19,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class BankingCircleConfig {
 
     @JsonProperty("authorizationEndpoint")
@@ -114,9 +113,10 @@ public class BankingCircleConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> pollingPeriod() {
-        return pollingPeriod;
+    public Optional<String> pollingPeriod() {
+        return (Optional<String>) pollingPeriod;
     }
 
     @JsonIgnore

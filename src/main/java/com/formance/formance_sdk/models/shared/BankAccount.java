@@ -22,7 +22,6 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
 public class BankAccount {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -117,14 +116,16 @@ public class BankAccount {
         this(Optional.empty(), Optional.empty(), connectorID, country, createdAt, Optional.empty(), id, JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> accountID() {
-        return accountID;
+    public Optional<String> accountID() {
+        return (Optional<String>) accountID;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> accountNumber() {
-        return accountNumber;
+    public Optional<String> accountNumber() {
+        return (Optional<String>) accountNumber;
     }
 
     @JsonIgnore
@@ -142,9 +143,10 @@ public class BankAccount {
         return createdAt;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> iban() {
-        return iban;
+    public Optional<String> iban() {
+        return (Optional<String>) iban;
     }
 
     @JsonIgnore
@@ -152,9 +154,10 @@ public class BankAccount {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, String>> metadata() {
+        return (JsonNullable<java.util.Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -162,19 +165,22 @@ public class BankAccount {
         return name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> provider() {
-        return provider;
+    public Optional<String> provider() {
+        return (Optional<String>) provider;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<BankAccountRelatedAccounts>> relatedAccounts() {
-        return relatedAccounts;
+    public Optional<java.util.List<BankAccountRelatedAccounts>> relatedAccounts() {
+        return (Optional<java.util.List<BankAccountRelatedAccounts>>) relatedAccounts;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> swiftBicCode() {
-        return swiftBicCode;
+    public Optional<String> swiftBicCode() {
+        return (Optional<String>) swiftBicCode;
     }
 
     public final static Builder builder() {

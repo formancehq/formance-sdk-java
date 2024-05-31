@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ChangeConfigSecretRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -43,9 +42,10 @@ public class ChangeConfigSecretRequest {
         this(Optional.empty(), id);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret() {
-        return configChangeSecret;
+    public Optional<com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfigChangeSecret>) configChangeSecret;
     }
 
     /**

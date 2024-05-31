@@ -3,8 +3,8 @@
 
 ## Fields
 
-| Field                                  | Type                                   | Required                               | Description                            |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| `requestBody`                          | Map<String, *String*>                  | :heavy_minus_sign:                     | N/A                                    |
-| `waitForExecution`                     | *Optional<? extends Boolean>*          | :heavy_minus_sign:                     | Wait end of the workflow before return |
-| `workflowID`                           | *String*                               | :heavy_check_mark:                     | The flow id                            |
+| Field                                  | Type                                   | Required                               | Description                            | Example                                |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| `requestBody`                          | Map<String, *String*>                  | :heavy_minus_sign:                     | N/A                                    |                                        |
+| `waitForExecution`                     | *Optional<? extends Boolean>*          | :heavy_minus_sign:                     | Wait end of the workflow before return |                                        |
+| `workflowID`                           | *String*                               | :heavy_check_mark:                     | The flow id                            | xxx                                    |

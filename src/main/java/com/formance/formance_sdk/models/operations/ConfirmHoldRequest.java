@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ConfirmHoldRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -40,9 +39,10 @@ public class ConfirmHoldRequest {
         this(Optional.empty(), holdId);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest() {
-        return confirmHoldRequest;
+    public Optional<com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfirmHoldRequest>) confirmHoldRequest;
     }
 
     @JsonIgnore

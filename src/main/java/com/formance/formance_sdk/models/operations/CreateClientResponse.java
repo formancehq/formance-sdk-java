@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class CreateClientResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class CreateClientResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Client created
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.CreateClientResponse> createClientResponse() {
-        return createClientResponse;
+    public Optional<com.formance.formance_sdk.models.shared.CreateClientResponse> createClientResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.CreateClientResponse>) createClientResponse;
     }
 
     /**

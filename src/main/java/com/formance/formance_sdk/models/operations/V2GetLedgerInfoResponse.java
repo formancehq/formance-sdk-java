@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class V2GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class V2GetLedgerInfoResponse implements com.formance.formance_sdk.utils.
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2LedgerInfoResponse> v2LedgerInfoResponse() {
-        return v2LedgerInfoResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2LedgerInfoResponse> v2LedgerInfoResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2LedgerInfoResponse>) v2LedgerInfoResponse;
     }
 
     public final static Builder builder() {

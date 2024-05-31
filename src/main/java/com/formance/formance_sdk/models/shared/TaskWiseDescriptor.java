@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class TaskWiseDescriptor {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -50,19 +49,22 @@ public class TaskWiseDescriptor {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> key() {
-        return key;
+    public Optional<String> key() {
+        return (Optional<String>) key;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> profileID() {
-        return profileID;
+    public Optional<Long> profileID() {
+        return (Optional<Long>) profileID;
     }
 
     public final static Builder builder() {

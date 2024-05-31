@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class StageDelay {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -46,14 +45,16 @@ public class StageDelay {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> duration() {
-        return duration;
+    public Optional<String> duration() {
+        return (Optional<String>) duration;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> until() {
-        return until;
+    public Optional<OffsetDateTime> until() {
+        return (Optional<OffsetDateTime>) until;
     }
 
     public final static Builder builder() {

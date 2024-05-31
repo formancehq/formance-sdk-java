@@ -22,7 +22,6 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
 public class AccountRequest {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -82,9 +81,10 @@ public class AccountRequest {
         this(Optional.empty(), connectorID, createdAt, Optional.empty(), JsonNullable.undefined(), reference, type);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> accountName() {
-        return accountName;
+    public Optional<String> accountName() {
+        return (Optional<String>) accountName;
     }
 
     @JsonIgnore
@@ -97,14 +97,16 @@ public class AccountRequest {
         return createdAt;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> defaultAsset() {
-        return defaultAsset;
+    public Optional<String> defaultAsset() {
+        return (Optional<String>) defaultAsset;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, String>> metadata() {
+        return (JsonNullable<java.util.Map<String, String>>) metadata;
     }
 
     @JsonIgnore

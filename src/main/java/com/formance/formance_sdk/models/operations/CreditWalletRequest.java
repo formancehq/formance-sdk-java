@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class CreditWalletRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -40,9 +39,10 @@ public class CreditWalletRequest {
         this(Optional.empty(), id);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.CreditWalletRequest> creditWalletRequest() {
-        return creditWalletRequest;
+    public Optional<com.formance.formance_sdk.models.shared.CreditWalletRequest> creditWalletRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.CreditWalletRequest>) creditWalletRequest;
     }
 
     @JsonIgnore

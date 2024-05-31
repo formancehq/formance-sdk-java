@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2RevertTransactionRequest {
 
     /**
@@ -68,17 +67,19 @@ public class V2RevertTransactionRequest {
     /**
      * Revert transaction at effective date of the original tx
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> atEffectiveDate() {
-        return atEffectiveDate;
+    public Optional<Boolean> atEffectiveDate() {
+        return (Optional<Boolean>) atEffectiveDate;
     }
 
     /**
      * Force revert
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> force() {
-        return force;
+    public Optional<Boolean> force() {
+        return (Optional<Boolean>) force;
     }
 
     /**

@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class InstallConnectorResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -65,9 +64,10 @@ public class InstallConnectorResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConnectorResponse> connectorResponse() {
-        return connectorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConnectorResponse> connectorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConnectorResponse>) connectorResponse;
     }
 
     /**

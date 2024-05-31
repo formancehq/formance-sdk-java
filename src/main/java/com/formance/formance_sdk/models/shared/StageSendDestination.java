@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class StageSendDestination {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -50,19 +49,22 @@ public class StageSendDestination {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends StageSendDestinationAccount> account() {
-        return account;
+    public Optional<StageSendDestinationAccount> account() {
+        return (Optional<StageSendDestinationAccount>) account;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends StageSendDestinationPayment> payment() {
-        return payment;
+    public Optional<StageSendDestinationPayment> payment() {
+        return (Optional<StageSendDestinationPayment>) payment;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends StageSendDestinationWallet> wallet() {
-        return wallet;
+    public Optional<StageSendDestinationWallet> wallet() {
+        return (Optional<StageSendDestinationWallet>) wallet;
     }
 
     public final static Builder builder() {

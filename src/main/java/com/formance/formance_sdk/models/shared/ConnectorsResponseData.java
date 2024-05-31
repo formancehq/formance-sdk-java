@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ConnectorsResponseData {
 
     @JsonProperty("connectorID")
@@ -62,9 +61,10 @@ public class ConnectorsResponseData {
         return connectorID;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> enabled() {
-        return enabled;
+    public Optional<Boolean> enabled() {
+        return (Optional<Boolean>) enabled;
     }
 
     @JsonIgnore

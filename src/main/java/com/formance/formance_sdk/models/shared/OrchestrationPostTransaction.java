@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class OrchestrationPostTransaction {
 
     @JsonProperty("metadata")
@@ -72,24 +71,28 @@ public class OrchestrationPostTransaction {
         return metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<Posting>> postings() {
-        return postings;
+    public Optional<java.util.List<Posting>> postings() {
+        return (Optional<java.util.List<Posting>>) postings;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OrchestrationPostTransactionScript> script() {
-        return script;
+    public Optional<OrchestrationPostTransactionScript> script() {
+        return (Optional<OrchestrationPostTransactionScript>) script;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> timestamp() {
-        return timestamp;
+    public Optional<OffsetDateTime> timestamp() {
+        return (Optional<OffsetDateTime>) timestamp;
     }
 
     public final static Builder builder() {

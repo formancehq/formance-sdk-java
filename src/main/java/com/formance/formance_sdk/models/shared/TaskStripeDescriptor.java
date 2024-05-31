@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class TaskStripeDescriptor {
 
     @JsonProperty("account")
@@ -55,9 +54,10 @@ public class TaskStripeDescriptor {
         return account;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> main() {
-        return main;
+    public Optional<Boolean> main() {
+        return (Optional<Boolean>) main;
     }
 
     @JsonIgnore

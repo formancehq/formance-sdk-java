@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2Account {
 
     @JsonProperty("address")
@@ -62,9 +61,10 @@ public class V2Account {
         return address;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, V2Volume>> effectiveVolumes() {
-        return effectiveVolumes;
+    public Optional<java.util.Map<String, V2Volume>> effectiveVolumes() {
+        return (Optional<java.util.Map<String, V2Volume>>) effectiveVolumes;
     }
 
     @JsonIgnore
@@ -72,9 +72,10 @@ public class V2Account {
         return metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, V2Volume>> volumes() {
-        return volumes;
+    public Optional<java.util.Map<String, V2Volume>> volumes() {
+        return (Optional<java.util.Map<String, V2Volume>>) volumes;
     }
 
     public final static Builder builder() {

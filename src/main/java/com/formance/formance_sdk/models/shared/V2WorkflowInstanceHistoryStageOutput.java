@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2WorkflowInstanceHistoryStageOutput {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -71,34 +70,40 @@ public class V2WorkflowInstanceHistoryStageOutput {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityCreateTransactionOutput> createTransaction() {
-        return createTransaction;
+    public Optional<V2ActivityCreateTransactionOutput> createTransaction() {
+        return (Optional<V2ActivityCreateTransactionOutput>) createTransaction;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityDebitWalletOutput> debitWallet() {
-        return debitWallet;
+    public Optional<V2ActivityDebitWalletOutput> debitWallet() {
+        return (Optional<V2ActivityDebitWalletOutput>) debitWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityGetAccountOutput> getAccount() {
-        return getAccount;
+    public Optional<V2ActivityGetAccountOutput> getAccount() {
+        return (Optional<V2ActivityGetAccountOutput>) getAccount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityGetPaymentOutput> getPayment() {
-        return getPayment;
+    public Optional<V2ActivityGetPaymentOutput> getPayment() {
+        return (Optional<V2ActivityGetPaymentOutput>) getPayment;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityGetWalletOutput> getWallet() {
-        return getWallet;
+    public Optional<V2ActivityGetWalletOutput> getWallet() {
+        return (Optional<V2ActivityGetWalletOutput>) getWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ListWalletsResponse> listWallets() {
-        return listWallets;
+    public Optional<V2ListWalletsResponse> listWallets() {
+        return (Optional<V2ListWalletsResponse>) listWallets;
     }
 
     public final static Builder builder() {

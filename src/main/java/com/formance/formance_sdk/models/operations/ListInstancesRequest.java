@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ListInstancesRequest {
 
     /**
@@ -48,17 +47,19 @@ public class ListInstancesRequest {
     /**
      * Filter running instances
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> running() {
-        return running;
+    public Optional<Boolean> running() {
+        return (Optional<Boolean>) running;
     }
 
     /**
      * A workflow id
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> workflowID() {
-        return workflowID;
+    public Optional<String> workflowID() {
+        return (Optional<String>) workflowID;
     }
 
     public final static Builder builder() {

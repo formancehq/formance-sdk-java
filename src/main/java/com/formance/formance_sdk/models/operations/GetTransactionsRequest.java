@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetTransactionsRequest {
 
     /**
@@ -66,25 +65,28 @@ public class GetTransactionsRequest {
      * No other parameters can be set when the cursor is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
      * The maximum number of results to return per page
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
      * A wallet ID to filter on
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> walletID() {
-        return walletID;
+    public Optional<String> walletID() {
+        return (Optional<String>) walletID;
     }
 
     public final static Builder builder() {

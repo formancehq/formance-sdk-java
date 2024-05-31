@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ListTransferInitiationsRequest {
 
     /**
@@ -77,35 +76,39 @@ public class ListTransferInitiationsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
      * Filters used to filter resources.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> query() {
-        return query;
+    public Optional<String> query() {
+        return (Optional<String>) query;
     }
 
     /**
      * Fields used to sort payments (default is date:desc).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> sort() {
-        return sort;
+    public Optional<java.util.List<String>> sort() {
+        return (Optional<java.util.List<String>>) sort;
     }
 
     public final static Builder builder() {

@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class V2CreateBulkResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class V2CreateBulkResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2BulkResponse> v2BulkResponse() {
-        return v2BulkResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2BulkResponse> v2BulkResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2BulkResponse>) v2BulkResponse;
     }
 
     public final static Builder builder() {

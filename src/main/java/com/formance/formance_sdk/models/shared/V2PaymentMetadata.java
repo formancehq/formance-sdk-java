@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2PaymentMetadata {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,9 +35,10 @@ public class V2PaymentMetadata {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> key() {
-        return key;
+    public Optional<String> key() {
+        return (Optional<String>) key;
     }
 
     public final static Builder builder() {

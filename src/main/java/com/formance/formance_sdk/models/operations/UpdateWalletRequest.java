@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class UpdateWalletRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -40,9 +39,10 @@ public class UpdateWalletRequest {
         this(Optional.empty(), id);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends UpdateWalletRequestBody> requestBody() {
-        return requestBody;
+    public Optional<UpdateWalletRequestBody> requestBody() {
+        return (Optional<UpdateWalletRequestBody>) requestBody;
     }
 
     @JsonIgnore

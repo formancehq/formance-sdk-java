@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class GetWalletSummaryResponse implements com.formance.formance_sdk.utils
     /**
      * Wallet summary
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse() {
-        return getWalletSummaryResponse;
+    public Optional<com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetWalletSummaryResponse>) getWalletSummaryResponse;
     }
 
     /**

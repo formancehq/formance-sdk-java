@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class Total {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,14 +42,16 @@ public class Total {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> relation() {
-        return relation;
+    public Optional<String> relation() {
+        return (Optional<String>) relation;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> value() {
-        return value;
+    public Optional<Long> value() {
+        return (Optional<Long>) value;
     }
 
     public final static Builder builder() {

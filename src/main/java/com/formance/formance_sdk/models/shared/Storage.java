@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class Storage {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,9 +35,10 @@ public class Storage {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<MigrationInfo>> migrations() {
-        return migrations;
+    public Optional<java.util.List<MigrationInfo>> migrations() {
+        return (Optional<java.util.List<MigrationInfo>>) migrations;
     }
 
     public final static Builder builder() {

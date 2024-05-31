@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2BulkElementRevertTransactionData {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -50,14 +49,16 @@ public class V2BulkElementRevertTransactionData {
         this(Optional.empty(), Optional.empty(), id);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> atEffectiveDate() {
-        return atEffectiveDate;
+    public Optional<Boolean> atEffectiveDate() {
+        return (Optional<Boolean>) atEffectiveDate;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> force() {
-        return force;
+    public Optional<Boolean> force() {
+        return (Optional<Boolean>) force;
     }
 
     @JsonIgnore

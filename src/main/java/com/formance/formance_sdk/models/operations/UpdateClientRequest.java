@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class UpdateClientRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -43,9 +42,10 @@ public class UpdateClientRequest {
         this(Optional.empty(), clientId);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientRequest> updateClientRequest() {
-        return updateClientRequest;
+    public Optional<com.formance.formance_sdk.models.shared.UpdateClientRequest> updateClientRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.UpdateClientRequest>) updateClientRequest;
     }
 
     /**

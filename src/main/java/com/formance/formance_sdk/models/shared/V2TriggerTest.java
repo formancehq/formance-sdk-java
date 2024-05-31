@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2TriggerTest {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,14 +42,16 @@ public class V2TriggerTest {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Filter> filter() {
-        return filter;
+    public Optional<Filter> filter() {
+        return (Optional<Filter>) filter;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, Variables>> variables() {
-        return variables;
+    public Optional<java.util.Map<String, Variables>> variables() {
+        return (Optional<java.util.Map<String, Variables>>) variables;
     }
 
     public final static Builder builder() {

@@ -19,7 +19,6 @@ import java.math.BigInteger;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
 public class Script {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -61,9 +60,10 @@ public class Script {
         this(JsonNullable.undefined(), plain, Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, java.lang.Object>> metadata() {
+        return (JsonNullable<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
     @JsonIgnore
@@ -74,14 +74,16 @@ public class Script {
     /**
      * Reference to attach to the generated transaction
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> vars() {
-        return vars;
+    public Optional<java.util.Map<String, java.lang.Object>> vars() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) vars;
     }
 
     public final static Builder builder() {

@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class WalletsTransaction {
 
     @JsonProperty("id")
@@ -96,9 +95,10 @@ public class WalletsTransaction {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ledger() {
-        return ledger;
+    public Optional<String> ledger() {
+        return (Optional<String>) ledger;
     }
 
     /**
@@ -109,9 +109,10 @@ public class WalletsTransaction {
         return metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes() {
-        return postCommitVolumes;
+    public Optional<java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes() {
+        return (Optional<java.util.Map<String, java.util.Map<String, WalletsVolume>>>) postCommitVolumes;
     }
 
     @JsonIgnore
@@ -119,14 +120,16 @@ public class WalletsTransaction {
         return postings;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes() {
-        return preCommitVolumes;
+    public Optional<java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes() {
+        return (Optional<java.util.Map<String, java.util.Map<String, WalletsVolume>>>) preCommitVolumes;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
     @JsonIgnore

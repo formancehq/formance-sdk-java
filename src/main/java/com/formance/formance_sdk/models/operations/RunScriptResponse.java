@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class RunScriptResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -85,9 +84,10 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
      *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ScriptResponse> scriptResponse() {
-        return scriptResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ScriptResponse> scriptResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ScriptResponse>) scriptResponse;
     }
 
     /**

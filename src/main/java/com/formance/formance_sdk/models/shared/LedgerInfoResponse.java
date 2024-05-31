@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class LedgerInfoResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,9 +35,10 @@ public class LedgerInfoResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends LedgerInfo> data() {
-        return data;
+    public Optional<LedgerInfo> data() {
+        return (Optional<LedgerInfo>) data;
     }
 
     public final static Builder builder() {

@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class Attempt {
 
     @JsonProperty("config")
@@ -117,9 +116,10 @@ public class Attempt {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> nextRetryAfter() {
-        return nextRetryAfter;
+    public Optional<OffsetDateTime> nextRetryAfter() {
+        return (Optional<OffsetDateTime>) nextRetryAfter;
     }
 
     @JsonIgnore

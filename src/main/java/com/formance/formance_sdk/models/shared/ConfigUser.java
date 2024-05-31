@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ConfigUser {
 
     @JsonProperty("endpoint")
@@ -67,14 +66,16 @@ public class ConfigUser {
         return eventTypes;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> secret() {
-        return secret;
+    public Optional<String> secret() {
+        return (Optional<String>) secret;
     }
 
     public final static Builder builder() {

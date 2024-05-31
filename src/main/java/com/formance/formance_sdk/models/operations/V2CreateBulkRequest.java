@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2CreateBulkRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -43,9 +42,10 @@ public class V2CreateBulkRequest {
         this(Optional.empty(), ledger);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<com.formance.formance_sdk.models.shared.V2BulkElement>> requestBody() {
-        return requestBody;
+    public Optional<java.util.List<com.formance.formance_sdk.models.shared.V2BulkElement>> requestBody() {
+        return (Optional<java.util.List<com.formance.formance_sdk.models.shared.V2BulkElement>>) requestBody;
     }
 
     /**

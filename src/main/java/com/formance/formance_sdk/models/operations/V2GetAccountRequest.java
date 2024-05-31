@@ -17,7 +17,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class V2GetAccountRequest {
 
     /**
@@ -76,9 +75,10 @@ public class V2GetAccountRequest {
         return address;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> expand() {
-        return expand;
+    public Optional<String> expand() {
+        return (Optional<String>) expand;
     }
 
     /**
@@ -89,9 +89,10 @@ public class V2GetAccountRequest {
         return ledger;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> pit() {
-        return pit;
+    public Optional<OffsetDateTime> pit() {
+        return (Optional<OffsetDateTime>) pit;
     }
 
     public final static Builder builder() {

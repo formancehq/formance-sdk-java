@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2LedgerInfo {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,14 +42,16 @@ public class V2LedgerInfo {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2LedgerInfoStorage> storage() {
-        return storage;
+    public Optional<V2LedgerInfoStorage> storage() {
+        return (Optional<V2LedgerInfoStorage>) storage;
     }
 
     public final static Builder builder() {

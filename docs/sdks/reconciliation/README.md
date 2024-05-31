@@ -23,20 +23,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.PolicyRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -61,10 +62,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -98,20 +102,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.DeletePolicyRequest;
-import com.formance.formance_sdk.models.operations.DeletePolicyResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -120,7 +125,7 @@ public class Application {
                 .build();
 
             DeletePolicyRequest req = DeletePolicyRequest.builder()
-                .policyID("<value>")
+                .policyID("XXX")
                 .build();
 
             DeletePolicyResponse res = sdk.reconciliation().deletePolicy()
@@ -130,10 +135,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -167,20 +175,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetPolicyRequest;
-import com.formance.formance_sdk.models.operations.GetPolicyResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -189,7 +198,7 @@ public class Application {
                 .build();
 
             GetPolicyRequest req = GetPolicyRequest.builder()
-                .policyID("<value>")
+                .policyID("XXX")
                 .build();
 
             GetPolicyResponse res = sdk.reconciliation().getPolicy()
@@ -201,10 +210,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -238,20 +250,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetReconciliationRequest;
-import com.formance.formance_sdk.models.operations.GetReconciliationResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -260,7 +273,7 @@ public class Application {
                 .build();
 
             GetReconciliationRequest req = GetReconciliationRequest.builder()
-                .reconciliationID("<value>")
+                .reconciliationID("XXX")
                 .build();
 
             GetReconciliationResponse res = sdk.reconciliation().getReconciliation()
@@ -272,10 +285,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -309,20 +325,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListPoliciesRequest;
-import com.formance.formance_sdk.models.operations.ListPoliciesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -332,7 +349,7 @@ public class Application {
 
             ListPoliciesRequest req = ListPoliciesRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(520028L)
+                .pageSize(100L)
                 .build();
 
             ListPoliciesResponse res = sdk.reconciliation().listPolicies()
@@ -344,10 +361,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -381,20 +401,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListReconciliationsRequest;
-import com.formance.formance_sdk.models.operations.ListReconciliationsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -404,7 +425,7 @@ public class Application {
 
             ListReconciliationsRequest req = ListReconciliationsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(954636L)
+                .pageSize(100L)
                 .build();
 
             ListReconciliationsResponse res = sdk.reconciliation().listReconciliations()
@@ -416,10 +437,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -453,21 +477,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ReconcileRequest;
-import com.formance.formance_sdk.models.operations.ReconcileResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.ReconciliationRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -480,7 +504,7 @@ public class Application {
                         .reconciledAtLedger(OffsetDateTime.parse("2021-01-01T00:00:00.000Z"))
                         .reconciledAtPayments(OffsetDateTime.parse("2021-01-01T00:00:00.000Z"))
                         .build())
-                .policyID("<value>")
+                .policyID("XXX")
                 .build();
 
             ReconcileResponse res = sdk.reconciliation().reconcile()
@@ -492,10 +516,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -529,19 +556,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -557,10 +586,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }

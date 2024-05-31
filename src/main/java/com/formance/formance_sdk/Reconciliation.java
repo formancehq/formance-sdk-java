@@ -124,8 +124,7 @@ public class Reconciliation implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.PolicyResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.PolicyResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.PolicyResponse>() {});
                 _res.withPolicyResponse(java.util.Optional.ofNullable(_out));
@@ -140,8 +139,7 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
                 throw _out;
@@ -240,8 +238,7 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
                 throw _out;
@@ -334,8 +331,7 @@ public class Reconciliation implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.PolicyResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.PolicyResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.PolicyResponse>() {});
                 _res.withPolicyResponse(java.util.Optional.ofNullable(_out));
@@ -350,8 +346,7 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
                 throw _out;
@@ -444,8 +439,7 @@ public class Reconciliation implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ReconciliationResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationResponse>() {});
                 _res.withReconciliationResponse(java.util.Optional.ofNullable(_out));
@@ -460,8 +454,7 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
                 throw _out;
@@ -557,8 +550,7 @@ public class Reconciliation implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.PoliciesCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.PoliciesCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.PoliciesCursorResponse>() {});
                 _res.withPoliciesCursorResponse(java.util.Optional.ofNullable(_out));
@@ -573,8 +565,7 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
                 throw _out;
@@ -670,8 +661,7 @@ public class Reconciliation implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse>() {});
                 _res.withReconciliationsCursorResponse(java.util.Optional.ofNullable(_out));
@@ -686,8 +676,7 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
                 throw _out;
@@ -790,8 +779,7 @@ public class Reconciliation implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReconciliationResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ReconciliationResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationResponse>() {});
                 _res.withReconciliationResponse(java.util.Optional.ofNullable(_out));
@@ -806,8 +794,7 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
                 throw _out;
@@ -896,8 +883,7 @@ public class Reconciliation implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ServerInfo _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
                 _res.withServerInfo(java.util.Optional.ofNullable(_out));
@@ -912,8 +898,7 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
                 throw _out;

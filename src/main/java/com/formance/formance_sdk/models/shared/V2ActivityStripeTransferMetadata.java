@@ -13,7 +13,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 /**
  * V2ActivityStripeTransferMetadata - A set of key/value pairs that you can attach to a transfer object.
  * It can be useful for storing additional information about the transfer in a structured format.

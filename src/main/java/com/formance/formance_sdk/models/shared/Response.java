@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class Response {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -46,17 +45,19 @@ public class Response {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ResponseCursor> cursor() {
-        return cursor;
+    public Optional<ResponseCursor> cursor() {
+        return (Optional<ResponseCursor>) cursor;
     }
 
     /**
      * The payload
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> data() {
-        return data;
+    public Optional<java.util.Map<String, java.lang.Object>> data() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) data;
     }
 
     public final static Builder builder() {

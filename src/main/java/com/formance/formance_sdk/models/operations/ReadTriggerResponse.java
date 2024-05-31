@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class ReadTriggerResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class ReadTriggerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * A specific trigger
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ReadTriggerResponse> readTriggerResponse() {
-        return readTriggerResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ReadTriggerResponse> readTriggerResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ReadTriggerResponse>) readTriggerResponse;
     }
 
     /**

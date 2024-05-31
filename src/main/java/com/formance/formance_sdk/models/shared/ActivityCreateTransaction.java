@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ActivityCreateTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,14 +42,16 @@ public class ActivityCreateTransaction {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OrchestrationPostTransaction> data() {
-        return data;
+    public Optional<OrchestrationPostTransaction> data() {
+        return (Optional<OrchestrationPostTransaction>) data;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ledger() {
-        return ledger;
+    public Optional<String> ledger() {
+        return (Optional<String>) ledger;
     }
 
     public final static Builder builder() {

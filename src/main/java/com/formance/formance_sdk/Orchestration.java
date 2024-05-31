@@ -149,8 +149,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -257,8 +256,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.CreateTriggerResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.CreateTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateTriggerResponse>() {});
                 _res.withCreateTriggerResponse(java.util.Optional.ofNullable(_out));
@@ -273,8 +271,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -381,8 +378,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.CreateWorkflowResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.CreateWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateWorkflowResponse>() {});
                 _res.withCreateWorkflowResponse(java.util.Optional.ofNullable(_out));
@@ -397,8 +393,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -497,8 +492,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -597,8 +591,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -693,8 +686,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse>() {});
                 _res.withGetWorkflowInstanceResponse(java.util.Optional.ofNullable(_out));
@@ -709,8 +701,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -805,8 +796,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse>() {});
                 _res.withGetWorkflowInstanceHistoryResponse(java.util.Optional.ofNullable(_out));
@@ -821,8 +811,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -917,8 +906,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse>() {});
                 _res.withGetWorkflowInstanceHistoryStageResponse(java.util.Optional.ofNullable(_out));
@@ -933,8 +921,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1029,8 +1016,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetWorkflowResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWorkflowResponse>() {});
                 _res.withGetWorkflowResponse(java.util.Optional.ofNullable(_out));
@@ -1045,8 +1031,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1144,8 +1129,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ListRunsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ListRunsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListRunsResponse>() {});
                 _res.withListRunsResponse(java.util.Optional.ofNullable(_out));
@@ -1160,8 +1144,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1259,8 +1242,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ListTriggersResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ListTriggersResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListTriggersResponse>() {});
                 _res.withListTriggersResponse(java.util.Optional.ofNullable(_out));
@@ -1275,8 +1257,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1371,8 +1352,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse>() {});
                 _res.withListTriggersOccurrencesResponse(java.util.Optional.ofNullable(_out));
@@ -1387,8 +1367,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1479,8 +1458,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ListWorkflowsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ListWorkflowsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListWorkflowsResponse>() {});
                 _res.withListWorkflowsResponse(java.util.Optional.ofNullable(_out));
@@ -1495,8 +1473,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1585,8 +1562,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ServerInfo _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
                 _res.withServerInfo(java.util.Optional.ofNullable(_out));
@@ -1601,8 +1577,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1697,8 +1672,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReadTriggerResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ReadTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReadTriggerResponse>() {});
                 _res.withReadTriggerResponse(java.util.Optional.ofNullable(_out));
@@ -1713,8 +1687,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1819,8 +1792,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.RunWorkflowResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.RunWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.RunWorkflowResponse>() {});
                 _res.withRunWorkflowResponse(java.util.Optional.ofNullable(_out));
@@ -1835,8 +1807,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -1940,8 +1911,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
                 throw _out;
@@ -2041,8 +2011,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2TestTriggerResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2TestTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2TestTriggerResponse>() {});
                 _res.withV2TestTriggerResponse(java.util.Optional.ofNullable(_out));
@@ -2057,8 +2026,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -2157,8 +2125,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -2265,8 +2232,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2CreateTriggerResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2CreateTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2CreateTriggerResponse>() {});
                 _res.withV2CreateTriggerResponse(java.util.Optional.ofNullable(_out));
@@ -2281,8 +2247,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -2389,8 +2354,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse>() {});
                 _res.withV2CreateWorkflowResponse(java.util.Optional.ofNullable(_out));
@@ -2405,8 +2369,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -2505,8 +2468,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -2605,8 +2567,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -2701,8 +2662,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceResponse>() {});
                 _res.withV2GetWorkflowInstanceResponse(java.util.Optional.ofNullable(_out));
@@ -2717,8 +2677,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -2813,8 +2772,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse>() {});
                 _res.withV2GetWorkflowInstanceHistoryResponse(java.util.Optional.ofNullable(_out));
@@ -2829,8 +2787,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -2925,8 +2882,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse>() {});
                 _res.withV2GetWorkflowInstanceHistoryStageResponse(java.util.Optional.ofNullable(_out));
@@ -2941,8 +2897,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3031,8 +2986,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2ServerInfo _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ServerInfo>() {});
                 _res.withV2ServerInfo(java.util.Optional.ofNullable(_out));
@@ -3047,8 +3001,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3143,8 +3096,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2GetWorkflowResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2GetWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetWorkflowResponse>() {});
                 _res.withV2GetWorkflowResponse(java.util.Optional.ofNullable(_out));
@@ -3159,8 +3111,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3258,8 +3209,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2ListRunsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2ListRunsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ListRunsResponse>() {});
                 _res.withV2ListRunsResponse(java.util.Optional.ofNullable(_out));
@@ -3274,8 +3224,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3373,8 +3322,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2ListTriggersResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2ListTriggersResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ListTriggersResponse>() {});
                 _res.withV2ListTriggersResponse(java.util.Optional.ofNullable(_out));
@@ -3389,8 +3337,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3490,8 +3437,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse>() {});
                 _res.withV2ListTriggersOccurrencesResponse(java.util.Optional.ofNullable(_out));
@@ -3506,8 +3452,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3605,8 +3550,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse>() {});
                 _res.withV2ListWorkflowsResponse(java.util.Optional.ofNullable(_out));
@@ -3621,8 +3565,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3717,8 +3660,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2ReadTriggerResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2ReadTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ReadTriggerResponse>() {});
                 _res.withV2ReadTriggerResponse(java.util.Optional.ofNullable(_out));
@@ -3733,8 +3675,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3839,8 +3780,7 @@ public class Orchestration implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2RunWorkflowResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2RunWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2RunWorkflowResponse>() {});
                 _res.withV2RunWorkflowResponse(java.util.Optional.ofNullable(_out));
@@ -3855,8 +3795,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;
@@ -3960,8 +3899,7 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2Error _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
                 throw _out;

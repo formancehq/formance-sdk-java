@@ -46,6 +46,11 @@ public class V2Stage {
         Utils.checkNotNull(value, "value");
         return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V2StageWaitEvent>(){}));
     }
+
+    public static V2Stage of(V2Update value) {
+        Utils.checkNotNull(value, "value");
+        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V2Update>(){}));
+    }
     
     /**
      * Returns an instance of one of these types:
@@ -53,6 +58,7 @@ public class V2Stage {
      * <li>{@code V2StageSend}</li>
      * <li>{@code V2StageDelay}</li>
      * <li>{@code V2StageWaitEvent}</li>
+     * <li>{@code V2Update}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -94,7 +100,8 @@ public class V2Stage {
             super(V2Stage.class,
                   Utils.TypeReferenceWithShape.of(new TypeReference<V2StageSend>() {}, Utils.JsonShape.DEFAULT),
                   Utils.TypeReferenceWithShape.of(new TypeReference<V2StageDelay>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<V2StageWaitEvent>() {}, Utils.JsonShape.DEFAULT));
+                  Utils.TypeReferenceWithShape.of(new TypeReference<V2StageWaitEvent>() {}, Utils.JsonShape.DEFAULT),
+                  Utils.TypeReferenceWithShape.of(new TypeReference<V2Update>() {}, Utils.JsonShape.DEFAULT));
         }
     }
     

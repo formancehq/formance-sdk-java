@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class V2MigrationInfo {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -60,24 +59,28 @@ public class V2MigrationInfo {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> date() {
-        return date;
+    public Optional<OffsetDateTime> date() {
+        return (Optional<OffsetDateTime>) date;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2MigrationInfoState> state() {
-        return state;
+    public Optional<V2MigrationInfoState> state() {
+        return (Optional<V2MigrationInfoState>) state;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> version() {
-        return version;
+    public Optional<Long> version() {
+        return (Optional<Long>) version;
     }
 
     public final static Builder builder() {

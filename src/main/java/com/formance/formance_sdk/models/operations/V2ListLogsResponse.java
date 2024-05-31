@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2LogsCursorResponse> v2LogsCursorResponse() {
-        return v2LogsCursorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2LogsCursorResponse> v2LogsCursorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2LogsCursorResponse>) v2LogsCursorResponse;
     }
 
     public final static Builder builder() {

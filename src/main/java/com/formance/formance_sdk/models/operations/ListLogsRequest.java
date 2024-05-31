@@ -18,7 +18,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class ListLogsRequest {
 
     /**
@@ -96,9 +95,10 @@ public class ListLogsRequest {
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> after() {
-        return after;
+    public Optional<String> after() {
+        return (Optional<String>) after;
     }
 
     /**
@@ -108,9 +108,10 @@ public class ListLogsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
@@ -118,9 +119,10 @@ public class ListLogsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> endTime() {
-        return endTime;
+    public Optional<OffsetDateTime> endTime() {
+        return (Optional<OffsetDateTime>) endTime;
     }
 
     /**
@@ -135,9 +137,10 @@ public class ListLogsRequest {
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
@@ -145,9 +148,10 @@ public class ListLogsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> startTime() {
-        return startTime;
+    public Optional<OffsetDateTime> startTime() {
+        return (Optional<OffsetDateTime>) startTime;
     }
 
     public final static Builder builder() {

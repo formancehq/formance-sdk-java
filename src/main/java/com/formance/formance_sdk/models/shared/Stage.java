@@ -46,6 +46,11 @@ public class Stage {
         Utils.checkNotNull(value, "value");
         return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<StageWaitEvent>(){}));
     }
+
+    public static Stage of(Update value) {
+        Utils.checkNotNull(value, "value");
+        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Update>(){}));
+    }
     
     /**
      * Returns an instance of one of these types:
@@ -53,6 +58,7 @@ public class Stage {
      * <li>{@code StageSend}</li>
      * <li>{@code StageDelay}</li>
      * <li>{@code StageWaitEvent}</li>
+     * <li>{@code Update}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -94,7 +100,8 @@ public class Stage {
             super(Stage.class,
                   Utils.TypeReferenceWithShape.of(new TypeReference<StageSend>() {}, Utils.JsonShape.DEFAULT),
                   Utils.TypeReferenceWithShape.of(new TypeReference<StageDelay>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<StageWaitEvent>() {}, Utils.JsonShape.DEFAULT));
+                  Utils.TypeReferenceWithShape.of(new TypeReference<StageWaitEvent>() {}, Utils.JsonShape.DEFAULT),
+                  Utils.TypeReferenceWithShape.of(new TypeReference<Update>() {}, Utils.JsonShape.DEFAULT));
         }
     }
     

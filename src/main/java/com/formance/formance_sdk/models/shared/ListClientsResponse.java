@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ListClientsResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,9 +35,10 @@ public class ListClientsResponse {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<Client>> data() {
-        return data;
+    public Optional<java.util.List<Client>> data() {
+        return (Optional<java.util.List<Client>>) data;
     }
 
     public final static Builder builder() {

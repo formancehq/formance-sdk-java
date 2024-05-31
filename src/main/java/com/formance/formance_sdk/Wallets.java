@@ -133,8 +133,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -232,8 +231,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.CreateBalanceResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.CreateBalanceResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateBalanceResponse>() {});
                 _res.withCreateBalanceResponse(java.util.Optional.ofNullable(_out));
@@ -248,8 +246,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -353,8 +350,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.CreateWalletResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.CreateWalletResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateWalletResponse>() {});
                 _res.withCreateWalletResponse(java.util.Optional.ofNullable(_out));
@@ -369,8 +365,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -472,8 +467,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -571,8 +565,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.DebitWalletResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.DebitWalletResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.DebitWalletResponse>() {});
                 _res.withDebitWalletResponse(java.util.Optional.ofNullable(_out));
@@ -591,8 +584,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -685,8 +677,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetBalanceResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetBalanceResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetBalanceResponse>() {});
                 _res.withGetBalanceResponse(java.util.Optional.ofNullable(_out));
@@ -701,8 +692,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -795,8 +785,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetHoldResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetHoldResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetHoldResponse>() {});
                 _res.withGetHoldResponse(java.util.Optional.ofNullable(_out));
@@ -811,8 +800,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -908,8 +896,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetHoldsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetHoldsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetHoldsResponse>() {});
                 _res.withGetHoldsResponse(java.util.Optional.ofNullable(_out));
@@ -924,8 +911,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -1011,8 +997,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetTransactionsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetTransactionsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetTransactionsResponse>() {});
                 _res.withGetTransactionsResponse(java.util.Optional.ofNullable(_out));
@@ -1027,8 +1012,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -1121,8 +1105,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetWalletResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetWalletResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWalletResponse>() {});
                 _res.withGetWalletResponse(java.util.Optional.ofNullable(_out));
@@ -1141,8 +1124,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -1235,8 +1217,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.GetWalletSummaryResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.GetWalletSummaryResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWalletSummaryResponse>() {});
                 _res.withGetWalletSummaryResponse(java.util.Optional.ofNullable(_out));
@@ -1255,8 +1236,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -1349,8 +1329,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ListBalancesResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ListBalancesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListBalancesResponse>() {});
                 _res.withListBalancesResponse(java.util.Optional.ofNullable(_out));
@@ -1455,8 +1434,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ListWalletsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ListWalletsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListWalletsResponse>() {});
                 _res.withListWalletsResponse(java.util.Optional.ofNullable(_out));
@@ -1471,8 +1449,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -1574,8 +1551,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -1672,8 +1648,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;
@@ -1762,8 +1737,7 @@ public class Wallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ServerInfo _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
                 _res.withServerInfo(java.util.Optional.ofNullable(_out));
@@ -1778,8 +1752,7 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
                 throw _out;

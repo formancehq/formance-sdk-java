@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class ListInstancesResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
     /**
      * List of workflow instances
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ListRunsResponse> listRunsResponse() {
-        return listRunsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ListRunsResponse> listRunsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ListRunsResponse>) listRunsResponse;
     }
 
     /**

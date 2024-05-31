@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class UpdateMappingRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -43,9 +42,10 @@ public class UpdateMappingRequest {
         this(Optional.empty(), ledger);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.Mapping> mapping() {
-        return mapping;
+    public Optional<com.formance.formance_sdk.models.shared.Mapping> mapping() {
+        return (Optional<com.formance.formance_sdk.models.shared.Mapping>) mapping;
     }
 
     /**

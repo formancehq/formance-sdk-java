@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class CountAccountsRequest {
 
     /**
@@ -58,9 +57,10 @@ public class CountAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> address() {
-        return address;
+    public Optional<String> address() {
+        return (Optional<String>) address;
     }
 
     /**
@@ -74,9 +74,10 @@ public class CountAccountsRequest {
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
     public final static Builder builder() {
