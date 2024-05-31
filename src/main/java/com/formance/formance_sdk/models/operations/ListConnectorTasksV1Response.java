@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class ListConnectorTasksV1Response implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class ListConnectorTasksV1Response implements com.formance.formance_sdk.u
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor() {
-        return tasksCursor;
+    public Optional<com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor() {
+        return (Optional<com.formance.formance_sdk.models.shared.TasksCursor>) tasksCursor;
     }
 
     public final static Builder builder() {

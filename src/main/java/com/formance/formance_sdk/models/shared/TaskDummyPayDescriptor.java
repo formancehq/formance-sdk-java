@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class TaskDummyPayDescriptor {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -50,19 +49,22 @@ public class TaskDummyPayDescriptor {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> fileName() {
-        return fileName;
+    public Optional<String> fileName() {
+        return (Optional<String>) fileName;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> key() {
-        return key;
+    public Optional<String> key() {
+        return (Optional<String>) key;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
     public final static Builder builder() {

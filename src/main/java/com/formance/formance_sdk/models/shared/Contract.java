@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class Contract {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,9 +42,10 @@ public class Contract {
         this(Optional.empty(), expr);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> account() {
-        return account;
+    public Optional<String> account() {
+        return (Optional<String>) account;
     }
 
     @JsonIgnore

@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ScriptResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -57,24 +56,28 @@ public class ScriptResponse {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> details() {
-        return details;
+    public Optional<String> details() {
+        return (Optional<String>) details;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ErrorsEnum> errorCode() {
-        return errorCode;
+    public Optional<ErrorsEnum> errorCode() {
+        return (Optional<ErrorsEnum>) errorCode;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> errorMessage() {
-        return errorMessage;
+    public Optional<String> errorMessage() {
+        return (Optional<String>) errorMessage;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Transaction> transaction() {
-        return transaction;
+    public Optional<Transaction> transaction() {
+        return (Optional<Transaction>) transaction;
     }
 
     public final static Builder builder() {

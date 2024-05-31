@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class TestTriggerResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class TestTriggerResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * Test a trigger
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2TestTriggerResponse> v2TestTriggerResponse() {
-        return v2TestTriggerResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2TestTriggerResponse> v2TestTriggerResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2TestTriggerResponse>) v2TestTriggerResponse;
     }
 
     public final static Builder builder() {

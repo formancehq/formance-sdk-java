@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class WorkflowConfig {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,9 +42,10 @@ public class WorkflowConfig {
         this(Optional.empty(), stages);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
     @JsonIgnore

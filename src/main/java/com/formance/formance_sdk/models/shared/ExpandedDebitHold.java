@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ExpandedDebitHold {
 
     @JsonProperty("description")
@@ -98,9 +97,10 @@ public class ExpandedDebitHold {
         return description;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Subject> destination() {
-        return destination;
+    public Optional<Subject> destination() {
+        return (Optional<Subject>) destination;
     }
 
     /**

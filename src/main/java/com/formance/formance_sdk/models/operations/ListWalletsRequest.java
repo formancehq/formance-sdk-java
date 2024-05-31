@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ListWalletsRequest {
 
     /**
@@ -75,33 +74,37 @@ public class ListWalletsRequest {
      * No other parameters can be set when the pagination token is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
      * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, String>> metadata() {
+        return (Optional<java.util.Map<String, String>>) metadata;
     }
 
     /**
      * Filter on wallet name
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
     /**
      * The maximum number of results to return per page
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     public final static Builder builder() {

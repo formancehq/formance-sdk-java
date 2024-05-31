@@ -19,7 +19,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2ActivityStripeTransfer {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -77,24 +76,28 @@ public class V2ActivityStripeTransfer {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends BigInteger> amount() {
-        return amount;
+    public Optional<BigInteger> amount() {
+        return (Optional<BigInteger>) amount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> asset() {
-        return asset;
+    public Optional<String> asset() {
+        return (Optional<String>) asset;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> connectorID() {
-        return connectorID;
+    public Optional<String> connectorID() {
+        return (Optional<String>) connectorID;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> destination() {
-        return destination;
+    public Optional<String> destination() {
+        return (Optional<String>) destination;
     }
 
     /**
@@ -102,14 +105,16 @@ public class V2ActivityStripeTransfer {
      * It can be useful for storing additional information about the transfer in a structured format.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2ActivityStripeTransferMetadata> metadata() {
-        return metadata;
+    public Optional<V2ActivityStripeTransferMetadata> metadata() {
+        return (Optional<V2ActivityStripeTransferMetadata>) metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> waitingValidation() {
-        return waitingValidation;
+    public Optional<Boolean> waitingValidation() {
+        return (Optional<Boolean>) waitingValidation;
     }
 
     public final static Builder builder() {

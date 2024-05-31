@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetHoldsRequest {
 
     /**
@@ -75,33 +74,37 @@ public class GetHoldsRequest {
      * No other parameters can be set when the pagination token is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
      * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, String>> metadata() {
+        return (Optional<java.util.Map<String, String>>) metadata;
     }
 
     /**
      * The maximum number of results to return per page
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
      * The wallet to filter on
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> walletID() {
-        return walletID;
+    public Optional<String> walletID() {
+        return (Optional<String>) walletID;
     }
 
     public final static Builder builder() {

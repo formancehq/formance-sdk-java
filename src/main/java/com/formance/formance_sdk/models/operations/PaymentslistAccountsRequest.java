@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class PaymentslistAccountsRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -41,6 +40,13 @@ public class PaymentslistAccountsRequest {
     private Optional<? extends Long> pageSize;
 
     /**
+     * Filters used to filter resources.
+     * 
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=query")
+    private Optional<? extends String> query;
+
+    /**
      * Fields used to sort payments (default is date:desc).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
@@ -51,24 +57,28 @@ public class PaymentslistAccountsRequest {
             Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
             Optional<? extends String> cursor,
             Optional<? extends Long> pageSize,
+            Optional<? extends String> query,
             Optional<? extends java.util.List<String>> sort) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
+        Utils.checkNotNull(query, "query");
         Utils.checkNotNull(sort, "sort");
         this.requestBody = requestBody;
         this.cursor = cursor;
         this.pageSize = pageSize;
+        this.query = query;
         this.sort = sort;
     }
     
     public PaymentslistAccountsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
     }
 
     /**
@@ -78,26 +88,39 @@ public class PaymentslistAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
+    }
+
+    /**
+     * Filters used to filter resources.
+     * 
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> query() {
+        return (Optional<String>) query;
     }
 
     /**
      * Fields used to sort payments (default is date:desc).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> sort() {
-        return sort;
+    public Optional<java.util.List<String>> sort() {
+        return (Optional<java.util.List<String>>) sort;
     }
 
     public final static Builder builder() {
@@ -163,6 +186,26 @@ public class PaymentslistAccountsRequest {
     }
 
     /**
+     * Filters used to filter resources.
+     * 
+     */
+    public PaymentslistAccountsRequest withQuery(String query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+    /**
+     * Filters used to filter resources.
+     * 
+     */
+    public PaymentslistAccountsRequest withQuery(Optional<? extends String> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
+    /**
      * Fields used to sort payments (default is date:desc).
      */
     public PaymentslistAccountsRequest withSort(java.util.List<String> sort) {
@@ -193,6 +236,7 @@ public class PaymentslistAccountsRequest {
             java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
             java.util.Objects.deepEquals(this.cursor, other.cursor) &&
             java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
+            java.util.Objects.deepEquals(this.query, other.query) &&
             java.util.Objects.deepEquals(this.sort, other.sort);
     }
     
@@ -202,6 +246,7 @@ public class PaymentslistAccountsRequest {
             requestBody,
             cursor,
             pageSize,
+            query,
             sort);
     }
     
@@ -211,6 +256,7 @@ public class PaymentslistAccountsRequest {
                 "requestBody", requestBody,
                 "cursor", cursor,
                 "pageSize", pageSize,
+                "query", query,
                 "sort", sort);
     }
     
@@ -221,6 +267,8 @@ public class PaymentslistAccountsRequest {
         private Optional<? extends String> cursor = Optional.empty();
  
         private Optional<? extends Long> pageSize;
+ 
+        private Optional<? extends String> query = Optional.empty();
  
         private Optional<? extends java.util.List<String>> sort = Optional.empty();  
         
@@ -287,6 +335,26 @@ public class PaymentslistAccountsRequest {
         }
 
         /**
+         * Filters used to filter resources.
+         * 
+         */
+        public Builder query(String query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        /**
+         * Filters used to filter resources.
+         * 
+         */
+        public Builder query(Optional<? extends String> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
+        /**
          * Fields used to sort payments (default is date:desc).
          */
         public Builder sort(java.util.List<String> sort) {
@@ -312,6 +380,7 @@ public class PaymentslistAccountsRequest {
                 requestBody,
                 cursor,
                 pageSize,
+                query,
                 sort);
         }
 

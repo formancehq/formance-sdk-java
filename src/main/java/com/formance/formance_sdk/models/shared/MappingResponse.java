@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
 public class MappingResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,9 +35,10 @@ public class MappingResponse {
         this(JsonNullable.undefined());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends Mapping> data() {
-        return data;
+    public JsonNullable<Mapping> data() {
+        return (JsonNullable<Mapping>) data;
     }
 
     public final static Builder builder() {

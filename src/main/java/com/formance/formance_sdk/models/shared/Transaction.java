@@ -22,7 +22,6 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
 public class Transaction {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -82,14 +81,16 @@ public class Transaction {
         this(JsonNullable.undefined(), Optional.empty(), postings, Optional.empty(), Optional.empty(), timestamp, txid);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, java.lang.Object>> metadata() {
+        return (JsonNullable<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes() {
-        return postCommitVolumes;
+    public Optional<java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes() {
+        return (Optional<java.util.Map<String, java.util.Map<String, Volume>>>) postCommitVolumes;
     }
 
     @JsonIgnore
@@ -97,14 +98,16 @@ public class Transaction {
         return postings;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes() {
-        return preCommitVolumes;
+    public Optional<java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes() {
+        return (Optional<java.util.Map<String, java.util.Map<String, Volume>>>) preCommitVolumes;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> reference() {
-        return reference;
+    public Optional<String> reference() {
+        return (Optional<String>) reference;
     }
 
     @JsonIgnore

@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class WorkflowInstanceHistoryStageOutput {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -78,39 +77,46 @@ public class WorkflowInstanceHistoryStageOutput {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityCreateTransactionOutput> createTransaction() {
-        return createTransaction;
+    public Optional<ActivityCreateTransactionOutput> createTransaction() {
+        return (Optional<ActivityCreateTransactionOutput>) createTransaction;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityDebitWalletOutput> debitWallet() {
-        return debitWallet;
+    public Optional<ActivityDebitWalletOutput> debitWallet() {
+        return (Optional<ActivityDebitWalletOutput>) debitWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetAccountOutput> getAccount() {
-        return getAccount;
+    public Optional<ActivityGetAccountOutput> getAccount() {
+        return (Optional<ActivityGetAccountOutput>) getAccount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetPaymentOutput> getPayment() {
-        return getPayment;
+    public Optional<ActivityGetPaymentOutput> getPayment() {
+        return (Optional<ActivityGetPaymentOutput>) getPayment;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetWalletOutput> getWallet() {
-        return getWallet;
+    public Optional<ActivityGetWalletOutput> getWallet() {
+        return (Optional<ActivityGetWalletOutput>) getWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OrchestrationListWalletsResponse> listWallets() {
-        return listWallets;
+    public Optional<OrchestrationListWalletsResponse> listWallets() {
+        return (Optional<OrchestrationListWalletsResponse>) listWallets;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityRevertTransactionOutput> revertTransaction() {
-        return revertTransaction;
+    public Optional<ActivityRevertTransactionOutput> revertTransaction() {
+        return (Optional<ActivityRevertTransactionOutput>) revertTransaction;
     }
 
     public final static Builder builder() {

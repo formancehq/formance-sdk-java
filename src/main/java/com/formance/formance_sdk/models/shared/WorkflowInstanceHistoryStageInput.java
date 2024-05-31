@@ -18,8 +18,11 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class WorkflowInstanceHistoryStageInput {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("AddAccountMetadata")
+    private Optional<? extends ActivityAddAccountMetadata> addAccountMetadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ConfirmHold")
@@ -67,6 +70,7 @@ public class WorkflowInstanceHistoryStageInput {
 
     @JsonCreator
     public WorkflowInstanceHistoryStageInput(
+            @JsonProperty("AddAccountMetadata") Optional<? extends ActivityAddAccountMetadata> addAccountMetadata,
             @JsonProperty("ConfirmHold") Optional<? extends ActivityConfirmHold> confirmHold,
             @JsonProperty("CreateTransaction") Optional<? extends ActivityCreateTransaction> createTransaction,
             @JsonProperty("CreditWallet") Optional<? extends ActivityCreditWallet> creditWallet,
@@ -78,6 +82,7 @@ public class WorkflowInstanceHistoryStageInput {
             @JsonProperty("RevertTransaction") Optional<? extends ActivityRevertTransaction> revertTransaction,
             @JsonProperty("StripeTransfer") Optional<? extends ActivityStripeTransfer> stripeTransfer,
             @JsonProperty("VoidHold") Optional<? extends ActivityVoidHold> voidHold) {
+        Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
         Utils.checkNotNull(confirmHold, "confirmHold");
         Utils.checkNotNull(createTransaction, "createTransaction");
         Utils.checkNotNull(creditWallet, "creditWallet");
@@ -89,6 +94,7 @@ public class WorkflowInstanceHistoryStageInput {
         Utils.checkNotNull(revertTransaction, "revertTransaction");
         Utils.checkNotNull(stripeTransfer, "stripeTransfer");
         Utils.checkNotNull(voidHold, "voidHold");
+        this.addAccountMetadata = addAccountMetadata;
         this.confirmHold = confirmHold;
         this.createTransaction = createTransaction;
         this.creditWallet = creditWallet;
@@ -103,66 +109,95 @@ public class WorkflowInstanceHistoryStageInput {
     }
     
     public WorkflowInstanceHistoryStageInput() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityConfirmHold> confirmHold() {
-        return confirmHold;
+    public Optional<ActivityAddAccountMetadata> addAccountMetadata() {
+        return (Optional<ActivityAddAccountMetadata>) addAccountMetadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityCreateTransaction> createTransaction() {
-        return createTransaction;
+    public Optional<ActivityConfirmHold> confirmHold() {
+        return (Optional<ActivityConfirmHold>) confirmHold;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityCreditWallet> creditWallet() {
-        return creditWallet;
+    public Optional<ActivityCreateTransaction> createTransaction() {
+        return (Optional<ActivityCreateTransaction>) createTransaction;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityDebitWallet> debitWallet() {
-        return debitWallet;
+    public Optional<ActivityCreditWallet> creditWallet() {
+        return (Optional<ActivityCreditWallet>) creditWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetAccount> getAccount() {
-        return getAccount;
+    public Optional<ActivityDebitWallet> debitWallet() {
+        return (Optional<ActivityDebitWallet>) debitWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetPayment> getPayment() {
-        return getPayment;
+    public Optional<ActivityGetAccount> getAccount() {
+        return (Optional<ActivityGetAccount>) getAccount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityGetWallet> getWallet() {
-        return getWallet;
+    public Optional<ActivityGetPayment> getPayment() {
+        return (Optional<ActivityGetPayment>) getPayment;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityListWallets> listWallets() {
-        return listWallets;
+    public Optional<ActivityGetWallet> getWallet() {
+        return (Optional<ActivityGetWallet>) getWallet;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityRevertTransaction> revertTransaction() {
-        return revertTransaction;
+    public Optional<ActivityListWallets> listWallets() {
+        return (Optional<ActivityListWallets>) listWallets;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityStripeTransfer> stripeTransfer() {
-        return stripeTransfer;
+    public Optional<ActivityRevertTransaction> revertTransaction() {
+        return (Optional<ActivityRevertTransaction>) revertTransaction;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends ActivityVoidHold> voidHold() {
-        return voidHold;
+    public Optional<ActivityStripeTransfer> stripeTransfer() {
+        return (Optional<ActivityStripeTransfer>) stripeTransfer;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ActivityVoidHold> voidHold() {
+        return (Optional<ActivityVoidHold>) voidHold;
     }
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    public WorkflowInstanceHistoryStageInput withAddAccountMetadata(ActivityAddAccountMetadata addAccountMetadata) {
+        Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
+        this.addAccountMetadata = Optional.ofNullable(addAccountMetadata);
+        return this;
+    }
+
+    public WorkflowInstanceHistoryStageInput withAddAccountMetadata(Optional<? extends ActivityAddAccountMetadata> addAccountMetadata) {
+        Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
+        this.addAccountMetadata = addAccountMetadata;
+        return this;
     }
 
     public WorkflowInstanceHistoryStageInput withConfirmHold(ActivityConfirmHold confirmHold) {
@@ -307,6 +342,7 @@ public class WorkflowInstanceHistoryStageInput {
         }
         WorkflowInstanceHistoryStageInput other = (WorkflowInstanceHistoryStageInput) o;
         return 
+            java.util.Objects.deepEquals(this.addAccountMetadata, other.addAccountMetadata) &&
             java.util.Objects.deepEquals(this.confirmHold, other.confirmHold) &&
             java.util.Objects.deepEquals(this.createTransaction, other.createTransaction) &&
             java.util.Objects.deepEquals(this.creditWallet, other.creditWallet) &&
@@ -323,6 +359,7 @@ public class WorkflowInstanceHistoryStageInput {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
+            addAccountMetadata,
             confirmHold,
             createTransaction,
             creditWallet,
@@ -339,6 +376,7 @@ public class WorkflowInstanceHistoryStageInput {
     @Override
     public String toString() {
         return Utils.toString(WorkflowInstanceHistoryStageInput.class,
+                "addAccountMetadata", addAccountMetadata,
                 "confirmHold", confirmHold,
                 "createTransaction", createTransaction,
                 "creditWallet", creditWallet,
@@ -353,6 +391,8 @@ public class WorkflowInstanceHistoryStageInput {
     }
     
     public final static class Builder {
+ 
+        private Optional<? extends ActivityAddAccountMetadata> addAccountMetadata = Optional.empty();
  
         private Optional<? extends ActivityConfirmHold> confirmHold = Optional.empty();
  
@@ -378,6 +418,18 @@ public class WorkflowInstanceHistoryStageInput {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder addAccountMetadata(ActivityAddAccountMetadata addAccountMetadata) {
+            Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
+            this.addAccountMetadata = Optional.ofNullable(addAccountMetadata);
+            return this;
+        }
+
+        public Builder addAccountMetadata(Optional<? extends ActivityAddAccountMetadata> addAccountMetadata) {
+            Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
+            this.addAccountMetadata = addAccountMetadata;
+            return this;
         }
 
         public Builder confirmHold(ActivityConfirmHold confirmHold) {
@@ -514,6 +566,7 @@ public class WorkflowInstanceHistoryStageInput {
         
         public WorkflowInstanceHistoryStageInput build() {
             return new WorkflowInstanceHistoryStageInput(
+                addAccountMetadata,
                 confirmHold,
                 createTransaction,
                 creditWallet,

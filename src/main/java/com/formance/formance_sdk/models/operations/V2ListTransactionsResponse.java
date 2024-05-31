@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class V2ListTransactionsResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse> v2TransactionsCursorResponse() {
-        return v2TransactionsCursorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse> v2TransactionsCursorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse>) v2TransactionsCursorResponse;
     }
 
     public final static Builder builder() {

@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ListAccountsRequest {
 
     /**
@@ -116,25 +115,28 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> address() {
-        return address;
+    public Optional<String> address() {
+        return (Optional<String>) address;
     }
 
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> after() {
-        return after;
+    public Optional<String> after() {
+        return (Optional<String>) after;
     }
 
     /**
      * Filter accounts by their balance (default operator is gte)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> balance() {
-        return balance;
+    public Optional<Long> balance() {
+        return (Optional<Long>) balance;
     }
 
     /**
@@ -144,9 +146,10 @@ public class ListAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> cursor() {
-        return cursor;
+    public Optional<String> cursor() {
+        return (Optional<String>) cursor;
     }
 
     /**
@@ -160,18 +163,20 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> pageSize() {
-        return pageSize;
+    public Optional<Long> pageSize() {
+        return (Optional<Long>) pageSize;
     }
 
     /**
@@ -184,9 +189,10 @@ public class ListAccountsRequest {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> paginationToken() {
-        return paginationToken;
+    public Optional<String> paginationToken() {
+        return (Optional<String>) paginationToken;
     }
 
     public final static Builder builder() {

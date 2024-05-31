@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class V2GetAccountResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2AccountResponse> v2AccountResponse() {
-        return v2AccountResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2AccountResponse> v2AccountResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2AccountResponse>) v2AccountResponse;
     }
 
     public final static Builder builder() {

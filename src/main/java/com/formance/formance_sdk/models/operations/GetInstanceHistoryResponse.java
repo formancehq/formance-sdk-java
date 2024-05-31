@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetInstanceHistoryResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class GetInstanceHistoryResponse implements com.formance.formance_sdk.uti
     /**
      * The workflow instance history
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse> getWorkflowInstanceHistoryResponse() {
-        return getWorkflowInstanceHistoryResponse;
+    public Optional<com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse> getWorkflowInstanceHistoryResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse>) getWorkflowInstanceHistoryResponse;
     }
 
     /**

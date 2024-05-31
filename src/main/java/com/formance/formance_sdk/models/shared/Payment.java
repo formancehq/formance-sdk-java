@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class Payment {
 
     @JsonProperty("adjustments")
@@ -184,19 +183,22 @@ public class Payment {
         return initialAmount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, String>> metadata() {
+        return (Optional<java.util.Map<String, String>>) metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Connector> provider() {
-        return provider;
+    public Optional<Connector> provider() {
+        return (Optional<Connector>) provider;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Raw> raw() {
-        return raw;
+    public Optional<Raw> raw() {
+        return (Optional<Raw>) raw;
     }
 
     @JsonIgnore

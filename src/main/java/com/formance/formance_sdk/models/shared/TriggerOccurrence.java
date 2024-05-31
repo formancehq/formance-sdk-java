@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class TriggerOccurrence {
 
     @JsonProperty("date")
@@ -79,9 +78,10 @@ public class TriggerOccurrence {
         return date;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> error() {
-        return error;
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     @JsonIgnore
@@ -94,14 +94,16 @@ public class TriggerOccurrence {
         return triggerID;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends WorkflowInstance> workflowInstance() {
-        return workflowInstance;
+    public Optional<WorkflowInstance> workflowInstance() {
+        return (Optional<WorkflowInstance>) workflowInstance;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> workflowInstanceID() {
-        return workflowInstanceID;
+    public Optional<String> workflowInstanceID() {
+        return (Optional<String>) workflowInstanceID;
     }
 
     public final static Builder builder() {

@@ -59,23 +59,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
-import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Posting;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.TransactionData;
-import com.formance.formance_sdk.models.shared.Transactions;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -109,10 +107,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -146,20 +147,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest;
-import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -170,8 +172,6 @@ public class Application {
             AddMetadataOnTransactionRequest req = AddMetadataOnTransactionRequest.builder()
                 .ledger("ledger001")
                 .txid(new BigInteger("1234"))
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .build();
 
             AddMetadataOnTransactionResponse res = sdk.ledger().addMetadataOnTransaction()
@@ -181,10 +181,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -218,20 +221,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest;
-import com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -253,10 +257,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -290,20 +297,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CountAccountsRequest;
-import com.formance.formance_sdk.models.operations.CountAccountsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -315,7 +323,56 @@ public class Application {
                 .ledger("ledger001")
                 .address("users:.+")
                 .metadata(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
+                    entry("0", "m"),
+                    entry("1", "e"),
+                    entry("2", "t"),
+                    entry("3", "a"),
+                    entry("4", "d"),
+                    entry("5", "a"),
+                    entry("6", "t"),
+                    entry("7", "a"),
+                    entry("8", "["),
+                    entry("9", "k"),
+                    entry("10", "e"),
+                    entry("11", "y"),
+                    entry("12", "]"),
+                    entry("13", "="),
+                    entry("14", "v"),
+                    entry("15", "a"),
+                    entry("16", "l"),
+                    entry("17", "u"),
+                    entry("18", "e"),
+                    entry("19", "1"),
+                    entry("20", "&"),
+                    entry("21", "m"),
+                    entry("22", "e"),
+                    entry("23", "t"),
+                    entry("24", "a"),
+                    entry("25", "d"),
+                    entry("26", "a"),
+                    entry("27", "t"),
+                    entry("28", "a"),
+                    entry("29", "["),
+                    entry("30", "a"),
+                    entry("31", "."),
+                    entry("32", "n"),
+                    entry("33", "e"),
+                    entry("34", "s"),
+                    entry("35", "t"),
+                    entry("36", "e"),
+                    entry("37", "d"),
+                    entry("38", "."),
+                    entry("39", "k"),
+                    entry("40", "e"),
+                    entry("41", "y"),
+                    entry("42", "]"),
+                    entry("43", "="),
+                    entry("44", "v"),
+                    entry("45", "a"),
+                    entry("46", "l"),
+                    entry("47", "u"),
+                    entry("48", "e"),
+                    entry("49", "2")))
                 .build();
 
             CountAccountsResponse res = sdk.ledger().countAccounts()
@@ -325,10 +382,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -362,21 +422,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CountTransactionsRequest;
-import com.formance.formance_sdk.models.operations.CountTransactionsResponse;
-import com.formance.formance_sdk.models.operations.Metadata;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -388,12 +448,10 @@ public class Application {
                 .ledger("ledger001")
                 .account("users:001")
                 .destination("users:001")
-                .endTime(OffsetDateTime.parse("2022-07-20T14:23:01.272Z"))
                 .metadata(Metadata.builder()
                     .build())
                 .reference("ref:001")
                 .source("users:001")
-                .startTime(OffsetDateTime.parse("2024-09-26T22:46:35.189Z"))
                 .build();
 
             CountTransactionsResponse res = sdk.ledger().countTransactions()
@@ -403,10 +461,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -440,23 +501,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreateTransactionRequest;
-import com.formance.formance_sdk.models.operations.CreateTransactionResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.PostTransaction;
-import com.formance.formance_sdk.models.shared.PostTransactionScript;
-import com.formance.formance_sdk.models.shared.Posting;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -466,8 +525,6 @@ public class Application {
 
             CreateTransactionRequest req = CreateTransactionRequest.builder()
                 .postTransaction(PostTransaction.builder()
-                        .metadata(java.util.Map.ofEntries(
-                            entry("key", "<value>")))
                         .postings(java.util.List.of(
                             Posting.builder()
                                 .amount(new BigInteger("100"))
@@ -488,7 +545,6 @@ public class Application {
                             .vars(java.util.Map.ofEntries(
                                 entry("user", "users:042")))
                             .build())
-                        .timestamp(OffsetDateTime.parse("2024-11-28T10:23:22.557Z"))
                         .build())
                 .ledger("ledger001")
                 .preview(true)
@@ -503,10 +559,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -540,20 +599,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetAccountRequest;
-import com.formance.formance_sdk.models.operations.GetAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -575,10 +635,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -612,20 +675,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetBalancesRequest;
-import com.formance.formance_sdk.models.operations.GetBalancesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -638,7 +702,6 @@ public class Application {
                 .address("users:001")
                 .after("users:003")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(755286L)
                 .build();
 
             GetBalancesResponse res = sdk.ledger().getBalances()
@@ -650,10 +713,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -687,20 +753,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest;
-import com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -711,7 +778,6 @@ public class Application {
             GetBalancesAggregatedRequest req = GetBalancesAggregatedRequest.builder()
                 .ledger("ledger001")
                 .address("users:001")
-                .useInsertionDate(false)
                 .build();
 
             GetBalancesAggregatedResponse res = sdk.ledger().getBalancesAggregated()
@@ -723,10 +789,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -760,19 +829,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetInfoResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -788,10 +859,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -819,20 +893,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetLedgerInfoRequest;
-import com.formance.formance_sdk.models.operations.GetLedgerInfoResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -853,10 +928,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -890,20 +968,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetMappingRequest;
-import com.formance.formance_sdk.models.operations.GetMappingResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -924,10 +1003,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -961,20 +1043,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetTransactionRequest;
-import com.formance.formance_sdk.models.operations.GetTransactionResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -996,10 +1079,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1033,20 +1119,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListAccountsRequest;
-import com.formance.formance_sdk.models.operations.ListAccountsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1061,9 +1148,57 @@ public class Application {
                 .balance(2400L)
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .metadata(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .pageSize(875058L)
-                .paginationToken("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                    entry("0", "m"),
+                    entry("1", "e"),
+                    entry("2", "t"),
+                    entry("3", "a"),
+                    entry("4", "d"),
+                    entry("5", "a"),
+                    entry("6", "t"),
+                    entry("7", "a"),
+                    entry("8", "["),
+                    entry("9", "k"),
+                    entry("10", "e"),
+                    entry("11", "y"),
+                    entry("12", "]"),
+                    entry("13", "="),
+                    entry("14", "v"),
+                    entry("15", "a"),
+                    entry("16", "l"),
+                    entry("17", "u"),
+                    entry("18", "e"),
+                    entry("19", "1"),
+                    entry("20", "&"),
+                    entry("21", "m"),
+                    entry("22", "e"),
+                    entry("23", "t"),
+                    entry("24", "a"),
+                    entry("25", "d"),
+                    entry("26", "a"),
+                    entry("27", "t"),
+                    entry("28", "a"),
+                    entry("29", "["),
+                    entry("30", "a"),
+                    entry("31", "."),
+                    entry("32", "n"),
+                    entry("33", "e"),
+                    entry("34", "s"),
+                    entry("35", "t"),
+                    entry("36", "e"),
+                    entry("37", "d"),
+                    entry("38", "."),
+                    entry("39", "k"),
+                    entry("40", "e"),
+                    entry("41", "y"),
+                    entry("42", "]"),
+                    entry("43", "="),
+                    entry("44", "v"),
+                    entry("45", "a"),
+                    entry("46", "l"),
+                    entry("47", "u"),
+                    entry("48", "e"),
+                    entry("49", "2")))
+                .pageSize(100L)
                 .build();
 
             ListAccountsResponse res = sdk.ledger().listAccounts()
@@ -1075,10 +1210,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1112,20 +1250,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListLogsRequest;
-import com.formance.formance_sdk.models.operations.ListLogsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1137,9 +1276,7 @@ public class Application {
                 .ledger("ledger001")
                 .after("1234")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .endTime(OffsetDateTime.parse("2023-09-04T18:34:28.222Z"))
-                .pageSize(657242L)
-                .startTime(OffsetDateTime.parse("2022-11-03T09:19:08.045Z"))
+                .pageSize(100L)
                 .build();
 
             ListLogsResponse res = sdk.ledger().listLogs()
@@ -1151,10 +1288,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1188,20 +1328,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListTransactionsRequest;
-import com.formance.formance_sdk.models.operations.ListTransactionsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1215,13 +1356,9 @@ public class Application {
                 .after("1234")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .destination("users:001")
-                .endTime(OffsetDateTime.parse("2023-09-09T05:38:58.239Z"))
-                .metadata(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .pageSize(1306L)
+                .pageSize(100L)
                 .reference("ref:001")
                 .source("users:001")
-                .startTime(OffsetDateTime.parse("2023-12-04T18:07:06.082Z"))
                 .build();
 
             ListTransactionsResponse res = sdk.ledger().listTransactions()
@@ -1233,10 +1370,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1271,20 +1411,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ReadStatsRequest;
-import com.formance.formance_sdk.models.operations.ReadStatsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1305,10 +1446,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1342,20 +1486,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.RevertTransactionRequest;
-import com.formance.formance_sdk.models.operations.RevertTransactionResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1366,7 +1511,6 @@ public class Application {
             RevertTransactionRequest req = RevertTransactionRequest.builder()
                 .ledger("ledger001")
                 .txid(new BigInteger("1234"))
-                .disableChecks(false)
                 .build();
 
             RevertTransactionResponse res = sdk.ledger().revertTransaction()
@@ -1378,10 +1522,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1418,21 +1565,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.RunScriptRequest;
-import com.formance.formance_sdk.models.operations.RunScriptResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Script;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1450,8 +1597,6 @@ send [COIN 10] (
 	destination = $user
 )
 ")
-                        .metadata(java.util.Map.ofEntries(
-                            entry("key", "<value>")))
                         .reference("order_1234")
                         .vars(java.util.Map.ofEntries(
                             entry("user", "users:042")))
@@ -1469,8 +1614,10 @@ send [COIN 10] (
             }
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1503,23 +1650,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.UpdateMappingRequest;
-import com.formance.formance_sdk.models.operations.UpdateMappingResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Contract;
-import com.formance.formance_sdk.models.shared.Expr;
-import com.formance.formance_sdk.models.shared.Mapping;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1548,10 +1693,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1585,20 +1733,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
-import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1609,7 +1758,6 @@ public class Application {
             V2AddMetadataOnTransactionRequest req = V2AddMetadataOnTransactionRequest.builder()
                 .id(new BigInteger("1234"))
                 .ledger("ledger001")
-                .idempotencyKey("<value>")
                 .requestBody(java.util.Map.ofEntries(
                     entry("admin", "true")))
                 .dryRun(true)
@@ -1622,10 +1770,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1659,20 +1810,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest;
-import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1685,7 +1837,6 @@ public class Application {
                         entry("admin", "true")))
                 .address("users:001")
                 .ledger("ledger001")
-                .idempotencyKey("<value>")
                 .dryRun(true)
                 .build();
 
@@ -1696,10 +1847,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1733,20 +1887,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2CountAccountsRequest;
-import com.formance.formance_sdk.models.operations.V2CountAccountsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1756,9 +1911,6 @@ public class Application {
 
             V2CountAccountsRequest req = V2CountAccountsRequest.builder()
                 .ledger("ledger001")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .pit(OffsetDateTime.parse("2023-11-24T08:09:15.014Z"))
                 .build();
 
             V2CountAccountsResponse res = sdk.ledger().v2CountAccounts()
@@ -1768,10 +1920,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1805,20 +1960,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2CountTransactionsRequest;
-import com.formance.formance_sdk.models.operations.V2CountTransactionsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1828,9 +1984,6 @@ public class Application {
 
             V2CountTransactionsRequest req = V2CountTransactionsRequest.builder()
                 .ledger("ledger001")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .pit(OffsetDateTime.parse("2022-01-19T17:22:57.577Z"))
                 .build();
 
             V2CountTransactionsResponse res = sdk.ledger().v2CountTransactions()
@@ -1840,10 +1993,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1877,31 +2033,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
-import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2BulkElementAddMetadata;
-import com.formance.formance_sdk.models.shared.V2BulkElementAddMetadataData;
-import com.formance.formance_sdk.models.shared.V2BulkElementCreateTransaction;
-import com.formance.formance_sdk.models.shared.V2BulkElementDeleteMetadata;
-import com.formance.formance_sdk.models.shared.V2BulkElementDeleteMetadataData;
-import com.formance.formance_sdk.models.shared.V2BulkElementRevertTransaction;
-import com.formance.formance_sdk.models.shared.V2BulkElementRevertTransactionData;
-import com.formance.formance_sdk.models.shared.V2PostTransaction;
-import com.formance.formance_sdk.models.shared.V2PostTransactionScript;
-import com.formance.formance_sdk.models.shared.V2Posting;
-import com.formance.formance_sdk.models.shared.V2TargetType;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1912,7 +2058,9 @@ public class Application {
             V2CreateBulkRequest req = V2CreateBulkRequest.builder()
                 .ledger("ledger001")
                 .requestBody(java.util.List.of(
-                    new Object()))
+                    V2BulkElement.of(V2BulkElementAddMetadata.builder()
+                            .action("<value>")
+                            .build())))
                 .build();
 
             V2CreateBulkResponse res = sdk.ledger().v2CreateBulk()
@@ -1924,10 +2072,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1961,21 +2112,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2CreateLedgerRequest;
-import com.formance.formance_sdk.models.operations.V2CreateLedgerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2CreateLedgerRequest;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1986,7 +2137,6 @@ public class Application {
             V2CreateLedgerRequest req = V2CreateLedgerRequest.builder()
                 .ledger("ledger001")
                 .v2CreateLedgerRequest(V2CreateLedgerRequest.builder()
-                    .bucket("<value>")
                     .metadata(java.util.Map.ofEntries(
                         entry("admin", "true")))
                     .build())
@@ -1999,10 +2149,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2036,23 +2189,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2CreateTransactionRequest;
-import com.formance.formance_sdk.models.operations.V2CreateTransactionResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2PostTransaction;
-import com.formance.formance_sdk.models.shared.V2PostTransactionScript;
-import com.formance.formance_sdk.models.shared.V2Posting;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2084,10 +2235,8 @@ public class Application {
                             .vars(java.util.Map.ofEntries(
                                 entry("user", "users:042")))
                             .build())
-                        .timestamp(OffsetDateTime.parse("2024-06-13T20:20:19.652Z"))
                         .build())
                 .ledger("ledger001")
-                .idempotencyKey("<value>")
                 .dryRun(true)
                 .build();
 
@@ -2100,10 +2249,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2137,20 +2289,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest;
-import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2171,8 +2324,10 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2205,20 +2360,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest;
-import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2238,10 +2394,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2275,20 +2434,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest;
-import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2309,10 +2469,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2346,20 +2509,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetAccountRequest;
-import com.formance.formance_sdk.models.operations.V2GetAccountResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2370,8 +2534,6 @@ public class Application {
             V2GetAccountRequest req = V2GetAccountRequest.builder()
                 .address("users:001")
                 .ledger("ledger001")
-                .expand("<value>")
-                .pit(OffsetDateTime.parse("2022-01-12T20:42:33.400Z"))
                 .build();
 
             V2GetAccountResponse res = sdk.ledger().v2GetAccount()
@@ -2383,10 +2545,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2420,20 +2585,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest;
-import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2443,10 +2609,6 @@ public class Application {
 
             V2GetBalancesAggregatedRequest req = V2GetBalancesAggregatedRequest.builder()
                 .ledger("ledger001")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .pit(OffsetDateTime.parse("2024-12-10T15:05:25.901Z"))
-                .useInsertionDate(false)
                 .build();
 
             V2GetBalancesAggregatedResponse res = sdk.ledger().v2GetBalancesAggregated()
@@ -2458,10 +2620,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2495,19 +2660,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2523,10 +2690,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2554,20 +2724,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetLedgerRequest;
-import com.formance.formance_sdk.models.operations.V2GetLedgerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2588,10 +2759,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2625,20 +2799,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest;
-import com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2659,10 +2834,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2696,20 +2874,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetTransactionRequest;
-import com.formance.formance_sdk.models.operations.V2GetTransactionResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2720,8 +2899,6 @@ public class Application {
             V2GetTransactionRequest req = V2GetTransactionRequest.builder()
                 .id(new BigInteger("1234"))
                 .ledger("ledger001")
-                .expand("<value>")
-                .pit(OffsetDateTime.parse("2023-04-12T09:39:55.552Z"))
                 .build();
 
             V2GetTransactionResponse res = sdk.ledger().v2GetTransaction()
@@ -2733,10 +2910,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2770,20 +2950,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest;
-import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2793,14 +2974,9 @@ public class Application {
 
             V2GetVolumesWithBalancesRequest req = V2GetVolumesWithBalancesRequest.builder()
                 .ledger("ledger001")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .endTime(OffsetDateTime.parse("2022-12-08T23:50:32.246Z"))
-                .groupBy(873782L)
-                .insertionDate(false)
-                .pageSize(636101L)
-                .startTime(OffsetDateTime.parse("2023-04-11T14:27:28.359Z"))
+                .groupBy(3L)
+                .pageSize(100L)
                 .build();
 
             V2GetVolumesWithBalancesResponse res = sdk.ledger().v2GetVolumesWithBalances()
@@ -2812,10 +2988,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2849,20 +3028,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ListAccountsRequest;
-import com.formance.formance_sdk.models.operations.V2ListAccountsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2872,12 +3052,8 @@ public class Application {
 
             V2ListAccountsRequest req = V2ListAccountsRequest.builder()
                 .ledger("ledger001")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .expand("<value>")
-                .pageSize(26583L)
-                .pit(OffsetDateTime.parse("2022-03-24T02:49:23.883Z"))
+                .pageSize(100L)
                 .build();
 
             V2ListAccountsResponse res = sdk.ledger().v2ListAccounts()
@@ -2889,10 +3065,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2926,20 +3105,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ListLedgersRequest;
-import com.formance.formance_sdk.models.operations.V2ListLedgersResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2949,7 +3129,7 @@ public class Application {
 
             V2ListLedgersRequest req = V2ListLedgersRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(748636L)
+                .pageSize(100L)
                 .build();
 
             V2ListLedgersResponse res = sdk.ledger().v2ListLedgers()
@@ -2961,10 +3141,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2998,20 +3181,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ListLogsRequest;
-import com.formance.formance_sdk.models.operations.V2ListLogsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -3021,11 +3205,8 @@ public class Application {
 
             V2ListLogsRequest req = V2ListLogsRequest.builder()
                 .ledger("ledger001")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(549084L)
-                .pit(OffsetDateTime.parse("2024-12-11T15:21:13.915Z"))
+                .pageSize(100L)
                 .build();
 
             V2ListLogsResponse res = sdk.ledger().v2ListLogs()
@@ -3037,10 +3218,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -3074,20 +3258,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ListTransactionsRequest;
-import com.formance.formance_sdk.models.operations.V2ListTransactionsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -3097,12 +3282,8 @@ public class Application {
 
             V2ListTransactionsRequest req = V2ListTransactionsRequest.builder()
                 .ledger("ledger001")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .expand("<value>")
-                .pageSize(639042L)
-                .pit(OffsetDateTime.parse("2024-02-16T01:05:00.445Z"))
+                .pageSize(100L)
                 .build();
 
             V2ListTransactionsResponse res = sdk.ledger().v2ListTransactions()
@@ -3114,10 +3295,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -3152,20 +3336,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ReadStatsRequest;
-import com.formance.formance_sdk.models.operations.V2ReadStatsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -3186,10 +3371,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -3223,20 +3411,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2RevertTransactionRequest;
-import com.formance.formance_sdk.models.operations.V2RevertTransactionResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -3247,8 +3436,6 @@ public class Application {
             V2RevertTransactionRequest req = V2RevertTransactionRequest.builder()
                 .id(new BigInteger("1234"))
                 .ledger("ledger001")
-                .atEffectiveDate(false)
-                .force(false)
                 .build();
 
             V2RevertTransactionResponse res = sdk.ledger().v2RevertTransaction()
@@ -3260,10 +3447,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -3297,20 +3487,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest;
-import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -3331,10 +3522,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2ErrorResponse e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }

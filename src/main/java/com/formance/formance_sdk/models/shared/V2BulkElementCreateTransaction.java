@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2BulkElementCreateTransaction {
 
     @JsonProperty("action")
@@ -55,14 +54,16 @@ public class V2BulkElementCreateTransaction {
         return action;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2PostTransaction> data() {
-        return data;
+    public Optional<V2PostTransaction> data() {
+        return (Optional<V2PostTransaction>) data;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ik() {
-        return ik;
+    public Optional<String> ik() {
+        return (Optional<String>) ik;
     }
 
     public final static Builder builder() {

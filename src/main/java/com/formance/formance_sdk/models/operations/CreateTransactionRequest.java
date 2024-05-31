@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class CreateTransactionRequest {
 
     /**
@@ -81,9 +80,10 @@ public class CreateTransactionRequest {
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> preview() {
-        return preview;
+    public Optional<Boolean> preview() {
+        return (Optional<Boolean>) preview;
     }
 
     public final static Builder builder() {

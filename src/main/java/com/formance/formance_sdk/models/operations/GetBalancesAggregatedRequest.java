@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetBalancesAggregatedRequest {
 
     /**
@@ -58,9 +57,10 @@ public class GetBalancesAggregatedRequest {
     /**
      * Filter balances involving given account, either as source or destination.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> address() {
-        return address;
+    public Optional<String> address() {
+        return (Optional<String>) address;
     }
 
     /**
@@ -74,9 +74,10 @@ public class GetBalancesAggregatedRequest {
     /**
      * Use insertion date instead of effective date
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> useInsertionDate() {
-        return useInsertionDate;
+    public Optional<Boolean> useInsertionDate() {
+        return (Optional<Boolean>) useInsertionDate;
     }
 
     public final static Builder builder() {

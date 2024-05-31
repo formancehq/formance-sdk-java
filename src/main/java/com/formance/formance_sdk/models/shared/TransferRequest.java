@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class TransferRequest {
 
     @JsonProperty("amount")
@@ -72,9 +71,10 @@ public class TransferRequest {
         return destination;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> source() {
-        return source;
+    public Optional<String> source() {
+        return (Optional<String>) source;
     }
 
     public final static Builder builder() {

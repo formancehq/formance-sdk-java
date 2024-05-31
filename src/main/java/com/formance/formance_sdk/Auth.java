@@ -127,8 +127,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.CreateClientResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.CreateClientResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateClientResponse>() {});
                 _res.withCreateClientResponse(java.util.Optional.ofNullable(_out));
@@ -235,8 +234,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.CreateSecretResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.CreateSecretResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateSecretResponse>() {});
                 _res.withCreateSecretResponse(java.util.Optional.ofNullable(_out));
@@ -516,8 +514,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ListClientsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ListClientsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListClientsResponse>() {});
                 _res.withListClientsResponse(java.util.Optional.ofNullable(_out));
@@ -617,8 +614,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ListUsersResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ListUsersResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListUsersResponse>() {});
                 _res.withListUsersResponse(java.util.Optional.ofNullable(_out));
@@ -720,8 +716,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReadClientResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ReadClientResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReadClientResponse>() {});
                 _res.withReadClientResponse(java.util.Optional.ofNullable(_out));
@@ -825,8 +820,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ReadUserResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ReadUserResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReadUserResponse>() {});
                 _res.withReadUserResponse(java.util.Optional.ofNullable(_out));
@@ -933,8 +927,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.UpdateClientResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.UpdateClientResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.UpdateClientResponse>() {});
                 _res.withUpdateClientResponse(java.util.Optional.ofNullable(_out));

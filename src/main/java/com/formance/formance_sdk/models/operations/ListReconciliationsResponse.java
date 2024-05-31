@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class ListReconciliationsResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse> reconciliationsCursorResponse() {
-        return reconciliationsCursorResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse> reconciliationsCursorResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse>) reconciliationsCursorResponse;
     }
 
     /**

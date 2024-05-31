@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2CreateLedgerRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -43,9 +42,10 @@ public class V2CreateLedgerRequest {
         this(Optional.empty(), ledger);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2CreateLedgerRequest> v2CreateLedgerRequest() {
-        return v2CreateLedgerRequest;
+    public Optional<com.formance.formance_sdk.models.shared.V2CreateLedgerRequest> v2CreateLedgerRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2CreateLedgerRequest>) v2CreateLedgerRequest;
     }
 
     /**

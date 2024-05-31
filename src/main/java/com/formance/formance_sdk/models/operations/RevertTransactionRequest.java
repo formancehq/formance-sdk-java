@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class RevertTransactionRequest {
 
     /**
@@ -59,9 +58,10 @@ public class RevertTransactionRequest {
     /**
      * Allow to disable balances checks
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> disableChecks() {
-        return disableChecks;
+    public Optional<Boolean> disableChecks() {
+        return (Optional<Boolean>) disableChecks;
     }
 
     /**

@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class PostTransactionScript {
 
     @JsonProperty("plain")
@@ -48,9 +47,10 @@ public class PostTransactionScript {
         return plain;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> vars() {
-        return vars;
+    public Optional<java.util.Map<String, java.lang.Object>> vars() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) vars;
     }
 
     public final static Builder builder() {

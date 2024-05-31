@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2ActivityCreditWallet {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,14 +42,16 @@ public class V2ActivityCreditWallet {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2CreditWalletRequest> data() {
-        return data;
+    public Optional<V2CreditWalletRequest> data() {
+        return (Optional<V2CreditWalletRequest>) data;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> id() {
-        return id;
+    public Optional<String> id() {
+        return (Optional<String>) id;
     }
 
     public final static Builder builder() {

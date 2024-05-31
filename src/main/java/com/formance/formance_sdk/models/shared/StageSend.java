@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class StageSend {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -67,29 +66,34 @@ public class StageSend {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Monetary> amount() {
-        return amount;
+    public Optional<Monetary> amount() {
+        return (Optional<Monetary>) amount;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends StageSendDestination> destination() {
-        return destination;
+    public Optional<StageSendDestination> destination() {
+        return (Optional<StageSendDestination>) destination;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, String>> metadata() {
+        return (Optional<java.util.Map<String, String>>) metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends StageSendSource> source() {
-        return source;
+    public Optional<StageSendSource> source() {
+        return (Optional<StageSendSource>) source;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> timestamp() {
-        return timestamp;
+    public Optional<OffsetDateTime> timestamp() {
+        return (Optional<OffsetDateTime>) timestamp;
     }
 
     public final static Builder builder() {

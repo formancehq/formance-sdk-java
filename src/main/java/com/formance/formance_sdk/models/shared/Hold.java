@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class Hold {
 
     @JsonProperty("description")
@@ -78,9 +77,10 @@ public class Hold {
         return description;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Subject> destination() {
-        return destination;
+    public Optional<Subject> destination() {
+        return (Optional<Subject>) destination;
     }
 
     /**

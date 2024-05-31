@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class ReadStatsResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse() {
-        return statsResponse;
+    public Optional<com.formance.formance_sdk.models.shared.StatsResponse> statsResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.StatsResponse>) statsResponse;
     }
 
     /**

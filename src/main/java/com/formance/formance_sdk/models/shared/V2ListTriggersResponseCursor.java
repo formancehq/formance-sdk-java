@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2ListTriggersResponseCursor {
 
     @JsonProperty("data")
@@ -74,9 +73,10 @@ public class V2ListTriggersResponseCursor {
         return hasMore;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> next() {
-        return next;
+    public Optional<String> next() {
+        return (Optional<String>) next;
     }
 
     @JsonIgnore
@@ -84,9 +84,10 @@ public class V2ListTriggersResponseCursor {
         return pageSize;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> previous() {
-        return previous;
+    public Optional<String> previous() {
+        return (Optional<String>) previous;
     }
 
     public final static Builder builder() {

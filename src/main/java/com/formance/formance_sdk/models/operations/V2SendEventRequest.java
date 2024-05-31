@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2SendEventRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -43,9 +42,10 @@ public class V2SendEventRequest {
         this(Optional.empty(), instanceID);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends V2SendEventRequestBody> requestBody() {
-        return requestBody;
+    public Optional<V2SendEventRequestBody> requestBody() {
+        return (Optional<V2SendEventRequestBody>) requestBody;
     }
 
     /**

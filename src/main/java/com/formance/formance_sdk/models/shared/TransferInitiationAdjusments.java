@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
 public class TransferInitiationAdjusments {
 
     @JsonProperty("adjustmentID")
@@ -82,9 +81,10 @@ public class TransferInitiationAdjusments {
         return error;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, String>> metadata() {
+        return (JsonNullable<java.util.Map<String, String>>) metadata;
     }
 
     @JsonIgnore

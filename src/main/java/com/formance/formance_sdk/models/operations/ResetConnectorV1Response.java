@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
 
-
 public class ResetConnectorV1Response implements com.formance.formance_sdk.utils.Response {
 
     /**

@@ -162,8 +162,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.TransactionsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.TransactionsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.TransactionsResponse>() {});
                 _res.withTransactionsResponse(java.util.Optional.ofNullable(_out));
@@ -178,8 +177,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -281,8 +279,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -387,8 +384,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -491,8 +487,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -595,8 +590,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -702,8 +696,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.TransactionsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.TransactionsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.TransactionsResponse>() {});
                 _res.withTransactionsResponse(java.util.Optional.ofNullable(_out));
@@ -718,8 +711,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -812,8 +804,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.AccountResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.AccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.AccountResponse>() {});
                 _res.withAccountResponse(java.util.Optional.ofNullable(_out));
@@ -828,8 +819,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -927,8 +917,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.BalancesCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.BalancesCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.BalancesCursorResponse>() {});
                 _res.withBalancesCursorResponse(java.util.Optional.ofNullable(_out));
@@ -943,8 +932,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1042,8 +1030,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.AggregateBalancesResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.AggregateBalancesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.AggregateBalancesResponse>() {});
                 _res.withAggregateBalancesResponse(java.util.Optional.ofNullable(_out));
@@ -1058,8 +1045,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1148,8 +1134,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ConfigInfoResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ConfigInfoResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ConfigInfoResponse>() {});
                 _res.withConfigInfoResponse(java.util.Optional.ofNullable(_out));
@@ -1164,8 +1149,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1258,8 +1242,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.LedgerInfoResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.LedgerInfoResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.LedgerInfoResponse>() {});
                 _res.withLedgerInfoResponse(java.util.Optional.ofNullable(_out));
@@ -1274,8 +1257,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1368,8 +1350,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.MappingResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.MappingResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.MappingResponse>() {});
                 _res.withMappingResponse(java.util.Optional.ofNullable(_out));
@@ -1384,8 +1365,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1478,8 +1458,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.TransactionResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.TransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.TransactionResponse>() {});
                 _res.withTransactionResponse(java.util.Optional.ofNullable(_out));
@@ -1494,8 +1473,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1595,8 +1573,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.AccountsCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.AccountsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.AccountsCursorResponse>() {});
                 _res.withAccountsCursorResponse(java.util.Optional.ofNullable(_out));
@@ -1611,8 +1588,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1712,8 +1688,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.LogsCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.LogsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.LogsCursorResponse>() {});
                 _res.withLogsCursorResponse(java.util.Optional.ofNullable(_out));
@@ -1728,8 +1703,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1829,8 +1803,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.TransactionsCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.TransactionsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.TransactionsCursorResponse>() {});
                 _res.withTransactionsCursorResponse(java.util.Optional.ofNullable(_out));
@@ -1845,8 +1818,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -1943,8 +1915,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.StatsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.StatsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.StatsResponse>() {});
                 _res.withStatsResponse(java.util.Optional.ofNullable(_out));
@@ -1959,8 +1930,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -2058,8 +2028,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.TransactionResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.TransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.TransactionResponse>() {});
                 _res.withTransactionResponse(java.util.Optional.ofNullable(_out));
@@ -2074,8 +2043,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -2189,8 +2157,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ScriptResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ScriptResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ScriptResponse>() {});
                 _res.withScriptResponse(java.util.Optional.ofNullable(_out));
@@ -2300,8 +2267,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.MappingResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.MappingResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.MappingResponse>() {});
                 _res.withMappingResponse(java.util.Optional.ofNullable(_out));
@@ -2316,8 +2282,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
                 throw _out;
@@ -2425,8 +2390,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -2537,8 +2501,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -2646,8 +2609,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -2755,8 +2717,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -2854,8 +2815,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200", "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2BulkResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2BulkResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2BulkResponse>() {});
                 _res.withV2BulkResponse(java.util.Optional.ofNullable(_out));
@@ -2870,8 +2830,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -2973,8 +2932,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -3081,8 +3039,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2CreateTransactionResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2CreateTransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2CreateTransactionResponse>() {});
                 _res.withV2CreateTransactionResponse(java.util.Optional.ofNullable(_out));
@@ -3097,8 +3054,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -3288,8 +3244,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -3388,8 +3343,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -3487,8 +3441,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2AccountResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2AccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2AccountResponse>() {});
                 _res.withV2AccountResponse(java.util.Optional.ofNullable(_out));
@@ -3503,8 +3456,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -3607,8 +3559,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse>() {});
                 _res.withV2AggregateBalancesResponse(java.util.Optional.ofNullable(_out));
@@ -3623,8 +3574,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -3713,8 +3663,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2ConfigInfoResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2ConfigInfoResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ConfigInfoResponse>() {});
                 _res.withV2ConfigInfoResponse(java.util.Optional.ofNullable(_out));
@@ -3729,8 +3678,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -3823,8 +3771,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2GetLedgerResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2GetLedgerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetLedgerResponse>() {});
                 _res.withV2GetLedgerResponse(java.util.Optional.ofNullable(_out));
@@ -3839,8 +3786,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -3933,8 +3879,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2LedgerInfoResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2LedgerInfoResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2LedgerInfoResponse>() {});
                 _res.withV2LedgerInfoResponse(java.util.Optional.ofNullable(_out));
@@ -3949,8 +3894,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4048,8 +3992,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2GetTransactionResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2GetTransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetTransactionResponse>() {});
                 _res.withV2GetTransactionResponse(java.util.Optional.ofNullable(_out));
@@ -4064,8 +4007,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4168,8 +4110,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse>() {});
                 _res.withV2VolumesWithBalanceCursorResponse(java.util.Optional.ofNullable(_out));
@@ -4184,8 +4125,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4290,8 +4230,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2AccountsCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2AccountsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2AccountsCursorResponse>() {});
                 _res.withV2AccountsCursorResponse(java.util.Optional.ofNullable(_out));
@@ -4306,8 +4245,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4403,8 +4341,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2LedgerListResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2LedgerListResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2LedgerListResponse>() {});
                 _res.withV2LedgerListResponse(java.util.Optional.ofNullable(_out));
@@ -4419,8 +4356,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4525,8 +4461,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2LogsCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2LogsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2LogsCursorResponse>() {});
                 _res.withV2LogsCursorResponse(java.util.Optional.ofNullable(_out));
@@ -4541,8 +4476,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4647,8 +4581,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse>() {});
                 _res.withV2TransactionsCursorResponse(java.util.Optional.ofNullable(_out));
@@ -4663,8 +4596,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4761,8 +4693,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2StatsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2StatsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2StatsResponse>() {});
                 _res.withV2StatsResponse(java.util.Optional.ofNullable(_out));
@@ -4777,8 +4708,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4876,8 +4806,7 @@ public class Ledger implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.V2RevertTransactionResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.V2RevertTransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2RevertTransactionResponse>() {});
                 _res.withV2RevertTransactionResponse(java.util.Optional.ofNullable(_out));
@@ -4892,8 +4821,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;
@@ -4995,8 +4923,7 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
                 throw _out;

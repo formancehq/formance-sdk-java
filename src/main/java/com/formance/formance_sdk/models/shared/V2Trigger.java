@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class V2Trigger {
 
     @JsonProperty("createdAt")
@@ -91,9 +90,10 @@ public class V2Trigger {
         return event;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> filter() {
-        return filter;
+    public Optional<String> filter() {
+        return (Optional<String>) filter;
     }
 
     @JsonIgnore
@@ -101,14 +101,16 @@ public class V2Trigger {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> vars() {
-        return vars;
+    public Optional<java.util.Map<String, java.lang.Object>> vars() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) vars;
     }
 
     @JsonIgnore

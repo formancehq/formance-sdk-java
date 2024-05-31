@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class UpdateClientResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class UpdateClientResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Updated client
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientResponse> updateClientResponse() {
-        return updateClientResponse;
+    public Optional<com.formance.formance_sdk.models.shared.UpdateClientResponse> updateClientResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.UpdateClientResponse>) updateClientResponse;
     }
 
     public final static Builder builder() {

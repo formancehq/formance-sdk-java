@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class CreatePaymentResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class CreatePaymentResponse implements com.formance.formance_sdk.utils.Re
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.PaymentResponse> paymentResponse() {
-        return paymentResponse;
+    public Optional<com.formance.formance_sdk.models.shared.PaymentResponse> paymentResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.PaymentResponse>) paymentResponse;
     }
 
     /**

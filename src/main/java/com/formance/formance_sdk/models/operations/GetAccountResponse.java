@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetAccountResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -65,9 +64,10 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.AccountResponse> accountResponse() {
-        return accountResponse;
+    public Optional<com.formance.formance_sdk.models.shared.AccountResponse> accountResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.AccountResponse>) accountResponse;
     }
 
     /**

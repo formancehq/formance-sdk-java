@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2BulkElementResultErrorSchemas {
 
     @JsonProperty("errorCode")
@@ -67,9 +66,10 @@ public class V2BulkElementResultErrorSchemas {
         return errorDescription;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> errorDetails() {
-        return errorDetails;
+    public Optional<String> errorDetails() {
+        return (Optional<String>) errorDetails;
     }
 
     @JsonIgnore

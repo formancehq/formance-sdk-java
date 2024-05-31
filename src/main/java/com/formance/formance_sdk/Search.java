@@ -117,8 +117,7 @@ public class Search implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.Response _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.Response _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.Response>() {});
                 _res.withResponse(java.util.Optional.ofNullable(_out));
@@ -216,8 +215,7 @@ public class Search implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ServerInfo _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
                 _res.withServerInfo(java.util.Optional.ofNullable(_out));

@@ -117,8 +117,7 @@ public class Webhooks implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ConfigResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ConfigResponse>() {});
                 _res.withConfigResponse(java.util.Optional.ofNullable(_out));
@@ -133,8 +132,7 @@ public class Webhooks implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
                 throw _out;
@@ -242,8 +240,7 @@ public class Webhooks implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ConfigResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ConfigResponse>() {});
                 _res.withConfigResponse(java.util.Optional.ofNullable(_out));
@@ -258,8 +255,7 @@ public class Webhooks implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
                 throw _out;
@@ -354,8 +350,7 @@ public class Webhooks implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ConfigResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ConfigResponse>() {});
                 _res.withConfigResponse(java.util.Optional.ofNullable(_out));
@@ -370,8 +365,7 @@ public class Webhooks implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
                 throw _out;
@@ -470,8 +464,7 @@ public class Webhooks implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
                 throw _out;
@@ -569,8 +562,7 @@ public class Webhooks implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ConfigsResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ConfigsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ConfigsResponse>() {});
                 _res.withConfigsResponse(java.util.Optional.ofNullable(_out));
@@ -585,8 +577,7 @@ public class Webhooks implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
                 throw _out;
@@ -705,8 +696,7 @@ public class Webhooks implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.ConfigResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.ConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ConfigResponse>() {});
                 _res.withConfigResponse(java.util.Optional.ofNullable(_out));
@@ -721,8 +711,7 @@ public class Webhooks implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
                 throw _out;
@@ -817,8 +806,7 @@ public class Webhooks implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.shared.AttemptResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.shared.AttemptResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.AttemptResponse>() {});
                 _res.withAttemptResponse(java.util.Optional.ofNullable(_out));
@@ -833,8 +821,7 @@ public class Webhooks implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = _mapper.readValue(
+                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
                 throw _out;

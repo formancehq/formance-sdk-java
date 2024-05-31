@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class V2ListTriggersOccurrencesResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class V2ListTriggersOccurrencesResponse implements com.formance.formance_
     /**
      * List of triggers occurrences
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse() {
-        return v2ListTriggersOccurrencesResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse>) v2ListTriggersOccurrencesResponse;
     }
 
     public final static Builder builder() {

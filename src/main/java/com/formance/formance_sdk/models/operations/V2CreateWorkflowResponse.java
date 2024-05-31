@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class V2CreateWorkflowResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class V2CreateWorkflowResponse implements com.formance.formance_sdk.utils
     /**
      * Created workflow
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse> v2CreateWorkflowResponse() {
-        return v2CreateWorkflowResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse> v2CreateWorkflowResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse>) v2CreateWorkflowResponse;
     }
 
     public final static Builder builder() {

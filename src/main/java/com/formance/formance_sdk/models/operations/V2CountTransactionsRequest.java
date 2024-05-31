@@ -17,7 +17,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class V2CountTransactionsRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -50,9 +49,10 @@ public class V2CountTransactionsRequest {
         this(Optional.empty(), ledger, Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
     }
 
     /**
@@ -63,9 +63,10 @@ public class V2CountTransactionsRequest {
         return ledger;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> pit() {
-        return pit;
+    public Optional<OffsetDateTime> pit() {
+        return (Optional<OffsetDateTime>) pit;
     }
 
     public final static Builder builder() {

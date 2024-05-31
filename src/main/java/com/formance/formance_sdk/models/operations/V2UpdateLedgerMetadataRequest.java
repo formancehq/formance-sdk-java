@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2UpdateLedgerMetadataRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -43,9 +42,10 @@ public class V2UpdateLedgerMetadataRequest {
         this(Optional.empty(), ledger);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, String>> requestBody() {
+        return (Optional<java.util.Map<String, String>>) requestBody;
     }
 
     /**

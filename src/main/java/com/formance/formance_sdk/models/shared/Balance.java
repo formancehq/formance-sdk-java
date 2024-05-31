@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class Balance {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -53,9 +52,10 @@ public class Balance {
         this(Optional.empty(), name, Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> expiresAt() {
-        return expiresAt;
+    public Optional<OffsetDateTime> expiresAt() {
+        return (Optional<OffsetDateTime>) expiresAt;
     }
 
     @JsonIgnore
@@ -63,9 +63,10 @@ public class Balance {
         return name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends BigInteger> priority() {
-        return priority;
+    public Optional<BigInteger> priority() {
+        return (Optional<BigInteger>) priority;
     }
 
     public final static Builder builder() {

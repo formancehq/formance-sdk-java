@@ -22,7 +22,6 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
 public class TransferInitiationRequest {
 
     @JsonProperty("amount")
@@ -127,9 +126,10 @@ public class TransferInitiationRequest {
         return asset;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> connectorID() {
-        return connectorID;
+    public Optional<String> connectorID() {
+        return (Optional<String>) connectorID;
     }
 
     @JsonIgnore
@@ -142,14 +142,16 @@ public class TransferInitiationRequest {
         return destinationAccountID;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<? extends java.util.Map<String, String>> metadata() {
-        return metadata;
+    public JsonNullable<java.util.Map<String, String>> metadata() {
+        return (JsonNullable<java.util.Map<String, String>>) metadata;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Connector> provider() {
-        return provider;
+    public Optional<Connector> provider() {
+        return (Optional<Connector>) provider;
     }
 
     @JsonIgnore

@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class Client {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -99,9 +98,10 @@ public class Client {
         this(Optional.empty(), id, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> description() {
-        return description;
+    public Optional<String> description() {
+        return (Optional<String>) description;
     }
 
     @JsonIgnore
@@ -109,9 +109,10 @@ public class Client {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.lang.Object>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
+        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
     }
 
     @JsonIgnore
@@ -119,34 +120,40 @@ public class Client {
         return name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> postLogoutRedirectUris() {
-        return postLogoutRedirectUris;
+    public Optional<java.util.List<String>> postLogoutRedirectUris() {
+        return (Optional<java.util.List<String>>) postLogoutRedirectUris;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> public_() {
-        return public_;
+    public Optional<Boolean> public_() {
+        return (Optional<Boolean>) public_;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> redirectUris() {
-        return redirectUris;
+    public Optional<java.util.List<String>> redirectUris() {
+        return (Optional<java.util.List<String>>) redirectUris;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<String>> scopes() {
-        return scopes;
+    public Optional<java.util.List<String>> scopes() {
+        return (Optional<java.util.List<String>>) scopes;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<ClientSecret>> secrets() {
-        return secrets;
+    public Optional<java.util.List<ClientSecret>> secrets() {
+        return (Optional<java.util.List<ClientSecret>>) secrets;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> trusted() {
-        return trusted;
+    public Optional<Boolean> trusted() {
+        return (Optional<Boolean>) trusted;
     }
 
     public final static Builder builder() {

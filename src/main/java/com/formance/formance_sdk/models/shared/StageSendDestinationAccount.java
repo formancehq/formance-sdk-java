@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class StageSendDestinationAccount {
 
     @JsonProperty("id")
@@ -48,9 +47,10 @@ public class StageSendDestinationAccount {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ledger() {
-        return ledger;
+    public Optional<String> ledger() {
+        return (Optional<String>) ledger;
     }
 
     public final static Builder builder() {

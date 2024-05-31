@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class V2RevertTransactionResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class V2RevertTransactionResponse implements com.formance.formance_sdk.ut
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionResponse> v2RevertTransactionResponse() {
-        return v2RevertTransactionResponse;
+    public Optional<com.formance.formance_sdk.models.shared.V2RevertTransactionResponse> v2RevertTransactionResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2RevertTransactionResponse>) v2RevertTransactionResponse;
     }
 
     public final static Builder builder() {

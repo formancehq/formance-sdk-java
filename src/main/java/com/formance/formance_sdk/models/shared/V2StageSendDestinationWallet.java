@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2StageSendDestinationWallet {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,9 +42,10 @@ public class V2StageSendDestinationWallet {
         this(Optional.empty(), id);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> balance() {
-        return balance;
+    public Optional<String> balance() {
+        return (Optional<String>) balance;
     }
 
     @JsonIgnore

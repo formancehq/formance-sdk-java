@@ -15,7 +15,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-
 public class GetWalletSummaryRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")

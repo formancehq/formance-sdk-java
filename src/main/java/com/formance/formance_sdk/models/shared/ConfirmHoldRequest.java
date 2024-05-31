@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ConfirmHoldRequest {
 
     /**
@@ -52,17 +51,19 @@ public class ConfirmHoldRequest {
     /**
      * Define the amount to transfer.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends BigInteger> amount() {
-        return amount;
+    public Optional<BigInteger> amount() {
+        return (Optional<BigInteger>) amount;
     }
 
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> final_() {
-        return final_;
+    public Optional<Boolean> final_() {
+        return (Optional<Boolean>) final_;
     }
 
     public final static Builder builder() {

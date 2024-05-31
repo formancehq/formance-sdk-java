@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class ActivateConfigResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -65,9 +64,10 @@ public class ActivateConfigResponse implements com.formance.formance_sdk.utils.R
     /**
      * Config successfully activated.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
-        return configResponse;
+    public Optional<com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.ConfigResponse>) configResponse;
     }
 
     /**

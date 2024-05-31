@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2RunWorkflowRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -52,17 +51,19 @@ public class V2RunWorkflowRequest {
         this(Optional.empty(), Optional.empty(), workflowID);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, String>> requestBody() {
-        return requestBody;
+    public Optional<java.util.Map<String, String>> requestBody() {
+        return (Optional<java.util.Map<String, String>>) requestBody;
     }
 
     /**
      * Wait end of the workflow before return
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> waitForExecution() {
-        return waitForExecution;
+    public Optional<Boolean> waitForExecution() {
+        return (Optional<Boolean>) waitForExecution;
     }
 
     /**

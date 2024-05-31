@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class V2Volume {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -50,9 +49,10 @@ public class V2Volume {
         this(Optional.empty(), input, output);
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends BigInteger> balance() {
-        return balance;
+    public Optional<BigInteger> balance() {
+        return (Optional<BigInteger>) balance;
     }
 
     @JsonIgnore

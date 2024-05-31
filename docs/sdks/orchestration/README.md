@@ -50,20 +50,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CancelEventRequest;
-import com.formance.formance_sdk.models.operations.CancelEventResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -72,7 +73,7 @@ public class Application {
                 .build();
 
             CancelEventRequest req = CancelEventRequest.builder()
-                .instanceID("<value>")
+                .instanceID("xxx")
                 .build();
 
             CancelEventResponse res = sdk.orchestration().cancelEvent()
@@ -82,10 +83,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -119,20 +123,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreateTriggerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.TriggerData;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -143,10 +148,6 @@ public class Application {
             TriggerData req = TriggerData.builder()
                 .event("<value>")
                 .workflowID("<value>")
-                .filter("<value>")
-                .name("<value>")
-                .vars(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .build();
 
             CreateTriggerResponse res = sdk.orchestration().createTrigger()
@@ -158,10 +159,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -195,20 +199,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.CreateWorkflowResponse;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -220,7 +225,6 @@ public class Application {
                 .stages(java.util.List.of(
                         java.util.Map.ofEntries(
                             entry("key", "<value>"))))
-                .name("<value>")
                 .build();
 
             CreateWorkflowResponse res = sdk.orchestration().createWorkflow()
@@ -232,10 +236,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -269,20 +276,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.DeleteTriggerRequest;
-import com.formance.formance_sdk.models.operations.DeleteTriggerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -301,10 +309,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -338,20 +349,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.DeleteWorkflowRequest;
-import com.formance.formance_sdk.models.operations.DeleteWorkflowResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -360,7 +372,7 @@ public class Application {
                 .build();
 
             DeleteWorkflowRequest req = DeleteWorkflowRequest.builder()
-                .flowId("<value>")
+                .flowId("xxx")
                 .build();
 
             DeleteWorkflowResponse res = sdk.orchestration().deleteWorkflow()
@@ -370,10 +382,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -407,20 +422,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetInstanceRequest;
-import com.formance.formance_sdk.models.operations.GetInstanceResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -429,7 +445,7 @@ public class Application {
                 .build();
 
             GetInstanceRequest req = GetInstanceRequest.builder()
-                .instanceID("<value>")
+                .instanceID("xxx")
                 .build();
 
             GetInstanceResponse res = sdk.orchestration().getInstance()
@@ -441,10 +457,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -478,20 +497,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest;
-import com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -500,7 +520,7 @@ public class Application {
                 .build();
 
             GetInstanceHistoryRequest req = GetInstanceHistoryRequest.builder()
-                .instanceID("<value>")
+                .instanceID("xxx")
                 .build();
 
             GetInstanceHistoryResponse res = sdk.orchestration().getInstanceHistory()
@@ -512,10 +532,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -549,20 +572,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest;
-import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -571,8 +595,8 @@ public class Application {
                 .build();
 
             GetInstanceStageHistoryRequest req = GetInstanceStageHistoryRequest.builder()
-                .instanceID("<value>")
-                .number(600636L)
+                .instanceID("xxx")
+                .number(0L)
                 .build();
 
             GetInstanceStageHistoryResponse res = sdk.orchestration().getInstanceStageHistory()
@@ -584,10 +608,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -621,20 +648,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.GetWorkflowRequest;
-import com.formance.formance_sdk.models.operations.GetWorkflowResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -643,7 +671,7 @@ public class Application {
                 .build();
 
             GetWorkflowRequest req = GetWorkflowRequest.builder()
-                .flowId("<value>")
+                .flowId("xxx")
                 .build();
 
             GetWorkflowResponse res = sdk.orchestration().getWorkflow()
@@ -655,10 +683,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -692,20 +723,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListInstancesRequest;
-import com.formance.formance_sdk.models.operations.ListInstancesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -714,8 +746,8 @@ public class Application {
                 .build();
 
             ListInstancesRequest req = ListInstancesRequest.builder()
-                .running(false)
-                .workflowID("<value>")
+                .running(true)
+                .workflowID("xxx")
                 .build();
 
             ListInstancesResponse res = sdk.orchestration().listInstances()
@@ -727,10 +759,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -764,20 +799,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListTriggersRequest;
-import com.formance.formance_sdk.models.operations.ListTriggersResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -786,7 +822,6 @@ public class Application {
                 .build();
 
             ListTriggersRequest req = ListTriggersRequest.builder()
-                .name("<value>")
                 .build();
 
             ListTriggersResponse res = sdk.orchestration().listTriggers()
@@ -798,10 +833,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -835,20 +873,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest;
-import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -869,10 +908,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -906,19 +948,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ListWorkflowsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -934,10 +978,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -965,19 +1012,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -993,10 +1042,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1024,20 +1076,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.ReadTriggerRequest;
-import com.formance.formance_sdk.models.operations.ReadTriggerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1058,10 +1111,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1095,20 +1151,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.RunWorkflowRequest;
-import com.formance.formance_sdk.models.operations.RunWorkflowResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1117,10 +1174,7 @@ public class Application {
                 .build();
 
             RunWorkflowRequest req = RunWorkflowRequest.builder()
-                .workflowID("<value>")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .waitForExecution(false)
+                .workflowID("xxx")
                 .build();
 
             RunWorkflowResponse res = sdk.orchestration().runWorkflow()
@@ -1132,10 +1186,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1169,21 +1226,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.SendEventRequest;
-import com.formance.formance_sdk.models.operations.SendEventRequestBody;
-import com.formance.formance_sdk.models.operations.SendEventResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1192,10 +1249,7 @@ public class Application {
                 .build();
 
             SendEventRequest req = SendEventRequest.builder()
-                .instanceID("<value>")
-                .requestBody(SendEventRequestBody.builder()
-                    .name("<value>")
-                    .build())
+                .instanceID("xxx")
                 .build();
 
             SendEventResponse res = sdk.orchestration().sendEvent()
@@ -1205,10 +1259,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1242,20 +1299,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.TestTriggerRequest;
-import com.formance.formance_sdk.models.operations.TestTriggerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1265,8 +1323,6 @@ public class Application {
 
             TestTriggerRequest req = TestTriggerRequest.builder()
                 .triggerID("<value>")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .build();
 
             TestTriggerResponse res = sdk.orchestration().testTrigger()
@@ -1278,10 +1334,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1315,20 +1374,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2CancelEventRequest;
-import com.formance.formance_sdk.models.operations.V2CancelEventResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1337,7 +1397,7 @@ public class Application {
                 .build();
 
             V2CancelEventRequest req = V2CancelEventRequest.builder()
-                .instanceID("<value>")
+                .instanceID("xxx")
                 .build();
 
             V2CancelEventResponse res = sdk.orchestration().v2CancelEvent()
@@ -1347,10 +1407,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1384,20 +1447,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2CreateTriggerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2TriggerData;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1408,10 +1472,6 @@ public class Application {
             V2TriggerData req = V2TriggerData.builder()
                 .event("<value>")
                 .workflowID("<value>")
-                .filter("<value>")
-                .name("<value>")
-                .vars(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
                 .build();
 
             V2CreateTriggerResponse res = sdk.orchestration().v2CreateTrigger()
@@ -1423,10 +1483,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1460,20 +1523,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1485,7 +1549,6 @@ public class Application {
                 .stages(java.util.List.of(
                         java.util.Map.ofEntries(
                             entry("key", "<value>"))))
-                .name("<value>")
                 .build();
 
             V2CreateWorkflowResponse res = sdk.orchestration().v2CreateWorkflow()
@@ -1497,10 +1560,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1534,20 +1600,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest;
-import com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1566,10 +1633,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1603,20 +1673,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest;
-import com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1625,7 +1696,7 @@ public class Application {
                 .build();
 
             V2DeleteWorkflowRequest req = V2DeleteWorkflowRequest.builder()
-                .flowId("<value>")
+                .flowId("xxx")
                 .build();
 
             V2DeleteWorkflowResponse res = sdk.orchestration().v2DeleteWorkflow()
@@ -1635,10 +1706,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1672,20 +1746,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetInstanceRequest;
-import com.formance.formance_sdk.models.operations.V2GetInstanceResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1694,7 +1769,7 @@ public class Application {
                 .build();
 
             V2GetInstanceRequest req = V2GetInstanceRequest.builder()
-                .instanceID("<value>")
+                .instanceID("xxx")
                 .build();
 
             V2GetInstanceResponse res = sdk.orchestration().v2GetInstance()
@@ -1706,10 +1781,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1743,20 +1821,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest;
-import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1765,7 +1844,7 @@ public class Application {
                 .build();
 
             V2GetInstanceHistoryRequest req = V2GetInstanceHistoryRequest.builder()
-                .instanceID("<value>")
+                .instanceID("xxx")
                 .build();
 
             V2GetInstanceHistoryResponse res = sdk.orchestration().v2GetInstanceHistory()
@@ -1777,10 +1856,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1814,20 +1896,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest;
-import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1836,8 +1919,8 @@ public class Application {
                 .build();
 
             V2GetInstanceStageHistoryRequest req = V2GetInstanceStageHistoryRequest.builder()
-                .instanceID("<value>")
-                .number(465454L)
+                .instanceID("xxx")
+                .number(0L)
                 .build();
 
             V2GetInstanceStageHistoryResponse res = sdk.orchestration().v2GetInstanceStageHistory()
@@ -1849,10 +1932,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1886,19 +1972,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1914,10 +2002,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -1945,20 +2036,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2GetWorkflowRequest;
-import com.formance.formance_sdk.models.operations.V2GetWorkflowResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1967,7 +2059,7 @@ public class Application {
                 .build();
 
             V2GetWorkflowRequest req = V2GetWorkflowRequest.builder()
-                .flowId("<value>")
+                .flowId("xxx")
                 .build();
 
             V2GetWorkflowResponse res = sdk.orchestration().v2GetWorkflow()
@@ -1979,10 +2071,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2016,20 +2111,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ListInstancesRequest;
-import com.formance.formance_sdk.models.operations.V2ListInstancesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2039,9 +2135,9 @@ public class Application {
 
             V2ListInstancesRequest req = V2ListInstancesRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(437740L)
-                .running(false)
-                .workflowID("<value>")
+                .pageSize(100L)
+                .running(true)
+                .workflowID("xxx")
                 .build();
 
             V2ListInstancesResponse res = sdk.orchestration().v2ListInstances()
@@ -2053,10 +2149,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2090,20 +2189,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ListTriggersRequest;
-import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2113,8 +2213,7 @@ public class Application {
 
             V2ListTriggersRequest req = V2ListTriggersRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .name("<value>")
-                .pageSize(877214L)
+                .pageSize(100L)
                 .build();
 
             V2ListTriggersResponse res = sdk.orchestration().v2ListTriggers()
@@ -2126,10 +2225,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2163,20 +2265,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest;
-import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2187,7 +2290,7 @@ public class Application {
             V2ListTriggersOccurrencesRequest req = V2ListTriggersOccurrencesRequest.builder()
                 .triggerID("<value>")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(934225L)
+                .pageSize(100L)
                 .build();
 
             V2ListTriggersOccurrencesResponse res = sdk.orchestration().v2ListTriggersOccurrences()
@@ -2199,10 +2302,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2236,20 +2342,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest;
-import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2259,7 +2366,7 @@ public class Application {
 
             V2ListWorkflowsRequest req = V2ListWorkflowsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(196850L)
+                .pageSize(100L)
                 .build();
 
             V2ListWorkflowsResponse res = sdk.orchestration().v2ListWorkflows()
@@ -2271,10 +2378,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2308,20 +2418,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2ReadTriggerRequest;
-import com.formance.formance_sdk.models.operations.V2ReadTriggerResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2342,10 +2453,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2379,20 +2493,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2RunWorkflowRequest;
-import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2401,10 +2516,7 @@ public class Application {
                 .build();
 
             V2RunWorkflowRequest req = V2RunWorkflowRequest.builder()
-                .workflowID("<value>")
-                .requestBody(java.util.Map.ofEntries(
-                    entry("key", "<value>")))
-                .waitForExecution(false)
+                .workflowID("xxx")
                 .build();
 
             V2RunWorkflowResponse res = sdk.orchestration().v2RunWorkflow()
@@ -2416,10 +2528,13 @@ public class Application {
             }
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -2453,21 +2568,21 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.operations.V2SendEventRequest;
-import com.formance.formance_sdk.models.operations.V2SendEventRequestBody;
-import com.formance.formance_sdk.models.operations.V2SendEventResponse;
 import com.formance.formance_sdk.models.shared.*;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2476,10 +2591,7 @@ public class Application {
                 .build();
 
             V2SendEventRequest req = V2SendEventRequest.builder()
-                .instanceID("<value>")
-                .requestBody(V2SendEventRequestBody.builder()
-                    .name("<value>")
-                    .build())
+                .instanceID("xxx")
                 .build();
 
             V2SendEventResponse res = sdk.orchestration().v2SendEvent()
@@ -2489,10 +2601,13 @@ public class Application {
             // handle response
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
+            throw e;
         } catch (com.formance.formance_sdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }

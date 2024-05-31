@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetTransferInitiationResponse implements com.formance.formance_sdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse() {
-        return transferInitiationResponse;
+    public Optional<com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.TransferInitiationResponse>) transferInitiationResponse;
     }
 
     public final static Builder builder() {

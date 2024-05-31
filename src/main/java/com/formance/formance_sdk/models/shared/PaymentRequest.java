@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class PaymentRequest {
 
     @JsonProperty("amount")
@@ -122,9 +121,10 @@ public class PaymentRequest {
         return createdAt;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> destinationAccountID() {
-        return destinationAccountID;
+    public Optional<String> destinationAccountID() {
+        return (Optional<String>) destinationAccountID;
     }
 
     @JsonIgnore
@@ -137,9 +137,10 @@ public class PaymentRequest {
         return scheme;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> sourceAccountID() {
-        return sourceAccountID;
+    public Optional<String> sourceAccountID() {
+        return (Optional<String>) sourceAccountID;
     }
 
     @JsonIgnore
