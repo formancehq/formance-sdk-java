@@ -20,10 +20,10 @@ class SDKConfiguration {
       public String serverUrl;
     public int serverIdx = 0;
     public String language = "java";
-    public String openapiDocVersion = "v2.0.0-rc.31";
-    public String sdkVersion = "2.4.0";
-    public String genVersion = "2.338.7";
-    public String userAgent = "speakeasy-sdk/java 2.4.0 2.338.7 v2.0.0-rc.31 com.formance.formance_sdk";
+    public String openapiDocVersion = "v2.0.0-rc.32";
+    public String sdkVersion = "2.4.1";
+    public String genVersion = "2.338.12";
+    public String userAgent = "speakeasy-sdk/java 2.4.1 2.338.12 v2.0.0-rc.32 com.formance.formance_sdk";
 
     private com.formance.formance_sdk.utils.Hooks _hooks = new com.formance.formance_sdk.utils.Hooks();
 
