@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 610ea7c6611f3438fb1f0326c8efd395
-  docVersion: v2.0.0-rc.32
-  speakeasyVersion: 1.299.7
-  generationVersion: 2.338.12
-  releaseVersion: 2.4.1
-  configChecksum: 12658be26e6049d7a5b32c70d41018d9
+  docChecksum: 0da34bcbedbdc6dd069eb361c074d7ae
+  docVersion: v2.0.0-rc.33
+  speakeasyVersion: 1.303.0
+  generationVersion: 2.339.1
+  releaseVersion: 2.5.0
+  configChecksum: e16c4a4b3dfae52e7c285c12a7e5ee99
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.21.1
+    core: 3.22.0
     deprecations: 2.81.1
     errors: 0.1.2
     getRequestBodies: 2.81.1
