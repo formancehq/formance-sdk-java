@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 0da34bcbedbdc6dd069eb361c074d7ae
-  docVersion: v2.0.0-rc.33
-  speakeasyVersion: 1.303.0
-  generationVersion: 2.339.1
-  releaseVersion: 2.5.0
-  configChecksum: e16c4a4b3dfae52e7c285c12a7e5ee99
+  docChecksum: 557eedeee9274e36d9dff9f52eaed33a
+  docVersion: v2.0.3
+  speakeasyVersion: 1.346.0
+  generationVersion: 2.379.3
+  releaseVersion: 2.6.0
+  configChecksum: 6814669f87c44370d51f74d5c32fe833
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.22.0
+    core: 3.26.5
     deprecations: 2.81.1
     errors: 0.1.2
     getRequestBodies: 2.81.1
@@ -225,6 +225,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/utils/HTTPClient.java
   - src/main/java/com/formance/formance_sdk/utils/HTTPRequest.java
   - src/main/java/com/formance/formance_sdk/utils/HeaderMetadata.java
+  - src/main/java/com/formance/formance_sdk/utils/Helpers.java
   - src/main/java/com/formance/formance_sdk/utils/Hook.java
   - src/main/java/com/formance/formance_sdk/utils/Hooks.java
   - src/main/java/com/formance/formance_sdk/utils/JSON.java
@@ -249,6 +250,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/utils/TypedObject.java
   - src/main/java/com/formance/formance_sdk/utils/Types.java
   - src/main/java/com/formance/formance_sdk/utils/Utils.java
+  - src/main/java/com/formance/formance_sdk/models/errors/AuthException.java
   - src/main/java/com/formance/formance_sdk/models/errors/SDKError.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetOIDCWellKnownsResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetVersionsResponse.java
@@ -702,7 +704,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/OrchestrationTransaction.java
   - src/main/java/com/formance/formance_sdk/models/shared/OrchestrationListWalletsResponseCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/OrchestrationListWalletsResponse.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Wallet.java
+  - src/main/java/com/formance/formance_sdk/models/shared/OrchestrationWallet.java
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityGetWalletOutput.java
   - src/main/java/com/formance/formance_sdk/models/shared/WalletWithBalancesBalances.java
   - src/main/java/com/formance/formance_sdk/models/shared/WalletWithBalances.java
@@ -737,7 +739,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityDebitWallet.java
   - src/main/java/com/formance/formance_sdk/models/shared/DebitWalletRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityCreditWallet.java
-  - src/main/java/com/formance/formance_sdk/models/shared/CreditWalletRequest.java
+  - src/main/java/com/formance/formance_sdk/models/shared/OrchestrationCreditWalletRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityCreateTransaction.java
   - src/main/java/com/formance/formance_sdk/models/shared/OrchestrationPostTransactionScript.java
   - src/main/java/com/formance/formance_sdk/models/shared/OrchestrationPostTransaction.java
@@ -964,7 +966,10 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/Balance.java
   - src/main/java/com/formance/formance_sdk/models/shared/CreateBalanceRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/CreateWalletResponse.java
+  - src/main/java/com/formance/formance_sdk/models/shared/WalletBalances.java
+  - src/main/java/com/formance/formance_sdk/models/shared/Wallet.java
   - src/main/java/com/formance/formance_sdk/models/shared/CreateWalletRequest.java
+  - src/main/java/com/formance/formance_sdk/models/shared/CreditWalletRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/DebitWalletResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/GetBalanceResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/BalanceWithAssets.java
@@ -1455,7 +1460,7 @@ generatedFiles:
   - docs/models/shared/OrchestrationTransaction.md
   - docs/models/shared/OrchestrationListWalletsResponseCursor.md
   - docs/models/shared/OrchestrationListWalletsResponse.md
-  - docs/models/shared/Wallet.md
+  - docs/models/shared/OrchestrationWallet.md
   - docs/models/shared/ActivityGetWalletOutput.md
   - docs/models/shared/WalletWithBalancesBalances.md
   - docs/models/shared/WalletWithBalances.md
@@ -1490,7 +1495,7 @@ generatedFiles:
   - docs/models/shared/ActivityDebitWallet.md
   - docs/models/shared/DebitWalletRequest.md
   - docs/models/shared/ActivityCreditWallet.md
-  - docs/models/shared/CreditWalletRequest.md
+  - docs/models/shared/OrchestrationCreditWalletRequest.md
   - docs/models/shared/ActivityCreateTransaction.md
   - docs/models/shared/OrchestrationPostTransactionScript.md
   - docs/models/shared/OrchestrationPostTransaction.md
@@ -1717,7 +1722,10 @@ generatedFiles:
   - docs/models/shared/Balance.md
   - docs/models/shared/CreateBalanceRequest.md
   - docs/models/shared/CreateWalletResponse.md
+  - docs/models/shared/WalletBalances.md
+  - docs/models/shared/Wallet.md
   - docs/models/shared/CreateWalletRequest.md
+  - docs/models/shared/CreditWalletRequest.md
   - docs/models/shared/DebitWalletResponse.md
   - docs/models/shared/GetBalanceResponse.md
   - docs/models/shared/BalanceWithAssets.md
@@ -1766,3 +1774,4 @@ generatedFiles:
   - docs/sdks/wallets/README.md
   - docs/sdks/webhooks/README.md
   - USAGE.md
+  - CONTRIBUTING.md

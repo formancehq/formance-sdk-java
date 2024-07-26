@@ -64,6 +64,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -77,12 +78,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.CreateClientResponse>](../../models/operations/CreateClientResponse.md)**
+**[com.formance.formance_sdk.models.operations.CreateClientResponse](../../models/operations/CreateClientResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## createSecret
 
@@ -135,6 +136,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -148,12 +150,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.CreateSecretResponse>](../../models/operations/CreateSecretResponse.md)**
+**[com.formance.formance_sdk.models.operations.CreateSecretResponse](../../models/operations/CreateSecretResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## deleteClient
 
@@ -204,6 +206,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -217,12 +220,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteClientResponse>](../../models/operations/DeleteClientResponse.md)**
+**[com.formance.formance_sdk.models.operations.DeleteClientResponse](../../models/operations/DeleteClientResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## deleteSecret
 
@@ -274,6 +277,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -287,12 +291,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteSecretResponse>](../../models/operations/DeleteSecretResponse.md)**
+**[com.formance.formance_sdk.models.operations.DeleteSecretResponse](../../models/operations/DeleteSecretResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## listClients
 
@@ -340,6 +344,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -347,12 +352,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListClientsResponse>](../../models/operations/ListClientsResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListClientsResponse](../../models/operations/ListClientsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## listUsers
 
@@ -400,6 +405,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -407,12 +413,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListUsersResponse>](../../models/operations/ListUsersResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListUsersResponse](../../models/operations/ListUsersResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## readClient
 
@@ -465,6 +471,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -478,12 +485,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ReadClientResponse>](../../models/operations/ReadClientResponse.md)**
+**[com.formance.formance_sdk.models.operations.ReadClientResponse](../../models/operations/ReadClientResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## readUser
 
@@ -536,6 +543,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -549,12 +557,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ReadUserResponse>](../../models/operations/ReadUserResponse.md)**
+**[com.formance.formance_sdk.models.operations.ReadUserResponse](../../models/operations/ReadUserResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## updateClient
 
@@ -607,6 +615,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -620,9 +629,9 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateClientResponse>](../../models/operations/UpdateClientResponse.md)**
+**[com.formance.formance_sdk.models.operations.UpdateClientResponse](../../models/operations/UpdateClientResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

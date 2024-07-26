@@ -21,19 +21,21 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 
 ### Getting started
 
+JDK 11 or later is required.
+
 The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance.formance_sdk:formance-sdk:2.5.0'
+implementation 'com.formance:formance-sdk:2.6.0'
 ```
 
 Maven:
 ```xml
 <dependency>
-    <groupId>com.formance.formance_sdk</groupId>
+    <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>2.5.0</version>
+    <version>2.6.0</version>
 </dependency>
 ```
 
@@ -95,6 +97,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -349,6 +352,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -396,6 +400,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -409,7 +414,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | */*                         |
+| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
 
 ### Example
 
@@ -474,6 +479,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -529,6 +535,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```

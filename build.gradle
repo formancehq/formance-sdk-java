@@ -8,6 +8,7 @@
 // Additions to the plugins block can be made by setting the `additionalPlugins` property (an array 
 // of string where each string value is an additional line in the block) in gen.yaml.
 ////////////////////////////////////////////////////////////////////////////////////////////
+
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
@@ -23,13 +24,13 @@ repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
+
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
     withSourcesJar()
     withJavadocJar()
 }
-
 model {
     tasks.generatePomFileForMavenPublication {
         destination = file("$buildDir/pom.xml")
@@ -74,7 +75,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.formance'
             artifactId = 'formance-sdk'
-            version = '2.5.0'
+            version = '2.6.0'
 
             from components.java
 
