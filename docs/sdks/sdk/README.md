@@ -65,6 +65,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -72,12 +73,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse>](../../models/operations/GetOIDCWellKnownsResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse](../../models/operations/GetOIDCWellKnownsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## getVersions
 
@@ -125,6 +126,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -132,9 +134,9 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetVersionsResponse>](../../models/operations/GetVersionsResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetVersionsResponse](../../models/operations/GetVersionsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

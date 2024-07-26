@@ -102,6 +102,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -115,13 +116,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.AddAccountToPoolResponse>](../../models/operations/AddAccountToPoolResponse.md)**
+**[com.formance.formance_sdk.models.operations.AddAccountToPoolResponse](../../models/operations/AddAccountToPoolResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## connectorsTransfer
 
@@ -183,6 +184,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -196,13 +198,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ConnectorsTransferResponse>](../../models/operations/ConnectorsTransferResponse.md)**
+**[com.formance.formance_sdk.models.operations.ConnectorsTransferResponse](../../models/operations/ConnectorsTransferResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## createAccount
 
@@ -261,6 +263,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -274,13 +277,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.CreateAccountResponse>](../../models/operations/CreateAccountResponse.md)**
+**[com.formance.formance_sdk.models.operations.CreateAccountResponse](../../models/operations/CreateAccountResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## createBankAccount
 
@@ -338,6 +341,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -351,13 +355,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.CreateBankAccountResponse>](../../models/operations/CreateBankAccountResponse.md)**
+**[com.formance.formance_sdk.models.operations.CreateBankAccountResponse](../../models/operations/CreateBankAccountResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## createPayment
 
@@ -420,6 +424,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -433,13 +438,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.CreatePaymentResponse>](../../models/operations/CreatePaymentResponse.md)**
+**[com.formance.formance_sdk.models.operations.CreatePaymentResponse](../../models/operations/CreatePaymentResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## createPool
 
@@ -497,6 +502,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -510,13 +516,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.CreatePoolResponse>](../../models/operations/CreatePoolResponse.md)**
+**[com.formance.formance_sdk.models.operations.CreatePoolResponse](../../models/operations/CreatePoolResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## createTransferInitiation
 
@@ -580,6 +586,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -593,13 +600,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse>](../../models/operations/CreateTransferInitiationResponse.md)**
+**[com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse](../../models/operations/CreateTransferInitiationResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## deletePool
 
@@ -653,6 +660,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -666,13 +674,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.DeletePoolResponse>](../../models/operations/DeletePoolResponse.md)**
+**[com.formance.formance_sdk.models.operations.DeletePoolResponse](../../models/operations/DeletePoolResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## deleteTransferInitiation
 
@@ -726,6 +734,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -739,13 +748,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse>](../../models/operations/DeleteTransferInitiationResponse.md)**
+**[com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse](../../models/operations/DeleteTransferInitiationResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## forwardBankAccount
 
@@ -804,6 +813,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -817,13 +827,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ForwardBankAccountResponse>](../../models/operations/ForwardBankAccountResponse.md)**
+**[com.formance.formance_sdk.models.operations.ForwardBankAccountResponse](../../models/operations/ForwardBankAccountResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## getAccountBalances
 
@@ -884,6 +894,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -897,13 +908,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetAccountBalancesResponse>](../../models/operations/GetAccountBalancesResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetAccountBalancesResponse](../../models/operations/GetAccountBalancesResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## getBankAccount
 
@@ -959,6 +970,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -972,13 +984,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetBankAccountResponse>](../../models/operations/GetBankAccountResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetBankAccountResponse](../../models/operations/GetBankAccountResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## ~~getConnectorTask~~
 
@@ -1037,6 +1049,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1050,13 +1063,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetConnectorTaskResponse>](../../models/operations/GetConnectorTaskResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetConnectorTaskResponse](../../models/operations/GetConnectorTaskResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## getConnectorTaskV1
 
@@ -1114,6 +1127,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1127,13 +1141,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response>](../../models/operations/GetConnectorTaskV1Response.md)**
+**[com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response](../../models/operations/GetConnectorTaskV1Response.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## getPayment
 
@@ -1189,6 +1203,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1202,13 +1217,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetPaymentResponse>](../../models/operations/GetPaymentResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetPaymentResponse](../../models/operations/GetPaymentResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## getPool
 
@@ -1264,6 +1279,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1277,13 +1293,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetPoolResponse>](../../models/operations/GetPoolResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetPoolResponse](../../models/operations/GetPoolResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## getPoolBalances
 
@@ -1340,6 +1356,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1353,13 +1370,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetPoolBalancesResponse>](../../models/operations/GetPoolBalancesResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetPoolBalancesResponse](../../models/operations/GetPoolBalancesResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## getTransferInitiation
 
@@ -1415,6 +1432,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1428,13 +1446,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetTransferInitiationResponse>](../../models/operations/GetTransferInitiationResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetTransferInitiationResponse](../../models/operations/GetTransferInitiationResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## installConnector
 
@@ -1495,6 +1513,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1508,13 +1527,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.InstallConnectorResponse>](../../models/operations/InstallConnectorResponse.md)**
+**[com.formance.formance_sdk.models.operations.InstallConnectorResponse](../../models/operations/InstallConnectorResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## listAllConnectors
 
@@ -1565,6 +1584,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1572,13 +1592,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListAllConnectorsResponse>](../../models/operations/ListAllConnectorsResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListAllConnectorsResponse](../../models/operations/ListAllConnectorsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## listBankAccounts
 
@@ -1638,6 +1658,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1651,13 +1672,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListBankAccountsResponse>](../../models/operations/ListBankAccountsResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListBankAccountsResponse](../../models/operations/ListBankAccountsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## listConfigsAvailableConnectors
 
@@ -1708,6 +1729,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1715,13 +1737,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse>](../../models/operations/ListConfigsAvailableConnectorsResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse](../../models/operations/ListConfigsAvailableConnectorsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## ~~listConnectorTasks~~
 
@@ -1781,6 +1803,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1794,13 +1817,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListConnectorTasksResponse>](../../models/operations/ListConnectorTasksResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListConnectorTasksResponse](../../models/operations/ListConnectorTasksResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## listConnectorTasksV1
 
@@ -1859,6 +1882,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1872,13 +1896,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response>](../../models/operations/ListConnectorTasksV1Response.md)**
+**[com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response](../../models/operations/ListConnectorTasksV1Response.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## listPayments
 
@@ -1938,6 +1962,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -1951,13 +1976,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListPaymentsResponse>](../../models/operations/ListPaymentsResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListPaymentsResponse](../../models/operations/ListPaymentsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## listPools
 
@@ -2017,6 +2042,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2030,13 +2056,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListPoolsResponse>](../../models/operations/ListPoolsResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListPoolsResponse](../../models/operations/ListPoolsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## listTransferInitiations
 
@@ -2096,6 +2122,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2109,13 +2136,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse>](../../models/operations/ListTransferInitiationsResponse.md)**
+**[com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse](../../models/operations/ListTransferInitiationsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## paymentsgetAccount
 
@@ -2171,6 +2198,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2184,13 +2212,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse>](../../models/operations/PaymentsgetAccountResponse.md)**
+**[com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse](../../models/operations/PaymentsgetAccountResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## paymentsgetServerInfo
 
@@ -2241,6 +2269,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2248,13 +2277,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse>](../../models/operations/PaymentsgetServerInfoResponse.md)**
+**[com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse](../../models/operations/PaymentsgetServerInfoResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## paymentslistAccounts
 
@@ -2314,6 +2343,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2327,13 +2357,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse>](../../models/operations/PaymentslistAccountsResponse.md)**
+**[com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse](../../models/operations/PaymentslistAccountsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## ~~readConnectorConfig~~
 
@@ -2391,6 +2421,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2404,13 +2435,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse>](../../models/operations/ReadConnectorConfigResponse.md)**
+**[com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse](../../models/operations/ReadConnectorConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## readConnectorConfigV1
 
@@ -2467,6 +2498,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2480,13 +2512,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response>](../../models/operations/ReadConnectorConfigV1Response.md)**
+**[com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response](../../models/operations/ReadConnectorConfigV1Response.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## removeAccountFromPool
 
@@ -2541,6 +2573,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2554,13 +2587,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse>](../../models/operations/RemoveAccountFromPoolResponse.md)**
+**[com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse](../../models/operations/RemoveAccountFromPoolResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## ~~resetConnector~~
 
@@ -2618,6 +2651,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2631,13 +2665,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ResetConnectorResponse>](../../models/operations/ResetConnectorResponse.md)**
+**[com.formance.formance_sdk.models.operations.ResetConnectorResponse](../../models/operations/ResetConnectorResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## resetConnectorV1
 
@@ -2694,6 +2728,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2707,13 +2742,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ResetConnectorV1Response>](../../models/operations/ResetConnectorV1Response.md)**
+**[com.formance.formance_sdk.models.operations.ResetConnectorV1Response](../../models/operations/ResetConnectorV1Response.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## retryTransferInitiation
 
@@ -2767,6 +2802,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2780,13 +2816,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse>](../../models/operations/RetryTransferInitiationResponse.md)**
+**[com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse](../../models/operations/RetryTransferInitiationResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## reverseTransferInitiation
 
@@ -2848,6 +2884,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2861,13 +2898,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse>](../../models/operations/ReverseTransferInitiationResponse.md)**
+**[com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse](../../models/operations/ReverseTransferInitiationResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## udpateTransferInitiationStatus
 
@@ -2924,6 +2961,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -2937,13 +2975,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse>](../../models/operations/UdpateTransferInitiationStatusResponse.md)**
+**[com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse](../../models/operations/UdpateTransferInitiationStatusResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## ~~uninstallConnector~~
 
@@ -2999,6 +3037,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -3012,13 +3051,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.UninstallConnectorResponse>](../../models/operations/UninstallConnectorResponse.md)**
+**[com.formance.formance_sdk.models.operations.UninstallConnectorResponse](../../models/operations/UninstallConnectorResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## uninstallConnectorV1
 
@@ -3073,6 +3112,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -3086,13 +3126,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.UninstallConnectorV1Response>](../../models/operations/UninstallConnectorV1Response.md)**
+**[com.formance.formance_sdk.models.operations.UninstallConnectorV1Response](../../models/operations/UninstallConnectorV1Response.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## updateBankAccountMetadata
 
@@ -3150,6 +3190,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -3163,13 +3204,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse>](../../models/operations/UpdateBankAccountMetadataResponse.md)**
+**[com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse](../../models/operations/UpdateBankAccountMetadataResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## updateConnectorConfigV1
 
@@ -3230,6 +3271,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -3243,13 +3285,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response>](../../models/operations/UpdateConnectorConfigV1Response.md)**
+**[com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response](../../models/operations/UpdateConnectorConfigV1Response.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## updateMetadata
 
@@ -3305,6 +3347,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -3318,10 +3361,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.UpdateMetadataResponse>](../../models/operations/UpdateMetadataResponse.md)**
+**[com.formance.formance_sdk.models.operations.UpdateMetadataResponse](../../models/operations/UpdateMetadataResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |

@@ -67,6 +67,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -80,12 +81,12 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.SearchResponse>](../../models/operations/SearchResponse.md)**
+**[com.formance.formance_sdk.models.operations.SearchResponse](../../models/operations/SearchResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
 
 ## searchgetServerInfo
 
@@ -133,6 +134,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -140,9 +142,9 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse>](../../models/operations/SearchgetServerInfoResponse.md)**
+**[com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse](../../models/operations/SearchgetServerInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |

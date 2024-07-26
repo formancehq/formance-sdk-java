@@ -65,6 +65,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -78,13 +79,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ActivateConfigResponse>](../../models/operations/ActivateConfigResponse.md)**
+**[com.formance.formance_sdk.models.operations.ActivateConfigResponse](../../models/operations/ActivateConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## changeConfigSecret
 
@@ -147,6 +148,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -160,13 +162,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse>](../../models/operations/ChangeConfigSecretResponse.md)**
+**[com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse](../../models/operations/ChangeConfigSecretResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## deactivateConfig
 
@@ -222,6 +224,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -235,13 +238,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.DeactivateConfigResponse>](../../models/operations/DeactivateConfigResponse.md)**
+**[com.formance.formance_sdk.models.operations.DeactivateConfigResponse](../../models/operations/DeactivateConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## deleteConfig
 
@@ -295,6 +298,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -308,13 +312,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.DeleteConfigResponse>](../../models/operations/DeleteConfigResponse.md)**
+**[com.formance.formance_sdk.models.operations.DeleteConfigResponse](../../models/operations/DeleteConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## getManyConfigs
 
@@ -371,6 +375,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -384,13 +389,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.GetManyConfigsResponse>](../../models/operations/GetManyConfigsResponse.md)**
+**[com.formance.formance_sdk.models.operations.GetManyConfigsResponse](../../models/operations/GetManyConfigsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## insertConfig
 
@@ -460,6 +465,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -473,13 +479,13 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.InsertConfigResponse>](../../models/operations/InsertConfigResponse.md)**
+**[com.formance.formance_sdk.models.operations.InsertConfigResponse](../../models/operations/InsertConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
 
 ## testConfig
 
@@ -535,6 +541,7 @@ public class Application {
             // handle exception
             throw e;
         }
+
     }
 }
 ```
@@ -548,10 +555,10 @@ public class Application {
 
 ### Response
 
-**[Optional<? extends com.formance.formance_sdk.models.operations.TestConfigResponse>](../../models/operations/TestConfigResponse.md)**
+**[com.formance.formance_sdk.models.operations.TestConfigResponse](../../models/operations/TestConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | */*                                 |
+| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |

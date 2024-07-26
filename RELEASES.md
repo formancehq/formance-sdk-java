@@ -119,3 +119,13 @@ Based on:
 - [java v2.5.0] .
 ### Releases
 - [Maven Central v2.5.0] https://central.sonatype.com/artifact/com.formance/formance-sdk/2.5.0 - .
+
+## 2024-07-26 00:23:16
+### Changes
+Based on:
+- OpenAPI Doc v2.0.3 
+- Speakeasy CLI 1.346.0 (2.379.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.6.0] .
+### Releases
+- [Maven Central v2.6.0] https://central.sonatype.com/artifact/com.formance/formance-sdk/2.6.0 - .

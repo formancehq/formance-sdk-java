@@ -12,7 +12,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 java:
-  version: 2.5.0
+  version: 2.6.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: formance-sdk
@@ -32,6 +32,10 @@ java:
       shared: models/shared
       webhooks: models/webhooks
   inputModelSuffix: input
+  license:
+    name: The MIT License (MIT)
+    shortName: MIT
+    url: https://mit-license.org/
   maxMethodParams: 0
   ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   outputModelSuffix: output
