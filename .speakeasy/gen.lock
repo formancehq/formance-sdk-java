@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 557eedeee9274e36d9dff9f52eaed33a
-  docVersion: v2.0.3
-  speakeasyVersion: 1.346.0
-  generationVersion: 2.379.3
-  releaseVersion: 2.6.0
-  configChecksum: 6814669f87c44370d51f74d5c32fe833
+  docChecksum: e0806007d1c13b4e1b4ce5b3f5144d5e
+  docVersion: v2.0.4
+  speakeasyVersion: 1.350.0
+  generationVersion: 2.384.1
+  releaseVersion: 3.0.0
+  configChecksum: b1abc62247f2da6924d1a5ce977fc76a
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.26.5
+    core: 3.27.0
     deprecations: 2.81.1
     errors: 0.1.2
     getRequestBodies: 2.81.1
@@ -25,6 +25,7 @@ features:
     ignores: 2.81.1
     nameOverrides: 2.81.3
     nullables: 0.1.0
+    oauth2ClientCredentials: 0.0.2
     sdkHooks: 0.1.0
     unions: 0.0.4
 generatedFiles:
@@ -1774,4 +1775,5 @@ generatedFiles:
   - docs/sdks/wallets/README.md
   - docs/sdks/webhooks/README.md
   - USAGE.md
+  - src/main/java/com/formance/formance_sdk/hooks/ClientCredentialsHook.java
   - CONTRIBUTING.md

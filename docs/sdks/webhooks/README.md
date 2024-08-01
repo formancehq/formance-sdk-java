@@ -23,7 +23,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -40,7 +39,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -103,7 +103,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -120,7 +119,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -182,7 +182,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -199,7 +198,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -258,7 +258,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -275,7 +274,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -332,7 +332,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -349,7 +348,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -418,7 +418,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -435,7 +434,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -499,7 +499,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -516,7 +515,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 

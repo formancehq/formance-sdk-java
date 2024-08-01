@@ -27,7 +27,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:2.6.0'
+implementation 'com.formance:formance-sdk:3.0.0'
 ```
 
 Maven:
@@ -35,7 +35,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>2.6.0</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
@@ -65,7 +65,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -82,7 +81,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -319,7 +319,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -337,7 +336,8 @@ public class Application {
             SDK sdk = SDK.builder()
                 .serverIndex(0)
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -367,7 +367,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -385,7 +384,8 @@ public class Application {
             SDK sdk = SDK.builder()
                 .serverURL("http://localhost")
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -424,7 +424,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -441,7 +440,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
@@ -490,20 +490,20 @@ public class Application {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security scheme globally:
+This SDK supports the following security schemes globally:
 
-| Name            | Type            | Scheme          |
-| --------------- | --------------- | --------------- |
-| `authorization` | oauth2          | OAuth2 token    |
+| Name           | Type           | Scheme         |
+| -------------- | -------------- | -------------- |
+| `clientID`     | oauth2         | OAuth2 token   |
+| `clientSecret` | oauth2         | OAuth2 token   |
 
-You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```java
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.utils.EventStream;
 import java.math.BigDecimal;
 import java.math.BigDecimal;
@@ -520,7 +520,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .authorization("<YOUR_AUTHORIZATION_HERE>")
+                    .clientID("")
+                    .clientSecret("")
                     .build())
                 .build();
 
