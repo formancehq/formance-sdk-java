@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.AccountResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetAccountResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetAccountResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.AccountResponse> accountResponse;
+    private Optional<? extends AccountResponse> accountResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
 
     @JsonCreator
     public GetAccountResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.AccountResponse> accountResponse,
+            Optional<? extends AccountResponse> accountResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.AccountResponse> accountResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.AccountResponse>) accountResponse;
+    public Optional<AccountResponse> accountResponse() {
+        return (Optional<AccountResponse>) accountResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    public GetAccountResponse withAccountResponse(com.formance.formance_sdk.models.shared.AccountResponse accountResponse) {
+    public GetAccountResponse withAccountResponse(AccountResponse accountResponse) {
         Utils.checkNotNull(accountResponse, "accountResponse");
         this.accountResponse = Optional.ofNullable(accountResponse);
         return this;
@@ -110,7 +114,7 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    public GetAccountResponse withAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.AccountResponse> accountResponse) {
+    public GetAccountResponse withAccountResponse(Optional<? extends AccountResponse> accountResponse) {
         Utils.checkNotNull(accountResponse, "accountResponse");
         this.accountResponse = accountResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
         }
         GetAccountResponse other = (GetAccountResponse) o;
         return 
-            java.util.Objects.deepEquals(this.accountResponse, other.accountResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.accountResponse, other.accountResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accountResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.AccountResponse> accountResponse = Optional.empty();
+        private Optional<? extends AccountResponse> accountResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
         /**
          * OK
          */
-        public Builder accountResponse(com.formance.formance_sdk.models.shared.AccountResponse accountResponse) {
+        public Builder accountResponse(AccountResponse accountResponse) {
             Utils.checkNotNull(accountResponse, "accountResponse");
             this.accountResponse = Optional.ofNullable(accountResponse);
             return this;
@@ -203,7 +207,7 @@ public class GetAccountResponse implements com.formance.formance_sdk.utils.Respo
         /**
          * OK
          */
-        public Builder accountResponse(Optional<? extends com.formance.formance_sdk.models.shared.AccountResponse> accountResponse) {
+        public Builder accountResponse(Optional<? extends AccountResponse> accountResponse) {
             Utils.checkNotNull(accountResponse, "accountResponse");
             this.accountResponse = accountResponse;
             return this;

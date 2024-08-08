@@ -4,19 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Account {
 
@@ -25,17 +27,17 @@ public class Account {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> metadata;
+    private Optional<? extends Map<String, Object>> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends String> type;
+    private Optional<String> type;
 
     @JsonCreator
     public Account(
             @JsonProperty("address") String address,
-            @JsonProperty("metadata") Optional<? extends java.util.Map<String, java.lang.Object>> metadata,
-            @JsonProperty("type") Optional<? extends String> type) {
+            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
+            @JsonProperty("type") Optional<String> type) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(type, "type");
@@ -56,14 +58,13 @@ public class Account {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> type() {
-        return (Optional<String>) type;
+        return type;
     }
 
     public final static Builder builder() {
@@ -76,13 +77,13 @@ public class Account {
         return this;
     }
 
-    public Account withMetadata(java.util.Map<String, java.lang.Object> metadata) {
+    public Account withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
-    public Account withMetadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+    public Account withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -94,7 +95,7 @@ public class Account {
         return this;
     }
 
-    public Account withType(Optional<? extends String> type) {
+    public Account withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -110,14 +111,14 @@ public class Account {
         }
         Account other = (Account) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.type, other.type);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             metadata,
             type);
@@ -135,9 +136,9 @@ public class Account {
  
         private String address;
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> metadata = Optional.empty();
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
  
-        private Optional<? extends String> type = Optional.empty();  
+        private Optional<String> type = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -149,13 +150,13 @@ public class Account {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, java.lang.Object> metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -167,7 +168,7 @@ public class Account {
             return this;
         }
 
-        public Builder type(Optional<? extends String> type) {
+        public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

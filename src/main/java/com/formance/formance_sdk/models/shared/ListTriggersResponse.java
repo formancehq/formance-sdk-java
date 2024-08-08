@@ -4,31 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class ListTriggersResponse {
 
     @JsonProperty("data")
-    private java.util.List<Trigger> data;
+    private List<Trigger> data;
 
     @JsonCreator
     public ListTriggersResponse(
-            @JsonProperty("data") java.util.List<Trigger> data) {
+            @JsonProperty("data") List<Trigger> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
     @JsonIgnore
-    public java.util.List<Trigger> data() {
+    public List<Trigger> data() {
         return data;
     }
 
@@ -36,7 +36,7 @@ public class ListTriggersResponse {
         return new Builder();
     }
 
-    public ListTriggersResponse withData(java.util.List<Trigger> data) {
+    public ListTriggersResponse withData(List<Trigger> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -52,12 +52,12 @@ public class ListTriggersResponse {
         }
         ListTriggersResponse other = (ListTriggersResponse) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data);
+            Objects.deepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data);
     }
     
@@ -69,13 +69,13 @@ public class ListTriggersResponse {
     
     public final static class Builder {
  
-        private java.util.List<Trigger> data;  
+        private List<Trigger> data;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(java.util.List<Trigger> data) {
+        public Builder data(List<Trigger> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

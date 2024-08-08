@@ -4,17 +4,18 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class RevertTransactionRequest {
 
@@ -22,7 +23,7 @@ public class RevertTransactionRequest {
      * Allow to disable balances checks
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=disableChecks")
-    private Optional<? extends Boolean> disableChecks;
+    private Optional<Boolean> disableChecks;
 
     /**
      * Name of the ledger.
@@ -38,7 +39,7 @@ public class RevertTransactionRequest {
 
     @JsonCreator
     public RevertTransactionRequest(
-            Optional<? extends Boolean> disableChecks,
+            Optional<Boolean> disableChecks,
             String ledger,
             BigInteger txid) {
         Utils.checkNotNull(disableChecks, "disableChecks");
@@ -58,10 +59,9 @@ public class RevertTransactionRequest {
     /**
      * Allow to disable balances checks
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> disableChecks() {
-        return (Optional<Boolean>) disableChecks;
+        return disableChecks;
     }
 
     /**
@@ -96,7 +96,7 @@ public class RevertTransactionRequest {
     /**
      * Allow to disable balances checks
      */
-    public RevertTransactionRequest withDisableChecks(Optional<? extends Boolean> disableChecks) {
+    public RevertTransactionRequest withDisableChecks(Optional<Boolean> disableChecks) {
         Utils.checkNotNull(disableChecks, "disableChecks");
         this.disableChecks = disableChecks;
         return this;
@@ -138,14 +138,14 @@ public class RevertTransactionRequest {
         }
         RevertTransactionRequest other = (RevertTransactionRequest) o;
         return 
-            java.util.Objects.deepEquals(this.disableChecks, other.disableChecks) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.txid, other.txid);
+            Objects.deepEquals(this.disableChecks, other.disableChecks) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             disableChecks,
             ledger,
             txid);
@@ -161,7 +161,7 @@ public class RevertTransactionRequest {
     
     public final static class Builder {
  
-        private Optional<? extends Boolean> disableChecks = Optional.empty();
+        private Optional<Boolean> disableChecks = Optional.empty();
  
         private String ledger;
  
@@ -183,7 +183,7 @@ public class RevertTransactionRequest {
         /**
          * Allow to disable balances checks
          */
-        public Builder disableChecks(Optional<? extends Boolean> disableChecks) {
+        public Builder disableChecks(Optional<Boolean> disableChecks) {
             Utils.checkNotNull(disableChecks, "disableChecks");
             this.disableChecks = disableChecks;
             return this;

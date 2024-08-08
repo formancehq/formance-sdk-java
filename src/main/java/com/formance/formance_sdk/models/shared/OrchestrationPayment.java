@@ -4,27 +4,27 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationPayment {
 
     @JsonProperty("adjustments")
-    private java.util.List<OrchestrationPaymentAdjustment> adjustments;
+    private List<OrchestrationPaymentAdjustment> adjustments;
 
     @JsonProperty("asset")
     private String asset;
@@ -73,7 +73,7 @@ public class OrchestrationPayment {
 
     @JsonCreator
     public OrchestrationPayment(
-            @JsonProperty("adjustments") java.util.List<OrchestrationPaymentAdjustment> adjustments,
+            @JsonProperty("adjustments") List<OrchestrationPaymentAdjustment> adjustments,
             @JsonProperty("asset") String asset,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
@@ -121,7 +121,7 @@ public class OrchestrationPayment {
     }
     
     public OrchestrationPayment(
-            java.util.List<OrchestrationPaymentAdjustment> adjustments,
+            List<OrchestrationPaymentAdjustment> adjustments,
             String asset,
             String connectorID,
             OffsetDateTime createdAt,
@@ -137,7 +137,7 @@ public class OrchestrationPayment {
     }
 
     @JsonIgnore
-    public java.util.List<OrchestrationPaymentAdjustment> adjustments() {
+    public List<OrchestrationPaymentAdjustment> adjustments() {
         return adjustments;
     }
 
@@ -218,7 +218,7 @@ public class OrchestrationPayment {
         return new Builder();
     }
 
-    public OrchestrationPayment withAdjustments(java.util.List<OrchestrationPaymentAdjustment> adjustments) {
+    public OrchestrationPayment withAdjustments(List<OrchestrationPaymentAdjustment> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
         this.adjustments = adjustments;
         return this;
@@ -341,26 +341,26 @@ public class OrchestrationPayment {
         }
         OrchestrationPayment other = (OrchestrationPayment) o;
         return 
-            java.util.Objects.deepEquals(this.adjustments, other.adjustments) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.initialAmount, other.initialAmount) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.provider, other.provider) &&
-            java.util.Objects.deepEquals(this.raw, other.raw) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.scheme, other.scheme) &&
-            java.util.Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.type, other.type);
+            Objects.deepEquals(this.adjustments, other.adjustments) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.initialAmount, other.initialAmount) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.provider, other.provider) &&
+            Objects.deepEquals(this.raw, other.raw) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.scheme, other.scheme) &&
+            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             adjustments,
             asset,
             connectorID,
@@ -400,7 +400,7 @@ public class OrchestrationPayment {
     
     public final static class Builder {
  
-        private java.util.List<OrchestrationPaymentAdjustment> adjustments;
+        private List<OrchestrationPaymentAdjustment> adjustments;
  
         private String asset;
  
@@ -434,7 +434,7 @@ public class OrchestrationPayment {
           // force use of static builder() method
         }
 
-        public Builder adjustments(java.util.List<OrchestrationPaymentAdjustment> adjustments) {
+        public Builder adjustments(List<OrchestrationPaymentAdjustment> adjustments) {
             Utils.checkNotNull(adjustments, "adjustments");
             this.adjustments = adjustments;
             return this;

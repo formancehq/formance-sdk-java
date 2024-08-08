@@ -4,22 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class DebitWalletRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest;
+
+    /**
+     * Use an idempotency key
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
+    private Optional<String> idempotencyKey;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
@@ -27,22 +33,33 @@ public class DebitWalletRequest {
     @JsonCreator
     public DebitWalletRequest(
             Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest,
+            Optional<String> idempotencyKey,
             String id) {
         Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(id, "id");
         this.debitWalletRequest = debitWalletRequest;
+        this.idempotencyKey = idempotencyKey;
         this.id = id;
     }
     
     public DebitWalletRequest(
             String id) {
-        this(Optional.empty(), id);
+        this(Optional.empty(), Optional.empty(), id);
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest() {
         return (Optional<com.formance.formance_sdk.models.shared.DebitWalletRequest>) debitWalletRequest;
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @JsonIgnore
@@ -66,6 +83,24 @@ public class DebitWalletRequest {
         return this;
     }
 
+    /**
+     * Use an idempotency key
+     */
+    public DebitWalletRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    public DebitWalletRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public DebitWalletRequest withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -82,14 +117,16 @@ public class DebitWalletRequest {
         }
         DebitWalletRequest other = (DebitWalletRequest) o;
         return 
-            java.util.Objects.deepEquals(this.debitWalletRequest, other.debitWalletRequest) &&
-            java.util.Objects.deepEquals(this.id, other.id);
+            Objects.deepEquals(this.debitWalletRequest, other.debitWalletRequest) &&
+            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Objects.deepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             debitWalletRequest,
+            idempotencyKey,
             id);
     }
     
@@ -97,12 +134,15 @@ public class DebitWalletRequest {
     public String toString() {
         return Utils.toString(DebitWalletRequest.class,
                 "debitWalletRequest", debitWalletRequest,
+                "idempotencyKey", idempotencyKey,
                 "id", id);
     }
     
     public final static class Builder {
  
         private Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest = Optional.empty();
+ 
+        private Optional<String> idempotencyKey = Optional.empty();
  
         private String id;  
         
@@ -122,6 +162,24 @@ public class DebitWalletRequest {
             return this;
         }
 
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -131,6 +189,7 @@ public class DebitWalletRequest {
         public DebitWalletRequest build() {
             return new DebitWalletRequest(
                 debitWalletRequest,
+                idempotencyKey,
                 id);
         }
     }

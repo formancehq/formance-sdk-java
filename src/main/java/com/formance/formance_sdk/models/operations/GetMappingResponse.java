@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.MappingResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetMappingResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetMappingResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.MappingResponse> mappingResponse;
+    private Optional<? extends MappingResponse> mappingResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
     @JsonCreator
     public GetMappingResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.MappingResponse> mappingResponse,
+            Optional<? extends MappingResponse> mappingResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.MappingResponse> mappingResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.MappingResponse>) mappingResponse;
+    public Optional<MappingResponse> mappingResponse() {
+        return (Optional<MappingResponse>) mappingResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    public GetMappingResponse withMappingResponse(com.formance.formance_sdk.models.shared.MappingResponse mappingResponse) {
+    public GetMappingResponse withMappingResponse(MappingResponse mappingResponse) {
         Utils.checkNotNull(mappingResponse, "mappingResponse");
         this.mappingResponse = Optional.ofNullable(mappingResponse);
         return this;
@@ -119,7 +123,7 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    public GetMappingResponse withMappingResponse(Optional<? extends com.formance.formance_sdk.models.shared.MappingResponse> mappingResponse) {
+    public GetMappingResponse withMappingResponse(Optional<? extends MappingResponse> mappingResponse) {
         Utils.checkNotNull(mappingResponse, "mappingResponse");
         this.mappingResponse = mappingResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
         }
         GetMappingResponse other = (GetMappingResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.mappingResponse, other.mappingResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.mappingResponse, other.mappingResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             mappingResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.MappingResponse> mappingResponse = Optional.empty();
+        private Optional<? extends MappingResponse> mappingResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
         /**
          * OK
          */
-        public Builder mappingResponse(com.formance.formance_sdk.models.shared.MappingResponse mappingResponse) {
+        public Builder mappingResponse(MappingResponse mappingResponse) {
             Utils.checkNotNull(mappingResponse, "mappingResponse");
             this.mappingResponse = Optional.ofNullable(mappingResponse);
             return this;
@@ -212,7 +216,7 @@ public class GetMappingResponse implements com.formance.formance_sdk.utils.Respo
         /**
          * OK
          */
-        public Builder mappingResponse(Optional<? extends com.formance.formance_sdk.models.shared.MappingResponse> mappingResponse) {
+        public Builder mappingResponse(Optional<? extends MappingResponse> mappingResponse) {
             Utils.checkNotNull(mappingResponse, "mappingResponse");
             this.mappingResponse = mappingResponse;
             return this;

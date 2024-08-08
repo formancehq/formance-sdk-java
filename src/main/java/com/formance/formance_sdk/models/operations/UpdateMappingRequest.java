@@ -4,22 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.Mapping;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateMappingRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.Mapping> mapping;
+    private Optional<? extends Mapping> mapping;
 
     /**
      * Name of the ledger.
@@ -29,7 +30,7 @@ public class UpdateMappingRequest {
 
     @JsonCreator
     public UpdateMappingRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.Mapping> mapping,
+            Optional<? extends Mapping> mapping,
             String ledger) {
         Utils.checkNotNull(mapping, "mapping");
         Utils.checkNotNull(ledger, "ledger");
@@ -44,8 +45,8 @@ public class UpdateMappingRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.Mapping> mapping() {
-        return (Optional<com.formance.formance_sdk.models.shared.Mapping>) mapping;
+    public Optional<Mapping> mapping() {
+        return (Optional<Mapping>) mapping;
     }
 
     /**
@@ -60,13 +61,13 @@ public class UpdateMappingRequest {
         return new Builder();
     }
 
-    public UpdateMappingRequest withMapping(com.formance.formance_sdk.models.shared.Mapping mapping) {
+    public UpdateMappingRequest withMapping(Mapping mapping) {
         Utils.checkNotNull(mapping, "mapping");
         this.mapping = Optional.ofNullable(mapping);
         return this;
     }
 
-    public UpdateMappingRequest withMapping(Optional<? extends com.formance.formance_sdk.models.shared.Mapping> mapping) {
+    public UpdateMappingRequest withMapping(Optional<? extends Mapping> mapping) {
         Utils.checkNotNull(mapping, "mapping");
         this.mapping = mapping;
         return this;
@@ -91,13 +92,13 @@ public class UpdateMappingRequest {
         }
         UpdateMappingRequest other = (UpdateMappingRequest) o;
         return 
-            java.util.Objects.deepEquals(this.mapping, other.mapping) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.mapping, other.mapping) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             mapping,
             ledger);
     }
@@ -111,7 +112,7 @@ public class UpdateMappingRequest {
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.Mapping> mapping = Optional.empty();
+        private Optional<? extends Mapping> mapping = Optional.empty();
  
         private String ledger;  
         
@@ -119,13 +120,13 @@ public class UpdateMappingRequest {
           // force use of static builder() method
         }
 
-        public Builder mapping(com.formance.formance_sdk.models.shared.Mapping mapping) {
+        public Builder mapping(Mapping mapping) {
             Utils.checkNotNull(mapping, "mapping");
             this.mapping = Optional.ofNullable(mapping);
             return this;
         }
 
-        public Builder mapping(Optional<? extends com.formance.formance_sdk.models.shared.Mapping> mapping) {
+        public Builder mapping(Optional<? extends Mapping> mapping) {
             Utils.checkNotNull(mapping, "mapping");
             this.mapping = mapping;
             return this;

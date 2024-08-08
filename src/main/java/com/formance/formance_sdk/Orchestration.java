@@ -5,27 +5,139 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
+import com.formance.formance_sdk.models.operations.CancelEventRequest;
+import com.formance.formance_sdk.models.operations.CancelEventRequestBuilder;
+import com.formance.formance_sdk.models.operations.CancelEventResponse;
+import com.formance.formance_sdk.models.operations.CreateTriggerRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateTriggerResponse;
+import com.formance.formance_sdk.models.operations.CreateWorkflowRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateWorkflowResponse;
+import com.formance.formance_sdk.models.operations.DeleteTriggerRequest;
+import com.formance.formance_sdk.models.operations.DeleteTriggerRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeleteTriggerResponse;
+import com.formance.formance_sdk.models.operations.DeleteWorkflowRequest;
+import com.formance.formance_sdk.models.operations.DeleteWorkflowRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest;
+import com.formance.formance_sdk.models.operations.GetInstanceHistoryRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse;
+import com.formance.formance_sdk.models.operations.GetInstanceRequest;
+import com.formance.formance_sdk.models.operations.GetInstanceRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetInstanceResponse;
+import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest;
+import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse;
+import com.formance.formance_sdk.models.operations.GetWorkflowRequest;
+import com.formance.formance_sdk.models.operations.GetWorkflowRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetWorkflowResponse;
+import com.formance.formance_sdk.models.operations.ListInstancesRequest;
+import com.formance.formance_sdk.models.operations.ListInstancesRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListInstancesResponse;
+import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest;
+import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse;
+import com.formance.formance_sdk.models.operations.ListTriggersRequest;
+import com.formance.formance_sdk.models.operations.ListTriggersRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListTriggersResponse;
+import com.formance.formance_sdk.models.operations.ListWorkflowsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListWorkflowsResponse;
+import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse;
+import com.formance.formance_sdk.models.operations.ReadTriggerRequest;
+import com.formance.formance_sdk.models.operations.ReadTriggerRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReadTriggerResponse;
+import com.formance.formance_sdk.models.operations.RunWorkflowRequest;
+import com.formance.formance_sdk.models.operations.RunWorkflowRequestBuilder;
+import com.formance.formance_sdk.models.operations.RunWorkflowResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.models.operations.SendEventRequest;
+import com.formance.formance_sdk.models.operations.SendEventRequestBuilder;
+import com.formance.formance_sdk.models.operations.SendEventResponse;
+import com.formance.formance_sdk.models.operations.TestTriggerRequest;
+import com.formance.formance_sdk.models.operations.TestTriggerRequestBuilder;
+import com.formance.formance_sdk.models.operations.TestTriggerResponse;
+import com.formance.formance_sdk.models.operations.V2CancelEventRequest;
+import com.formance.formance_sdk.models.operations.V2CancelEventRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2CancelEventResponse;
+import com.formance.formance_sdk.models.operations.V2CreateTriggerRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2CreateTriggerResponse;
+import com.formance.formance_sdk.models.operations.V2CreateWorkflowRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse;
+import com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteTriggerRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse;
+import com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest;
+import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse;
+import com.formance.formance_sdk.models.operations.V2GetInstanceRequest;
+import com.formance.formance_sdk.models.operations.V2GetInstanceRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetInstanceResponse;
+import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest;
+import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse;
+import com.formance.formance_sdk.models.operations.V2GetServerInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetServerInfoResponse;
+import com.formance.formance_sdk.models.operations.V2GetWorkflowRequest;
+import com.formance.formance_sdk.models.operations.V2GetWorkflowRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetWorkflowResponse;
+import com.formance.formance_sdk.models.operations.V2ListInstancesRequest;
+import com.formance.formance_sdk.models.operations.V2ListInstancesRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListInstancesResponse;
+import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest;
+import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse;
+import com.formance.formance_sdk.models.operations.V2ListTriggersRequest;
+import com.formance.formance_sdk.models.operations.V2ListTriggersRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
+import com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest;
+import com.formance.formance_sdk.models.operations.V2ListWorkflowsRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
+import com.formance.formance_sdk.models.operations.V2ReadTriggerRequest;
+import com.formance.formance_sdk.models.operations.V2ReadTriggerRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ReadTriggerResponse;
+import com.formance.formance_sdk.models.operations.V2RunWorkflowRequest;
+import com.formance.formance_sdk.models.operations.V2RunWorkflowRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
+import com.formance.formance_sdk.models.operations.V2SendEventRequest;
+import com.formance.formance_sdk.models.operations.V2SendEventRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2SendEventResponse;
+import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
+import com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse;
+import com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse;
+import com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse;
+import com.formance.formance_sdk.models.shared.ListRunsResponse;
+import com.formance.formance_sdk.models.shared.ServerInfo;
+import com.formance.formance_sdk.models.shared.TriggerData;
+import com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest;
+import com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse;
+import com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse;
+import com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceResponse;
+import com.formance.formance_sdk.models.shared.V2ListRunsResponse;
+import com.formance.formance_sdk.models.shared.V2ServerInfo;
+import com.formance.formance_sdk.models.shared.V2TestTriggerResponse;
+import com.formance.formance_sdk.models.shared.V2TriggerData;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.JSON;
-import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class Orchestration implements
             MethodCallCancelEvent,
@@ -76,8 +188,8 @@ public class Orchestration implements
      * Cancel a running workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CancelEventRequestBuilder cancelEvent() {
-        return new com.formance.formance_sdk.models.operations.CancelEventRequestBuilder(this);
+    public CancelEventRequestBuilder cancelEvent() {
+        return new CancelEventRequestBuilder(this);
     }
 
     /**
@@ -87,11 +199,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CancelEventResponse cancelEvent(
-            com.formance.formance_sdk.models.operations.CancelEventRequest request) throws Exception {
+    public CancelEventResponse cancelEvent(
+            CancelEventRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.CancelEventRequest.class,
+                CancelEventRequest.class,
                 _baseUrl,
                 "/api/orchestration/instances/{instanceID}/abort",
                 request, null);
@@ -108,7 +220,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("cancelEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "cancelEvent", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -116,18 +231,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("cancelEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "cancelEvent",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("cancelEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "cancelEvent",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("cancelEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "cancelEvent",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -135,14 +260,14 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CancelEventResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CancelEventResponse
+        CancelEventResponse.Builder _resBuilder = 
+            CancelEventResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CancelEventResponse _res = _resBuilder.build();
+        CancelEventResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -150,23 +275,23 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -176,8 +301,8 @@ public class Orchestration implements
      * Create trigger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateTriggerRequestBuilder createTrigger() {
-        return new com.formance.formance_sdk.models.operations.CreateTriggerRequestBuilder(this);
+    public CreateTriggerRequestBuilder createTrigger() {
+        return new CreateTriggerRequestBuilder(this);
     }
 
     /**
@@ -186,9 +311,10 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateTriggerResponse createTriggerDirect() throws Exception {
+    public CreateTriggerResponse createTriggerDirect() throws Exception {
         return createTrigger(Optional.empty());
     }
+    
     /**
      * Create trigger
      * Create trigger
@@ -196,18 +322,23 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateTriggerResponse createTrigger(
-            Optional<? extends com.formance.formance_sdk.models.shared.TriggerData> request) throws Exception {
+    public CreateTriggerResponse createTrigger(
+            Optional<? extends TriggerData> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/triggers");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.formance.formance_sdk.models.shared.TriggerData>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends TriggerData>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -220,7 +351,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createTrigger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -228,18 +362,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createTrigger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -247,49 +391,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateTriggerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateTriggerResponse
+        CreateTriggerResponse.Builder _resBuilder = 
+            CreateTriggerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateTriggerResponse _res = _resBuilder.build();
+        CreateTriggerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.CreateTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateTriggerResponse>() {});
-                _res.withCreateTriggerResponse(java.util.Optional.ofNullable(_out));
+                _res.withCreateTriggerResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -299,8 +443,8 @@ public class Orchestration implements
      * Create a workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateWorkflowRequestBuilder createWorkflow() {
-        return new com.formance.formance_sdk.models.operations.CreateWorkflowRequestBuilder(this);
+    public CreateWorkflowRequestBuilder createWorkflow() {
+        return new CreateWorkflowRequestBuilder(this);
     }
 
     /**
@@ -309,9 +453,10 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateWorkflowResponse createWorkflowDirect() throws Exception {
+    public CreateWorkflowResponse createWorkflowDirect() throws Exception {
         return createWorkflow(Optional.empty());
     }
+    
     /**
      * Create workflow
      * Create a workflow
@@ -319,18 +464,23 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateWorkflowResponse createWorkflow(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowRequest> request) throws Exception {
+    public CreateWorkflowResponse createWorkflow(
+            Optional<? extends CreateWorkflowRequest> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/workflows");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends CreateWorkflowRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -343,7 +493,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createWorkflow", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -351,18 +504,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createWorkflow",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -370,49 +533,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateWorkflowResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateWorkflowResponse
+        CreateWorkflowResponse.Builder _resBuilder = 
+            CreateWorkflowResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateWorkflowResponse _res = _resBuilder.build();
+        CreateWorkflowResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.CreateWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateWorkflowResponse>() {});
-                _res.withCreateWorkflowResponse(java.util.Optional.ofNullable(_out));
+                _res.withCreateWorkflowResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -422,8 +585,8 @@ public class Orchestration implements
      * Read trigger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeleteTriggerRequestBuilder deleteTrigger() {
-        return new com.formance.formance_sdk.models.operations.DeleteTriggerRequestBuilder(this);
+    public DeleteTriggerRequestBuilder deleteTrigger() {
+        return new DeleteTriggerRequestBuilder(this);
     }
 
     /**
@@ -433,11 +596,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeleteTriggerResponse deleteTrigger(
-            com.formance.formance_sdk.models.operations.DeleteTriggerRequest request) throws Exception {
+    public DeleteTriggerResponse deleteTrigger(
+            DeleteTriggerRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeleteTriggerRequest.class,
+                DeleteTriggerRequest.class,
                 _baseUrl,
                 "/api/orchestration/triggers/{triggerID}",
                 request, null);
@@ -454,7 +617,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deleteTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deleteTrigger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -462,18 +628,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deleteTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deleteTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deleteTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deleteTrigger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deleteTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deleteTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -481,14 +657,14 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeleteTriggerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeleteTriggerResponse
+        DeleteTriggerResponse.Builder _resBuilder = 
+            DeleteTriggerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeleteTriggerResponse _res = _resBuilder.build();
+        DeleteTriggerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -496,23 +672,23 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -522,8 +698,8 @@ public class Orchestration implements
      * Delete a flow by id
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeleteWorkflowRequestBuilder deleteWorkflow() {
-        return new com.formance.formance_sdk.models.operations.DeleteWorkflowRequestBuilder(this);
+    public DeleteWorkflowRequestBuilder deleteWorkflow() {
+        return new DeleteWorkflowRequestBuilder(this);
     }
 
     /**
@@ -533,11 +709,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeleteWorkflowResponse deleteWorkflow(
-            com.formance.formance_sdk.models.operations.DeleteWorkflowRequest request) throws Exception {
+    public DeleteWorkflowResponse deleteWorkflow(
+            DeleteWorkflowRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeleteWorkflowRequest.class,
+                DeleteWorkflowRequest.class,
                 _baseUrl,
                 "/api/orchestration/workflows/{flowId}",
                 request, null);
@@ -554,7 +730,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deleteWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deleteWorkflow", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -562,18 +741,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deleteWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deleteWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deleteWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deleteWorkflow",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deleteWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deleteWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -581,14 +770,14 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeleteWorkflowResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeleteWorkflowResponse
+        DeleteWorkflowResponse.Builder _resBuilder = 
+            DeleteWorkflowResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeleteWorkflowResponse _res = _resBuilder.build();
+        DeleteWorkflowResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -596,23 +785,23 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -622,8 +811,8 @@ public class Orchestration implements
      * Get a workflow instance by id
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetInstanceRequestBuilder getInstance() {
-        return new com.formance.formance_sdk.models.operations.GetInstanceRequestBuilder(this);
+    public GetInstanceRequestBuilder getInstance() {
+        return new GetInstanceRequestBuilder(this);
     }
 
     /**
@@ -633,11 +822,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetInstanceResponse getInstance(
-            com.formance.formance_sdk.models.operations.GetInstanceRequest request) throws Exception {
+    public GetInstanceResponse getInstance(
+            GetInstanceRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetInstanceRequest.class,
+                GetInstanceRequest.class,
                 _baseUrl,
                 "/api/orchestration/instances/{instanceID}",
                 request, null);
@@ -654,7 +843,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getInstance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getInstance", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -662,18 +854,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getInstance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getInstance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getInstance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getInstance",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getInstance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getInstance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -681,49 +883,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetInstanceResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetInstanceResponse
+        GetInstanceResponse.Builder _resBuilder = 
+            GetInstanceResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetInstanceResponse _res = _resBuilder.build();
+        GetInstanceResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse _out = Utils.mapper().readValue(
+                GetWorkflowInstanceResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse>() {});
-                _res.withGetWorkflowInstanceResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<GetWorkflowInstanceResponse>() {});
+                _res.withGetWorkflowInstanceResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -733,8 +935,8 @@ public class Orchestration implements
      * Get a workflow instance history by id
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetInstanceHistoryRequestBuilder getInstanceHistory() {
-        return new com.formance.formance_sdk.models.operations.GetInstanceHistoryRequestBuilder(this);
+    public GetInstanceHistoryRequestBuilder getInstanceHistory() {
+        return new GetInstanceHistoryRequestBuilder(this);
     }
 
     /**
@@ -744,11 +946,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse getInstanceHistory(
-            com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest request) throws Exception {
+    public GetInstanceHistoryResponse getInstanceHistory(
+            GetInstanceHistoryRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest.class,
+                GetInstanceHistoryRequest.class,
                 _baseUrl,
                 "/api/orchestration/instances/{instanceID}/history",
                 request, null);
@@ -765,7 +967,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getInstanceHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getInstanceHistory", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -773,18 +978,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getInstanceHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getInstanceHistory",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getInstanceHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getInstanceHistory",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getInstanceHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getInstanceHistory",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -792,49 +1007,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse
+        GetInstanceHistoryResponse.Builder _resBuilder = 
+            GetInstanceHistoryResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse _res = _resBuilder.build();
+        GetInstanceHistoryResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse _out = Utils.mapper().readValue(
+                GetWorkflowInstanceHistoryResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryResponse>() {});
-                _res.withGetWorkflowInstanceHistoryResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<GetWorkflowInstanceHistoryResponse>() {});
+                _res.withGetWorkflowInstanceHistoryResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -844,8 +1059,8 @@ public class Orchestration implements
      * Get a workflow instance stage history
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequestBuilder getInstanceStageHistory() {
-        return new com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequestBuilder(this);
+    public GetInstanceStageHistoryRequestBuilder getInstanceStageHistory() {
+        return new GetInstanceStageHistoryRequestBuilder(this);
     }
 
     /**
@@ -855,11 +1070,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse getInstanceStageHistory(
-            com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest request) throws Exception {
+    public GetInstanceStageHistoryResponse getInstanceStageHistory(
+            GetInstanceStageHistoryRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest.class,
+                GetInstanceStageHistoryRequest.class,
                 _baseUrl,
                 "/api/orchestration/instances/{instanceID}/stages/{number}/history",
                 request, null);
@@ -876,7 +1091,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getInstanceStageHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getInstanceStageHistory", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -884,18 +1102,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getInstanceStageHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getInstanceStageHistory",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getInstanceStageHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getInstanceStageHistory",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getInstanceStageHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getInstanceStageHistory",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -903,49 +1131,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse
+        GetInstanceStageHistoryResponse.Builder _resBuilder = 
+            GetInstanceStageHistoryResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse _res = _resBuilder.build();
+        GetInstanceStageHistoryResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse _out = Utils.mapper().readValue(
+                GetWorkflowInstanceHistoryStageResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse>() {});
-                _res.withGetWorkflowInstanceHistoryStageResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<GetWorkflowInstanceHistoryStageResponse>() {});
+                _res.withGetWorkflowInstanceHistoryStageResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -955,8 +1183,8 @@ public class Orchestration implements
      * Get a flow by id
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetWorkflowRequestBuilder getWorkflow() {
-        return new com.formance.formance_sdk.models.operations.GetWorkflowRequestBuilder(this);
+    public GetWorkflowRequestBuilder getWorkflow() {
+        return new GetWorkflowRequestBuilder(this);
     }
 
     /**
@@ -966,11 +1194,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetWorkflowResponse getWorkflow(
-            com.formance.formance_sdk.models.operations.GetWorkflowRequest request) throws Exception {
+    public GetWorkflowResponse getWorkflow(
+            GetWorkflowRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetWorkflowRequest.class,
+                GetWorkflowRequest.class,
                 _baseUrl,
                 "/api/orchestration/workflows/{flowId}",
                 request, null);
@@ -987,7 +1215,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getWorkflow", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -995,18 +1226,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getWorkflow",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1014,49 +1255,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetWorkflowResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetWorkflowResponse
+        GetWorkflowResponse.Builder _resBuilder = 
+            GetWorkflowResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetWorkflowResponse _res = _resBuilder.build();
+        GetWorkflowResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.GetWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWorkflowResponse>() {});
-                _res.withGetWorkflowResponse(java.util.Optional.ofNullable(_out));
+                _res.withGetWorkflowResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1066,8 +1307,8 @@ public class Orchestration implements
      * List instances of a workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListInstancesRequestBuilder listInstances() {
-        return new com.formance.formance_sdk.models.operations.ListInstancesRequestBuilder(this);
+    public ListInstancesRequestBuilder listInstances() {
+        return new ListInstancesRequestBuilder(this);
     }
 
     /**
@@ -1077,8 +1318,8 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListInstancesResponse listInstances(
-            com.formance.formance_sdk.models.operations.ListInstancesRequest request) throws Exception {
+    public ListInstancesResponse listInstances(
+            ListInstancesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1090,7 +1331,7 @@ public class Orchestration implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListInstancesRequest.class,
+                ListInstancesRequest.class,
                 request, 
                 null));
 
@@ -1101,7 +1342,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listInstances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listInstances", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1109,18 +1353,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listInstances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listInstances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listInstances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listInstances",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listInstances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listInstances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1128,49 +1382,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListInstancesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListInstancesResponse
+        ListInstancesResponse.Builder _resBuilder = 
+            ListInstancesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListInstancesResponse _res = _resBuilder.build();
+        ListInstancesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ListRunsResponse _out = Utils.mapper().readValue(
+                ListRunsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ListRunsResponse>() {});
-                _res.withListRunsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ListRunsResponse>() {});
+                _res.withListRunsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1180,8 +1434,8 @@ public class Orchestration implements
      * List triggers
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListTriggersRequestBuilder listTriggers() {
-        return new com.formance.formance_sdk.models.operations.ListTriggersRequestBuilder(this);
+    public ListTriggersRequestBuilder listTriggers() {
+        return new ListTriggersRequestBuilder(this);
     }
 
     /**
@@ -1191,8 +1445,8 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListTriggersResponse listTriggers(
-            com.formance.formance_sdk.models.operations.ListTriggersRequest request) throws Exception {
+    public ListTriggersResponse listTriggers(
+            ListTriggersRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1204,7 +1458,7 @@ public class Orchestration implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListTriggersRequest.class,
+                ListTriggersRequest.class,
                 request, 
                 null));
 
@@ -1215,7 +1469,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listTriggers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listTriggers", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1223,18 +1480,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listTriggers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listTriggers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listTriggers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listTriggers",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listTriggers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listTriggers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1242,49 +1509,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListTriggersResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListTriggersResponse
+        ListTriggersResponse.Builder _resBuilder = 
+            ListTriggersResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListTriggersResponse _res = _resBuilder.build();
+        ListTriggersResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ListTriggersResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListTriggersResponse>() {});
-                _res.withListTriggersResponse(java.util.Optional.ofNullable(_out));
+                _res.withListTriggersResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1294,8 +1561,8 @@ public class Orchestration implements
      * List triggers occurrences
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequestBuilder listTriggersOccurrences() {
-        return new com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequestBuilder(this);
+    public ListTriggersOccurrencesRequestBuilder listTriggersOccurrences() {
+        return new ListTriggersOccurrencesRequestBuilder(this);
     }
 
     /**
@@ -1305,11 +1572,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse listTriggersOccurrences(
-            com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest request) throws Exception {
+    public ListTriggersOccurrencesResponse listTriggersOccurrences(
+            ListTriggersOccurrencesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest.class,
+                ListTriggersOccurrencesRequest.class,
                 _baseUrl,
                 "/api/orchestration/triggers/{triggerID}/occurrences",
                 request, null);
@@ -1326,7 +1593,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listTriggersOccurrences", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listTriggersOccurrences", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1334,18 +1604,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listTriggersOccurrences", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listTriggersOccurrences",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listTriggersOccurrences", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listTriggersOccurrences",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listTriggersOccurrences", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listTriggersOccurrences",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1353,49 +1633,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse
+        ListTriggersOccurrencesResponse.Builder _resBuilder = 
+            ListTriggersOccurrencesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse _res = _resBuilder.build();
+        ListTriggersOccurrencesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse>() {});
-                _res.withListTriggersOccurrencesResponse(java.util.Optional.ofNullable(_out));
+                _res.withListTriggersOccurrencesResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1405,8 +1685,8 @@ public class Orchestration implements
      * List registered workflows
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListWorkflowsRequestBuilder listWorkflows() {
-        return new com.formance.formance_sdk.models.operations.ListWorkflowsRequestBuilder(this);
+    public ListWorkflowsRequestBuilder listWorkflows() {
+        return new ListWorkflowsRequestBuilder(this);
     }
 
     /**
@@ -1415,7 +1695,7 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListWorkflowsResponse listWorkflowsDirect() throws Exception {
+    public ListWorkflowsResponse listWorkflowsDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1433,7 +1713,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listWorkflows", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listWorkflows", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1441,18 +1724,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listWorkflows", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listWorkflows",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listWorkflows", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listWorkflows",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listWorkflows", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listWorkflows",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1460,49 +1753,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListWorkflowsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListWorkflowsResponse
+        ListWorkflowsResponse.Builder _resBuilder = 
+            ListWorkflowsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListWorkflowsResponse _res = _resBuilder.build();
+        ListWorkflowsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ListWorkflowsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListWorkflowsResponse>() {});
-                _res.withListWorkflowsResponse(java.util.Optional.ofNullable(_out));
+                _res.withListWorkflowsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1511,8 +1804,8 @@ public class Orchestration implements
      * Get server info
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoRequestBuilder orchestrationgetServerInfo() {
-        return new com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoRequestBuilder(this);
+    public OrchestrationgetServerInfoRequestBuilder orchestrationgetServerInfo() {
+        return new OrchestrationgetServerInfoRequestBuilder(this);
     }
 
     /**
@@ -1520,7 +1813,7 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse orchestrationgetServerInfoDirect() throws Exception {
+    public OrchestrationgetServerInfoResponse orchestrationgetServerInfoDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1538,7 +1831,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("orchestrationgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "orchestrationgetServerInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1546,18 +1842,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("orchestrationgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "orchestrationgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("orchestrationgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "orchestrationgetServerInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("orchestrationgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "orchestrationgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1565,49 +1871,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse
+        OrchestrationgetServerInfoResponse.Builder _resBuilder = 
+            OrchestrationgetServerInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse _res = _resBuilder.build();
+        OrchestrationgetServerInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
+                ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
-                _res.withServerInfo(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ServerInfo>() {});
+                _res.withServerInfo(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1617,8 +1923,8 @@ public class Orchestration implements
      * Read trigger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ReadTriggerRequestBuilder readTrigger() {
-        return new com.formance.formance_sdk.models.operations.ReadTriggerRequestBuilder(this);
+    public ReadTriggerRequestBuilder readTrigger() {
+        return new ReadTriggerRequestBuilder(this);
     }
 
     /**
@@ -1628,11 +1934,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ReadTriggerResponse readTrigger(
-            com.formance.formance_sdk.models.operations.ReadTriggerRequest request) throws Exception {
+    public ReadTriggerResponse readTrigger(
+            ReadTriggerRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ReadTriggerRequest.class,
+                ReadTriggerRequest.class,
                 _baseUrl,
                 "/api/orchestration/triggers/{triggerID}",
                 request, null);
@@ -1649,7 +1955,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("readTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "readTrigger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1657,18 +1966,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("readTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "readTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("readTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "readTrigger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("readTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "readTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1676,49 +1995,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReadTriggerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReadTriggerResponse
+        ReadTriggerResponse.Builder _resBuilder = 
+            ReadTriggerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReadTriggerResponse _res = _resBuilder.build();
+        ReadTriggerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ReadTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReadTriggerResponse>() {});
-                _res.withReadTriggerResponse(java.util.Optional.ofNullable(_out));
+                _res.withReadTriggerResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1728,8 +2047,8 @@ public class Orchestration implements
      * Run workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.RunWorkflowRequestBuilder runWorkflow() {
-        return new com.formance.formance_sdk.models.operations.RunWorkflowRequestBuilder(this);
+    public RunWorkflowRequestBuilder runWorkflow() {
+        return new RunWorkflowRequestBuilder(this);
     }
 
     /**
@@ -1739,27 +2058,32 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.RunWorkflowResponse runWorkflow(
-            com.formance.formance_sdk.models.operations.RunWorkflowRequest request) throws Exception {
+    public RunWorkflowResponse runWorkflow(
+            RunWorkflowRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.RunWorkflowRequest.class,
+                RunWorkflowRequest.class,
                 _baseUrl,
                 "/api/orchestration/workflows/{workflowID}/instances",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.RunWorkflowRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<RunWorkflowRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.RunWorkflowRequest.class,
+                RunWorkflowRequest.class,
                 request, 
                 null));
 
@@ -1770,7 +2094,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("runWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "runWorkflow", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1778,18 +2105,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("runWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "runWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("runWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "runWorkflow",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("runWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "runWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1797,49 +2134,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.RunWorkflowResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.RunWorkflowResponse
+        RunWorkflowResponse.Builder _resBuilder = 
+            RunWorkflowResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.RunWorkflowResponse _res = _resBuilder.build();
+        RunWorkflowResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.RunWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.RunWorkflowResponse>() {});
-                _res.withRunWorkflowResponse(java.util.Optional.ofNullable(_out));
+                _res.withRunWorkflowResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1849,8 +2186,8 @@ public class Orchestration implements
      * Send an event to a running workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.SendEventRequestBuilder sendEvent() {
-        return new com.formance.formance_sdk.models.operations.SendEventRequestBuilder(this);
+    public SendEventRequestBuilder sendEvent() {
+        return new SendEventRequestBuilder(this);
     }
 
     /**
@@ -1860,20 +2197,25 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.SendEventResponse sendEvent(
-            com.formance.formance_sdk.models.operations.SendEventRequest request) throws Exception {
+    public SendEventResponse sendEvent(
+            SendEventRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.SendEventRequest.class,
+                SendEventRequest.class,
                 _baseUrl,
                 "/api/orchestration/instances/{instanceID}/events",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.SendEventRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<SendEventRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -1886,7 +2228,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("sendEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "sendEvent", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1894,18 +2239,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("sendEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "sendEvent",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("sendEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "sendEvent",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("sendEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "sendEvent",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1913,14 +2268,14 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.SendEventResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.SendEventResponse
+        SendEventResponse.Builder _resBuilder = 
+            SendEventResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.SendEventResponse _res = _resBuilder.build();
+        SendEventResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -1928,23 +2283,23 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.Error _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.Error>() {});
+                    new TypeReference<Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1954,8 +2309,8 @@ public class Orchestration implements
      * Test trigger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.TestTriggerRequestBuilder testTrigger() {
-        return new com.formance.formance_sdk.models.operations.TestTriggerRequestBuilder(this);
+    public TestTriggerRequestBuilder testTrigger() {
+        return new TestTriggerRequestBuilder(this);
     }
 
     /**
@@ -1965,20 +2320,25 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.TestTriggerResponse testTrigger(
-            com.formance.formance_sdk.models.operations.TestTriggerRequest request) throws Exception {
+    public TestTriggerResponse testTrigger(
+            TestTriggerRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.TestTriggerRequest.class,
+                TestTriggerRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/triggers/{triggerID}/test",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.TestTriggerRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<TestTriggerRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -1991,7 +2351,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("testTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "testTrigger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1999,18 +2362,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("testTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "testTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("testTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "testTrigger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("testTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "testTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2018,49 +2391,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.TestTriggerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.TestTriggerResponse
+        TestTriggerResponse.Builder _resBuilder = 
+            TestTriggerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.TestTriggerResponse _res = _resBuilder.build();
+        TestTriggerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2TestTriggerResponse _out = Utils.mapper().readValue(
+                V2TestTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2TestTriggerResponse>() {});
-                _res.withV2TestTriggerResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2TestTriggerResponse>() {});
+                _res.withV2TestTriggerResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2070,8 +2443,8 @@ public class Orchestration implements
      * Cancel a running workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2CancelEventRequestBuilder v2CancelEvent() {
-        return new com.formance.formance_sdk.models.operations.V2CancelEventRequestBuilder(this);
+    public V2CancelEventRequestBuilder v2CancelEvent() {
+        return new V2CancelEventRequestBuilder(this);
     }
 
     /**
@@ -2081,11 +2454,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CancelEventResponse v2CancelEvent(
-            com.formance.formance_sdk.models.operations.V2CancelEventRequest request) throws Exception {
+    public V2CancelEventResponse v2CancelEvent(
+            V2CancelEventRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2CancelEventRequest.class,
+                V2CancelEventRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/instances/{instanceID}/abort",
                 request, null);
@@ -2102,7 +2475,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2CancelEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2CancelEvent", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2110,18 +2486,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2CancelEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2CancelEvent",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2CancelEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2CancelEvent",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2CancelEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2CancelEvent",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2129,14 +2515,14 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2CancelEventResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2CancelEventResponse
+        V2CancelEventResponse.Builder _resBuilder = 
+            V2CancelEventResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2CancelEventResponse _res = _resBuilder.build();
+        V2CancelEventResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -2144,23 +2530,23 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2170,8 +2556,8 @@ public class Orchestration implements
      * Create trigger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2CreateTriggerRequestBuilder v2CreateTrigger() {
-        return new com.formance.formance_sdk.models.operations.V2CreateTriggerRequestBuilder(this);
+    public V2CreateTriggerRequestBuilder v2CreateTrigger() {
+        return new V2CreateTriggerRequestBuilder(this);
     }
 
     /**
@@ -2180,9 +2566,10 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CreateTriggerResponse v2CreateTriggerDirect() throws Exception {
+    public V2CreateTriggerResponse v2CreateTriggerDirect() throws Exception {
         return v2CreateTrigger(Optional.empty());
     }
+    
     /**
      * Create trigger
      * Create trigger
@@ -2190,18 +2577,23 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CreateTriggerResponse v2CreateTrigger(
-            Optional<? extends com.formance.formance_sdk.models.shared.V2TriggerData> request) throws Exception {
+    public V2CreateTriggerResponse v2CreateTrigger(
+            Optional<? extends V2TriggerData> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/v2/triggers");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.formance.formance_sdk.models.shared.V2TriggerData>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V2TriggerData>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -2214,7 +2606,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2CreateTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2CreateTrigger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2222,18 +2617,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2CreateTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2CreateTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2CreateTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2CreateTrigger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2CreateTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2CreateTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2241,49 +2646,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2CreateTriggerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2CreateTriggerResponse
+        V2CreateTriggerResponse.Builder _resBuilder = 
+            V2CreateTriggerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2CreateTriggerResponse _res = _resBuilder.build();
+        V2CreateTriggerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2CreateTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2CreateTriggerResponse>() {});
-                _res.withV2CreateTriggerResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2CreateTriggerResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2293,8 +2698,8 @@ public class Orchestration implements
      * Create a workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2CreateWorkflowRequestBuilder v2CreateWorkflow() {
-        return new com.formance.formance_sdk.models.operations.V2CreateWorkflowRequestBuilder(this);
+    public V2CreateWorkflowRequestBuilder v2CreateWorkflow() {
+        return new V2CreateWorkflowRequestBuilder(this);
     }
 
     /**
@@ -2303,9 +2708,10 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse v2CreateWorkflowDirect() throws Exception {
+    public V2CreateWorkflowResponse v2CreateWorkflowDirect() throws Exception {
         return v2CreateWorkflow(Optional.empty());
     }
+    
     /**
      * Create workflow
      * Create a workflow
@@ -2313,18 +2719,23 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse v2CreateWorkflow(
-            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest> request) throws Exception {
+    public V2CreateWorkflowResponse v2CreateWorkflow(
+            Optional<? extends V2CreateWorkflowRequest> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/v2/workflows");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V2CreateWorkflowRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -2337,7 +2748,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2CreateWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2CreateWorkflow", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2345,18 +2759,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2CreateWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2CreateWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2CreateWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2CreateWorkflow",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2CreateWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2CreateWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2364,49 +2788,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse
+        V2CreateWorkflowResponse.Builder _resBuilder = 
+            V2CreateWorkflowResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse _res = _resBuilder.build();
+        V2CreateWorkflowResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse>() {});
-                _res.withV2CreateWorkflowResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2CreateWorkflowResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2416,8 +2840,8 @@ public class Orchestration implements
      * Read trigger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteTriggerRequestBuilder v2DeleteTrigger() {
-        return new com.formance.formance_sdk.models.operations.V2DeleteTriggerRequestBuilder(this);
+    public V2DeleteTriggerRequestBuilder v2DeleteTrigger() {
+        return new V2DeleteTriggerRequestBuilder(this);
     }
 
     /**
@@ -2427,11 +2851,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse v2DeleteTrigger(
-            com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest request) throws Exception {
+    public V2DeleteTriggerResponse v2DeleteTrigger(
+            V2DeleteTriggerRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest.class,
+                V2DeleteTriggerRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/triggers/{triggerID}",
                 request, null);
@@ -2448,7 +2872,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2DeleteTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2DeleteTrigger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2456,18 +2883,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2DeleteTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2DeleteTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2DeleteTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2DeleteTrigger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2DeleteTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2DeleteTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2475,14 +2912,14 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse
+        V2DeleteTriggerResponse.Builder _resBuilder = 
+            V2DeleteTriggerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse _res = _resBuilder.build();
+        V2DeleteTriggerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -2490,23 +2927,23 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2516,8 +2953,8 @@ public class Orchestration implements
      * Delete a flow by id
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequestBuilder v2DeleteWorkflow() {
-        return new com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequestBuilder(this);
+    public V2DeleteWorkflowRequestBuilder v2DeleteWorkflow() {
+        return new V2DeleteWorkflowRequestBuilder(this);
     }
 
     /**
@@ -2527,11 +2964,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse v2DeleteWorkflow(
-            com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest request) throws Exception {
+    public V2DeleteWorkflowResponse v2DeleteWorkflow(
+            V2DeleteWorkflowRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest.class,
+                V2DeleteWorkflowRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/workflows/{flowId}",
                 request, null);
@@ -2548,7 +2985,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2DeleteWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2DeleteWorkflow", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2556,18 +2996,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2DeleteWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2DeleteWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2DeleteWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2DeleteWorkflow",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2DeleteWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2DeleteWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2575,14 +3025,14 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse
+        V2DeleteWorkflowResponse.Builder _resBuilder = 
+            V2DeleteWorkflowResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse _res = _resBuilder.build();
+        V2DeleteWorkflowResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -2590,23 +3040,23 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2616,8 +3066,8 @@ public class Orchestration implements
      * Get a workflow instance by id
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetInstanceRequestBuilder v2GetInstance() {
-        return new com.formance.formance_sdk.models.operations.V2GetInstanceRequestBuilder(this);
+    public V2GetInstanceRequestBuilder v2GetInstance() {
+        return new V2GetInstanceRequestBuilder(this);
     }
 
     /**
@@ -2627,11 +3077,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetInstanceResponse v2GetInstance(
-            com.formance.formance_sdk.models.operations.V2GetInstanceRequest request) throws Exception {
+    public V2GetInstanceResponse v2GetInstance(
+            V2GetInstanceRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetInstanceRequest.class,
+                V2GetInstanceRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/instances/{instanceID}",
                 request, null);
@@ -2648,7 +3098,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetInstance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetInstance", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2656,18 +3109,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetInstance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetInstance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetInstance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetInstance",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetInstance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetInstance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2675,49 +3138,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetInstanceResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetInstanceResponse
+        V2GetInstanceResponse.Builder _resBuilder = 
+            V2GetInstanceResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetInstanceResponse _res = _resBuilder.build();
+        V2GetInstanceResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceResponse _out = Utils.mapper().readValue(
+                V2GetWorkflowInstanceResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceResponse>() {});
-                _res.withV2GetWorkflowInstanceResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2GetWorkflowInstanceResponse>() {});
+                _res.withV2GetWorkflowInstanceResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2727,8 +3190,8 @@ public class Orchestration implements
      * Get a workflow instance history by id
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequestBuilder v2GetInstanceHistory() {
-        return new com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequestBuilder(this);
+    public V2GetInstanceHistoryRequestBuilder v2GetInstanceHistory() {
+        return new V2GetInstanceHistoryRequestBuilder(this);
     }
 
     /**
@@ -2738,11 +3201,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse v2GetInstanceHistory(
-            com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest request) throws Exception {
+    public V2GetInstanceHistoryResponse v2GetInstanceHistory(
+            V2GetInstanceHistoryRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest.class,
+                V2GetInstanceHistoryRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/instances/{instanceID}/history",
                 request, null);
@@ -2759,7 +3222,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetInstanceHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetInstanceHistory", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2767,18 +3233,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetInstanceHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetInstanceHistory",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetInstanceHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetInstanceHistory",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetInstanceHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetInstanceHistory",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2786,49 +3262,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse
+        V2GetInstanceHistoryResponse.Builder _resBuilder = 
+            V2GetInstanceHistoryResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse _res = _resBuilder.build();
+        V2GetInstanceHistoryResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse _out = Utils.mapper().readValue(
+                V2GetWorkflowInstanceHistoryResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryResponse>() {});
-                _res.withV2GetWorkflowInstanceHistoryResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2GetWorkflowInstanceHistoryResponse>() {});
+                _res.withV2GetWorkflowInstanceHistoryResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2838,8 +3314,8 @@ public class Orchestration implements
      * Get a workflow instance stage history
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequestBuilder v2GetInstanceStageHistory() {
-        return new com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequestBuilder(this);
+    public V2GetInstanceStageHistoryRequestBuilder v2GetInstanceStageHistory() {
+        return new V2GetInstanceStageHistoryRequestBuilder(this);
     }
 
     /**
@@ -2849,11 +3325,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse v2GetInstanceStageHistory(
-            com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest request) throws Exception {
+    public V2GetInstanceStageHistoryResponse v2GetInstanceStageHistory(
+            V2GetInstanceStageHistoryRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest.class,
+                V2GetInstanceStageHistoryRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/instances/{instanceID}/stages/{number}/history",
                 request, null);
@@ -2870,7 +3346,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetInstanceStageHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetInstanceStageHistory", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2878,18 +3357,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetInstanceStageHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetInstanceStageHistory",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetInstanceStageHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetInstanceStageHistory",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetInstanceStageHistory", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetInstanceStageHistory",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2897,49 +3386,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse
+        V2GetInstanceStageHistoryResponse.Builder _resBuilder = 
+            V2GetInstanceStageHistoryResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse _res = _resBuilder.build();
+        V2GetInstanceStageHistoryResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse _out = Utils.mapper().readValue(
+                V2GetWorkflowInstanceHistoryStageResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2GetWorkflowInstanceHistoryStageResponse>() {});
-                _res.withV2GetWorkflowInstanceHistoryStageResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2GetWorkflowInstanceHistoryStageResponse>() {});
+                _res.withV2GetWorkflowInstanceHistoryStageResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2948,8 +3437,8 @@ public class Orchestration implements
      * Get server info
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetServerInfoRequestBuilder v2GetServerInfo() {
-        return new com.formance.formance_sdk.models.operations.V2GetServerInfoRequestBuilder(this);
+    public V2GetServerInfoRequestBuilder v2GetServerInfo() {
+        return new V2GetServerInfoRequestBuilder(this);
     }
 
     /**
@@ -2957,7 +3446,7 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetServerInfoResponse v2GetServerInfoDirect() throws Exception {
+    public V2GetServerInfoResponse v2GetServerInfoDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -2975,7 +3464,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetServerInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2983,18 +3475,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetServerInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3002,49 +3504,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetServerInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetServerInfoResponse
+        V2GetServerInfoResponse.Builder _resBuilder = 
+            V2GetServerInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetServerInfoResponse _res = _resBuilder.build();
+        V2GetServerInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2ServerInfo _out = Utils.mapper().readValue(
+                V2ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2ServerInfo>() {});
-                _res.withV2ServerInfo(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2ServerInfo>() {});
+                _res.withV2ServerInfo(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3054,8 +3556,8 @@ public class Orchestration implements
      * Get a flow by id
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetWorkflowRequestBuilder v2GetWorkflow() {
-        return new com.formance.formance_sdk.models.operations.V2GetWorkflowRequestBuilder(this);
+    public V2GetWorkflowRequestBuilder v2GetWorkflow() {
+        return new V2GetWorkflowRequestBuilder(this);
     }
 
     /**
@@ -3065,11 +3567,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetWorkflowResponse v2GetWorkflow(
-            com.formance.formance_sdk.models.operations.V2GetWorkflowRequest request) throws Exception {
+    public V2GetWorkflowResponse v2GetWorkflow(
+            V2GetWorkflowRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetWorkflowRequest.class,
+                V2GetWorkflowRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/workflows/{flowId}",
                 request, null);
@@ -3086,7 +3588,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetWorkflow", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3094,18 +3599,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetWorkflow",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3113,49 +3628,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetWorkflowResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetWorkflowResponse
+        V2GetWorkflowResponse.Builder _resBuilder = 
+            V2GetWorkflowResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetWorkflowResponse _res = _resBuilder.build();
+        V2GetWorkflowResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2GetWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetWorkflowResponse>() {});
-                _res.withV2GetWorkflowResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2GetWorkflowResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3165,8 +3680,8 @@ public class Orchestration implements
      * List instances of a workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ListInstancesRequestBuilder v2ListInstances() {
-        return new com.formance.formance_sdk.models.operations.V2ListInstancesRequestBuilder(this);
+    public V2ListInstancesRequestBuilder v2ListInstances() {
+        return new V2ListInstancesRequestBuilder(this);
     }
 
     /**
@@ -3176,8 +3691,8 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ListInstancesResponse v2ListInstances(
-            com.formance.formance_sdk.models.operations.V2ListInstancesRequest request) throws Exception {
+    public V2ListInstancesResponse v2ListInstances(
+            V2ListInstancesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -3189,7 +3704,7 @@ public class Orchestration implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2ListInstancesRequest.class,
+                V2ListInstancesRequest.class,
                 request, 
                 null));
 
@@ -3200,7 +3715,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ListInstances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ListInstances", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3208,18 +3726,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ListInstances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ListInstances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ListInstances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ListInstances",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ListInstances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ListInstances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3227,49 +3755,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ListInstancesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ListInstancesResponse
+        V2ListInstancesResponse.Builder _resBuilder = 
+            V2ListInstancesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ListInstancesResponse _res = _resBuilder.build();
+        V2ListInstancesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2ListRunsResponse _out = Utils.mapper().readValue(
+                V2ListRunsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2ListRunsResponse>() {});
-                _res.withV2ListRunsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2ListRunsResponse>() {});
+                _res.withV2ListRunsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3279,8 +3807,8 @@ public class Orchestration implements
      * List triggers
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ListTriggersRequestBuilder v2ListTriggers() {
-        return new com.formance.formance_sdk.models.operations.V2ListTriggersRequestBuilder(this);
+    public V2ListTriggersRequestBuilder v2ListTriggers() {
+        return new V2ListTriggersRequestBuilder(this);
     }
 
     /**
@@ -3290,8 +3818,8 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ListTriggersResponse v2ListTriggers(
-            com.formance.formance_sdk.models.operations.V2ListTriggersRequest request) throws Exception {
+    public V2ListTriggersResponse v2ListTriggers(
+            V2ListTriggersRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -3303,7 +3831,7 @@ public class Orchestration implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2ListTriggersRequest.class,
+                V2ListTriggersRequest.class,
                 request, 
                 null));
 
@@ -3314,7 +3842,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ListTriggers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ListTriggers", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3322,18 +3853,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ListTriggers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ListTriggers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ListTriggers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ListTriggers",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ListTriggers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ListTriggers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3341,49 +3882,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ListTriggersResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ListTriggersResponse
+        V2ListTriggersResponse.Builder _resBuilder = 
+            V2ListTriggersResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ListTriggersResponse _res = _resBuilder.build();
+        V2ListTriggersResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2ListTriggersResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ListTriggersResponse>() {});
-                _res.withV2ListTriggersResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2ListTriggersResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3393,8 +3934,8 @@ public class Orchestration implements
      * List triggers occurrences
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequestBuilder v2ListTriggersOccurrences() {
-        return new com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequestBuilder(this);
+    public V2ListTriggersOccurrencesRequestBuilder v2ListTriggersOccurrences() {
+        return new V2ListTriggersOccurrencesRequestBuilder(this);
     }
 
     /**
@@ -3404,11 +3945,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse v2ListTriggersOccurrences(
-            com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest request) throws Exception {
+    public V2ListTriggersOccurrencesResponse v2ListTriggersOccurrences(
+            V2ListTriggersOccurrencesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest.class,
+                V2ListTriggersOccurrencesRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/triggers/{triggerID}/occurrences",
                 request, null);
@@ -3419,7 +3960,7 @@ public class Orchestration implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest.class,
+                V2ListTriggersOccurrencesRequest.class,
                 request, 
                 null));
 
@@ -3430,7 +3971,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ListTriggersOccurrences", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ListTriggersOccurrences", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3438,18 +3982,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ListTriggersOccurrences", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ListTriggersOccurrences",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ListTriggersOccurrences", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ListTriggersOccurrences",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ListTriggersOccurrences", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ListTriggersOccurrences",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3457,49 +4011,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse
+        V2ListTriggersOccurrencesResponse.Builder _resBuilder = 
+            V2ListTriggersOccurrencesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse _res = _resBuilder.build();
+        V2ListTriggersOccurrencesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse>() {});
-                _res.withV2ListTriggersOccurrencesResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2ListTriggersOccurrencesResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3509,8 +4063,8 @@ public class Orchestration implements
      * List registered workflows
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ListWorkflowsRequestBuilder v2ListWorkflows() {
-        return new com.formance.formance_sdk.models.operations.V2ListWorkflowsRequestBuilder(this);
+    public V2ListWorkflowsRequestBuilder v2ListWorkflows() {
+        return new V2ListWorkflowsRequestBuilder(this);
     }
 
     /**
@@ -3520,8 +4074,8 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse v2ListWorkflows(
-            com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest request) throws Exception {
+    public V2ListWorkflowsResponse v2ListWorkflows(
+            V2ListWorkflowsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -3533,7 +4087,7 @@ public class Orchestration implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest.class,
+                V2ListWorkflowsRequest.class,
                 request, 
                 null));
 
@@ -3544,7 +4098,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ListWorkflows", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ListWorkflows", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3552,18 +4109,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ListWorkflows", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ListWorkflows",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ListWorkflows", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ListWorkflows",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ListWorkflows", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ListWorkflows",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3571,49 +4138,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse
+        V2ListWorkflowsResponse.Builder _resBuilder = 
+            V2ListWorkflowsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse _res = _resBuilder.build();
+        V2ListWorkflowsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ListWorkflowsResponse>() {});
-                _res.withV2ListWorkflowsResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2ListWorkflowsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3623,8 +4190,8 @@ public class Orchestration implements
      * Read trigger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ReadTriggerRequestBuilder v2ReadTrigger() {
-        return new com.formance.formance_sdk.models.operations.V2ReadTriggerRequestBuilder(this);
+    public V2ReadTriggerRequestBuilder v2ReadTrigger() {
+        return new V2ReadTriggerRequestBuilder(this);
     }
 
     /**
@@ -3634,11 +4201,11 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ReadTriggerResponse v2ReadTrigger(
-            com.formance.formance_sdk.models.operations.V2ReadTriggerRequest request) throws Exception {
+    public V2ReadTriggerResponse v2ReadTrigger(
+            V2ReadTriggerRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2ReadTriggerRequest.class,
+                V2ReadTriggerRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/triggers/{triggerID}",
                 request, null);
@@ -3655,7 +4222,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ReadTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ReadTrigger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3663,18 +4233,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ReadTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ReadTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ReadTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ReadTrigger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ReadTrigger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ReadTrigger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3682,49 +4262,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ReadTriggerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ReadTriggerResponse
+        V2ReadTriggerResponse.Builder _resBuilder = 
+            V2ReadTriggerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ReadTriggerResponse _res = _resBuilder.build();
+        V2ReadTriggerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2ReadTriggerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2ReadTriggerResponse>() {});
-                _res.withV2ReadTriggerResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2ReadTriggerResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3734,8 +4314,8 @@ public class Orchestration implements
      * Run workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2RunWorkflowRequestBuilder v2RunWorkflow() {
-        return new com.formance.formance_sdk.models.operations.V2RunWorkflowRequestBuilder(this);
+    public V2RunWorkflowRequestBuilder v2RunWorkflow() {
+        return new V2RunWorkflowRequestBuilder(this);
     }
 
     /**
@@ -3745,27 +4325,32 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2RunWorkflowResponse v2RunWorkflow(
-            com.formance.formance_sdk.models.operations.V2RunWorkflowRequest request) throws Exception {
+    public V2RunWorkflowResponse v2RunWorkflow(
+            V2RunWorkflowRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2RunWorkflowRequest.class,
+                V2RunWorkflowRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/workflows/{workflowID}/instances",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2RunWorkflowRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2RunWorkflowRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2RunWorkflowRequest.class,
+                V2RunWorkflowRequest.class,
                 request, 
                 null));
 
@@ -3776,7 +4361,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2RunWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2RunWorkflow", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3784,18 +4372,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2RunWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2RunWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2RunWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2RunWorkflow",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2RunWorkflow", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2RunWorkflow",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3803,49 +4401,49 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2RunWorkflowResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2RunWorkflowResponse
+        V2RunWorkflowResponse.Builder _resBuilder = 
+            V2RunWorkflowResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2RunWorkflowResponse _res = _resBuilder.build();
+        V2RunWorkflowResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2RunWorkflowResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2RunWorkflowResponse>() {});
-                _res.withV2RunWorkflowResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2RunWorkflowResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3855,8 +4453,8 @@ public class Orchestration implements
      * Send an event to a running workflow
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2SendEventRequestBuilder v2SendEvent() {
-        return new com.formance.formance_sdk.models.operations.V2SendEventRequestBuilder(this);
+    public V2SendEventRequestBuilder v2SendEvent() {
+        return new V2SendEventRequestBuilder(this);
     }
 
     /**
@@ -3866,20 +4464,25 @@ public class Orchestration implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2SendEventResponse v2SendEvent(
-            com.formance.formance_sdk.models.operations.V2SendEventRequest request) throws Exception {
+    public V2SendEventResponse v2SendEvent(
+            V2SendEventRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2SendEventRequest.class,
+                V2SendEventRequest.class,
                 _baseUrl,
                 "/api/orchestration/v2/instances/{instanceID}/events",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2SendEventRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2SendEventRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -3892,7 +4495,10 @@ public class Orchestration implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2SendEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2SendEvent", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3900,18 +4506,28 @@ public class Orchestration implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2SendEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2SendEvent",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2SendEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2SendEvent",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2SendEvent", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2SendEvent",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3919,14 +4535,14 @@ public class Orchestration implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2SendEventResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2SendEventResponse
+        V2SendEventResponse.Builder _resBuilder = 
+            V2SendEventResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2SendEventResponse _res = _resBuilder.build();
+        V2SendEventResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -3934,23 +4550,23 @@ public class Orchestration implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2Error _out = Utils.mapper().readValue(
+                V2Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2Error>() {});
+                    new TypeReference<V2Error>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

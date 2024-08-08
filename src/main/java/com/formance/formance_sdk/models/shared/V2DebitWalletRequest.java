@@ -4,22 +4,23 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2DebitWalletRequest {
 
@@ -28,11 +29,11 @@ public class V2DebitWalletRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
-    private Optional<? extends java.util.List<String>> balances;
+    private Optional<? extends List<String>> balances;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<? extends String> description;
+    private Optional<String> description;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
@@ -42,31 +43,31 @@ public class V2DebitWalletRequest {
      * Metadata associated with the wallet.
      */
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pending")
-    private Optional<? extends Boolean> pending;
+    private Optional<Boolean> pending;
 
     /**
      * cannot be used in conjunction with `pending` property
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
-    private Optional<? extends OffsetDateTime> timestamp;
+    private Optional<OffsetDateTime> timestamp;
 
     @JsonCreator
     public V2DebitWalletRequest(
             @JsonProperty("amount") V2Monetary amount,
-            @JsonProperty("balances") Optional<? extends java.util.List<String>> balances,
-            @JsonProperty("description") Optional<? extends String> description,
+            @JsonProperty("balances") Optional<? extends List<String>> balances,
+            @JsonProperty("description") Optional<String> description,
             @JsonProperty("destination") Optional<? extends V2Subject> destination,
-            @JsonProperty("metadata") java.util.Map<String, String> metadata,
-            @JsonProperty("pending") Optional<? extends Boolean> pending,
-            @JsonProperty("timestamp") Optional<? extends OffsetDateTime> timestamp) {
+            @JsonProperty("metadata") Map<String, String> metadata,
+            @JsonProperty("pending") Optional<Boolean> pending,
+            @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(balances, "balances");
         Utils.checkNotNull(description, "description");
@@ -85,7 +86,7 @@ public class V2DebitWalletRequest {
     
     public V2DebitWalletRequest(
             V2Monetary amount,
-            java.util.Map<String, String> metadata) {
+            Map<String, String> metadata) {
         this(amount, Optional.empty(), Optional.empty(), Optional.empty(), metadata, Optional.empty(), Optional.empty());
     }
 
@@ -96,14 +97,13 @@ public class V2DebitWalletRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> balances() {
-        return (Optional<java.util.List<String>>) balances;
+    public Optional<List<String>> balances() {
+        return (Optional<List<String>>) balances;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> description() {
-        return (Optional<String>) description;
+        return description;
     }
 
     @SuppressWarnings("unchecked")
@@ -116,26 +116,24 @@ public class V2DebitWalletRequest {
      * Metadata associated with the wallet.
      */
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
     /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> pending() {
-        return (Optional<Boolean>) pending;
+        return pending;
     }
 
     /**
      * cannot be used in conjunction with `pending` property
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> timestamp() {
-        return (Optional<OffsetDateTime>) timestamp;
+        return timestamp;
     }
 
     public final static Builder builder() {
@@ -148,13 +146,13 @@ public class V2DebitWalletRequest {
         return this;
     }
 
-    public V2DebitWalletRequest withBalances(java.util.List<String> balances) {
+    public V2DebitWalletRequest withBalances(List<String> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = Optional.ofNullable(balances);
         return this;
     }
 
-    public V2DebitWalletRequest withBalances(Optional<? extends java.util.List<String>> balances) {
+    public V2DebitWalletRequest withBalances(Optional<? extends List<String>> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
@@ -166,7 +164,7 @@ public class V2DebitWalletRequest {
         return this;
     }
 
-    public V2DebitWalletRequest withDescription(Optional<? extends String> description) {
+    public V2DebitWalletRequest withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -187,7 +185,7 @@ public class V2DebitWalletRequest {
     /**
      * Metadata associated with the wallet.
      */
-    public V2DebitWalletRequest withMetadata(java.util.Map<String, String> metadata) {
+    public V2DebitWalletRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -205,7 +203,7 @@ public class V2DebitWalletRequest {
     /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      */
-    public V2DebitWalletRequest withPending(Optional<? extends Boolean> pending) {
+    public V2DebitWalletRequest withPending(Optional<Boolean> pending) {
         Utils.checkNotNull(pending, "pending");
         this.pending = pending;
         return this;
@@ -223,7 +221,7 @@ public class V2DebitWalletRequest {
     /**
      * cannot be used in conjunction with `pending` property
      */
-    public V2DebitWalletRequest withTimestamp(Optional<? extends OffsetDateTime> timestamp) {
+    public V2DebitWalletRequest withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
@@ -239,18 +237,18 @@ public class V2DebitWalletRequest {
         }
         V2DebitWalletRequest other = (V2DebitWalletRequest) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.balances, other.balances) &&
-            java.util.Objects.deepEquals(this.description, other.description) &&
-            java.util.Objects.deepEquals(this.destination, other.destination) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.pending, other.pending) &&
-            java.util.Objects.deepEquals(this.timestamp, other.timestamp);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.balances, other.balances) &&
+            Objects.deepEquals(this.description, other.description) &&
+            Objects.deepEquals(this.destination, other.destination) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.pending, other.pending) &&
+            Objects.deepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             balances,
             description,
@@ -276,17 +274,17 @@ public class V2DebitWalletRequest {
  
         private V2Monetary amount;
  
-        private Optional<? extends java.util.List<String>> balances = Optional.empty();
+        private Optional<? extends List<String>> balances = Optional.empty();
  
-        private Optional<? extends String> description = Optional.empty();
+        private Optional<String> description = Optional.empty();
  
         private Optional<? extends V2Subject> destination = Optional.empty();
  
-        private java.util.Map<String, String> metadata;
+        private Map<String, String> metadata;
  
-        private Optional<? extends Boolean> pending = Optional.empty();
+        private Optional<Boolean> pending = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> timestamp = Optional.empty();  
+        private Optional<OffsetDateTime> timestamp = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -298,13 +296,13 @@ public class V2DebitWalletRequest {
             return this;
         }
 
-        public Builder balances(java.util.List<String> balances) {
+        public Builder balances(List<String> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = Optional.ofNullable(balances);
             return this;
         }
 
-        public Builder balances(Optional<? extends java.util.List<String>> balances) {
+        public Builder balances(Optional<? extends List<String>> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
             return this;
@@ -316,7 +314,7 @@ public class V2DebitWalletRequest {
             return this;
         }
 
-        public Builder description(Optional<? extends String> description) {
+        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
@@ -337,7 +335,7 @@ public class V2DebitWalletRequest {
         /**
          * Metadata associated with the wallet.
          */
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -355,7 +353,7 @@ public class V2DebitWalletRequest {
         /**
          * Set to true to create a pending hold. If false, the wallet will be debited immediately.
          */
-        public Builder pending(Optional<? extends Boolean> pending) {
+        public Builder pending(Optional<Boolean> pending) {
             Utils.checkNotNull(pending, "pending");
             this.pending = pending;
             return this;
@@ -373,7 +371,7 @@ public class V2DebitWalletRequest {
         /**
          * cannot be used in conjunction with `pending` property
          */
-        public Builder timestamp(Optional<? extends OffsetDateTime> timestamp) {
+        public Builder timestamp(Optional<OffsetDateTime> timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;

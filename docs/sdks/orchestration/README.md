@@ -49,17 +49,11 @@ Cancel a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CancelEventRequest;
+import com.formance.formance_sdk.models.operations.CancelEventResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -67,8 +61,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -84,7 +78,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -98,14 +92,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.CancelEventRequest](../../models/operations/CancelEventRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [CancelEventRequest](../../models/operations/CancelEventRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CancelEventResponse](../../models/operations/CancelEventResponse.md)**
+**[CancelEventResponse](../../models/operations/CancelEventResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -123,17 +117,11 @@ Create trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreateTriggerResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.TriggerData;
+import java.lang.Exception;
 
 public class Application {
 
@@ -141,8 +129,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -161,7 +149,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -175,14 +163,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `request`                                                                                 | [com.formance.formance_sdk.models.shared.TriggerData](../../models/shared/TriggerData.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| Parameter                                         | Type                                              | Required                                          | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `request`                                         | [TriggerData](../../models/shared/TriggerData.md) | :heavy_check_mark:                                | The request object to use for the request.        |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateTriggerResponse](../../models/operations/CreateTriggerResponse.md)**
+**[CreateTriggerResponse](../../models/operations/CreateTriggerResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -200,17 +188,13 @@ Create a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreateWorkflowResponse;
+import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -218,15 +202,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             CreateWorkflowRequest req = CreateWorkflowRequest.builder()
-                .stages(java.util.List.of(
-                        java.util.Map.ofEntries(
-                            entry("key", "<value>"))))
+                .stages(List.of(
+                        Map.ofEntries(
+                            Map.entry("key", "<value>"))))
                 .build();
 
             CreateWorkflowResponse res = sdk.orchestration().createWorkflow()
@@ -239,7 +223,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -253,14 +237,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                     | [com.formance.formance_sdk.models.shared.CreateWorkflowRequest](../../models/shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [CreateWorkflowRequest](../../models/shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateWorkflowResponse](../../models/operations/CreateWorkflowResponse.md)**
+**[CreateWorkflowResponse](../../models/operations/CreateWorkflowResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -278,17 +262,11 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.DeleteTriggerRequest;
+import com.formance.formance_sdk.models.operations.DeleteTriggerResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -296,8 +274,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -313,7 +291,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -327,14 +305,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [com.formance.formance_sdk.models.operations.DeleteTriggerRequest](../../models/operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [DeleteTriggerRequest](../../models/operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteTriggerResponse](../../models/operations/DeleteTriggerResponse.md)**
+**[DeleteTriggerResponse](../../models/operations/DeleteTriggerResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -352,17 +330,11 @@ Delete a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.DeleteWorkflowRequest;
+import com.formance.formance_sdk.models.operations.DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -370,8 +342,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -387,7 +359,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -401,14 +373,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                             | [com.formance.formance_sdk.models.operations.DeleteWorkflowRequest](../../models/operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [DeleteWorkflowRequest](../../models/operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteWorkflowResponse](../../models/operations/DeleteWorkflowResponse.md)**
+**[DeleteWorkflowResponse](../../models/operations/DeleteWorkflowResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -426,17 +398,11 @@ Get a workflow instance by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetInstanceRequest;
+import com.formance.formance_sdk.models.operations.GetInstanceResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -444,8 +410,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -463,7 +429,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -477,14 +443,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.GetInstanceRequest](../../models/operations/GetInstanceRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [GetInstanceRequest](../../models/operations/GetInstanceRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetInstanceResponse](../../models/operations/GetInstanceResponse.md)**
+**[GetInstanceResponse](../../models/operations/GetInstanceResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -502,17 +468,11 @@ Get a workflow instance history by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest;
+import com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -520,8 +480,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -539,7 +499,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -553,14 +513,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                     | [com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest](../../models/operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [GetInstanceHistoryRequest](../../models/operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse](../../models/operations/GetInstanceHistoryResponse.md)**
+**[GetInstanceHistoryResponse](../../models/operations/GetInstanceHistoryResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -578,17 +538,11 @@ Get a workflow instance stage history
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest;
+import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -596,8 +550,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -616,7 +570,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -630,14 +584,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                               | Type                                                                                                                                    | Required                                                                                                                                | Description                                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                               | [com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest](../../models/operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                                                      | The request object to use for the request.                                                                                              |
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `request`                                                                                   | [GetInstanceStageHistoryRequest](../../models/operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse](../../models/operations/GetInstanceStageHistoryResponse.md)**
+**[GetInstanceStageHistoryResponse](../../models/operations/GetInstanceStageHistoryResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -655,17 +609,11 @@ Get a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetWorkflowRequest;
+import com.formance.formance_sdk.models.operations.GetWorkflowResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -673,8 +621,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -692,7 +640,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -706,14 +654,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.GetWorkflowRequest](../../models/operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [GetWorkflowRequest](../../models/operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetWorkflowResponse](../../models/operations/GetWorkflowResponse.md)**
+**[GetWorkflowResponse](../../models/operations/GetWorkflowResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -731,17 +679,11 @@ List instances of a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListInstancesRequest;
+import com.formance.formance_sdk.models.operations.ListInstancesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -749,8 +691,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -769,7 +711,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -783,14 +725,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [com.formance.formance_sdk.models.operations.ListInstancesRequest](../../models/operations/ListInstancesRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [ListInstancesRequest](../../models/operations/ListInstancesRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListInstancesResponse](../../models/operations/ListInstancesResponse.md)**
+**[ListInstancesResponse](../../models/operations/ListInstancesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -808,17 +750,11 @@ List triggers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListTriggersRequest;
+import com.formance.formance_sdk.models.operations.ListTriggersResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -826,8 +762,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -844,7 +780,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -858,14 +794,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.ListTriggersRequest](../../models/operations/ListTriggersRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [ListTriggersRequest](../../models/operations/ListTriggersRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListTriggersResponse](../../models/operations/ListTriggersResponse.md)**
+**[ListTriggersResponse](../../models/operations/ListTriggersResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -883,17 +819,11 @@ List triggers occurrences
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest;
+import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -901,8 +831,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -920,7 +850,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -934,14 +864,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                               | Type                                                                                                                                    | Required                                                                                                                                | Description                                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                               | [com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest](../../models/operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                                                      | The request object to use for the request.                                                                                              |
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `request`                                                                                   | [ListTriggersOccurrencesRequest](../../models/operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse](../../models/operations/ListTriggersOccurrencesResponse.md)**
+**[ListTriggersOccurrencesResponse](../../models/operations/ListTriggersOccurrencesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -959,17 +889,10 @@ List registered workflows
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListWorkflowsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -977,8 +900,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -991,7 +914,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1006,7 +929,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListWorkflowsResponse](../../models/operations/ListWorkflowsResponse.md)**
+**[ListWorkflowsResponse](../../models/operations/ListWorkflowsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1024,17 +947,10 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1042,8 +958,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1056,7 +972,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1071,7 +987,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse](../../models/operations/OrchestrationgetServerInfoResponse.md)**
+**[OrchestrationgetServerInfoResponse](../../models/operations/OrchestrationgetServerInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1089,17 +1005,11 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ReadTriggerRequest;
+import com.formance.formance_sdk.models.operations.ReadTriggerResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1107,8 +1017,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1126,7 +1036,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1140,14 +1050,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.ReadTriggerRequest](../../models/operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [ReadTriggerRequest](../../models/operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadTriggerResponse](../../models/operations/ReadTriggerResponse.md)**
+**[ReadTriggerResponse](../../models/operations/ReadTriggerResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1165,17 +1075,11 @@ Run workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.RunWorkflowRequest;
+import com.formance.formance_sdk.models.operations.RunWorkflowResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1183,8 +1087,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1202,7 +1106,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1216,14 +1120,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.RunWorkflowRequest](../../models/operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [RunWorkflowRequest](../../models/operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.RunWorkflowResponse](../../models/operations/RunWorkflowResponse.md)**
+**[RunWorkflowResponse](../../models/operations/RunWorkflowResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1241,17 +1145,11 @@ Send an event to a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.SendEventRequest;
+import com.formance.formance_sdk.models.operations.SendEventResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1259,8 +1157,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1276,7 +1174,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1290,14 +1188,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [com.formance.formance_sdk.models.operations.SendEventRequest](../../models/operations/SendEventRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [SendEventRequest](../../models/operations/SendEventRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.SendEventResponse](../../models/operations/SendEventResponse.md)**
+**[SendEventResponse](../../models/operations/SendEventResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1315,17 +1213,11 @@ Test trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.TestTriggerRequest;
+import com.formance.formance_sdk.models.operations.TestTriggerResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1333,8 +1225,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1352,7 +1244,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1366,14 +1258,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.TestTriggerRequest](../../models/operations/TestTriggerRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [TestTriggerRequest](../../models/operations/TestTriggerRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.TestTriggerResponse](../../models/operations/TestTriggerResponse.md)**
+**[TestTriggerResponse](../../models/operations/TestTriggerResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1391,17 +1283,11 @@ Cancel a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2CancelEventRequest;
+import com.formance.formance_sdk.models.operations.V2CancelEventResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1409,8 +1295,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1426,7 +1312,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1440,14 +1326,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [com.formance.formance_sdk.models.operations.V2CancelEventRequest](../../models/operations/V2CancelEventRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [V2CancelEventRequest](../../models/operations/V2CancelEventRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CancelEventResponse](../../models/operations/V2CancelEventResponse.md)**
+**[V2CancelEventResponse](../../models/operations/V2CancelEventResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1465,17 +1351,11 @@ Create trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2CreateTriggerResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.V2TriggerData;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1483,8 +1363,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1503,7 +1383,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1517,14 +1397,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `request`                                                                                     | [com.formance.formance_sdk.models.shared.V2TriggerData](../../models/shared/V2TriggerData.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [V2TriggerData](../../models/shared/V2TriggerData.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CreateTriggerResponse](../../models/operations/V2CreateTriggerResponse.md)**
+**[V2CreateTriggerResponse](../../models/operations/V2CreateTriggerResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1542,17 +1422,13 @@ Create a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest;
+import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -1560,15 +1436,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             V2CreateWorkflowRequest req = V2CreateWorkflowRequest.builder()
-                .stages(java.util.List.of(
-                        java.util.Map.ofEntries(
-                            entry("key", "<value>"))))
+                .stages(List.of(
+                        Map.ofEntries(
+                            Map.entry("key", "<value>"))))
                 .build();
 
             V2CreateWorkflowResponse res = sdk.orchestration().v2CreateWorkflow()
@@ -1581,7 +1457,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1595,14 +1471,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest](../../models/shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [V2CreateWorkflowRequest](../../models/shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse](../../models/operations/V2CreateWorkflowResponse.md)**
+**[V2CreateWorkflowResponse](../../models/operations/V2CreateWorkflowResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1620,17 +1496,11 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1638,8 +1508,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1655,7 +1525,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1669,14 +1539,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest](../../models/operations/V2DeleteTriggerRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2DeleteTriggerRequest](../../models/operations/V2DeleteTriggerRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse](../../models/operations/V2DeleteTriggerResponse.md)**
+**[V2DeleteTriggerResponse](../../models/operations/V2DeleteTriggerResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1694,17 +1564,11 @@ Delete a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1712,8 +1576,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1729,7 +1593,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1743,14 +1607,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                 | [com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest](../../models/operations/V2DeleteWorkflowRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [V2DeleteWorkflowRequest](../../models/operations/V2DeleteWorkflowRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse](../../models/operations/V2DeleteWorkflowResponse.md)**
+**[V2DeleteWorkflowResponse](../../models/operations/V2DeleteWorkflowResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1768,17 +1632,11 @@ Get a workflow instance by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2GetInstanceRequest;
+import com.formance.formance_sdk.models.operations.V2GetInstanceResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1786,8 +1644,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1805,7 +1663,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1819,14 +1677,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [com.formance.formance_sdk.models.operations.V2GetInstanceRequest](../../models/operations/V2GetInstanceRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [V2GetInstanceRequest](../../models/operations/V2GetInstanceRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetInstanceResponse](../../models/operations/V2GetInstanceResponse.md)**
+**[V2GetInstanceResponse](../../models/operations/V2GetInstanceResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1844,17 +1702,11 @@ Get a workflow instance history by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest;
+import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1862,8 +1714,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1881,7 +1733,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1895,14 +1747,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                         | Type                                                                                                                              | Required                                                                                                                          | Description                                                                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                         | [com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest](../../models/operations/V2GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                                                                | The request object to use for the request.                                                                                        |
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `request`                                                                             | [V2GetInstanceHistoryRequest](../../models/operations/V2GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse](../../models/operations/V2GetInstanceHistoryResponse.md)**
+**[V2GetInstanceHistoryResponse](../../models/operations/V2GetInstanceHistoryResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1920,17 +1772,11 @@ Get a workflow instance stage history
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest;
+import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1938,8 +1784,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1958,7 +1804,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1972,14 +1818,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                   | [com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest](../../models/operations/V2GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                                                                          | The request object to use for the request.                                                                                                  |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `request`                                                                                       | [V2GetInstanceStageHistoryRequest](../../models/operations/V2GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse](../../models/operations/V2GetInstanceStageHistoryResponse.md)**
+**[V2GetInstanceStageHistoryResponse](../../models/operations/V2GetInstanceStageHistoryResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1997,17 +1843,10 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2GetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2015,8 +1854,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2029,7 +1868,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2044,7 +1883,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetServerInfoResponse](../../models/operations/V2GetServerInfoResponse.md)**
+**[V2GetServerInfoResponse](../../models/operations/V2GetServerInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2062,17 +1901,11 @@ Get a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2GetWorkflowRequest;
+import com.formance.formance_sdk.models.operations.V2GetWorkflowResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2080,8 +1913,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2099,7 +1932,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2113,14 +1946,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [com.formance.formance_sdk.models.operations.V2GetWorkflowRequest](../../models/operations/V2GetWorkflowRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [V2GetWorkflowRequest](../../models/operations/V2GetWorkflowRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2GetWorkflowResponse](../../models/operations/V2GetWorkflowResponse.md)**
+**[V2GetWorkflowResponse](../../models/operations/V2GetWorkflowResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2138,17 +1971,11 @@ List instances of a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2ListInstancesRequest;
+import com.formance.formance_sdk.models.operations.V2ListInstancesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2156,8 +1983,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2178,7 +2005,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2192,14 +2019,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [com.formance.formance_sdk.models.operations.V2ListInstancesRequest](../../models/operations/V2ListInstancesRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2ListInstancesRequest](../../models/operations/V2ListInstancesRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListInstancesResponse](../../models/operations/V2ListInstancesResponse.md)**
+**[V2ListInstancesResponse](../../models/operations/V2ListInstancesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2217,17 +2044,11 @@ List triggers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2ListTriggersRequest;
+import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2235,8 +2056,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2255,7 +2076,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2269,14 +2090,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                             | [com.formance.formance_sdk.models.operations.V2ListTriggersRequest](../../models/operations/V2ListTriggersRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [V2ListTriggersRequest](../../models/operations/V2ListTriggersRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListTriggersResponse](../../models/operations/V2ListTriggersResponse.md)**
+**[V2ListTriggersResponse](../../models/operations/V2ListTriggersResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2294,17 +2115,11 @@ List triggers occurrences
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest;
+import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2312,8 +2127,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2333,7 +2148,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2347,14 +2162,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                   | [com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest](../../models/operations/V2ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                                                                          | The request object to use for the request.                                                                                                  |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `request`                                                                                       | [V2ListTriggersOccurrencesRequest](../../models/operations/V2ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse](../../models/operations/V2ListTriggersOccurrencesResponse.md)**
+**[V2ListTriggersOccurrencesResponse](../../models/operations/V2ListTriggersOccurrencesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2372,17 +2187,11 @@ List registered workflows
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest;
+import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2390,8 +2199,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2410,7 +2219,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2424,14 +2233,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest](../../models/operations/V2ListWorkflowsRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2ListWorkflowsRequest](../../models/operations/V2ListWorkflowsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse](../../models/operations/V2ListWorkflowsResponse.md)**
+**[V2ListWorkflowsResponse](../../models/operations/V2ListWorkflowsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2449,17 +2258,11 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2ReadTriggerRequest;
+import com.formance.formance_sdk.models.operations.V2ReadTriggerResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2467,8 +2270,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2486,7 +2289,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2500,14 +2303,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [com.formance.formance_sdk.models.operations.V2ReadTriggerRequest](../../models/operations/V2ReadTriggerRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [V2ReadTriggerRequest](../../models/operations/V2ReadTriggerRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2ReadTriggerResponse](../../models/operations/V2ReadTriggerResponse.md)**
+**[V2ReadTriggerResponse](../../models/operations/V2ReadTriggerResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2525,17 +2328,11 @@ Run workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2RunWorkflowRequest;
+import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2543,8 +2340,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2562,7 +2359,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2576,14 +2373,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [com.formance.formance_sdk.models.operations.V2RunWorkflowRequest](../../models/operations/V2RunWorkflowRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [V2RunWorkflowRequest](../../models/operations/V2RunWorkflowRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2RunWorkflowResponse](../../models/operations/V2RunWorkflowResponse.md)**
+**[V2RunWorkflowResponse](../../models/operations/V2RunWorkflowResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2601,17 +2398,11 @@ Send an event to a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.V2SendEventRequest;
+import com.formance.formance_sdk.models.operations.V2SendEventResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -2619,8 +2410,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -2636,7 +2427,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.V2Error e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -2650,14 +2441,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.V2SendEventRequest](../../models/operations/V2SendEventRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [V2SendEventRequest](../../models/operations/V2SendEventRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.V2SendEventResponse](../../models/operations/V2SendEventResponse.md)**
+**[V2SendEventResponse](../../models/operations/V2SendEventResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

@@ -4,19 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConfirmHoldRequest {
 
@@ -32,12 +34,12 @@ public class ConfirmHoldRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("final")
-    private Optional<? extends Boolean> final_;
+    private Optional<Boolean> final_;
 
     @JsonCreator
     public ConfirmHoldRequest(
             @JsonProperty("amount") Optional<? extends BigInteger> amount,
-            @JsonProperty("final") Optional<? extends Boolean> final_) {
+            @JsonProperty("final") Optional<Boolean> final_) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(final_, "final_");
         this.amount = amount;
@@ -60,10 +62,9 @@ public class ConfirmHoldRequest {
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> final_() {
-        return (Optional<Boolean>) final_;
+        return final_;
     }
 
     public final static Builder builder() {
@@ -108,7 +109,7 @@ public class ConfirmHoldRequest {
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
      */
-    public ConfirmHoldRequest withFinal(Optional<? extends Boolean> final_) {
+    public ConfirmHoldRequest withFinal(Optional<Boolean> final_) {
         Utils.checkNotNull(final_, "final_");
         this.final_ = final_;
         return this;
@@ -124,13 +125,13 @@ public class ConfirmHoldRequest {
         }
         ConfirmHoldRequest other = (ConfirmHoldRequest) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.final_, other.final_);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.final_, other.final_);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             final_);
     }
@@ -146,7 +147,7 @@ public class ConfirmHoldRequest {
  
         private Optional<? extends BigInteger> amount = Optional.empty();
  
-        private Optional<? extends Boolean> final_ = Optional.empty();  
+        private Optional<Boolean> final_ = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -190,7 +191,7 @@ public class ConfirmHoldRequest {
         /**
          * Define a final confirmation. Remaining funds will be returned to the wallet.
          */
-        public Builder final_(Optional<? extends Boolean> final_) {
+        public Builder final_(Optional<Boolean> final_) {
             Utils.checkNotNull(final_, "final_");
             this.final_ = final_;
             return this;

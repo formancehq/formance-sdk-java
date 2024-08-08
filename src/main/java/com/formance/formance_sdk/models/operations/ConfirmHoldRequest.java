@@ -4,22 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConfirmHoldRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest;
+
+    /**
+     * Use an idempotency key
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
+    private Optional<String> idempotencyKey;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=hold_id")
     private String holdId;
@@ -27,22 +33,33 @@ public class ConfirmHoldRequest {
     @JsonCreator
     public ConfirmHoldRequest(
             Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest,
+            Optional<String> idempotencyKey,
             String holdId) {
         Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(holdId, "holdId");
         this.confirmHoldRequest = confirmHoldRequest;
+        this.idempotencyKey = idempotencyKey;
         this.holdId = holdId;
     }
     
     public ConfirmHoldRequest(
             String holdId) {
-        this(Optional.empty(), holdId);
+        this(Optional.empty(), Optional.empty(), holdId);
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest() {
         return (Optional<com.formance.formance_sdk.models.shared.ConfirmHoldRequest>) confirmHoldRequest;
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @JsonIgnore
@@ -66,6 +83,24 @@ public class ConfirmHoldRequest {
         return this;
     }
 
+    /**
+     * Use an idempotency key
+     */
+    public ConfirmHoldRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    public ConfirmHoldRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public ConfirmHoldRequest withHoldId(String holdId) {
         Utils.checkNotNull(holdId, "holdId");
         this.holdId = holdId;
@@ -82,14 +117,16 @@ public class ConfirmHoldRequest {
         }
         ConfirmHoldRequest other = (ConfirmHoldRequest) o;
         return 
-            java.util.Objects.deepEquals(this.confirmHoldRequest, other.confirmHoldRequest) &&
-            java.util.Objects.deepEquals(this.holdId, other.holdId);
+            Objects.deepEquals(this.confirmHoldRequest, other.confirmHoldRequest) &&
+            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Objects.deepEquals(this.holdId, other.holdId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             confirmHoldRequest,
+            idempotencyKey,
             holdId);
     }
     
@@ -97,12 +134,15 @@ public class ConfirmHoldRequest {
     public String toString() {
         return Utils.toString(ConfirmHoldRequest.class,
                 "confirmHoldRequest", confirmHoldRequest,
+                "idempotencyKey", idempotencyKey,
                 "holdId", holdId);
     }
     
     public final static class Builder {
  
         private Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest = Optional.empty();
+ 
+        private Optional<String> idempotencyKey = Optional.empty();
  
         private String holdId;  
         
@@ -122,6 +162,24 @@ public class ConfirmHoldRequest {
             return this;
         }
 
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public Builder holdId(String holdId) {
             Utils.checkNotNull(holdId, "holdId");
             this.holdId = holdId;
@@ -131,6 +189,7 @@ public class ConfirmHoldRequest {
         public ConfirmHoldRequest build() {
             return new ConfirmHoldRequest(
                 confirmHoldRequest,
+                idempotencyKey,
                 holdId);
         }
     }

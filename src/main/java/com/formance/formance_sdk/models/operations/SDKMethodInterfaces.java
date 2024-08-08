@@ -4,15 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import com.formance.formance_sdk.models.shared.AccountRequest;
+import com.formance.formance_sdk.models.shared.BankAccountRequest;
+import com.formance.formance_sdk.models.shared.ConfigUser;
+import com.formance.formance_sdk.models.shared.CreateClientRequest;
+import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
+import com.formance.formance_sdk.models.shared.PaymentRequest;
+import com.formance.formance_sdk.models.shared.PolicyRequest;
+import com.formance.formance_sdk.models.shared.PoolRequest;
+import com.formance.formance_sdk.models.shared.Query;
+import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
+import com.formance.formance_sdk.models.shared.TriggerData;
+import com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest;
+import com.formance.formance_sdk.models.shared.V2TriggerData;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class SDKMethodInterfaces {
+
 
     public interface MethodCallGetOIDCWellKnowns {
         com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() throws Exception;
@@ -26,25 +34,25 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallCreateClient {
         com.formance.formance_sdk.models.operations.CreateClientResponse createClient(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateClientRequest> request) throws Exception;
+            Optional<? extends CreateClientRequest> request) throws Exception;
     }
 
 
     public interface MethodCallCreateSecret {
         com.formance.formance_sdk.models.operations.CreateSecretResponse createSecret(
-            com.formance.formance_sdk.models.operations.CreateSecretRequest request) throws Exception;
+            CreateSecretRequest request) throws Exception;
     }
 
 
     public interface MethodCallDeleteClient {
         com.formance.formance_sdk.models.operations.DeleteClientResponse deleteClient(
-            com.formance.formance_sdk.models.operations.DeleteClientRequest request) throws Exception;
+            DeleteClientRequest request) throws Exception;
     }
 
 
     public interface MethodCallDeleteSecret {
         com.formance.formance_sdk.models.operations.DeleteSecretResponse deleteSecret(
-            com.formance.formance_sdk.models.operations.DeleteSecretRequest request) throws Exception;
+            DeleteSecretRequest request) throws Exception;
     }
 
 
@@ -60,73 +68,73 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallReadClient {
         com.formance.formance_sdk.models.operations.ReadClientResponse readClient(
-            com.formance.formance_sdk.models.operations.ReadClientRequest request) throws Exception;
+            ReadClientRequest request) throws Exception;
     }
 
 
     public interface MethodCallReadUser {
         com.formance.formance_sdk.models.operations.ReadUserResponse readUser(
-            com.formance.formance_sdk.models.operations.ReadUserRequest request) throws Exception;
+            ReadUserRequest request) throws Exception;
     }
 
 
     public interface MethodCallUpdateClient {
         com.formance.formance_sdk.models.operations.UpdateClientResponse updateClient(
-            com.formance.formance_sdk.models.operations.UpdateClientRequest request) throws Exception;
+            UpdateClientRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateTransactions {
         com.formance.formance_sdk.models.operations.CreateTransactionsResponse createTransactions(
-            com.formance.formance_sdk.models.operations.CreateTransactionsRequest request) throws Exception;
+            CreateTransactionsRequest request) throws Exception;
     }
 
 
     public interface MethodCallAddMetadataOnTransaction {
         com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse addMetadataOnTransaction(
-            com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest request) throws Exception;
+            AddMetadataOnTransactionRequest request) throws Exception;
     }
 
 
     public interface MethodCallAddMetadataToAccount {
         com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse addMetadataToAccount(
-            com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest request) throws Exception;
+            AddMetadataToAccountRequest request) throws Exception;
     }
 
 
     public interface MethodCallCountAccounts {
         com.formance.formance_sdk.models.operations.CountAccountsResponse countAccounts(
-            com.formance.formance_sdk.models.operations.CountAccountsRequest request) throws Exception;
+            CountAccountsRequest request) throws Exception;
     }
 
 
     public interface MethodCallCountTransactions {
         com.formance.formance_sdk.models.operations.CountTransactionsResponse countTransactions(
-            com.formance.formance_sdk.models.operations.CountTransactionsRequest request) throws Exception;
+            CountTransactionsRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateTransaction {
         com.formance.formance_sdk.models.operations.CreateTransactionResponse createTransaction(
-            com.formance.formance_sdk.models.operations.CreateTransactionRequest request) throws Exception;
+            CreateTransactionRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetAccount {
         com.formance.formance_sdk.models.operations.GetAccountResponse getAccount(
-            com.formance.formance_sdk.models.operations.GetAccountRequest request) throws Exception;
+            GetAccountRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetBalances {
         com.formance.formance_sdk.models.operations.GetBalancesResponse getBalances(
-            com.formance.formance_sdk.models.operations.GetBalancesRequest request) throws Exception;
+            GetBalancesRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetBalancesAggregated {
         com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse getBalancesAggregated(
-            com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest request) throws Exception;
+            GetBalancesAggregatedRequest request) throws Exception;
     }
 
 
@@ -137,133 +145,133 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetLedgerInfo {
         com.formance.formance_sdk.models.operations.GetLedgerInfoResponse getLedgerInfo(
-            com.formance.formance_sdk.models.operations.GetLedgerInfoRequest request) throws Exception;
+            GetLedgerInfoRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetMapping {
         com.formance.formance_sdk.models.operations.GetMappingResponse getMapping(
-            com.formance.formance_sdk.models.operations.GetMappingRequest request) throws Exception;
+            GetMappingRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetTransaction {
         com.formance.formance_sdk.models.operations.GetTransactionResponse getTransaction(
-            com.formance.formance_sdk.models.operations.GetTransactionRequest request) throws Exception;
+            GetTransactionRequest request) throws Exception;
     }
 
 
     public interface MethodCallListAccounts {
         com.formance.formance_sdk.models.operations.ListAccountsResponse listAccounts(
-            com.formance.formance_sdk.models.operations.ListAccountsRequest request) throws Exception;
+            ListAccountsRequest request) throws Exception;
     }
 
 
     public interface MethodCallListLogs {
         com.formance.formance_sdk.models.operations.ListLogsResponse listLogs(
-            com.formance.formance_sdk.models.operations.ListLogsRequest request) throws Exception;
+            ListLogsRequest request) throws Exception;
     }
 
 
     public interface MethodCallListTransactions {
         com.formance.formance_sdk.models.operations.ListTransactionsResponse listTransactions(
-            com.formance.formance_sdk.models.operations.ListTransactionsRequest request) throws Exception;
+            ListTransactionsRequest request) throws Exception;
     }
 
 
     public interface MethodCallReadStats {
         com.formance.formance_sdk.models.operations.ReadStatsResponse readStats(
-            com.formance.formance_sdk.models.operations.ReadStatsRequest request) throws Exception;
+            ReadStatsRequest request) throws Exception;
     }
 
 
     public interface MethodCallRevertTransaction {
         com.formance.formance_sdk.models.operations.RevertTransactionResponse revertTransaction(
-            com.formance.formance_sdk.models.operations.RevertTransactionRequest request) throws Exception;
+            RevertTransactionRequest request) throws Exception;
     }
 
 
     public interface MethodCallRunScript {
         com.formance.formance_sdk.models.operations.RunScriptResponse runScript(
-            com.formance.formance_sdk.models.operations.RunScriptRequest request) throws Exception;
+            RunScriptRequest request) throws Exception;
     }
 
 
     public interface MethodCallUpdateMapping {
         com.formance.formance_sdk.models.operations.UpdateMappingResponse updateMapping(
-            com.formance.formance_sdk.models.operations.UpdateMappingRequest request) throws Exception;
+            UpdateMappingRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2AddMetadataOnTransaction {
         com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse v2AddMetadataOnTransaction(
-            com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest request) throws Exception;
+            V2AddMetadataOnTransactionRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2AddMetadataToAccount {
         com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse v2AddMetadataToAccount(
-            com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest request) throws Exception;
+            V2AddMetadataToAccountRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2CountAccounts {
         com.formance.formance_sdk.models.operations.V2CountAccountsResponse v2CountAccounts(
-            com.formance.formance_sdk.models.operations.V2CountAccountsRequest request) throws Exception;
+            V2CountAccountsRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2CountTransactions {
         com.formance.formance_sdk.models.operations.V2CountTransactionsResponse v2CountTransactions(
-            com.formance.formance_sdk.models.operations.V2CountTransactionsRequest request) throws Exception;
+            V2CountTransactionsRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2CreateBulk {
         com.formance.formance_sdk.models.operations.V2CreateBulkResponse v2CreateBulk(
-            com.formance.formance_sdk.models.operations.V2CreateBulkRequest request) throws Exception;
+            V2CreateBulkRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2CreateLedger {
         com.formance.formance_sdk.models.operations.V2CreateLedgerResponse v2CreateLedger(
-            com.formance.formance_sdk.models.operations.V2CreateLedgerRequest request) throws Exception;
+            V2CreateLedgerRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2CreateTransaction {
         com.formance.formance_sdk.models.operations.V2CreateTransactionResponse v2CreateTransaction(
-            com.formance.formance_sdk.models.operations.V2CreateTransactionRequest request) throws Exception;
+            V2CreateTransactionRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2DeleteAccountMetadata {
         com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse v2DeleteAccountMetadata(
-            com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest request) throws Exception;
+            V2DeleteAccountMetadataRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2DeleteLedgerMetadata {
         com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse v2DeleteLedgerMetadata(
-            com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest request) throws Exception;
+            V2DeleteLedgerMetadataRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2DeleteTransactionMetadata {
         com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse v2DeleteTransactionMetadata(
-            com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest request) throws Exception;
+            V2DeleteTransactionMetadataRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2GetAccount {
         com.formance.formance_sdk.models.operations.V2GetAccountResponse v2GetAccount(
-            com.formance.formance_sdk.models.operations.V2GetAccountRequest request) throws Exception;
+            V2GetAccountRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2GetBalancesAggregated {
         com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse v2GetBalancesAggregated(
-            com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest request) throws Exception;
+            V2GetBalancesAggregatedRequest request) throws Exception;
     }
 
 
@@ -274,139 +282,139 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallV2GetLedger {
         com.formance.formance_sdk.models.operations.V2GetLedgerResponse v2GetLedger(
-            com.formance.formance_sdk.models.operations.V2GetLedgerRequest request) throws Exception;
+            V2GetLedgerRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2GetLedgerInfo {
         com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse v2GetLedgerInfo(
-            com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest request) throws Exception;
+            V2GetLedgerInfoRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2GetTransaction {
         com.formance.formance_sdk.models.operations.V2GetTransactionResponse v2GetTransaction(
-            com.formance.formance_sdk.models.operations.V2GetTransactionRequest request) throws Exception;
+            V2GetTransactionRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2GetVolumesWithBalances {
         com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse v2GetVolumesWithBalances(
-            com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest request) throws Exception;
+            V2GetVolumesWithBalancesRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ListAccounts {
         com.formance.formance_sdk.models.operations.V2ListAccountsResponse v2ListAccounts(
-            com.formance.formance_sdk.models.operations.V2ListAccountsRequest request) throws Exception;
+            V2ListAccountsRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ListLedgers {
         com.formance.formance_sdk.models.operations.V2ListLedgersResponse v2ListLedgers(
-            com.formance.formance_sdk.models.operations.V2ListLedgersRequest request) throws Exception;
+            V2ListLedgersRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ListLogs {
         com.formance.formance_sdk.models.operations.V2ListLogsResponse v2ListLogs(
-            com.formance.formance_sdk.models.operations.V2ListLogsRequest request) throws Exception;
+            V2ListLogsRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ListTransactions {
         com.formance.formance_sdk.models.operations.V2ListTransactionsResponse v2ListTransactions(
-            com.formance.formance_sdk.models.operations.V2ListTransactionsRequest request) throws Exception;
+            V2ListTransactionsRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ReadStats {
         com.formance.formance_sdk.models.operations.V2ReadStatsResponse v2ReadStats(
-            com.formance.formance_sdk.models.operations.V2ReadStatsRequest request) throws Exception;
+            V2ReadStatsRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2RevertTransaction {
         com.formance.formance_sdk.models.operations.V2RevertTransactionResponse v2RevertTransaction(
-            com.formance.formance_sdk.models.operations.V2RevertTransactionRequest request) throws Exception;
+            V2RevertTransactionRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2UpdateLedgerMetadata {
         com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse v2UpdateLedgerMetadata(
-            com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest request) throws Exception;
+            V2UpdateLedgerMetadataRequest request) throws Exception;
     }
 
 
     public interface MethodCallCancelEvent {
         com.formance.formance_sdk.models.operations.CancelEventResponse cancelEvent(
-            com.formance.formance_sdk.models.operations.CancelEventRequest request) throws Exception;
+            CancelEventRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateTrigger {
         com.formance.formance_sdk.models.operations.CreateTriggerResponse createTrigger(
-            Optional<? extends com.formance.formance_sdk.models.shared.TriggerData> request) throws Exception;
+            Optional<? extends TriggerData> request) throws Exception;
     }
 
 
     public interface MethodCallCreateWorkflow {
         com.formance.formance_sdk.models.operations.CreateWorkflowResponse createWorkflow(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowRequest> request) throws Exception;
+            Optional<? extends CreateWorkflowRequest> request) throws Exception;
     }
 
 
     public interface MethodCallDeleteTrigger {
         com.formance.formance_sdk.models.operations.DeleteTriggerResponse deleteTrigger(
-            com.formance.formance_sdk.models.operations.DeleteTriggerRequest request) throws Exception;
+            DeleteTriggerRequest request) throws Exception;
     }
 
 
     public interface MethodCallDeleteWorkflow {
         com.formance.formance_sdk.models.operations.DeleteWorkflowResponse deleteWorkflow(
-            com.formance.formance_sdk.models.operations.DeleteWorkflowRequest request) throws Exception;
+            DeleteWorkflowRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetInstance {
         com.formance.formance_sdk.models.operations.GetInstanceResponse getInstance(
-            com.formance.formance_sdk.models.operations.GetInstanceRequest request) throws Exception;
+            GetInstanceRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetInstanceHistory {
         com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse getInstanceHistory(
-            com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest request) throws Exception;
+            GetInstanceHistoryRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetInstanceStageHistory {
         com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse getInstanceStageHistory(
-            com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest request) throws Exception;
+            GetInstanceStageHistoryRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetWorkflow {
         com.formance.formance_sdk.models.operations.GetWorkflowResponse getWorkflow(
-            com.formance.formance_sdk.models.operations.GetWorkflowRequest request) throws Exception;
+            GetWorkflowRequest request) throws Exception;
     }
 
 
     public interface MethodCallListInstances {
         com.formance.formance_sdk.models.operations.ListInstancesResponse listInstances(
-            com.formance.formance_sdk.models.operations.ListInstancesRequest request) throws Exception;
+            ListInstancesRequest request) throws Exception;
     }
 
 
     public interface MethodCallListTriggers {
         com.formance.formance_sdk.models.operations.ListTriggersResponse listTriggers(
-            com.formance.formance_sdk.models.operations.ListTriggersRequest request) throws Exception;
+            ListTriggersRequest request) throws Exception;
     }
 
 
     public interface MethodCallListTriggersOccurrences {
         com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse listTriggersOccurrences(
-            com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest request) throws Exception;
+            ListTriggersOccurrencesRequest request) throws Exception;
     }
 
 
@@ -422,73 +430,73 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallReadTrigger {
         com.formance.formance_sdk.models.operations.ReadTriggerResponse readTrigger(
-            com.formance.formance_sdk.models.operations.ReadTriggerRequest request) throws Exception;
+            ReadTriggerRequest request) throws Exception;
     }
 
 
     public interface MethodCallRunWorkflow {
         com.formance.formance_sdk.models.operations.RunWorkflowResponse runWorkflow(
-            com.formance.formance_sdk.models.operations.RunWorkflowRequest request) throws Exception;
+            RunWorkflowRequest request) throws Exception;
     }
 
 
     public interface MethodCallSendEvent {
         com.formance.formance_sdk.models.operations.SendEventResponse sendEvent(
-            com.formance.formance_sdk.models.operations.SendEventRequest request) throws Exception;
+            SendEventRequest request) throws Exception;
     }
 
 
     public interface MethodCallTestTrigger {
         com.formance.formance_sdk.models.operations.TestTriggerResponse testTrigger(
-            com.formance.formance_sdk.models.operations.TestTriggerRequest request) throws Exception;
+            TestTriggerRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2CancelEvent {
         com.formance.formance_sdk.models.operations.V2CancelEventResponse v2CancelEvent(
-            com.formance.formance_sdk.models.operations.V2CancelEventRequest request) throws Exception;
+            V2CancelEventRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2CreateTrigger {
         com.formance.formance_sdk.models.operations.V2CreateTriggerResponse v2CreateTrigger(
-            Optional<? extends com.formance.formance_sdk.models.shared.V2TriggerData> request) throws Exception;
+            Optional<? extends V2TriggerData> request) throws Exception;
     }
 
 
     public interface MethodCallV2CreateWorkflow {
         com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse v2CreateWorkflow(
-            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest> request) throws Exception;
+            Optional<? extends V2CreateWorkflowRequest> request) throws Exception;
     }
 
 
     public interface MethodCallV2DeleteTrigger {
         com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse v2DeleteTrigger(
-            com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest request) throws Exception;
+            V2DeleteTriggerRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2DeleteWorkflow {
         com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse v2DeleteWorkflow(
-            com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest request) throws Exception;
+            V2DeleteWorkflowRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2GetInstance {
         com.formance.formance_sdk.models.operations.V2GetInstanceResponse v2GetInstance(
-            com.formance.formance_sdk.models.operations.V2GetInstanceRequest request) throws Exception;
+            V2GetInstanceRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2GetInstanceHistory {
         com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse v2GetInstanceHistory(
-            com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest request) throws Exception;
+            V2GetInstanceHistoryRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2GetInstanceStageHistory {
         com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse v2GetInstanceStageHistory(
-            com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest request) throws Exception;
+            V2GetInstanceStageHistoryRequest request) throws Exception;
     }
 
 
@@ -499,163 +507,163 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallV2GetWorkflow {
         com.formance.formance_sdk.models.operations.V2GetWorkflowResponse v2GetWorkflow(
-            com.formance.formance_sdk.models.operations.V2GetWorkflowRequest request) throws Exception;
+            V2GetWorkflowRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ListInstances {
         com.formance.formance_sdk.models.operations.V2ListInstancesResponse v2ListInstances(
-            com.formance.formance_sdk.models.operations.V2ListInstancesRequest request) throws Exception;
+            V2ListInstancesRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ListTriggers {
         com.formance.formance_sdk.models.operations.V2ListTriggersResponse v2ListTriggers(
-            com.formance.formance_sdk.models.operations.V2ListTriggersRequest request) throws Exception;
+            V2ListTriggersRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ListTriggersOccurrences {
         com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse v2ListTriggersOccurrences(
-            com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest request) throws Exception;
+            V2ListTriggersOccurrencesRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ListWorkflows {
         com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse v2ListWorkflows(
-            com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest request) throws Exception;
+            V2ListWorkflowsRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2ReadTrigger {
         com.formance.formance_sdk.models.operations.V2ReadTriggerResponse v2ReadTrigger(
-            com.formance.formance_sdk.models.operations.V2ReadTriggerRequest request) throws Exception;
+            V2ReadTriggerRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2RunWorkflow {
         com.formance.formance_sdk.models.operations.V2RunWorkflowResponse v2RunWorkflow(
-            com.formance.formance_sdk.models.operations.V2RunWorkflowRequest request) throws Exception;
+            V2RunWorkflowRequest request) throws Exception;
     }
 
 
     public interface MethodCallV2SendEvent {
         com.formance.formance_sdk.models.operations.V2SendEventResponse v2SendEvent(
-            com.formance.formance_sdk.models.operations.V2SendEventRequest request) throws Exception;
+            V2SendEventRequest request) throws Exception;
     }
 
 
     public interface MethodCallAddAccountToPool {
         com.formance.formance_sdk.models.operations.AddAccountToPoolResponse addAccountToPool(
-            com.formance.formance_sdk.models.operations.AddAccountToPoolRequest request) throws Exception;
+            AddAccountToPoolRequest request) throws Exception;
     }
 
 
     public interface MethodCallConnectorsTransfer {
         com.formance.formance_sdk.models.operations.ConnectorsTransferResponse connectorsTransfer(
-            com.formance.formance_sdk.models.operations.ConnectorsTransferRequest request) throws Exception;
+            ConnectorsTransferRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateAccount {
         com.formance.formance_sdk.models.operations.CreateAccountResponse createAccount(
-            com.formance.formance_sdk.models.shared.AccountRequest request) throws Exception;
+            AccountRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateBankAccount {
         com.formance.formance_sdk.models.operations.CreateBankAccountResponse createBankAccount(
-            com.formance.formance_sdk.models.shared.BankAccountRequest request) throws Exception;
+            BankAccountRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreatePayment {
         com.formance.formance_sdk.models.operations.CreatePaymentResponse createPayment(
-            com.formance.formance_sdk.models.shared.PaymentRequest request) throws Exception;
+            PaymentRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreatePool {
         com.formance.formance_sdk.models.operations.CreatePoolResponse createPool(
-            com.formance.formance_sdk.models.shared.PoolRequest request) throws Exception;
+            PoolRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateTransferInitiation {
         com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse createTransferInitiation(
-            com.formance.formance_sdk.models.shared.TransferInitiationRequest request) throws Exception;
+            TransferInitiationRequest request) throws Exception;
     }
 
 
     public interface MethodCallDeletePool {
         com.formance.formance_sdk.models.operations.DeletePoolResponse deletePool(
-            com.formance.formance_sdk.models.operations.DeletePoolRequest request) throws Exception;
+            DeletePoolRequest request) throws Exception;
     }
 
 
     public interface MethodCallDeleteTransferInitiation {
         com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse deleteTransferInitiation(
-            com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest request) throws Exception;
+            DeleteTransferInitiationRequest request) throws Exception;
     }
 
 
     public interface MethodCallForwardBankAccount {
         com.formance.formance_sdk.models.operations.ForwardBankAccountResponse forwardBankAccount(
-            com.formance.formance_sdk.models.operations.ForwardBankAccountRequest request) throws Exception;
+            ForwardBankAccountRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetAccountBalances {
         com.formance.formance_sdk.models.operations.GetAccountBalancesResponse getAccountBalances(
-            com.formance.formance_sdk.models.operations.GetAccountBalancesRequest request) throws Exception;
+            GetAccountBalancesRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetBankAccount {
         com.formance.formance_sdk.models.operations.GetBankAccountResponse getBankAccount(
-            com.formance.formance_sdk.models.operations.GetBankAccountRequest request) throws Exception;
+            GetBankAccountRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetConnectorTask {
         com.formance.formance_sdk.models.operations.GetConnectorTaskResponse getConnectorTask(
-            com.formance.formance_sdk.models.operations.GetConnectorTaskRequest request) throws Exception;
+            GetConnectorTaskRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetConnectorTaskV1 {
         com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response getConnectorTaskV1(
-            com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request request) throws Exception;
+            GetConnectorTaskV1Request request) throws Exception;
     }
 
 
     public interface MethodCallGetPayment {
         com.formance.formance_sdk.models.operations.GetPaymentResponse getPayment(
-            com.formance.formance_sdk.models.operations.GetPaymentRequest request) throws Exception;
+            GetPaymentRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetPool {
         com.formance.formance_sdk.models.operations.GetPoolResponse getPool(
-            com.formance.formance_sdk.models.operations.GetPoolRequest request) throws Exception;
+            GetPoolRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetPoolBalances {
         com.formance.formance_sdk.models.operations.GetPoolBalancesResponse getPoolBalances(
-            com.formance.formance_sdk.models.operations.GetPoolBalancesRequest request) throws Exception;
+            GetPoolBalancesRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetTransferInitiation {
         com.formance.formance_sdk.models.operations.GetTransferInitiationResponse getTransferInitiation(
-            com.formance.formance_sdk.models.operations.GetTransferInitiationRequest request) throws Exception;
+            GetTransferInitiationRequest request) throws Exception;
     }
 
 
     public interface MethodCallInstallConnector {
         com.formance.formance_sdk.models.operations.InstallConnectorResponse installConnector(
-            com.formance.formance_sdk.models.operations.InstallConnectorRequest request) throws Exception;
+            InstallConnectorRequest request) throws Exception;
     }
 
 
@@ -666,7 +674,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallListBankAccounts {
         com.formance.formance_sdk.models.operations.ListBankAccountsResponse listBankAccounts(
-            com.formance.formance_sdk.models.operations.ListBankAccountsRequest request) throws Exception;
+            ListBankAccountsRequest request) throws Exception;
     }
 
 
@@ -677,37 +685,37 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallListConnectorTasks {
         com.formance.formance_sdk.models.operations.ListConnectorTasksResponse listConnectorTasks(
-            com.formance.formance_sdk.models.operations.ListConnectorTasksRequest request) throws Exception;
+            ListConnectorTasksRequest request) throws Exception;
     }
 
 
     public interface MethodCallListConnectorTasksV1 {
         com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response listConnectorTasksV1(
-            com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request request) throws Exception;
+            ListConnectorTasksV1Request request) throws Exception;
     }
 
 
     public interface MethodCallListPayments {
         com.formance.formance_sdk.models.operations.ListPaymentsResponse listPayments(
-            com.formance.formance_sdk.models.operations.ListPaymentsRequest request) throws Exception;
+            ListPaymentsRequest request) throws Exception;
     }
 
 
     public interface MethodCallListPools {
         com.formance.formance_sdk.models.operations.ListPoolsResponse listPools(
-            com.formance.formance_sdk.models.operations.ListPoolsRequest request) throws Exception;
+            ListPoolsRequest request) throws Exception;
     }
 
 
     public interface MethodCallListTransferInitiations {
         com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse listTransferInitiations(
-            com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest request) throws Exception;
+            ListTransferInitiationsRequest request) throws Exception;
     }
 
 
     public interface MethodCallPaymentsgetAccount {
         com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse paymentsgetAccount(
-            com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest request) throws Exception;
+            PaymentsgetAccountRequest request) throws Exception;
     }
 
 
@@ -718,127 +726,127 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallPaymentslistAccounts {
         com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse paymentslistAccounts(
-            com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest request) throws Exception;
+            PaymentslistAccountsRequest request) throws Exception;
     }
 
 
     public interface MethodCallReadConnectorConfig {
         com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse readConnectorConfig(
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest request) throws Exception;
+            ReadConnectorConfigRequest request) throws Exception;
     }
 
 
     public interface MethodCallReadConnectorConfigV1 {
         com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response readConnectorConfigV1(
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request request) throws Exception;
+            ReadConnectorConfigV1Request request) throws Exception;
     }
 
 
     public interface MethodCallRemoveAccountFromPool {
         com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse removeAccountFromPool(
-            com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest request) throws Exception;
+            RemoveAccountFromPoolRequest request) throws Exception;
     }
 
 
     public interface MethodCallResetConnector {
         com.formance.formance_sdk.models.operations.ResetConnectorResponse resetConnector(
-            com.formance.formance_sdk.models.operations.ResetConnectorRequest request) throws Exception;
+            ResetConnectorRequest request) throws Exception;
     }
 
 
     public interface MethodCallResetConnectorV1 {
         com.formance.formance_sdk.models.operations.ResetConnectorV1Response resetConnectorV1(
-            com.formance.formance_sdk.models.operations.ResetConnectorV1Request request) throws Exception;
+            ResetConnectorV1Request request) throws Exception;
     }
 
 
     public interface MethodCallRetryTransferInitiation {
         com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse retryTransferInitiation(
-            com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest request) throws Exception;
+            RetryTransferInitiationRequest request) throws Exception;
     }
 
 
     public interface MethodCallReverseTransferInitiation {
         com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse reverseTransferInitiation(
-            com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest request) throws Exception;
+            ReverseTransferInitiationRequest request) throws Exception;
     }
 
 
     public interface MethodCallUdpateTransferInitiationStatus {
         com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse udpateTransferInitiationStatus(
-            com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest request) throws Exception;
+            UdpateTransferInitiationStatusRequest request) throws Exception;
     }
 
 
     public interface MethodCallUninstallConnector {
         com.formance.formance_sdk.models.operations.UninstallConnectorResponse uninstallConnector(
-            com.formance.formance_sdk.models.operations.UninstallConnectorRequest request) throws Exception;
+            UninstallConnectorRequest request) throws Exception;
     }
 
 
     public interface MethodCallUninstallConnectorV1 {
         com.formance.formance_sdk.models.operations.UninstallConnectorV1Response uninstallConnectorV1(
-            com.formance.formance_sdk.models.operations.UninstallConnectorV1Request request) throws Exception;
+            UninstallConnectorV1Request request) throws Exception;
     }
 
 
     public interface MethodCallUpdateBankAccountMetadata {
         com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse updateBankAccountMetadata(
-            com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest request) throws Exception;
+            UpdateBankAccountMetadataRequest request) throws Exception;
     }
 
 
     public interface MethodCallUpdateConnectorConfigV1 {
         com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response updateConnectorConfigV1(
-            com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request request) throws Exception;
+            UpdateConnectorConfigV1Request request) throws Exception;
     }
 
 
     public interface MethodCallUpdateMetadata {
         com.formance.formance_sdk.models.operations.UpdateMetadataResponse updateMetadata(
-            com.formance.formance_sdk.models.operations.UpdateMetadataRequest request) throws Exception;
+            UpdateMetadataRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreatePolicy {
         com.formance.formance_sdk.models.operations.CreatePolicyResponse createPolicy(
-            com.formance.formance_sdk.models.shared.PolicyRequest request) throws Exception;
+            PolicyRequest request) throws Exception;
     }
 
 
     public interface MethodCallDeletePolicy {
         com.formance.formance_sdk.models.operations.DeletePolicyResponse deletePolicy(
-            com.formance.formance_sdk.models.operations.DeletePolicyRequest request) throws Exception;
+            DeletePolicyRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetPolicy {
         com.formance.formance_sdk.models.operations.GetPolicyResponse getPolicy(
-            com.formance.formance_sdk.models.operations.GetPolicyRequest request) throws Exception;
+            GetPolicyRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetReconciliation {
         com.formance.formance_sdk.models.operations.GetReconciliationResponse getReconciliation(
-            com.formance.formance_sdk.models.operations.GetReconciliationRequest request) throws Exception;
+            GetReconciliationRequest request) throws Exception;
     }
 
 
     public interface MethodCallListPolicies {
         com.formance.formance_sdk.models.operations.ListPoliciesResponse listPolicies(
-            com.formance.formance_sdk.models.operations.ListPoliciesRequest request) throws Exception;
+            ListPoliciesRequest request) throws Exception;
     }
 
 
     public interface MethodCallListReconciliations {
         com.formance.formance_sdk.models.operations.ListReconciliationsResponse listReconciliations(
-            com.formance.formance_sdk.models.operations.ListReconciliationsRequest request) throws Exception;
+            ListReconciliationsRequest request) throws Exception;
     }
 
 
     public interface MethodCallReconcile {
         com.formance.formance_sdk.models.operations.ReconcileResponse reconcile(
-            com.formance.formance_sdk.models.operations.ReconcileRequest request) throws Exception;
+            ReconcileRequest request) throws Exception;
     }
 
 
@@ -849,7 +857,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallSearch {
         com.formance.formance_sdk.models.operations.SearchResponse search(
-            com.formance.formance_sdk.models.shared.Query request) throws Exception;
+            Query request) throws Exception;
     }
 
 
@@ -860,91 +868,91 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallConfirmHold {
         com.formance.formance_sdk.models.operations.ConfirmHoldResponse confirmHold(
-            com.formance.formance_sdk.models.operations.ConfirmHoldRequest request) throws Exception;
+            ConfirmHoldRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateBalance {
         com.formance.formance_sdk.models.operations.CreateBalanceResponse createBalance(
-            com.formance.formance_sdk.models.operations.CreateBalanceRequest request) throws Exception;
+            CreateBalanceRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreateWallet {
         com.formance.formance_sdk.models.operations.CreateWalletResponse createWallet(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> request) throws Exception;
+            CreateWalletRequest request) throws Exception;
     }
 
 
     public interface MethodCallCreditWallet {
         com.formance.formance_sdk.models.operations.CreditWalletResponse creditWallet(
-            com.formance.formance_sdk.models.operations.CreditWalletRequest request) throws Exception;
+            CreditWalletRequest request) throws Exception;
     }
 
 
     public interface MethodCallDebitWallet {
         com.formance.formance_sdk.models.operations.DebitWalletResponse debitWallet(
-            com.formance.formance_sdk.models.operations.DebitWalletRequest request) throws Exception;
+            DebitWalletRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetBalance {
         com.formance.formance_sdk.models.operations.GetBalanceResponse getBalance(
-            com.formance.formance_sdk.models.operations.GetBalanceRequest request) throws Exception;
+            GetBalanceRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetHold {
         com.formance.formance_sdk.models.operations.GetHoldResponse getHold(
-            com.formance.formance_sdk.models.operations.GetHoldRequest request) throws Exception;
+            GetHoldRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetHolds {
         com.formance.formance_sdk.models.operations.GetHoldsResponse getHolds(
-            com.formance.formance_sdk.models.operations.GetHoldsRequest request) throws Exception;
+            GetHoldsRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetTransactions {
         com.formance.formance_sdk.models.operations.GetTransactionsResponse getTransactions(
-            com.formance.formance_sdk.models.operations.GetTransactionsRequest request) throws Exception;
+            GetTransactionsRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetWallet {
         com.formance.formance_sdk.models.operations.GetWalletResponse getWallet(
-            com.formance.formance_sdk.models.operations.GetWalletRequest request) throws Exception;
+            GetWalletRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetWalletSummary {
         com.formance.formance_sdk.models.operations.GetWalletSummaryResponse getWalletSummary(
-            com.formance.formance_sdk.models.operations.GetWalletSummaryRequest request) throws Exception;
+            GetWalletSummaryRequest request) throws Exception;
     }
 
 
     public interface MethodCallListBalances {
         com.formance.formance_sdk.models.operations.ListBalancesResponse listBalances(
-            com.formance.formance_sdk.models.operations.ListBalancesRequest request) throws Exception;
+            ListBalancesRequest request) throws Exception;
     }
 
 
     public interface MethodCallListWallets {
         com.formance.formance_sdk.models.operations.ListWalletsResponse listWallets(
-            com.formance.formance_sdk.models.operations.ListWalletsRequest request) throws Exception;
+            ListWalletsRequest request) throws Exception;
     }
 
 
     public interface MethodCallUpdateWallet {
         com.formance.formance_sdk.models.operations.UpdateWalletResponse updateWallet(
-            com.formance.formance_sdk.models.operations.UpdateWalletRequest request) throws Exception;
+            UpdateWalletRequest request) throws Exception;
     }
 
 
     public interface MethodCallVoidHold {
         com.formance.formance_sdk.models.operations.VoidHoldResponse voidHold(
-            com.formance.formance_sdk.models.operations.VoidHoldRequest request) throws Exception;
+            VoidHoldRequest request) throws Exception;
     }
 
 
@@ -955,43 +963,44 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallActivateConfig {
         com.formance.formance_sdk.models.operations.ActivateConfigResponse activateConfig(
-            com.formance.formance_sdk.models.operations.ActivateConfigRequest request) throws Exception;
+            ActivateConfigRequest request) throws Exception;
     }
 
 
     public interface MethodCallChangeConfigSecret {
         com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse changeConfigSecret(
-            com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest request) throws Exception;
+            ChangeConfigSecretRequest request) throws Exception;
     }
 
 
     public interface MethodCallDeactivateConfig {
         com.formance.formance_sdk.models.operations.DeactivateConfigResponse deactivateConfig(
-            com.formance.formance_sdk.models.operations.DeactivateConfigRequest request) throws Exception;
+            DeactivateConfigRequest request) throws Exception;
     }
 
 
     public interface MethodCallDeleteConfig {
         com.formance.formance_sdk.models.operations.DeleteConfigResponse deleteConfig(
-            com.formance.formance_sdk.models.operations.DeleteConfigRequest request) throws Exception;
+            DeleteConfigRequest request) throws Exception;
     }
 
 
     public interface MethodCallGetManyConfigs {
         com.formance.formance_sdk.models.operations.GetManyConfigsResponse getManyConfigs(
-            com.formance.formance_sdk.models.operations.GetManyConfigsRequest request) throws Exception;
+            GetManyConfigsRequest request) throws Exception;
     }
 
 
     public interface MethodCallInsertConfig {
         com.formance.formance_sdk.models.operations.InsertConfigResponse insertConfig(
-            com.formance.formance_sdk.models.shared.ConfigUser request) throws Exception;
+            ConfigUser request) throws Exception;
     }
 
 
     public interface MethodCallTestConfig {
         com.formance.formance_sdk.models.operations.TestConfigResponse testConfig(
-            com.formance.formance_sdk.models.operations.TestConfigRequest request) throws Exception;
+            TestConfigRequest request) throws Exception;
     }
+
 
 }

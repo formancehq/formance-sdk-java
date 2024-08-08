@@ -23,17 +23,11 @@ Create client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreateClientResponse;
+import com.formance.formance_sdk.models.shared.CreateClientRequest;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -41,8 +35,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -57,7 +51,7 @@ public class Application {
             if (res.createClientResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -71,14 +65,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [com.formance.formance_sdk.models.shared.CreateClientRequest](../../models/shared/CreateClientRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [CreateClientRequest](../../models/shared/CreateClientRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateClientResponse](../../models/operations/CreateClientResponse.md)**
+**[CreateClientResponse](../../models/operations/CreateClientResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -95,17 +89,11 @@ Add a secret to a client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreateSecretRequest;
+import com.formance.formance_sdk.models.operations.CreateSecretResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -113,8 +101,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -129,7 +117,7 @@ public class Application {
             if (res.createSecretResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -143,14 +131,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.CreateSecretRequest](../../models/operations/CreateSecretRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [CreateSecretRequest](../../models/operations/CreateSecretRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateSecretResponse](../../models/operations/CreateSecretResponse.md)**
+**[CreateSecretResponse](../../models/operations/CreateSecretResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -167,17 +155,11 @@ Delete client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.DeleteClientRequest;
+import com.formance.formance_sdk.models.operations.DeleteClientResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -185,8 +167,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -199,7 +181,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -213,14 +195,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.DeleteClientRequest](../../models/operations/DeleteClientRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [DeleteClientRequest](../../models/operations/DeleteClientRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteClientResponse](../../models/operations/DeleteClientResponse.md)**
+**[DeleteClientResponse](../../models/operations/DeleteClientResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -237,17 +219,11 @@ Delete a secret from a client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.DeleteSecretRequest;
+import com.formance.formance_sdk.models.operations.DeleteSecretResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -255,8 +231,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -270,7 +246,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -284,14 +260,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.DeleteSecretRequest](../../models/operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [DeleteSecretRequest](../../models/operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteSecretResponse](../../models/operations/DeleteSecretResponse.md)**
+**[DeleteSecretResponse](../../models/operations/DeleteSecretResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -308,17 +284,10 @@ List clients
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListClientsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -326,8 +295,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -337,7 +306,7 @@ public class Application {
             if (res.listClientsResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -352,7 +321,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListClientsResponse](../../models/operations/ListClientsResponse.md)**
+**[ListClientsResponse](../../models/operations/ListClientsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -369,17 +338,10 @@ List users
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListUsersResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -387,8 +349,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -398,7 +360,7 @@ public class Application {
             if (res.listUsersResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -413,7 +375,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListUsersResponse](../../models/operations/ListUsersResponse.md)**
+**[ListUsersResponse](../../models/operations/ListUsersResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -430,17 +392,11 @@ Read client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ReadClientRequest;
+import com.formance.formance_sdk.models.operations.ReadClientResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -448,8 +404,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -464,7 +420,7 @@ public class Application {
             if (res.readClientResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -478,14 +434,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                     | [com.formance.formance_sdk.models.operations.ReadClientRequest](../../models/operations/ReadClientRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [ReadClientRequest](../../models/operations/ReadClientRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadClientResponse](../../models/operations/ReadClientResponse.md)**
+**[ReadClientResponse](../../models/operations/ReadClientResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -502,17 +458,11 @@ Read user
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ReadUserRequest;
+import com.formance.formance_sdk.models.operations.ReadUserResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -520,8 +470,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -536,7 +486,7 @@ public class Application {
             if (res.readUserResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -550,14 +500,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [com.formance.formance_sdk.models.operations.ReadUserRequest](../../models/operations/ReadUserRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [ReadUserRequest](../../models/operations/ReadUserRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReadUserResponse](../../models/operations/ReadUserResponse.md)**
+**[ReadUserResponse](../../models/operations/ReadUserResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -574,17 +524,11 @@ Update client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.UpdateClientRequest;
+import com.formance.formance_sdk.models.operations.UpdateClientResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -592,8 +536,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -608,7 +552,7 @@ public class Application {
             if (res.updateClientResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -622,14 +566,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.UpdateClientRequest](../../models/operations/UpdateClientRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [UpdateClientRequest](../../models/operations/UpdateClientRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UpdateClientResponse](../../models/operations/UpdateClientResponse.md)**
+**[UpdateClientResponse](../../models/operations/UpdateClientResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

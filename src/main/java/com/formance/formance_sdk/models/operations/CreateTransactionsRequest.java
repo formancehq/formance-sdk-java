@@ -4,21 +4,21 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.Transactions;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class CreateTransactionsRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.Transactions transactions;
+    private Transactions transactions;
 
     /**
      * Name of the ledger.
@@ -28,7 +28,7 @@ public class CreateTransactionsRequest {
 
     @JsonCreator
     public CreateTransactionsRequest(
-            com.formance.formance_sdk.models.shared.Transactions transactions,
+            Transactions transactions,
             String ledger) {
         Utils.checkNotNull(transactions, "transactions");
         Utils.checkNotNull(ledger, "ledger");
@@ -37,7 +37,7 @@ public class CreateTransactionsRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.Transactions transactions() {
+    public Transactions transactions() {
         return transactions;
     }
 
@@ -53,7 +53,7 @@ public class CreateTransactionsRequest {
         return new Builder();
     }
 
-    public CreateTransactionsRequest withTransactions(com.formance.formance_sdk.models.shared.Transactions transactions) {
+    public CreateTransactionsRequest withTransactions(Transactions transactions) {
         Utils.checkNotNull(transactions, "transactions");
         this.transactions = transactions;
         return this;
@@ -78,13 +78,13 @@ public class CreateTransactionsRequest {
         }
         CreateTransactionsRequest other = (CreateTransactionsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.transactions, other.transactions) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.transactions, other.transactions) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             transactions,
             ledger);
     }
@@ -98,7 +98,7 @@ public class CreateTransactionsRequest {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.Transactions transactions;
+        private Transactions transactions;
  
         private String ledger;  
         
@@ -106,7 +106,7 @@ public class CreateTransactionsRequest {
           // force use of static builder() method
         }
 
-        public Builder transactions(com.formance.formance_sdk.models.shared.Transactions transactions) {
+        public Builder transactions(Transactions transactions) {
             Utils.checkNotNull(transactions, "transactions");
             this.transactions = transactions;
             return this;

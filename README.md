@@ -27,7 +27,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:3.0.0'
+implementation 'com.formance:formance-sdk:3.1.0'
 ```
 
 Maven:
@@ -35,7 +35,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>3.0.0</version>
+    <version>3.1.0</version>
 </dependency>
 ```
 
@@ -63,17 +63,10 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -81,8 +74,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -90,7 +83,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -317,17 +310,10 @@ You can override the default server globally by passing a server index to the `s
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -336,8 +322,8 @@ public class Application {
             SDK sdk = SDK.builder()
                 .serverIndex(0)
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -345,7 +331,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -365,17 +351,10 @@ The default server can also be overridden globally by passing a URL to the `serv
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -384,8 +363,8 @@ public class Application {
             SDK sdk = SDK.builder()
                 .serverURL("http://localhost")
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -393,7 +372,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -422,17 +401,16 @@ Handling errors in this SDK should largely match your expectations.  All operati
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
+import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
+import com.formance.formance_sdk.models.shared.Posting;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.TransactionData;
+import com.formance.formance_sdk.models.shared.Transactions;
+import java.lang.Exception;
 import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.util.List;
 
 public class Application {
 
@@ -440,16 +418,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             CreateTransactionsRequest req = CreateTransactionsRequest.builder()
                 .transactions(Transactions.builder()
-                        .transactions(java.util.List.of(
+                        .transactions(List.of(
                                 TransactionData.builder()
-                                    .postings(java.util.List.of(
+                                    .postings(List.of(
                                             Posting.builder()
                                                 .amount(new BigInteger("100"))
                                                 .asset("COIN")
@@ -472,7 +450,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -490,29 +468,21 @@ public class Application {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security schemes globally:
+This SDK supports the following security scheme globally:
 
-| Name           | Type           | Scheme         |
-| -------------- | -------------- | -------------- |
-| `clientID`     | oauth2         | OAuth2 token   |
-| `clientSecret` | oauth2         | OAuth2 token   |
+| Name                           | Type                           | Scheme                         |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| `clientID` `clientSecret`      | oauth2                         | OAuth2 Client Credentials Flow |
 
-You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -520,8 +490,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -529,7 +499,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {

@@ -4,22 +4,23 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
 import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class PaymentsAccount {
 
@@ -47,15 +48,15 @@ public class PaymentsAccount {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private Optional<? extends java.util.Map<String, String>> metadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pools")
-    private Optional<? extends java.util.List<String>> pools;
+    private Optional<? extends List<String>> pools;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
-    private Optional<? extends String> provider;
+    private Optional<String> provider;
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
@@ -75,9 +76,9 @@ public class PaymentsAccount {
             @JsonProperty("defaultAsset") String defaultAsset,
             @JsonProperty("defaultCurrency") String defaultCurrency,
             @JsonProperty("id") String id,
-            @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata,
-            @JsonProperty("pools") Optional<? extends java.util.List<String>> pools,
-            @JsonProperty("provider") Optional<? extends String> provider,
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
+            @JsonProperty("pools") Optional<? extends List<String>> pools,
+            @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("raw") Optional<? extends PaymentsAccountRaw> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("type") AccountType type) {
@@ -155,20 +156,19 @@ public class PaymentsAccount {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> metadata() {
-        return (Optional<java.util.Map<String, String>>) metadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> pools() {
-        return (Optional<java.util.List<String>>) pools;
+    public Optional<List<String>> pools() {
+        return (Optional<List<String>>) pools;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> provider() {
-        return (Optional<String>) provider;
+        return provider;
     }
 
     @SuppressWarnings("unchecked")
@@ -231,25 +231,25 @@ public class PaymentsAccount {
         return this;
     }
 
-    public PaymentsAccount withMetadata(java.util.Map<String, String> metadata) {
+    public PaymentsAccount withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
-    public PaymentsAccount withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+    public PaymentsAccount withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    public PaymentsAccount withPools(java.util.List<String> pools) {
+    public PaymentsAccount withPools(List<String> pools) {
         Utils.checkNotNull(pools, "pools");
         this.pools = Optional.ofNullable(pools);
         return this;
     }
 
-    public PaymentsAccount withPools(Optional<? extends java.util.List<String>> pools) {
+    public PaymentsAccount withPools(Optional<? extends List<String>> pools) {
         Utils.checkNotNull(pools, "pools");
         this.pools = pools;
         return this;
@@ -261,7 +261,7 @@ public class PaymentsAccount {
         return this;
     }
 
-    public PaymentsAccount withProvider(Optional<? extends String> provider) {
+    public PaymentsAccount withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
@@ -301,23 +301,23 @@ public class PaymentsAccount {
         }
         PaymentsAccount other = (PaymentsAccount) o;
         return 
-            java.util.Objects.deepEquals(this.accountName, other.accountName) &&
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.defaultAsset, other.defaultAsset) &&
-            java.util.Objects.deepEquals(this.defaultCurrency, other.defaultCurrency) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.pools, other.pools) &&
-            java.util.Objects.deepEquals(this.provider, other.provider) &&
-            java.util.Objects.deepEquals(this.raw, other.raw) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.type, other.type);
+            Objects.deepEquals(this.accountName, other.accountName) &&
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.defaultAsset, other.defaultAsset) &&
+            Objects.deepEquals(this.defaultCurrency, other.defaultCurrency) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.pools, other.pools) &&
+            Objects.deepEquals(this.provider, other.provider) &&
+            Objects.deepEquals(this.raw, other.raw) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accountName,
             connectorID,
             createdAt,
@@ -364,11 +364,11 @@ public class PaymentsAccount {
  
         private String id;
  
-        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
  
-        private Optional<? extends java.util.List<String>> pools = Optional.empty();
+        private Optional<? extends List<String>> pools = Optional.empty();
  
-        private Optional<? extends String> provider = Optional.empty();
+        private Optional<String> provider = Optional.empty();
  
         private Optional<? extends PaymentsAccountRaw> raw = Optional.empty();
  
@@ -420,25 +420,25 @@ public class PaymentsAccount {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
 
-        public Builder pools(java.util.List<String> pools) {
+        public Builder pools(List<String> pools) {
             Utils.checkNotNull(pools, "pools");
             this.pools = Optional.ofNullable(pools);
             return this;
         }
 
-        public Builder pools(Optional<? extends java.util.List<String>> pools) {
+        public Builder pools(Optional<? extends List<String>> pools) {
             Utils.checkNotNull(pools, "pools");
             this.pools = pools;
             return this;
@@ -450,7 +450,7 @@ public class PaymentsAccount {
             return this;
         }
 
-        public Builder provider(Optional<? extends String> provider) {
+        public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;

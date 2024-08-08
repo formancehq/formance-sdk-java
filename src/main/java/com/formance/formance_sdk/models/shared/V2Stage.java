@@ -4,28 +4,25 @@
 
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
-import java.time.OffsetDateTime;
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.formance.formance_sdk.utils.OneOfDeserializer;
 import com.formance.formance_sdk.utils.TypedObject;
 import com.formance.formance_sdk.utils.Utils.JsonShape;
+import com.formance.formance_sdk.utils.Utils.TypeReferenceWithShape;
+import com.formance.formance_sdk.utils.Utils;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 
 
 @JsonDeserialize(using = V2Stage._Deserializer.class)
 public class V2Stage {
 
-    @com.fasterxml.jackson.annotation.JsonValue
+    @JsonValue
     private TypedObject value;
     
     private V2Stage(TypedObject value) {
@@ -55,10 +52,10 @@ public class V2Stage {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code V2StageSend}</li>
-     * <li>{@code V2StageDelay}</li>
-     * <li>{@code V2StageWaitEvent}</li>
-     * <li>{@code V2Update}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.V2StageSend}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.V2StageDelay}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.V2StageWaitEvent}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.V2Update}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -85,23 +82,23 @@ public class V2Stage {
             return false;
         }
         V2Stage other = (V2Stage) o;
-        return java.util.Objects.deepEquals(this.value.value(), other.value.value()); 
+        return Objects.deepEquals(this.value.value(), other.value.value()); 
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(value.value());
+        return Objects.hash(value.value());
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends com.formance.formance_sdk.utils.OneOfDeserializer<V2Stage> {
+    public static final class _Deserializer extends OneOfDeserializer<V2Stage> {
 
         public _Deserializer() {
             super(V2Stage.class,
-                  Utils.TypeReferenceWithShape.of(new TypeReference<V2StageSend>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<V2StageDelay>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<V2StageWaitEvent>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<V2Update>() {}, Utils.JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.V2StageSend>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.V2StageDelay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.V2StageWaitEvent>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.V2Update>() {}, JsonShape.DEFAULT));
         }
     }
     

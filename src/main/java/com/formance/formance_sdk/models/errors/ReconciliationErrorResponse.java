@@ -5,18 +5,13 @@
 package com.formance.formance_sdk.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.http.HttpResponse;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -26,7 +21,7 @@ public class ReconciliationErrorResponse extends RuntimeException {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
-    private Optional<? extends String> details;
+    private Optional<String> details;
 
     @JsonProperty("errorCode")
     private String errorCode;
@@ -36,7 +31,7 @@ public class ReconciliationErrorResponse extends RuntimeException {
 
     @JsonCreator
     public ReconciliationErrorResponse(
-            @JsonProperty("details") Optional<? extends String> details,
+            @JsonProperty("details") Optional<String> details,
             @JsonProperty("errorCode") String errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
         Utils.checkNotNull(details, "details");
@@ -53,7 +48,7 @@ public class ReconciliationErrorResponse extends RuntimeException {
         this(Optional.empty(), errorCode, errorMessage);
     }
 
-    public Optional<? extends String> details(){
+    public Optional<String> details(){
         return details;
     }
 
@@ -75,7 +70,7 @@ public class ReconciliationErrorResponse extends RuntimeException {
         return this;
     }
     
-    public ReconciliationErrorResponse withDetails(Optional<? extends String> details) {
+    public ReconciliationErrorResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
@@ -103,9 +98,9 @@ public class ReconciliationErrorResponse extends RuntimeException {
         }
         ReconciliationErrorResponse other = (ReconciliationErrorResponse) o;
         return
-            java.util.Objects.deepEquals(this.details, other.details) &&
-            java.util.Objects.deepEquals(this.errorCode, other.errorCode) &&
-            java.util.Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Objects.deepEquals(this.details, other.details) &&
+            Objects.deepEquals(this.errorCode, other.errorCode) &&
+            Objects.deepEquals(this.errorMessage, other.errorMessage);
     }
 
     @Override
@@ -126,7 +121,7 @@ public class ReconciliationErrorResponse extends RuntimeException {
 
     public final static class Builder {
 
-        private Optional<? extends String> details = Optional.empty();
+        private Optional<String> details = Optional.empty();
 
         private String errorCode;
 
@@ -142,7 +137,7 @@ public class ReconciliationErrorResponse extends RuntimeException {
             return this;
         }
         
-        public Builder details(Optional<? extends String> details) {
+        public Builder details(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;

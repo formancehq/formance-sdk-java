@@ -4,31 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class PoolBalances {
 
     @JsonProperty("balances")
-    private java.util.List<PoolBalance> balances;
+    private List<PoolBalance> balances;
 
     @JsonCreator
     public PoolBalances(
-            @JsonProperty("balances") java.util.List<PoolBalance> balances) {
+            @JsonProperty("balances") List<PoolBalance> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
     }
 
     @JsonIgnore
-    public java.util.List<PoolBalance> balances() {
+    public List<PoolBalance> balances() {
         return balances;
     }
 
@@ -36,7 +36,7 @@ public class PoolBalances {
         return new Builder();
     }
 
-    public PoolBalances withBalances(java.util.List<PoolBalance> balances) {
+    public PoolBalances withBalances(List<PoolBalance> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
@@ -52,12 +52,12 @@ public class PoolBalances {
         }
         PoolBalances other = (PoolBalances) o;
         return 
-            java.util.Objects.deepEquals(this.balances, other.balances);
+            Objects.deepEquals(this.balances, other.balances);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             balances);
     }
     
@@ -69,13 +69,13 @@ public class PoolBalances {
     
     public final static class Builder {
  
-        private java.util.List<PoolBalance> balances;  
+        private List<PoolBalance> balances;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder balances(java.util.List<PoolBalance> balances) {
+        public Builder balances(List<PoolBalance> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
             return this;

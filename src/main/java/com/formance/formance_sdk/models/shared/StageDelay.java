@@ -4,37 +4,34 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class StageDelay {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("duration")
-    private Optional<? extends String> duration;
+    private Optional<String> duration;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("until")
-    private Optional<? extends OffsetDateTime> until;
+    private Optional<OffsetDateTime> until;
 
     @JsonCreator
     public StageDelay(
-            @JsonProperty("duration") Optional<? extends String> duration,
-            @JsonProperty("until") Optional<? extends OffsetDateTime> until) {
+            @JsonProperty("duration") Optional<String> duration,
+            @JsonProperty("until") Optional<OffsetDateTime> until) {
         Utils.checkNotNull(duration, "duration");
         Utils.checkNotNull(until, "until");
         this.duration = duration;
@@ -45,16 +42,14 @@ public class StageDelay {
         this(Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> duration() {
-        return (Optional<String>) duration;
+        return duration;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> until() {
-        return (Optional<OffsetDateTime>) until;
+        return until;
     }
 
     public final static Builder builder() {
@@ -67,7 +62,7 @@ public class StageDelay {
         return this;
     }
 
-    public StageDelay withDuration(Optional<? extends String> duration) {
+    public StageDelay withDuration(Optional<String> duration) {
         Utils.checkNotNull(duration, "duration");
         this.duration = duration;
         return this;
@@ -79,7 +74,7 @@ public class StageDelay {
         return this;
     }
 
-    public StageDelay withUntil(Optional<? extends OffsetDateTime> until) {
+    public StageDelay withUntil(Optional<OffsetDateTime> until) {
         Utils.checkNotNull(until, "until");
         this.until = until;
         return this;
@@ -95,13 +90,13 @@ public class StageDelay {
         }
         StageDelay other = (StageDelay) o;
         return 
-            java.util.Objects.deepEquals(this.duration, other.duration) &&
-            java.util.Objects.deepEquals(this.until, other.until);
+            Objects.deepEquals(this.duration, other.duration) &&
+            Objects.deepEquals(this.until, other.until);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             duration,
             until);
     }
@@ -115,9 +110,9 @@ public class StageDelay {
     
     public final static class Builder {
  
-        private Optional<? extends String> duration = Optional.empty();
+        private Optional<String> duration = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> until = Optional.empty();  
+        private Optional<OffsetDateTime> until = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -129,7 +124,7 @@ public class StageDelay {
             return this;
         }
 
-        public Builder duration(Optional<? extends String> duration) {
+        public Builder duration(Optional<String> duration) {
             Utils.checkNotNull(duration, "duration");
             this.duration = duration;
             return this;
@@ -141,7 +136,7 @@ public class StageDelay {
             return this;
         }
 
-        public Builder until(Optional<? extends OffsetDateTime> until) {
+        public Builder until(Optional<OffsetDateTime> until) {
             Utils.checkNotNull(until, "until");
             this.until = until;
             return this;

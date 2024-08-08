@@ -4,19 +4,18 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
 
@@ -28,7 +27,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorDetails")
-    private Optional<? extends String> errorDetails;
+    private Optional<String> errorDetails;
 
     @JsonProperty("responseType")
     private String responseType;
@@ -37,7 +36,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
     public V2BulkElementResultErrorSchemas(
             @JsonProperty("errorCode") String errorCode,
             @JsonProperty("errorDescription") String errorDescription,
-            @JsonProperty("errorDetails") Optional<? extends String> errorDetails,
+            @JsonProperty("errorDetails") Optional<String> errorDetails,
             @JsonProperty("responseType") String responseType) {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorDescription, "errorDescription");
@@ -66,15 +65,14 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
         return errorDescription;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> errorDetails() {
-        return (Optional<String>) errorDetails;
+        return errorDetails;
     }
 
     @JsonIgnore
     @Override
-    public java.lang.String responseType() {
+    public String responseType() {
         return Utils.discriminatorToString(responseType);
     }
 
@@ -100,7 +98,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
         return this;
     }
 
-    public V2BulkElementResultErrorSchemas withErrorDetails(Optional<? extends String> errorDetails) {
+    public V2BulkElementResultErrorSchemas withErrorDetails(Optional<String> errorDetails) {
         Utils.checkNotNull(errorDetails, "errorDetails");
         this.errorDetails = errorDetails;
         return this;
@@ -122,15 +120,15 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
         }
         V2BulkElementResultErrorSchemas other = (V2BulkElementResultErrorSchemas) o;
         return 
-            java.util.Objects.deepEquals(this.errorCode, other.errorCode) &&
-            java.util.Objects.deepEquals(this.errorDescription, other.errorDescription) &&
-            java.util.Objects.deepEquals(this.errorDetails, other.errorDetails) &&
-            java.util.Objects.deepEquals(this.responseType, other.responseType);
+            Objects.deepEquals(this.errorCode, other.errorCode) &&
+            Objects.deepEquals(this.errorDescription, other.errorDescription) &&
+            Objects.deepEquals(this.errorDetails, other.errorDetails) &&
+            Objects.deepEquals(this.responseType, other.responseType);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             errorCode,
             errorDescription,
             errorDetails,
@@ -152,7 +150,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
  
         private String errorDescription;
  
-        private Optional<? extends String> errorDetails = Optional.empty();
+        private Optional<String> errorDetails = Optional.empty();
  
         private String responseType;  
         
@@ -178,7 +176,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
             return this;
         }
 
-        public Builder errorDetails(Optional<? extends String> errorDetails) {
+        public Builder errorDetails(Optional<String> errorDetails) {
             Utils.checkNotNull(errorDetails, "errorDetails");
             this.errorDetails = errorDetails;
             return this;

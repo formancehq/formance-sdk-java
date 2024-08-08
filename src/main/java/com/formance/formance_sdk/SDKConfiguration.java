@@ -5,10 +5,12 @@
 package com.formance.formance_sdk;
 
 import com.formance.formance_sdk.hooks.ClientCredentialsHook;
-import com.formance.formance_sdk.utils.Hook.SdkInitData;
+import com.formance.formance_sdk.hooks.SDKHooks;
 import com.formance.formance_sdk.utils.HTTPClient;
+import com.formance.formance_sdk.utils.Hook.SdkInitData;
+import com.formance.formance_sdk.utils.Hooks;
 import com.formance.formance_sdk.utils.RetryConfig;
-import com.formance.formance_sdk.models.shared.Security;
+import java.lang.String;
 import java.util.Optional;
 
 class SDKConfiguration {
@@ -18,18 +20,18 @@ class SDKConfiguration {
         return Optional.ofNullable(securitySource);
     }
     public HTTPClient defaultClient;
-      public String serverUrl;
+    public String serverUrl;
     public int serverIdx = 0;
     public String language = "java";
-    public String openapiDocVersion = "v2.0.4";
-    public String sdkVersion = "3.0.0";
-    public String genVersion = "2.384.1";
-    public String userAgent = "speakeasy-sdk/java 3.0.0 2.384.1 v2.0.4 com.formance.formance_sdk";
+    public String openapiDocVersion = "v2.0.9";
+    public String sdkVersion = "3.1.0";
+    public String genVersion = "2.390.0";
+    public String userAgent = "speakeasy-sdk/java 3.1.0 2.390.0 v2.0.9 com.formance.formance_sdk";
 
-    private com.formance.formance_sdk.utils.Hooks _hooks = createHooks();
+    private Hooks _hooks = createHooks();
 
-    private static com.formance.formance_sdk.utils.Hooks createHooks() {
-        com.formance.formance_sdk.utils.Hooks hooks = new com.formance.formance_sdk.utils.Hooks();
+    private static Hooks createHooks() {
+        Hooks hooks = new Hooks();
         // register client credentials hooks
         ClientCredentialsHook h = new ClientCredentialsHook();
         hooks.registerSdkInit(h);
@@ -38,11 +40,11 @@ class SDKConfiguration {
         return hooks;
     }
     
-    public com.formance.formance_sdk.utils.Hooks hooks() {
+    public Hooks hooks() {
         return _hooks;
     }
 
-    public void setHooks(com.formance.formance_sdk.utils.Hooks hooks) {
+    public void setHooks(Hooks hooks) {
         this._hooks = hooks;
     }
 
@@ -50,7 +52,7 @@ class SDKConfiguration {
      * Initializes state (for example hooks).
      **/
     public void initialize() {
-        com.formance.formance_sdk.hooks.SDKHooks.initialize(_hooks);
+        SDKHooks.initialize(_hooks);
         // apply the sdk init hook immediately
         SdkInitData data = _hooks.sdkInit(new SdkInitData(serverUrl, defaultClient));
         this.serverUrl = data.baseUrl();

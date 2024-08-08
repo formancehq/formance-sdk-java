@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: e0806007d1c13b4e1b4ce5b3f5144d5e
-  docVersion: v2.0.4
-  speakeasyVersion: 1.350.0
-  generationVersion: 2.384.1
-  releaseVersion: 3.0.0
-  configChecksum: b1abc62247f2da6924d1a5ce977fc76a
+  docChecksum: 43c1100731856a006f12c4235a6065fa
+  docVersion: v2.0.9
+  speakeasyVersion: 1.357.3
+  generationVersion: 2.390.0
+  releaseVersion: 3.1.0
+  configChecksum: 527b16d711fdfe13106bf95ca3ee3986
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,11 +14,11 @@ features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.27.0
+    core: 3.28.0
     deprecations: 2.81.1
     errors: 0.1.2
     getRequestBodies: 2.81.1
-    globalSecurity: 2.82.5
+    globalSecurity: 2.82.7
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
     groups: 2.81.2
@@ -520,6 +520,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/ConfirmHoldResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateBalanceRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateBalanceResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/CreateWalletRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreateWalletResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreditWalletRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/CreditWalletResponse.java
@@ -1276,6 +1277,7 @@ generatedFiles:
   - docs/models/operations/ConfirmHoldResponse.md
   - docs/models/operations/CreateBalanceRequest.md
   - docs/models/operations/CreateBalanceResponse.md
+  - docs/models/operations/CreateWalletRequest.md
   - docs/models/operations/CreateWalletResponse.md
   - docs/models/operations/CreditWalletRequest.md
   - docs/models/operations/CreditWalletResponse.md

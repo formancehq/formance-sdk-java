@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetInstanceStageHistoryResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetInstanceStageHistoryResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
     /**
      * The workflow instance stage history
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse;
+    private Optional<? extends GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
     @JsonCreator
     public GetInstanceStageHistoryResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse,
+            Optional<? extends GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse>) getWorkflowInstanceHistoryStageResponse;
+    public Optional<GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse() {
+        return (Optional<GetWorkflowInstanceHistoryStageResponse>) getWorkflowInstanceHistoryStageResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
     /**
      * The workflow instance stage history
      */
-    public GetInstanceStageHistoryResponse withGetWorkflowInstanceHistoryStageResponse(com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse getWorkflowInstanceHistoryStageResponse) {
+    public GetInstanceStageHistoryResponse withGetWorkflowInstanceHistoryStageResponse(GetWorkflowInstanceHistoryStageResponse getWorkflowInstanceHistoryStageResponse) {
         Utils.checkNotNull(getWorkflowInstanceHistoryStageResponse, "getWorkflowInstanceHistoryStageResponse");
         this.getWorkflowInstanceHistoryStageResponse = Optional.ofNullable(getWorkflowInstanceHistoryStageResponse);
         return this;
@@ -119,7 +123,7 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
     /**
      * The workflow instance stage history
      */
-    public GetInstanceStageHistoryResponse withGetWorkflowInstanceHistoryStageResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse) {
+    public GetInstanceStageHistoryResponse withGetWorkflowInstanceHistoryStageResponse(Optional<? extends GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse) {
         Utils.checkNotNull(getWorkflowInstanceHistoryStageResponse, "getWorkflowInstanceHistoryStageResponse");
         this.getWorkflowInstanceHistoryStageResponse = getWorkflowInstanceHistoryStageResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
         }
         GetInstanceStageHistoryResponse other = (GetInstanceStageHistoryResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.getWorkflowInstanceHistoryStageResponse, other.getWorkflowInstanceHistoryStageResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.getWorkflowInstanceHistoryStageResponse, other.getWorkflowInstanceHistoryStageResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             getWorkflowInstanceHistoryStageResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse = Optional.empty();
+        private Optional<? extends GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
         /**
          * The workflow instance stage history
          */
-        public Builder getWorkflowInstanceHistoryStageResponse(com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse getWorkflowInstanceHistoryStageResponse) {
+        public Builder getWorkflowInstanceHistoryStageResponse(GetWorkflowInstanceHistoryStageResponse getWorkflowInstanceHistoryStageResponse) {
             Utils.checkNotNull(getWorkflowInstanceHistoryStageResponse, "getWorkflowInstanceHistoryStageResponse");
             this.getWorkflowInstanceHistoryStageResponse = Optional.ofNullable(getWorkflowInstanceHistoryStageResponse);
             return this;
@@ -212,7 +216,7 @@ public class GetInstanceStageHistoryResponse implements com.formance.formance_sd
         /**
          * The workflow instance stage history
          */
-        public Builder getWorkflowInstanceHistoryStageResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse) {
+        public Builder getWorkflowInstanceHistoryStageResponse(Optional<? extends GetWorkflowInstanceHistoryStageResponse> getWorkflowInstanceHistoryStageResponse) {
             Utils.checkNotNull(getWorkflowInstanceHistoryStageResponse, "getWorkflowInstanceHistoryStageResponse");
             this.getWorkflowInstanceHistoryStageResponse = getWorkflowInstanceHistoryStageResponse;
             return this;

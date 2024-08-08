@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.PoolBalancesResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetPoolBalancesResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.PoolBalancesResponse> poolBalancesResponse;
+    private Optional<? extends PoolBalancesResponse> poolBalancesResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
     @JsonCreator
     public GetPoolBalancesResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.PoolBalancesResponse> poolBalancesResponse,
+            Optional<? extends PoolBalancesResponse> poolBalancesResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.PoolBalancesResponse> poolBalancesResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.PoolBalancesResponse>) poolBalancesResponse;
+    public Optional<PoolBalancesResponse> poolBalancesResponse() {
+        return (Optional<PoolBalancesResponse>) poolBalancesResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
     /**
      * OK
      */
-    public GetPoolBalancesResponse withPoolBalancesResponse(com.formance.formance_sdk.models.shared.PoolBalancesResponse poolBalancesResponse) {
+    public GetPoolBalancesResponse withPoolBalancesResponse(PoolBalancesResponse poolBalancesResponse) {
         Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
         this.poolBalancesResponse = Optional.ofNullable(poolBalancesResponse);
         return this;
@@ -119,7 +123,7 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
     /**
      * OK
      */
-    public GetPoolBalancesResponse withPoolBalancesResponse(Optional<? extends com.formance.formance_sdk.models.shared.PoolBalancesResponse> poolBalancesResponse) {
+    public GetPoolBalancesResponse withPoolBalancesResponse(Optional<? extends PoolBalancesResponse> poolBalancesResponse) {
         Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
         this.poolBalancesResponse = poolBalancesResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
         }
         GetPoolBalancesResponse other = (GetPoolBalancesResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.poolBalancesResponse, other.poolBalancesResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.poolBalancesResponse, other.poolBalancesResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             poolBalancesResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.PoolBalancesResponse> poolBalancesResponse = Optional.empty();
+        private Optional<? extends PoolBalancesResponse> poolBalancesResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
         /**
          * OK
          */
-        public Builder poolBalancesResponse(com.formance.formance_sdk.models.shared.PoolBalancesResponse poolBalancesResponse) {
+        public Builder poolBalancesResponse(PoolBalancesResponse poolBalancesResponse) {
             Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
             this.poolBalancesResponse = Optional.ofNullable(poolBalancesResponse);
             return this;
@@ -212,7 +216,7 @@ public class GetPoolBalancesResponse implements com.formance.formance_sdk.utils.
         /**
          * OK
          */
-        public Builder poolBalancesResponse(Optional<? extends com.formance.formance_sdk.models.shared.PoolBalancesResponse> poolBalancesResponse) {
+        public Builder poolBalancesResponse(Optional<? extends PoolBalancesResponse> poolBalancesResponse) {
             Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
             this.poolBalancesResponse = poolBalancesResponse;
             return this;

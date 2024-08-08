@@ -4,24 +4,29 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.shared.AccountsCursorResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListAccountsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListAccountsResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursorResponse> accountsCursorResponse;
+    private Optional<? extends AccountsCursorResponse> accountsCursorResponse;
 
     /**
      * HTTP response content type for this operation
@@ -31,7 +36,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Not found
      */
-    private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse;
+    private Optional<? extends ErrorResponse> errorResponse;
 
     /**
      * HTTP response status code for this operation
@@ -45,9 +50,9 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
 
     @JsonCreator
     public ListAccountsResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursorResponse> accountsCursorResponse,
+            Optional<? extends AccountsCursorResponse> accountsCursorResponse,
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse,
+            Optional<? extends ErrorResponse> errorResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(accountsCursorResponse, "accountsCursorResponse");
@@ -74,8 +79,8 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.AccountsCursorResponse> accountsCursorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.AccountsCursorResponse>) accountsCursorResponse;
+    public Optional<AccountsCursorResponse> accountsCursorResponse() {
+        return (Optional<AccountsCursorResponse>) accountsCursorResponse;
     }
 
     /**
@@ -91,8 +96,8 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse() {
-        return (Optional<com.formance.formance_sdk.models.errors.ErrorResponse>) errorResponse;
+    public Optional<ErrorResponse> errorResponse() {
+        return (Optional<ErrorResponse>) errorResponse;
     }
 
     /**
@@ -118,7 +123,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
-    public ListAccountsResponse withAccountsCursorResponse(com.formance.formance_sdk.models.shared.AccountsCursorResponse accountsCursorResponse) {
+    public ListAccountsResponse withAccountsCursorResponse(AccountsCursorResponse accountsCursorResponse) {
         Utils.checkNotNull(accountsCursorResponse, "accountsCursorResponse");
         this.accountsCursorResponse = Optional.ofNullable(accountsCursorResponse);
         return this;
@@ -127,7 +132,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
-    public ListAccountsResponse withAccountsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursorResponse> accountsCursorResponse) {
+    public ListAccountsResponse withAccountsCursorResponse(Optional<? extends AccountsCursorResponse> accountsCursorResponse) {
         Utils.checkNotNull(accountsCursorResponse, "accountsCursorResponse");
         this.accountsCursorResponse = accountsCursorResponse;
         return this;
@@ -145,7 +150,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Not found
      */
-    public ListAccountsResponse withErrorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
+    public ListAccountsResponse withErrorResponse(ErrorResponse errorResponse) {
         Utils.checkNotNull(errorResponse, "errorResponse");
         this.errorResponse = Optional.ofNullable(errorResponse);
         return this;
@@ -154,7 +159,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Not found
      */
-    public ListAccountsResponse withErrorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
+    public ListAccountsResponse withErrorResponse(Optional<? extends ErrorResponse> errorResponse) {
         Utils.checkNotNull(errorResponse, "errorResponse");
         this.errorResponse = errorResponse;
         return this;
@@ -188,16 +193,16 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
         }
         ListAccountsResponse other = (ListAccountsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.accountsCursorResponse, other.accountsCursorResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.errorResponse, other.errorResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.accountsCursorResponse, other.accountsCursorResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.errorResponse, other.errorResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accountsCursorResponse,
             contentType,
             errorResponse,
@@ -217,11 +222,11 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursorResponse> accountsCursorResponse = Optional.empty();
+        private Optional<? extends AccountsCursorResponse> accountsCursorResponse = Optional.empty();
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse = Optional.empty();
+        private Optional<? extends ErrorResponse> errorResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -234,7 +239,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
         /**
          * OK
          */
-        public Builder accountsCursorResponse(com.formance.formance_sdk.models.shared.AccountsCursorResponse accountsCursorResponse) {
+        public Builder accountsCursorResponse(AccountsCursorResponse accountsCursorResponse) {
             Utils.checkNotNull(accountsCursorResponse, "accountsCursorResponse");
             this.accountsCursorResponse = Optional.ofNullable(accountsCursorResponse);
             return this;
@@ -243,7 +248,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
         /**
          * OK
          */
-        public Builder accountsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursorResponse> accountsCursorResponse) {
+        public Builder accountsCursorResponse(Optional<? extends AccountsCursorResponse> accountsCursorResponse) {
             Utils.checkNotNull(accountsCursorResponse, "accountsCursorResponse");
             this.accountsCursorResponse = accountsCursorResponse;
             return this;
@@ -261,7 +266,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
         /**
          * Not found
          */
-        public Builder errorResponse(com.formance.formance_sdk.models.errors.ErrorResponse errorResponse) {
+        public Builder errorResponse(ErrorResponse errorResponse) {
             Utils.checkNotNull(errorResponse, "errorResponse");
             this.errorResponse = Optional.ofNullable(errorResponse);
             return this;
@@ -270,7 +275,7 @@ public class ListAccountsResponse implements com.formance.formance_sdk.utils.Res
         /**
          * Not found
          */
-        public Builder errorResponse(Optional<? extends com.formance.formance_sdk.models.errors.ErrorResponse> errorResponse) {
+        public Builder errorResponse(Optional<? extends ErrorResponse> errorResponse) {
             Utils.checkNotNull(errorResponse, "errorResponse");
             this.errorResponse = errorResponse;
             return this;

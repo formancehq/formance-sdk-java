@@ -4,19 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ReverseTransferInitiationRequest {
 
@@ -31,7 +33,7 @@ public class ReverseTransferInitiationRequest {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private Optional<? extends java.util.Map<String, String>> metadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     @JsonProperty("reference")
     private String reference;
@@ -41,7 +43,7 @@ public class ReverseTransferInitiationRequest {
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
             @JsonProperty("description") String description,
-            @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata,
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("reference") String reference) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
@@ -80,8 +82,8 @@ public class ReverseTransferInitiationRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> metadata() {
-        return (Optional<java.util.Map<String, String>>) metadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -116,13 +118,13 @@ public class ReverseTransferInitiationRequest {
         return this;
     }
 
-    public ReverseTransferInitiationRequest withMetadata(java.util.Map<String, String> metadata) {
+    public ReverseTransferInitiationRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
-    public ReverseTransferInitiationRequest withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+    public ReverseTransferInitiationRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -144,16 +146,16 @@ public class ReverseTransferInitiationRequest {
         }
         ReverseTransferInitiationRequest other = (ReverseTransferInitiationRequest) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.description, other.description) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.reference, other.reference);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.description, other.description) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.reference, other.reference);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             asset,
             description,
@@ -179,7 +181,7 @@ public class ReverseTransferInitiationRequest {
  
         private String description;
  
-        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
  
         private String reference;  
         
@@ -210,13 +212,13 @@ public class ReverseTransferInitiationRequest {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

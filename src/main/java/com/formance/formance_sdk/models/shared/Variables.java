@@ -4,34 +4,33 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Variables {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<? extends String> error;
+    private Optional<String> error;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<? extends String> value;
+    private Optional<String> value;
 
     @JsonCreator
     public Variables(
-            @JsonProperty("error") Optional<? extends String> error,
-            @JsonProperty("value") Optional<? extends String> value) {
+            @JsonProperty("error") Optional<String> error,
+            @JsonProperty("value") Optional<String> value) {
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(value, "value");
         this.error = error;
@@ -42,16 +41,14 @@ public class Variables {
         this(Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> error() {
-        return (Optional<String>) error;
+        return error;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> value() {
-        return (Optional<String>) value;
+        return value;
     }
 
     public final static Builder builder() {
@@ -64,7 +61,7 @@ public class Variables {
         return this;
     }
 
-    public Variables withError(Optional<? extends String> error) {
+    public Variables withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -76,7 +73,7 @@ public class Variables {
         return this;
     }
 
-    public Variables withValue(Optional<? extends String> value) {
+    public Variables withValue(Optional<String> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
@@ -92,13 +89,13 @@ public class Variables {
         }
         Variables other = (Variables) o;
         return 
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.value, other.value);
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             error,
             value);
     }
@@ -112,9 +109,9 @@ public class Variables {
     
     public final static class Builder {
  
-        private Optional<? extends String> error = Optional.empty();
+        private Optional<String> error = Optional.empty();
  
-        private Optional<? extends String> value = Optional.empty();  
+        private Optional<String> value = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -126,7 +123,7 @@ public class Variables {
             return this;
         }
 
-        public Builder error(Optional<? extends String> error) {
+        public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
@@ -138,7 +135,7 @@ public class Variables {
             return this;
         }
 
-        public Builder value(Optional<? extends String> value) {
+        public Builder value(Optional<String> value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;

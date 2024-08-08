@@ -5,26 +5,31 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.models.operations.SearchRequestBuilder;
+import com.formance.formance_sdk.models.operations.SearchResponse;
+import com.formance.formance_sdk.models.operations.SearchgetServerInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.Query;
+import com.formance.formance_sdk.models.shared.Response;
+import com.formance.formance_sdk.models.shared.ServerInfo;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.JSON;
-import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class Search implements
             MethodCallSearch,
@@ -42,8 +47,8 @@ public class Search implements
      * ElasticSearch query engine
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.SearchRequestBuilder search() {
-        return new com.formance.formance_sdk.models.operations.SearchRequestBuilder(this);
+    public SearchRequestBuilder search() {
+        return new SearchRequestBuilder(this);
     }
 
     /**
@@ -53,18 +58,23 @@ public class Search implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.SearchResponse search(
-            com.formance.formance_sdk.models.shared.Query request) throws Exception {
+    public SearchResponse search(
+            Query request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/search/");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.shared.Query>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Query>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -80,7 +90,10 @@ public class Search implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("search", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "search", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -88,18 +101,28 @@ public class Search implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("search", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "search",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("search", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "search",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("search", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "search",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -107,28 +130,28 @@ public class Search implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.SearchResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.SearchResponse
+        SearchResponse.Builder _resBuilder = 
+            SearchResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.SearchResponse _res = _resBuilder.build();
+        SearchResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.Response _out = Utils.mapper().readValue(
+                Response _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.Response>() {});
-                _res.withResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<Response>() {});
+                _res.withResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -137,13 +160,13 @@ public class Search implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -152,8 +175,8 @@ public class Search implements
      * Get server info
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.SearchgetServerInfoRequestBuilder searchgetServerInfo() {
-        return new com.formance.formance_sdk.models.operations.SearchgetServerInfoRequestBuilder(this);
+    public SearchgetServerInfoRequestBuilder searchgetServerInfo() {
+        return new SearchgetServerInfoRequestBuilder(this);
     }
 
     /**
@@ -161,7 +184,7 @@ public class Search implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse searchgetServerInfoDirect() throws Exception {
+    public SearchgetServerInfoResponse searchgetServerInfoDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -179,7 +202,10 @@ public class Search implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("searchgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "searchgetServerInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -187,18 +213,28 @@ public class Search implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("searchgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "searchgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("searchgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "searchgetServerInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("searchgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "searchgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -206,28 +242,28 @@ public class Search implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse
+        SearchgetServerInfoResponse.Builder _resBuilder = 
+            SearchgetServerInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse _res = _resBuilder.build();
+        SearchgetServerInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
+                ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
-                _res.withServerInfo(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ServerInfo>() {});
+                _res.withServerInfo(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -236,13 +272,13 @@ public class Search implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

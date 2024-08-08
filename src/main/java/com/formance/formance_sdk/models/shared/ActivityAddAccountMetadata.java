@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class ActivityAddAccountMetadata {
 
@@ -24,13 +24,13 @@ public class ActivityAddAccountMetadata {
     private String ledger;
 
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     @JsonCreator
     public ActivityAddAccountMetadata(
             @JsonProperty("id") String id,
             @JsonProperty("ledger") String ledger,
-            @JsonProperty("metadata") java.util.Map<String, String> metadata) {
+            @JsonProperty("metadata") Map<String, String> metadata) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         metadata = Utils.emptyMapIfNull(metadata);
@@ -50,7 +50,7 @@ public class ActivityAddAccountMetadata {
     }
 
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
@@ -70,7 +70,7 @@ public class ActivityAddAccountMetadata {
         return this;
     }
 
-    public ActivityAddAccountMetadata withMetadata(java.util.Map<String, String> metadata) {
+    public ActivityAddAccountMetadata withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -86,14 +86,14 @@ public class ActivityAddAccountMetadata {
         }
         ActivityAddAccountMetadata other = (ActivityAddAccountMetadata) o;
         return 
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata);
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             id,
             ledger,
             metadata);
@@ -113,7 +113,7 @@ public class ActivityAddAccountMetadata {
  
         private String ledger;
  
-        private java.util.Map<String, String> metadata;  
+        private Map<String, String> metadata;  
         
         private Builder() {
           // force use of static builder() method
@@ -131,7 +131,7 @@ public class ActivityAddAccountMetadata {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

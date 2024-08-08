@@ -5,27 +5,53 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreatePolicyRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
+import com.formance.formance_sdk.models.operations.DeletePolicyRequest;
+import com.formance.formance_sdk.models.operations.DeletePolicyRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeletePolicyResponse;
+import com.formance.formance_sdk.models.operations.GetPolicyRequest;
+import com.formance.formance_sdk.models.operations.GetPolicyRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetPolicyResponse;
+import com.formance.formance_sdk.models.operations.GetReconciliationRequest;
+import com.formance.formance_sdk.models.operations.GetReconciliationRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetReconciliationResponse;
+import com.formance.formance_sdk.models.operations.ListPoliciesRequest;
+import com.formance.formance_sdk.models.operations.ListPoliciesRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListPoliciesResponse;
+import com.formance.formance_sdk.models.operations.ListReconciliationsRequest;
+import com.formance.formance_sdk.models.operations.ListReconciliationsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListReconciliationsResponse;
+import com.formance.formance_sdk.models.operations.ReconcileRequest;
+import com.formance.formance_sdk.models.operations.ReconcileRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReconcileResponse;
+import com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.models.shared.PoliciesCursorResponse;
+import com.formance.formance_sdk.models.shared.PolicyRequest;
+import com.formance.formance_sdk.models.shared.PolicyResponse;
+import com.formance.formance_sdk.models.shared.ReconciliationResponse;
+import com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse;
+import com.formance.formance_sdk.models.shared.ServerInfo;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.JSON;
-import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class Reconciliation implements
             MethodCallCreatePolicy,
@@ -49,8 +75,8 @@ public class Reconciliation implements
      * Create a policy
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreatePolicyRequestBuilder createPolicy() {
-        return new com.formance.formance_sdk.models.operations.CreatePolicyRequestBuilder(this);
+    public CreatePolicyRequestBuilder createPolicy() {
+        return new CreatePolicyRequestBuilder(this);
     }
 
     /**
@@ -60,18 +86,23 @@ public class Reconciliation implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreatePolicyResponse createPolicy(
-            com.formance.formance_sdk.models.shared.PolicyRequest request) throws Exception {
+    public CreatePolicyResponse createPolicy(
+            PolicyRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/reconciliation/policies");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.shared.PolicyRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<PolicyRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -87,7 +118,10 @@ public class Reconciliation implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createPolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createPolicy", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -95,18 +129,28 @@ public class Reconciliation implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createPolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createPolicy",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createPolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createPolicy",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createPolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createPolicy",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -114,49 +158,49 @@ public class Reconciliation implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreatePolicyResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreatePolicyResponse
+        CreatePolicyResponse.Builder _resBuilder = 
+            CreatePolicyResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreatePolicyResponse _res = _resBuilder.build();
+        CreatePolicyResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PolicyResponse _out = Utils.mapper().readValue(
+                PolicyResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PolicyResponse>() {});
-                _res.withPolicyResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PolicyResponse>() {});
+                _res.withPolicyResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
+                ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                    new TypeReference<ReconciliationErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -166,8 +210,8 @@ public class Reconciliation implements
      * Delete a policy by its id.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeletePolicyRequestBuilder deletePolicy() {
-        return new com.formance.formance_sdk.models.operations.DeletePolicyRequestBuilder(this);
+    public DeletePolicyRequestBuilder deletePolicy() {
+        return new DeletePolicyRequestBuilder(this);
     }
 
     /**
@@ -177,11 +221,11 @@ public class Reconciliation implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeletePolicyResponse deletePolicy(
-            com.formance.formance_sdk.models.operations.DeletePolicyRequest request) throws Exception {
+    public DeletePolicyResponse deletePolicy(
+            DeletePolicyRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeletePolicyRequest.class,
+                DeletePolicyRequest.class,
                 _baseUrl,
                 "/api/reconciliation/policies/{policyID}",
                 request, null);
@@ -198,7 +242,10 @@ public class Reconciliation implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deletePolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deletePolicy", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -206,18 +253,28 @@ public class Reconciliation implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deletePolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deletePolicy",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deletePolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deletePolicy",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deletePolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deletePolicy",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -225,14 +282,14 @@ public class Reconciliation implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeletePolicyResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeletePolicyResponse
+        DeletePolicyResponse.Builder _resBuilder = 
+            DeletePolicyResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeletePolicyResponse _res = _resBuilder.build();
+        DeletePolicyResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -240,23 +297,23 @@ public class Reconciliation implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
+                ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                    new TypeReference<ReconciliationErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -265,8 +322,8 @@ public class Reconciliation implements
      * Get a policy
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetPolicyRequestBuilder getPolicy() {
-        return new com.formance.formance_sdk.models.operations.GetPolicyRequestBuilder(this);
+    public GetPolicyRequestBuilder getPolicy() {
+        return new GetPolicyRequestBuilder(this);
     }
 
     /**
@@ -275,11 +332,11 @@ public class Reconciliation implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetPolicyResponse getPolicy(
-            com.formance.formance_sdk.models.operations.GetPolicyRequest request) throws Exception {
+    public GetPolicyResponse getPolicy(
+            GetPolicyRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetPolicyRequest.class,
+                GetPolicyRequest.class,
                 _baseUrl,
                 "/api/reconciliation/policies/{policyID}",
                 request, null);
@@ -296,7 +353,10 @@ public class Reconciliation implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getPolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getPolicy", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -304,18 +364,28 @@ public class Reconciliation implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getPolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getPolicy",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getPolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getPolicy",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getPolicy", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getPolicy",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -323,49 +393,49 @@ public class Reconciliation implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetPolicyResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetPolicyResponse
+        GetPolicyResponse.Builder _resBuilder = 
+            GetPolicyResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetPolicyResponse _res = _resBuilder.build();
+        GetPolicyResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PolicyResponse _out = Utils.mapper().readValue(
+                PolicyResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PolicyResponse>() {});
-                _res.withPolicyResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PolicyResponse>() {});
+                _res.withPolicyResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
+                ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                    new TypeReference<ReconciliationErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -374,8 +444,8 @@ public class Reconciliation implements
      * Get a reconciliation
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetReconciliationRequestBuilder getReconciliation() {
-        return new com.formance.formance_sdk.models.operations.GetReconciliationRequestBuilder(this);
+    public GetReconciliationRequestBuilder getReconciliation() {
+        return new GetReconciliationRequestBuilder(this);
     }
 
     /**
@@ -384,11 +454,11 @@ public class Reconciliation implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetReconciliationResponse getReconciliation(
-            com.formance.formance_sdk.models.operations.GetReconciliationRequest request) throws Exception {
+    public GetReconciliationResponse getReconciliation(
+            GetReconciliationRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetReconciliationRequest.class,
+                GetReconciliationRequest.class,
                 _baseUrl,
                 "/api/reconciliation/reconciliations/{reconciliationID}",
                 request, null);
@@ -405,7 +475,10 @@ public class Reconciliation implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getReconciliation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getReconciliation", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -413,18 +486,28 @@ public class Reconciliation implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getReconciliation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getReconciliation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getReconciliation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getReconciliation",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getReconciliation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getReconciliation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -432,49 +515,49 @@ public class Reconciliation implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetReconciliationResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetReconciliationResponse
+        GetReconciliationResponse.Builder _resBuilder = 
+            GetReconciliationResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetReconciliationResponse _res = _resBuilder.build();
+        GetReconciliationResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ReconciliationResponse _out = Utils.mapper().readValue(
+                ReconciliationResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationResponse>() {});
-                _res.withReconciliationResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ReconciliationResponse>() {});
+                _res.withReconciliationResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
+                ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                    new TypeReference<ReconciliationErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -483,8 +566,8 @@ public class Reconciliation implements
      * List policies
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListPoliciesRequestBuilder listPolicies() {
-        return new com.formance.formance_sdk.models.operations.ListPoliciesRequestBuilder(this);
+    public ListPoliciesRequestBuilder listPolicies() {
+        return new ListPoliciesRequestBuilder(this);
     }
 
     /**
@@ -493,8 +576,8 @@ public class Reconciliation implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListPoliciesResponse listPolicies(
-            com.formance.formance_sdk.models.operations.ListPoliciesRequest request) throws Exception {
+    public ListPoliciesResponse listPolicies(
+            ListPoliciesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -506,7 +589,7 @@ public class Reconciliation implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListPoliciesRequest.class,
+                ListPoliciesRequest.class,
                 request, 
                 null));
 
@@ -517,7 +600,10 @@ public class Reconciliation implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listPolicies", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listPolicies", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -525,18 +611,28 @@ public class Reconciliation implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listPolicies", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listPolicies",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listPolicies", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listPolicies",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listPolicies", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listPolicies",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -544,49 +640,49 @@ public class Reconciliation implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListPoliciesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListPoliciesResponse
+        ListPoliciesResponse.Builder _resBuilder = 
+            ListPoliciesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListPoliciesResponse _res = _resBuilder.build();
+        ListPoliciesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PoliciesCursorResponse _out = Utils.mapper().readValue(
+                PoliciesCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PoliciesCursorResponse>() {});
-                _res.withPoliciesCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PoliciesCursorResponse>() {});
+                _res.withPoliciesCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
+                ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                    new TypeReference<ReconciliationErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -595,8 +691,8 @@ public class Reconciliation implements
      * List reconciliations
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListReconciliationsRequestBuilder listReconciliations() {
-        return new com.formance.formance_sdk.models.operations.ListReconciliationsRequestBuilder(this);
+    public ListReconciliationsRequestBuilder listReconciliations() {
+        return new ListReconciliationsRequestBuilder(this);
     }
 
     /**
@@ -605,8 +701,8 @@ public class Reconciliation implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListReconciliationsResponse listReconciliations(
-            com.formance.formance_sdk.models.operations.ListReconciliationsRequest request) throws Exception {
+    public ListReconciliationsResponse listReconciliations(
+            ListReconciliationsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -618,7 +714,7 @@ public class Reconciliation implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListReconciliationsRequest.class,
+                ListReconciliationsRequest.class,
                 request, 
                 null));
 
@@ -629,7 +725,10 @@ public class Reconciliation implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listReconciliations", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listReconciliations", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -637,18 +736,28 @@ public class Reconciliation implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listReconciliations", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listReconciliations",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listReconciliations", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listReconciliations",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listReconciliations", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listReconciliations",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -656,49 +765,49 @@ public class Reconciliation implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListReconciliationsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListReconciliationsResponse
+        ListReconciliationsResponse.Builder _resBuilder = 
+            ListReconciliationsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListReconciliationsResponse _res = _resBuilder.build();
+        ListReconciliationsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse _out = Utils.mapper().readValue(
+                ReconciliationsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse>() {});
-                _res.withReconciliationsCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ReconciliationsCursorResponse>() {});
+                _res.withReconciliationsCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
+                ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                    new TypeReference<ReconciliationErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -708,8 +817,8 @@ public class Reconciliation implements
      * Reconcile using a policy
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ReconcileRequestBuilder reconcile() {
-        return new com.formance.formance_sdk.models.operations.ReconcileRequestBuilder(this);
+    public ReconcileRequestBuilder reconcile() {
+        return new ReconcileRequestBuilder(this);
     }
 
     /**
@@ -719,20 +828,25 @@ public class Reconciliation implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ReconcileResponse reconcile(
-            com.formance.formance_sdk.models.operations.ReconcileRequest request) throws Exception {
+    public ReconcileResponse reconcile(
+            ReconcileRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ReconcileRequest.class,
+                ReconcileRequest.class,
                 _baseUrl,
                 "/api/reconciliation/policies/{policyID}/reconciliation",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.ReconcileRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<ReconcileRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "reconciliationRequest", "json", false);
+                _convertedRequest, 
+                "reconciliationRequest",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -748,7 +862,10 @@ public class Reconciliation implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("reconcile", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "reconcile", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -756,18 +873,28 @@ public class Reconciliation implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("reconcile", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "reconcile",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("reconcile", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "reconcile",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("reconcile", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "reconcile",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -775,49 +902,49 @@ public class Reconciliation implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReconcileResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReconcileResponse
+        ReconcileResponse.Builder _resBuilder = 
+            ReconcileResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReconcileResponse _res = _resBuilder.build();
+        ReconcileResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ReconciliationResponse _out = Utils.mapper().readValue(
+                ReconciliationResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ReconciliationResponse>() {});
-                _res.withReconciliationResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ReconciliationResponse>() {});
+                _res.withReconciliationResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
+                ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                    new TypeReference<ReconciliationErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -826,8 +953,8 @@ public class Reconciliation implements
      * Get server info
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoRequestBuilder reconciliationgetServerInfo() {
-        return new com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoRequestBuilder(this);
+    public ReconciliationgetServerInfoRequestBuilder reconciliationgetServerInfo() {
+        return new ReconciliationgetServerInfoRequestBuilder(this);
     }
 
     /**
@@ -835,7 +962,7 @@ public class Reconciliation implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse reconciliationgetServerInfoDirect() throws Exception {
+    public ReconciliationgetServerInfoResponse reconciliationgetServerInfoDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -853,7 +980,10 @@ public class Reconciliation implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("reconciliationgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "reconciliationgetServerInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -861,18 +991,28 @@ public class Reconciliation implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("reconciliationgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "reconciliationgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("reconciliationgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "reconciliationgetServerInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("reconciliationgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "reconciliationgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -880,49 +1020,49 @@ public class Reconciliation implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse
+        ReconciliationgetServerInfoResponse.Builder _resBuilder = 
+            ReconciliationgetServerInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse _res = _resBuilder.build();
+        ReconciliationgetServerInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
+                ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
-                _res.withServerInfo(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ServerInfo>() {});
+                _res.withServerInfo(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ReconciliationErrorResponse _out = Utils.mapper().readValue(
+                ReconciliationErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ReconciliationErrorResponse>() {});
+                    new TypeReference<ReconciliationErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

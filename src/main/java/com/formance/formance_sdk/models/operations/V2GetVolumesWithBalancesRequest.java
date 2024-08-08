@@ -4,23 +4,27 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2GetVolumesWithBalancesRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody;
+    private Optional<? extends Map<String, Object>> requestBody;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -30,22 +34,22 @@ public class V2GetVolumesWithBalancesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")
-    private Optional<? extends OffsetDateTime> endTime;
+    private Optional<OffsetDateTime> endTime;
 
     /**
      * Group volumes and balance by the level of the segment of the address
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=groupBy")
-    private Optional<? extends Long> groupBy;
+    private Optional<Long> groupBy;
 
     /**
      * Use insertion date instead of effective date
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=insertionDate")
-    private Optional<? extends Boolean> insertionDate;
+    private Optional<Boolean> insertionDate;
 
     /**
      * Name of the ledger.
@@ -58,21 +62,21 @@ public class V2GetVolumesWithBalancesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
-    private Optional<? extends OffsetDateTime> startTime;
+    private Optional<OffsetDateTime> startTime;
 
     @JsonCreator
     public V2GetVolumesWithBalancesRequest(
-            Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
-            Optional<? extends String> cursor,
-            Optional<? extends OffsetDateTime> endTime,
-            Optional<? extends Long> groupBy,
-            Optional<? extends Boolean> insertionDate,
+            Optional<? extends Map<String, Object>> requestBody,
+            Optional<String> cursor,
+            Optional<OffsetDateTime> endTime,
+            Optional<Long> groupBy,
+            Optional<Boolean> insertionDate,
             String ledger,
-            Optional<? extends Long> pageSize,
-            Optional<? extends OffsetDateTime> startTime) {
+            Optional<Long> pageSize,
+            Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(endTime, "endTime");
@@ -98,8 +102,8 @@ public class V2GetVolumesWithBalancesRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -109,34 +113,30 @@ public class V2GetVolumesWithBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> endTime() {
-        return (Optional<OffsetDateTime>) endTime;
+        return endTime;
     }
 
     /**
      * Group volumes and balance by the level of the segment of the address
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> groupBy() {
-        return (Optional<Long>) groupBy;
+        return groupBy;
     }
 
     /**
      * Use insertion date instead of effective date
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> insertionDate() {
-        return (Optional<Boolean>) insertionDate;
+        return insertionDate;
     }
 
     /**
@@ -151,29 +151,27 @@ public class V2GetVolumesWithBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> startTime() {
-        return (Optional<OffsetDateTime>) startTime;
+        return startTime;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public V2GetVolumesWithBalancesRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
+    public V2GetVolumesWithBalancesRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
-    public V2GetVolumesWithBalancesRequest withRequestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+    public V2GetVolumesWithBalancesRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -199,7 +197,7 @@ public class V2GetVolumesWithBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public V2GetVolumesWithBalancesRequest withCursor(Optional<? extends String> cursor) {
+    public V2GetVolumesWithBalancesRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -211,7 +209,7 @@ public class V2GetVolumesWithBalancesRequest {
         return this;
     }
 
-    public V2GetVolumesWithBalancesRequest withEndTime(Optional<? extends OffsetDateTime> endTime) {
+    public V2GetVolumesWithBalancesRequest withEndTime(Optional<OffsetDateTime> endTime) {
         Utils.checkNotNull(endTime, "endTime");
         this.endTime = endTime;
         return this;
@@ -229,7 +227,7 @@ public class V2GetVolumesWithBalancesRequest {
     /**
      * Group volumes and balance by the level of the segment of the address
      */
-    public V2GetVolumesWithBalancesRequest withGroupBy(Optional<? extends Long> groupBy) {
+    public V2GetVolumesWithBalancesRequest withGroupBy(Optional<Long> groupBy) {
         Utils.checkNotNull(groupBy, "groupBy");
         this.groupBy = groupBy;
         return this;
@@ -247,7 +245,7 @@ public class V2GetVolumesWithBalancesRequest {
     /**
      * Use insertion date instead of effective date
      */
-    public V2GetVolumesWithBalancesRequest withInsertionDate(Optional<? extends Boolean> insertionDate) {
+    public V2GetVolumesWithBalancesRequest withInsertionDate(Optional<Boolean> insertionDate) {
         Utils.checkNotNull(insertionDate, "insertionDate");
         this.insertionDate = insertionDate;
         return this;
@@ -276,7 +274,7 @@ public class V2GetVolumesWithBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public V2GetVolumesWithBalancesRequest withPageSize(Optional<? extends Long> pageSize) {
+    public V2GetVolumesWithBalancesRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -288,7 +286,7 @@ public class V2GetVolumesWithBalancesRequest {
         return this;
     }
 
-    public V2GetVolumesWithBalancesRequest withStartTime(Optional<? extends OffsetDateTime> startTime) {
+    public V2GetVolumesWithBalancesRequest withStartTime(Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(startTime, "startTime");
         this.startTime = startTime;
         return this;
@@ -304,19 +302,19 @@ public class V2GetVolumesWithBalancesRequest {
         }
         V2GetVolumesWithBalancesRequest other = (V2GetVolumesWithBalancesRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.endTime, other.endTime) &&
-            java.util.Objects.deepEquals(this.groupBy, other.groupBy) &&
-            java.util.Objects.deepEquals(this.insertionDate, other.insertionDate) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.startTime, other.startTime);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.endTime, other.endTime) &&
+            Objects.deepEquals(this.groupBy, other.groupBy) &&
+            Objects.deepEquals(this.insertionDate, other.insertionDate) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.startTime, other.startTime);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             cursor,
             endTime,
@@ -342,33 +340,33 @@ public class V2GetVolumesWithBalancesRequest {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody = Optional.empty();
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> endTime = Optional.empty();
+        private Optional<OffsetDateTime> endTime = Optional.empty();
  
-        private Optional<? extends Long> groupBy = Optional.empty();
+        private Optional<Long> groupBy = Optional.empty();
  
-        private Optional<? extends Boolean> insertionDate = Optional.empty();
+        private Optional<Boolean> insertionDate = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends Long> pageSize = Optional.empty();
+        private Optional<Long> pageSize = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> startTime = Optional.empty();  
+        private Optional<OffsetDateTime> startTime = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder requestBody(java.util.Map<String, java.lang.Object> requestBody) {
+        public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
@@ -394,7 +392,7 @@ public class V2GetVolumesWithBalancesRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -406,7 +404,7 @@ public class V2GetVolumesWithBalancesRequest {
             return this;
         }
 
-        public Builder endTime(Optional<? extends OffsetDateTime> endTime) {
+        public Builder endTime(Optional<OffsetDateTime> endTime) {
             Utils.checkNotNull(endTime, "endTime");
             this.endTime = endTime;
             return this;
@@ -424,7 +422,7 @@ public class V2GetVolumesWithBalancesRequest {
         /**
          * Group volumes and balance by the level of the segment of the address
          */
-        public Builder groupBy(Optional<? extends Long> groupBy) {
+        public Builder groupBy(Optional<Long> groupBy) {
             Utils.checkNotNull(groupBy, "groupBy");
             this.groupBy = groupBy;
             return this;
@@ -442,7 +440,7 @@ public class V2GetVolumesWithBalancesRequest {
         /**
          * Use insertion date instead of effective date
          */
-        public Builder insertionDate(Optional<? extends Boolean> insertionDate) {
+        public Builder insertionDate(Optional<Boolean> insertionDate) {
             Utils.checkNotNull(insertionDate, "insertionDate");
             this.insertionDate = insertionDate;
             return this;
@@ -471,7 +469,7 @@ public class V2GetVolumesWithBalancesRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -483,7 +481,7 @@ public class V2GetVolumesWithBalancesRequest {
             return this;
         }
 
-        public Builder startTime(Optional<? extends OffsetDateTime> startTime) {
+        public Builder startTime(Optional<OffsetDateTime> startTime) {
             Utils.checkNotNull(startTime, "startTime");
             this.startTime = startTime;
             return this;

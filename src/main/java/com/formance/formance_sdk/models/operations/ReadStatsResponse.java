@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.StatsResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ReadStatsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ReadStatsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse;
+    private Optional<? extends StatsResponse> statsResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     @JsonCreator
     public ReadStatsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse,
+            Optional<? extends StatsResponse> statsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.StatsResponse> statsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.StatsResponse>) statsResponse;
+    public Optional<StatsResponse> statsResponse() {
+        return (Optional<StatsResponse>) statsResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    public ReadStatsResponse withStatsResponse(com.formance.formance_sdk.models.shared.StatsResponse statsResponse) {
+    public ReadStatsResponse withStatsResponse(StatsResponse statsResponse) {
         Utils.checkNotNull(statsResponse, "statsResponse");
         this.statsResponse = Optional.ofNullable(statsResponse);
         return this;
@@ -119,7 +123,7 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    public ReadStatsResponse withStatsResponse(Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse) {
+    public ReadStatsResponse withStatsResponse(Optional<? extends StatsResponse> statsResponse) {
         Utils.checkNotNull(statsResponse, "statsResponse");
         this.statsResponse = statsResponse;
         return this;
@@ -153,15 +157,15 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
         }
         ReadStatsResponse other = (ReadStatsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statsResponse, other.statsResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statsResponse, other.statsResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statsResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse = Optional.empty();
+        private Optional<? extends StatsResponse> statsResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
         /**
          * OK
          */
-        public Builder statsResponse(com.formance.formance_sdk.models.shared.StatsResponse statsResponse) {
+        public Builder statsResponse(StatsResponse statsResponse) {
             Utils.checkNotNull(statsResponse, "statsResponse");
             this.statsResponse = Optional.ofNullable(statsResponse);
             return this;
@@ -212,7 +216,7 @@ public class ReadStatsResponse implements com.formance.formance_sdk.utils.Respon
         /**
          * OK
          */
-        public Builder statsResponse(Optional<? extends com.formance.formance_sdk.models.shared.StatsResponse> statsResponse) {
+        public Builder statsResponse(Optional<? extends StatsResponse> statsResponse) {
             Utils.checkNotNull(statsResponse, "statsResponse");
             this.statsResponse = statsResponse;
             return this;

@@ -4,31 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class TransactionsResponse {
 
     @JsonProperty("data")
-    private java.util.List<Transaction> data;
+    private List<Transaction> data;
 
     @JsonCreator
     public TransactionsResponse(
-            @JsonProperty("data") java.util.List<Transaction> data) {
+            @JsonProperty("data") List<Transaction> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
     @JsonIgnore
-    public java.util.List<Transaction> data() {
+    public List<Transaction> data() {
         return data;
     }
 
@@ -36,7 +36,7 @@ public class TransactionsResponse {
         return new Builder();
     }
 
-    public TransactionsResponse withData(java.util.List<Transaction> data) {
+    public TransactionsResponse withData(List<Transaction> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -52,12 +52,12 @@ public class TransactionsResponse {
         }
         TransactionsResponse other = (TransactionsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data);
+            Objects.deepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data);
     }
     
@@ -69,13 +69,13 @@ public class TransactionsResponse {
     
     public final static class Builder {
  
-        private java.util.List<Transaction> data;  
+        private List<Transaction> data;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(java.util.List<Transaction> data) {
+        public Builder data(List<Transaction> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

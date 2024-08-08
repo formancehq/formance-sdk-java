@@ -5,27 +5,73 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
+import com.formance.formance_sdk.models.operations.ConfirmHoldRequest;
+import com.formance.formance_sdk.models.operations.ConfirmHoldRequestBuilder;
+import com.formance.formance_sdk.models.operations.ConfirmHoldResponse;
+import com.formance.formance_sdk.models.operations.CreateBalanceRequest;
+import com.formance.formance_sdk.models.operations.CreateBalanceRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateBalanceResponse;
+import com.formance.formance_sdk.models.operations.CreateWalletRequest;
+import com.formance.formance_sdk.models.operations.CreateWalletRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateWalletResponse;
+import com.formance.formance_sdk.models.operations.CreditWalletRequest;
+import com.formance.formance_sdk.models.operations.CreditWalletRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreditWalletResponse;
+import com.formance.formance_sdk.models.operations.DebitWalletRequest;
+import com.formance.formance_sdk.models.operations.DebitWalletRequestBuilder;
+import com.formance.formance_sdk.models.operations.DebitWalletResponse;
+import com.formance.formance_sdk.models.operations.GetBalanceRequest;
+import com.formance.formance_sdk.models.operations.GetBalanceRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetBalanceResponse;
+import com.formance.formance_sdk.models.operations.GetHoldRequest;
+import com.formance.formance_sdk.models.operations.GetHoldRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetHoldResponse;
+import com.formance.formance_sdk.models.operations.GetHoldsRequest;
+import com.formance.formance_sdk.models.operations.GetHoldsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetHoldsResponse;
+import com.formance.formance_sdk.models.operations.GetTransactionsRequest;
+import com.formance.formance_sdk.models.operations.GetTransactionsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetTransactionsResponse;
+import com.formance.formance_sdk.models.operations.GetWalletRequest;
+import com.formance.formance_sdk.models.operations.GetWalletRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetWalletResponse;
+import com.formance.formance_sdk.models.operations.GetWalletSummaryRequest;
+import com.formance.formance_sdk.models.operations.GetWalletSummaryRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetWalletSummaryResponse;
+import com.formance.formance_sdk.models.operations.ListBalancesRequest;
+import com.formance.formance_sdk.models.operations.ListBalancesRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListBalancesResponse;
+import com.formance.formance_sdk.models.operations.ListWalletsRequest;
+import com.formance.formance_sdk.models.operations.ListWalletsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListWalletsResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.models.operations.UpdateWalletRequest;
+import com.formance.formance_sdk.models.operations.UpdateWalletRequestBuilder;
+import com.formance.formance_sdk.models.operations.UpdateWalletResponse;
+import com.formance.formance_sdk.models.operations.VoidHoldRequest;
+import com.formance.formance_sdk.models.operations.VoidHoldRequestBuilder;
+import com.formance.formance_sdk.models.operations.VoidHoldResponse;
+import com.formance.formance_sdk.models.operations.WalletsgetServerInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.ServerInfo;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.JSON;
-import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class Wallets implements
             MethodCallConfirmHold,
@@ -56,8 +102,8 @@ public class Wallets implements
      * Confirm a hold
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ConfirmHoldRequestBuilder confirmHold() {
-        return new com.formance.formance_sdk.models.operations.ConfirmHoldRequestBuilder(this);
+    public ConfirmHoldRequestBuilder confirmHold() {
+        return new ConfirmHoldRequestBuilder(this);
     }
 
     /**
@@ -66,24 +112,30 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ConfirmHoldResponse confirmHold(
-            com.formance.formance_sdk.models.operations.ConfirmHoldRequest request) throws Exception {
+    public ConfirmHoldResponse confirmHold(
+            ConfirmHoldRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ConfirmHoldRequest.class,
+                ConfirmHoldRequest.class,
                 _baseUrl,
                 "/api/wallets/holds/{hold_id}/confirm",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.ConfirmHoldRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<ConfirmHoldRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "confirmHoldRequest", "json", false);
+                _convertedRequest, 
+                "confirmHoldRequest",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -92,7 +144,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("confirmHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "confirmHold", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -100,18 +155,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("confirmHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "confirmHold",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("confirmHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "confirmHold",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("confirmHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "confirmHold",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -119,14 +184,14 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ConfirmHoldResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ConfirmHoldResponse
+        ConfirmHoldResponse.Builder _resBuilder = 
+            ConfirmHoldResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ConfirmHoldResponse _res = _resBuilder.build();
+        ConfirmHoldResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -134,23 +199,23 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -159,8 +224,8 @@ public class Wallets implements
      * Create a balance
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateBalanceRequestBuilder createBalance() {
-        return new com.formance.formance_sdk.models.operations.CreateBalanceRequestBuilder(this);
+    public CreateBalanceRequestBuilder createBalance() {
+        return new CreateBalanceRequestBuilder(this);
     }
 
     /**
@@ -169,24 +234,30 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateBalanceResponse createBalance(
-            com.formance.formance_sdk.models.operations.CreateBalanceRequest request) throws Exception {
+    public CreateBalanceResponse createBalance(
+            CreateBalanceRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.CreateBalanceRequest.class,
+                CreateBalanceRequest.class,
                 _baseUrl,
                 "/api/wallets/wallets/{id}/balances",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.CreateBalanceRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<CreateBalanceRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "createBalanceRequest", "json", false);
+                _convertedRequest, 
+                "createBalanceRequest",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -195,7 +266,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createBalance", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -203,18 +277,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createBalance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createBalance",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createBalance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -222,49 +306,49 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateBalanceResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateBalanceResponse
+        CreateBalanceResponse.Builder _resBuilder = 
+            CreateBalanceResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateBalanceResponse _res = _resBuilder.build();
+        CreateBalanceResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.CreateBalanceResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateBalanceResponse>() {});
-                _res.withCreateBalanceResponse(java.util.Optional.ofNullable(_out));
+                _res.withCreateBalanceResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -273,40 +357,38 @@ public class Wallets implements
      * Create a new wallet
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateWalletRequestBuilder createWallet() {
-        return new com.formance.formance_sdk.models.operations.CreateWalletRequestBuilder(this);
+    public CreateWalletRequestBuilder createWallet() {
+        return new CreateWalletRequestBuilder(this);
     }
 
-    /**
-     * Create a new wallet
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public com.formance.formance_sdk.models.operations.CreateWalletResponse createWalletDirect() throws Exception {
-        return createWallet(Optional.empty());
-    }
     /**
      * Create a new wallet
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateWalletResponse createWallet(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> request) throws Exception {
+    public CreateWalletResponse createWallet(
+            CreateWalletRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/wallets/wallets");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<CreateWalletRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "createWalletRequest",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -315,7 +397,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createWallet", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -323,18 +408,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createWallet",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -342,49 +437,49 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateWalletResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateWalletResponse
+        CreateWalletResponse.Builder _resBuilder = 
+            CreateWalletResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateWalletResponse _res = _resBuilder.build();
+        CreateWalletResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.CreateWalletResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateWalletResponse>() {});
-                _res.withCreateWalletResponse(java.util.Optional.ofNullable(_out));
+                _res.withCreateWalletResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -393,8 +488,8 @@ public class Wallets implements
      * Credit a wallet
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreditWalletRequestBuilder creditWallet() {
-        return new com.formance.formance_sdk.models.operations.CreditWalletRequestBuilder(this);
+    public CreditWalletRequestBuilder creditWallet() {
+        return new CreditWalletRequestBuilder(this);
     }
 
     /**
@@ -403,24 +498,30 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreditWalletResponse creditWallet(
-            com.formance.formance_sdk.models.operations.CreditWalletRequest request) throws Exception {
+    public CreditWalletResponse creditWallet(
+            CreditWalletRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.CreditWalletRequest.class,
+                CreditWalletRequest.class,
                 _baseUrl,
                 "/api/wallets/wallets/{id}/credit",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.CreditWalletRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<CreditWalletRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "creditWalletRequest", "json", false);
+                _convertedRequest, 
+                "creditWalletRequest",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -429,7 +530,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("creditWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "creditWallet", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -437,18 +541,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("creditWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "creditWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("creditWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "creditWallet",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("creditWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "creditWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -456,14 +570,14 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreditWalletResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreditWalletResponse
+        CreditWalletResponse.Builder _resBuilder = 
+            CreditWalletResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreditWalletResponse _res = _resBuilder.build();
+        CreditWalletResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -471,23 +585,23 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -496,8 +610,8 @@ public class Wallets implements
      * Debit a wallet
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DebitWalletRequestBuilder debitWallet() {
-        return new com.formance.formance_sdk.models.operations.DebitWalletRequestBuilder(this);
+    public DebitWalletRequestBuilder debitWallet() {
+        return new DebitWalletRequestBuilder(this);
     }
 
     /**
@@ -506,24 +620,30 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DebitWalletResponse debitWallet(
-            com.formance.formance_sdk.models.operations.DebitWalletRequest request) throws Exception {
+    public DebitWalletResponse debitWallet(
+            DebitWalletRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DebitWalletRequest.class,
+                DebitWalletRequest.class,
                 _baseUrl,
                 "/api/wallets/wallets/{id}/debit",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.DebitWalletRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<DebitWalletRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "debitWalletRequest", "json", false);
+                _convertedRequest, 
+                "debitWalletRequest",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -532,7 +652,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("debitWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "debitWallet", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -540,18 +663,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("debitWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "debitWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("debitWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "debitWallet",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("debitWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "debitWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -559,28 +692,28 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DebitWalletResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DebitWalletResponse
+        DebitWalletResponse.Builder _resBuilder = 
+            DebitWalletResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DebitWalletResponse _res = _resBuilder.build();
+        DebitWalletResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.DebitWalletResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.DebitWalletResponse>() {});
-                _res.withDebitWalletResponse(java.util.Optional.ofNullable(_out));
+                _res.withDebitWalletResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
@@ -589,23 +722,23 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -614,8 +747,8 @@ public class Wallets implements
      * Get detailed balance
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetBalanceRequestBuilder getBalance() {
-        return new com.formance.formance_sdk.models.operations.GetBalanceRequestBuilder(this);
+    public GetBalanceRequestBuilder getBalance() {
+        return new GetBalanceRequestBuilder(this);
     }
 
     /**
@@ -624,11 +757,11 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetBalanceResponse getBalance(
-            com.formance.formance_sdk.models.operations.GetBalanceRequest request) throws Exception {
+    public GetBalanceResponse getBalance(
+            GetBalanceRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetBalanceRequest.class,
+                GetBalanceRequest.class,
                 _baseUrl,
                 "/api/wallets/wallets/{id}/balances/{balanceName}",
                 request, null);
@@ -645,7 +778,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getBalance", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -653,18 +789,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getBalance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getBalance",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getBalance", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getBalance",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -672,49 +818,49 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetBalanceResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetBalanceResponse
+        GetBalanceResponse.Builder _resBuilder = 
+            GetBalanceResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetBalanceResponse _res = _resBuilder.build();
+        GetBalanceResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.GetBalanceResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetBalanceResponse>() {});
-                _res.withGetBalanceResponse(java.util.Optional.ofNullable(_out));
+                _res.withGetBalanceResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -723,8 +869,8 @@ public class Wallets implements
      * Get a hold
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetHoldRequestBuilder getHold() {
-        return new com.formance.formance_sdk.models.operations.GetHoldRequestBuilder(this);
+    public GetHoldRequestBuilder getHold() {
+        return new GetHoldRequestBuilder(this);
     }
 
     /**
@@ -733,11 +879,11 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetHoldResponse getHold(
-            com.formance.formance_sdk.models.operations.GetHoldRequest request) throws Exception {
+    public GetHoldResponse getHold(
+            GetHoldRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetHoldRequest.class,
+                GetHoldRequest.class,
                 _baseUrl,
                 "/api/wallets/holds/{holdID}",
                 request, null);
@@ -754,7 +900,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getHold", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -762,18 +911,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getHold",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getHold",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getHold",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -781,49 +940,49 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetHoldResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetHoldResponse
+        GetHoldResponse.Builder _resBuilder = 
+            GetHoldResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetHoldResponse _res = _resBuilder.build();
+        GetHoldResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.GetHoldResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetHoldResponse>() {});
-                _res.withGetHoldResponse(java.util.Optional.ofNullable(_out));
+                _res.withGetHoldResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -832,8 +991,8 @@ public class Wallets implements
      * Get all holds for a wallet
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetHoldsRequestBuilder getHolds() {
-        return new com.formance.formance_sdk.models.operations.GetHoldsRequestBuilder(this);
+    public GetHoldsRequestBuilder getHolds() {
+        return new GetHoldsRequestBuilder(this);
     }
 
     /**
@@ -842,8 +1001,8 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetHoldsResponse getHolds(
-            com.formance.formance_sdk.models.operations.GetHoldsRequest request) throws Exception {
+    public GetHoldsResponse getHolds(
+            GetHoldsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -855,7 +1014,7 @@ public class Wallets implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.GetHoldsRequest.class,
+                GetHoldsRequest.class,
                 request, 
                 null));
 
@@ -866,7 +1025,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getHolds", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getHolds", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -874,18 +1036,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getHolds", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getHolds",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getHolds", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getHolds",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getHolds", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getHolds",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -893,59 +1065,59 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetHoldsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetHoldsResponse
+        GetHoldsResponse.Builder _resBuilder = 
+            GetHoldsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetHoldsResponse _res = _resBuilder.build();
+        GetHoldsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.GetHoldsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetHoldsResponse>() {});
-                _res.withGetHoldsResponse(java.util.Optional.ofNullable(_out));
+                _res.withGetHoldsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
 
-    public com.formance.formance_sdk.models.operations.GetTransactionsRequestBuilder getTransactions() {
-        return new com.formance.formance_sdk.models.operations.GetTransactionsRequestBuilder(this);
+    public GetTransactionsRequestBuilder getTransactions() {
+        return new GetTransactionsRequestBuilder(this);
     }
 
-    public com.formance.formance_sdk.models.operations.GetTransactionsResponse getTransactions(
-            com.formance.formance_sdk.models.operations.GetTransactionsRequest request) throws Exception {
+    public GetTransactionsResponse getTransactions(
+            GetTransactionsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -957,7 +1129,7 @@ public class Wallets implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.GetTransactionsRequest.class,
+                GetTransactionsRequest.class,
                 request, 
                 null));
 
@@ -968,7 +1140,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getTransactions", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -976,18 +1151,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getTransactions",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -995,49 +1180,49 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetTransactionsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetTransactionsResponse
+        GetTransactionsResponse.Builder _resBuilder = 
+            GetTransactionsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetTransactionsResponse _res = _resBuilder.build();
+        GetTransactionsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.GetTransactionsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetTransactionsResponse>() {});
-                _res.withGetTransactionsResponse(java.util.Optional.ofNullable(_out));
+                _res.withGetTransactionsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1046,8 +1231,8 @@ public class Wallets implements
      * Get a wallet
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetWalletRequestBuilder getWallet() {
-        return new com.formance.formance_sdk.models.operations.GetWalletRequestBuilder(this);
+    public GetWalletRequestBuilder getWallet() {
+        return new GetWalletRequestBuilder(this);
     }
 
     /**
@@ -1056,11 +1241,11 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetWalletResponse getWallet(
-            com.formance.formance_sdk.models.operations.GetWalletRequest request) throws Exception {
+    public GetWalletResponse getWallet(
+            GetWalletRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetWalletRequest.class,
+                GetWalletRequest.class,
                 _baseUrl,
                 "/api/wallets/wallets/{id}",
                 request, null);
@@ -1077,7 +1262,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getWallet", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1085,18 +1273,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getWallet",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1104,28 +1302,28 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetWalletResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetWalletResponse
+        GetWalletResponse.Builder _resBuilder = 
+            GetWalletResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetWalletResponse _res = _resBuilder.build();
+        GetWalletResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.GetWalletResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWalletResponse>() {});
-                _res.withGetWalletResponse(java.util.Optional.ofNullable(_out));
+                _res.withGetWalletResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
@@ -1134,23 +1332,23 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1159,8 +1357,8 @@ public class Wallets implements
      * Get wallet summary
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetWalletSummaryRequestBuilder getWalletSummary() {
-        return new com.formance.formance_sdk.models.operations.GetWalletSummaryRequestBuilder(this);
+    public GetWalletSummaryRequestBuilder getWalletSummary() {
+        return new GetWalletSummaryRequestBuilder(this);
     }
 
     /**
@@ -1169,11 +1367,11 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetWalletSummaryResponse getWalletSummary(
-            com.formance.formance_sdk.models.operations.GetWalletSummaryRequest request) throws Exception {
+    public GetWalletSummaryResponse getWalletSummary(
+            GetWalletSummaryRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetWalletSummaryRequest.class,
+                GetWalletSummaryRequest.class,
                 _baseUrl,
                 "/api/wallets/wallets/{id}/summary",
                 request, null);
@@ -1190,7 +1388,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getWalletSummary", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getWalletSummary", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1198,18 +1399,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getWalletSummary", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getWalletSummary",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getWalletSummary", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getWalletSummary",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getWalletSummary", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getWalletSummary",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1217,28 +1428,28 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetWalletSummaryResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetWalletSummaryResponse
+        GetWalletSummaryResponse.Builder _resBuilder = 
+            GetWalletSummaryResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetWalletSummaryResponse _res = _resBuilder.build();
+        GetWalletSummaryResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.GetWalletSummaryResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.GetWalletSummaryResponse>() {});
-                _res.withGetWalletSummaryResponse(java.util.Optional.ofNullable(_out));
+                _res.withGetWalletSummaryResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
@@ -1247,23 +1458,23 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1272,8 +1483,8 @@ public class Wallets implements
      * List balances of a wallet
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListBalancesRequestBuilder listBalances() {
-        return new com.formance.formance_sdk.models.operations.ListBalancesRequestBuilder(this);
+    public ListBalancesRequestBuilder listBalances() {
+        return new ListBalancesRequestBuilder(this);
     }
 
     /**
@@ -1282,11 +1493,11 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListBalancesResponse listBalances(
-            com.formance.formance_sdk.models.operations.ListBalancesRequest request) throws Exception {
+    public ListBalancesResponse listBalances(
+            ListBalancesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ListBalancesRequest.class,
+                ListBalancesRequest.class,
                 _baseUrl,
                 "/api/wallets/wallets/{id}/balances",
                 request, null);
@@ -1303,7 +1514,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listBalances", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1311,18 +1525,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listBalances",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1330,28 +1554,28 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListBalancesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListBalancesResponse
+        ListBalancesResponse.Builder _resBuilder = 
+            ListBalancesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListBalancesResponse _res = _resBuilder.build();
+        ListBalancesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ListBalancesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListBalancesResponse>() {});
-                _res.withListBalancesResponse(java.util.Optional.ofNullable(_out));
+                _res.withListBalancesResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -1360,13 +1584,13 @@ public class Wallets implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1375,8 +1599,8 @@ public class Wallets implements
      * List all wallets
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListWalletsRequestBuilder listWallets() {
-        return new com.formance.formance_sdk.models.operations.ListWalletsRequestBuilder(this);
+    public ListWalletsRequestBuilder listWallets() {
+        return new ListWalletsRequestBuilder(this);
     }
 
     /**
@@ -1385,8 +1609,8 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListWalletsResponse listWallets(
-            com.formance.formance_sdk.models.operations.ListWalletsRequest request) throws Exception {
+    public ListWalletsResponse listWallets(
+            ListWalletsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1398,7 +1622,7 @@ public class Wallets implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListWalletsRequest.class,
+                ListWalletsRequest.class,
                 request, 
                 null));
 
@@ -1409,7 +1633,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listWallets", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listWallets", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1417,18 +1644,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listWallets", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listWallets",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listWallets", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listWallets",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listWallets", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listWallets",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1436,49 +1673,49 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListWalletsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListWalletsResponse
+        ListWalletsResponse.Builder _resBuilder = 
+            ListWalletsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListWalletsResponse _res = _resBuilder.build();
+        ListWalletsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ListWalletsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListWalletsResponse>() {});
-                _res.withListWalletsResponse(java.util.Optional.ofNullable(_out));
+                _res.withListWalletsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1487,8 +1724,8 @@ public class Wallets implements
      * Update a wallet
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.UpdateWalletRequestBuilder updateWallet() {
-        return new com.formance.formance_sdk.models.operations.UpdateWalletRequestBuilder(this);
+    public UpdateWalletRequestBuilder updateWallet() {
+        return new UpdateWalletRequestBuilder(this);
     }
 
     /**
@@ -1497,24 +1734,30 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.UpdateWalletResponse updateWallet(
-            com.formance.formance_sdk.models.operations.UpdateWalletRequest request) throws Exception {
+    public UpdateWalletResponse updateWallet(
+            UpdateWalletRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UpdateWalletRequest.class,
+                UpdateWalletRequest.class,
                 _baseUrl,
                 "/api/wallets/wallets/{id}",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "PATCH");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.UpdateWalletRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<UpdateWalletRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1523,7 +1766,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("updateWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "updateWallet", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1531,18 +1777,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("updateWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "updateWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("updateWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "updateWallet",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("updateWallet", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "updateWallet",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1550,14 +1806,14 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UpdateWalletResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UpdateWalletResponse
+        UpdateWalletResponse.Builder _resBuilder = 
+            UpdateWalletResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UpdateWalletResponse _res = _resBuilder.build();
+        UpdateWalletResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -1565,23 +1821,23 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1590,8 +1846,8 @@ public class Wallets implements
      * Cancel a hold
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.VoidHoldRequestBuilder voidHold() {
-        return new com.formance.formance_sdk.models.operations.VoidHoldRequestBuilder(this);
+    public VoidHoldRequestBuilder voidHold() {
+        return new VoidHoldRequestBuilder(this);
     }
 
     /**
@@ -1600,11 +1856,11 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.VoidHoldResponse voidHold(
-            com.formance.formance_sdk.models.operations.VoidHoldRequest request) throws Exception {
+    public VoidHoldResponse voidHold(
+            VoidHoldRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.VoidHoldRequest.class,
+                VoidHoldRequest.class,
                 _baseUrl,
                 "/api/wallets/holds/{hold_id}/void",
                 request, null);
@@ -1613,6 +1869,7 @@ public class Wallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1621,7 +1878,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("voidHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "voidHold", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1629,18 +1889,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("voidHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "voidHold",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("voidHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "voidHold",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("voidHold", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "voidHold",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1648,14 +1918,14 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.VoidHoldResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.VoidHoldResponse
+        VoidHoldResponse.Builder _resBuilder = 
+            VoidHoldResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.VoidHoldResponse _res = _resBuilder.build();
+        VoidHoldResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -1663,23 +1933,23 @@ public class Wallets implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1688,8 +1958,8 @@ public class Wallets implements
      * Get server info
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.WalletsgetServerInfoRequestBuilder walletsgetServerInfo() {
-        return new com.formance.formance_sdk.models.operations.WalletsgetServerInfoRequestBuilder(this);
+    public WalletsgetServerInfoRequestBuilder walletsgetServerInfo() {
+        return new WalletsgetServerInfoRequestBuilder(this);
     }
 
     /**
@@ -1697,7 +1967,7 @@ public class Wallets implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse walletsgetServerInfoDirect() throws Exception {
+    public WalletsgetServerInfoResponse walletsgetServerInfoDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1715,7 +1985,10 @@ public class Wallets implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("walletsgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "walletsgetServerInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1723,18 +1996,28 @@ public class Wallets implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("walletsgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "walletsgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("walletsgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "walletsgetServerInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("walletsgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "walletsgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1742,49 +2025,49 @@ public class Wallets implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse
+        WalletsgetServerInfoResponse.Builder _resBuilder = 
+            WalletsgetServerInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse _res = _resBuilder.build();
+        WalletsgetServerInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
+                ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
-                _res.withServerInfo(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ServerInfo>() {});
+                _res.withServerInfo(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WalletsErrorResponse _out = Utils.mapper().readValue(
+                WalletsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WalletsErrorResponse>() {});
+                    new TypeReference<WalletsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

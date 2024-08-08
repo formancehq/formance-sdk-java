@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class V2GetBalancesAggregatedResponse implements com.formance.formance_sdk.utils.Response {
+
+public class V2GetBalancesAggregatedResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse;
+    private Optional<? extends V2AggregateBalancesResponse> v2AggregateBalancesResponse;
 
     @JsonCreator
     public V2GetBalancesAggregatedResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse) {
+            Optional<? extends V2AggregateBalancesResponse> v2AggregateBalancesResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse>) v2AggregateBalancesResponse;
+    public Optional<V2AggregateBalancesResponse> v2AggregateBalancesResponse() {
+        return (Optional<V2AggregateBalancesResponse>) v2AggregateBalancesResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
     /**
      * OK
      */
-    public V2GetBalancesAggregatedResponse withV2AggregateBalancesResponse(com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse v2AggregateBalancesResponse) {
+    public V2GetBalancesAggregatedResponse withV2AggregateBalancesResponse(V2AggregateBalancesResponse v2AggregateBalancesResponse) {
         Utils.checkNotNull(v2AggregateBalancesResponse, "v2AggregateBalancesResponse");
         this.v2AggregateBalancesResponse = Optional.ofNullable(v2AggregateBalancesResponse);
         return this;
@@ -137,7 +141,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
     /**
      * OK
      */
-    public V2GetBalancesAggregatedResponse withV2AggregateBalancesResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse) {
+    public V2GetBalancesAggregatedResponse withV2AggregateBalancesResponse(Optional<? extends V2AggregateBalancesResponse> v2AggregateBalancesResponse) {
         Utils.checkNotNull(v2AggregateBalancesResponse, "v2AggregateBalancesResponse");
         this.v2AggregateBalancesResponse = v2AggregateBalancesResponse;
         return this;
@@ -153,15 +157,15 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
         }
         V2GetBalancesAggregatedResponse other = (V2GetBalancesAggregatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2AggregateBalancesResponse, other.v2AggregateBalancesResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.v2AggregateBalancesResponse, other.v2AggregateBalancesResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse = Optional.empty();  
+        private Optional<? extends V2AggregateBalancesResponse> v2AggregateBalancesResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
         /**
          * OK
          */
-        public Builder v2AggregateBalancesResponse(com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse v2AggregateBalancesResponse) {
+        public Builder v2AggregateBalancesResponse(V2AggregateBalancesResponse v2AggregateBalancesResponse) {
             Utils.checkNotNull(v2AggregateBalancesResponse, "v2AggregateBalancesResponse");
             this.v2AggregateBalancesResponse = Optional.ofNullable(v2AggregateBalancesResponse);
             return this;
@@ -230,7 +234,7 @@ public class V2GetBalancesAggregatedResponse implements com.formance.formance_sd
         /**
          * OK
          */
-        public Builder v2AggregateBalancesResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse> v2AggregateBalancesResponse) {
+        public Builder v2AggregateBalancesResponse(Optional<? extends V2AggregateBalancesResponse> v2AggregateBalancesResponse) {
             Utils.checkNotNull(v2AggregateBalancesResponse, "v2AggregateBalancesResponse");
             this.v2AggregateBalancesResponse = v2AggregateBalancesResponse;
             return this;

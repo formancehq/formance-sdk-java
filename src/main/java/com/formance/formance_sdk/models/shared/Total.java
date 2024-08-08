@@ -4,34 +4,34 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Total {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relation")
-    private Optional<? extends String> relation;
+    private Optional<String> relation;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<? extends Long> value;
+    private Optional<Long> value;
 
     @JsonCreator
     public Total(
-            @JsonProperty("relation") Optional<? extends String> relation,
-            @JsonProperty("value") Optional<? extends Long> value) {
+            @JsonProperty("relation") Optional<String> relation,
+            @JsonProperty("value") Optional<Long> value) {
         Utils.checkNotNull(relation, "relation");
         Utils.checkNotNull(value, "value");
         this.relation = relation;
@@ -42,16 +42,14 @@ public class Total {
         this(Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> relation() {
-        return (Optional<String>) relation;
+        return relation;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> value() {
-        return (Optional<Long>) value;
+        return value;
     }
 
     public final static Builder builder() {
@@ -64,7 +62,7 @@ public class Total {
         return this;
     }
 
-    public Total withRelation(Optional<? extends String> relation) {
+    public Total withRelation(Optional<String> relation) {
         Utils.checkNotNull(relation, "relation");
         this.relation = relation;
         return this;
@@ -76,7 +74,7 @@ public class Total {
         return this;
     }
 
-    public Total withValue(Optional<? extends Long> value) {
+    public Total withValue(Optional<Long> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
@@ -92,13 +90,13 @@ public class Total {
         }
         Total other = (Total) o;
         return 
-            java.util.Objects.deepEquals(this.relation, other.relation) &&
-            java.util.Objects.deepEquals(this.value, other.value);
+            Objects.deepEquals(this.relation, other.relation) &&
+            Objects.deepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             relation,
             value);
     }
@@ -112,9 +110,9 @@ public class Total {
     
     public final static class Builder {
  
-        private Optional<? extends String> relation = Optional.empty();
+        private Optional<String> relation = Optional.empty();
  
-        private Optional<? extends Long> value = Optional.empty();  
+        private Optional<Long> value = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -126,7 +124,7 @@ public class Total {
             return this;
         }
 
-        public Builder relation(Optional<? extends String> relation) {
+        public Builder relation(Optional<String> relation) {
             Utils.checkNotNull(relation, "relation");
             this.relation = relation;
             return this;
@@ -138,7 +136,7 @@ public class Total {
             return this;
         }
 
-        public Builder value(Optional<? extends Long> value) {
+        public Builder value(Optional<Long> value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;

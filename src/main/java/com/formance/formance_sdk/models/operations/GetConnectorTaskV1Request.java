@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class GetConnectorTaskV1Request {
 
@@ -21,7 +21,7 @@ public class GetConnectorTaskV1Request {
      * The name of the connector.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
-    private com.formance.formance_sdk.models.shared.Connector connector;
+    private Connector connector;
 
     /**
      * The connector ID.
@@ -37,7 +37,7 @@ public class GetConnectorTaskV1Request {
 
     @JsonCreator
     public GetConnectorTaskV1Request(
-            com.formance.formance_sdk.models.shared.Connector connector,
+            Connector connector,
             String connectorId,
             String taskId) {
         Utils.checkNotNull(connector, "connector");
@@ -52,7 +52,7 @@ public class GetConnectorTaskV1Request {
      * The name of the connector.
      */
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.Connector connector() {
+    public Connector connector() {
         return connector;
     }
 
@@ -79,7 +79,7 @@ public class GetConnectorTaskV1Request {
     /**
      * The name of the connector.
      */
-    public GetConnectorTaskV1Request withConnector(com.formance.formance_sdk.models.shared.Connector connector) {
+    public GetConnectorTaskV1Request withConnector(Connector connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
@@ -113,14 +113,14 @@ public class GetConnectorTaskV1Request {
         }
         GetConnectorTaskV1Request other = (GetConnectorTaskV1Request) o;
         return 
-            java.util.Objects.deepEquals(this.connector, other.connector) &&
-            java.util.Objects.deepEquals(this.connectorId, other.connectorId) &&
-            java.util.Objects.deepEquals(this.taskId, other.taskId);
+            Objects.deepEquals(this.connector, other.connector) &&
+            Objects.deepEquals(this.connectorId, other.connectorId) &&
+            Objects.deepEquals(this.taskId, other.taskId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connector,
             connectorId,
             taskId);
@@ -136,7 +136,7 @@ public class GetConnectorTaskV1Request {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.Connector connector;
+        private Connector connector;
  
         private String connectorId;
  
@@ -149,7 +149,7 @@ public class GetConnectorTaskV1Request {
         /**
          * The name of the connector.
          */
-        public Builder connector(com.formance.formance_sdk.models.shared.Connector connector) {
+        public Builder connector(Connector connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
             return this;

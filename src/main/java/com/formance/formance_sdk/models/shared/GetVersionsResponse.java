@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class GetVersionsResponse {
 
@@ -24,13 +24,13 @@ public class GetVersionsResponse {
     private String region;
 
     @JsonProperty("versions")
-    private java.util.List<Version> versions;
+    private List<Version> versions;
 
     @JsonCreator
     public GetVersionsResponse(
             @JsonProperty("env") String env,
             @JsonProperty("region") String region,
-            @JsonProperty("versions") java.util.List<Version> versions) {
+            @JsonProperty("versions") List<Version> versions) {
         Utils.checkNotNull(env, "env");
         Utils.checkNotNull(region, "region");
         Utils.checkNotNull(versions, "versions");
@@ -50,7 +50,7 @@ public class GetVersionsResponse {
     }
 
     @JsonIgnore
-    public java.util.List<Version> versions() {
+    public List<Version> versions() {
         return versions;
     }
 
@@ -70,7 +70,7 @@ public class GetVersionsResponse {
         return this;
     }
 
-    public GetVersionsResponse withVersions(java.util.List<Version> versions) {
+    public GetVersionsResponse withVersions(List<Version> versions) {
         Utils.checkNotNull(versions, "versions");
         this.versions = versions;
         return this;
@@ -86,14 +86,14 @@ public class GetVersionsResponse {
         }
         GetVersionsResponse other = (GetVersionsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.env, other.env) &&
-            java.util.Objects.deepEquals(this.region, other.region) &&
-            java.util.Objects.deepEquals(this.versions, other.versions);
+            Objects.deepEquals(this.env, other.env) &&
+            Objects.deepEquals(this.region, other.region) &&
+            Objects.deepEquals(this.versions, other.versions);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             env,
             region,
             versions);
@@ -113,7 +113,7 @@ public class GetVersionsResponse {
  
         private String region;
  
-        private java.util.List<Version> versions;  
+        private List<Version> versions;  
         
         private Builder() {
           // force use of static builder() method
@@ -131,7 +131,7 @@ public class GetVersionsResponse {
             return this;
         }
 
-        public Builder versions(java.util.List<Version> versions) {
+        public Builder versions(List<Version> versions) {
             Utils.checkNotNull(versions, "versions");
             this.versions = versions;
             return this;

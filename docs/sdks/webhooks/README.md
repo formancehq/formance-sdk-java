@@ -21,17 +21,11 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ActivateConfigRequest;
+import com.formance.formance_sdk.models.operations.ActivateConfigResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -39,8 +33,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -58,7 +52,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -72,14 +66,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                             | [com.formance.formance_sdk.models.operations.ActivateConfigRequest](../../models/operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [ActivateConfigRequest](../../models/operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ActivateConfigResponse](../../models/operations/ActivateConfigResponse.md)**
+**[ActivateConfigResponse](../../models/operations/ActivateConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
@@ -101,17 +95,12 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest;
+import com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse;
+import com.formance.formance_sdk.models.shared.ConfigChangeSecret;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -119,8 +108,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -141,7 +130,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -155,14 +144,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                     | [com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest](../../models/operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                                                            | The request object to use for the request.                                                                                    |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [ChangeConfigSecretRequest](../../models/operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse](../../models/operations/ChangeConfigSecretResponse.md)**
+**[ChangeConfigSecretResponse](../../models/operations/ChangeConfigSecretResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
@@ -180,17 +169,11 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.DeactivateConfigRequest;
+import com.formance.formance_sdk.models.operations.DeactivateConfigResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -198,8 +181,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -217,7 +200,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -231,14 +214,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                 | [com.formance.formance_sdk.models.operations.DeactivateConfigRequest](../../models/operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [DeactivateConfigRequest](../../models/operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeactivateConfigResponse](../../models/operations/DeactivateConfigResponse.md)**
+**[DeactivateConfigResponse](../../models/operations/DeactivateConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
@@ -256,17 +239,11 @@ Delete a webhooks config by ID.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.DeleteConfigRequest;
+import com.formance.formance_sdk.models.operations.DeleteConfigResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -274,8 +251,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -291,7 +268,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -305,14 +282,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.DeleteConfigRequest](../../models/operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [DeleteConfigRequest](../../models/operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeleteConfigResponse](../../models/operations/DeleteConfigResponse.md)**
+**[DeleteConfigResponse](../../models/operations/DeleteConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
@@ -330,17 +307,11 @@ Sorted by updated date descending
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetManyConfigsRequest;
+import com.formance.formance_sdk.models.operations.GetManyConfigsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -348,8 +319,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -368,7 +339,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -382,14 +353,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                             | [com.formance.formance_sdk.models.operations.GetManyConfigsRequest](../../models/operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [GetManyConfigsRequest](../../models/operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetManyConfigsResponse](../../models/operations/GetManyConfigsResponse.md)**
+**[GetManyConfigsResponse](../../models/operations/GetManyConfigsResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
@@ -416,17 +387,12 @@ All eventTypes are converted to lower-case when inserted.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.InsertConfigResponse;
+import com.formance.formance_sdk.models.shared.ConfigUser;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -434,14 +400,14 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             ConfigUser req = ConfigUser.builder()
                 .endpoint("https://example.com")
-                .eventTypes(java.util.List.of(
+                .eventTypes(List.of(
                         "TYPE1",
                         "TYPE2"))
                 .name("customer_payment")
@@ -458,7 +424,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -472,14 +438,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `request`                                                                               | [com.formance.formance_sdk.models.shared.ConfigUser](../../models/shared/ConfigUser.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| Parameter                                       | Type                                            | Required                                        | Description                                     |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| `request`                                       | [ConfigUser](../../models/shared/ConfigUser.md) | :heavy_check_mark:                              | The request object to use for the request.      |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.InsertConfigResponse](../../models/operations/InsertConfigResponse.md)**
+**[InsertConfigResponse](../../models/operations/InsertConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |
@@ -497,17 +463,11 @@ Test a config by sending a webhook to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.TestConfigRequest;
+import com.formance.formance_sdk.models.operations.TestConfigResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -515,8 +475,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -534,7 +494,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -548,14 +508,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                     | [com.formance.formance_sdk.models.operations.TestConfigRequest](../../models/operations/TestConfigRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [TestConfigRequest](../../models/operations/TestConfigRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.TestConfigResponse](../../models/operations/TestConfigResponse.md)**
+**[TestConfigResponse](../../models/operations/TestConfigResponse.md)**
 ### Errors
 
 | Error Object                        | Status Code                         | Content Type                        |

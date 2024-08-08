@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class UninstallConnectorV1Request {
 
@@ -21,7 +21,7 @@ public class UninstallConnectorV1Request {
      * The name of the connector.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
-    private com.formance.formance_sdk.models.shared.Connector connector;
+    private Connector connector;
 
     /**
      * The connector ID.
@@ -31,7 +31,7 @@ public class UninstallConnectorV1Request {
 
     @JsonCreator
     public UninstallConnectorV1Request(
-            com.formance.formance_sdk.models.shared.Connector connector,
+            Connector connector,
             String connectorId) {
         Utils.checkNotNull(connector, "connector");
         Utils.checkNotNull(connectorId, "connectorId");
@@ -43,7 +43,7 @@ public class UninstallConnectorV1Request {
      * The name of the connector.
      */
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.Connector connector() {
+    public Connector connector() {
         return connector;
     }
 
@@ -62,7 +62,7 @@ public class UninstallConnectorV1Request {
     /**
      * The name of the connector.
      */
-    public UninstallConnectorV1Request withConnector(com.formance.formance_sdk.models.shared.Connector connector) {
+    public UninstallConnectorV1Request withConnector(Connector connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
@@ -87,13 +87,13 @@ public class UninstallConnectorV1Request {
         }
         UninstallConnectorV1Request other = (UninstallConnectorV1Request) o;
         return 
-            java.util.Objects.deepEquals(this.connector, other.connector) &&
-            java.util.Objects.deepEquals(this.connectorId, other.connectorId);
+            Objects.deepEquals(this.connector, other.connector) &&
+            Objects.deepEquals(this.connectorId, other.connectorId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connector,
             connectorId);
     }
@@ -107,7 +107,7 @@ public class UninstallConnectorV1Request {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.Connector connector;
+        private Connector connector;
  
         private String connectorId;  
         
@@ -118,7 +118,7 @@ public class UninstallConnectorV1Request {
         /**
          * The name of the connector.
          */
-        public Builder connector(com.formance.formance_sdk.models.shared.Connector connector) {
+        public Builder connector(Connector connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
             return this;

@@ -5,26 +5,49 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreateClientRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateClientResponse;
+import com.formance.formance_sdk.models.operations.CreateSecretRequest;
+import com.formance.formance_sdk.models.operations.CreateSecretRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateSecretResponse;
+import com.formance.formance_sdk.models.operations.DeleteClientRequest;
+import com.formance.formance_sdk.models.operations.DeleteClientRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeleteClientResponse;
+import com.formance.formance_sdk.models.operations.DeleteSecretRequest;
+import com.formance.formance_sdk.models.operations.DeleteSecretRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeleteSecretResponse;
+import com.formance.formance_sdk.models.operations.ListClientsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListClientsResponse;
+import com.formance.formance_sdk.models.operations.ListUsersRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListUsersResponse;
+import com.formance.formance_sdk.models.operations.ReadClientRequest;
+import com.formance.formance_sdk.models.operations.ReadClientRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReadClientResponse;
+import com.formance.formance_sdk.models.operations.ReadUserRequest;
+import com.formance.formance_sdk.models.operations.ReadUserRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReadUserResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.models.operations.UpdateClientRequest;
+import com.formance.formance_sdk.models.operations.UpdateClientRequestBuilder;
+import com.formance.formance_sdk.models.operations.UpdateClientResponse;
+import com.formance.formance_sdk.models.shared.CreateClientRequest;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.JSON;
-import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class Auth implements
             MethodCallCreateClient,
@@ -48,8 +71,8 @@ public class Auth implements
      * Create client
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateClientRequestBuilder createClient() {
-        return new com.formance.formance_sdk.models.operations.CreateClientRequestBuilder(this);
+    public CreateClientRequestBuilder createClient() {
+        return new CreateClientRequestBuilder(this);
     }
 
     /**
@@ -57,27 +80,33 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateClientResponse createClientDirect() throws Exception {
+    public CreateClientResponse createClientDirect() throws Exception {
         return createClient(Optional.empty());
     }
+    
     /**
      * Create client
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateClientResponse createClient(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateClientRequest> request) throws Exception {
+    public CreateClientResponse createClient(
+            Optional<? extends CreateClientRequest> request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/auth/clients");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<Optional<? extends com.formance.formance_sdk.models.shared.CreateClientRequest>>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends CreateClientRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -90,7 +119,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createClient", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -98,18 +130,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createClient",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createClient",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createClient",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -117,28 +159,28 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateClientResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateClientResponse
+        CreateClientResponse.Builder _resBuilder = 
+            CreateClientResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateClientResponse _res = _resBuilder.build();
+        CreateClientResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.CreateClientResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateClientResponse>() {});
-                _res.withCreateClientResponse(java.util.Optional.ofNullable(_out));
+                _res.withCreateClientResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -147,13 +189,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -162,8 +204,8 @@ public class Auth implements
      * Add a secret to a client
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateSecretRequestBuilder createSecret() {
-        return new com.formance.formance_sdk.models.operations.CreateSecretRequestBuilder(this);
+    public CreateSecretRequestBuilder createSecret() {
+        return new CreateSecretRequestBuilder(this);
     }
 
     /**
@@ -172,20 +214,25 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateSecretResponse createSecret(
-            com.formance.formance_sdk.models.operations.CreateSecretRequest request) throws Exception {
+    public CreateSecretResponse createSecret(
+            CreateSecretRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.CreateSecretRequest.class,
+                CreateSecretRequest.class,
                 _baseUrl,
                 "/api/auth/clients/{clientId}/secrets",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.CreateSecretRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<CreateSecretRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "createSecretRequest", "json", false);
+                _convertedRequest, 
+                "createSecretRequest",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -198,7 +245,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createSecret", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -206,18 +256,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createSecret",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createSecret",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createSecret",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -225,28 +285,28 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateSecretResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateSecretResponse
+        CreateSecretResponse.Builder _resBuilder = 
+            CreateSecretResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateSecretResponse _res = _resBuilder.build();
+        CreateSecretResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.CreateSecretResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.CreateSecretResponse>() {});
-                _res.withCreateSecretResponse(java.util.Optional.ofNullable(_out));
+                _res.withCreateSecretResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -255,13 +315,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -270,8 +330,8 @@ public class Auth implements
      * Delete client
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeleteClientRequestBuilder deleteClient() {
-        return new com.formance.formance_sdk.models.operations.DeleteClientRequestBuilder(this);
+    public DeleteClientRequestBuilder deleteClient() {
+        return new DeleteClientRequestBuilder(this);
     }
 
     /**
@@ -280,11 +340,11 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeleteClientResponse deleteClient(
-            com.formance.formance_sdk.models.operations.DeleteClientRequest request) throws Exception {
+    public DeleteClientResponse deleteClient(
+            DeleteClientRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeleteClientRequest.class,
+                DeleteClientRequest.class,
                 _baseUrl,
                 "/api/auth/clients/{clientId}",
                 request, null);
@@ -301,7 +361,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deleteClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deleteClient", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -309,18 +372,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deleteClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deleteClient",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deleteClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deleteClient",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deleteClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deleteClient",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -328,14 +401,14 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeleteClientResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeleteClientResponse
+        DeleteClientResponse.Builder _resBuilder = 
+            DeleteClientResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeleteClientResponse _res = _resBuilder.build();
+        DeleteClientResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -347,13 +420,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -362,8 +435,8 @@ public class Auth implements
      * Delete a secret from a client
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeleteSecretRequestBuilder deleteSecret() {
-        return new com.formance.formance_sdk.models.operations.DeleteSecretRequestBuilder(this);
+    public DeleteSecretRequestBuilder deleteSecret() {
+        return new DeleteSecretRequestBuilder(this);
     }
 
     /**
@@ -372,11 +445,11 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeleteSecretResponse deleteSecret(
-            com.formance.formance_sdk.models.operations.DeleteSecretRequest request) throws Exception {
+    public DeleteSecretResponse deleteSecret(
+            DeleteSecretRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeleteSecretRequest.class,
+                DeleteSecretRequest.class,
                 _baseUrl,
                 "/api/auth/clients/{clientId}/secrets/{secretId}",
                 request, null);
@@ -393,7 +466,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deleteSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deleteSecret", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -401,18 +477,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deleteSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deleteSecret",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deleteSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deleteSecret",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deleteSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deleteSecret",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -420,14 +506,14 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeleteSecretResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeleteSecretResponse
+        DeleteSecretResponse.Builder _resBuilder = 
+            DeleteSecretResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeleteSecretResponse _res = _resBuilder.build();
+        DeleteSecretResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -439,13 +525,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -454,8 +540,8 @@ public class Auth implements
      * List clients
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListClientsRequestBuilder listClients() {
-        return new com.formance.formance_sdk.models.operations.ListClientsRequestBuilder(this);
+    public ListClientsRequestBuilder listClients() {
+        return new ListClientsRequestBuilder(this);
     }
 
     /**
@@ -463,7 +549,7 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListClientsResponse listClientsDirect() throws Exception {
+    public ListClientsResponse listClientsDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -481,7 +567,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listClients", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listClients", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -489,18 +578,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listClients", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listClients",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listClients", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listClients",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listClients", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listClients",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -508,28 +607,28 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListClientsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListClientsResponse
+        ListClientsResponse.Builder _resBuilder = 
+            ListClientsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListClientsResponse _res = _resBuilder.build();
+        ListClientsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ListClientsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListClientsResponse>() {});
-                _res.withListClientsResponse(java.util.Optional.ofNullable(_out));
+                _res.withListClientsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -538,13 +637,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -554,8 +653,8 @@ public class Auth implements
      * List users
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListUsersRequestBuilder listUsers() {
-        return new com.formance.formance_sdk.models.operations.ListUsersRequestBuilder(this);
+    public ListUsersRequestBuilder listUsers() {
+        return new ListUsersRequestBuilder(this);
     }
 
     /**
@@ -564,7 +663,7 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListUsersResponse listUsersDirect() throws Exception {
+    public ListUsersResponse listUsersDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -582,7 +681,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listUsers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listUsers", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -590,18 +692,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listUsers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listUsers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listUsers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listUsers",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listUsers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listUsers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -609,28 +721,28 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListUsersResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListUsersResponse
+        ListUsersResponse.Builder _resBuilder = 
+            ListUsersResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListUsersResponse _res = _resBuilder.build();
+        ListUsersResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ListUsersResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ListUsersResponse>() {});
-                _res.withListUsersResponse(java.util.Optional.ofNullable(_out));
+                _res.withListUsersResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -639,13 +751,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -654,8 +766,8 @@ public class Auth implements
      * Read client
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ReadClientRequestBuilder readClient() {
-        return new com.formance.formance_sdk.models.operations.ReadClientRequestBuilder(this);
+    public ReadClientRequestBuilder readClient() {
+        return new ReadClientRequestBuilder(this);
     }
 
     /**
@@ -664,11 +776,11 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ReadClientResponse readClient(
-            com.formance.formance_sdk.models.operations.ReadClientRequest request) throws Exception {
+    public ReadClientResponse readClient(
+            ReadClientRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ReadClientRequest.class,
+                ReadClientRequest.class,
                 _baseUrl,
                 "/api/auth/clients/{clientId}",
                 request, null);
@@ -685,7 +797,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("readClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "readClient", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -693,18 +808,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("readClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "readClient",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("readClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "readClient",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("readClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "readClient",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -712,28 +837,28 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReadClientResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReadClientResponse
+        ReadClientResponse.Builder _resBuilder = 
+            ReadClientResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReadClientResponse _res = _resBuilder.build();
+        ReadClientResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ReadClientResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReadClientResponse>() {});
-                _res.withReadClientResponse(java.util.Optional.ofNullable(_out));
+                _res.withReadClientResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -742,13 +867,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -758,8 +883,8 @@ public class Auth implements
      * Read user
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ReadUserRequestBuilder readUser() {
-        return new com.formance.formance_sdk.models.operations.ReadUserRequestBuilder(this);
+    public ReadUserRequestBuilder readUser() {
+        return new ReadUserRequestBuilder(this);
     }
 
     /**
@@ -769,11 +894,11 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ReadUserResponse readUser(
-            com.formance.formance_sdk.models.operations.ReadUserRequest request) throws Exception {
+    public ReadUserResponse readUser(
+            ReadUserRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ReadUserRequest.class,
+                ReadUserRequest.class,
                 _baseUrl,
                 "/api/auth/users/{userId}",
                 request, null);
@@ -790,7 +915,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("readUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "readUser", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -798,18 +926,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("readUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "readUser",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("readUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "readUser",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("readUser", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "readUser",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -817,28 +955,28 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReadUserResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReadUserResponse
+        ReadUserResponse.Builder _resBuilder = 
+            ReadUserResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReadUserResponse _res = _resBuilder.build();
+        ReadUserResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.ReadUserResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.ReadUserResponse>() {});
-                _res.withReadUserResponse(java.util.Optional.ofNullable(_out));
+                _res.withReadUserResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -847,13 +985,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -862,8 +1000,8 @@ public class Auth implements
      * Update client
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.UpdateClientRequestBuilder updateClient() {
-        return new com.formance.formance_sdk.models.operations.UpdateClientRequestBuilder(this);
+    public UpdateClientRequestBuilder updateClient() {
+        return new UpdateClientRequestBuilder(this);
     }
 
     /**
@@ -872,20 +1010,25 @@ public class Auth implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.UpdateClientResponse updateClient(
-            com.formance.formance_sdk.models.operations.UpdateClientRequest request) throws Exception {
+    public UpdateClientResponse updateClient(
+            UpdateClientRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UpdateClientRequest.class,
+                UpdateClientRequest.class,
                 _baseUrl,
                 "/api/auth/clients/{clientId}",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.UpdateClientRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<UpdateClientRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "updateClientRequest", "json", false);
+                _convertedRequest, 
+                "updateClientRequest",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -898,7 +1041,10 @@ public class Auth implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("updateClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "updateClient", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -906,18 +1052,28 @@ public class Auth implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("updateClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "updateClient",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("updateClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "updateClient",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("updateClient", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "updateClient",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -925,28 +1081,28 @@ public class Auth implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UpdateClientResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UpdateClientResponse
+        UpdateClientResponse.Builder _resBuilder = 
+            UpdateClientResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UpdateClientResponse _res = _resBuilder.build();
+        UpdateClientResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.UpdateClientResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.UpdateClientResponse>() {});
-                _res.withUpdateClientResponse(java.util.Optional.ofNullable(_out));
+                _res.withUpdateClientResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -955,13 +1111,13 @@ public class Auth implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

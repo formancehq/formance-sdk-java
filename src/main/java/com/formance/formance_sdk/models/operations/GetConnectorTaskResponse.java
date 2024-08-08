@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.TaskResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetConnectorTaskResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.TaskResponse> taskResponse;
+    private Optional<? extends TaskResponse> taskResponse;
 
     @JsonCreator
     public GetConnectorTaskResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.TaskResponse> taskResponse) {
+            Optional<? extends TaskResponse> taskResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.TaskResponse> taskResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.TaskResponse>) taskResponse;
+    public Optional<TaskResponse> taskResponse() {
+        return (Optional<TaskResponse>) taskResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
-    public GetConnectorTaskResponse withTaskResponse(com.formance.formance_sdk.models.shared.TaskResponse taskResponse) {
+    public GetConnectorTaskResponse withTaskResponse(TaskResponse taskResponse) {
         Utils.checkNotNull(taskResponse, "taskResponse");
         this.taskResponse = Optional.ofNullable(taskResponse);
         return this;
@@ -137,7 +141,7 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
-    public GetConnectorTaskResponse withTaskResponse(Optional<? extends com.formance.formance_sdk.models.shared.TaskResponse> taskResponse) {
+    public GetConnectorTaskResponse withTaskResponse(Optional<? extends TaskResponse> taskResponse) {
         Utils.checkNotNull(taskResponse, "taskResponse");
         this.taskResponse = taskResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
         }
         GetConnectorTaskResponse other = (GetConnectorTaskResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.taskResponse, other.taskResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.taskResponse, other.taskResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.TaskResponse> taskResponse = Optional.empty();  
+        private Optional<? extends TaskResponse> taskResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
         /**
          * OK
          */
-        public Builder taskResponse(com.formance.formance_sdk.models.shared.TaskResponse taskResponse) {
+        public Builder taskResponse(TaskResponse taskResponse) {
             Utils.checkNotNull(taskResponse, "taskResponse");
             this.taskResponse = Optional.ofNullable(taskResponse);
             return this;
@@ -230,7 +234,7 @@ public class GetConnectorTaskResponse implements com.formance.formance_sdk.utils
         /**
          * OK
          */
-        public Builder taskResponse(Optional<? extends com.formance.formance_sdk.models.shared.TaskResponse> taskResponse) {
+        public Builder taskResponse(Optional<? extends TaskResponse> taskResponse) {
             Utils.checkNotNull(taskResponse, "taskResponse");
             this.taskResponse = taskResponse;
             return this;

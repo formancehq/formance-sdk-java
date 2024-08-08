@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConfigUser {
 
@@ -24,22 +24,22 @@ public class ConfigUser {
     private String endpoint;
 
     @JsonProperty("eventTypes")
-    private java.util.List<String> eventTypes;
+    private List<String> eventTypes;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("secret")
-    private Optional<? extends String> secret;
+    private Optional<String> secret;
 
     @JsonCreator
     public ConfigUser(
             @JsonProperty("endpoint") String endpoint,
-            @JsonProperty("eventTypes") java.util.List<String> eventTypes,
-            @JsonProperty("name") Optional<? extends String> name,
-            @JsonProperty("secret") Optional<? extends String> secret) {
+            @JsonProperty("eventTypes") List<String> eventTypes,
+            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("secret") Optional<String> secret) {
         Utils.checkNotNull(endpoint, "endpoint");
         Utils.checkNotNull(eventTypes, "eventTypes");
         Utils.checkNotNull(name, "name");
@@ -52,7 +52,7 @@ public class ConfigUser {
     
     public ConfigUser(
             String endpoint,
-            java.util.List<String> eventTypes) {
+            List<String> eventTypes) {
         this(endpoint, eventTypes, Optional.empty(), Optional.empty());
     }
 
@@ -62,20 +62,18 @@ public class ConfigUser {
     }
 
     @JsonIgnore
-    public java.util.List<String> eventTypes() {
+    public List<String> eventTypes() {
         return eventTypes;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> secret() {
-        return (Optional<String>) secret;
+        return secret;
     }
 
     public final static Builder builder() {
@@ -88,7 +86,7 @@ public class ConfigUser {
         return this;
     }
 
-    public ConfigUser withEventTypes(java.util.List<String> eventTypes) {
+    public ConfigUser withEventTypes(List<String> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
@@ -100,7 +98,7 @@ public class ConfigUser {
         return this;
     }
 
-    public ConfigUser withName(Optional<? extends String> name) {
+    public ConfigUser withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -112,7 +110,7 @@ public class ConfigUser {
         return this;
     }
 
-    public ConfigUser withSecret(Optional<? extends String> secret) {
+    public ConfigUser withSecret(Optional<String> secret) {
         Utils.checkNotNull(secret, "secret");
         this.secret = secret;
         return this;
@@ -128,15 +126,15 @@ public class ConfigUser {
         }
         ConfigUser other = (ConfigUser) o;
         return 
-            java.util.Objects.deepEquals(this.endpoint, other.endpoint) &&
-            java.util.Objects.deepEquals(this.eventTypes, other.eventTypes) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.secret, other.secret);
+            Objects.deepEquals(this.endpoint, other.endpoint) &&
+            Objects.deepEquals(this.eventTypes, other.eventTypes) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.secret, other.secret);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             endpoint,
             eventTypes,
             name,
@@ -156,11 +154,11 @@ public class ConfigUser {
  
         private String endpoint;
  
-        private java.util.List<String> eventTypes;
+        private List<String> eventTypes;
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
-        private Optional<? extends String> secret = Optional.empty();  
+        private Optional<String> secret = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -172,7 +170,7 @@ public class ConfigUser {
             return this;
         }
 
-        public Builder eventTypes(java.util.List<String> eventTypes) {
+        public Builder eventTypes(List<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;
@@ -184,7 +182,7 @@ public class ConfigUser {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -196,7 +194,7 @@ public class ConfigUser {
             return this;
         }
 
-        public Builder secret(Optional<? extends String> secret) {
+        public Builder secret(Optional<String> secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = secret;
             return this;

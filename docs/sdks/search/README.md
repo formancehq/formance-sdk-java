@@ -16,17 +16,13 @@ ElasticSearch query engine
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.SearchResponse;
+import com.formance.formance_sdk.models.shared.Query;
+import com.formance.formance_sdk.models.shared.QueryRaw;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -34,22 +30,22 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             Query req = Query.builder()
-                .after(java.util.List.of(
+                .after(List.of(
                     "users:002"))
                 .cursor("YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=")
-                .ledgers(java.util.List.of(
+                .ledgers(List.of(
                     "quickstart"))
                 .policy("OR")
                 .raw(QueryRaw.builder()
                     .build())
                 .sort("id:asc")
-                .terms(java.util.List.of(
+                .terms(List.of(
                     "destination=central_bank1"))
                 .build();
 
@@ -60,7 +56,7 @@ public class Application {
             if (res.response().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -74,14 +70,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `request`                                                                     | [com.formance.formance_sdk.models.shared.Query](../../models/shared/Query.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| Parameter                                  | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `request`                                  | [Query](../../models/shared/Query.md)      | :heavy_check_mark:                         | The request object to use for the request. |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.SearchResponse](../../models/operations/SearchResponse.md)**
+**[SearchResponse](../../models/operations/SearchResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -98,17 +94,10 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -116,8 +105,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -127,7 +116,7 @@ public class Application {
             if (res.serverInfo().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -142,7 +131,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse](../../models/operations/SearchgetServerInfoResponse.md)**
+**[SearchgetServerInfoResponse](../../models/operations/SearchgetServerInfoResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

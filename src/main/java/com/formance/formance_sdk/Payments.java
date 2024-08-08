@@ -5,27 +5,172 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.AddAccountToPoolRequest;
+import com.formance.formance_sdk.models.operations.AddAccountToPoolRequestBuilder;
+import com.formance.formance_sdk.models.operations.AddAccountToPoolResponse;
+import com.formance.formance_sdk.models.operations.ConnectorsTransferRequest;
+import com.formance.formance_sdk.models.operations.ConnectorsTransferRequestBuilder;
+import com.formance.formance_sdk.models.operations.ConnectorsTransferResponse;
+import com.formance.formance_sdk.models.operations.CreateAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateAccountResponse;
+import com.formance.formance_sdk.models.operations.CreateBankAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateBankAccountResponse;
+import com.formance.formance_sdk.models.operations.CreatePaymentRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreatePaymentResponse;
+import com.formance.formance_sdk.models.operations.CreatePoolRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreatePoolResponse;
+import com.formance.formance_sdk.models.operations.CreateTransferInitiationRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse;
+import com.formance.formance_sdk.models.operations.DeletePoolRequest;
+import com.formance.formance_sdk.models.operations.DeletePoolRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeletePoolResponse;
+import com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest;
+import com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse;
+import com.formance.formance_sdk.models.operations.ForwardBankAccountRequest;
+import com.formance.formance_sdk.models.operations.ForwardBankAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.ForwardBankAccountResponse;
+import com.formance.formance_sdk.models.operations.GetAccountBalancesRequest;
+import com.formance.formance_sdk.models.operations.GetAccountBalancesRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetAccountBalancesResponse;
+import com.formance.formance_sdk.models.operations.GetBankAccountRequest;
+import com.formance.formance_sdk.models.operations.GetBankAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetBankAccountResponse;
+import com.formance.formance_sdk.models.operations.GetConnectorTaskRequest;
+import com.formance.formance_sdk.models.operations.GetConnectorTaskRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetConnectorTaskResponse;
+import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request;
+import com.formance.formance_sdk.models.operations.GetConnectorTaskV1RequestBuilder;
+import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response;
+import com.formance.formance_sdk.models.operations.GetPaymentRequest;
+import com.formance.formance_sdk.models.operations.GetPaymentRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetPaymentResponse;
+import com.formance.formance_sdk.models.operations.GetPoolBalancesRequest;
+import com.formance.formance_sdk.models.operations.GetPoolBalancesRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetPoolBalancesResponse;
+import com.formance.formance_sdk.models.operations.GetPoolRequest;
+import com.formance.formance_sdk.models.operations.GetPoolRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetPoolResponse;
+import com.formance.formance_sdk.models.operations.GetTransferInitiationRequest;
+import com.formance.formance_sdk.models.operations.GetTransferInitiationRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetTransferInitiationResponse;
+import com.formance.formance_sdk.models.operations.InstallConnectorRequest;
+import com.formance.formance_sdk.models.operations.InstallConnectorRequestBuilder;
+import com.formance.formance_sdk.models.operations.InstallConnectorResponse;
+import com.formance.formance_sdk.models.operations.ListAllConnectorsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListAllConnectorsResponse;
+import com.formance.formance_sdk.models.operations.ListBankAccountsRequest;
+import com.formance.formance_sdk.models.operations.ListBankAccountsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListBankAccountsResponse;
+import com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse;
+import com.formance.formance_sdk.models.operations.ListConnectorTasksRequest;
+import com.formance.formance_sdk.models.operations.ListConnectorTasksRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListConnectorTasksResponse;
+import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request;
+import com.formance.formance_sdk.models.operations.ListConnectorTasksV1RequestBuilder;
+import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response;
+import com.formance.formance_sdk.models.operations.ListPaymentsRequest;
+import com.formance.formance_sdk.models.operations.ListPaymentsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListPaymentsResponse;
+import com.formance.formance_sdk.models.operations.ListPoolsRequest;
+import com.formance.formance_sdk.models.operations.ListPoolsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListPoolsResponse;
+import com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest;
+import com.formance.formance_sdk.models.operations.ListTransferInitiationsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse;
+import com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest;
+import com.formance.formance_sdk.models.operations.PaymentsgetAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse;
+import com.formance.formance_sdk.models.operations.PaymentsgetServerInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse;
+import com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest;
+import com.formance.formance_sdk.models.operations.PaymentslistAccountsRequestBuilder;
+import com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse;
+import com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest;
+import com.formance.formance_sdk.models.operations.ReadConnectorConfigRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse;
+import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request;
+import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1RequestBuilder;
+import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response;
+import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest;
+import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequestBuilder;
+import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse;
+import com.formance.formance_sdk.models.operations.ResetConnectorRequest;
+import com.formance.formance_sdk.models.operations.ResetConnectorRequestBuilder;
+import com.formance.formance_sdk.models.operations.ResetConnectorResponse;
+import com.formance.formance_sdk.models.operations.ResetConnectorV1Request;
+import com.formance.formance_sdk.models.operations.ResetConnectorV1RequestBuilder;
+import com.formance.formance_sdk.models.operations.ResetConnectorV1Response;
+import com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest;
+import com.formance.formance_sdk.models.operations.RetryTransferInitiationRequestBuilder;
+import com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse;
+import com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest;
+import com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest;
+import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequestBuilder;
+import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse;
+import com.formance.formance_sdk.models.operations.UninstallConnectorRequest;
+import com.formance.formance_sdk.models.operations.UninstallConnectorRequestBuilder;
+import com.formance.formance_sdk.models.operations.UninstallConnectorResponse;
+import com.formance.formance_sdk.models.operations.UninstallConnectorV1Request;
+import com.formance.formance_sdk.models.operations.UninstallConnectorV1RequestBuilder;
+import com.formance.formance_sdk.models.operations.UninstallConnectorV1Response;
+import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest;
+import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequestBuilder;
+import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse;
+import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request;
+import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1RequestBuilder;
+import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response;
+import com.formance.formance_sdk.models.operations.UpdateMetadataRequest;
+import com.formance.formance_sdk.models.operations.UpdateMetadataRequestBuilder;
+import com.formance.formance_sdk.models.operations.UpdateMetadataResponse;
+import com.formance.formance_sdk.models.shared.AccountRequest;
+import com.formance.formance_sdk.models.shared.AccountsCursor;
+import com.formance.formance_sdk.models.shared.BalancesCursor;
+import com.formance.formance_sdk.models.shared.BankAccountRequest;
+import com.formance.formance_sdk.models.shared.BankAccountResponse;
+import com.formance.formance_sdk.models.shared.BankAccountsCursor;
+import com.formance.formance_sdk.models.shared.ConnectorConfigResponse;
+import com.formance.formance_sdk.models.shared.ConnectorResponse;
+import com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse;
+import com.formance.formance_sdk.models.shared.ConnectorsResponse;
+import com.formance.formance_sdk.models.shared.PaymentRequest;
+import com.formance.formance_sdk.models.shared.PaymentResponse;
+import com.formance.formance_sdk.models.shared.PaymentsAccountResponse;
+import com.formance.formance_sdk.models.shared.PaymentsCursor;
+import com.formance.formance_sdk.models.shared.PoolBalancesResponse;
+import com.formance.formance_sdk.models.shared.PoolRequest;
+import com.formance.formance_sdk.models.shared.PoolResponse;
+import com.formance.formance_sdk.models.shared.PoolsCursor;
+import com.formance.formance_sdk.models.shared.ServerInfo;
+import com.formance.formance_sdk.models.shared.TaskResponse;
+import com.formance.formance_sdk.models.shared.TasksCursor;
+import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
+import com.formance.formance_sdk.models.shared.TransferInitiationResponse;
+import com.formance.formance_sdk.models.shared.TransferInitiationsCursor;
+import com.formance.formance_sdk.models.shared.TransferResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.JSON;
-import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Deprecated;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class Payments implements
             MethodCallAddAccountToPool,
@@ -84,8 +229,8 @@ public class Payments implements
      * Add an account to a pool
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.AddAccountToPoolRequestBuilder addAccountToPool() {
-        return new com.formance.formance_sdk.models.operations.AddAccountToPoolRequestBuilder(this);
+    public AddAccountToPoolRequestBuilder addAccountToPool() {
+        return new AddAccountToPoolRequestBuilder(this);
     }
 
     /**
@@ -95,20 +240,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.AddAccountToPoolResponse addAccountToPool(
-            com.formance.formance_sdk.models.operations.AddAccountToPoolRequest request) throws Exception {
+    public AddAccountToPoolResponse addAccountToPool(
+            AddAccountToPoolRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.AddAccountToPoolRequest.class,
+                AddAccountToPoolRequest.class,
                 _baseUrl,
                 "/api/payments/pools/{poolId}/accounts",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.AddAccountToPoolRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<AddAccountToPoolRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "addAccountToPoolRequest", "json", false);
+                _convertedRequest, 
+                "addAccountToPoolRequest",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -124,7 +274,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("addAccountToPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "addAccountToPool", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -132,18 +285,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("addAccountToPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "addAccountToPool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("addAccountToPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "addAccountToPool",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("addAccountToPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "addAccountToPool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -151,14 +314,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.AddAccountToPoolResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.AddAccountToPoolResponse
+        AddAccountToPoolResponse.Builder _resBuilder = 
+            AddAccountToPoolResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.AddAccountToPoolResponse _res = _resBuilder.build();
+        AddAccountToPoolResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -166,23 +329,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -192,8 +355,8 @@ public class Payments implements
      * Execute a transfer between two accounts.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ConnectorsTransferRequestBuilder connectorsTransfer() {
-        return new com.formance.formance_sdk.models.operations.ConnectorsTransferRequestBuilder(this);
+    public ConnectorsTransferRequestBuilder connectorsTransfer() {
+        return new ConnectorsTransferRequestBuilder(this);
     }
 
     /**
@@ -203,20 +366,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ConnectorsTransferResponse connectorsTransfer(
-            com.formance.formance_sdk.models.operations.ConnectorsTransferRequest request) throws Exception {
+    public ConnectorsTransferResponse connectorsTransfer(
+            ConnectorsTransferRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ConnectorsTransferRequest.class,
+                ConnectorsTransferRequest.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/transfers",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.ConnectorsTransferRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<ConnectorsTransferRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "transferRequest", "json", false);
+                _convertedRequest, 
+                "transferRequest",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -232,7 +400,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("connectorsTransfer", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "connectorsTransfer", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -240,18 +411,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("connectorsTransfer", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "connectorsTransfer",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("connectorsTransfer", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "connectorsTransfer",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("connectorsTransfer", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "connectorsTransfer",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -259,49 +440,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ConnectorsTransferResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ConnectorsTransferResponse
+        ConnectorsTransferResponse.Builder _resBuilder = 
+            ConnectorsTransferResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ConnectorsTransferResponse _res = _resBuilder.build();
+        ConnectorsTransferResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransferResponse _out = Utils.mapper().readValue(
+                TransferResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransferResponse>() {});
-                _res.withTransferResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransferResponse>() {});
+                _res.withTransferResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -311,8 +492,8 @@ public class Payments implements
      * Create an account
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateAccountRequestBuilder createAccount() {
-        return new com.formance.formance_sdk.models.operations.CreateAccountRequestBuilder(this);
+    public CreateAccountRequestBuilder createAccount() {
+        return new CreateAccountRequestBuilder(this);
     }
 
     /**
@@ -322,18 +503,23 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateAccountResponse createAccount(
-            com.formance.formance_sdk.models.shared.AccountRequest request) throws Exception {
+    public CreateAccountResponse createAccount(
+            AccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/accounts");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.shared.AccountRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<AccountRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -349,7 +535,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -357,18 +546,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -376,49 +575,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateAccountResponse
+        CreateAccountResponse.Builder _resBuilder = 
+            CreateAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateAccountResponse _res = _resBuilder.build();
+        CreateAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PaymentsAccountResponse _out = Utils.mapper().readValue(
+                PaymentsAccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PaymentsAccountResponse>() {});
-                _res.withPaymentsAccountResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PaymentsAccountResponse>() {});
+                _res.withPaymentsAccountResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -428,8 +627,8 @@ public class Payments implements
      * Create a bank account in Payments and on the PSP.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateBankAccountRequestBuilder createBankAccount() {
-        return new com.formance.formance_sdk.models.operations.CreateBankAccountRequestBuilder(this);
+    public CreateBankAccountRequestBuilder createBankAccount() {
+        return new CreateBankAccountRequestBuilder(this);
     }
 
     /**
@@ -439,18 +638,23 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateBankAccountResponse createBankAccount(
-            com.formance.formance_sdk.models.shared.BankAccountRequest request) throws Exception {
+    public CreateBankAccountResponse createBankAccount(
+            BankAccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/bank-accounts");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.shared.BankAccountRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<BankAccountRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -466,7 +670,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createBankAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -474,18 +681,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createBankAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createBankAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createBankAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -493,49 +710,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateBankAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateBankAccountResponse
+        CreateBankAccountResponse.Builder _resBuilder = 
+            CreateBankAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateBankAccountResponse _res = _resBuilder.build();
+        CreateBankAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.BankAccountResponse _out = Utils.mapper().readValue(
+                BankAccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.BankAccountResponse>() {});
-                _res.withBankAccountResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<BankAccountResponse>() {});
+                _res.withBankAccountResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -545,8 +762,8 @@ public class Payments implements
      * Create a payment
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreatePaymentRequestBuilder createPayment() {
-        return new com.formance.formance_sdk.models.operations.CreatePaymentRequestBuilder(this);
+    public CreatePaymentRequestBuilder createPayment() {
+        return new CreatePaymentRequestBuilder(this);
     }
 
     /**
@@ -556,18 +773,23 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreatePaymentResponse createPayment(
-            com.formance.formance_sdk.models.shared.PaymentRequest request) throws Exception {
+    public CreatePaymentResponse createPayment(
+            PaymentRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/payments");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.shared.PaymentRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<PaymentRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -583,7 +805,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createPayment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createPayment", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -591,18 +816,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createPayment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createPayment",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createPayment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createPayment",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createPayment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createPayment",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -610,49 +845,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreatePaymentResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreatePaymentResponse
+        CreatePaymentResponse.Builder _resBuilder = 
+            CreatePaymentResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreatePaymentResponse _res = _resBuilder.build();
+        CreatePaymentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PaymentResponse _out = Utils.mapper().readValue(
+                PaymentResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PaymentResponse>() {});
-                _res.withPaymentResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PaymentResponse>() {});
+                _res.withPaymentResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -662,8 +897,8 @@ public class Payments implements
      * Create a Pool
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreatePoolRequestBuilder createPool() {
-        return new com.formance.formance_sdk.models.operations.CreatePoolRequestBuilder(this);
+    public CreatePoolRequestBuilder createPool() {
+        return new CreatePoolRequestBuilder(this);
     }
 
     /**
@@ -673,18 +908,23 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreatePoolResponse createPool(
-            com.formance.formance_sdk.models.shared.PoolRequest request) throws Exception {
+    public CreatePoolResponse createPool(
+            PoolRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/pools");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.shared.PoolRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<PoolRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -700,7 +940,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createPool", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -708,18 +951,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createPool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createPool",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createPool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -727,49 +980,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreatePoolResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreatePoolResponse
+        CreatePoolResponse.Builder _resBuilder = 
+            CreatePoolResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreatePoolResponse _res = _resBuilder.build();
+        CreatePoolResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PoolResponse _out = Utils.mapper().readValue(
+                PoolResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PoolResponse>() {});
-                _res.withPoolResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PoolResponse>() {});
+                _res.withPoolResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -779,8 +1032,8 @@ public class Payments implements
      * Create a transfer initiation
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateTransferInitiationRequestBuilder createTransferInitiation() {
-        return new com.formance.formance_sdk.models.operations.CreateTransferInitiationRequestBuilder(this);
+    public CreateTransferInitiationRequestBuilder createTransferInitiation() {
+        return new CreateTransferInitiationRequestBuilder(this);
     }
 
     /**
@@ -790,18 +1043,23 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse createTransferInitiation(
-            com.formance.formance_sdk.models.shared.TransferInitiationRequest request) throws Exception {
+    public CreateTransferInitiationResponse createTransferInitiation(
+            TransferInitiationRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/transfer-initiations");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.shared.TransferInitiationRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<TransferInitiationRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -817,7 +1075,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createTransferInitiation", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -825,18 +1086,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createTransferInitiation",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -844,49 +1115,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse
+        CreateTransferInitiationResponse.Builder _resBuilder = 
+            CreateTransferInitiationResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse _res = _resBuilder.build();
+        CreateTransferInitiationResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransferInitiationResponse _out = Utils.mapper().readValue(
+                TransferInitiationResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransferInitiationResponse>() {});
-                _res.withTransferInitiationResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransferInitiationResponse>() {});
+                _res.withTransferInitiationResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -896,8 +1167,8 @@ public class Payments implements
      * Delete a pool by its id.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeletePoolRequestBuilder deletePool() {
-        return new com.formance.formance_sdk.models.operations.DeletePoolRequestBuilder(this);
+    public DeletePoolRequestBuilder deletePool() {
+        return new DeletePoolRequestBuilder(this);
     }
 
     /**
@@ -907,11 +1178,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeletePoolResponse deletePool(
-            com.formance.formance_sdk.models.operations.DeletePoolRequest request) throws Exception {
+    public DeletePoolResponse deletePool(
+            DeletePoolRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeletePoolRequest.class,
+                DeletePoolRequest.class,
                 _baseUrl,
                 "/api/payments/pools/{poolId}",
                 request, null);
@@ -928,7 +1199,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deletePool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deletePool", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -936,18 +1210,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deletePool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deletePool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deletePool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deletePool",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deletePool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deletePool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -955,14 +1239,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeletePoolResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeletePoolResponse
+        DeletePoolResponse.Builder _resBuilder = 
+            DeletePoolResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeletePoolResponse _res = _resBuilder.build();
+        DeletePoolResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -970,23 +1254,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -996,8 +1280,8 @@ public class Payments implements
      * Delete a transfer initiation by its id.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequestBuilder deleteTransferInitiation() {
-        return new com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequestBuilder(this);
+    public DeleteTransferInitiationRequestBuilder deleteTransferInitiation() {
+        return new DeleteTransferInitiationRequestBuilder(this);
     }
 
     /**
@@ -1007,11 +1291,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse deleteTransferInitiation(
-            com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest request) throws Exception {
+    public DeleteTransferInitiationResponse deleteTransferInitiation(
+            DeleteTransferInitiationRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest.class,
+                DeleteTransferInitiationRequest.class,
                 _baseUrl,
                 "/api/payments/transfer-initiations/{transferId}",
                 request, null);
@@ -1028,7 +1312,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deleteTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deleteTransferInitiation", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1036,18 +1323,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deleteTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deleteTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deleteTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deleteTransferInitiation",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deleteTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deleteTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1055,14 +1352,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse
+        DeleteTransferInitiationResponse.Builder _resBuilder = 
+            DeleteTransferInitiationResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse _res = _resBuilder.build();
+        DeleteTransferInitiationResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -1070,23 +1367,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1095,8 +1392,8 @@ public class Payments implements
      * Forward a bank account to a connector
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ForwardBankAccountRequestBuilder forwardBankAccount() {
-        return new com.formance.formance_sdk.models.operations.ForwardBankAccountRequestBuilder(this);
+    public ForwardBankAccountRequestBuilder forwardBankAccount() {
+        return new ForwardBankAccountRequestBuilder(this);
     }
 
     /**
@@ -1105,20 +1402,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ForwardBankAccountResponse forwardBankAccount(
-            com.formance.formance_sdk.models.operations.ForwardBankAccountRequest request) throws Exception {
+    public ForwardBankAccountResponse forwardBankAccount(
+            ForwardBankAccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ForwardBankAccountRequest.class,
+                ForwardBankAccountRequest.class,
                 _baseUrl,
                 "/api/payments/bank-accounts/{bankAccountId}/forward",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.ForwardBankAccountRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<ForwardBankAccountRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "forwardBankAccountRequest", "json", false);
+                _convertedRequest, 
+                "forwardBankAccountRequest",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -1134,7 +1436,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("forwardBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "forwardBankAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1142,18 +1447,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("forwardBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "forwardBankAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("forwardBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "forwardBankAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("forwardBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "forwardBankAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1161,49 +1476,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ForwardBankAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ForwardBankAccountResponse
+        ForwardBankAccountResponse.Builder _resBuilder = 
+            ForwardBankAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ForwardBankAccountResponse _res = _resBuilder.build();
+        ForwardBankAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.BankAccountResponse _out = Utils.mapper().readValue(
+                BankAccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.BankAccountResponse>() {});
-                _res.withBankAccountResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<BankAccountResponse>() {});
+                _res.withBankAccountResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1212,8 +1527,8 @@ public class Payments implements
      * Get account balances
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetAccountBalancesRequestBuilder getAccountBalances() {
-        return new com.formance.formance_sdk.models.operations.GetAccountBalancesRequestBuilder(this);
+    public GetAccountBalancesRequestBuilder getAccountBalances() {
+        return new GetAccountBalancesRequestBuilder(this);
     }
 
     /**
@@ -1222,11 +1537,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetAccountBalancesResponse getAccountBalances(
-            com.formance.formance_sdk.models.operations.GetAccountBalancesRequest request) throws Exception {
+    public GetAccountBalancesResponse getAccountBalances(
+            GetAccountBalancesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetAccountBalancesRequest.class,
+                GetAccountBalancesRequest.class,
                 _baseUrl,
                 "/api/payments/accounts/{accountId}/balances",
                 request, null);
@@ -1237,7 +1552,7 @@ public class Payments implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.GetAccountBalancesRequest.class,
+                GetAccountBalancesRequest.class,
                 request, 
                 null));
 
@@ -1248,7 +1563,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getAccountBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getAccountBalances", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1256,18 +1574,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getAccountBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getAccountBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getAccountBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getAccountBalances",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getAccountBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getAccountBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1275,49 +1603,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetAccountBalancesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetAccountBalancesResponse
+        GetAccountBalancesResponse.Builder _resBuilder = 
+            GetAccountBalancesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetAccountBalancesResponse _res = _resBuilder.build();
+        GetAccountBalancesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.BalancesCursor _out = Utils.mapper().readValue(
+                BalancesCursor _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.BalancesCursor>() {});
-                _res.withBalancesCursor(java.util.Optional.ofNullable(_out));
+                    new TypeReference<BalancesCursor>() {});
+                _res.withBalancesCursor(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1326,8 +1654,8 @@ public class Payments implements
      * Get a bank account created by user on Formance
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetBankAccountRequestBuilder getBankAccount() {
-        return new com.formance.formance_sdk.models.operations.GetBankAccountRequestBuilder(this);
+    public GetBankAccountRequestBuilder getBankAccount() {
+        return new GetBankAccountRequestBuilder(this);
     }
 
     /**
@@ -1336,11 +1664,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetBankAccountResponse getBankAccount(
-            com.formance.formance_sdk.models.operations.GetBankAccountRequest request) throws Exception {
+    public GetBankAccountResponse getBankAccount(
+            GetBankAccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetBankAccountRequest.class,
+                GetBankAccountRequest.class,
                 _baseUrl,
                 "/api/payments/bank-accounts/{bankAccountId}",
                 request, null);
@@ -1357,7 +1685,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getBankAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1365,18 +1696,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getBankAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getBankAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getBankAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getBankAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1384,49 +1725,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetBankAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetBankAccountResponse
+        GetBankAccountResponse.Builder _resBuilder = 
+            GetBankAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetBankAccountResponse _res = _resBuilder.build();
+        GetBankAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.BankAccountResponse _out = Utils.mapper().readValue(
+                BankAccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.BankAccountResponse>() {});
-                _res.withBankAccountResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<BankAccountResponse>() {});
+                _res.withBankAccountResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1438,8 +1779,8 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.GetConnectorTaskRequestBuilder getConnectorTask() {
-        return new com.formance.formance_sdk.models.operations.GetConnectorTaskRequestBuilder(this);
+    public GetConnectorTaskRequestBuilder getConnectorTask() {
+        return new GetConnectorTaskRequestBuilder(this);
     }
 
     /**
@@ -1451,11 +1792,11 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.GetConnectorTaskResponse getConnectorTask(
-            com.formance.formance_sdk.models.operations.GetConnectorTaskRequest request) throws Exception {
+    public GetConnectorTaskResponse getConnectorTask(
+            GetConnectorTaskRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetConnectorTaskRequest.class,
+                GetConnectorTaskRequest.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/tasks/{taskId}",
                 request, null);
@@ -1472,7 +1813,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getConnectorTask", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getConnectorTask", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1480,18 +1824,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getConnectorTask", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getConnectorTask",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getConnectorTask", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getConnectorTask",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getConnectorTask", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getConnectorTask",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1499,49 +1853,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetConnectorTaskResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetConnectorTaskResponse
+        GetConnectorTaskResponse.Builder _resBuilder = 
+            GetConnectorTaskResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetConnectorTaskResponse _res = _resBuilder.build();
+        GetConnectorTaskResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TaskResponse _out = Utils.mapper().readValue(
+                TaskResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TaskResponse>() {});
-                _res.withTaskResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TaskResponse>() {});
+                _res.withTaskResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1551,8 +1905,8 @@ public class Payments implements
      * Get a specific task associated to the connector.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetConnectorTaskV1RequestBuilder getConnectorTaskV1() {
-        return new com.formance.formance_sdk.models.operations.GetConnectorTaskV1RequestBuilder(this);
+    public GetConnectorTaskV1RequestBuilder getConnectorTaskV1() {
+        return new GetConnectorTaskV1RequestBuilder(this);
     }
 
     /**
@@ -1562,11 +1916,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response getConnectorTaskV1(
-            com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request request) throws Exception {
+    public GetConnectorTaskV1Response getConnectorTaskV1(
+            GetConnectorTaskV1Request request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request.class,
+                GetConnectorTaskV1Request.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}",
                 request, null);
@@ -1583,7 +1937,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getConnectorTaskV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getConnectorTaskV1", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1591,18 +1948,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getConnectorTaskV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getConnectorTaskV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getConnectorTaskV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getConnectorTaskV1",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getConnectorTaskV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getConnectorTaskV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1610,49 +1977,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response
+        GetConnectorTaskV1Response.Builder _resBuilder = 
+            GetConnectorTaskV1Response
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response _res = _resBuilder.build();
+        GetConnectorTaskV1Response _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TaskResponse _out = Utils.mapper().readValue(
+                TaskResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TaskResponse>() {});
-                _res.withTaskResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TaskResponse>() {});
+                _res.withTaskResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1661,8 +2028,8 @@ public class Payments implements
      * Get a payment
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetPaymentRequestBuilder getPayment() {
-        return new com.formance.formance_sdk.models.operations.GetPaymentRequestBuilder(this);
+    public GetPaymentRequestBuilder getPayment() {
+        return new GetPaymentRequestBuilder(this);
     }
 
     /**
@@ -1671,11 +2038,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetPaymentResponse getPayment(
-            com.formance.formance_sdk.models.operations.GetPaymentRequest request) throws Exception {
+    public GetPaymentResponse getPayment(
+            GetPaymentRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetPaymentRequest.class,
+                GetPaymentRequest.class,
                 _baseUrl,
                 "/api/payments/payments/{paymentId}",
                 request, null);
@@ -1692,7 +2059,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getPayment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getPayment", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1700,18 +2070,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getPayment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getPayment",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getPayment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getPayment",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getPayment", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getPayment",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1719,49 +2099,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetPaymentResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetPaymentResponse
+        GetPaymentResponse.Builder _resBuilder = 
+            GetPaymentResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetPaymentResponse _res = _resBuilder.build();
+        GetPaymentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PaymentResponse _out = Utils.mapper().readValue(
+                PaymentResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PaymentResponse>() {});
-                _res.withPaymentResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PaymentResponse>() {});
+                _res.withPaymentResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1770,8 +2150,8 @@ public class Payments implements
      * Get a Pool
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetPoolRequestBuilder getPool() {
-        return new com.formance.formance_sdk.models.operations.GetPoolRequestBuilder(this);
+    public GetPoolRequestBuilder getPool() {
+        return new GetPoolRequestBuilder(this);
     }
 
     /**
@@ -1780,11 +2160,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetPoolResponse getPool(
-            com.formance.formance_sdk.models.operations.GetPoolRequest request) throws Exception {
+    public GetPoolResponse getPool(
+            GetPoolRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetPoolRequest.class,
+                GetPoolRequest.class,
                 _baseUrl,
                 "/api/payments/pools/{poolId}",
                 request, null);
@@ -1801,7 +2181,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getPool", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1809,18 +2192,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getPool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getPool",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getPool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1828,49 +2221,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetPoolResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetPoolResponse
+        GetPoolResponse.Builder _resBuilder = 
+            GetPoolResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetPoolResponse _res = _resBuilder.build();
+        GetPoolResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PoolResponse _out = Utils.mapper().readValue(
+                PoolResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PoolResponse>() {});
-                _res.withPoolResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PoolResponse>() {});
+                _res.withPoolResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1879,8 +2272,8 @@ public class Payments implements
      * Get pool balances
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetPoolBalancesRequestBuilder getPoolBalances() {
-        return new com.formance.formance_sdk.models.operations.GetPoolBalancesRequestBuilder(this);
+    public GetPoolBalancesRequestBuilder getPoolBalances() {
+        return new GetPoolBalancesRequestBuilder(this);
     }
 
     /**
@@ -1889,11 +2282,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetPoolBalancesResponse getPoolBalances(
-            com.formance.formance_sdk.models.operations.GetPoolBalancesRequest request) throws Exception {
+    public GetPoolBalancesResponse getPoolBalances(
+            GetPoolBalancesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetPoolBalancesRequest.class,
+                GetPoolBalancesRequest.class,
                 _baseUrl,
                 "/api/payments/pools/{poolId}/balances",
                 request, null);
@@ -1904,7 +2297,7 @@ public class Payments implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.GetPoolBalancesRequest.class,
+                GetPoolBalancesRequest.class,
                 request, 
                 null));
 
@@ -1915,7 +2308,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getPoolBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getPoolBalances", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1923,18 +2319,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getPoolBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getPoolBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getPoolBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getPoolBalances",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getPoolBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getPoolBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1942,49 +2348,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetPoolBalancesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetPoolBalancesResponse
+        GetPoolBalancesResponse.Builder _resBuilder = 
+            GetPoolBalancesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetPoolBalancesResponse _res = _resBuilder.build();
+        GetPoolBalancesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PoolBalancesResponse _out = Utils.mapper().readValue(
+                PoolBalancesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PoolBalancesResponse>() {});
-                _res.withPoolBalancesResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PoolBalancesResponse>() {});
+                _res.withPoolBalancesResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1993,8 +2399,8 @@ public class Payments implements
      * Get a transfer initiation
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetTransferInitiationRequestBuilder getTransferInitiation() {
-        return new com.formance.formance_sdk.models.operations.GetTransferInitiationRequestBuilder(this);
+    public GetTransferInitiationRequestBuilder getTransferInitiation() {
+        return new GetTransferInitiationRequestBuilder(this);
     }
 
     /**
@@ -2003,11 +2409,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetTransferInitiationResponse getTransferInitiation(
-            com.formance.formance_sdk.models.operations.GetTransferInitiationRequest request) throws Exception {
+    public GetTransferInitiationResponse getTransferInitiation(
+            GetTransferInitiationRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetTransferInitiationRequest.class,
+                GetTransferInitiationRequest.class,
                 _baseUrl,
                 "/api/payments/transfer-initiations/{transferId}",
                 request, null);
@@ -2024,7 +2430,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getTransferInitiation", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2032,18 +2441,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getTransferInitiation",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2051,49 +2470,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetTransferInitiationResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetTransferInitiationResponse
+        GetTransferInitiationResponse.Builder _resBuilder = 
+            GetTransferInitiationResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetTransferInitiationResponse _res = _resBuilder.build();
+        GetTransferInitiationResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransferInitiationResponse _out = Utils.mapper().readValue(
+                TransferInitiationResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransferInitiationResponse>() {});
-                _res.withTransferInitiationResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransferInitiationResponse>() {});
+                _res.withTransferInitiationResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2103,8 +2522,8 @@ public class Payments implements
      * Install a connector by its name and config.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.InstallConnectorRequestBuilder installConnector() {
-        return new com.formance.formance_sdk.models.operations.InstallConnectorRequestBuilder(this);
+    public InstallConnectorRequestBuilder installConnector() {
+        return new InstallConnectorRequestBuilder(this);
     }
 
     /**
@@ -2114,20 +2533,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.InstallConnectorResponse installConnector(
-            com.formance.formance_sdk.models.operations.InstallConnectorRequest request) throws Exception {
+    public InstallConnectorResponse installConnector(
+            InstallConnectorRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.InstallConnectorRequest.class,
+                InstallConnectorRequest.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.InstallConnectorRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<InstallConnectorRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "connectorConfig", "json", false);
+                _convertedRequest, 
+                "connectorConfig",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -2143,7 +2567,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("installConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "installConnector", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2151,18 +2578,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("installConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "installConnector",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("installConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "installConnector",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("installConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "installConnector",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2170,49 +2607,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.InstallConnectorResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.InstallConnectorResponse
+        InstallConnectorResponse.Builder _resBuilder = 
+            InstallConnectorResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.InstallConnectorResponse _res = _resBuilder.build();
+        InstallConnectorResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConnectorResponse _out = Utils.mapper().readValue(
+                ConnectorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConnectorResponse>() {});
-                _res.withConnectorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConnectorResponse>() {});
+                _res.withConnectorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2222,8 +2659,8 @@ public class Payments implements
      * List all installed connectors.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListAllConnectorsRequestBuilder listAllConnectors() {
-        return new com.formance.formance_sdk.models.operations.ListAllConnectorsRequestBuilder(this);
+    public ListAllConnectorsRequestBuilder listAllConnectors() {
+        return new ListAllConnectorsRequestBuilder(this);
     }
 
     /**
@@ -2232,7 +2669,7 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListAllConnectorsResponse listAllConnectorsDirect() throws Exception {
+    public ListAllConnectorsResponse listAllConnectorsDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -2250,7 +2687,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listAllConnectors", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listAllConnectors", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2258,18 +2698,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listAllConnectors", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listAllConnectors",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listAllConnectors", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listAllConnectors",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listAllConnectors", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listAllConnectors",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2277,49 +2727,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListAllConnectorsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListAllConnectorsResponse
+        ListAllConnectorsResponse.Builder _resBuilder = 
+            ListAllConnectorsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListAllConnectorsResponse _res = _resBuilder.build();
+        ListAllConnectorsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConnectorsResponse _out = Utils.mapper().readValue(
+                ConnectorsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConnectorsResponse>() {});
-                _res.withConnectorsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConnectorsResponse>() {});
+                _res.withConnectorsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2329,8 +2779,8 @@ public class Payments implements
      * List all bank accounts created by user on Formance.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListBankAccountsRequestBuilder listBankAccounts() {
-        return new com.formance.formance_sdk.models.operations.ListBankAccountsRequestBuilder(this);
+    public ListBankAccountsRequestBuilder listBankAccounts() {
+        return new ListBankAccountsRequestBuilder(this);
     }
 
     /**
@@ -2340,8 +2790,8 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListBankAccountsResponse listBankAccounts(
-            com.formance.formance_sdk.models.operations.ListBankAccountsRequest request) throws Exception {
+    public ListBankAccountsResponse listBankAccounts(
+            ListBankAccountsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -2353,7 +2803,7 @@ public class Payments implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListBankAccountsRequest.class,
+                ListBankAccountsRequest.class,
                 request, 
                 null));
 
@@ -2364,7 +2814,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listBankAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listBankAccounts", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2372,18 +2825,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listBankAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listBankAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listBankAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listBankAccounts",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listBankAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listBankAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2391,49 +2854,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListBankAccountsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListBankAccountsResponse
+        ListBankAccountsResponse.Builder _resBuilder = 
+            ListBankAccountsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListBankAccountsResponse _res = _resBuilder.build();
+        ListBankAccountsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.BankAccountsCursor _out = Utils.mapper().readValue(
+                BankAccountsCursor _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.BankAccountsCursor>() {});
-                _res.withBankAccountsCursor(java.util.Optional.ofNullable(_out));
+                    new TypeReference<BankAccountsCursor>() {});
+                _res.withBankAccountsCursor(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2443,8 +2906,8 @@ public class Payments implements
      * List the configs of each available connector.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsRequestBuilder listConfigsAvailableConnectors() {
-        return new com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsRequestBuilder(this);
+    public ListConfigsAvailableConnectorsRequestBuilder listConfigsAvailableConnectors() {
+        return new ListConfigsAvailableConnectorsRequestBuilder(this);
     }
 
     /**
@@ -2453,7 +2916,7 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse listConfigsAvailableConnectorsDirect() throws Exception {
+    public ListConfigsAvailableConnectorsResponse listConfigsAvailableConnectorsDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -2471,7 +2934,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listConfigsAvailableConnectors", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listConfigsAvailableConnectors", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2479,18 +2945,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listConfigsAvailableConnectors", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listConfigsAvailableConnectors",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listConfigsAvailableConnectors", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listConfigsAvailableConnectors",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listConfigsAvailableConnectors", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listConfigsAvailableConnectors",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2498,49 +2974,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse
+        ListConfigsAvailableConnectorsResponse.Builder _resBuilder = 
+            ListConfigsAvailableConnectorsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse _res = _resBuilder.build();
+        ListConfigsAvailableConnectorsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse _out = Utils.mapper().readValue(
+                ConnectorsConfigsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse>() {});
-                _res.withConnectorsConfigsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConnectorsConfigsResponse>() {});
+                _res.withConnectorsConfigsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2552,8 +3028,8 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.ListConnectorTasksRequestBuilder listConnectorTasks() {
-        return new com.formance.formance_sdk.models.operations.ListConnectorTasksRequestBuilder(this);
+    public ListConnectorTasksRequestBuilder listConnectorTasks() {
+        return new ListConnectorTasksRequestBuilder(this);
     }
 
     /**
@@ -2565,11 +3041,11 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.ListConnectorTasksResponse listConnectorTasks(
-            com.formance.formance_sdk.models.operations.ListConnectorTasksRequest request) throws Exception {
+    public ListConnectorTasksResponse listConnectorTasks(
+            ListConnectorTasksRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ListConnectorTasksRequest.class,
+                ListConnectorTasksRequest.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/tasks",
                 request, null);
@@ -2580,7 +3056,7 @@ public class Payments implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListConnectorTasksRequest.class,
+                ListConnectorTasksRequest.class,
                 request, 
                 null));
 
@@ -2591,7 +3067,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listConnectorTasks", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listConnectorTasks", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2599,18 +3078,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listConnectorTasks", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listConnectorTasks",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listConnectorTasks", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listConnectorTasks",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listConnectorTasks", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listConnectorTasks",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2618,49 +3107,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListConnectorTasksResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListConnectorTasksResponse
+        ListConnectorTasksResponse.Builder _resBuilder = 
+            ListConnectorTasksResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListConnectorTasksResponse _res = _resBuilder.build();
+        ListConnectorTasksResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TasksCursor _out = Utils.mapper().readValue(
+                TasksCursor _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TasksCursor>() {});
-                _res.withTasksCursor(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TasksCursor>() {});
+                _res.withTasksCursor(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2670,8 +3159,8 @@ public class Payments implements
      * List all tasks associated with this connector.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListConnectorTasksV1RequestBuilder listConnectorTasksV1() {
-        return new com.formance.formance_sdk.models.operations.ListConnectorTasksV1RequestBuilder(this);
+    public ListConnectorTasksV1RequestBuilder listConnectorTasksV1() {
+        return new ListConnectorTasksV1RequestBuilder(this);
     }
 
     /**
@@ -2681,11 +3170,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response listConnectorTasksV1(
-            com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request request) throws Exception {
+    public ListConnectorTasksV1Response listConnectorTasksV1(
+            ListConnectorTasksV1Request request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request.class,
+                ListConnectorTasksV1Request.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/{connectorId}/tasks",
                 request, null);
@@ -2696,7 +3185,7 @@ public class Payments implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request.class,
+                ListConnectorTasksV1Request.class,
                 request, 
                 null));
 
@@ -2707,7 +3196,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listConnectorTasksV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listConnectorTasksV1", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2715,18 +3207,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listConnectorTasksV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listConnectorTasksV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listConnectorTasksV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listConnectorTasksV1",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listConnectorTasksV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listConnectorTasksV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2734,49 +3236,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response
+        ListConnectorTasksV1Response.Builder _resBuilder = 
+            ListConnectorTasksV1Response
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response _res = _resBuilder.build();
+        ListConnectorTasksV1Response _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TasksCursor _out = Utils.mapper().readValue(
+                TasksCursor _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TasksCursor>() {});
-                _res.withTasksCursor(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TasksCursor>() {});
+                _res.withTasksCursor(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2785,8 +3287,8 @@ public class Payments implements
      * List payments
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListPaymentsRequestBuilder listPayments() {
-        return new com.formance.formance_sdk.models.operations.ListPaymentsRequestBuilder(this);
+    public ListPaymentsRequestBuilder listPayments() {
+        return new ListPaymentsRequestBuilder(this);
     }
 
     /**
@@ -2795,8 +3297,8 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListPaymentsResponse listPayments(
-            com.formance.formance_sdk.models.operations.ListPaymentsRequest request) throws Exception {
+    public ListPaymentsResponse listPayments(
+            ListPaymentsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -2808,7 +3310,7 @@ public class Payments implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListPaymentsRequest.class,
+                ListPaymentsRequest.class,
                 request, 
                 null));
 
@@ -2819,7 +3321,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listPayments", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listPayments", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2827,18 +3332,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listPayments", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listPayments",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listPayments", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listPayments",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listPayments", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listPayments",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2846,49 +3361,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListPaymentsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListPaymentsResponse
+        ListPaymentsResponse.Builder _resBuilder = 
+            ListPaymentsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListPaymentsResponse _res = _resBuilder.build();
+        ListPaymentsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PaymentsCursor _out = Utils.mapper().readValue(
+                PaymentsCursor _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PaymentsCursor>() {});
-                _res.withPaymentsCursor(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PaymentsCursor>() {});
+                _res.withPaymentsCursor(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2897,8 +3412,8 @@ public class Payments implements
      * List Pools
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListPoolsRequestBuilder listPools() {
-        return new com.formance.formance_sdk.models.operations.ListPoolsRequestBuilder(this);
+    public ListPoolsRequestBuilder listPools() {
+        return new ListPoolsRequestBuilder(this);
     }
 
     /**
@@ -2907,8 +3422,8 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListPoolsResponse listPools(
-            com.formance.formance_sdk.models.operations.ListPoolsRequest request) throws Exception {
+    public ListPoolsResponse listPools(
+            ListPoolsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -2920,7 +3435,7 @@ public class Payments implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListPoolsRequest.class,
+                ListPoolsRequest.class,
                 request, 
                 null));
 
@@ -2931,7 +3446,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listPools", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listPools", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2939,18 +3457,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listPools", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listPools",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listPools", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listPools",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listPools", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listPools",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2958,49 +3486,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListPoolsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListPoolsResponse
+        ListPoolsResponse.Builder _resBuilder = 
+            ListPoolsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListPoolsResponse _res = _resBuilder.build();
+        ListPoolsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PoolsCursor _out = Utils.mapper().readValue(
+                PoolsCursor _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PoolsCursor>() {});
-                _res.withPoolsCursor(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PoolsCursor>() {});
+                _res.withPoolsCursor(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3009,8 +3537,8 @@ public class Payments implements
      * List Transfer Initiations
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListTransferInitiationsRequestBuilder listTransferInitiations() {
-        return new com.formance.formance_sdk.models.operations.ListTransferInitiationsRequestBuilder(this);
+    public ListTransferInitiationsRequestBuilder listTransferInitiations() {
+        return new ListTransferInitiationsRequestBuilder(this);
     }
 
     /**
@@ -3019,8 +3547,8 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse listTransferInitiations(
-            com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest request) throws Exception {
+    public ListTransferInitiationsResponse listTransferInitiations(
+            ListTransferInitiationsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -3032,7 +3560,7 @@ public class Payments implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest.class,
+                ListTransferInitiationsRequest.class,
                 request, 
                 null));
 
@@ -3043,7 +3571,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listTransferInitiations", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listTransferInitiations", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3051,18 +3582,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listTransferInitiations", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listTransferInitiations",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listTransferInitiations", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listTransferInitiations",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listTransferInitiations", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listTransferInitiations",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3070,49 +3611,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse
+        ListTransferInitiationsResponse.Builder _resBuilder = 
+            ListTransferInitiationsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse _res = _resBuilder.build();
+        ListTransferInitiationsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransferInitiationsCursor _out = Utils.mapper().readValue(
+                TransferInitiationsCursor _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransferInitiationsCursor>() {});
-                _res.withTransferInitiationsCursor(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransferInitiationsCursor>() {});
+                _res.withTransferInitiationsCursor(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3121,8 +3662,8 @@ public class Payments implements
      * Get an account
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.PaymentsgetAccountRequestBuilder paymentsgetAccount() {
-        return new com.formance.formance_sdk.models.operations.PaymentsgetAccountRequestBuilder(this);
+    public PaymentsgetAccountRequestBuilder paymentsgetAccount() {
+        return new PaymentsgetAccountRequestBuilder(this);
     }
 
     /**
@@ -3131,11 +3672,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse paymentsgetAccount(
-            com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest request) throws Exception {
+    public PaymentsgetAccountResponse paymentsgetAccount(
+            PaymentsgetAccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest.class,
+                PaymentsgetAccountRequest.class,
                 _baseUrl,
                 "/api/payments/accounts/{accountId}",
                 request, null);
@@ -3152,7 +3693,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("paymentsgetAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "paymentsgetAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3160,18 +3704,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("paymentsgetAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "paymentsgetAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("paymentsgetAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "paymentsgetAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("paymentsgetAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "paymentsgetAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3179,49 +3733,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse
+        PaymentsgetAccountResponse.Builder _resBuilder = 
+            PaymentsgetAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse _res = _resBuilder.build();
+        PaymentsgetAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.PaymentsAccountResponse _out = Utils.mapper().readValue(
+                PaymentsAccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.PaymentsAccountResponse>() {});
-                _res.withPaymentsAccountResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<PaymentsAccountResponse>() {});
+                _res.withPaymentsAccountResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3230,8 +3784,8 @@ public class Payments implements
      * Get server info
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.PaymentsgetServerInfoRequestBuilder paymentsgetServerInfo() {
-        return new com.formance.formance_sdk.models.operations.PaymentsgetServerInfoRequestBuilder(this);
+    public PaymentsgetServerInfoRequestBuilder paymentsgetServerInfo() {
+        return new PaymentsgetServerInfoRequestBuilder(this);
     }
 
     /**
@@ -3239,7 +3793,7 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse paymentsgetServerInfoDirect() throws Exception {
+    public PaymentsgetServerInfoResponse paymentsgetServerInfoDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -3257,7 +3811,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("paymentsgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "paymentsgetServerInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3265,18 +3822,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("paymentsgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "paymentsgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("paymentsgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "paymentsgetServerInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("paymentsgetServerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "paymentsgetServerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3284,49 +3851,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse
+        PaymentsgetServerInfoResponse.Builder _resBuilder = 
+            PaymentsgetServerInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse _res = _resBuilder.build();
+        PaymentsgetServerInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ServerInfo _out = Utils.mapper().readValue(
+                ServerInfo _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ServerInfo>() {});
-                _res.withServerInfo(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ServerInfo>() {});
+                _res.withServerInfo(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3335,8 +3902,8 @@ public class Payments implements
      * List accounts
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.PaymentslistAccountsRequestBuilder paymentslistAccounts() {
-        return new com.formance.formance_sdk.models.operations.PaymentslistAccountsRequestBuilder(this);
+    public PaymentslistAccountsRequestBuilder paymentslistAccounts() {
+        return new PaymentslistAccountsRequestBuilder(this);
     }
 
     /**
@@ -3345,25 +3912,30 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse paymentslistAccounts(
-            com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest request) throws Exception {
+    public PaymentslistAccountsResponse paymentslistAccounts(
+            PaymentslistAccountsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/accounts");
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<PaymentslistAccountsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest.class,
+                PaymentslistAccountsRequest.class,
                 request, 
                 null));
 
@@ -3374,7 +3946,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("paymentslistAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "paymentslistAccounts", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3382,18 +3957,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("paymentslistAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "paymentslistAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("paymentslistAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "paymentslistAccounts",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("paymentslistAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "paymentslistAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3401,49 +3986,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse
+        PaymentslistAccountsResponse.Builder _resBuilder = 
+            PaymentslistAccountsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse _res = _resBuilder.build();
+        PaymentslistAccountsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.AccountsCursor _out = Utils.mapper().readValue(
+                AccountsCursor _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.AccountsCursor>() {});
-                _res.withAccountsCursor(java.util.Optional.ofNullable(_out));
+                    new TypeReference<AccountsCursor>() {});
+                _res.withAccountsCursor(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3455,8 +4040,8 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.ReadConnectorConfigRequestBuilder readConnectorConfig() {
-        return new com.formance.formance_sdk.models.operations.ReadConnectorConfigRequestBuilder(this);
+    public ReadConnectorConfigRequestBuilder readConnectorConfig() {
+        return new ReadConnectorConfigRequestBuilder(this);
     }
 
     /**
@@ -3468,11 +4053,11 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse readConnectorConfig(
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest request) throws Exception {
+    public ReadConnectorConfigResponse readConnectorConfig(
+            ReadConnectorConfigRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest.class,
+                ReadConnectorConfigRequest.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/config",
                 request, null);
@@ -3489,7 +4074,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("readConnectorConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "readConnectorConfig", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3497,18 +4085,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("readConnectorConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "readConnectorConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("readConnectorConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "readConnectorConfig",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("readConnectorConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "readConnectorConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3516,49 +4114,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse
+        ReadConnectorConfigResponse.Builder _resBuilder = 
+            ReadConnectorConfigResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse _res = _resBuilder.build();
+        ReadConnectorConfigResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConnectorConfigResponse _out = Utils.mapper().readValue(
+                ConnectorConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConnectorConfigResponse>() {});
-                _res.withConnectorConfigResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConnectorConfigResponse>() {});
+                _res.withConnectorConfigResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3568,8 +4166,8 @@ public class Payments implements
      * Read connector config
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ReadConnectorConfigV1RequestBuilder readConnectorConfigV1() {
-        return new com.formance.formance_sdk.models.operations.ReadConnectorConfigV1RequestBuilder(this);
+    public ReadConnectorConfigV1RequestBuilder readConnectorConfigV1() {
+        return new ReadConnectorConfigV1RequestBuilder(this);
     }
 
     /**
@@ -3579,11 +4177,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response readConnectorConfigV1(
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request request) throws Exception {
+    public ReadConnectorConfigV1Response readConnectorConfigV1(
+            ReadConnectorConfigV1Request request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request.class,
+                ReadConnectorConfigV1Request.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/{connectorId}/config",
                 request, null);
@@ -3600,7 +4198,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("readConnectorConfigV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "readConnectorConfigV1", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3608,18 +4209,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("readConnectorConfigV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "readConnectorConfigV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("readConnectorConfigV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "readConnectorConfigV1",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("readConnectorConfigV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "readConnectorConfigV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3627,49 +4238,49 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response
+        ReadConnectorConfigV1Response.Builder _resBuilder = 
+            ReadConnectorConfigV1Response
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response _res = _resBuilder.build();
+        ReadConnectorConfigV1Response _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConnectorConfigResponse _out = Utils.mapper().readValue(
+                ConnectorConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConnectorConfigResponse>() {});
-                _res.withConnectorConfigResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConnectorConfigResponse>() {});
+                _res.withConnectorConfigResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3679,8 +4290,8 @@ public class Payments implements
      * Remove an account from a pool by its id.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequestBuilder removeAccountFromPool() {
-        return new com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequestBuilder(this);
+    public RemoveAccountFromPoolRequestBuilder removeAccountFromPool() {
+        return new RemoveAccountFromPoolRequestBuilder(this);
     }
 
     /**
@@ -3690,11 +4301,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse removeAccountFromPool(
-            com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest request) throws Exception {
+    public RemoveAccountFromPoolResponse removeAccountFromPool(
+            RemoveAccountFromPoolRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest.class,
+                RemoveAccountFromPoolRequest.class,
                 _baseUrl,
                 "/api/payments/pools/{poolId}/accounts/{accountId}",
                 request, null);
@@ -3711,7 +4322,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("removeAccountFromPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "removeAccountFromPool", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3719,18 +4333,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("removeAccountFromPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "removeAccountFromPool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("removeAccountFromPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "removeAccountFromPool",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("removeAccountFromPool", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "removeAccountFromPool",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3738,14 +4362,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse
+        RemoveAccountFromPoolResponse.Builder _resBuilder = 
+            RemoveAccountFromPoolResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse _res = _resBuilder.build();
+        RemoveAccountFromPoolResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -3753,23 +4377,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3783,8 +4407,8 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.ResetConnectorRequestBuilder resetConnector() {
-        return new com.formance.formance_sdk.models.operations.ResetConnectorRequestBuilder(this);
+    public ResetConnectorRequestBuilder resetConnector() {
+        return new ResetConnectorRequestBuilder(this);
     }
 
     /**
@@ -3798,11 +4422,11 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.ResetConnectorResponse resetConnector(
-            com.formance.formance_sdk.models.operations.ResetConnectorRequest request) throws Exception {
+    public ResetConnectorResponse resetConnector(
+            ResetConnectorRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ResetConnectorRequest.class,
+                ResetConnectorRequest.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/reset",
                 request, null);
@@ -3819,7 +4443,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("resetConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "resetConnector", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3827,18 +4454,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("resetConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "resetConnector",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("resetConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "resetConnector",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("resetConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "resetConnector",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3846,14 +4483,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ResetConnectorResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ResetConnectorResponse
+        ResetConnectorResponse.Builder _resBuilder = 
+            ResetConnectorResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ResetConnectorResponse _res = _resBuilder.build();
+        ResetConnectorResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -3861,23 +4498,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3889,8 +4526,8 @@ public class Payments implements
      * 
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ResetConnectorV1RequestBuilder resetConnectorV1() {
-        return new com.formance.formance_sdk.models.operations.ResetConnectorV1RequestBuilder(this);
+    public ResetConnectorV1RequestBuilder resetConnectorV1() {
+        return new ResetConnectorV1RequestBuilder(this);
     }
 
     /**
@@ -3902,11 +4539,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ResetConnectorV1Response resetConnectorV1(
-            com.formance.formance_sdk.models.operations.ResetConnectorV1Request request) throws Exception {
+    public ResetConnectorV1Response resetConnectorV1(
+            ResetConnectorV1Request request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ResetConnectorV1Request.class,
+                ResetConnectorV1Request.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/{connectorId}/reset",
                 request, null);
@@ -3923,7 +4560,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("resetConnectorV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "resetConnectorV1", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3931,18 +4571,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("resetConnectorV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "resetConnectorV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("resetConnectorV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "resetConnectorV1",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("resetConnectorV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "resetConnectorV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3950,14 +4600,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ResetConnectorV1Response.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ResetConnectorV1Response
+        ResetConnectorV1Response.Builder _resBuilder = 
+            ResetConnectorV1Response
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ResetConnectorV1Response _res = _resBuilder.build();
+        ResetConnectorV1Response _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -3965,23 +4615,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3991,8 +4641,8 @@ public class Payments implements
      * Retry a failed transfer initiation
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.RetryTransferInitiationRequestBuilder retryTransferInitiation() {
-        return new com.formance.formance_sdk.models.operations.RetryTransferInitiationRequestBuilder(this);
+    public RetryTransferInitiationRequestBuilder retryTransferInitiation() {
+        return new RetryTransferInitiationRequestBuilder(this);
     }
 
     /**
@@ -4002,11 +4652,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse retryTransferInitiation(
-            com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest request) throws Exception {
+    public RetryTransferInitiationResponse retryTransferInitiation(
+            RetryTransferInitiationRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest.class,
+                RetryTransferInitiationRequest.class,
                 _baseUrl,
                 "/api/payments/transfer-initiations/{transferId}/retry",
                 request, null);
@@ -4023,7 +4673,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("retryTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "retryTransferInitiation", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4031,18 +4684,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("retryTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "retryTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("retryTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "retryTransferInitiation",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("retryTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "retryTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4050,14 +4713,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse
+        RetryTransferInitiationResponse.Builder _resBuilder = 
+            RetryTransferInitiationResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse _res = _resBuilder.build();
+        RetryTransferInitiationResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4065,23 +4728,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4091,8 +4754,8 @@ public class Payments implements
      * Reverse transfer initiation
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequestBuilder reverseTransferInitiation() {
-        return new com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequestBuilder(this);
+    public ReverseTransferInitiationRequestBuilder reverseTransferInitiation() {
+        return new ReverseTransferInitiationRequestBuilder(this);
     }
 
     /**
@@ -4102,20 +4765,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse reverseTransferInitiation(
-            com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest request) throws Exception {
+    public ReverseTransferInitiationResponse reverseTransferInitiation(
+            ReverseTransferInitiationRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest.class,
+                ReverseTransferInitiationRequest.class,
                 _baseUrl,
                 "/api/payments/transfer-initiations/{transferId}/reverse",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<ReverseTransferInitiationRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "reverseTransferInitiationRequest", "json", false);
+                _convertedRequest, 
+                "reverseTransferInitiationRequest",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -4131,7 +4799,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("reverseTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "reverseTransferInitiation", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4139,18 +4810,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("reverseTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "reverseTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("reverseTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "reverseTransferInitiation",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("reverseTransferInitiation", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "reverseTransferInitiation",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4158,14 +4839,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse
+        ReverseTransferInitiationResponse.Builder _resBuilder = 
+            ReverseTransferInitiationResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse _res = _resBuilder.build();
+        ReverseTransferInitiationResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4173,23 +4854,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4199,8 +4880,8 @@ public class Payments implements
      * Update a transfer initiation status
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequestBuilder udpateTransferInitiationStatus() {
-        return new com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequestBuilder(this);
+    public UdpateTransferInitiationStatusRequestBuilder udpateTransferInitiationStatus() {
+        return new UdpateTransferInitiationStatusRequestBuilder(this);
     }
 
     /**
@@ -4210,20 +4891,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse udpateTransferInitiationStatus(
-            com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest request) throws Exception {
+    public UdpateTransferInitiationStatusResponse udpateTransferInitiationStatus(
+            UdpateTransferInitiationStatusRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest.class,
+                UdpateTransferInitiationStatusRequest.class,
                 _baseUrl,
                 "/api/payments/transfer-initiations/{transferId}/status",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<UdpateTransferInitiationStatusRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "updateTransferInitiationStatusRequest", "json", false);
+                _convertedRequest, 
+                "updateTransferInitiationStatusRequest",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -4239,7 +4925,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("udpateTransferInitiationStatus", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "udpateTransferInitiationStatus", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4247,18 +4936,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("udpateTransferInitiationStatus", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "udpateTransferInitiationStatus",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("udpateTransferInitiationStatus", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "udpateTransferInitiationStatus",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("udpateTransferInitiationStatus", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "udpateTransferInitiationStatus",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4266,14 +4965,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse
+        UdpateTransferInitiationStatusResponse.Builder _resBuilder = 
+            UdpateTransferInitiationStatusResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse _res = _resBuilder.build();
+        UdpateTransferInitiationStatusResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4281,23 +4980,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4309,8 +5008,8 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.UninstallConnectorRequestBuilder uninstallConnector() {
-        return new com.formance.formance_sdk.models.operations.UninstallConnectorRequestBuilder(this);
+    public UninstallConnectorRequestBuilder uninstallConnector() {
+        return new UninstallConnectorRequestBuilder(this);
     }
 
     /**
@@ -4322,11 +5021,11 @@ public class Payments implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.UninstallConnectorResponse uninstallConnector(
-            com.formance.formance_sdk.models.operations.UninstallConnectorRequest request) throws Exception {
+    public UninstallConnectorResponse uninstallConnector(
+            UninstallConnectorRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UninstallConnectorRequest.class,
+                UninstallConnectorRequest.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}",
                 request, null);
@@ -4343,7 +5042,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("uninstallConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "uninstallConnector", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4351,18 +5053,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("uninstallConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "uninstallConnector",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("uninstallConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "uninstallConnector",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("uninstallConnector", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "uninstallConnector",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4370,14 +5082,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UninstallConnectorResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UninstallConnectorResponse
+        UninstallConnectorResponse.Builder _resBuilder = 
+            UninstallConnectorResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UninstallConnectorResponse _res = _resBuilder.build();
+        UninstallConnectorResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4385,23 +5097,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4411,8 +5123,8 @@ public class Payments implements
      * Uninstall a connector by its name.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.UninstallConnectorV1RequestBuilder uninstallConnectorV1() {
-        return new com.formance.formance_sdk.models.operations.UninstallConnectorV1RequestBuilder(this);
+    public UninstallConnectorV1RequestBuilder uninstallConnectorV1() {
+        return new UninstallConnectorV1RequestBuilder(this);
     }
 
     /**
@@ -4422,11 +5134,11 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.UninstallConnectorV1Response uninstallConnectorV1(
-            com.formance.formance_sdk.models.operations.UninstallConnectorV1Request request) throws Exception {
+    public UninstallConnectorV1Response uninstallConnectorV1(
+            UninstallConnectorV1Request request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UninstallConnectorV1Request.class,
+                UninstallConnectorV1Request.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/{connectorId}",
                 request, null);
@@ -4443,7 +5155,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("uninstallConnectorV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "uninstallConnectorV1", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4451,18 +5166,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("uninstallConnectorV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "uninstallConnectorV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("uninstallConnectorV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "uninstallConnectorV1",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("uninstallConnectorV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "uninstallConnectorV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4470,14 +5195,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UninstallConnectorV1Response.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UninstallConnectorV1Response
+        UninstallConnectorV1Response.Builder _resBuilder = 
+            UninstallConnectorV1Response
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UninstallConnectorV1Response _res = _resBuilder.build();
+        UninstallConnectorV1Response _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4485,23 +5210,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4510,8 +5235,8 @@ public class Payments implements
      * Update metadata of a bank account
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequestBuilder updateBankAccountMetadata() {
-        return new com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequestBuilder(this);
+    public UpdateBankAccountMetadataRequestBuilder updateBankAccountMetadata() {
+        return new UpdateBankAccountMetadataRequestBuilder(this);
     }
 
     /**
@@ -4520,20 +5245,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse updateBankAccountMetadata(
-            com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest request) throws Exception {
+    public UpdateBankAccountMetadataResponse updateBankAccountMetadata(
+            UpdateBankAccountMetadataRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest.class,
+                UpdateBankAccountMetadataRequest.class,
                 _baseUrl,
                 "/api/payments/bank-accounts/{bankAccountId}/metadata",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "PATCH");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<UpdateBankAccountMetadataRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "updateBankAccountMetadataRequest", "json", false);
+                _convertedRequest, 
+                "updateBankAccountMetadataRequest",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -4549,7 +5279,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("updateBankAccountMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "updateBankAccountMetadata", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4557,18 +5290,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("updateBankAccountMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "updateBankAccountMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("updateBankAccountMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "updateBankAccountMetadata",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("updateBankAccountMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "updateBankAccountMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4576,14 +5319,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse
+        UpdateBankAccountMetadataResponse.Builder _resBuilder = 
+            UpdateBankAccountMetadataResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse _res = _resBuilder.build();
+        UpdateBankAccountMetadataResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4591,23 +5334,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4617,8 +5360,8 @@ public class Payments implements
      * Update connector config
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1RequestBuilder updateConnectorConfigV1() {
-        return new com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1RequestBuilder(this);
+    public UpdateConnectorConfigV1RequestBuilder updateConnectorConfigV1() {
+        return new UpdateConnectorConfigV1RequestBuilder(this);
     }
 
     /**
@@ -4628,20 +5371,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response updateConnectorConfigV1(
-            com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request request) throws Exception {
+    public UpdateConnectorConfigV1Response updateConnectorConfigV1(
+            UpdateConnectorConfigV1Request request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request.class,
+                UpdateConnectorConfigV1Request.class,
                 _baseUrl,
                 "/api/payments/connectors/{connector}/{connectorId}/config",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<UpdateConnectorConfigV1Request>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "connectorConfig", "json", false);
+                _convertedRequest, 
+                "connectorConfig",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -4657,7 +5405,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("updateConnectorConfigV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "updateConnectorConfigV1", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4665,18 +5416,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("updateConnectorConfigV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "updateConnectorConfigV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("updateConnectorConfigV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "updateConnectorConfigV1",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("updateConnectorConfigV1", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "updateConnectorConfigV1",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4684,14 +5445,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response
+        UpdateConnectorConfigV1Response.Builder _resBuilder = 
+            UpdateConnectorConfigV1Response
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response _res = _resBuilder.build();
+        UpdateConnectorConfigV1Response _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4699,23 +5460,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4724,8 +5485,8 @@ public class Payments implements
      * Update metadata
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.UpdateMetadataRequestBuilder updateMetadata() {
-        return new com.formance.formance_sdk.models.operations.UpdateMetadataRequestBuilder(this);
+    public UpdateMetadataRequestBuilder updateMetadata() {
+        return new UpdateMetadataRequestBuilder(this);
     }
 
     /**
@@ -4734,20 +5495,25 @@ public class Payments implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.UpdateMetadataResponse updateMetadata(
-            com.formance.formance_sdk.models.operations.UpdateMetadataRequest request) throws Exception {
+    public UpdateMetadataResponse updateMetadata(
+            UpdateMetadataRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UpdateMetadataRequest.class,
+                UpdateMetadataRequest.class,
                 _baseUrl,
                 "/api/payments/payments/{paymentId}/metadata",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "PATCH");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.UpdateMetadataRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<UpdateMetadataRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", true);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                true);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -4763,7 +5529,10 @@ public class Payments implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("updateMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "updateMetadata", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4771,18 +5540,28 @@ public class Payments implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("updateMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "updateMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("updateMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "updateMetadata",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("updateMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "updateMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4790,14 +5569,14 @@ public class Payments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UpdateMetadataResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UpdateMetadataResponse
+        UpdateMetadataResponse.Builder _resBuilder = 
+            UpdateMetadataResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UpdateMetadataResponse _res = _resBuilder.build();
+        UpdateMetadataResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4805,23 +5584,23 @@ public class Payments implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.PaymentsErrorResponse _out = Utils.mapper().readValue(
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.PaymentsErrorResponse>() {});
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

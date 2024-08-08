@@ -4,34 +4,34 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Filter {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<? extends String> error;
+    private Optional<String> error;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("match")
-    private Optional<? extends Boolean> match;
+    private Optional<Boolean> match;
 
     @JsonCreator
     public Filter(
-            @JsonProperty("error") Optional<? extends String> error,
-            @JsonProperty("match") Optional<? extends Boolean> match) {
+            @JsonProperty("error") Optional<String> error,
+            @JsonProperty("match") Optional<Boolean> match) {
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(match, "match");
         this.error = error;
@@ -42,16 +42,14 @@ public class Filter {
         this(Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> error() {
-        return (Optional<String>) error;
+        return error;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> match() {
-        return (Optional<Boolean>) match;
+        return match;
     }
 
     public final static Builder builder() {
@@ -64,7 +62,7 @@ public class Filter {
         return this;
     }
 
-    public Filter withError(Optional<? extends String> error) {
+    public Filter withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -76,7 +74,7 @@ public class Filter {
         return this;
     }
 
-    public Filter withMatch(Optional<? extends Boolean> match) {
+    public Filter withMatch(Optional<Boolean> match) {
         Utils.checkNotNull(match, "match");
         this.match = match;
         return this;
@@ -92,13 +90,13 @@ public class Filter {
         }
         Filter other = (Filter) o;
         return 
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.match, other.match);
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.match, other.match);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             error,
             match);
     }
@@ -112,9 +110,9 @@ public class Filter {
     
     public final static class Builder {
  
-        private Optional<? extends String> error = Optional.empty();
+        private Optional<String> error = Optional.empty();
  
-        private Optional<? extends Boolean> match = Optional.empty();  
+        private Optional<Boolean> match = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -126,7 +124,7 @@ public class Filter {
             return this;
         }
 
-        public Builder error(Optional<? extends String> error) {
+        public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
@@ -138,7 +136,7 @@ public class Filter {
             return this;
         }
 
-        public Builder match(Optional<? extends Boolean> match) {
+        public Builder match(Optional<Boolean> match) {
             Utils.checkNotNull(match, "match");
             this.match = match;
             return this;

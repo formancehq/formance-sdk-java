@@ -4,31 +4,32 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class AggregateBalancesResponse {
 
     @JsonProperty("data")
-    private java.util.Map<String, Long> data;
+    private Map<String, Long> data;
 
     @JsonCreator
     public AggregateBalancesResponse(
-            @JsonProperty("data") java.util.Map<String, Long> data) {
+            @JsonProperty("data") Map<String, Long> data) {
         data = Utils.emptyMapIfNull(data);
         this.data = data;
     }
 
     @JsonIgnore
-    public java.util.Map<String, Long> data() {
+    public Map<String, Long> data() {
         return data;
     }
 
@@ -36,7 +37,7 @@ public class AggregateBalancesResponse {
         return new Builder();
     }
 
-    public AggregateBalancesResponse withData(java.util.Map<String, Long> data) {
+    public AggregateBalancesResponse withData(Map<String, Long> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -52,12 +53,12 @@ public class AggregateBalancesResponse {
         }
         AggregateBalancesResponse other = (AggregateBalancesResponse) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data);
+            Objects.deepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data);
     }
     
@@ -69,13 +70,13 @@ public class AggregateBalancesResponse {
     
     public final static class Builder {
  
-        private java.util.Map<String, Long> data;  
+        private Map<String, Long> data;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(java.util.Map<String, Long> data) {
+        public Builder data(Map<String, Long> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

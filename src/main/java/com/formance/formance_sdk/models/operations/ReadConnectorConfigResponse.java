@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ConnectorConfigResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ReadConnectorConfigResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ReadConnectorConfigResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ConnectorConfigResponse> connectorConfigResponse;
+    private Optional<? extends ConnectorConfigResponse> connectorConfigResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
 
     @JsonCreator
     public ReadConnectorConfigResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.ConnectorConfigResponse> connectorConfigResponse,
+            Optional<? extends ConnectorConfigResponse> connectorConfigResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ConnectorConfigResponse> connectorConfigResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ConnectorConfigResponse>) connectorConfigResponse;
+    public Optional<ConnectorConfigResponse> connectorConfigResponse() {
+        return (Optional<ConnectorConfigResponse>) connectorConfigResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
     /**
      * OK
      */
-    public ReadConnectorConfigResponse withConnectorConfigResponse(com.formance.formance_sdk.models.shared.ConnectorConfigResponse connectorConfigResponse) {
+    public ReadConnectorConfigResponse withConnectorConfigResponse(ConnectorConfigResponse connectorConfigResponse) {
         Utils.checkNotNull(connectorConfigResponse, "connectorConfigResponse");
         this.connectorConfigResponse = Optional.ofNullable(connectorConfigResponse);
         return this;
@@ -110,7 +114,7 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
     /**
      * OK
      */
-    public ReadConnectorConfigResponse withConnectorConfigResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConnectorConfigResponse> connectorConfigResponse) {
+    public ReadConnectorConfigResponse withConnectorConfigResponse(Optional<? extends ConnectorConfigResponse> connectorConfigResponse) {
         Utils.checkNotNull(connectorConfigResponse, "connectorConfigResponse");
         this.connectorConfigResponse = connectorConfigResponse;
         return this;
@@ -153,15 +157,15 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
         }
         ReadConnectorConfigResponse other = (ReadConnectorConfigResponse) o;
         return 
-            java.util.Objects.deepEquals(this.connectorConfigResponse, other.connectorConfigResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.connectorConfigResponse, other.connectorConfigResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connectorConfigResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ConnectorConfigResponse> connectorConfigResponse = Optional.empty();
+        private Optional<? extends ConnectorConfigResponse> connectorConfigResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
         /**
          * OK
          */
-        public Builder connectorConfigResponse(com.formance.formance_sdk.models.shared.ConnectorConfigResponse connectorConfigResponse) {
+        public Builder connectorConfigResponse(ConnectorConfigResponse connectorConfigResponse) {
             Utils.checkNotNull(connectorConfigResponse, "connectorConfigResponse");
             this.connectorConfigResponse = Optional.ofNullable(connectorConfigResponse);
             return this;
@@ -203,7 +207,7 @@ public class ReadConnectorConfigResponse implements com.formance.formance_sdk.ut
         /**
          * OK
          */
-        public Builder connectorConfigResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConnectorConfigResponse> connectorConfigResponse) {
+        public Builder connectorConfigResponse(Optional<? extends ConnectorConfigResponse> connectorConfigResponse) {
             Utils.checkNotNull(connectorConfigResponse, "connectorConfigResponse");
             this.connectorConfigResponse = connectorConfigResponse;
             return this;

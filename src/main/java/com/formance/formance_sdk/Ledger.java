@@ -5,29 +5,181 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest;
+import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequestBuilder;
+import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse;
+import com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest;
+import com.formance.formance_sdk.models.operations.AddMetadataToAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse;
+import com.formance.formance_sdk.models.operations.CountAccountsRequest;
+import com.formance.formance_sdk.models.operations.CountAccountsRequestBuilder;
+import com.formance.formance_sdk.models.operations.CountAccountsResponse;
+import com.formance.formance_sdk.models.operations.CountTransactionsRequest;
+import com.formance.formance_sdk.models.operations.CountTransactionsRequestBuilder;
+import com.formance.formance_sdk.models.operations.CountTransactionsResponse;
+import com.formance.formance_sdk.models.operations.CreateTransactionRequest;
+import com.formance.formance_sdk.models.operations.CreateTransactionRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateTransactionResponse;
+import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
+import com.formance.formance_sdk.models.operations.CreateTransactionsRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
+import com.formance.formance_sdk.models.operations.GetAccountRequest;
+import com.formance.formance_sdk.models.operations.GetAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetAccountResponse;
+import com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest;
+import com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse;
+import com.formance.formance_sdk.models.operations.GetBalancesRequest;
+import com.formance.formance_sdk.models.operations.GetBalancesRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetBalancesResponse;
+import com.formance.formance_sdk.models.operations.GetInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetInfoResponse;
+import com.formance.formance_sdk.models.operations.GetLedgerInfoRequest;
+import com.formance.formance_sdk.models.operations.GetLedgerInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetLedgerInfoResponse;
+import com.formance.formance_sdk.models.operations.GetMappingRequest;
+import com.formance.formance_sdk.models.operations.GetMappingRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetMappingResponse;
+import com.formance.formance_sdk.models.operations.GetTransactionRequest;
+import com.formance.formance_sdk.models.operations.GetTransactionRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetTransactionResponse;
+import com.formance.formance_sdk.models.operations.ListAccountsRequest;
+import com.formance.formance_sdk.models.operations.ListAccountsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListAccountsResponse;
+import com.formance.formance_sdk.models.operations.ListLogsRequest;
+import com.formance.formance_sdk.models.operations.ListLogsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListLogsResponse;
+import com.formance.formance_sdk.models.operations.ListTransactionsRequest;
+import com.formance.formance_sdk.models.operations.ListTransactionsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListTransactionsResponse;
+import com.formance.formance_sdk.models.operations.ReadStatsRequest;
+import com.formance.formance_sdk.models.operations.ReadStatsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReadStatsResponse;
+import com.formance.formance_sdk.models.operations.RevertTransactionRequest;
+import com.formance.formance_sdk.models.operations.RevertTransactionRequestBuilder;
+import com.formance.formance_sdk.models.operations.RevertTransactionResponse;
+import com.formance.formance_sdk.models.operations.RunScriptRequest;
+import com.formance.formance_sdk.models.operations.RunScriptRequestBuilder;
+import com.formance.formance_sdk.models.operations.RunScriptResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.models.operations.UpdateMappingRequest;
+import com.formance.formance_sdk.models.operations.UpdateMappingRequestBuilder;
+import com.formance.formance_sdk.models.operations.UpdateMappingResponse;
+import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
+import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
+import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest;
+import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse;
+import com.formance.formance_sdk.models.operations.V2CountAccountsRequest;
+import com.formance.formance_sdk.models.operations.V2CountAccountsRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2CountAccountsResponse;
+import com.formance.formance_sdk.models.operations.V2CountTransactionsRequest;
+import com.formance.formance_sdk.models.operations.V2CountTransactionsRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2CountTransactionsResponse;
+import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
+import com.formance.formance_sdk.models.operations.V2CreateBulkRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
+import com.formance.formance_sdk.models.operations.V2CreateLedgerRequest;
+import com.formance.formance_sdk.models.operations.V2CreateLedgerRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2CreateLedgerResponse;
+import com.formance.formance_sdk.models.operations.V2CreateTransactionRequest;
+import com.formance.formance_sdk.models.operations.V2CreateTransactionRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2CreateTransactionResponse;
+import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse;
+import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse;
+import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse;
+import com.formance.formance_sdk.models.operations.V2GetAccountRequest;
+import com.formance.formance_sdk.models.operations.V2GetAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetAccountResponse;
+import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest;
+import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse;
+import com.formance.formance_sdk.models.operations.V2GetInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
+import com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest;
+import com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse;
+import com.formance.formance_sdk.models.operations.V2GetLedgerRequest;
+import com.formance.formance_sdk.models.operations.V2GetLedgerRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetLedgerResponse;
+import com.formance.formance_sdk.models.operations.V2GetTransactionRequest;
+import com.formance.formance_sdk.models.operations.V2GetTransactionRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetTransactionResponse;
+import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest;
+import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse;
+import com.formance.formance_sdk.models.operations.V2ListAccountsRequest;
+import com.formance.formance_sdk.models.operations.V2ListAccountsRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListAccountsResponse;
+import com.formance.formance_sdk.models.operations.V2ListLedgersRequest;
+import com.formance.formance_sdk.models.operations.V2ListLedgersRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListLedgersResponse;
+import com.formance.formance_sdk.models.operations.V2ListLogsRequest;
+import com.formance.formance_sdk.models.operations.V2ListLogsRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListLogsResponse;
+import com.formance.formance_sdk.models.operations.V2ListTransactionsRequest;
+import com.formance.formance_sdk.models.operations.V2ListTransactionsRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListTransactionsResponse;
+import com.formance.formance_sdk.models.operations.V2ReadStatsRequest;
+import com.formance.formance_sdk.models.operations.V2ReadStatsRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ReadStatsResponse;
+import com.formance.formance_sdk.models.operations.V2RevertTransactionRequest;
+import com.formance.formance_sdk.models.operations.V2RevertTransactionRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2RevertTransactionResponse;
+import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest;
+import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse;
+import com.formance.formance_sdk.models.shared.AccountResponse;
+import com.formance.formance_sdk.models.shared.AccountsCursorResponse;
+import com.formance.formance_sdk.models.shared.AggregateBalancesResponse;
+import com.formance.formance_sdk.models.shared.BalancesCursorResponse;
+import com.formance.formance_sdk.models.shared.ConfigInfoResponse;
+import com.formance.formance_sdk.models.shared.LedgerInfoResponse;
+import com.formance.formance_sdk.models.shared.LogsCursorResponse;
+import com.formance.formance_sdk.models.shared.MappingResponse;
+import com.formance.formance_sdk.models.shared.ScriptResponse;
+import com.formance.formance_sdk.models.shared.StatsResponse;
+import com.formance.formance_sdk.models.shared.TransactionResponse;
+import com.formance.formance_sdk.models.shared.TransactionsCursorResponse;
+import com.formance.formance_sdk.models.shared.TransactionsResponse;
+import com.formance.formance_sdk.models.shared.V2AccountResponse;
+import com.formance.formance_sdk.models.shared.V2AccountsCursorResponse;
+import com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse;
+import com.formance.formance_sdk.models.shared.V2BulkResponse;
+import com.formance.formance_sdk.models.shared.V2ConfigInfoResponse;
+import com.formance.formance_sdk.models.shared.V2LedgerInfoResponse;
+import com.formance.formance_sdk.models.shared.V2LedgerListResponse;
+import com.formance.formance_sdk.models.shared.V2LogsCursorResponse;
+import com.formance.formance_sdk.models.shared.V2StatsResponse;
+import com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse;
+import com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.JSON;
-import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Deprecated;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class Ledger implements
             MethodCallCreateTransactions,
@@ -86,8 +238,8 @@ public class Ledger implements
      * Create a new batch of transactions to a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateTransactionsRequestBuilder createTransactions() {
-        return new com.formance.formance_sdk.models.operations.CreateTransactionsRequestBuilder(this);
+    public CreateTransactionsRequestBuilder createTransactions() {
+        return new CreateTransactionsRequestBuilder(this);
     }
 
     /**
@@ -96,20 +248,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateTransactionsResponse createTransactions(
-            com.formance.formance_sdk.models.operations.CreateTransactionsRequest request) throws Exception {
+    public CreateTransactionsResponse createTransactions(
+            CreateTransactionsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.CreateTransactionsRequest.class,
+                CreateTransactionsRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/transactions/batch",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.CreateTransactionsRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<CreateTransactionsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "transactions", "json", false);
+                _convertedRequest, 
+                "transactions",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -125,7 +282,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("CreateTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "CreateTransactions", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -133,18 +293,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("CreateTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "CreateTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("CreateTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "CreateTransactions",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("CreateTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "CreateTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -152,49 +322,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateTransactionsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateTransactionsResponse
+        CreateTransactionsResponse.Builder _resBuilder = 
+            CreateTransactionsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateTransactionsResponse _res = _resBuilder.build();
+        CreateTransactionsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransactionsResponse _out = Utils.mapper().readValue(
+                TransactionsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransactionsResponse>() {});
-                _res.withTransactionsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransactionsResponse>() {});
+                _res.withTransactionsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -203,8 +373,8 @@ public class Ledger implements
      * Set the metadata of a transaction by its ID
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequestBuilder addMetadataOnTransaction() {
-        return new com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequestBuilder(this);
+    public AddMetadataOnTransactionRequestBuilder addMetadataOnTransaction() {
+        return new AddMetadataOnTransactionRequestBuilder(this);
     }
 
     /**
@@ -213,20 +383,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse addMetadataOnTransaction(
-            com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest request) throws Exception {
+    public AddMetadataOnTransactionResponse addMetadataOnTransaction(
+            AddMetadataOnTransactionRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest.class,
+                AddMetadataOnTransactionRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/transactions/{txid}/metadata",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<AddMetadataOnTransactionRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", true);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                true);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -239,7 +414,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("addMetadataOnTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "addMetadataOnTransaction", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -247,18 +425,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("addMetadataOnTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "addMetadataOnTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("addMetadataOnTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "addMetadataOnTransaction",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("addMetadataOnTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "addMetadataOnTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -266,14 +454,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse
+        AddMetadataOnTransactionResponse.Builder _resBuilder = 
+            AddMetadataOnTransactionResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse _res = _resBuilder.build();
+        AddMetadataOnTransactionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -281,23 +469,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -306,8 +494,8 @@ public class Ledger implements
      * Add metadata to an account
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.AddMetadataToAccountRequestBuilder addMetadataToAccount() {
-        return new com.formance.formance_sdk.models.operations.AddMetadataToAccountRequestBuilder(this);
+    public AddMetadataToAccountRequestBuilder addMetadataToAccount() {
+        return new AddMetadataToAccountRequestBuilder(this);
     }
 
     /**
@@ -316,20 +504,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse addMetadataToAccount(
-            com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest request) throws Exception {
+    public AddMetadataToAccountResponse addMetadataToAccount(
+            AddMetadataToAccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest.class,
+                AddMetadataToAccountRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/accounts/{address}/metadata",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<AddMetadataToAccountRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", true);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                true);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -345,7 +538,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("addMetadataToAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "addMetadataToAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -353,18 +549,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("addMetadataToAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "addMetadataToAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("addMetadataToAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "addMetadataToAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("addMetadataToAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "addMetadataToAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -372,14 +578,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse
+        AddMetadataToAccountResponse.Builder _resBuilder = 
+            AddMetadataToAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse _res = _resBuilder.build();
+        AddMetadataToAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -387,23 +593,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -412,8 +618,8 @@ public class Ledger implements
      * Count the accounts from a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CountAccountsRequestBuilder countAccounts() {
-        return new com.formance.formance_sdk.models.operations.CountAccountsRequestBuilder(this);
+    public CountAccountsRequestBuilder countAccounts() {
+        return new CountAccountsRequestBuilder(this);
     }
 
     /**
@@ -422,11 +628,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CountAccountsResponse countAccounts(
-            com.formance.formance_sdk.models.operations.CountAccountsRequest request) throws Exception {
+    public CountAccountsResponse countAccounts(
+            CountAccountsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.CountAccountsRequest.class,
+                CountAccountsRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/accounts",
                 request, null);
@@ -437,7 +643,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.CountAccountsRequest.class,
+                CountAccountsRequest.class,
                 request, 
                 null));
 
@@ -448,7 +654,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("countAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "countAccounts", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -456,18 +665,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("countAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "countAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("countAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "countAccounts",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("countAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "countAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -475,14 +694,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CountAccountsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CountAccountsResponse
+        CountAccountsResponse.Builder _resBuilder = 
+            CountAccountsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CountAccountsResponse _res = _resBuilder.build();
+        CountAccountsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             _res.withHeaders(_httpRes.headers().map());
@@ -491,23 +710,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -516,8 +735,8 @@ public class Ledger implements
      * Count the transactions from a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CountTransactionsRequestBuilder countTransactions() {
-        return new com.formance.formance_sdk.models.operations.CountTransactionsRequestBuilder(this);
+    public CountTransactionsRequestBuilder countTransactions() {
+        return new CountTransactionsRequestBuilder(this);
     }
 
     /**
@@ -526,11 +745,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CountTransactionsResponse countTransactions(
-            com.formance.formance_sdk.models.operations.CountTransactionsRequest request) throws Exception {
+    public CountTransactionsResponse countTransactions(
+            CountTransactionsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.CountTransactionsRequest.class,
+                CountTransactionsRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/transactions",
                 request, null);
@@ -541,7 +760,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.CountTransactionsRequest.class,
+                CountTransactionsRequest.class,
                 request, 
                 null));
 
@@ -552,7 +771,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("countTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "countTransactions", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -560,18 +782,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("countTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "countTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("countTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "countTransactions",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("countTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "countTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -579,14 +811,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CountTransactionsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CountTransactionsResponse
+        CountTransactionsResponse.Builder _resBuilder = 
+            CountTransactionsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CountTransactionsResponse _res = _resBuilder.build();
+        CountTransactionsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             _res.withHeaders(_httpRes.headers().map());
@@ -595,23 +827,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -620,8 +852,8 @@ public class Ledger implements
      * Create a new transaction to a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.CreateTransactionRequestBuilder createTransaction() {
-        return new com.formance.formance_sdk.models.operations.CreateTransactionRequestBuilder(this);
+    public CreateTransactionRequestBuilder createTransaction() {
+        return new CreateTransactionRequestBuilder(this);
     }
 
     /**
@@ -630,20 +862,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.CreateTransactionResponse createTransaction(
-            com.formance.formance_sdk.models.operations.CreateTransactionRequest request) throws Exception {
+    public CreateTransactionResponse createTransaction(
+            CreateTransactionRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.CreateTransactionRequest.class,
+                CreateTransactionRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/transactions",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.CreateTransactionRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<CreateTransactionRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "postTransaction", "json", false);
+                _convertedRequest, 
+                "postTransaction",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -653,7 +890,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.CreateTransactionRequest.class,
+                CreateTransactionRequest.class,
                 request, 
                 null));
 
@@ -664,7 +901,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("createTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "createTransaction", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -672,18 +912,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("createTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "createTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("createTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "createTransaction",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("createTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "createTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -691,49 +941,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.CreateTransactionResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.CreateTransactionResponse
+        CreateTransactionResponse.Builder _resBuilder = 
+            CreateTransactionResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.CreateTransactionResponse _res = _resBuilder.build();
+        CreateTransactionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransactionsResponse _out = Utils.mapper().readValue(
+                TransactionsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransactionsResponse>() {});
-                _res.withTransactionsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransactionsResponse>() {});
+                _res.withTransactionsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -742,8 +992,8 @@ public class Ledger implements
      * Get account by its address
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetAccountRequestBuilder getAccount() {
-        return new com.formance.formance_sdk.models.operations.GetAccountRequestBuilder(this);
+    public GetAccountRequestBuilder getAccount() {
+        return new GetAccountRequestBuilder(this);
     }
 
     /**
@@ -752,11 +1002,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetAccountResponse getAccount(
-            com.formance.formance_sdk.models.operations.GetAccountRequest request) throws Exception {
+    public GetAccountResponse getAccount(
+            GetAccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetAccountRequest.class,
+                GetAccountRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/accounts/{address}",
                 request, null);
@@ -773,7 +1023,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -781,18 +1034,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -800,49 +1063,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetAccountResponse
+        GetAccountResponse.Builder _resBuilder = 
+            GetAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetAccountResponse _res = _resBuilder.build();
+        GetAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.AccountResponse _out = Utils.mapper().readValue(
+                AccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.AccountResponse>() {});
-                _res.withAccountResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<AccountResponse>() {});
+                _res.withAccountResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -851,8 +1114,8 @@ public class Ledger implements
      * Get the balances from a ledger's account
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetBalancesRequestBuilder getBalances() {
-        return new com.formance.formance_sdk.models.operations.GetBalancesRequestBuilder(this);
+    public GetBalancesRequestBuilder getBalances() {
+        return new GetBalancesRequestBuilder(this);
     }
 
     /**
@@ -861,11 +1124,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetBalancesResponse getBalances(
-            com.formance.formance_sdk.models.operations.GetBalancesRequest request) throws Exception {
+    public GetBalancesResponse getBalances(
+            GetBalancesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetBalancesRequest.class,
+                GetBalancesRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/balances",
                 request, null);
@@ -876,7 +1139,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.GetBalancesRequest.class,
+                GetBalancesRequest.class,
                 request, 
                 null));
 
@@ -887,7 +1150,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getBalances", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -895,18 +1161,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getBalances",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -914,49 +1190,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetBalancesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetBalancesResponse
+        GetBalancesResponse.Builder _resBuilder = 
+            GetBalancesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetBalancesResponse _res = _resBuilder.build();
+        GetBalancesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.BalancesCursorResponse _out = Utils.mapper().readValue(
+                BalancesCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.BalancesCursorResponse>() {});
-                _res.withBalancesCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<BalancesCursorResponse>() {});
+                _res.withBalancesCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -965,8 +1241,8 @@ public class Ledger implements
      * Get the aggregated balances from selected accounts
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequestBuilder getBalancesAggregated() {
-        return new com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequestBuilder(this);
+    public GetBalancesAggregatedRequestBuilder getBalancesAggregated() {
+        return new GetBalancesAggregatedRequestBuilder(this);
     }
 
     /**
@@ -975,11 +1251,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse getBalancesAggregated(
-            com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest request) throws Exception {
+    public GetBalancesAggregatedResponse getBalancesAggregated(
+            GetBalancesAggregatedRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest.class,
+                GetBalancesAggregatedRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/aggregate/balances",
                 request, null);
@@ -990,7 +1266,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest.class,
+                GetBalancesAggregatedRequest.class,
                 request, 
                 null));
 
@@ -1001,7 +1277,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getBalancesAggregated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getBalancesAggregated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1009,18 +1288,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getBalancesAggregated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getBalancesAggregated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getBalancesAggregated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getBalancesAggregated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getBalancesAggregated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getBalancesAggregated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1028,49 +1317,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse
+        GetBalancesAggregatedResponse.Builder _resBuilder = 
+            GetBalancesAggregatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse _res = _resBuilder.build();
+        GetBalancesAggregatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.AggregateBalancesResponse _out = Utils.mapper().readValue(
+                AggregateBalancesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.AggregateBalancesResponse>() {});
-                _res.withAggregateBalancesResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<AggregateBalancesResponse>() {});
+                _res.withAggregateBalancesResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1079,8 +1368,8 @@ public class Ledger implements
      * Show server information
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetInfoRequestBuilder getInfo() {
-        return new com.formance.formance_sdk.models.operations.GetInfoRequestBuilder(this);
+    public GetInfoRequestBuilder getInfo() {
+        return new GetInfoRequestBuilder(this);
     }
 
     /**
@@ -1088,7 +1377,7 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetInfoResponse getInfoDirect() throws Exception {
+    public GetInfoResponse getInfoDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -1106,7 +1395,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1114,18 +1406,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1133,49 +1435,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetInfoResponse
+        GetInfoResponse.Builder _resBuilder = 
+            GetInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetInfoResponse _res = _resBuilder.build();
+        GetInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConfigInfoResponse _out = Utils.mapper().readValue(
+                ConfigInfoResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConfigInfoResponse>() {});
-                _res.withConfigInfoResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConfigInfoResponse>() {});
+                _res.withConfigInfoResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1184,8 +1486,8 @@ public class Ledger implements
      * Get information about a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetLedgerInfoRequestBuilder getLedgerInfo() {
-        return new com.formance.formance_sdk.models.operations.GetLedgerInfoRequestBuilder(this);
+    public GetLedgerInfoRequestBuilder getLedgerInfo() {
+        return new GetLedgerInfoRequestBuilder(this);
     }
 
     /**
@@ -1194,11 +1496,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetLedgerInfoResponse getLedgerInfo(
-            com.formance.formance_sdk.models.operations.GetLedgerInfoRequest request) throws Exception {
+    public GetLedgerInfoResponse getLedgerInfo(
+            GetLedgerInfoRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetLedgerInfoRequest.class,
+                GetLedgerInfoRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/_info",
                 request, null);
@@ -1215,7 +1517,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getLedgerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getLedgerInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1223,18 +1528,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getLedgerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getLedgerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getLedgerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getLedgerInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getLedgerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getLedgerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1242,49 +1557,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetLedgerInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetLedgerInfoResponse
+        GetLedgerInfoResponse.Builder _resBuilder = 
+            GetLedgerInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetLedgerInfoResponse _res = _resBuilder.build();
+        GetLedgerInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.LedgerInfoResponse _out = Utils.mapper().readValue(
+                LedgerInfoResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.LedgerInfoResponse>() {});
-                _res.withLedgerInfoResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<LedgerInfoResponse>() {});
+                _res.withLedgerInfoResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1293,8 +1608,8 @@ public class Ledger implements
      * Get the mapping of a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetMappingRequestBuilder getMapping() {
-        return new com.formance.formance_sdk.models.operations.GetMappingRequestBuilder(this);
+    public GetMappingRequestBuilder getMapping() {
+        return new GetMappingRequestBuilder(this);
     }
 
     /**
@@ -1303,11 +1618,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetMappingResponse getMapping(
-            com.formance.formance_sdk.models.operations.GetMappingRequest request) throws Exception {
+    public GetMappingResponse getMapping(
+            GetMappingRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetMappingRequest.class,
+                GetMappingRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/mapping",
                 request, null);
@@ -1324,7 +1639,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getMapping", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getMapping", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1332,18 +1650,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getMapping", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getMapping",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getMapping", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getMapping",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getMapping", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getMapping",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1351,49 +1679,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetMappingResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetMappingResponse
+        GetMappingResponse.Builder _resBuilder = 
+            GetMappingResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetMappingResponse _res = _resBuilder.build();
+        GetMappingResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.MappingResponse _out = Utils.mapper().readValue(
+                MappingResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.MappingResponse>() {});
-                _res.withMappingResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<MappingResponse>() {});
+                _res.withMappingResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1402,8 +1730,8 @@ public class Ledger implements
      * Get transaction from a ledger by its ID
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetTransactionRequestBuilder getTransaction() {
-        return new com.formance.formance_sdk.models.operations.GetTransactionRequestBuilder(this);
+    public GetTransactionRequestBuilder getTransaction() {
+        return new GetTransactionRequestBuilder(this);
     }
 
     /**
@@ -1412,11 +1740,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetTransactionResponse getTransaction(
-            com.formance.formance_sdk.models.operations.GetTransactionRequest request) throws Exception {
+    public GetTransactionResponse getTransaction(
+            GetTransactionRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.GetTransactionRequest.class,
+                GetTransactionRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/transactions/{txid}",
                 request, null);
@@ -1433,7 +1761,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getTransaction", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1441,18 +1772,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getTransaction",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1460,49 +1801,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetTransactionResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetTransactionResponse
+        GetTransactionResponse.Builder _resBuilder = 
+            GetTransactionResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetTransactionResponse _res = _resBuilder.build();
+        GetTransactionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransactionResponse _out = Utils.mapper().readValue(
+                TransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransactionResponse>() {});
-                _res.withTransactionResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransactionResponse>() {});
+                _res.withTransactionResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1512,8 +1853,8 @@ public class Ledger implements
      * List accounts from a ledger, sorted by address in descending order.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListAccountsRequestBuilder listAccounts() {
-        return new com.formance.formance_sdk.models.operations.ListAccountsRequestBuilder(this);
+    public ListAccountsRequestBuilder listAccounts() {
+        return new ListAccountsRequestBuilder(this);
     }
 
     /**
@@ -1523,11 +1864,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListAccountsResponse listAccounts(
-            com.formance.formance_sdk.models.operations.ListAccountsRequest request) throws Exception {
+    public ListAccountsResponse listAccounts(
+            ListAccountsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ListAccountsRequest.class,
+                ListAccountsRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/accounts",
                 request, null);
@@ -1538,7 +1879,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListAccountsRequest.class,
+                ListAccountsRequest.class,
                 request, 
                 null));
 
@@ -1549,7 +1890,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listAccounts", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1557,18 +1901,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listAccounts",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1576,64 +1930,64 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListAccountsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListAccountsResponse
+        ListAccountsResponse.Builder _resBuilder = 
+            ListAccountsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListAccountsResponse _res = _resBuilder.build();
+        ListAccountsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.AccountsCursorResponse _out = Utils.mapper().readValue(
+                AccountsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.AccountsCursorResponse>() {});
-                _res.withAccountsCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<AccountsCursorResponse>() {});
+                _res.withAccountsCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
-                _res.withErrorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ErrorResponse>() {});
+                _res.withErrorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1643,8 +1997,8 @@ public class Ledger implements
      * List the logs from a ledger, sorted by ID in descending order.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListLogsRequestBuilder listLogs() {
-        return new com.formance.formance_sdk.models.operations.ListLogsRequestBuilder(this);
+    public ListLogsRequestBuilder listLogs() {
+        return new ListLogsRequestBuilder(this);
     }
 
     /**
@@ -1654,11 +2008,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListLogsResponse listLogs(
-            com.formance.formance_sdk.models.operations.ListLogsRequest request) throws Exception {
+    public ListLogsResponse listLogs(
+            ListLogsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ListLogsRequest.class,
+                ListLogsRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/logs",
                 request, null);
@@ -1669,7 +2023,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListLogsRequest.class,
+                ListLogsRequest.class,
                 request, 
                 null));
 
@@ -1680,7 +2034,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listLogs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listLogs", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1688,18 +2045,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listLogs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listLogs",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listLogs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listLogs",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listLogs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listLogs",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1707,49 +2074,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListLogsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListLogsResponse
+        ListLogsResponse.Builder _resBuilder = 
+            ListLogsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListLogsResponse _res = _resBuilder.build();
+        ListLogsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.LogsCursorResponse _out = Utils.mapper().readValue(
+                LogsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.LogsCursorResponse>() {});
-                _res.withLogsCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<LogsCursorResponse>() {});
+                _res.withLogsCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1759,8 +2126,8 @@ public class Ledger implements
      * List transactions from a ledger, sorted by txid in descending order.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ListTransactionsRequestBuilder listTransactions() {
-        return new com.formance.formance_sdk.models.operations.ListTransactionsRequestBuilder(this);
+    public ListTransactionsRequestBuilder listTransactions() {
+        return new ListTransactionsRequestBuilder(this);
     }
 
     /**
@@ -1770,11 +2137,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ListTransactionsResponse listTransactions(
-            com.formance.formance_sdk.models.operations.ListTransactionsRequest request) throws Exception {
+    public ListTransactionsResponse listTransactions(
+            ListTransactionsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ListTransactionsRequest.class,
+                ListTransactionsRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/transactions",
                 request, null);
@@ -1785,7 +2152,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.ListTransactionsRequest.class,
+                ListTransactionsRequest.class,
                 request, 
                 null));
 
@@ -1796,7 +2163,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("listTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "listTransactions", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1804,18 +2174,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("listTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "listTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("listTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "listTransactions",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("listTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "listTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1823,49 +2203,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ListTransactionsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ListTransactionsResponse
+        ListTransactionsResponse.Builder _resBuilder = 
+            ListTransactionsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ListTransactionsResponse _res = _resBuilder.build();
+        ListTransactionsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransactionsCursorResponse _out = Utils.mapper().readValue(
+                TransactionsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransactionsCursorResponse>() {});
-                _res.withTransactionsCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransactionsCursorResponse>() {});
+                _res.withTransactionsCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1876,8 +2256,8 @@ public class Ledger implements
      * 
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ReadStatsRequestBuilder readStats() {
-        return new com.formance.formance_sdk.models.operations.ReadStatsRequestBuilder(this);
+    public ReadStatsRequestBuilder readStats() {
+        return new ReadStatsRequestBuilder(this);
     }
 
     /**
@@ -1888,11 +2268,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ReadStatsResponse readStats(
-            com.formance.formance_sdk.models.operations.ReadStatsRequest request) throws Exception {
+    public ReadStatsResponse readStats(
+            ReadStatsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ReadStatsRequest.class,
+                ReadStatsRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/stats",
                 request, null);
@@ -1909,7 +2289,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("readStats", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "readStats", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1917,18 +2300,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("readStats", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "readStats",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("readStats", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "readStats",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("readStats", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "readStats",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1936,49 +2329,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ReadStatsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ReadStatsResponse
+        ReadStatsResponse.Builder _resBuilder = 
+            ReadStatsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ReadStatsResponse _res = _resBuilder.build();
+        ReadStatsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.StatsResponse _out = Utils.mapper().readValue(
+                StatsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.StatsResponse>() {});
-                _res.withStatsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<StatsResponse>() {});
+                _res.withStatsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -1987,8 +2380,8 @@ public class Ledger implements
      * Revert a ledger transaction by its ID
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.RevertTransactionRequestBuilder revertTransaction() {
-        return new com.formance.formance_sdk.models.operations.RevertTransactionRequestBuilder(this);
+    public RevertTransactionRequestBuilder revertTransaction() {
+        return new RevertTransactionRequestBuilder(this);
     }
 
     /**
@@ -1997,11 +2390,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.RevertTransactionResponse revertTransaction(
-            com.formance.formance_sdk.models.operations.RevertTransactionRequest request) throws Exception {
+    public RevertTransactionResponse revertTransaction(
+            RevertTransactionRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.RevertTransactionRequest.class,
+                RevertTransactionRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/transactions/{txid}/revert",
                 request, null);
@@ -2012,7 +2405,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.RevertTransactionRequest.class,
+                RevertTransactionRequest.class,
                 request, 
                 null));
 
@@ -2023,7 +2416,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("revertTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "revertTransaction", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2031,18 +2427,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("revertTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "revertTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("revertTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "revertTransaction",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("revertTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "revertTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2050,49 +2456,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.RevertTransactionResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.RevertTransactionResponse
+        RevertTransactionResponse.Builder _resBuilder = 
+            RevertTransactionResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.RevertTransactionResponse _res = _resBuilder.build();
+        RevertTransactionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.TransactionResponse _out = Utils.mapper().readValue(
+                TransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.TransactionResponse>() {});
-                _res.withTransactionResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<TransactionResponse>() {});
+                _res.withTransactionResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2105,8 +2511,8 @@ public class Ledger implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.RunScriptRequestBuilder runScript() {
-        return new com.formance.formance_sdk.models.operations.RunScriptRequestBuilder(this);
+    public RunScriptRequestBuilder runScript() {
+        return new RunScriptRequestBuilder(this);
     }
 
     /**
@@ -2119,20 +2525,25 @@ public class Ledger implements
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public com.formance.formance_sdk.models.operations.RunScriptResponse runScript(
-            com.formance.formance_sdk.models.operations.RunScriptRequest request) throws Exception {
+    public RunScriptResponse runScript(
+            RunScriptRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.RunScriptRequest.class,
+                RunScriptRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/script",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.RunScriptRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<RunScriptRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "script", "json", false);
+                _convertedRequest, 
+                "script",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -2142,7 +2553,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.RunScriptRequest.class,
+                RunScriptRequest.class,
                 request, 
                 null));
 
@@ -2153,7 +2564,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("runScript", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "runScript", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2161,18 +2575,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("runScript", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "runScript",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("runScript", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "runScript",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("runScript", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "runScript",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2180,28 +2604,28 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.RunScriptResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.RunScriptResponse
+        RunScriptResponse.Builder _resBuilder = 
+            RunScriptResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.RunScriptResponse _res = _resBuilder.build();
+        RunScriptResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ScriptResponse _out = Utils.mapper().readValue(
+                ScriptResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ScriptResponse>() {});
-                _res.withScriptResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ScriptResponse>() {});
+                _res.withScriptResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
@@ -2210,13 +2634,13 @@ public class Ledger implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2225,8 +2649,8 @@ public class Ledger implements
      * Update the mapping of a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.UpdateMappingRequestBuilder updateMapping() {
-        return new com.formance.formance_sdk.models.operations.UpdateMappingRequestBuilder(this);
+    public UpdateMappingRequestBuilder updateMapping() {
+        return new UpdateMappingRequestBuilder(this);
     }
 
     /**
@@ -2235,20 +2659,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.UpdateMappingResponse updateMapping(
-            com.formance.formance_sdk.models.operations.UpdateMappingRequest request) throws Exception {
+    public UpdateMappingResponse updateMapping(
+            UpdateMappingRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.UpdateMappingRequest.class,
+                UpdateMappingRequest.class,
                 _baseUrl,
                 "/api/ledger/{ledger}/mapping",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.UpdateMappingRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<UpdateMappingRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "mapping", "json", true);
+                _convertedRequest, 
+                "mapping",
+                "json",
+                true);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -2264,7 +2693,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("updateMapping", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "updateMapping", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2272,18 +2704,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("updateMapping", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "updateMapping",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("updateMapping", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "updateMapping",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("updateMapping", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "updateMapping",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2291,49 +2733,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.UpdateMappingResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.UpdateMappingResponse
+        UpdateMappingResponse.Builder _resBuilder = 
+            UpdateMappingResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.UpdateMappingResponse _res = _resBuilder.build();
+        UpdateMappingResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.MappingResponse _out = Utils.mapper().readValue(
+                MappingResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.MappingResponse>() {});
-                _res.withMappingResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<MappingResponse>() {});
+                _res.withMappingResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.ErrorResponse _out = Utils.mapper().readValue(
+                ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.ErrorResponse>() {});
+                    new TypeReference<ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2342,8 +2784,8 @@ public class Ledger implements
      * Set the metadata of a transaction by its ID
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequestBuilder v2AddMetadataOnTransaction() {
-        return new com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequestBuilder(this);
+    public V2AddMetadataOnTransactionRequestBuilder v2AddMetadataOnTransaction() {
+        return new V2AddMetadataOnTransactionRequestBuilder(this);
     }
 
     /**
@@ -2352,27 +2794,32 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse v2AddMetadataOnTransaction(
-            com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest request) throws Exception {
+    public V2AddMetadataOnTransactionResponse v2AddMetadataOnTransaction(
+            V2AddMetadataOnTransactionRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest.class,
+                V2AddMetadataOnTransactionRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/transactions/{id}/metadata",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2AddMetadataOnTransactionRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest.class,
+                V2AddMetadataOnTransactionRequest.class,
                 request, 
                 null));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
@@ -2384,7 +2831,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2AddMetadataOnTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2AddMetadataOnTransaction", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2392,18 +2842,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2AddMetadataOnTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2AddMetadataOnTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2AddMetadataOnTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2AddMetadataOnTransaction",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2AddMetadataOnTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2AddMetadataOnTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2411,14 +2871,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse
+        V2AddMetadataOnTransactionResponse.Builder _resBuilder = 
+            V2AddMetadataOnTransactionResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse _res = _resBuilder.build();
+        V2AddMetadataOnTransactionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -2426,23 +2886,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2451,8 +2911,8 @@ public class Ledger implements
      * Add metadata to an account
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequestBuilder v2AddMetadataToAccount() {
-        return new com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequestBuilder(this);
+    public V2AddMetadataToAccountRequestBuilder v2AddMetadataToAccount() {
+        return new V2AddMetadataToAccountRequestBuilder(this);
     }
 
     /**
@@ -2461,20 +2921,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse v2AddMetadataToAccount(
-            com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest request) throws Exception {
+    public V2AddMetadataToAccountResponse v2AddMetadataToAccount(
+            V2AddMetadataToAccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest.class,
+                V2AddMetadataToAccountRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/accounts/{address}/metadata",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2AddMetadataToAccountRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -2484,7 +2949,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest.class,
+                V2AddMetadataToAccountRequest.class,
                 request, 
                 null));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
@@ -2496,7 +2961,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2AddMetadataToAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2AddMetadataToAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2504,18 +2972,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2AddMetadataToAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2AddMetadataToAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2AddMetadataToAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2AddMetadataToAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2AddMetadataToAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2AddMetadataToAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2523,14 +3001,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse
+        V2AddMetadataToAccountResponse.Builder _resBuilder = 
+            V2AddMetadataToAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse _res = _resBuilder.build();
+        V2AddMetadataToAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -2538,23 +3016,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2563,8 +3041,8 @@ public class Ledger implements
      * Count the accounts from a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2CountAccountsRequestBuilder v2CountAccounts() {
-        return new com.formance.formance_sdk.models.operations.V2CountAccountsRequestBuilder(this);
+    public V2CountAccountsRequestBuilder v2CountAccounts() {
+        return new V2CountAccountsRequestBuilder(this);
     }
 
     /**
@@ -2573,27 +3051,32 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CountAccountsResponse v2CountAccounts(
-            com.formance.formance_sdk.models.operations.V2CountAccountsRequest request) throws Exception {
+    public V2CountAccountsResponse v2CountAccounts(
+            V2CountAccountsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2CountAccountsRequest.class,
+                V2CountAccountsRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/accounts",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "HEAD");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2CountAccountsRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2CountAccountsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2CountAccountsRequest.class,
+                V2CountAccountsRequest.class,
                 request, 
                 null));
 
@@ -2604,7 +3087,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2CountAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2CountAccounts", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2612,18 +3098,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2CountAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2CountAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2CountAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2CountAccounts",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2CountAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2CountAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2631,14 +3127,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2CountAccountsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2CountAccountsResponse
+        V2CountAccountsResponse.Builder _resBuilder = 
+            V2CountAccountsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2CountAccountsResponse _res = _resBuilder.build();
+        V2CountAccountsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             _res.withHeaders(_httpRes.headers().map());
@@ -2647,23 +3143,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2672,8 +3168,8 @@ public class Ledger implements
      * Count the transactions from a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2CountTransactionsRequestBuilder v2CountTransactions() {
-        return new com.formance.formance_sdk.models.operations.V2CountTransactionsRequestBuilder(this);
+    public V2CountTransactionsRequestBuilder v2CountTransactions() {
+        return new V2CountTransactionsRequestBuilder(this);
     }
 
     /**
@@ -2682,27 +3178,32 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CountTransactionsResponse v2CountTransactions(
-            com.formance.formance_sdk.models.operations.V2CountTransactionsRequest request) throws Exception {
+    public V2CountTransactionsResponse v2CountTransactions(
+            V2CountTransactionsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2CountTransactionsRequest.class,
+                V2CountTransactionsRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/transactions",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "HEAD");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2CountTransactionsRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2CountTransactionsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2CountTransactionsRequest.class,
+                V2CountTransactionsRequest.class,
                 request, 
                 null));
 
@@ -2713,7 +3214,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2CountTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2CountTransactions", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2721,18 +3225,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2CountTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2CountTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2CountTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2CountTransactions",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2CountTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2CountTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2740,14 +3254,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2CountTransactionsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2CountTransactionsResponse
+        V2CountTransactionsResponse.Builder _resBuilder = 
+            V2CountTransactionsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2CountTransactionsResponse _res = _resBuilder.build();
+        V2CountTransactionsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             _res.withHeaders(_httpRes.headers().map());
@@ -2756,23 +3270,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2781,8 +3295,8 @@ public class Ledger implements
      * Bulk request
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2CreateBulkRequestBuilder v2CreateBulk() {
-        return new com.formance.formance_sdk.models.operations.V2CreateBulkRequestBuilder(this);
+    public V2CreateBulkRequestBuilder v2CreateBulk() {
+        return new V2CreateBulkRequestBuilder(this);
     }
 
     /**
@@ -2791,20 +3305,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CreateBulkResponse v2CreateBulk(
-            com.formance.formance_sdk.models.operations.V2CreateBulkRequest request) throws Exception {
+    public V2CreateBulkResponse v2CreateBulk(
+            V2CreateBulkRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2CreateBulkRequest.class,
+                V2CreateBulkRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/_bulk",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2CreateBulkRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2CreateBulkRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -2817,7 +3336,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2CreateBulk", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2CreateBulk", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2825,18 +3347,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2CreateBulk", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2CreateBulk",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2CreateBulk", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2CreateBulk",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2CreateBulk", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2CreateBulk",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2844,49 +3376,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2CreateBulkResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2CreateBulkResponse
+        V2CreateBulkResponse.Builder _resBuilder = 
+            V2CreateBulkResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2CreateBulkResponse _res = _resBuilder.build();
+        V2CreateBulkResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200", "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2BulkResponse _out = Utils.mapper().readValue(
+                V2BulkResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2BulkResponse>() {});
-                _res.withV2BulkResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2BulkResponse>() {});
+                _res.withV2BulkResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2895,8 +3427,8 @@ public class Ledger implements
      * Create a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2CreateLedgerRequestBuilder v2CreateLedger() {
-        return new com.formance.formance_sdk.models.operations.V2CreateLedgerRequestBuilder(this);
+    public V2CreateLedgerRequestBuilder v2CreateLedger() {
+        return new V2CreateLedgerRequestBuilder(this);
     }
 
     /**
@@ -2905,20 +3437,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CreateLedgerResponse v2CreateLedger(
-            com.formance.formance_sdk.models.operations.V2CreateLedgerRequest request) throws Exception {
+    public V2CreateLedgerResponse v2CreateLedger(
+            V2CreateLedgerRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2CreateLedgerRequest.class,
+                V2CreateLedgerRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2CreateLedgerRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2CreateLedgerRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "v2CreateLedgerRequest", "json", false);
+                _convertedRequest, 
+                "v2CreateLedgerRequest",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -2931,7 +3468,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2CreateLedger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2CreateLedger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2939,18 +3479,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2CreateLedger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2CreateLedger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2CreateLedger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2CreateLedger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2CreateLedger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2CreateLedger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2958,14 +3508,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2CreateLedgerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2CreateLedgerResponse
+        V2CreateLedgerResponse.Builder _resBuilder = 
+            V2CreateLedgerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2CreateLedgerResponse _res = _resBuilder.build();
+        V2CreateLedgerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -2973,23 +3523,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -2998,8 +3548,8 @@ public class Ledger implements
      * Create a new transaction to a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2CreateTransactionRequestBuilder v2CreateTransaction() {
-        return new com.formance.formance_sdk.models.operations.V2CreateTransactionRequestBuilder(this);
+    public V2CreateTransactionRequestBuilder v2CreateTransaction() {
+        return new V2CreateTransactionRequestBuilder(this);
     }
 
     /**
@@ -3008,20 +3558,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2CreateTransactionResponse v2CreateTransaction(
-            com.formance.formance_sdk.models.operations.V2CreateTransactionRequest request) throws Exception {
+    public V2CreateTransactionResponse v2CreateTransaction(
+            V2CreateTransactionRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2CreateTransactionRequest.class,
+                V2CreateTransactionRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/transactions",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2CreateTransactionRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2CreateTransactionRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "v2PostTransaction", "json", false);
+                _convertedRequest, 
+                "v2PostTransaction",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -3031,7 +3586,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2CreateTransactionRequest.class,
+                V2CreateTransactionRequest.class,
                 request, 
                 null));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
@@ -3043,7 +3598,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2CreateTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2CreateTransaction", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3051,18 +3609,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2CreateTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2CreateTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2CreateTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2CreateTransaction",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2CreateTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2CreateTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3070,49 +3638,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2CreateTransactionResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2CreateTransactionResponse
+        V2CreateTransactionResponse.Builder _resBuilder = 
+            V2CreateTransactionResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2CreateTransactionResponse _res = _resBuilder.build();
+        V2CreateTransactionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2CreateTransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2CreateTransactionResponse>() {});
-                _res.withV2CreateTransactionResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2CreateTransactionResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3122,8 +3690,8 @@ public class Ledger implements
      * Delete metadata by key
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequestBuilder v2DeleteAccountMetadata() {
-        return new com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequestBuilder(this);
+    public V2DeleteAccountMetadataRequestBuilder v2DeleteAccountMetadata() {
+        return new V2DeleteAccountMetadataRequestBuilder(this);
     }
 
     /**
@@ -3133,11 +3701,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse v2DeleteAccountMetadata(
-            com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest request) throws Exception {
+    public V2DeleteAccountMetadataResponse v2DeleteAccountMetadata(
+            V2DeleteAccountMetadataRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest.class,
+                V2DeleteAccountMetadataRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}",
                 request, null);
@@ -3154,7 +3722,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2DeleteAccountMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2DeleteAccountMetadata", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3162,18 +3733,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2DeleteAccountMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2DeleteAccountMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2DeleteAccountMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2DeleteAccountMetadata",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2DeleteAccountMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2DeleteAccountMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3181,14 +3762,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse
+        V2DeleteAccountMetadataResponse.Builder _resBuilder = 
+            V2DeleteAccountMetadataResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse _res = _resBuilder.build();
+        V2DeleteAccountMetadataResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
             // no content 
@@ -3200,13 +3781,13 @@ public class Ledger implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3215,8 +3796,8 @@ public class Ledger implements
      * Delete ledger metadata by key
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequestBuilder v2DeleteLedgerMetadata() {
-        return new com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequestBuilder(this);
+    public V2DeleteLedgerMetadataRequestBuilder v2DeleteLedgerMetadata() {
+        return new V2DeleteLedgerMetadataRequestBuilder(this);
     }
 
     /**
@@ -3225,11 +3806,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse v2DeleteLedgerMetadata(
-            com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest request) throws Exception {
+    public V2DeleteLedgerMetadataResponse v2DeleteLedgerMetadata(
+            V2DeleteLedgerMetadataRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest.class,
+                V2DeleteLedgerMetadataRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/metadata/{key}",
                 request, null);
@@ -3246,7 +3827,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2DeleteLedgerMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2DeleteLedgerMetadata", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3254,18 +3838,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2DeleteLedgerMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2DeleteLedgerMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2DeleteLedgerMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2DeleteLedgerMetadata",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2DeleteLedgerMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2DeleteLedgerMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3273,14 +3867,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse
+        V2DeleteLedgerMetadataResponse.Builder _resBuilder = 
+            V2DeleteLedgerMetadataResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse _res = _resBuilder.build();
+        V2DeleteLedgerMetadataResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -3288,23 +3882,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3314,8 +3908,8 @@ public class Ledger implements
      * Delete metadata by key
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequestBuilder v2DeleteTransactionMetadata() {
-        return new com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequestBuilder(this);
+    public V2DeleteTransactionMetadataRequestBuilder v2DeleteTransactionMetadata() {
+        return new V2DeleteTransactionMetadataRequestBuilder(this);
     }
 
     /**
@@ -3325,11 +3919,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse v2DeleteTransactionMetadata(
-            com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest request) throws Exception {
+    public V2DeleteTransactionMetadataResponse v2DeleteTransactionMetadata(
+            V2DeleteTransactionMetadataRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest.class,
+                V2DeleteTransactionMetadataRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}",
                 request, null);
@@ -3346,7 +3940,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2DeleteTransactionMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2DeleteTransactionMetadata", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3354,18 +3951,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2DeleteTransactionMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2DeleteTransactionMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2DeleteTransactionMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2DeleteTransactionMetadata",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2DeleteTransactionMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2DeleteTransactionMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3373,14 +3980,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse
+        V2DeleteTransactionMetadataResponse.Builder _resBuilder = 
+            V2DeleteTransactionMetadataResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse _res = _resBuilder.build();
+        V2DeleteTransactionMetadataResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
             // no content 
@@ -3388,23 +3995,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3413,8 +4020,8 @@ public class Ledger implements
      * Get account by its address
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetAccountRequestBuilder v2GetAccount() {
-        return new com.formance.formance_sdk.models.operations.V2GetAccountRequestBuilder(this);
+    public V2GetAccountRequestBuilder v2GetAccount() {
+        return new V2GetAccountRequestBuilder(this);
     }
 
     /**
@@ -3423,11 +4030,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetAccountResponse v2GetAccount(
-            com.formance.formance_sdk.models.operations.V2GetAccountRequest request) throws Exception {
+    public V2GetAccountResponse v2GetAccount(
+            V2GetAccountRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetAccountRequest.class,
+                V2GetAccountRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/accounts/{address}",
                 request, null);
@@ -3438,7 +4045,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2GetAccountRequest.class,
+                V2GetAccountRequest.class,
                 request, 
                 null));
 
@@ -3449,7 +4056,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetAccount", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3457,18 +4067,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetAccount",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetAccount", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetAccount",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3476,49 +4096,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetAccountResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetAccountResponse
+        V2GetAccountResponse.Builder _resBuilder = 
+            V2GetAccountResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetAccountResponse _res = _resBuilder.build();
+        V2GetAccountResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2AccountResponse _out = Utils.mapper().readValue(
+                V2AccountResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2AccountResponse>() {});
-                _res.withV2AccountResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2AccountResponse>() {});
+                _res.withV2AccountResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3527,8 +4147,8 @@ public class Ledger implements
      * Get the aggregated balances from selected accounts
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequestBuilder v2GetBalancesAggregated() {
-        return new com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequestBuilder(this);
+    public V2GetBalancesAggregatedRequestBuilder v2GetBalancesAggregated() {
+        return new V2GetBalancesAggregatedRequestBuilder(this);
     }
 
     /**
@@ -3537,27 +4157,32 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse v2GetBalancesAggregated(
-            com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest request) throws Exception {
+    public V2GetBalancesAggregatedResponse v2GetBalancesAggregated(
+            V2GetBalancesAggregatedRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest.class,
+                V2GetBalancesAggregatedRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/aggregate/balances",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2GetBalancesAggregatedRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest.class,
+                V2GetBalancesAggregatedRequest.class,
                 request, 
                 null));
 
@@ -3568,7 +4193,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetBalancesAggregated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetBalancesAggregated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3576,18 +4204,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetBalancesAggregated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetBalancesAggregated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetBalancesAggregated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetBalancesAggregated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetBalancesAggregated", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetBalancesAggregated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3595,49 +4233,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse
+        V2GetBalancesAggregatedResponse.Builder _resBuilder = 
+            V2GetBalancesAggregatedResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse _res = _resBuilder.build();
+        V2GetBalancesAggregatedResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse _out = Utils.mapper().readValue(
+                V2AggregateBalancesResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2AggregateBalancesResponse>() {});
-                _res.withV2AggregateBalancesResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2AggregateBalancesResponse>() {});
+                _res.withV2AggregateBalancesResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3646,8 +4284,8 @@ public class Ledger implements
      * Show server information
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetInfoRequestBuilder v2GetInfo() {
-        return new com.formance.formance_sdk.models.operations.V2GetInfoRequestBuilder(this);
+    public V2GetInfoRequestBuilder v2GetInfo() {
+        return new V2GetInfoRequestBuilder(this);
     }
 
     /**
@@ -3655,7 +4293,7 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetInfoResponse v2GetInfoDirect() throws Exception {
+    public V2GetInfoResponse v2GetInfoDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -3673,7 +4311,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3681,18 +4322,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3700,49 +4351,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetInfoResponse
+        V2GetInfoResponse.Builder _resBuilder = 
+            V2GetInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetInfoResponse _res = _resBuilder.build();
+        V2GetInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2ConfigInfoResponse _out = Utils.mapper().readValue(
+                V2ConfigInfoResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2ConfigInfoResponse>() {});
-                _res.withV2ConfigInfoResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2ConfigInfoResponse>() {});
+                _res.withV2ConfigInfoResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3751,8 +4402,8 @@ public class Ledger implements
      * Get a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetLedgerRequestBuilder v2GetLedger() {
-        return new com.formance.formance_sdk.models.operations.V2GetLedgerRequestBuilder(this);
+    public V2GetLedgerRequestBuilder v2GetLedger() {
+        return new V2GetLedgerRequestBuilder(this);
     }
 
     /**
@@ -3761,11 +4412,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetLedgerResponse v2GetLedger(
-            com.formance.formance_sdk.models.operations.V2GetLedgerRequest request) throws Exception {
+    public V2GetLedgerResponse v2GetLedger(
+            V2GetLedgerRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetLedgerRequest.class,
+                V2GetLedgerRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}",
                 request, null);
@@ -3782,7 +4433,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetLedger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetLedger", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3790,18 +4444,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetLedger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetLedger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetLedger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetLedger",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetLedger", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetLedger",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3809,49 +4473,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetLedgerResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetLedgerResponse
+        V2GetLedgerResponse.Builder _resBuilder = 
+            V2GetLedgerResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetLedgerResponse _res = _resBuilder.build();
+        V2GetLedgerResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2GetLedgerResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetLedgerResponse>() {});
-                _res.withV2GetLedgerResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2GetLedgerResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3860,8 +4524,8 @@ public class Ledger implements
      * Get information about a ledger
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequestBuilder v2GetLedgerInfo() {
-        return new com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequestBuilder(this);
+    public V2GetLedgerInfoRequestBuilder v2GetLedgerInfo() {
+        return new V2GetLedgerInfoRequestBuilder(this);
     }
 
     /**
@@ -3870,11 +4534,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse v2GetLedgerInfo(
-            com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest request) throws Exception {
+    public V2GetLedgerInfoResponse v2GetLedgerInfo(
+            V2GetLedgerInfoRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest.class,
+                V2GetLedgerInfoRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/_info",
                 request, null);
@@ -3891,7 +4555,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetLedgerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetLedgerInfo", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3899,18 +4566,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetLedgerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetLedgerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetLedgerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetLedgerInfo",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetLedgerInfo", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetLedgerInfo",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3918,49 +4595,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse
+        V2GetLedgerInfoResponse.Builder _resBuilder = 
+            V2GetLedgerInfoResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse _res = _resBuilder.build();
+        V2GetLedgerInfoResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2LedgerInfoResponse _out = Utils.mapper().readValue(
+                V2LedgerInfoResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2LedgerInfoResponse>() {});
-                _res.withV2LedgerInfoResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2LedgerInfoResponse>() {});
+                _res.withV2LedgerInfoResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -3969,8 +4646,8 @@ public class Ledger implements
      * Get transaction from a ledger by its ID
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetTransactionRequestBuilder v2GetTransaction() {
-        return new com.formance.formance_sdk.models.operations.V2GetTransactionRequestBuilder(this);
+    public V2GetTransactionRequestBuilder v2GetTransaction() {
+        return new V2GetTransactionRequestBuilder(this);
     }
 
     /**
@@ -3979,11 +4656,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetTransactionResponse v2GetTransaction(
-            com.formance.formance_sdk.models.operations.V2GetTransactionRequest request) throws Exception {
+    public V2GetTransactionResponse v2GetTransaction(
+            V2GetTransactionRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetTransactionRequest.class,
+                V2GetTransactionRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/transactions/{id}",
                 request, null);
@@ -3994,7 +4671,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2GetTransactionRequest.class,
+                V2GetTransactionRequest.class,
                 request, 
                 null));
 
@@ -4005,7 +4682,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetTransaction", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4013,18 +4693,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetTransaction",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4032,49 +4722,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetTransactionResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetTransactionResponse
+        V2GetTransactionResponse.Builder _resBuilder = 
+            V2GetTransactionResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetTransactionResponse _res = _resBuilder.build();
+        V2GetTransactionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2GetTransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2GetTransactionResponse>() {});
-                _res.withV2GetTransactionResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2GetTransactionResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4083,8 +4773,8 @@ public class Ledger implements
      * Get list of volumes with balances for (account/asset)
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequestBuilder v2GetVolumesWithBalances() {
-        return new com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequestBuilder(this);
+    public V2GetVolumesWithBalancesRequestBuilder v2GetVolumesWithBalances() {
+        return new V2GetVolumesWithBalancesRequestBuilder(this);
     }
 
     /**
@@ -4093,27 +4783,32 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse v2GetVolumesWithBalances(
-            com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest request) throws Exception {
+    public V2GetVolumesWithBalancesResponse v2GetVolumesWithBalances(
+            V2GetVolumesWithBalancesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest.class,
+                V2GetVolumesWithBalancesRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/volumes",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2GetVolumesWithBalancesRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest.class,
+                V2GetVolumesWithBalancesRequest.class,
                 request, 
                 null));
 
@@ -4124,7 +4819,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2GetVolumesWithBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2GetVolumesWithBalances", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4132,18 +4830,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2GetVolumesWithBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2GetVolumesWithBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2GetVolumesWithBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2GetVolumesWithBalances",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2GetVolumesWithBalances", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2GetVolumesWithBalances",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4151,49 +4859,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse
+        V2GetVolumesWithBalancesResponse.Builder _resBuilder = 
+            V2GetVolumesWithBalancesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse _res = _resBuilder.build();
+        V2GetVolumesWithBalancesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse _out = Utils.mapper().readValue(
+                V2VolumesWithBalanceCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse>() {});
-                _res.withV2VolumesWithBalanceCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2VolumesWithBalanceCursorResponse>() {});
+                _res.withV2VolumesWithBalanceCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4203,8 +4911,8 @@ public class Ledger implements
      * List accounts from a ledger, sorted by address in descending order.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ListAccountsRequestBuilder v2ListAccounts() {
-        return new com.formance.formance_sdk.models.operations.V2ListAccountsRequestBuilder(this);
+    public V2ListAccountsRequestBuilder v2ListAccounts() {
+        return new V2ListAccountsRequestBuilder(this);
     }
 
     /**
@@ -4214,27 +4922,32 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ListAccountsResponse v2ListAccounts(
-            com.formance.formance_sdk.models.operations.V2ListAccountsRequest request) throws Exception {
+    public V2ListAccountsResponse v2ListAccounts(
+            V2ListAccountsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2ListAccountsRequest.class,
+                V2ListAccountsRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/accounts",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2ListAccountsRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2ListAccountsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2ListAccountsRequest.class,
+                V2ListAccountsRequest.class,
                 request, 
                 null));
 
@@ -4245,7 +4958,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ListAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ListAccounts", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4253,18 +4969,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ListAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ListAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ListAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ListAccounts",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ListAccounts", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ListAccounts",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4272,49 +4998,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ListAccountsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ListAccountsResponse
+        V2ListAccountsResponse.Builder _resBuilder = 
+            V2ListAccountsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ListAccountsResponse _res = _resBuilder.build();
+        V2ListAccountsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2AccountsCursorResponse _out = Utils.mapper().readValue(
+                V2AccountsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2AccountsCursorResponse>() {});
-                _res.withV2AccountsCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2AccountsCursorResponse>() {});
+                _res.withV2AccountsCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4323,8 +5049,8 @@ public class Ledger implements
      * List ledgers
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ListLedgersRequestBuilder v2ListLedgers() {
-        return new com.formance.formance_sdk.models.operations.V2ListLedgersRequestBuilder(this);
+    public V2ListLedgersRequestBuilder v2ListLedgers() {
+        return new V2ListLedgersRequestBuilder(this);
     }
 
     /**
@@ -4333,8 +5059,8 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ListLedgersResponse v2ListLedgers(
-            com.formance.formance_sdk.models.operations.V2ListLedgersRequest request) throws Exception {
+    public V2ListLedgersResponse v2ListLedgers(
+            V2ListLedgersRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -4346,7 +5072,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2ListLedgersRequest.class,
+                V2ListLedgersRequest.class,
                 request, 
                 null));
 
@@ -4357,7 +5083,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ListLedgers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ListLedgers", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4365,18 +5094,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ListLedgers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ListLedgers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ListLedgers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ListLedgers",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ListLedgers", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ListLedgers",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4384,49 +5123,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ListLedgersResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ListLedgersResponse
+        V2ListLedgersResponse.Builder _resBuilder = 
+            V2ListLedgersResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ListLedgersResponse _res = _resBuilder.build();
+        V2ListLedgersResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2LedgerListResponse _out = Utils.mapper().readValue(
+                V2LedgerListResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2LedgerListResponse>() {});
-                _res.withV2LedgerListResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2LedgerListResponse>() {});
+                _res.withV2LedgerListResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4436,8 +5175,8 @@ public class Ledger implements
      * List the logs from a ledger, sorted by ID in descending order.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ListLogsRequestBuilder v2ListLogs() {
-        return new com.formance.formance_sdk.models.operations.V2ListLogsRequestBuilder(this);
+    public V2ListLogsRequestBuilder v2ListLogs() {
+        return new V2ListLogsRequestBuilder(this);
     }
 
     /**
@@ -4447,27 +5186,32 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ListLogsResponse v2ListLogs(
-            com.formance.formance_sdk.models.operations.V2ListLogsRequest request) throws Exception {
+    public V2ListLogsResponse v2ListLogs(
+            V2ListLogsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2ListLogsRequest.class,
+                V2ListLogsRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/logs",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2ListLogsRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2ListLogsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2ListLogsRequest.class,
+                V2ListLogsRequest.class,
                 request, 
                 null));
 
@@ -4478,7 +5222,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ListLogs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ListLogs", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4486,18 +5233,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ListLogs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ListLogs",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ListLogs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ListLogs",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ListLogs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ListLogs",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4505,49 +5262,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ListLogsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ListLogsResponse
+        V2ListLogsResponse.Builder _resBuilder = 
+            V2ListLogsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ListLogsResponse _res = _resBuilder.build();
+        V2ListLogsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2LogsCursorResponse _out = Utils.mapper().readValue(
+                V2LogsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2LogsCursorResponse>() {});
-                _res.withV2LogsCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2LogsCursorResponse>() {});
+                _res.withV2LogsCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4557,8 +5314,8 @@ public class Ledger implements
      * List transactions from a ledger, sorted by id in descending order.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ListTransactionsRequestBuilder v2ListTransactions() {
-        return new com.formance.formance_sdk.models.operations.V2ListTransactionsRequestBuilder(this);
+    public V2ListTransactionsRequestBuilder v2ListTransactions() {
+        return new V2ListTransactionsRequestBuilder(this);
     }
 
     /**
@@ -4568,27 +5325,32 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ListTransactionsResponse v2ListTransactions(
-            com.formance.formance_sdk.models.operations.V2ListTransactionsRequest request) throws Exception {
+    public V2ListTransactionsResponse v2ListTransactions(
+            V2ListTransactionsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2ListTransactionsRequest.class,
+                V2ListTransactionsRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/transactions",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2ListTransactionsRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2ListTransactionsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2ListTransactionsRequest.class,
+                V2ListTransactionsRequest.class,
                 request, 
                 null));
 
@@ -4599,7 +5361,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ListTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ListTransactions", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4607,18 +5372,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ListTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ListTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ListTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ListTransactions",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ListTransactions", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ListTransactions",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4626,49 +5401,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ListTransactionsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ListTransactionsResponse
+        V2ListTransactionsResponse.Builder _resBuilder = 
+            V2ListTransactionsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ListTransactionsResponse _res = _resBuilder.build();
+        V2ListTransactionsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse _out = Utils.mapper().readValue(
+                V2TransactionsCursorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse>() {});
-                _res.withV2TransactionsCursorResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2TransactionsCursorResponse>() {});
+                _res.withV2TransactionsCursorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4679,8 +5454,8 @@ public class Ledger implements
      * 
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2ReadStatsRequestBuilder v2ReadStats() {
-        return new com.formance.formance_sdk.models.operations.V2ReadStatsRequestBuilder(this);
+    public V2ReadStatsRequestBuilder v2ReadStats() {
+        return new V2ReadStatsRequestBuilder(this);
     }
 
     /**
@@ -4691,11 +5466,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2ReadStatsResponse v2ReadStats(
-            com.formance.formance_sdk.models.operations.V2ReadStatsRequest request) throws Exception {
+    public V2ReadStatsResponse v2ReadStats(
+            V2ReadStatsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2ReadStatsRequest.class,
+                V2ReadStatsRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/stats",
                 request, null);
@@ -4712,7 +5487,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2ReadStats", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2ReadStats", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4720,18 +5498,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2ReadStats", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2ReadStats",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2ReadStats", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2ReadStats",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2ReadStats", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2ReadStats",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4739,49 +5527,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2ReadStatsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2ReadStatsResponse
+        V2ReadStatsResponse.Builder _resBuilder = 
+            V2ReadStatsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2ReadStatsResponse _res = _resBuilder.build();
+        V2ReadStatsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.V2StatsResponse _out = Utils.mapper().readValue(
+                V2StatsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.V2StatsResponse>() {});
-                _res.withV2StatsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<V2StatsResponse>() {});
+                _res.withV2StatsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4790,8 +5578,8 @@ public class Ledger implements
      * Revert a ledger transaction by its ID
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2RevertTransactionRequestBuilder v2RevertTransaction() {
-        return new com.formance.formance_sdk.models.operations.V2RevertTransactionRequestBuilder(this);
+    public V2RevertTransactionRequestBuilder v2RevertTransaction() {
+        return new V2RevertTransactionRequestBuilder(this);
     }
 
     /**
@@ -4800,11 +5588,11 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2RevertTransactionResponse v2RevertTransaction(
-            com.formance.formance_sdk.models.operations.V2RevertTransactionRequest request) throws Exception {
+    public V2RevertTransactionResponse v2RevertTransaction(
+            V2RevertTransactionRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2RevertTransactionRequest.class,
+                V2RevertTransactionRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/transactions/{id}/revert",
                 request, null);
@@ -4815,7 +5603,7 @@ public class Ledger implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.V2RevertTransactionRequest.class,
+                V2RevertTransactionRequest.class,
                 request, 
                 null));
 
@@ -4826,7 +5614,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2RevertTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2RevertTransaction", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4834,18 +5625,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2RevertTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2RevertTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2RevertTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2RevertTransaction",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2RevertTransaction", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2RevertTransaction",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4853,49 +5654,49 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2RevertTransactionResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2RevertTransactionResponse
+        V2RevertTransactionResponse.Builder _resBuilder = 
+            V2RevertTransactionResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2RevertTransactionResponse _res = _resBuilder.build();
+        V2RevertTransactionResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 com.formance.formance_sdk.models.shared.V2RevertTransactionResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.formance.formance_sdk.models.shared.V2RevertTransactionResponse>() {});
-                _res.withV2RevertTransactionResponse(java.util.Optional.ofNullable(_out));
+                _res.withV2RevertTransactionResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -4904,8 +5705,8 @@ public class Ledger implements
      * Update ledger metadata
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequestBuilder v2UpdateLedgerMetadata() {
-        return new com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequestBuilder(this);
+    public V2UpdateLedgerMetadataRequestBuilder v2UpdateLedgerMetadata() {
+        return new V2UpdateLedgerMetadataRequestBuilder(this);
     }
 
     /**
@@ -4914,20 +5715,25 @@ public class Ledger implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse v2UpdateLedgerMetadata(
-            com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest request) throws Exception {
+    public V2UpdateLedgerMetadataResponse v2UpdateLedgerMetadata(
+            V2UpdateLedgerMetadataRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest.class,
+                V2UpdateLedgerMetadataRequest.class,
                 _baseUrl,
                 "/api/ledger/v2/{ledger}/metadata",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V2UpdateLedgerMetadataRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "requestBody", "json", false);
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -4940,7 +5746,10 @@ public class Ledger implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("v2UpdateLedgerMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "v2UpdateLedgerMetadata", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4948,18 +5757,28 @@ public class Ledger implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("v2UpdateLedgerMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "v2UpdateLedgerMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("v2UpdateLedgerMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "v2UpdateLedgerMetadata",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("v2UpdateLedgerMetadata", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "v2UpdateLedgerMetadata",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4967,14 +5786,14 @@ public class Ledger implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse
+        V2UpdateLedgerMetadataResponse.Builder _resBuilder = 
+            V2UpdateLedgerMetadataResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse _res = _resBuilder.build();
+        V2UpdateLedgerMetadataResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
             // no content 
@@ -4982,23 +5801,23 @@ public class Ledger implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.V2ErrorResponse _out = Utils.mapper().readValue(
+                V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.V2ErrorResponse>() {});
+                    new TypeReference<V2ErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

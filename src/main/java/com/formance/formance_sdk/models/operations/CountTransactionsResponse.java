@@ -4,25 +4,29 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-public class CountTransactionsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class CountTransactionsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
 
-    private java.util.Map<String, java.util.List<String>> headers;
+    private Map<String, List<String>> headers;
 
     /**
      * HTTP response status code for this operation
@@ -37,7 +41,7 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
     @JsonCreator
     public CountTransactionsResponse(
             String contentType,
-            java.util.Map<String, java.util.List<String>> headers,
+            Map<String, List<String>> headers,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -59,7 +63,7 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
     }
 
     @JsonIgnore
-    public java.util.Map<String, java.util.List<String>> headers() {
+    public Map<String, List<String>> headers() {
         return headers;
     }
 
@@ -92,7 +96,7 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
         return this;
     }
 
-    public CountTransactionsResponse withHeaders(java.util.Map<String, java.util.List<String>> headers) {
+    public CountTransactionsResponse withHeaders(Map<String, List<String>> headers) {
         Utils.checkNotNull(headers, "headers");
         this.headers = headers;
         return this;
@@ -126,15 +130,15 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
         }
         CountTransactionsResponse other = (CountTransactionsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.headers, other.headers) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.headers, other.headers) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             headers,
             statusCode,
@@ -154,7 +158,7 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
  
         private String contentType;
  
-        private java.util.Map<String, java.util.List<String>> headers;
+        private Map<String, List<String>> headers;
  
         private Integer statusCode;
  
@@ -173,7 +177,7 @@ public class CountTransactionsResponse implements com.formance.formance_sdk.util
             return this;
         }
 
-        public Builder headers(java.util.Map<String, java.util.List<String>> headers) {
+        public Builder headers(Map<String, List<String>> headers) {
             Utils.checkNotNull(headers, "headers");
             this.headers = headers;
             return this;

@@ -5,8 +5,6 @@
 package com.formance.formance_sdk.utils;
 
 import java.util.Optional;
-import com.formance.formance_sdk.utils.Utils;
-
 
 public class RetryConfig {
 

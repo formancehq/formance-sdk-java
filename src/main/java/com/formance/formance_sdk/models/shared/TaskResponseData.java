@@ -4,28 +4,25 @@
 
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
-import java.time.OffsetDateTime;
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.formance.formance_sdk.utils.OneOfDeserializer;
 import com.formance.formance_sdk.utils.TypedObject;
 import com.formance.formance_sdk.utils.Utils.JsonShape;
+import com.formance.formance_sdk.utils.Utils.TypeReferenceWithShape;
+import com.formance.formance_sdk.utils.Utils;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 
 
 @JsonDeserialize(using = TaskResponseData._Deserializer.class)
 public class TaskResponseData {
 
-    @com.fasterxml.jackson.annotation.JsonValue
+    @JsonValue
     private TypedObject value;
     
     private TaskResponseData(TypedObject value) {
@@ -75,14 +72,14 @@ public class TaskResponseData {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code TaskStripe}</li>
-     * <li>{@code TaskWise}</li>
-     * <li>{@code TaskCurrencyCloud}</li>
-     * <li>{@code TaskDummyPay}</li>
-     * <li>{@code TaskModulr}</li>
-     * <li>{@code TaskBankingCircle}</li>
-     * <li>{@code TaskMangoPay}</li>
-     * <li>{@code TaskMoneycorp}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.TaskStripe}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.TaskWise}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.TaskCurrencyCloud}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.TaskDummyPay}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.TaskModulr}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.TaskBankingCircle}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.TaskMangoPay}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.TaskMoneycorp}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -109,27 +106,27 @@ public class TaskResponseData {
             return false;
         }
         TaskResponseData other = (TaskResponseData) o;
-        return java.util.Objects.deepEquals(this.value.value(), other.value.value()); 
+        return Objects.deepEquals(this.value.value(), other.value.value()); 
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(value.value());
+        return Objects.hash(value.value());
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends com.formance.formance_sdk.utils.OneOfDeserializer<TaskResponseData> {
+    public static final class _Deserializer extends OneOfDeserializer<TaskResponseData> {
 
         public _Deserializer() {
             super(TaskResponseData.class,
-                  Utils.TypeReferenceWithShape.of(new TypeReference<TaskStripe>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<TaskWise>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<TaskCurrencyCloud>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<TaskDummyPay>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<TaskModulr>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<TaskBankingCircle>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<TaskMangoPay>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<TaskMoneycorp>() {}, Utils.JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskStripe>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskWise>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskCurrencyCloud>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskDummyPay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskModulr>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskBankingCircle>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskMangoPay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskMoneycorp>() {}, JsonShape.DEFAULT));
         }
     }
     

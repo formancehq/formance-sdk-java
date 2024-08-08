@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class CreateWalletRequest {
 
@@ -21,14 +21,14 @@ public class CreateWalletRequest {
      * Custom metadata to attach to this wallet.
      */
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     @JsonProperty("name")
     private String name;
 
     @JsonCreator
     public CreateWalletRequest(
-            @JsonProperty("metadata") java.util.Map<String, String> metadata,
+            @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("name") String name) {
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(name, "name");
@@ -40,7 +40,7 @@ public class CreateWalletRequest {
      * Custom metadata to attach to this wallet.
      */
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
@@ -56,7 +56,7 @@ public class CreateWalletRequest {
     /**
      * Custom metadata to attach to this wallet.
      */
-    public CreateWalletRequest withMetadata(java.util.Map<String, String> metadata) {
+    public CreateWalletRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -78,13 +78,13 @@ public class CreateWalletRequest {
         }
         CreateWalletRequest other = (CreateWalletRequest) o;
         return 
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             metadata,
             name);
     }
@@ -98,7 +98,7 @@ public class CreateWalletRequest {
     
     public final static class Builder {
  
-        private java.util.Map<String, String> metadata;
+        private Map<String, String> metadata;
  
         private String name;  
         
@@ -109,7 +109,7 @@ public class CreateWalletRequest {
         /**
          * Custom metadata to attach to this wallet.
          */
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

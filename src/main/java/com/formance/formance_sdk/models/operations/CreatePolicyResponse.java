@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.PolicyResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Response {
+
+public class CreatePolicyResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse;
+    private Optional<? extends PolicyResponse> policyResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
     @JsonCreator
     public CreatePolicyResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse,
+            Optional<? extends PolicyResponse> policyResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.PolicyResponse>) policyResponse;
+    public Optional<PolicyResponse> policyResponse() {
+        return (Optional<PolicyResponse>) policyResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
-    public CreatePolicyResponse withPolicyResponse(com.formance.formance_sdk.models.shared.PolicyResponse policyResponse) {
+    public CreatePolicyResponse withPolicyResponse(PolicyResponse policyResponse) {
         Utils.checkNotNull(policyResponse, "policyResponse");
         this.policyResponse = Optional.ofNullable(policyResponse);
         return this;
@@ -119,7 +123,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
-    public CreatePolicyResponse withPolicyResponse(Optional<? extends com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse) {
+    public CreatePolicyResponse withPolicyResponse(Optional<? extends PolicyResponse> policyResponse) {
         Utils.checkNotNull(policyResponse, "policyResponse");
         this.policyResponse = policyResponse;
         return this;
@@ -153,15 +157,15 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
         }
         CreatePolicyResponse other = (CreatePolicyResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.policyResponse, other.policyResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.policyResponse, other.policyResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             policyResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse = Optional.empty();
+        private Optional<? extends PolicyResponse> policyResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
         /**
          * OK
          */
-        public Builder policyResponse(com.formance.formance_sdk.models.shared.PolicyResponse policyResponse) {
+        public Builder policyResponse(PolicyResponse policyResponse) {
             Utils.checkNotNull(policyResponse, "policyResponse");
             this.policyResponse = Optional.ofNullable(policyResponse);
             return this;
@@ -212,7 +216,7 @@ public class CreatePolicyResponse implements com.formance.formance_sdk.utils.Res
         /**
          * OK
          */
-        public Builder policyResponse(Optional<? extends com.formance.formance_sdk.models.shared.PolicyResponse> policyResponse) {
+        public Builder policyResponse(Optional<? extends PolicyResponse> policyResponse) {
             Utils.checkNotNull(policyResponse, "policyResponse");
             this.policyResponse = policyResponse;
             return this;

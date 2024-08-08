@@ -4,17 +4,18 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.PostTransaction;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateTransactionRequest {
 
@@ -25,7 +26,7 @@ public class CreateTransactionRequest {
      * 
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.PostTransaction postTransaction;
+    private PostTransaction postTransaction;
 
     /**
      * Name of the ledger.
@@ -37,13 +38,13 @@ public class CreateTransactionRequest {
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")
-    private Optional<? extends Boolean> preview;
+    private Optional<Boolean> preview;
 
     @JsonCreator
     public CreateTransactionRequest(
-            com.formance.formance_sdk.models.shared.PostTransaction postTransaction,
+            PostTransaction postTransaction,
             String ledger,
-            Optional<? extends Boolean> preview) {
+            Optional<Boolean> preview) {
         Utils.checkNotNull(postTransaction, "postTransaction");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(preview, "preview");
@@ -53,7 +54,7 @@ public class CreateTransactionRequest {
     }
     
     public CreateTransactionRequest(
-            com.formance.formance_sdk.models.shared.PostTransaction postTransaction,
+            PostTransaction postTransaction,
             String ledger) {
         this(postTransaction, ledger, Optional.empty());
     }
@@ -65,7 +66,7 @@ public class CreateTransactionRequest {
      * 
      */
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.PostTransaction postTransaction() {
+    public PostTransaction postTransaction() {
         return postTransaction;
     }
 
@@ -80,10 +81,9 @@ public class CreateTransactionRequest {
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> preview() {
-        return (Optional<Boolean>) preview;
+        return preview;
     }
 
     public final static Builder builder() {
@@ -96,7 +96,7 @@ public class CreateTransactionRequest {
      *   - `script`: enabling more complex transactions with Numscript
      * 
      */
-    public CreateTransactionRequest withPostTransaction(com.formance.formance_sdk.models.shared.PostTransaction postTransaction) {
+    public CreateTransactionRequest withPostTransaction(PostTransaction postTransaction) {
         Utils.checkNotNull(postTransaction, "postTransaction");
         this.postTransaction = postTransaction;
         return this;
@@ -123,7 +123,7 @@ public class CreateTransactionRequest {
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    public CreateTransactionRequest withPreview(Optional<? extends Boolean> preview) {
+    public CreateTransactionRequest withPreview(Optional<Boolean> preview) {
         Utils.checkNotNull(preview, "preview");
         this.preview = preview;
         return this;
@@ -139,14 +139,14 @@ public class CreateTransactionRequest {
         }
         CreateTransactionRequest other = (CreateTransactionRequest) o;
         return 
-            java.util.Objects.deepEquals(this.postTransaction, other.postTransaction) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.preview, other.preview);
+            Objects.deepEquals(this.postTransaction, other.postTransaction) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.preview, other.preview);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             postTransaction,
             ledger,
             preview);
@@ -162,11 +162,11 @@ public class CreateTransactionRequest {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.PostTransaction postTransaction;
+        private PostTransaction postTransaction;
  
         private String ledger;
  
-        private Optional<? extends Boolean> preview = Optional.empty();  
+        private Optional<Boolean> preview = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -178,7 +178,7 @@ public class CreateTransactionRequest {
          *   - `script`: enabling more complex transactions with Numscript
          * 
          */
-        public Builder postTransaction(com.formance.formance_sdk.models.shared.PostTransaction postTransaction) {
+        public Builder postTransaction(PostTransaction postTransaction) {
             Utils.checkNotNull(postTransaction, "postTransaction");
             this.postTransaction = postTransaction;
             return this;
@@ -205,7 +205,7 @@ public class CreateTransactionRequest {
         /**
          * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
          */
-        public Builder preview(Optional<? extends Boolean> preview) {
+        public Builder preview(Optional<Boolean> preview) {
             Utils.checkNotNull(preview, "preview");
             this.preview = preview;
             return this;

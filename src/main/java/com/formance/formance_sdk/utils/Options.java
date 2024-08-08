@@ -6,8 +6,6 @@ package com.formance.formance_sdk.utils;
 
 import java.util.Optional;
 import java.util.List;
-import com.formance.formance_sdk.utils.Utils;
-
 
 public class Options {
 

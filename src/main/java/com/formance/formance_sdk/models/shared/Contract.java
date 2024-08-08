@@ -4,32 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Contract {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private Optional<? extends String> account;
+    private Optional<String> account;
 
     @JsonProperty("expr")
     private Expr expr;
 
     @JsonCreator
     public Contract(
-            @JsonProperty("account") Optional<? extends String> account,
+            @JsonProperty("account") Optional<String> account,
             @JsonProperty("expr") Expr expr) {
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(expr, "expr");
@@ -42,10 +41,9 @@ public class Contract {
         this(Optional.empty(), expr);
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> account() {
-        return (Optional<String>) account;
+        return account;
     }
 
     @JsonIgnore
@@ -63,7 +61,7 @@ public class Contract {
         return this;
     }
 
-    public Contract withAccount(Optional<? extends String> account) {
+    public Contract withAccount(Optional<String> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
@@ -85,13 +83,13 @@ public class Contract {
         }
         Contract other = (Contract) o;
         return 
-            java.util.Objects.deepEquals(this.account, other.account) &&
-            java.util.Objects.deepEquals(this.expr, other.expr);
+            Objects.deepEquals(this.account, other.account) &&
+            Objects.deepEquals(this.expr, other.expr);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             account,
             expr);
     }
@@ -105,7 +103,7 @@ public class Contract {
     
     public final static class Builder {
  
-        private Optional<? extends String> account = Optional.empty();
+        private Optional<String> account = Optional.empty();
  
         private Expr expr;  
         
@@ -119,7 +117,7 @@ public class Contract {
             return this;
         }
 
-        public Builder account(Optional<? extends String> account) {
+        public Builder account(Optional<String> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
             return this;

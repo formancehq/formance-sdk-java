@@ -31,17 +31,10 @@ Retrieve OpenID connect well-knowns.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -49,8 +42,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -58,7 +51,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -73,7 +66,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse](../../models/operations/GetOIDCWellKnownsResponse.md)**
+**[GetOIDCWellKnownsResponse](../../models/operations/GetOIDCWellKnownsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -90,17 +83,10 @@ Show stack version information
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -108,8 +94,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -119,7 +105,7 @@ public class Application {
             if (res.getVersionsResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -134,7 +120,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetVersionsResponse](../../models/operations/GetVersionsResponse.md)**
+**[GetVersionsResponse](../../models/operations/GetVersionsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

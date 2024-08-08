@@ -4,33 +4,33 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class BankAccount {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountID")
-    private Optional<? extends String> accountID;
+    private Optional<String> accountID;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountNumber")
-    private Optional<? extends String> accountNumber;
+    private Optional<String> accountNumber;
 
     @JsonProperty("connectorID")
     private String connectorID;
@@ -43,44 +43,44 @@ public class BankAccount {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iban")
-    private Optional<? extends String> iban;
+    private Optional<String> iban;
 
     @JsonProperty("id")
     private String id;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends java.util.Map<String, String>> metadata;
+    private JsonNullable<? extends Map<String, String>> metadata;
 
     @JsonProperty("name")
     private String name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
-    private Optional<? extends String> provider;
+    private Optional<String> provider;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedAccounts")
-    private Optional<? extends java.util.List<BankAccountRelatedAccounts>> relatedAccounts;
+    private Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("swiftBicCode")
-    private Optional<? extends String> swiftBicCode;
+    private Optional<String> swiftBicCode;
 
     @JsonCreator
     public BankAccount(
-            @JsonProperty("accountID") Optional<? extends String> accountID,
-            @JsonProperty("accountNumber") Optional<? extends String> accountNumber,
+            @JsonProperty("accountID") Optional<String> accountID,
+            @JsonProperty("accountNumber") Optional<String> accountNumber,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("country") String country,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("iban") Optional<? extends String> iban,
+            @JsonProperty("iban") Optional<String> iban,
             @JsonProperty("id") String id,
-            @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, String>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name,
-            @JsonProperty("provider") Optional<? extends String> provider,
-            @JsonProperty("relatedAccounts") Optional<? extends java.util.List<BankAccountRelatedAccounts>> relatedAccounts,
-            @JsonProperty("swiftBicCode") Optional<? extends String> swiftBicCode) {
+            @JsonProperty("provider") Optional<String> provider,
+            @JsonProperty("relatedAccounts") Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts,
+            @JsonProperty("swiftBicCode") Optional<String> swiftBicCode) {
         Utils.checkNotNull(accountID, "accountID");
         Utils.checkNotNull(accountNumber, "accountNumber");
         Utils.checkNotNull(connectorID, "connectorID");
@@ -116,16 +116,14 @@ public class BankAccount {
         this(Optional.empty(), Optional.empty(), connectorID, country, createdAt, Optional.empty(), id, JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> accountID() {
-        return (Optional<String>) accountID;
+        return accountID;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> accountNumber() {
-        return (Optional<String>) accountNumber;
+        return accountNumber;
     }
 
     @JsonIgnore
@@ -143,10 +141,9 @@ public class BankAccount {
         return createdAt;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> iban() {
-        return (Optional<String>) iban;
+        return iban;
     }
 
     @JsonIgnore
@@ -156,8 +153,8 @@ public class BankAccount {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.util.Map<String, String>> metadata() {
-        return (JsonNullable<java.util.Map<String, String>>) metadata;
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -165,22 +162,20 @@ public class BankAccount {
         return name;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> provider() {
-        return (Optional<String>) provider;
+        return provider;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<BankAccountRelatedAccounts>> relatedAccounts() {
-        return (Optional<java.util.List<BankAccountRelatedAccounts>>) relatedAccounts;
+    public Optional<List<BankAccountRelatedAccounts>> relatedAccounts() {
+        return (Optional<List<BankAccountRelatedAccounts>>) relatedAccounts;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> swiftBicCode() {
-        return (Optional<String>) swiftBicCode;
+        return swiftBicCode;
     }
 
     public final static Builder builder() {
@@ -193,7 +188,7 @@ public class BankAccount {
         return this;
     }
 
-    public BankAccount withAccountID(Optional<? extends String> accountID) {
+    public BankAccount withAccountID(Optional<String> accountID) {
         Utils.checkNotNull(accountID, "accountID");
         this.accountID = accountID;
         return this;
@@ -205,7 +200,7 @@ public class BankAccount {
         return this;
     }
 
-    public BankAccount withAccountNumber(Optional<? extends String> accountNumber) {
+    public BankAccount withAccountNumber(Optional<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = accountNumber;
         return this;
@@ -235,7 +230,7 @@ public class BankAccount {
         return this;
     }
 
-    public BankAccount withIban(Optional<? extends String> iban) {
+    public BankAccount withIban(Optional<String> iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = iban;
         return this;
@@ -247,13 +242,13 @@ public class BankAccount {
         return this;
     }
 
-    public BankAccount withMetadata(java.util.Map<String, String> metadata) {
+    public BankAccount withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public BankAccount withMetadata(JsonNullable<? extends java.util.Map<String, String>> metadata) {
+    public BankAccount withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -271,19 +266,19 @@ public class BankAccount {
         return this;
     }
 
-    public BankAccount withProvider(Optional<? extends String> provider) {
+    public BankAccount withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
-    public BankAccount withRelatedAccounts(java.util.List<BankAccountRelatedAccounts> relatedAccounts) {
+    public BankAccount withRelatedAccounts(List<BankAccountRelatedAccounts> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = Optional.ofNullable(relatedAccounts);
         return this;
     }
 
-    public BankAccount withRelatedAccounts(Optional<? extends java.util.List<BankAccountRelatedAccounts>> relatedAccounts) {
+    public BankAccount withRelatedAccounts(Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = relatedAccounts;
         return this;
@@ -295,7 +290,7 @@ public class BankAccount {
         return this;
     }
 
-    public BankAccount withSwiftBicCode(Optional<? extends String> swiftBicCode) {
+    public BankAccount withSwiftBicCode(Optional<String> swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = swiftBicCode;
         return this;
@@ -311,23 +306,23 @@ public class BankAccount {
         }
         BankAccount other = (BankAccount) o;
         return 
-            java.util.Objects.deepEquals(this.accountID, other.accountID) &&
-            java.util.Objects.deepEquals(this.accountNumber, other.accountNumber) &&
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.country, other.country) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.iban, other.iban) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.provider, other.provider) &&
-            java.util.Objects.deepEquals(this.relatedAccounts, other.relatedAccounts) &&
-            java.util.Objects.deepEquals(this.swiftBicCode, other.swiftBicCode);
+            Objects.deepEquals(this.accountID, other.accountID) &&
+            Objects.deepEquals(this.accountNumber, other.accountNumber) &&
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.country, other.country) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.iban, other.iban) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.provider, other.provider) &&
+            Objects.deepEquals(this.relatedAccounts, other.relatedAccounts) &&
+            Objects.deepEquals(this.swiftBicCode, other.swiftBicCode);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accountID,
             accountNumber,
             connectorID,
@@ -361,9 +356,9 @@ public class BankAccount {
     
     public final static class Builder {
  
-        private Optional<? extends String> accountID = Optional.empty();
+        private Optional<String> accountID = Optional.empty();
  
-        private Optional<? extends String> accountNumber = Optional.empty();
+        private Optional<String> accountNumber = Optional.empty();
  
         private String connectorID;
  
@@ -371,19 +366,19 @@ public class BankAccount {
  
         private OffsetDateTime createdAt;
  
-        private Optional<? extends String> iban = Optional.empty();
+        private Optional<String> iban = Optional.empty();
  
         private String id;
  
-        private JsonNullable<? extends java.util.Map<String, String>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
  
         private String name;
  
-        private Optional<? extends String> provider = Optional.empty();
+        private Optional<String> provider = Optional.empty();
  
-        private Optional<? extends java.util.List<BankAccountRelatedAccounts>> relatedAccounts = Optional.empty();
+        private Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts = Optional.empty();
  
-        private Optional<? extends String> swiftBicCode = Optional.empty();  
+        private Optional<String> swiftBicCode = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -395,7 +390,7 @@ public class BankAccount {
             return this;
         }
 
-        public Builder accountID(Optional<? extends String> accountID) {
+        public Builder accountID(Optional<String> accountID) {
             Utils.checkNotNull(accountID, "accountID");
             this.accountID = accountID;
             return this;
@@ -407,7 +402,7 @@ public class BankAccount {
             return this;
         }
 
-        public Builder accountNumber(Optional<? extends String> accountNumber) {
+        public Builder accountNumber(Optional<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
             this.accountNumber = accountNumber;
             return this;
@@ -437,7 +432,7 @@ public class BankAccount {
             return this;
         }
 
-        public Builder iban(Optional<? extends String> iban) {
+        public Builder iban(Optional<String> iban) {
             Utils.checkNotNull(iban, "iban");
             this.iban = iban;
             return this;
@@ -449,13 +444,13 @@ public class BankAccount {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(JsonNullable<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -473,19 +468,19 @@ public class BankAccount {
             return this;
         }
 
-        public Builder provider(Optional<? extends String> provider) {
+        public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;
         }
 
-        public Builder relatedAccounts(java.util.List<BankAccountRelatedAccounts> relatedAccounts) {
+        public Builder relatedAccounts(List<BankAccountRelatedAccounts> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
             this.relatedAccounts = Optional.ofNullable(relatedAccounts);
             return this;
         }
 
-        public Builder relatedAccounts(Optional<? extends java.util.List<BankAccountRelatedAccounts>> relatedAccounts) {
+        public Builder relatedAccounts(Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
             this.relatedAccounts = relatedAccounts;
             return this;
@@ -497,7 +492,7 @@ public class BankAccount {
             return this;
         }
 
-        public Builder swiftBicCode(Optional<? extends String> swiftBicCode) {
+        public Builder swiftBicCode(Optional<String> swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
             this.swiftBicCode = swiftBicCode;
             return this;

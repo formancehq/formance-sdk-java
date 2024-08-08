@@ -4,21 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class V2BulkElementAddMetadataData {
 
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     @JsonProperty("targetId")
     private V2TargetId targetId;
@@ -28,7 +28,7 @@ public class V2BulkElementAddMetadataData {
 
     @JsonCreator
     public V2BulkElementAddMetadataData(
-            @JsonProperty("metadata") java.util.Map<String, String> metadata,
+            @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("targetId") V2TargetId targetId,
             @JsonProperty("targetType") V2TargetType targetType) {
         metadata = Utils.emptyMapIfNull(metadata);
@@ -40,7 +40,7 @@ public class V2BulkElementAddMetadataData {
     }
 
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
@@ -58,7 +58,7 @@ public class V2BulkElementAddMetadataData {
         return new Builder();
     }
 
-    public V2BulkElementAddMetadataData withMetadata(java.util.Map<String, String> metadata) {
+    public V2BulkElementAddMetadataData withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -86,14 +86,14 @@ public class V2BulkElementAddMetadataData {
         }
         V2BulkElementAddMetadataData other = (V2BulkElementAddMetadataData) o;
         return 
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.targetId, other.targetId) &&
-            java.util.Objects.deepEquals(this.targetType, other.targetType);
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.targetId, other.targetId) &&
+            Objects.deepEquals(this.targetType, other.targetType);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             metadata,
             targetId,
             targetType);
@@ -109,7 +109,7 @@ public class V2BulkElementAddMetadataData {
     
     public final static class Builder {
  
-        private java.util.Map<String, String> metadata;
+        private Map<String, String> metadata;
  
         private V2TargetId targetId;
  
@@ -119,7 +119,7 @@ public class V2BulkElementAddMetadataData {
           // force use of static builder() method
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

@@ -4,32 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class MigrationInfo {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("date")
-    private Optional<? extends OffsetDateTime> date;
+    private Optional<OffsetDateTime> date;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
@@ -37,14 +36,14 @@ public class MigrationInfo {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
-    private Optional<? extends Long> version;
+    private Optional<Long> version;
 
     @JsonCreator
     public MigrationInfo(
-            @JsonProperty("date") Optional<? extends OffsetDateTime> date,
-            @JsonProperty("name") Optional<? extends String> name,
+            @JsonProperty("date") Optional<OffsetDateTime> date,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("state") Optional<? extends State> state,
-            @JsonProperty("version") Optional<? extends Long> version) {
+            @JsonProperty("version") Optional<Long> version) {
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(state, "state");
@@ -59,16 +58,14 @@ public class MigrationInfo {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> date() {
-        return (Optional<OffsetDateTime>) date;
+        return date;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
     @SuppressWarnings("unchecked")
@@ -77,10 +74,9 @@ public class MigrationInfo {
         return (Optional<State>) state;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> version() {
-        return (Optional<Long>) version;
+        return version;
     }
 
     public final static Builder builder() {
@@ -93,7 +89,7 @@ public class MigrationInfo {
         return this;
     }
 
-    public MigrationInfo withDate(Optional<? extends OffsetDateTime> date) {
+    public MigrationInfo withDate(Optional<OffsetDateTime> date) {
         Utils.checkNotNull(date, "date");
         this.date = date;
         return this;
@@ -105,7 +101,7 @@ public class MigrationInfo {
         return this;
     }
 
-    public MigrationInfo withName(Optional<? extends String> name) {
+    public MigrationInfo withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -129,7 +125,7 @@ public class MigrationInfo {
         return this;
     }
 
-    public MigrationInfo withVersion(Optional<? extends Long> version) {
+    public MigrationInfo withVersion(Optional<Long> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
         return this;
@@ -145,15 +141,15 @@ public class MigrationInfo {
         }
         MigrationInfo other = (MigrationInfo) o;
         return 
-            java.util.Objects.deepEquals(this.date, other.date) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.state, other.state) &&
-            java.util.Objects.deepEquals(this.version, other.version);
+            Objects.deepEquals(this.date, other.date) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.state, other.state) &&
+            Objects.deepEquals(this.version, other.version);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             date,
             name,
             state,
@@ -171,13 +167,13 @@ public class MigrationInfo {
     
     public final static class Builder {
  
-        private Optional<? extends OffsetDateTime> date = Optional.empty();
+        private Optional<OffsetDateTime> date = Optional.empty();
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
         private Optional<? extends State> state = Optional.empty();
  
-        private Optional<? extends Long> version = Optional.empty();  
+        private Optional<Long> version = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -189,7 +185,7 @@ public class MigrationInfo {
             return this;
         }
 
-        public Builder date(Optional<? extends OffsetDateTime> date) {
+        public Builder date(Optional<OffsetDateTime> date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
             return this;
@@ -201,7 +197,7 @@ public class MigrationInfo {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -225,7 +221,7 @@ public class MigrationInfo {
             return this;
         }
 
-        public Builder version(Optional<? extends Long> version) {
+        public Builder version(Optional<Long> version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
             return this;

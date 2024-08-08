@@ -5,27 +5,49 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
+import com.formance.formance_sdk.models.operations.ActivateConfigRequest;
+import com.formance.formance_sdk.models.operations.ActivateConfigRequestBuilder;
+import com.formance.formance_sdk.models.operations.ActivateConfigResponse;
+import com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest;
+import com.formance.formance_sdk.models.operations.ChangeConfigSecretRequestBuilder;
+import com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse;
+import com.formance.formance_sdk.models.operations.DeactivateConfigRequest;
+import com.formance.formance_sdk.models.operations.DeactivateConfigRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeactivateConfigResponse;
+import com.formance.formance_sdk.models.operations.DeleteConfigRequest;
+import com.formance.formance_sdk.models.operations.DeleteConfigRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeleteConfigResponse;
+import com.formance.formance_sdk.models.operations.GetManyConfigsRequest;
+import com.formance.formance_sdk.models.operations.GetManyConfigsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetManyConfigsResponse;
+import com.formance.formance_sdk.models.operations.InsertConfigRequestBuilder;
+import com.formance.formance_sdk.models.operations.InsertConfigResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.models.operations.TestConfigRequest;
+import com.formance.formance_sdk.models.operations.TestConfigRequestBuilder;
+import com.formance.formance_sdk.models.operations.TestConfigResponse;
+import com.formance.formance_sdk.models.shared.AttemptResponse;
+import com.formance.formance_sdk.models.shared.ConfigResponse;
+import com.formance.formance_sdk.models.shared.ConfigUser;
+import com.formance.formance_sdk.models.shared.ConfigsResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.JSON;
-import com.formance.formance_sdk.utils.Retries.NonRetryableException;
 import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Exception;
+import java.lang.Object;
+import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import org.apache.http.NameValuePair;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
+import java.util.Optional; 
 
 public class Webhooks implements
             MethodCallActivateConfig,
@@ -48,8 +70,8 @@ public class Webhooks implements
      * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ActivateConfigRequestBuilder activateConfig() {
-        return new com.formance.formance_sdk.models.operations.ActivateConfigRequestBuilder(this);
+    public ActivateConfigRequestBuilder activateConfig() {
+        return new ActivateConfigRequestBuilder(this);
     }
 
     /**
@@ -59,11 +81,11 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ActivateConfigResponse activateConfig(
-            com.formance.formance_sdk.models.operations.ActivateConfigRequest request) throws Exception {
+    public ActivateConfigResponse activateConfig(
+            ActivateConfigRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ActivateConfigRequest.class,
+                ActivateConfigRequest.class,
                 _baseUrl,
                 "/api/webhooks/configs/{id}/activate",
                 request, null);
@@ -80,7 +102,10 @@ public class Webhooks implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("activateConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "activateConfig", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -88,18 +113,28 @@ public class Webhooks implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("activateConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "activateConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("activateConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "activateConfig",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("activateConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "activateConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -107,49 +142,49 @@ public class Webhooks implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ActivateConfigResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ActivateConfigResponse
+        ActivateConfigResponse.Builder _resBuilder = 
+            ActivateConfigResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ActivateConfigResponse _res = _resBuilder.build();
+        ActivateConfigResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConfigResponse _out = Utils.mapper().readValue(
+                ConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConfigResponse>() {});
-                _res.withConfigResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConfigResponse>() {});
+                _res.withConfigResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
+                WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
+                    new TypeReference<WebhooksErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -163,8 +198,8 @@ public class Webhooks implements
      * 
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.ChangeConfigSecretRequestBuilder changeConfigSecret() {
-        return new com.formance.formance_sdk.models.operations.ChangeConfigSecretRequestBuilder(this);
+    public ChangeConfigSecretRequestBuilder changeConfigSecret() {
+        return new ChangeConfigSecretRequestBuilder(this);
     }
 
     /**
@@ -178,20 +213,25 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse changeConfigSecret(
-            com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest request) throws Exception {
+    public ChangeConfigSecretResponse changeConfigSecret(
+            ChangeConfigSecretRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest.class,
+                ChangeConfigSecretRequest.class,
                 _baseUrl,
                 "/api/webhooks/configs/{id}/secret/change",
                 request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<ChangeConfigSecretRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "configChangeSecret", "json", false);
+                _convertedRequest, 
+                "configChangeSecret",
+                "json",
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -204,7 +244,10 @@ public class Webhooks implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("changeConfigSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "changeConfigSecret", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -212,18 +255,28 @@ public class Webhooks implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("changeConfigSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "changeConfigSecret",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("changeConfigSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "changeConfigSecret",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("changeConfigSecret", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "changeConfigSecret",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -231,49 +284,49 @@ public class Webhooks implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse
+        ChangeConfigSecretResponse.Builder _resBuilder = 
+            ChangeConfigSecretResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse _res = _resBuilder.build();
+        ChangeConfigSecretResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConfigResponse _out = Utils.mapper().readValue(
+                ConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConfigResponse>() {});
-                _res.withConfigResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConfigResponse>() {});
+                _res.withConfigResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
+                WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
+                    new TypeReference<WebhooksErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -283,8 +336,8 @@ public class Webhooks implements
      * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeactivateConfigRequestBuilder deactivateConfig() {
-        return new com.formance.formance_sdk.models.operations.DeactivateConfigRequestBuilder(this);
+    public DeactivateConfigRequestBuilder deactivateConfig() {
+        return new DeactivateConfigRequestBuilder(this);
     }
 
     /**
@@ -294,11 +347,11 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeactivateConfigResponse deactivateConfig(
-            com.formance.formance_sdk.models.operations.DeactivateConfigRequest request) throws Exception {
+    public DeactivateConfigResponse deactivateConfig(
+            DeactivateConfigRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeactivateConfigRequest.class,
+                DeactivateConfigRequest.class,
                 _baseUrl,
                 "/api/webhooks/configs/{id}/deactivate",
                 request, null);
@@ -315,7 +368,10 @@ public class Webhooks implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deactivateConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deactivateConfig", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -323,18 +379,28 @@ public class Webhooks implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deactivateConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deactivateConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deactivateConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deactivateConfig",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deactivateConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deactivateConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -342,49 +408,49 @@ public class Webhooks implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeactivateConfigResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeactivateConfigResponse
+        DeactivateConfigResponse.Builder _resBuilder = 
+            DeactivateConfigResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeactivateConfigResponse _res = _resBuilder.build();
+        DeactivateConfigResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConfigResponse _out = Utils.mapper().readValue(
+                ConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConfigResponse>() {});
-                _res.withConfigResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConfigResponse>() {});
+                _res.withConfigResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
+                WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
+                    new TypeReference<WebhooksErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -394,8 +460,8 @@ public class Webhooks implements
      * Delete a webhooks config by ID.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.DeleteConfigRequestBuilder deleteConfig() {
-        return new com.formance.formance_sdk.models.operations.DeleteConfigRequestBuilder(this);
+    public DeleteConfigRequestBuilder deleteConfig() {
+        return new DeleteConfigRequestBuilder(this);
     }
 
     /**
@@ -405,11 +471,11 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.DeleteConfigResponse deleteConfig(
-            com.formance.formance_sdk.models.operations.DeleteConfigRequest request) throws Exception {
+    public DeleteConfigResponse deleteConfig(
+            DeleteConfigRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.DeleteConfigRequest.class,
+                DeleteConfigRequest.class,
                 _baseUrl,
                 "/api/webhooks/configs/{id}",
                 request, null);
@@ -426,7 +492,10 @@ public class Webhooks implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("deleteConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "deleteConfig", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -434,18 +503,28 @@ public class Webhooks implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("deleteConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "deleteConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("deleteConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "deleteConfig",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("deleteConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "deleteConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -453,14 +532,14 @@ public class Webhooks implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.DeleteConfigResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.DeleteConfigResponse
+        DeleteConfigResponse.Builder _resBuilder = 
+            DeleteConfigResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.DeleteConfigResponse _res = _resBuilder.build();
+        DeleteConfigResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             // no content 
@@ -468,23 +547,23 @@ public class Webhooks implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
+                WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
+                    new TypeReference<WebhooksErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -494,8 +573,8 @@ public class Webhooks implements
      * Sorted by updated date descending
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.GetManyConfigsRequestBuilder getManyConfigs() {
-        return new com.formance.formance_sdk.models.operations.GetManyConfigsRequestBuilder(this);
+    public GetManyConfigsRequestBuilder getManyConfigs() {
+        return new GetManyConfigsRequestBuilder(this);
     }
 
     /**
@@ -505,8 +584,8 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.GetManyConfigsResponse getManyConfigs(
-            com.formance.formance_sdk.models.operations.GetManyConfigsRequest request) throws Exception {
+    public GetManyConfigsResponse getManyConfigs(
+            GetManyConfigsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -518,7 +597,7 @@ public class Webhooks implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                com.formance.formance_sdk.models.operations.GetManyConfigsRequest.class,
+                GetManyConfigsRequest.class,
                 request, 
                 null));
 
@@ -529,7 +608,10 @@ public class Webhooks implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getManyConfigs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "getManyConfigs", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -537,18 +619,28 @@ public class Webhooks implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getManyConfigs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "getManyConfigs",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getManyConfigs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "getManyConfigs",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getManyConfigs", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getManyConfigs",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -556,49 +648,49 @@ public class Webhooks implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.GetManyConfigsResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.GetManyConfigsResponse
+        GetManyConfigsResponse.Builder _resBuilder = 
+            GetManyConfigsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.GetManyConfigsResponse _res = _resBuilder.build();
+        GetManyConfigsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConfigsResponse _out = Utils.mapper().readValue(
+                ConfigsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConfigsResponse>() {});
-                _res.withConfigsResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConfigsResponse>() {});
+                _res.withConfigsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
+                WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
+                    new TypeReference<WebhooksErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -617,8 +709,8 @@ public class Webhooks implements
      * 
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.InsertConfigRequestBuilder insertConfig() {
-        return new com.formance.formance_sdk.models.operations.InsertConfigRequestBuilder(this);
+    public InsertConfigRequestBuilder insertConfig() {
+        return new InsertConfigRequestBuilder(this);
     }
 
     /**
@@ -637,18 +729,23 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.InsertConfigResponse insertConfig(
-            com.formance.formance_sdk.models.shared.ConfigUser request) throws Exception {
+    public InsertConfigResponse insertConfig(
+            ConfigUser request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/webhooks/configs");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(request, Utils.JsonShape.DEFAULT,
-            new TypeReference<com.formance.formance_sdk.models.shared.ConfigUser>() {});
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<ConfigUser>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, "request", "json", false);
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
         if (_serializedRequestBody == null) {
             throw new Exception("Request body is required");
         }
@@ -664,7 +761,10 @@ public class Webhooks implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("insertConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "insertConfig", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -672,18 +772,28 @@ public class Webhooks implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("insertConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "insertConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("insertConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "insertConfig",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("insertConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "insertConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -691,49 +801,49 @@ public class Webhooks implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.InsertConfigResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.InsertConfigResponse
+        InsertConfigResponse.Builder _resBuilder = 
+            InsertConfigResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.InsertConfigResponse _res = _resBuilder.build();
+        InsertConfigResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.ConfigResponse _out = Utils.mapper().readValue(
+                ConfigResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.ConfigResponse>() {});
-                _res.withConfigResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<ConfigResponse>() {});
+                _res.withConfigResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
+                WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
+                    new TypeReference<WebhooksErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 
@@ -743,8 +853,8 @@ public class Webhooks implements
      * Test a config by sending a webhook to its endpoint.
      * @return The call builder
      */
-    public com.formance.formance_sdk.models.operations.TestConfigRequestBuilder testConfig() {
-        return new com.formance.formance_sdk.models.operations.TestConfigRequestBuilder(this);
+    public TestConfigRequestBuilder testConfig() {
+        return new TestConfigRequestBuilder(this);
     }
 
     /**
@@ -754,11 +864,11 @@ public class Webhooks implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.formance.formance_sdk.models.operations.TestConfigResponse testConfig(
-            com.formance.formance_sdk.models.operations.TestConfigRequest request) throws Exception {
+    public TestConfigResponse testConfig(
+            TestConfigRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                com.formance.formance_sdk.models.operations.TestConfigRequest.class,
+                TestConfigRequest.class,
                 _baseUrl,
                 "/api/webhooks/configs/{id}/test",
                 request, null);
@@ -775,7 +885,10 @@ public class Webhooks implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("testConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl(
+                      "testConfig", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -783,18 +896,28 @@ public class Webhooks implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("testConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl(
+                            "testConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("testConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl(
+                            "testConfig",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("testConfig", Optional.of(java.util.List.of()), sdkConfiguration.securitySource()), 
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "testConfig",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -802,49 +925,49 @@ public class Webhooks implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        com.formance.formance_sdk.models.operations.TestConfigResponse.Builder _resBuilder = 
-            com.formance.formance_sdk.models.operations.TestConfigResponse
+        TestConfigResponse.Builder _resBuilder = 
+            TestConfigResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        com.formance.formance_sdk.models.operations.TestConfigResponse _res = _resBuilder.build();
+        TestConfigResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.AttemptResponse _out = Utils.mapper().readValue(
+                AttemptResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.AttemptResponse>() {});
-                _res.withAttemptResponse(java.util.Optional.ofNullable(_out));
+                    new TypeReference<AttemptResponse>() {});
+                _res.withAttemptResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.errors.WebhooksErrorResponse _out = Utils.mapper().readValue(
+                WebhooksErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.errors.WebhooksErrorResponse>() {});
+                    new TypeReference<WebhooksErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
+                    Utils.extractByteArrayFromBody(_httpRes));
             }
         }
         throw new SDKError(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
+            Utils.extractByteArrayFromBody(_httpRes));
     }
 
 }

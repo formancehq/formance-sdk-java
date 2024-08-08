@@ -4,39 +4,38 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskModulrDescriptor {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountID")
-    private Optional<? extends String> accountID;
+    private Optional<String> accountID;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("key")
-    private Optional<? extends String> key;
+    private Optional<String> key;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonCreator
     public TaskModulrDescriptor(
-            @JsonProperty("accountID") Optional<? extends String> accountID,
-            @JsonProperty("key") Optional<? extends String> key,
-            @JsonProperty("name") Optional<? extends String> name) {
+            @JsonProperty("accountID") Optional<String> accountID,
+            @JsonProperty("key") Optional<String> key,
+            @JsonProperty("name") Optional<String> name) {
         Utils.checkNotNull(accountID, "accountID");
         Utils.checkNotNull(key, "key");
         Utils.checkNotNull(name, "name");
@@ -49,22 +48,19 @@ public class TaskModulrDescriptor {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> accountID() {
-        return (Optional<String>) accountID;
+        return accountID;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> key() {
-        return (Optional<String>) key;
+        return key;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
     public final static Builder builder() {
@@ -77,7 +73,7 @@ public class TaskModulrDescriptor {
         return this;
     }
 
-    public TaskModulrDescriptor withAccountID(Optional<? extends String> accountID) {
+    public TaskModulrDescriptor withAccountID(Optional<String> accountID) {
         Utils.checkNotNull(accountID, "accountID");
         this.accountID = accountID;
         return this;
@@ -89,7 +85,7 @@ public class TaskModulrDescriptor {
         return this;
     }
 
-    public TaskModulrDescriptor withKey(Optional<? extends String> key) {
+    public TaskModulrDescriptor withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
         return this;
@@ -101,7 +97,7 @@ public class TaskModulrDescriptor {
         return this;
     }
 
-    public TaskModulrDescriptor withName(Optional<? extends String> name) {
+    public TaskModulrDescriptor withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -117,14 +113,14 @@ public class TaskModulrDescriptor {
         }
         TaskModulrDescriptor other = (TaskModulrDescriptor) o;
         return 
-            java.util.Objects.deepEquals(this.accountID, other.accountID) &&
-            java.util.Objects.deepEquals(this.key, other.key) &&
-            java.util.Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.accountID, other.accountID) &&
+            Objects.deepEquals(this.key, other.key) &&
+            Objects.deepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accountID,
             key,
             name);
@@ -140,11 +136,11 @@ public class TaskModulrDescriptor {
     
     public final static class Builder {
  
-        private Optional<? extends String> accountID = Optional.empty();
+        private Optional<String> accountID = Optional.empty();
  
-        private Optional<? extends String> key = Optional.empty();
+        private Optional<String> key = Optional.empty();
  
-        private Optional<? extends String> name = Optional.empty();  
+        private Optional<String> name = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -156,7 +152,7 @@ public class TaskModulrDescriptor {
             return this;
         }
 
-        public Builder accountID(Optional<? extends String> accountID) {
+        public Builder accountID(Optional<String> accountID) {
             Utils.checkNotNull(accountID, "accountID");
             this.accountID = accountID;
             return this;
@@ -168,7 +164,7 @@ public class TaskModulrDescriptor {
             return this;
         }
 
-        public Builder key(Optional<? extends String> key) {
+        public Builder key(Optional<String> key) {
             Utils.checkNotNull(key, "key");
             this.key = key;
             return this;
@@ -180,7 +176,7 @@ public class TaskModulrDescriptor {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;

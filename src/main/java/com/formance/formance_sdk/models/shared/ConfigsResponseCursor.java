@@ -4,28 +4,29 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class ConfigsResponseCursor {
 
     @JsonProperty("data")
-    private java.util.List<WebhooksConfig> data;
+    private List<WebhooksConfig> data;
 
     @JsonProperty("hasMore")
     private boolean hasMore;
 
     @JsonCreator
     public ConfigsResponseCursor(
-            @JsonProperty("data") java.util.List<WebhooksConfig> data,
+            @JsonProperty("data") List<WebhooksConfig> data,
             @JsonProperty("hasMore") boolean hasMore) {
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(hasMore, "hasMore");
@@ -34,7 +35,7 @@ public class ConfigsResponseCursor {
     }
 
     @JsonIgnore
-    public java.util.List<WebhooksConfig> data() {
+    public List<WebhooksConfig> data() {
         return data;
     }
 
@@ -47,7 +48,7 @@ public class ConfigsResponseCursor {
         return new Builder();
     }
 
-    public ConfigsResponseCursor withData(java.util.List<WebhooksConfig> data) {
+    public ConfigsResponseCursor withData(List<WebhooksConfig> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -69,13 +70,13 @@ public class ConfigsResponseCursor {
         }
         ConfigsResponseCursor other = (ConfigsResponseCursor) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data) &&
-            java.util.Objects.deepEquals(this.hasMore, other.hasMore);
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.hasMore, other.hasMore);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data,
             hasMore);
     }
@@ -89,7 +90,7 @@ public class ConfigsResponseCursor {
     
     public final static class Builder {
  
-        private java.util.List<WebhooksConfig> data;
+        private List<WebhooksConfig> data;
  
         private Boolean hasMore;  
         
@@ -97,7 +98,7 @@ public class ConfigsResponseCursor {
           // force use of static builder() method
         }
 
-        public Builder data(java.util.List<WebhooksConfig> data) {
+        public Builder data(List<WebhooksConfig> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

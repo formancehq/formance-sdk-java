@@ -4,16 +4,17 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
+import java.util.Objects;
+
 
 public class V2Stats {
 
@@ -74,13 +75,13 @@ public class V2Stats {
         }
         V2Stats other = (V2Stats) o;
         return 
-            java.util.Objects.deepEquals(this.accounts, other.accounts) &&
-            java.util.Objects.deepEquals(this.transactions, other.transactions);
+            Objects.deepEquals(this.accounts, other.accounts) &&
+            Objects.deepEquals(this.transactions, other.transactions);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accounts,
             transactions);
     }

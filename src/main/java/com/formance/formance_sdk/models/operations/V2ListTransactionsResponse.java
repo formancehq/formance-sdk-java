@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class V2ListTransactionsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class V2ListTransactionsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse> v2TransactionsCursorResponse;
+    private Optional<? extends V2TransactionsCursorResponse> v2TransactionsCursorResponse;
 
     @JsonCreator
     public V2ListTransactionsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse> v2TransactionsCursorResponse) {
+            Optional<? extends V2TransactionsCursorResponse> v2TransactionsCursorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse> v2TransactionsCursorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse>) v2TransactionsCursorResponse;
+    public Optional<V2TransactionsCursorResponse> v2TransactionsCursorResponse() {
+        return (Optional<V2TransactionsCursorResponse>) v2TransactionsCursorResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    public V2ListTransactionsResponse withV2TransactionsCursorResponse(com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse v2TransactionsCursorResponse) {
+    public V2ListTransactionsResponse withV2TransactionsCursorResponse(V2TransactionsCursorResponse v2TransactionsCursorResponse) {
         Utils.checkNotNull(v2TransactionsCursorResponse, "v2TransactionsCursorResponse");
         this.v2TransactionsCursorResponse = Optional.ofNullable(v2TransactionsCursorResponse);
         return this;
@@ -137,7 +141,7 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    public V2ListTransactionsResponse withV2TransactionsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse> v2TransactionsCursorResponse) {
+    public V2ListTransactionsResponse withV2TransactionsCursorResponse(Optional<? extends V2TransactionsCursorResponse> v2TransactionsCursorResponse) {
         Utils.checkNotNull(v2TransactionsCursorResponse, "v2TransactionsCursorResponse");
         this.v2TransactionsCursorResponse = v2TransactionsCursorResponse;
         return this;
@@ -153,15 +157,15 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
         }
         V2ListTransactionsResponse other = (V2ListTransactionsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2TransactionsCursorResponse, other.v2TransactionsCursorResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.v2TransactionsCursorResponse, other.v2TransactionsCursorResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse> v2TransactionsCursorResponse = Optional.empty();  
+        private Optional<? extends V2TransactionsCursorResponse> v2TransactionsCursorResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
         /**
          * OK
          */
-        public Builder v2TransactionsCursorResponse(com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse v2TransactionsCursorResponse) {
+        public Builder v2TransactionsCursorResponse(V2TransactionsCursorResponse v2TransactionsCursorResponse) {
             Utils.checkNotNull(v2TransactionsCursorResponse, "v2TransactionsCursorResponse");
             this.v2TransactionsCursorResponse = Optional.ofNullable(v2TransactionsCursorResponse);
             return this;
@@ -230,7 +234,7 @@ public class V2ListTransactionsResponse implements com.formance.formance_sdk.uti
         /**
          * OK
          */
-        public Builder v2TransactionsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse> v2TransactionsCursorResponse) {
+        public Builder v2TransactionsCursorResponse(Optional<? extends V2TransactionsCursorResponse> v2TransactionsCursorResponse) {
             Utils.checkNotNull(v2TransactionsCursorResponse, "v2TransactionsCursorResponse");
             this.v2TransactionsCursorResponse = v2TransactionsCursorResponse;
             return this;

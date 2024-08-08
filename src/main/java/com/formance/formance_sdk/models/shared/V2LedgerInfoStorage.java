@@ -4,29 +4,30 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2LedgerInfoStorage {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("migrations")
-    private Optional<? extends java.util.List<V2MigrationInfo>> migrations;
+    private Optional<? extends List<V2MigrationInfo>> migrations;
 
     @JsonCreator
     public V2LedgerInfoStorage(
-            @JsonProperty("migrations") Optional<? extends java.util.List<V2MigrationInfo>> migrations) {
+            @JsonProperty("migrations") Optional<? extends List<V2MigrationInfo>> migrations) {
         Utils.checkNotNull(migrations, "migrations");
         this.migrations = migrations;
     }
@@ -37,21 +38,21 @@ public class V2LedgerInfoStorage {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<V2MigrationInfo>> migrations() {
-        return (Optional<java.util.List<V2MigrationInfo>>) migrations;
+    public Optional<List<V2MigrationInfo>> migrations() {
+        return (Optional<List<V2MigrationInfo>>) migrations;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public V2LedgerInfoStorage withMigrations(java.util.List<V2MigrationInfo> migrations) {
+    public V2LedgerInfoStorage withMigrations(List<V2MigrationInfo> migrations) {
         Utils.checkNotNull(migrations, "migrations");
         this.migrations = Optional.ofNullable(migrations);
         return this;
     }
 
-    public V2LedgerInfoStorage withMigrations(Optional<? extends java.util.List<V2MigrationInfo>> migrations) {
+    public V2LedgerInfoStorage withMigrations(Optional<? extends List<V2MigrationInfo>> migrations) {
         Utils.checkNotNull(migrations, "migrations");
         this.migrations = migrations;
         return this;
@@ -67,12 +68,12 @@ public class V2LedgerInfoStorage {
         }
         V2LedgerInfoStorage other = (V2LedgerInfoStorage) o;
         return 
-            java.util.Objects.deepEquals(this.migrations, other.migrations);
+            Objects.deepEquals(this.migrations, other.migrations);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             migrations);
     }
     
@@ -84,19 +85,19 @@ public class V2LedgerInfoStorage {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.List<V2MigrationInfo>> migrations = Optional.empty();  
+        private Optional<? extends List<V2MigrationInfo>> migrations = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder migrations(java.util.List<V2MigrationInfo> migrations) {
+        public Builder migrations(List<V2MigrationInfo> migrations) {
             Utils.checkNotNull(migrations, "migrations");
             this.migrations = Optional.ofNullable(migrations);
             return this;
         }
 
-        public Builder migrations(Optional<? extends java.util.List<V2MigrationInfo>> migrations) {
+        public Builder migrations(Optional<? extends List<V2MigrationInfo>> migrations) {
             Utils.checkNotNull(migrations, "migrations");
             this.migrations = migrations;
             return this;

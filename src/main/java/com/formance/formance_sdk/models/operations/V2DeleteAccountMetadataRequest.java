@@ -4,16 +4,15 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class V2DeleteAccountMetadataRequest {
 
@@ -113,14 +112,14 @@ public class V2DeleteAccountMetadataRequest {
         }
         V2DeleteAccountMetadataRequest other = (V2DeleteAccountMetadataRequest) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.key, other.key) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.key, other.key) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             key,
             ledger);

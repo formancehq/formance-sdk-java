@@ -4,31 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class Mapping {
 
     @JsonProperty("contracts")
-    private java.util.List<Contract> contracts;
+    private List<Contract> contracts;
 
     @JsonCreator
     public Mapping(
-            @JsonProperty("contracts") java.util.List<Contract> contracts) {
+            @JsonProperty("contracts") List<Contract> contracts) {
         Utils.checkNotNull(contracts, "contracts");
         this.contracts = contracts;
     }
 
     @JsonIgnore
-    public java.util.List<Contract> contracts() {
+    public List<Contract> contracts() {
         return contracts;
     }
 
@@ -36,7 +36,7 @@ public class Mapping {
         return new Builder();
     }
 
-    public Mapping withContracts(java.util.List<Contract> contracts) {
+    public Mapping withContracts(List<Contract> contracts) {
         Utils.checkNotNull(contracts, "contracts");
         this.contracts = contracts;
         return this;
@@ -52,12 +52,12 @@ public class Mapping {
         }
         Mapping other = (Mapping) o;
         return 
-            java.util.Objects.deepEquals(this.contracts, other.contracts);
+            Objects.deepEquals(this.contracts, other.contracts);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contracts);
     }
     
@@ -69,13 +69,13 @@ public class Mapping {
     
     public final static class Builder {
  
-        private java.util.List<Contract> contracts;  
+        private List<Contract> contracts;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder contracts(java.util.List<Contract> contracts) {
+        public Builder contracts(List<Contract> contracts) {
             Utils.checkNotNull(contracts, "contracts");
             this.contracts = contracts;
             return this;

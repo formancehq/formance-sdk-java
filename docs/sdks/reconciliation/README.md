@@ -22,17 +22,12 @@ Create a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
+import com.formance.formance_sdk.models.shared.PolicyRequest;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -40,15 +35,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             PolicyRequest req = PolicyRequest.builder()
                 .ledgerName("default")
-                .ledgerQuery(java.util.Map.ofEntries(
-                        entry("key", "<value>")))
+                .ledgerQuery(Map.ofEntries(
+                        Map.entry("key", "<value>")))
                 .name("XXX")
                 .paymentsPoolID("XXX")
                 .build();
@@ -63,7 +58,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -77,14 +72,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `request`                                                                                     | [com.formance.formance_sdk.models.shared.PolicyRequest](../../models/shared/PolicyRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [PolicyRequest](../../models/shared/PolicyRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreatePolicyResponse](../../models/operations/CreatePolicyResponse.md)**
+**[CreatePolicyResponse](../../models/operations/CreatePolicyResponse.md)**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
@@ -102,17 +97,11 @@ Delete a policy by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.DeletePolicyRequest;
+import com.formance.formance_sdk.models.operations.DeletePolicyResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -120,8 +109,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -137,7 +126,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -151,14 +140,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.DeletePolicyRequest](../../models/operations/DeletePolicyRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [DeletePolicyRequest](../../models/operations/DeletePolicyRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DeletePolicyResponse](../../models/operations/DeletePolicyResponse.md)**
+**[DeletePolicyResponse](../../models/operations/DeletePolicyResponse.md)**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
@@ -176,17 +165,11 @@ Get a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetPolicyRequest;
+import com.formance.formance_sdk.models.operations.GetPolicyResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -194,8 +177,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -213,7 +196,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -227,14 +210,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [com.formance.formance_sdk.models.operations.GetPolicyRequest](../../models/operations/GetPolicyRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [GetPolicyRequest](../../models/operations/GetPolicyRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetPolicyResponse](../../models/operations/GetPolicyResponse.md)**
+**[GetPolicyResponse](../../models/operations/GetPolicyResponse.md)**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
@@ -252,17 +235,11 @@ Get a reconciliation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetReconciliationRequest;
+import com.formance.formance_sdk.models.operations.GetReconciliationResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -270,8 +247,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -289,7 +266,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -303,14 +280,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                   | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                   | [com.formance.formance_sdk.models.operations.GetReconciliationRequest](../../models/operations/GetReconciliationRequest.md) | :heavy_check_mark:                                                                                                          | The request object to use for the request.                                                                                  |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetReconciliationRequest](../../models/operations/GetReconciliationRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetReconciliationResponse](../../models/operations/GetReconciliationResponse.md)**
+**[GetReconciliationResponse](../../models/operations/GetReconciliationResponse.md)**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
@@ -328,17 +305,11 @@ List policies
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListPoliciesRequest;
+import com.formance.formance_sdk.models.operations.ListPoliciesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -346,8 +317,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -366,7 +337,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -380,14 +351,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.ListPoliciesRequest](../../models/operations/ListPoliciesRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [ListPoliciesRequest](../../models/operations/ListPoliciesRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListPoliciesResponse](../../models/operations/ListPoliciesResponse.md)**
+**[ListPoliciesResponse](../../models/operations/ListPoliciesResponse.md)**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
@@ -405,17 +376,11 @@ List reconciliations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListReconciliationsRequest;
+import com.formance.formance_sdk.models.operations.ListReconciliationsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -423,8 +388,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -443,7 +408,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -457,14 +422,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                       | [com.formance.formance_sdk.models.operations.ListReconciliationsRequest](../../models/operations/ListReconciliationsRequest.md) | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [ListReconciliationsRequest](../../models/operations/ListReconciliationsRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListReconciliationsResponse](../../models/operations/ListReconciliationsResponse.md)**
+**[ListReconciliationsResponse](../../models/operations/ListReconciliationsResponse.md)**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
@@ -482,17 +447,13 @@ Reconcile using a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ReconcileRequest;
+import com.formance.formance_sdk.models.operations.ReconcileResponse;
+import com.formance.formance_sdk.models.shared.ReconciliationRequest;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
 
 public class Application {
 
@@ -500,8 +461,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -523,7 +484,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -537,14 +498,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [com.formance.formance_sdk.models.operations.ReconcileRequest](../../models/operations/ReconcileRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [ReconcileRequest](../../models/operations/ReconcileRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReconcileResponse](../../models/operations/ReconcileResponse.md)**
+**[ReconcileResponse](../../models/operations/ReconcileResponse.md)**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |
@@ -562,17 +523,10 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -580,8 +534,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -594,7 +548,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -609,7 +563,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse](../../models/operations/ReconciliationgetServerInfoResponse.md)**
+**[ReconciliationgetServerInfoResponse](../../models/operations/ReconciliationgetServerInfoResponse.md)**
 ### Errors
 
 | Error Object                              | Status Code                               | Content Type                              |

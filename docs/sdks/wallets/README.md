@@ -30,17 +30,12 @@ Confirm a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ConfirmHoldRequest;
+import com.formance.formance_sdk.models.operations.ConfirmHoldResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
 
 public class Application {
 
@@ -48,14 +43,14 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             ConfirmHoldRequest req = ConfirmHoldRequest.builder()
                 .holdId("<value>")
-                .confirmHoldRequest(ConfirmHoldRequest.builder()
+                .confirmHoldRequest(com.formance.formance_sdk.models.shared.ConfirmHoldRequest.builder()
                     .amount(new BigInteger("100"))
                     .final_(true)
                     .build())
@@ -69,7 +64,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -83,14 +78,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.ConfirmHoldRequest](../../models/operations/ConfirmHoldRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [ConfirmHoldRequest](../../models/operations/ConfirmHoldRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ConfirmHoldResponse](../../models/operations/ConfirmHoldResponse.md)**
+**[ConfirmHoldResponse](../../models/operations/ConfirmHoldResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -108,17 +103,11 @@ Create a balance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreateBalanceRequest;
+import com.formance.formance_sdk.models.operations.CreateBalanceResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -126,8 +115,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -145,7 +134,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -159,14 +148,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                           | [com.formance.formance_sdk.models.operations.CreateBalanceRequest](../../models/operations/CreateBalanceRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [CreateBalanceRequest](../../models/operations/CreateBalanceRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateBalanceResponse](../../models/operations/CreateBalanceResponse.md)**
+**[CreateBalanceResponse](../../models/operations/CreateBalanceResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -184,17 +173,11 @@ Create a new wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreateWalletRequest;
+import com.formance.formance_sdk.models.operations.CreateWalletResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -202,15 +185,12 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             CreateWalletRequest req = CreateWalletRequest.builder()
-                .metadata(java.util.Map.ofEntries(
-                        entry("key", "<value>")))
-                .name("<value>")
                 .build();
 
             CreateWalletResponse res = sdk.wallets().createWallet()
@@ -223,7 +203,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -237,14 +217,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [com.formance.formance_sdk.models.shared.CreateWalletRequest](../../models/shared/CreateWalletRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [CreateWalletRequest](../../models/operations/CreateWalletRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreateWalletResponse](../../models/operations/CreateWalletResponse.md)**
+**[CreateWalletResponse](../../models/operations/CreateWalletResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -262,17 +242,16 @@ Credit a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.CreditWalletRequest;
+import com.formance.formance_sdk.models.operations.CreditWalletResponse;
+import com.formance.formance_sdk.models.shared.LedgerAccountSubject;
+import com.formance.formance_sdk.models.shared.Monetary;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -280,21 +259,21 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             CreditWalletRequest req = CreditWalletRequest.builder()
                 .id("<value>")
-                .creditWalletRequest(CreditWalletRequest.builder()
+                .creditWalletRequest(com.formance.formance_sdk.models.shared.CreditWalletRequest.builder()
                     .amount(Monetary.builder()
                             .amount(new BigInteger("201874"))
                             .asset("<value>")
                             .build())
-                    .metadata(java.util.Map.ofEntries(
-                        entry("key", "<value>")))
-                    .sources(java.util.List.of(
+                    .metadata(Map.ofEntries(
+                        Map.entry("key", "<value>")))
+                    .sources(List.of(
                         LedgerAccountSubject.builder()
                                 .identifier("<value>")
                                 .type("<value>")
@@ -310,7 +289,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -324,14 +303,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.CreditWalletRequest](../../models/operations/CreditWalletRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [CreditWalletRequest](../../models/operations/CreditWalletRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.CreditWalletResponse](../../models/operations/CreditWalletResponse.md)**
+**[CreditWalletResponse](../../models/operations/CreditWalletResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -349,17 +328,14 @@ Debit a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.DebitWalletRequest;
+import com.formance.formance_sdk.models.operations.DebitWalletResponse;
+import com.formance.formance_sdk.models.shared.Monetary;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.util.Map;
 
 public class Application {
 
@@ -367,20 +343,20 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             DebitWalletRequest req = DebitWalletRequest.builder()
                 .id("<value>")
-                .debitWalletRequest(DebitWalletRequest.builder()
+                .debitWalletRequest(com.formance.formance_sdk.models.shared.DebitWalletRequest.builder()
                     .amount(Monetary.builder()
                             .amount(new BigInteger("245256"))
                             .asset("<value>")
                             .build())
-                    .metadata(java.util.Map.ofEntries(
-                            entry("key", "<value>")))
+                    .metadata(Map.ofEntries(
+                            Map.entry("key", "<value>")))
                     .pending(false)
                     .build())
                 .build();
@@ -395,7 +371,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -409,14 +385,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.DebitWalletRequest](../../models/operations/DebitWalletRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [DebitWalletRequest](../../models/operations/DebitWalletRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.DebitWalletResponse](../../models/operations/DebitWalletResponse.md)**
+**[DebitWalletResponse](../../models/operations/DebitWalletResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -434,17 +410,11 @@ Get detailed balance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetBalanceRequest;
+import com.formance.formance_sdk.models.operations.GetBalanceResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -452,8 +422,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -472,7 +442,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -486,14 +456,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                     | [com.formance.formance_sdk.models.operations.GetBalanceRequest](../../models/operations/GetBalanceRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetBalanceRequest](../../models/operations/GetBalanceRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetBalanceResponse](../../models/operations/GetBalanceResponse.md)**
+**[GetBalanceResponse](../../models/operations/GetBalanceResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -511,17 +481,11 @@ Get a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetHoldRequest;
+import com.formance.formance_sdk.models.operations.GetHoldResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -529,8 +493,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -548,7 +512,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -562,14 +526,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                               | [com.formance.formance_sdk.models.operations.GetHoldRequest](../../models/operations/GetHoldRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [GetHoldRequest](../../models/operations/GetHoldRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetHoldResponse](../../models/operations/GetHoldResponse.md)**
+**[GetHoldResponse](../../models/operations/GetHoldResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -587,17 +551,12 @@ Get all holds for a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetHoldsRequest;
+import com.formance.formance_sdk.models.operations.GetHoldsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -605,15 +564,15 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             GetHoldsRequest req = GetHoldsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .metadata(java.util.Map.ofEntries(
-                    entry("admin", "true")))
+                .metadata(Map.ofEntries(
+                    Map.entry("admin", "true")))
                 .pageSize(100L)
                 .walletID("wallet1")
                 .build();
@@ -628,7 +587,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -642,14 +601,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [com.formance.formance_sdk.models.operations.GetHoldsRequest](../../models/operations/GetHoldsRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [GetHoldsRequest](../../models/operations/GetHoldsRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetHoldsResponse](../../models/operations/GetHoldsResponse.md)**
+**[GetHoldsResponse](../../models/operations/GetHoldsResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -665,17 +624,11 @@ public class Application {
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetTransactionsRequest;
+import com.formance.formance_sdk.models.operations.GetTransactionsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -683,8 +636,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -704,7 +657,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -718,14 +671,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                               | [com.formance.formance_sdk.models.operations.GetTransactionsRequest](../../models/operations/GetTransactionsRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetTransactionsRequest](../../models/operations/GetTransactionsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetTransactionsResponse](../../models/operations/GetTransactionsResponse.md)**
+**[GetTransactionsResponse](../../models/operations/GetTransactionsResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -743,17 +696,11 @@ Get a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetWalletRequest;
+import com.formance.formance_sdk.models.operations.GetWalletResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -761,8 +708,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -780,7 +727,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -794,14 +741,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                   | [com.formance.formance_sdk.models.operations.GetWalletRequest](../../models/operations/GetWalletRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [GetWalletRequest](../../models/operations/GetWalletRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetWalletResponse](../../models/operations/GetWalletResponse.md)**
+**[GetWalletResponse](../../models/operations/GetWalletResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -819,17 +766,11 @@ Get wallet summary
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetWalletSummaryRequest;
+import com.formance.formance_sdk.models.operations.GetWalletSummaryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -837,8 +778,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -856,7 +797,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -870,14 +811,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                 | [com.formance.formance_sdk.models.operations.GetWalletSummaryRequest](../../models/operations/GetWalletSummaryRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [GetWalletSummaryRequest](../../models/operations/GetWalletSummaryRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.GetWalletSummaryResponse](../../models/operations/GetWalletSummaryResponse.md)**
+**[GetWalletSummaryResponse](../../models/operations/GetWalletSummaryResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -895,17 +836,11 @@ List balances of a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListBalancesRequest;
+import com.formance.formance_sdk.models.operations.ListBalancesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -913,8 +848,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -929,7 +864,7 @@ public class Application {
             if (res.listBalancesResponse().isPresent()) {
                 // handle response
             }
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -943,14 +878,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.ListBalancesRequest](../../models/operations/ListBalancesRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [ListBalancesRequest](../../models/operations/ListBalancesRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListBalancesResponse](../../models/operations/ListBalancesResponse.md)**
+**[ListBalancesResponse](../../models/operations/ListBalancesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -967,17 +902,12 @@ List all wallets
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.ListWalletsRequest;
+import com.formance.formance_sdk.models.operations.ListWalletsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -985,16 +915,16 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
             ListWalletsRequest req = ListWalletsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .expand("balances")
-                .metadata(java.util.Map.ofEntries(
-                    entry("admin", "true")))
+                .metadata(Map.ofEntries(
+                    Map.entry("admin", "true")))
                 .name("wallet1")
                 .pageSize(100L)
                 .build();
@@ -1009,7 +939,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1023,14 +953,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [com.formance.formance_sdk.models.operations.ListWalletsRequest](../../models/operations/ListWalletsRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [ListWalletsRequest](../../models/operations/ListWalletsRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.ListWalletsResponse](../../models/operations/ListWalletsResponse.md)**
+**[ListWalletsResponse](../../models/operations/ListWalletsResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -1048,17 +978,11 @@ Update a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.UpdateWalletRequest;
+import com.formance.formance_sdk.models.operations.UpdateWalletResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1066,8 +990,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1083,7 +1007,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1097,14 +1021,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                         | [com.formance.formance_sdk.models.operations.UpdateWalletRequest](../../models/operations/UpdateWalletRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [UpdateWalletRequest](../../models/operations/UpdateWalletRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.UpdateWalletResponse](../../models/operations/UpdateWalletResponse.md)**
+**[UpdateWalletResponse](../../models/operations/UpdateWalletResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -1122,17 +1046,11 @@ Cancel a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.VoidHoldRequest;
+import com.formance.formance_sdk.models.operations.VoidHoldResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1140,8 +1058,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1157,7 +1075,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1171,14 +1089,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                 | [com.formance.formance_sdk.models.operations.VoidHoldRequest](../../models/operations/VoidHoldRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [VoidHoldRequest](../../models/operations/VoidHoldRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.VoidHoldResponse](../../models/operations/VoidHoldResponse.md)**
+**[VoidHoldResponse](../../models/operations/VoidHoldResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -1196,17 +1114,10 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -1214,8 +1125,8 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
@@ -1228,7 +1139,7 @@ public class Application {
         } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
             // handle exception
             throw e;
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -1243,7 +1154,7 @@ public class Application {
 
 ### Response
 
-**[com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse](../../models/operations/WalletsgetServerInfoResponse.md)**
+**[WalletsgetServerInfoResponse](../../models/operations/WalletsgetServerInfoResponse.md)**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |

@@ -4,22 +4,20 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Attempt {
 
@@ -34,7 +32,7 @@ public class Attempt {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextRetryAfter")
-    private Optional<? extends OffsetDateTime> nextRetryAfter;
+    private Optional<OffsetDateTime> nextRetryAfter;
 
     @JsonProperty("payload")
     private String payload;
@@ -59,7 +57,7 @@ public class Attempt {
             @JsonProperty("config") WebhooksConfig config,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
-            @JsonProperty("nextRetryAfter") Optional<? extends OffsetDateTime> nextRetryAfter,
+            @JsonProperty("nextRetryAfter") Optional<OffsetDateTime> nextRetryAfter,
             @JsonProperty("payload") String payload,
             @JsonProperty("retryAttempt") long retryAttempt,
             @JsonProperty("status") String status,
@@ -116,10 +114,9 @@ public class Attempt {
         return id;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> nextRetryAfter() {
-        return (Optional<OffsetDateTime>) nextRetryAfter;
+        return nextRetryAfter;
     }
 
     @JsonIgnore
@@ -180,7 +177,7 @@ public class Attempt {
         return this;
     }
 
-    public Attempt withNextRetryAfter(Optional<? extends OffsetDateTime> nextRetryAfter) {
+    public Attempt withNextRetryAfter(Optional<OffsetDateTime> nextRetryAfter) {
         Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
         this.nextRetryAfter = nextRetryAfter;
         return this;
@@ -232,21 +229,21 @@ public class Attempt {
         }
         Attempt other = (Attempt) o;
         return 
-            java.util.Objects.deepEquals(this.config, other.config) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.nextRetryAfter, other.nextRetryAfter) &&
-            java.util.Objects.deepEquals(this.payload, other.payload) &&
-            java.util.Objects.deepEquals(this.retryAttempt, other.retryAttempt) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            java.util.Objects.deepEquals(this.webhookID, other.webhookID);
+            Objects.deepEquals(this.config, other.config) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.nextRetryAfter, other.nextRetryAfter) &&
+            Objects.deepEquals(this.payload, other.payload) &&
+            Objects.deepEquals(this.retryAttempt, other.retryAttempt) &&
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
+            Objects.deepEquals(this.webhookID, other.webhookID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             config,
             createdAt,
             id,
@@ -282,7 +279,7 @@ public class Attempt {
  
         private String id;
  
-        private Optional<? extends OffsetDateTime> nextRetryAfter = Optional.empty();
+        private Optional<OffsetDateTime> nextRetryAfter = Optional.empty();
  
         private String payload;
  
@@ -324,7 +321,7 @@ public class Attempt {
             return this;
         }
 
-        public Builder nextRetryAfter(Optional<? extends OffsetDateTime> nextRetryAfter) {
+        public Builder nextRetryAfter(Optional<OffsetDateTime> nextRetryAfter) {
             Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
             this.nextRetryAfter = nextRetryAfter;
             return this;

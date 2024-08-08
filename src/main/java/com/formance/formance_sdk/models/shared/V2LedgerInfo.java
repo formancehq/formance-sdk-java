@@ -4,25 +4,25 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2LedgerInfo {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("storage")
@@ -30,7 +30,7 @@ public class V2LedgerInfo {
 
     @JsonCreator
     public V2LedgerInfo(
-            @JsonProperty("name") Optional<? extends String> name,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("storage") Optional<? extends V2LedgerInfoStorage> storage) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(storage, "storage");
@@ -42,10 +42,9 @@ public class V2LedgerInfo {
         this(Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
     @SuppressWarnings("unchecked")
@@ -64,7 +63,7 @@ public class V2LedgerInfo {
         return this;
     }
 
-    public V2LedgerInfo withName(Optional<? extends String> name) {
+    public V2LedgerInfo withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -92,13 +91,13 @@ public class V2LedgerInfo {
         }
         V2LedgerInfo other = (V2LedgerInfo) o;
         return 
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.storage, other.storage);
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.storage, other.storage);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             name,
             storage);
     }
@@ -112,7 +111,7 @@ public class V2LedgerInfo {
     
     public final static class Builder {
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
         private Optional<? extends V2LedgerInfoStorage> storage = Optional.empty();  
         
@@ -126,7 +125,7 @@ public class V2LedgerInfo {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;

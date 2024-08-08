@@ -4,19 +4,18 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class Policy {
 
@@ -30,7 +29,7 @@ public class Policy {
     private String ledgerName;
 
     @JsonProperty("ledgerQuery")
-    private java.util.Map<String, java.lang.Object> ledgerQuery;
+    private Map<String, Object> ledgerQuery;
 
     @JsonProperty("name")
     private String name;
@@ -43,7 +42,7 @@ public class Policy {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("ledgerName") String ledgerName,
-            @JsonProperty("ledgerQuery") java.util.Map<String, java.lang.Object> ledgerQuery,
+            @JsonProperty("ledgerQuery") Map<String, Object> ledgerQuery,
             @JsonProperty("name") String name,
             @JsonProperty("paymentsPoolID") String paymentsPoolID) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -76,7 +75,7 @@ public class Policy {
     }
 
     @JsonIgnore
-    public java.util.Map<String, java.lang.Object> ledgerQuery() {
+    public Map<String, Object> ledgerQuery() {
         return ledgerQuery;
     }
 
@@ -112,7 +111,7 @@ public class Policy {
         return this;
     }
 
-    public Policy withLedgerQuery(java.util.Map<String, java.lang.Object> ledgerQuery) {
+    public Policy withLedgerQuery(Map<String, Object> ledgerQuery) {
         Utils.checkNotNull(ledgerQuery, "ledgerQuery");
         this.ledgerQuery = ledgerQuery;
         return this;
@@ -140,17 +139,17 @@ public class Policy {
         }
         Policy other = (Policy) o;
         return 
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.ledgerName, other.ledgerName) &&
-            java.util.Objects.deepEquals(this.ledgerQuery, other.ledgerQuery) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.paymentsPoolID, other.paymentsPoolID);
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.ledgerName, other.ledgerName) &&
+            Objects.deepEquals(this.ledgerQuery, other.ledgerQuery) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.paymentsPoolID, other.paymentsPoolID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createdAt,
             id,
             ledgerName,
@@ -178,7 +177,7 @@ public class Policy {
  
         private String ledgerName;
  
-        private java.util.Map<String, java.lang.Object> ledgerQuery;
+        private Map<String, Object> ledgerQuery;
  
         private String name;
  
@@ -206,7 +205,7 @@ public class Policy {
             return this;
         }
 
-        public Builder ledgerQuery(java.util.Map<String, java.lang.Object> ledgerQuery) {
+        public Builder ledgerQuery(Map<String, Object> ledgerQuery) {
             Utils.checkNotNull(ledgerQuery, "ledgerQuery");
             this.ledgerQuery = ledgerQuery;
             return this;

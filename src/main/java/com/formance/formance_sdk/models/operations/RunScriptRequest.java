@@ -4,22 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.Script;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunScriptRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.Script script;
+    private Script script;
 
     /**
      * Name of the ledger.
@@ -31,13 +32,13 @@ public class RunScriptRequest {
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")
-    private Optional<? extends Boolean> preview;
+    private Optional<Boolean> preview;
 
     @JsonCreator
     public RunScriptRequest(
-            com.formance.formance_sdk.models.shared.Script script,
+            Script script,
             String ledger,
-            Optional<? extends Boolean> preview) {
+            Optional<Boolean> preview) {
         Utils.checkNotNull(script, "script");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(preview, "preview");
@@ -47,13 +48,13 @@ public class RunScriptRequest {
     }
     
     public RunScriptRequest(
-            com.formance.formance_sdk.models.shared.Script script,
+            Script script,
             String ledger) {
         this(script, ledger, Optional.empty());
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.Script script() {
+    public Script script() {
         return script;
     }
 
@@ -68,17 +69,16 @@ public class RunScriptRequest {
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> preview() {
-        return (Optional<Boolean>) preview;
+        return preview;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public RunScriptRequest withScript(com.formance.formance_sdk.models.shared.Script script) {
+    public RunScriptRequest withScript(Script script) {
         Utils.checkNotNull(script, "script");
         this.script = script;
         return this;
@@ -105,7 +105,7 @@ public class RunScriptRequest {
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    public RunScriptRequest withPreview(Optional<? extends Boolean> preview) {
+    public RunScriptRequest withPreview(Optional<Boolean> preview) {
         Utils.checkNotNull(preview, "preview");
         this.preview = preview;
         return this;
@@ -121,14 +121,14 @@ public class RunScriptRequest {
         }
         RunScriptRequest other = (RunScriptRequest) o;
         return 
-            java.util.Objects.deepEquals(this.script, other.script) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.preview, other.preview);
+            Objects.deepEquals(this.script, other.script) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.preview, other.preview);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             script,
             ledger,
             preview);
@@ -144,17 +144,17 @@ public class RunScriptRequest {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.Script script;
+        private Script script;
  
         private String ledger;
  
-        private Optional<? extends Boolean> preview = Optional.empty();  
+        private Optional<Boolean> preview = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder script(com.formance.formance_sdk.models.shared.Script script) {
+        public Builder script(Script script) {
             Utils.checkNotNull(script, "script");
             this.script = script;
             return this;
@@ -181,7 +181,7 @@ public class RunScriptRequest {
         /**
          * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
          */
-        public Builder preview(Optional<? extends Boolean> preview) {
+        public Builder preview(Optional<Boolean> preview) {
             Utils.checkNotNull(preview, "preview");
             this.preview = preview;
             return this;

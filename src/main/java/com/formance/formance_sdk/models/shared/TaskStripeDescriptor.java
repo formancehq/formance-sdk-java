@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskStripeDescriptor {
 
@@ -25,7 +25,7 @@ public class TaskStripeDescriptor {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("main")
-    private Optional<? extends Boolean> main;
+    private Optional<Boolean> main;
 
     @JsonProperty("name")
     private String name;
@@ -33,7 +33,7 @@ public class TaskStripeDescriptor {
     @JsonCreator
     public TaskStripeDescriptor(
             @JsonProperty("account") String account,
-            @JsonProperty("main") Optional<? extends Boolean> main,
+            @JsonProperty("main") Optional<Boolean> main,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(main, "main");
@@ -54,10 +54,9 @@ public class TaskStripeDescriptor {
         return account;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> main() {
-        return (Optional<Boolean>) main;
+        return main;
     }
 
     @JsonIgnore
@@ -81,7 +80,7 @@ public class TaskStripeDescriptor {
         return this;
     }
 
-    public TaskStripeDescriptor withMain(Optional<? extends Boolean> main) {
+    public TaskStripeDescriptor withMain(Optional<Boolean> main) {
         Utils.checkNotNull(main, "main");
         this.main = main;
         return this;
@@ -103,14 +102,14 @@ public class TaskStripeDescriptor {
         }
         TaskStripeDescriptor other = (TaskStripeDescriptor) o;
         return 
-            java.util.Objects.deepEquals(this.account, other.account) &&
-            java.util.Objects.deepEquals(this.main, other.main) &&
-            java.util.Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.account, other.account) &&
+            Objects.deepEquals(this.main, other.main) &&
+            Objects.deepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             account,
             main,
             name);
@@ -128,7 +127,7 @@ public class TaskStripeDescriptor {
  
         private String account;
  
-        private Optional<? extends Boolean> main = Optional.empty();
+        private Optional<Boolean> main = Optional.empty();
  
         private String name;  
         
@@ -148,7 +147,7 @@ public class TaskStripeDescriptor {
             return this;
         }
 
-        public Builder main(Optional<? extends Boolean> main) {
+        public Builder main(Optional<Boolean> main) {
             Utils.checkNotNull(main, "main");
             this.main = main;
             return this;
