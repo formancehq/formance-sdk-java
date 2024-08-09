@@ -24,9 +24,9 @@ class SDKConfiguration {
     public int serverIdx = 0;
     public String language = "java";
     public String openapiDocVersion = "v2.0.9";
-    public String sdkVersion = "3.1.0";
-    public String genVersion = "2.390.0";
-    public String userAgent = "speakeasy-sdk/java 3.1.0 2.390.0 v2.0.9 com.formance.formance_sdk";
+    public String sdkVersion = "3.1.1";
+    public String genVersion = "2.390.6";
+    public String userAgent = "speakeasy-sdk/java 3.1.1 2.390.6 v2.0.9 com.formance.formance_sdk";
 
     private Hooks _hooks = createHooks();
 

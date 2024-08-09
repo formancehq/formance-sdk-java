@@ -518,8 +518,7 @@ public class Application {
                                 .build()))
                         .reference("ref:001")
                         .script(PostTransactionScript.builder()
-                            .plain("vars {
-                        account $user
+                            .plain("vars {\naccount $user
                         }
                         send [COIN 10] (
                         	source = @world
@@ -1512,8 +1511,7 @@ public class Application {
 
             RunScriptRequest req = RunScriptRequest.builder()
                 .script(Script.builder()
-                        .plain("vars {
-account $user
+                        .plain("vars {\naccount $user
 }
 send [COIN 10] (
 	source = @world
@@ -1942,7 +1940,6 @@ import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
 import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2BulkElementAddMetadata;
 import java.lang.Exception;
 import java.util.List;
 
@@ -1960,9 +1957,7 @@ public class Application {
             V2CreateBulkRequest req = V2CreateBulkRequest.builder()
                 .ledger("ledger001")
                 .requestBody(List.of(
-                    V2BulkElementAddMetadata.builder()
-                            .action("<value>")
-                            .build()))
+                ))
                 .build();
 
             V2CreateBulkResponse res = sdk.ledger().v2CreateBulk()
@@ -2123,8 +2118,7 @@ public class Application {
                                 .build()))
                         .reference("ref:001")
                         .script(V2PostTransactionScript.builder()
-                            .plain("vars {
-                        account $user
+                            .plain("vars {\naccount $user
                         }
                         send [COIN 10] (
                         	source = @world
