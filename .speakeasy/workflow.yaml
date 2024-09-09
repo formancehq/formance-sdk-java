@@ -1,8 +1,4 @@
 workflowVersion: 1.0.0
-sources:
-    my-source:
-        inputs:
-            - location: ${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
 targets:
     Java:
         target: java
