@@ -23,7 +23,7 @@ public class V2ListTransactionsRequestBuilder {
 
     public V2ListTransactionsResponse call() throws Exception {
 
-        return sdk.v2ListTransactions(
+        return sdk.listTransactions(
             request);
     }
 }

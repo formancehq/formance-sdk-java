@@ -23,7 +23,7 @@ public class V2CountAccountsRequestBuilder {
 
     public V2CountAccountsResponse call() throws Exception {
 
-        return sdk.v2CountAccounts(
+        return sdk.countAccounts(
             request);
     }
 }

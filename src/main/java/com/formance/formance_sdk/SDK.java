@@ -6,8 +6,6 @@ package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsRequestBuilder;
-import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
 import com.formance.formance_sdk.models.operations.GetVersionsRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
@@ -43,7 +41,6 @@ import java.util.Optional;
  * 
  */
 public class SDK implements
-            MethodCallGetOIDCWellKnowns,
             MethodCallGetVersions {
 
 
@@ -241,106 +238,6 @@ public class SDK implements
         this.webhooks = new Webhooks(sdkConfiguration);
         this.sdkConfiguration.initialize();
     }
-
-    /**
-     * Retrieve OpenID connect well-knowns.
-     * @return The call builder
-     */
-    public GetOIDCWellKnownsRequestBuilder getOIDCWellKnowns() {
-        return new GetOIDCWellKnownsRequestBuilder(this);
-    }
-
-    /**
-     * Retrieve OpenID connect well-knowns.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/auth/.well-known/openid-configuration");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
-
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      "getOIDCWellKnowns", 
-                      Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            "getOIDCWellKnowns",
-                            Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            "getOIDCWellKnowns",
-                            Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            "getOIDCWellKnowns",
-                            Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetOIDCWellKnownsResponse.Builder _resBuilder = 
-            GetOIDCWellKnownsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetOIDCWellKnownsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
 
     /**
      * Show stack version information

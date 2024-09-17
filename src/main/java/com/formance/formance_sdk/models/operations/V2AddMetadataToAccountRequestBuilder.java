@@ -23,7 +23,7 @@ public class V2AddMetadataToAccountRequestBuilder {
 
     public V2AddMetadataToAccountResponse call() throws Exception {
 
-        return sdk.v2AddMetadataToAccount(
+        return sdk.addMetadataToAccount(
             request);
     }
 }

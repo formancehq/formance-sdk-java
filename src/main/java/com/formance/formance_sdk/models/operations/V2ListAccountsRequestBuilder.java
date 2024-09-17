@@ -23,7 +23,7 @@ public class V2ListAccountsRequestBuilder {
 
     public V2ListAccountsResponse call() throws Exception {
 
-        return sdk.v2ListAccounts(
+        return sdk.listAccounts(
             request);
     }
 }

@@ -23,7 +23,7 @@ public class V2GetBalancesAggregatedRequestBuilder {
 
     public V2GetBalancesAggregatedResponse call() throws Exception {
 
-        return sdk.v2GetBalancesAggregated(
+        return sdk.getBalancesAggregated(
             request);
     }
 }

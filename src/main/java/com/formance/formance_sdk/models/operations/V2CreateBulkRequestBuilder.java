@@ -23,7 +23,7 @@ public class V2CreateBulkRequestBuilder {
 
     public V2CreateBulkResponse call() throws Exception {
 
-        return sdk.v2CreateBulk(
+        return sdk.createBulk(
             request);
     }
 }

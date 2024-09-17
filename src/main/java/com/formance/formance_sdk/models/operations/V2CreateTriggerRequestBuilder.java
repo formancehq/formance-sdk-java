@@ -31,7 +31,7 @@ public class V2CreateTriggerRequestBuilder {
 
     public V2CreateTriggerResponse call() throws Exception {
 
-        return sdk.v2CreateTrigger(
+        return sdk.createTrigger(
             request);
     }
 }

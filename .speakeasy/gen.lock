@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 706ea24f6e5943004b89faa8c7200702
-  docVersion: v2.0.17
-  speakeasyVersion: 1.398.1
+  docChecksum: 168e11618829dc1c3d9efa172e32b1f7
+  docVersion: v0.0.0
+  speakeasyVersion: 1.398.0
   generationVersion: 2.415.8
-  releaseVersion: 3.2.3
-  configChecksum: 24cff7628a7fe77fd13cdd39590c5ed6
+  releaseVersion: 4.0.0-beta.1
+  configChecksum: 41f75eb1288d964dd093e1f343ae1137
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -16,13 +16,14 @@ features:
     constsAndDefaults: 0.1.1
     core: 3.29.7
     deprecations: 2.81.1
+    downloadStreams: 0.1.1
     errors: 0.1.3
     getRequestBodies: 2.81.1
     globalSecurity: 2.82.7
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
-    groups: 2.81.2
     ignores: 2.81.1
+    nameOverrides: 2.81.3
     nullables: 0.1.0
     oauth2ClientCredentials: 0.1.0
     sdkHooks: 0.1.0
@@ -150,6 +151,7 @@ generatedFiles:
   - docs/models/operations/GetPoolResponse.md
   - docs/models/operations/GetReconciliationRequest.md
   - docs/models/operations/GetReconciliationResponse.md
+  - docs/models/operations/GetServerInfoResponse.md
   - docs/models/operations/GetTransactionRequest.md
   - docs/models/operations/GetTransactionResponse.md
   - docs/models/operations/GetTransactionsRequest.md
@@ -205,6 +207,7 @@ generatedFiles:
   - docs/models/operations/ListWorkflowsResponse.md
   - docs/models/operations/Metadata.md
   - docs/models/operations/OrchestrationgetServerInfoResponse.md
+  - docs/models/operations/Order.md
   - docs/models/operations/PaymentsgetAccountRequest.md
   - docs/models/operations/PaymentsgetAccountResponse.md
   - docs/models/operations/PaymentsgetServerInfoResponse.md
@@ -297,6 +300,8 @@ generatedFiles:
   - docs/models/operations/V2DeleteTriggerResponse.md
   - docs/models/operations/V2DeleteWorkflowRequest.md
   - docs/models/operations/V2DeleteWorkflowResponse.md
+  - docs/models/operations/V2ExportLogsRequest.md
+  - docs/models/operations/V2ExportLogsResponse.md
   - docs/models/operations/V2GetAccountRequest.md
   - docs/models/operations/V2GetAccountResponse.md
   - docs/models/operations/V2GetBalancesAggregatedRequest.md
@@ -319,6 +324,8 @@ generatedFiles:
   - docs/models/operations/V2GetVolumesWithBalancesResponse.md
   - docs/models/operations/V2GetWorkflowRequest.md
   - docs/models/operations/V2GetWorkflowResponse.md
+  - docs/models/operations/V2ImportLogsRequest.md
+  - docs/models/operations/V2ImportLogsResponse.md
   - docs/models/operations/V2ListAccountsRequest.md
   - docs/models/operations/V2ListAccountsResponse.md
   - docs/models/operations/V2ListInstancesRequest.md
@@ -795,7 +802,17 @@ generatedFiles:
   - docs/sdks/payments/README.md
   - docs/sdks/reconciliation/README.md
   - docs/sdks/sdk/README.md
+  - docs/sdks/sdkorchestrationv1/README.md
+  - docs/sdks/sdkpaymentsv1/README.md
+  - docs/sdks/sdkreconciliationv1/README.md
+  - docs/sdks/sdksearchv1/README.md
+  - docs/sdks/sdkv1/README.md
+  - docs/sdks/sdkv2/README.md
+  - docs/sdks/sdkwalletsv1/README.md
+  - docs/sdks/sdkwebhooksv1/README.md
   - docs/sdks/search/README.md
+  - docs/sdks/v1/README.md
+  - docs/sdks/v2/README.md
   - docs/sdks/wallets/README.md
   - docs/sdks/webhooks/README.md
   - gradle/wrapper/gradle-wrapper.jar
@@ -810,8 +827,18 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/Reconciliation.java
   - src/main/java/com/formance/formance_sdk/SDK.java
   - src/main/java/com/formance/formance_sdk/SDKConfiguration.java
+  - src/main/java/com/formance/formance_sdk/SDKOrchestrationV1.java
+  - src/main/java/com/formance/formance_sdk/SDKPaymentsV1.java
+  - src/main/java/com/formance/formance_sdk/SDKReconciliationV1.java
+  - src/main/java/com/formance/formance_sdk/SDKSearchV1.java
+  - src/main/java/com/formance/formance_sdk/SDKV1.java
+  - src/main/java/com/formance/formance_sdk/SDKV2.java
+  - src/main/java/com/formance/formance_sdk/SDKWalletsV1.java
+  - src/main/java/com/formance/formance_sdk/SDKWebhooksV1.java
   - src/main/java/com/formance/formance_sdk/Search.java
   - src/main/java/com/formance/formance_sdk/SecuritySource.java
+  - src/main/java/com/formance/formance_sdk/V1.java
+  - src/main/java/com/formance/formance_sdk/V2.java
   - src/main/java/com/formance/formance_sdk/Wallets.java
   - src/main/java/com/formance/formance_sdk/Webhooks.java
   - src/main/java/com/formance/formance_sdk/hooks/ClientCredentialsHook.java
@@ -994,6 +1021,8 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/GetReconciliationRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetReconciliationRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetReconciliationResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/GetServerInfoRequestBuilder.java
+  - src/main/java/com/formance/formance_sdk/models/operations/GetServerInfoResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetTransactionRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetTransactionRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/GetTransactionResponse.java
@@ -1080,6 +1109,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/Metadata.java
   - src/main/java/com/formance/formance_sdk/models/operations/OrchestrationgetServerInfoRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/OrchestrationgetServerInfoResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/Order.java
   - src/main/java/com/formance/formance_sdk/models/operations/PaymentsgetAccountRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/PaymentsgetAccountRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/PaymentsgetAccountResponse.java
@@ -1221,6 +1251,9 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteWorkflowRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteWorkflowRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2DeleteWorkflowResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2ExportLogsRequest.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2ExportLogsRequestBuilder.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2ExportLogsResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetAccountRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetAccountRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetAccountResponse.java
@@ -1255,6 +1288,9 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetWorkflowRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetWorkflowRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetWorkflowResponse.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2ImportLogsRequest.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2ImportLogsRequestBuilder.java
+  - src/main/java/com/formance/formance_sdk/models/operations/V2ImportLogsResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListAccountsRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListAccountsRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2ListAccountsResponse.java

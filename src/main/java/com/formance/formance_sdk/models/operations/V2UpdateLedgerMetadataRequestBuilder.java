@@ -23,7 +23,7 @@ public class V2UpdateLedgerMetadataRequestBuilder {
 
     public V2UpdateLedgerMetadataResponse call() throws Exception {
 
-        return sdk.v2UpdateLedgerMetadata(
+        return sdk.updateLedgerMetadata(
             request);
     }
 }

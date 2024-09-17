@@ -23,7 +23,7 @@ public class V2ListTriggersRequestBuilder {
 
     public V2ListTriggersResponse call() throws Exception {
 
-        return sdk.v2ListTriggers(
+        return sdk.listTriggers(
             request);
     }
 }

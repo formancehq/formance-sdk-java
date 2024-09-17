@@ -23,7 +23,7 @@ public class V2RunWorkflowRequestBuilder {
 
     public V2RunWorkflowResponse call() throws Exception {
 
-        return sdk.v2RunWorkflow(
+        return sdk.runWorkflow(
             request);
     }
 }

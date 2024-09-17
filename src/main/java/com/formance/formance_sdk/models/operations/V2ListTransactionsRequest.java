@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
@@ -44,6 +45,9 @@ public class V2ListTransactionsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=order")
+    private Optional<? extends Order> order;
+
     /**
      * The maximum number of results to return per page.
      * 
@@ -54,31 +58,40 @@ public class V2ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reverse")
+    private Optional<Boolean> reverse;
+
     @JsonCreator
     public V2ListTransactionsRequest(
             Optional<? extends Map<String, Object>> requestBody,
             Optional<String> cursor,
             Optional<String> expand,
             String ledger,
+            Optional<? extends Order> order,
             Optional<Long> pageSize,
-            Optional<OffsetDateTime> pit) {
+            Optional<OffsetDateTime> pit,
+            Optional<Boolean> reverse) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(ledger, "ledger");
+        Utils.checkNotNull(order, "order");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pit, "pit");
+        Utils.checkNotNull(reverse, "reverse");
         this.requestBody = requestBody;
         this.cursor = cursor;
         this.expand = expand;
         this.ledger = ledger;
+        this.order = order;
         this.pageSize = pageSize;
         this.pit = pit;
+        this.reverse = reverse;
     }
     
     public V2ListTransactionsRequest(
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -112,6 +125,12 @@ public class V2ListTransactionsRequest {
         return ledger;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Order> order() {
+        return (Optional<Order>) order;
+    }
+
     /**
      * The maximum number of results to return per page.
      * 
@@ -124,6 +143,11 @@ public class V2ListTransactionsRequest {
     @JsonIgnore
     public Optional<OffsetDateTime> pit() {
         return pit;
+    }
+
+    @JsonIgnore
+    public Optional<Boolean> reverse() {
+        return reverse;
     }
 
     public final static Builder builder() {
@@ -189,6 +213,18 @@ public class V2ListTransactionsRequest {
         return this;
     }
 
+    public V2ListTransactionsRequest withOrder(Order order) {
+        Utils.checkNotNull(order, "order");
+        this.order = Optional.ofNullable(order);
+        return this;
+    }
+
+    public V2ListTransactionsRequest withOrder(Optional<? extends Order> order) {
+        Utils.checkNotNull(order, "order");
+        this.order = order;
+        return this;
+    }
+
     /**
      * The maximum number of results to return per page.
      * 
@@ -220,6 +256,18 @@ public class V2ListTransactionsRequest {
         this.pit = pit;
         return this;
     }
+
+    public V2ListTransactionsRequest withReverse(boolean reverse) {
+        Utils.checkNotNull(reverse, "reverse");
+        this.reverse = Optional.ofNullable(reverse);
+        return this;
+    }
+
+    public V2ListTransactionsRequest withReverse(Optional<Boolean> reverse) {
+        Utils.checkNotNull(reverse, "reverse");
+        this.reverse = reverse;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -235,8 +283,10 @@ public class V2ListTransactionsRequest {
             Objects.deepEquals(this.cursor, other.cursor) &&
             Objects.deepEquals(this.expand, other.expand) &&
             Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.order, other.order) &&
             Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pit, other.pit);
+            Objects.deepEquals(this.pit, other.pit) &&
+            Objects.deepEquals(this.reverse, other.reverse);
     }
     
     @Override
@@ -246,8 +296,10 @@ public class V2ListTransactionsRequest {
             cursor,
             expand,
             ledger,
+            order,
             pageSize,
-            pit);
+            pit,
+            reverse);
     }
     
     @Override
@@ -257,8 +309,10 @@ public class V2ListTransactionsRequest {
                 "cursor", cursor,
                 "expand", expand,
                 "ledger", ledger,
+                "order", order,
                 "pageSize", pageSize,
-                "pit", pit);
+                "pit", pit,
+                "reverse", reverse);
     }
     
     public final static class Builder {
@@ -271,9 +325,13 @@ public class V2ListTransactionsRequest {
  
         private String ledger;
  
+        private Optional<? extends Order> order = Optional.empty();
+ 
         private Optional<Long> pageSize = Optional.empty();
  
-        private Optional<OffsetDateTime> pit = Optional.empty();  
+        private Optional<OffsetDateTime> pit = Optional.empty();
+ 
+        private Optional<Boolean> reverse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -338,6 +396,18 @@ public class V2ListTransactionsRequest {
             return this;
         }
 
+        public Builder order(Order order) {
+            Utils.checkNotNull(order, "order");
+            this.order = Optional.ofNullable(order);
+            return this;
+        }
+
+        public Builder order(Optional<? extends Order> order) {
+            Utils.checkNotNull(order, "order");
+            this.order = order;
+            return this;
+        }
+
         /**
          * The maximum number of results to return per page.
          * 
@@ -369,6 +439,18 @@ public class V2ListTransactionsRequest {
             this.pit = pit;
             return this;
         }
+
+        public Builder reverse(boolean reverse) {
+            Utils.checkNotNull(reverse, "reverse");
+            this.reverse = Optional.ofNullable(reverse);
+            return this;
+        }
+
+        public Builder reverse(Optional<Boolean> reverse) {
+            Utils.checkNotNull(reverse, "reverse");
+            this.reverse = reverse;
+            return this;
+        }
         
         public V2ListTransactionsRequest build() {
             return new V2ListTransactionsRequest(
@@ -376,8 +458,10 @@ public class V2ListTransactionsRequest {
                 cursor,
                 expand,
                 ledger,
+                order,
                 pageSize,
-                pit);
+                pit,
+                reverse);
         }
     }
 }

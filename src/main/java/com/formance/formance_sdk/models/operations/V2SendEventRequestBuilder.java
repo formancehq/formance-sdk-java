@@ -23,7 +23,7 @@ public class V2SendEventRequestBuilder {
 
     public V2SendEventResponse call() throws Exception {
 
-        return sdk.v2SendEvent(
+        return sdk.sendEvent(
             request);
     }
 }

@@ -18,7 +18,8 @@ public enum V2ErrorsEnum {
     REVERT_OCCURRING("REVERT_OCCURRING"),
     ALREADY_REVERT("ALREADY_REVERT"),
     NO_POSTINGS("NO_POSTINGS"),
-    LEDGER_NOT_FOUND("LEDGER_NOT_FOUND");
+    LEDGER_NOT_FOUND("LEDGER_NOT_FOUND"),
+    IMPORT("IMPORT");
 
     @JsonValue
     private final String value;

@@ -17,61 +17,7 @@ and standard method from web, mobile and desktop applications.
 
 ### Available Operations
 
-* [getOIDCWellKnowns](#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
 * [getVersions](#getversions) - Show stack version information
-
-## getOIDCWellKnowns
-
-Retrieve OpenID connect well-knowns.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
-                    .build())
-                .build();
-
-            GetOIDCWellKnownsResponse res = sdk.getOIDCWellKnowns()
-                .call();
-
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
-    }
-}
-```
-
-### Response
-
-**[GetOIDCWellKnownsResponse](../../models/operations/GetOIDCWellKnownsResponse.md)**
-
-### Errors
-
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
 
 ## getVersions
 

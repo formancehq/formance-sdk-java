@@ -15,6 +15,6 @@ public class V2GetInfoRequestBuilder {
 
     public V2GetInfoResponse call() throws Exception {
 
-        return sdk.v2GetInfoDirect();
+        return sdk.getInfoDirect();
     }
 }

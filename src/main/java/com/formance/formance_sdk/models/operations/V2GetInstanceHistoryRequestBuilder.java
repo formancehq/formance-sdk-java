@@ -23,7 +23,7 @@ public class V2GetInstanceHistoryRequestBuilder {
 
     public V2GetInstanceHistoryResponse call() throws Exception {
 
-        return sdk.v2GetInstanceHistory(
+        return sdk.getInstanceHistory(
             request);
     }
 }

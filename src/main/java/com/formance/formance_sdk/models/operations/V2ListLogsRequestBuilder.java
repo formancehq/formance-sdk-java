@@ -23,7 +23,7 @@ public class V2ListLogsRequestBuilder {
 
     public V2ListLogsResponse call() throws Exception {
 
-        return sdk.v2ListLogs(
+        return sdk.listLogs(
             request);
     }
 }

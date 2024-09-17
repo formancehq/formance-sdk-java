@@ -23,7 +23,7 @@ public class V2AddMetadataOnTransactionRequestBuilder {
 
     public V2AddMetadataOnTransactionResponse call() throws Exception {
 
-        return sdk.v2AddMetadataOnTransaction(
+        return sdk.addMetadataOnTransaction(
             request);
     }
 }

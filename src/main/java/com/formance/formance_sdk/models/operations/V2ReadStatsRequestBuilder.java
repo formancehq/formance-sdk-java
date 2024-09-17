@@ -23,7 +23,7 @@ public class V2ReadStatsRequestBuilder {
 
     public V2ReadStatsResponse call() throws Exception {
 
-        return sdk.v2ReadStats(
+        return sdk.readStats(
             request);
     }
 }

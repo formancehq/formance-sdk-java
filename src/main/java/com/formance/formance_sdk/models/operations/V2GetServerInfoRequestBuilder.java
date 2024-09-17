@@ -15,6 +15,6 @@ public class V2GetServerInfoRequestBuilder {
 
     public V2GetServerInfoResponse call() throws Exception {
 
-        return sdk.v2GetServerInfoDirect();
+        return sdk.getServerInfoDirect();
     }
 }
