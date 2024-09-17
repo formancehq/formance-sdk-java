@@ -31,7 +31,7 @@ public class V2CreateWorkflowRequestBuilder {
 
     public V2CreateWorkflowResponse call() throws Exception {
 
-        return sdk.createWorkflow(
+        return sdk.v2CreateWorkflow(
             request);
     }
 }

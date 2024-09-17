@@ -23,7 +23,7 @@ public class V2ListTriggersOccurrencesRequestBuilder {
 
     public V2ListTriggersOccurrencesResponse call() throws Exception {
 
-        return sdk.listTriggersOccurrences(
+        return sdk.v2ListTriggersOccurrences(
             request);
     }
 }

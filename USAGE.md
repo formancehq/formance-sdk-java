@@ -4,7 +4,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -19,12 +19,10 @@ public class Application {
                     .build())
                 .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+            GetOIDCWellKnownsResponse res = sdk.getOIDCWellKnowns()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
+            // handle response
         } catch (SDKError e) {
             // handle exception
             throw e;

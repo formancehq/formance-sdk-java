@@ -23,7 +23,7 @@ public class V2DeleteTriggerRequestBuilder {
 
     public V2DeleteTriggerResponse call() throws Exception {
 
-        return sdk.deleteTrigger(
+        return sdk.v2DeleteTrigger(
             request);
     }
 }

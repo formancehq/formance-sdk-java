@@ -23,7 +23,7 @@ public class V2RevertTransactionRequestBuilder {
 
     public V2RevertTransactionResponse call() throws Exception {
 
-        return sdk.revertTransaction(
+        return sdk.v2RevertTransaction(
             request);
     }
 }

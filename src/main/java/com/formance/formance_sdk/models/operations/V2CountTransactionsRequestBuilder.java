@@ -23,7 +23,7 @@ public class V2CountTransactionsRequestBuilder {
 
     public V2CountTransactionsResponse call() throws Exception {
 
-        return sdk.countTransactions(
+        return sdk.v2CountTransactions(
             request);
     }
 }

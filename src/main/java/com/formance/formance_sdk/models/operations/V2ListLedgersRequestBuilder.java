@@ -23,7 +23,7 @@ public class V2ListLedgersRequestBuilder {
 
     public V2ListLedgersResponse call() throws Exception {
 
-        return sdk.listLedgers(
+        return sdk.v2ListLedgers(
             request);
     }
 }

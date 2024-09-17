@@ -23,7 +23,7 @@ public class V2ListWorkflowsRequestBuilder {
 
     public V2ListWorkflowsResponse call() throws Exception {
 
-        return sdk.listWorkflows(
+        return sdk.v2ListWorkflows(
             request);
     }
 }

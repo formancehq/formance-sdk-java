@@ -23,7 +23,7 @@ public class V2GetVolumesWithBalancesRequestBuilder {
 
     public V2GetVolumesWithBalancesResponse call() throws Exception {
 
-        return sdk.getVolumesWithBalances(
+        return sdk.v2GetVolumesWithBalances(
             request);
     }
 }

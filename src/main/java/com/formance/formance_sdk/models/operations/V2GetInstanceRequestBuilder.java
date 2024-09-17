@@ -23,7 +23,7 @@ public class V2GetInstanceRequestBuilder {
 
     public V2GetInstanceResponse call() throws Exception {
 
-        return sdk.getInstance(
+        return sdk.v2GetInstance(
             request);
     }
 }

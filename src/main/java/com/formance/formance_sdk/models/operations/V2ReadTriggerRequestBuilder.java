@@ -23,7 +23,7 @@ public class V2ReadTriggerRequestBuilder {
 
     public V2ReadTriggerResponse call() throws Exception {
 
-        return sdk.readTrigger(
+        return sdk.v2ReadTrigger(
             request);
     }
 }

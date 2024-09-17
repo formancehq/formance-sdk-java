@@ -23,7 +23,7 @@ public class V2GetAccountRequestBuilder {
 
     public V2GetAccountResponse call() throws Exception {
 
-        return sdk.getAccount(
+        return sdk.v2GetAccount(
             request);
     }
 }
