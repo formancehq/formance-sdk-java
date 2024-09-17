@@ -5,11 +5,11 @@ sources:
         inputs:
             - location: $openapi_spec_url
         registry:
-            location: registry.speakeasyapi.dev/formance/formance/my-source
+            location: registry.speakeasyapi.dev/formance/formance/formance-sdk-java
 targets:
     Java:
         target: java
-        source: my-source
+        source: formance-sdk-java
         publish:
             java:
                 ossrhUsername: $OSSRH_USERNAME
@@ -17,6 +17,6 @@ targets:
                 gpgSecretKey: $JAVA_GPG_SECRET_KEY
                 gpgPassPhrase: $JAVA_GPG_PASSPHRASE
         codeSamples:
-            output: codeSamples.yaml
+            output: formance-sdk-java.yaml
             registry:
-                location: registry.speakeasyapi.dev/formance/formance/code-samples-java-java
+                location: registry.speakeasyapi.dev/formance/formance/formance-sdk-java

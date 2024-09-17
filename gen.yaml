@@ -37,6 +37,7 @@ java:
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 0
+  ossrhURL: https://s01.oss.sonatype.org/content/repositories/snapshots/
   outputModelSuffix: output
   projectName: formance-sdk
   templateVersion: v2
