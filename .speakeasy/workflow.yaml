@@ -1,4 +1,8 @@
 workflowVersion: 1.0.0
+sources:
+  my-source:
+    inputs:
+      - location: $openapi_spec_url
 targets:
     Java:
         target: java
