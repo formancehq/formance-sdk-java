@@ -3,10 +3,10 @@ id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
   docChecksum: 706ea24f6e5943004b89faa8c7200702
   docVersion: v2.0.17
-  speakeasyVersion: 1.398.0
+  speakeasyVersion: 1.398.1
   generationVersion: 2.415.8
-  releaseVersion: 3.2.1
-  configChecksum: ddd0da4d64e06dbe725d39df1666921f
+  releaseVersion: 3.2.2
+  configChecksum: 02642178510ced12a2a9cd223e075666
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
