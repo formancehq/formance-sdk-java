@@ -2,7 +2,7 @@ speakeasyVersion: 1.398.1
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:a45a44f894b00a3204122bd0f82162c8fa954fad680744ffead4100e5cb37898
+        sourceRevisionDigest: sha256:ca7c920e449e6a78849cca48c589f62e7b0bd8d1e9b1c9f233e3e4e317b8120a
         sourceBlobDigest: sha256:6102c0dd0a5d5b998bd1b9a91a738493d5bc8356b80c41160d2bac21f58cb4d8
         tags:
             - latest
@@ -11,10 +11,10 @@ targets:
     Java:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:a45a44f894b00a3204122bd0f82162c8fa954fad680744ffead4100e5cb37898
+        sourceRevisionDigest: sha256:ca7c920e449e6a78849cca48c589f62e7b0bd8d1e9b1c9f233e3e4e317b8120a
         sourceBlobDigest: sha256:6102c0dd0a5d5b998bd1b9a91a738493d5bc8356b80c41160d2bac21f58cb4d8
         codeSamplesNamespace: code-samples-java-java
-        codeSamplesRevisionDigest: sha256:f7e6fa2df6f02f8d5f90faf25a94776e7615085f8702ca4f2abb03306d94cc76
+        codeSamplesRevisionDigest: sha256:ff30323690b7b030d9672f673160e00d5224b192c6d4948c835b334867895e6b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -34,6 +34,7 @@ workflow:
                     ossrhPassword: $OSSRH_PASSWORD
                     gpgSecretKey: $JAVA_GPG_SECRET_KEY
                     gpgPassPhrase: $JAVA_GPG_PASSPHRASE
+                    useSonatypeLegacy: true
             codeSamples:
                 output: codeSamples.yaml
                 registry:
