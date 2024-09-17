@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.PoolResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetPoolResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetPoolResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.PoolResponse> poolResponse;
+    private Optional<? extends PoolResponse> poolResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
     @JsonCreator
     public GetPoolResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.PoolResponse> poolResponse,
+            Optional<? extends PoolResponse> poolResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.PoolResponse> poolResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.PoolResponse>) poolResponse;
+    public Optional<PoolResponse> poolResponse() {
+        return (Optional<PoolResponse>) poolResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
     /**
      * OK
      */
-    public GetPoolResponse withPoolResponse(com.formance.formance_sdk.models.shared.PoolResponse poolResponse) {
+    public GetPoolResponse withPoolResponse(PoolResponse poolResponse) {
         Utils.checkNotNull(poolResponse, "poolResponse");
         this.poolResponse = Optional.ofNullable(poolResponse);
         return this;
@@ -119,7 +123,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
     /**
      * OK
      */
-    public GetPoolResponse withPoolResponse(Optional<? extends com.formance.formance_sdk.models.shared.PoolResponse> poolResponse) {
+    public GetPoolResponse withPoolResponse(Optional<? extends PoolResponse> poolResponse) {
         Utils.checkNotNull(poolResponse, "poolResponse");
         this.poolResponse = poolResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
         }
         GetPoolResponse other = (GetPoolResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.poolResponse, other.poolResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.poolResponse, other.poolResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             poolResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.PoolResponse> poolResponse = Optional.empty();
+        private Optional<? extends PoolResponse> poolResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
         /**
          * OK
          */
-        public Builder poolResponse(com.formance.formance_sdk.models.shared.PoolResponse poolResponse) {
+        public Builder poolResponse(PoolResponse poolResponse) {
             Utils.checkNotNull(poolResponse, "poolResponse");
             this.poolResponse = Optional.ofNullable(poolResponse);
             return this;
@@ -212,7 +216,7 @@ public class GetPoolResponse implements com.formance.formance_sdk.utils.Response
         /**
          * OK
          */
-        public Builder poolResponse(Optional<? extends com.formance.formance_sdk.models.shared.PoolResponse> poolResponse) {
+        public Builder poolResponse(Optional<? extends PoolResponse> poolResponse) {
             Utils.checkNotNull(poolResponse, "poolResponse");
             this.poolResponse = poolResponse;
             return this;

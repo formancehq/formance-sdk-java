@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.AccountsCursor;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class PaymentslistAccountsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class PaymentslistAccountsResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursor> accountsCursor;
+    private Optional<? extends AccountsCursor> accountsCursor;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
 
     @JsonCreator
     public PaymentslistAccountsResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursor> accountsCursor,
+            Optional<? extends AccountsCursor> accountsCursor,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.AccountsCursor> accountsCursor() {
-        return (Optional<com.formance.formance_sdk.models.shared.AccountsCursor>) accountsCursor;
+    public Optional<AccountsCursor> accountsCursor() {
+        return (Optional<AccountsCursor>) accountsCursor;
     }
 
     /**
@@ -101,7 +105,7 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
     /**
      * OK
      */
-    public PaymentslistAccountsResponse withAccountsCursor(com.formance.formance_sdk.models.shared.AccountsCursor accountsCursor) {
+    public PaymentslistAccountsResponse withAccountsCursor(AccountsCursor accountsCursor) {
         Utils.checkNotNull(accountsCursor, "accountsCursor");
         this.accountsCursor = Optional.ofNullable(accountsCursor);
         return this;
@@ -110,7 +114,7 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
     /**
      * OK
      */
-    public PaymentslistAccountsResponse withAccountsCursor(Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursor> accountsCursor) {
+    public PaymentslistAccountsResponse withAccountsCursor(Optional<? extends AccountsCursor> accountsCursor) {
         Utils.checkNotNull(accountsCursor, "accountsCursor");
         this.accountsCursor = accountsCursor;
         return this;
@@ -153,15 +157,15 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
         }
         PaymentslistAccountsResponse other = (PaymentslistAccountsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.accountsCursor, other.accountsCursor) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.accountsCursor, other.accountsCursor) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accountsCursor,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursor> accountsCursor = Optional.empty();
+        private Optional<? extends AccountsCursor> accountsCursor = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
         /**
          * OK
          */
-        public Builder accountsCursor(com.formance.formance_sdk.models.shared.AccountsCursor accountsCursor) {
+        public Builder accountsCursor(AccountsCursor accountsCursor) {
             Utils.checkNotNull(accountsCursor, "accountsCursor");
             this.accountsCursor = Optional.ofNullable(accountsCursor);
             return this;
@@ -203,7 +207,7 @@ public class PaymentslistAccountsResponse implements com.formance.formance_sdk.u
         /**
          * OK
          */
-        public Builder accountsCursor(Optional<? extends com.formance.formance_sdk.models.shared.AccountsCursor> accountsCursor) {
+        public Builder accountsCursor(Optional<? extends AccountsCursor> accountsCursor) {
             Utils.checkNotNull(accountsCursor, "accountsCursor");
             this.accountsCursor = accountsCursor;
             return this;

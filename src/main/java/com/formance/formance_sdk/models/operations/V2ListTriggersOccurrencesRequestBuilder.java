@@ -4,18 +4,7 @@
 
 package com.formance.formance_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class V2ListTriggersOccurrencesRequestBuilder {
 
@@ -26,7 +15,7 @@ public class V2ListTriggersOccurrencesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2ListTriggersOccurrencesRequestBuilder request(V2ListTriggersOccurrencesRequest request) {
+    public V2ListTriggersOccurrencesRequestBuilder request(com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -34,7 +23,7 @@ public class V2ListTriggersOccurrencesRequestBuilder {
 
     public V2ListTriggersOccurrencesResponse call() throws Exception {
 
-        return sdk.v2ListTriggersOccurrences(
+        return sdk.listTriggersOccurrences(
             request);
     }
 }

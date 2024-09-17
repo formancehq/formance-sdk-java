@@ -4,19 +4,18 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2StageSendSourceAccount {
 
@@ -25,12 +24,12 @@ public class V2StageSendSourceAccount {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
-    private Optional<? extends String> ledger;
+    private Optional<String> ledger;
 
     @JsonCreator
     public V2StageSendSourceAccount(
             @JsonProperty("id") String id,
-            @JsonProperty("ledger") Optional<? extends String> ledger) {
+            @JsonProperty("ledger") Optional<String> ledger) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         this.id = id;
@@ -47,10 +46,9 @@ public class V2StageSendSourceAccount {
         return id;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> ledger() {
-        return (Optional<String>) ledger;
+        return ledger;
     }
 
     public final static Builder builder() {
@@ -69,7 +67,7 @@ public class V2StageSendSourceAccount {
         return this;
     }
 
-    public V2StageSendSourceAccount withLedger(Optional<? extends String> ledger) {
+    public V2StageSendSourceAccount withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
         return this;
@@ -85,13 +83,13 @@ public class V2StageSendSourceAccount {
         }
         V2StageSendSourceAccount other = (V2StageSendSourceAccount) o;
         return 
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             id,
             ledger);
     }
@@ -107,7 +105,7 @@ public class V2StageSendSourceAccount {
  
         private String id;
  
-        private Optional<? extends String> ledger = Optional.empty();  
+        private Optional<String> ledger = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -125,7 +123,7 @@ public class V2StageSendSourceAccount {
             return this;
         }
 
-        public Builder ledger(Optional<? extends String> ledger) {
+        public Builder ledger(Optional<String> ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
             return this;

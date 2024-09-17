@@ -4,17 +4,16 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetManyConfigsRequest {
 
@@ -22,18 +21,18 @@ public class GetManyConfigsRequest {
      * Optional filter by endpoint URL
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=endpoint")
-    private Optional<? extends String> endpoint;
+    private Optional<String> endpoint;
 
     /**
      * Optional filter by Config ID
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=id")
-    private Optional<? extends String> id;
+    private Optional<String> id;
 
     @JsonCreator
     public GetManyConfigsRequest(
-            Optional<? extends String> endpoint,
-            Optional<? extends String> id) {
+            Optional<String> endpoint,
+            Optional<String> id) {
         Utils.checkNotNull(endpoint, "endpoint");
         Utils.checkNotNull(id, "id");
         this.endpoint = endpoint;
@@ -47,19 +46,17 @@ public class GetManyConfigsRequest {
     /**
      * Optional filter by endpoint URL
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> endpoint() {
-        return (Optional<String>) endpoint;
+        return endpoint;
     }
 
     /**
      * Optional filter by Config ID
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> id() {
-        return (Optional<String>) id;
+        return id;
     }
 
     public final static Builder builder() {
@@ -78,7 +75,7 @@ public class GetManyConfigsRequest {
     /**
      * Optional filter by endpoint URL
      */
-    public GetManyConfigsRequest withEndpoint(Optional<? extends String> endpoint) {
+    public GetManyConfigsRequest withEndpoint(Optional<String> endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = endpoint;
         return this;
@@ -96,7 +93,7 @@ public class GetManyConfigsRequest {
     /**
      * Optional filter by Config ID
      */
-    public GetManyConfigsRequest withId(Optional<? extends String> id) {
+    public GetManyConfigsRequest withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -112,13 +109,13 @@ public class GetManyConfigsRequest {
         }
         GetManyConfigsRequest other = (GetManyConfigsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.endpoint, other.endpoint) &&
-            java.util.Objects.deepEquals(this.id, other.id);
+            Objects.deepEquals(this.endpoint, other.endpoint) &&
+            Objects.deepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             endpoint,
             id);
     }
@@ -132,9 +129,9 @@ public class GetManyConfigsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> endpoint = Optional.empty();
+        private Optional<String> endpoint = Optional.empty();
  
-        private Optional<? extends String> id = Optional.empty();  
+        private Optional<String> id = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -152,7 +149,7 @@ public class GetManyConfigsRequest {
         /**
          * Optional filter by endpoint URL
          */
-        public Builder endpoint(Optional<? extends String> endpoint) {
+        public Builder endpoint(Optional<String> endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
             return this;
@@ -170,7 +167,7 @@ public class GetManyConfigsRequest {
         /**
          * Optional filter by Config ID
          */
-        public Builder id(Optional<? extends String> id) {
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;

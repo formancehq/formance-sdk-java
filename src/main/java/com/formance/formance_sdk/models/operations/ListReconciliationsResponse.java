@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListReconciliationsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListReconciliationsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse> reconciliationsCursorResponse;
+    private Optional<? extends ReconciliationsCursorResponse> reconciliationsCursorResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
     @JsonCreator
     public ListReconciliationsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse> reconciliationsCursorResponse,
+            Optional<? extends ReconciliationsCursorResponse> reconciliationsCursorResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse> reconciliationsCursorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse>) reconciliationsCursorResponse;
+    public Optional<ReconciliationsCursorResponse> reconciliationsCursorResponse() {
+        return (Optional<ReconciliationsCursorResponse>) reconciliationsCursorResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
     /**
      * OK
      */
-    public ListReconciliationsResponse withReconciliationsCursorResponse(com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse reconciliationsCursorResponse) {
+    public ListReconciliationsResponse withReconciliationsCursorResponse(ReconciliationsCursorResponse reconciliationsCursorResponse) {
         Utils.checkNotNull(reconciliationsCursorResponse, "reconciliationsCursorResponse");
         this.reconciliationsCursorResponse = Optional.ofNullable(reconciliationsCursorResponse);
         return this;
@@ -119,7 +123,7 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
     /**
      * OK
      */
-    public ListReconciliationsResponse withReconciliationsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse> reconciliationsCursorResponse) {
+    public ListReconciliationsResponse withReconciliationsCursorResponse(Optional<? extends ReconciliationsCursorResponse> reconciliationsCursorResponse) {
         Utils.checkNotNull(reconciliationsCursorResponse, "reconciliationsCursorResponse");
         this.reconciliationsCursorResponse = reconciliationsCursorResponse;
         return this;
@@ -153,15 +157,15 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
         }
         ListReconciliationsResponse other = (ListReconciliationsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.reconciliationsCursorResponse, other.reconciliationsCursorResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.reconciliationsCursorResponse, other.reconciliationsCursorResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             reconciliationsCursorResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse> reconciliationsCursorResponse = Optional.empty();
+        private Optional<? extends ReconciliationsCursorResponse> reconciliationsCursorResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
         /**
          * OK
          */
-        public Builder reconciliationsCursorResponse(com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse reconciliationsCursorResponse) {
+        public Builder reconciliationsCursorResponse(ReconciliationsCursorResponse reconciliationsCursorResponse) {
             Utils.checkNotNull(reconciliationsCursorResponse, "reconciliationsCursorResponse");
             this.reconciliationsCursorResponse = Optional.ofNullable(reconciliationsCursorResponse);
             return this;
@@ -212,7 +216,7 @@ public class ListReconciliationsResponse implements com.formance.formance_sdk.ut
         /**
          * OK
          */
-        public Builder reconciliationsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationsCursorResponse> reconciliationsCursorResponse) {
+        public Builder reconciliationsCursorResponse(Optional<? extends ReconciliationsCursorResponse> reconciliationsCursorResponse) {
             Utils.checkNotNull(reconciliationsCursorResponse, "reconciliationsCursorResponse");
             this.reconciliationsCursorResponse = reconciliationsCursorResponse;
             return this;

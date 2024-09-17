@@ -4,19 +4,18 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Objects;
+
 
 public class WebhooksConfig {
 
@@ -30,7 +29,7 @@ public class WebhooksConfig {
     private String endpoint;
 
     @JsonProperty("eventTypes")
-    private java.util.List<String> eventTypes;
+    private List<String> eventTypes;
 
     @JsonProperty("id")
     private String id;
@@ -46,7 +45,7 @@ public class WebhooksConfig {
             @JsonProperty("active") boolean active,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("endpoint") String endpoint,
-            @JsonProperty("eventTypes") java.util.List<String> eventTypes,
+            @JsonProperty("eventTypes") List<String> eventTypes,
             @JsonProperty("id") String id,
             @JsonProperty("secret") String secret,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
@@ -82,7 +81,7 @@ public class WebhooksConfig {
     }
 
     @JsonIgnore
-    public java.util.List<String> eventTypes() {
+    public List<String> eventTypes() {
         return eventTypes;
     }
 
@@ -123,7 +122,7 @@ public class WebhooksConfig {
         return this;
     }
 
-    public WebhooksConfig withEventTypes(java.util.List<String> eventTypes) {
+    public WebhooksConfig withEventTypes(List<String> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
@@ -157,18 +156,18 @@ public class WebhooksConfig {
         }
         WebhooksConfig other = (WebhooksConfig) o;
         return 
-            java.util.Objects.deepEquals(this.active, other.active) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.endpoint, other.endpoint) &&
-            java.util.Objects.deepEquals(this.eventTypes, other.eventTypes) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.secret, other.secret) &&
-            java.util.Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Objects.deepEquals(this.active, other.active) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.endpoint, other.endpoint) &&
+            Objects.deepEquals(this.eventTypes, other.eventTypes) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.secret, other.secret) &&
+            Objects.deepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             active,
             createdAt,
             endpoint,
@@ -198,7 +197,7 @@ public class WebhooksConfig {
  
         private String endpoint;
  
-        private java.util.List<String> eventTypes;
+        private List<String> eventTypes;
  
         private String id;
  
@@ -228,7 +227,7 @@ public class WebhooksConfig {
             return this;
         }
 
-        public Builder eventTypes(java.util.List<String> eventTypes) {
+        public Builder eventTypes(List<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;

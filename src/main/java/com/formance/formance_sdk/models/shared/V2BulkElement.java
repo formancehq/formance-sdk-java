@@ -4,27 +4,23 @@
 
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import java.lang.String;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "action", include = JsonTypeInfo.As.EXISTING_PROPERTY, visible = true)
+
+@JsonTypeInfo(use = Id.NAME, property = "action", include = As.EXISTING_PROPERTY, visible = true)
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = V2BulkElementCreateTransaction.class, name="CREATE_TRANSACTION"),
-    @JsonSubTypes.Type(value = V2BulkElementAddMetadata.class, name="ADD_METADATA"),
-    @JsonSubTypes.Type(value = V2BulkElementRevertTransaction.class, name="REVERT_TRANSACTION"),
-    @JsonSubTypes.Type(value = V2BulkElementDeleteMetadata.class, name="DELETE_METADATA")})
+    @Type(value = V2BulkElementCreateTransaction.class, name="CREATE_TRANSACTION"),
+    @Type(value = V2BulkElementAddMetadata.class, name="ADD_METADATA"),
+    @Type(value = V2BulkElementRevertTransaction.class, name="REVERT_TRANSACTION"),
+    @Type(value = V2BulkElementDeleteMetadata.class, name="DELETE_METADATA")})
 public interface V2BulkElement {
 
-    java.lang.String action();
+    String action();
 
 }

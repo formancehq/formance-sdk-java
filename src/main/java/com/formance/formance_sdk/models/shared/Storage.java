@@ -4,29 +4,30 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Storage {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("migrations")
-    private Optional<? extends java.util.List<MigrationInfo>> migrations;
+    private Optional<? extends List<MigrationInfo>> migrations;
 
     @JsonCreator
     public Storage(
-            @JsonProperty("migrations") Optional<? extends java.util.List<MigrationInfo>> migrations) {
+            @JsonProperty("migrations") Optional<? extends List<MigrationInfo>> migrations) {
         Utils.checkNotNull(migrations, "migrations");
         this.migrations = migrations;
     }
@@ -37,21 +38,21 @@ public class Storage {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<MigrationInfo>> migrations() {
-        return (Optional<java.util.List<MigrationInfo>>) migrations;
+    public Optional<List<MigrationInfo>> migrations() {
+        return (Optional<List<MigrationInfo>>) migrations;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public Storage withMigrations(java.util.List<MigrationInfo> migrations) {
+    public Storage withMigrations(List<MigrationInfo> migrations) {
         Utils.checkNotNull(migrations, "migrations");
         this.migrations = Optional.ofNullable(migrations);
         return this;
     }
 
-    public Storage withMigrations(Optional<? extends java.util.List<MigrationInfo>> migrations) {
+    public Storage withMigrations(Optional<? extends List<MigrationInfo>> migrations) {
         Utils.checkNotNull(migrations, "migrations");
         this.migrations = migrations;
         return this;
@@ -67,12 +68,12 @@ public class Storage {
         }
         Storage other = (Storage) o;
         return 
-            java.util.Objects.deepEquals(this.migrations, other.migrations);
+            Objects.deepEquals(this.migrations, other.migrations);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             migrations);
     }
     
@@ -84,19 +85,19 @@ public class Storage {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.List<MigrationInfo>> migrations = Optional.empty();  
+        private Optional<? extends List<MigrationInfo>> migrations = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder migrations(java.util.List<MigrationInfo> migrations) {
+        public Builder migrations(List<MigrationInfo> migrations) {
             Utils.checkNotNull(migrations, "migrations");
             this.migrations = Optional.ofNullable(migrations);
             return this;
         }
 
-        public Builder migrations(Optional<? extends java.util.List<MigrationInfo>> migrations) {
+        public Builder migrations(Optional<? extends List<MigrationInfo>> migrations) {
             Utils.checkNotNull(migrations, "migrations");
             this.migrations = migrations;
             return this;

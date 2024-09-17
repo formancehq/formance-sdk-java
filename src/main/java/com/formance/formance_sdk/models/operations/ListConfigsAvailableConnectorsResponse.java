@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListConfigsAvailableConnectorsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListConfigsAvailableConnectorsResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse> connectorsConfigsResponse;
+    private Optional<? extends ConnectorsConfigsResponse> connectorsConfigsResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class ListConfigsAvailableConnectorsResponse implements com.formance.form
 
     @JsonCreator
     public ListConfigsAvailableConnectorsResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse> connectorsConfigsResponse,
+            Optional<? extends ConnectorsConfigsResponse> connectorsConfigsResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class ListConfigsAvailableConnectorsResponse implements com.formance.form
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse> connectorsConfigsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse>) connectorsConfigsResponse;
+    public Optional<ConnectorsConfigsResponse> connectorsConfigsResponse() {
+        return (Optional<ConnectorsConfigsResponse>) connectorsConfigsResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class ListConfigsAvailableConnectorsResponse implements com.formance.form
     /**
      * OK
      */
-    public ListConfigsAvailableConnectorsResponse withConnectorsConfigsResponse(com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse connectorsConfigsResponse) {
+    public ListConfigsAvailableConnectorsResponse withConnectorsConfigsResponse(ConnectorsConfigsResponse connectorsConfigsResponse) {
         Utils.checkNotNull(connectorsConfigsResponse, "connectorsConfigsResponse");
         this.connectorsConfigsResponse = Optional.ofNullable(connectorsConfigsResponse);
         return this;
@@ -110,7 +114,7 @@ public class ListConfigsAvailableConnectorsResponse implements com.formance.form
     /**
      * OK
      */
-    public ListConfigsAvailableConnectorsResponse withConnectorsConfigsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse> connectorsConfigsResponse) {
+    public ListConfigsAvailableConnectorsResponse withConnectorsConfigsResponse(Optional<? extends ConnectorsConfigsResponse> connectorsConfigsResponse) {
         Utils.checkNotNull(connectorsConfigsResponse, "connectorsConfigsResponse");
         this.connectorsConfigsResponse = connectorsConfigsResponse;
         return this;
@@ -153,15 +157,15 @@ public class ListConfigsAvailableConnectorsResponse implements com.formance.form
         }
         ListConfigsAvailableConnectorsResponse other = (ListConfigsAvailableConnectorsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.connectorsConfigsResponse, other.connectorsConfigsResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.connectorsConfigsResponse, other.connectorsConfigsResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connectorsConfigsResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class ListConfigsAvailableConnectorsResponse implements com.formance.form
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse> connectorsConfigsResponse = Optional.empty();
+        private Optional<? extends ConnectorsConfigsResponse> connectorsConfigsResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class ListConfigsAvailableConnectorsResponse implements com.formance.form
         /**
          * OK
          */
-        public Builder connectorsConfigsResponse(com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse connectorsConfigsResponse) {
+        public Builder connectorsConfigsResponse(ConnectorsConfigsResponse connectorsConfigsResponse) {
             Utils.checkNotNull(connectorsConfigsResponse, "connectorsConfigsResponse");
             this.connectorsConfigsResponse = Optional.ofNullable(connectorsConfigsResponse);
             return this;
@@ -203,7 +207,7 @@ public class ListConfigsAvailableConnectorsResponse implements com.formance.form
         /**
          * OK
          */
-        public Builder connectorsConfigsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsConfigsResponse> connectorsConfigsResponse) {
+        public Builder connectorsConfigsResponse(Optional<? extends ConnectorsConfigsResponse> connectorsConfigsResponse) {
             Utils.checkNotNull(connectorsConfigsResponse, "connectorsConfigsResponse");
             this.connectorsConfigsResponse = connectorsConfigsResponse;
             return this;

@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ReconciliationResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ReconcileResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ReconcileResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse;
+    private Optional<? extends ReconciliationResponse> reconciliationResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
     @JsonCreator
     public ReconcileResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse,
+            Optional<? extends ReconciliationResponse> reconciliationResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ReconciliationResponse>) reconciliationResponse;
+    public Optional<ReconciliationResponse> reconciliationResponse() {
+        return (Optional<ReconciliationResponse>) reconciliationResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    public ReconcileResponse withReconciliationResponse(com.formance.formance_sdk.models.shared.ReconciliationResponse reconciliationResponse) {
+    public ReconcileResponse withReconciliationResponse(ReconciliationResponse reconciliationResponse) {
         Utils.checkNotNull(reconciliationResponse, "reconciliationResponse");
         this.reconciliationResponse = Optional.ofNullable(reconciliationResponse);
         return this;
@@ -119,7 +123,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    public ReconcileResponse withReconciliationResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse) {
+    public ReconcileResponse withReconciliationResponse(Optional<? extends ReconciliationResponse> reconciliationResponse) {
         Utils.checkNotNull(reconciliationResponse, "reconciliationResponse");
         this.reconciliationResponse = reconciliationResponse;
         return this;
@@ -153,15 +157,15 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
         }
         ReconcileResponse other = (ReconcileResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.reconciliationResponse, other.reconciliationResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.reconciliationResponse, other.reconciliationResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             reconciliationResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse = Optional.empty();
+        private Optional<? extends ReconciliationResponse> reconciliationResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
         /**
          * OK
          */
-        public Builder reconciliationResponse(com.formance.formance_sdk.models.shared.ReconciliationResponse reconciliationResponse) {
+        public Builder reconciliationResponse(ReconciliationResponse reconciliationResponse) {
             Utils.checkNotNull(reconciliationResponse, "reconciliationResponse");
             this.reconciliationResponse = Optional.ofNullable(reconciliationResponse);
             return this;
@@ -212,7 +216,7 @@ public class ReconcileResponse implements com.formance.formance_sdk.utils.Respon
         /**
          * OK
          */
-        public Builder reconciliationResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReconciliationResponse> reconciliationResponse) {
+        public Builder reconciliationResponse(Optional<? extends ReconciliationResponse> reconciliationResponse) {
             Utils.checkNotNull(reconciliationResponse, "reconciliationResponse");
             this.reconciliationResponse = reconciliationResponse;
             return this;

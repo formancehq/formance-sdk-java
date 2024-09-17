@@ -4,8 +4,8 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,11 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class MangoPayConfig {
 
@@ -39,7 +39,7 @@ public class MangoPayConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
-    private Optional<? extends String> pollingPeriod;
+    private Optional<String> pollingPeriod;
 
     @JsonCreator
     public MangoPayConfig(
@@ -47,7 +47,7 @@ public class MangoPayConfig {
             @JsonProperty("clientID") String clientID,
             @JsonProperty("endpoint") String endpoint,
             @JsonProperty("name") String name,
-            @JsonProperty("pollingPeriod") Optional<? extends String> pollingPeriod) {
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(clientID, "clientID");
         Utils.checkNotNull(endpoint, "endpoint");
@@ -92,10 +92,9 @@ public class MangoPayConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> pollingPeriod() {
-        return (Optional<String>) pollingPeriod;
+        return pollingPeriod;
     }
 
     public final static Builder builder() {
@@ -140,7 +139,7 @@ public class MangoPayConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
      * 
      */
-    public MangoPayConfig withPollingPeriod(Optional<? extends String> pollingPeriod) {
+    public MangoPayConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         this.pollingPeriod = pollingPeriod;
         return this;
@@ -156,16 +155,16 @@ public class MangoPayConfig {
         }
         MangoPayConfig other = (MangoPayConfig) o;
         return 
-            java.util.Objects.deepEquals(this.apiKey, other.apiKey) &&
-            java.util.Objects.deepEquals(this.clientID, other.clientID) &&
-            java.util.Objects.deepEquals(this.endpoint, other.endpoint) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
+            Objects.deepEquals(this.apiKey, other.apiKey) &&
+            Objects.deepEquals(this.clientID, other.clientID) &&
+            Objects.deepEquals(this.endpoint, other.endpoint) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             apiKey,
             clientID,
             endpoint,
@@ -193,7 +192,7 @@ public class MangoPayConfig {
  
         private String name;
  
-        private Optional<? extends String> pollingPeriod;  
+        private Optional<String> pollingPeriod;  
         
         private Builder() {
           // force use of static builder() method
@@ -237,7 +236,7 @@ public class MangoPayConfig {
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
          * 
          */
-        public Builder pollingPeriod(Optional<? extends String> pollingPeriod) {
+        public Builder pollingPeriod(Optional<String> pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = pollingPeriod;
             return this;
@@ -246,8 +245,7 @@ public class MangoPayConfig {
         public MangoPayConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
-            }
-            return new MangoPayConfig(
+            }            return new MangoPayConfig(
                 apiKey,
                 clientID,
                 endpoint,
@@ -255,11 +253,11 @@ public class MangoPayConfig {
                 pollingPeriod);
         }
 
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_PollingPeriod =
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
-                        new TypeReference<Optional<? extends String>>() {});
+                        new TypeReference<Optional<String>>() {});
     }
 }
 

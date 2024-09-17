@@ -4,22 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskBankingCircle {
 
@@ -34,7 +31,7 @@ public class TaskBankingCircle {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<? extends String> error;
+    private Optional<String> error;
 
     @JsonProperty("id")
     private String id;
@@ -53,7 +50,7 @@ public class TaskBankingCircle {
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("descriptor") Descriptor descriptor,
-            @JsonProperty("error") Optional<? extends String> error,
+            @JsonProperty("error") Optional<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("state") TaskBankingCircleState state,
             @JsonProperty("status") PaymentStatus status,
@@ -102,10 +99,9 @@ public class TaskBankingCircle {
         return descriptor;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> error() {
-        return (Optional<String>) error;
+        return error;
     }
 
     @JsonIgnore
@@ -156,7 +152,7 @@ public class TaskBankingCircle {
         return this;
     }
 
-    public TaskBankingCircle withError(Optional<? extends String> error) {
+    public TaskBankingCircle withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -196,19 +192,19 @@ public class TaskBankingCircle {
         }
         TaskBankingCircle other = (TaskBankingCircle) o;
         return 
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.descriptor, other.descriptor) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.state, other.state) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.descriptor, other.descriptor) &&
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.state, other.state) &&
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connectorID,
             createdAt,
             descriptor,
@@ -240,7 +236,7 @@ public class TaskBankingCircle {
  
         private Descriptor descriptor;
  
-        private Optional<? extends String> error = Optional.empty();
+        private Optional<String> error = Optional.empty();
  
         private String id;
  
@@ -278,7 +274,7 @@ public class TaskBankingCircle {
             return this;
         }
 
-        public Builder error(Optional<? extends String> error) {
+        public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

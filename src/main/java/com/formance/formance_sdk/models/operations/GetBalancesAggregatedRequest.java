@@ -4,17 +4,17 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetBalancesAggregatedRequest {
 
@@ -22,7 +22,7 @@ public class GetBalancesAggregatedRequest {
      * Filter balances involving given account, either as source or destination.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=address")
-    private Optional<? extends String> address;
+    private Optional<String> address;
 
     /**
      * Name of the ledger.
@@ -34,13 +34,13 @@ public class GetBalancesAggregatedRequest {
      * Use insertion date instead of effective date
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=useInsertionDate")
-    private Optional<? extends Boolean> useInsertionDate;
+    private Optional<Boolean> useInsertionDate;
 
     @JsonCreator
     public GetBalancesAggregatedRequest(
-            Optional<? extends String> address,
+            Optional<String> address,
             String ledger,
-            Optional<? extends Boolean> useInsertionDate) {
+            Optional<Boolean> useInsertionDate) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(useInsertionDate, "useInsertionDate");
@@ -57,10 +57,9 @@ public class GetBalancesAggregatedRequest {
     /**
      * Filter balances involving given account, either as source or destination.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> address() {
-        return (Optional<String>) address;
+        return address;
     }
 
     /**
@@ -74,10 +73,9 @@ public class GetBalancesAggregatedRequest {
     /**
      * Use insertion date instead of effective date
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> useInsertionDate() {
-        return (Optional<Boolean>) useInsertionDate;
+        return useInsertionDate;
     }
 
     public final static Builder builder() {
@@ -96,7 +94,7 @@ public class GetBalancesAggregatedRequest {
     /**
      * Filter balances involving given account, either as source or destination.
      */
-    public GetBalancesAggregatedRequest withAddress(Optional<? extends String> address) {
+    public GetBalancesAggregatedRequest withAddress(Optional<String> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -123,7 +121,7 @@ public class GetBalancesAggregatedRequest {
     /**
      * Use insertion date instead of effective date
      */
-    public GetBalancesAggregatedRequest withUseInsertionDate(Optional<? extends Boolean> useInsertionDate) {
+    public GetBalancesAggregatedRequest withUseInsertionDate(Optional<Boolean> useInsertionDate) {
         Utils.checkNotNull(useInsertionDate, "useInsertionDate");
         this.useInsertionDate = useInsertionDate;
         return this;
@@ -139,14 +137,14 @@ public class GetBalancesAggregatedRequest {
         }
         GetBalancesAggregatedRequest other = (GetBalancesAggregatedRequest) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.useInsertionDate, other.useInsertionDate);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.useInsertionDate, other.useInsertionDate);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             ledger,
             useInsertionDate);
@@ -162,11 +160,11 @@ public class GetBalancesAggregatedRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> address = Optional.empty();
+        private Optional<String> address = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends Boolean> useInsertionDate = Optional.empty();  
+        private Optional<Boolean> useInsertionDate = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -184,7 +182,7 @@ public class GetBalancesAggregatedRequest {
         /**
          * Filter balances involving given account, either as source or destination.
          */
-        public Builder address(Optional<? extends String> address) {
+        public Builder address(Optional<String> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
@@ -211,7 +209,7 @@ public class GetBalancesAggregatedRequest {
         /**
          * Use insertion date instead of effective date
          */
-        public Builder useInsertionDate(Optional<? extends Boolean> useInsertionDate) {
+        public Builder useInsertionDate(Optional<Boolean> useInsertionDate) {
             Utils.checkNotNull(useInsertionDate, "useInsertionDate");
             this.useInsertionDate = useInsertionDate;
             return this;

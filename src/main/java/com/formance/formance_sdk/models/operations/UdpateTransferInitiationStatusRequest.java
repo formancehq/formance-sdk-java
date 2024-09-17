@@ -4,21 +4,21 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class UdpateTransferInitiationStatusRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
+    private UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
 
     /**
      * The transfer ID.
@@ -28,7 +28,7 @@ public class UdpateTransferInitiationStatusRequest {
 
     @JsonCreator
     public UdpateTransferInitiationStatusRequest(
-            com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest,
+            UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest,
             String transferId) {
         Utils.checkNotNull(updateTransferInitiationStatusRequest, "updateTransferInitiationStatusRequest");
         Utils.checkNotNull(transferId, "transferId");
@@ -37,7 +37,7 @@ public class UdpateTransferInitiationStatusRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest() {
+    public UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest() {
         return updateTransferInitiationStatusRequest;
     }
 
@@ -53,7 +53,7 @@ public class UdpateTransferInitiationStatusRequest {
         return new Builder();
     }
 
-    public UdpateTransferInitiationStatusRequest withUpdateTransferInitiationStatusRequest(com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
+    public UdpateTransferInitiationStatusRequest withUpdateTransferInitiationStatusRequest(UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
         Utils.checkNotNull(updateTransferInitiationStatusRequest, "updateTransferInitiationStatusRequest");
         this.updateTransferInitiationStatusRequest = updateTransferInitiationStatusRequest;
         return this;
@@ -78,13 +78,13 @@ public class UdpateTransferInitiationStatusRequest {
         }
         UdpateTransferInitiationStatusRequest other = (UdpateTransferInitiationStatusRequest) o;
         return 
-            java.util.Objects.deepEquals(this.updateTransferInitiationStatusRequest, other.updateTransferInitiationStatusRequest) &&
-            java.util.Objects.deepEquals(this.transferId, other.transferId);
+            Objects.deepEquals(this.updateTransferInitiationStatusRequest, other.updateTransferInitiationStatusRequest) &&
+            Objects.deepEquals(this.transferId, other.transferId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             updateTransferInitiationStatusRequest,
             transferId);
     }
@@ -98,7 +98,7 @@ public class UdpateTransferInitiationStatusRequest {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
+        private UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
  
         private String transferId;  
         
@@ -106,7 +106,7 @@ public class UdpateTransferInitiationStatusRequest {
           // force use of static builder() method
         }
 
-        public Builder updateTransferInitiationStatusRequest(com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
+        public Builder updateTransferInitiationStatusRequest(UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
             Utils.checkNotNull(updateTransferInitiationStatusRequest, "updateTransferInitiationStatusRequest");
             this.updateTransferInitiationStatusRequest = updateTransferInitiationStatusRequest;
             return this;

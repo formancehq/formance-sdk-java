@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.AggregateBalancesResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetBalancesAggregatedResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.AggregateBalancesResponse> aggregateBalancesResponse;
+    private Optional<? extends AggregateBalancesResponse> aggregateBalancesResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
 
     @JsonCreator
     public GetBalancesAggregatedResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.AggregateBalancesResponse> aggregateBalancesResponse,
+            Optional<? extends AggregateBalancesResponse> aggregateBalancesResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.AggregateBalancesResponse> aggregateBalancesResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.AggregateBalancesResponse>) aggregateBalancesResponse;
+    public Optional<AggregateBalancesResponse> aggregateBalancesResponse() {
+        return (Optional<AggregateBalancesResponse>) aggregateBalancesResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
     /**
      * OK
      */
-    public GetBalancesAggregatedResponse withAggregateBalancesResponse(com.formance.formance_sdk.models.shared.AggregateBalancesResponse aggregateBalancesResponse) {
+    public GetBalancesAggregatedResponse withAggregateBalancesResponse(AggregateBalancesResponse aggregateBalancesResponse) {
         Utils.checkNotNull(aggregateBalancesResponse, "aggregateBalancesResponse");
         this.aggregateBalancesResponse = Optional.ofNullable(aggregateBalancesResponse);
         return this;
@@ -110,7 +114,7 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
     /**
      * OK
      */
-    public GetBalancesAggregatedResponse withAggregateBalancesResponse(Optional<? extends com.formance.formance_sdk.models.shared.AggregateBalancesResponse> aggregateBalancesResponse) {
+    public GetBalancesAggregatedResponse withAggregateBalancesResponse(Optional<? extends AggregateBalancesResponse> aggregateBalancesResponse) {
         Utils.checkNotNull(aggregateBalancesResponse, "aggregateBalancesResponse");
         this.aggregateBalancesResponse = aggregateBalancesResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
         }
         GetBalancesAggregatedResponse other = (GetBalancesAggregatedResponse) o;
         return 
-            java.util.Objects.deepEquals(this.aggregateBalancesResponse, other.aggregateBalancesResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.aggregateBalancesResponse, other.aggregateBalancesResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             aggregateBalancesResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.AggregateBalancesResponse> aggregateBalancesResponse = Optional.empty();
+        private Optional<? extends AggregateBalancesResponse> aggregateBalancesResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
         /**
          * OK
          */
-        public Builder aggregateBalancesResponse(com.formance.formance_sdk.models.shared.AggregateBalancesResponse aggregateBalancesResponse) {
+        public Builder aggregateBalancesResponse(AggregateBalancesResponse aggregateBalancesResponse) {
             Utils.checkNotNull(aggregateBalancesResponse, "aggregateBalancesResponse");
             this.aggregateBalancesResponse = Optional.ofNullable(aggregateBalancesResponse);
             return this;
@@ -203,7 +207,7 @@ public class GetBalancesAggregatedResponse implements com.formance.formance_sdk.
         /**
          * OK
          */
-        public Builder aggregateBalancesResponse(Optional<? extends com.formance.formance_sdk.models.shared.AggregateBalancesResponse> aggregateBalancesResponse) {
+        public Builder aggregateBalancesResponse(Optional<? extends AggregateBalancesResponse> aggregateBalancesResponse) {
             Utils.checkNotNull(aggregateBalancesResponse, "aggregateBalancesResponse");
             this.aggregateBalancesResponse = aggregateBalancesResponse;
             return this;

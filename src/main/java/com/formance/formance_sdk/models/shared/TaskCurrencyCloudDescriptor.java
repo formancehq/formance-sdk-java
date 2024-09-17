@@ -4,29 +4,28 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskCurrencyCloudDescriptor {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonCreator
     public TaskCurrencyCloudDescriptor(
-            @JsonProperty("name") Optional<? extends String> name) {
+            @JsonProperty("name") Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
     }
@@ -35,10 +34,9 @@ public class TaskCurrencyCloudDescriptor {
         this(Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
     public final static Builder builder() {
@@ -51,7 +49,7 @@ public class TaskCurrencyCloudDescriptor {
         return this;
     }
 
-    public TaskCurrencyCloudDescriptor withName(Optional<? extends String> name) {
+    public TaskCurrencyCloudDescriptor withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -67,12 +65,12 @@ public class TaskCurrencyCloudDescriptor {
         }
         TaskCurrencyCloudDescriptor other = (TaskCurrencyCloudDescriptor) o;
         return 
-            java.util.Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             name);
     }
     
@@ -84,7 +82,7 @@ public class TaskCurrencyCloudDescriptor {
     
     public final static class Builder {
  
-        private Optional<? extends String> name = Optional.empty();  
+        private Optional<String> name = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -96,7 +94,7 @@ public class TaskCurrencyCloudDescriptor {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;

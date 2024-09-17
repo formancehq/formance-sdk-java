@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class GetInstanceStageHistoryRequest {
 
@@ -87,13 +87,13 @@ public class GetInstanceStageHistoryRequest {
         }
         GetInstanceStageHistoryRequest other = (GetInstanceStageHistoryRequest) o;
         return 
-            java.util.Objects.deepEquals(this.instanceID, other.instanceID) &&
-            java.util.Objects.deepEquals(this.number, other.number);
+            Objects.deepEquals(this.instanceID, other.instanceID) &&
+            Objects.deepEquals(this.number, other.number);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             instanceID,
             number);
     }

@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2BulkElementDeleteMetadata implements V2BulkElement {
 
@@ -29,13 +29,13 @@ public class V2BulkElementDeleteMetadata implements V2BulkElement {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ik")
-    private Optional<? extends String> ik;
+    private Optional<String> ik;
 
     @JsonCreator
     public V2BulkElementDeleteMetadata(
             @JsonProperty("action") String action,
             @JsonProperty("data") Optional<? extends V2BulkElementDeleteMetadataData> data,
-            @JsonProperty("ik") Optional<? extends String> ik) {
+            @JsonProperty("ik") Optional<String> ik) {
         Utils.checkNotNull(action, "action");
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(ik, "ik");
@@ -51,7 +51,7 @@ public class V2BulkElementDeleteMetadata implements V2BulkElement {
 
     @JsonIgnore
     @Override
-    public java.lang.String action() {
+    public String action() {
         return Utils.discriminatorToString(action);
     }
 
@@ -61,10 +61,9 @@ public class V2BulkElementDeleteMetadata implements V2BulkElement {
         return (Optional<V2BulkElementDeleteMetadataData>) data;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> ik() {
-        return (Optional<String>) ik;
+        return ik;
     }
 
     public final static Builder builder() {
@@ -95,7 +94,7 @@ public class V2BulkElementDeleteMetadata implements V2BulkElement {
         return this;
     }
 
-    public V2BulkElementDeleteMetadata withIk(Optional<? extends String> ik) {
+    public V2BulkElementDeleteMetadata withIk(Optional<String> ik) {
         Utils.checkNotNull(ik, "ik");
         this.ik = ik;
         return this;
@@ -111,14 +110,14 @@ public class V2BulkElementDeleteMetadata implements V2BulkElement {
         }
         V2BulkElementDeleteMetadata other = (V2BulkElementDeleteMetadata) o;
         return 
-            java.util.Objects.deepEquals(this.action, other.action) &&
-            java.util.Objects.deepEquals(this.data, other.data) &&
-            java.util.Objects.deepEquals(this.ik, other.ik);
+            Objects.deepEquals(this.action, other.action) &&
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.ik, other.ik);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             action,
             data,
             ik);
@@ -138,7 +137,7 @@ public class V2BulkElementDeleteMetadata implements V2BulkElement {
  
         private Optional<? extends V2BulkElementDeleteMetadataData> data = Optional.empty();
  
-        private Optional<? extends String> ik = Optional.empty();  
+        private Optional<String> ik = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -168,7 +167,7 @@ public class V2BulkElementDeleteMetadata implements V2BulkElement {
             return this;
         }
 
-        public Builder ik(Optional<? extends String> ik) {
+        public Builder ik(Optional<String> ik) {
             Utils.checkNotNull(ik, "ik");
             this.ik = ik;
             return this;

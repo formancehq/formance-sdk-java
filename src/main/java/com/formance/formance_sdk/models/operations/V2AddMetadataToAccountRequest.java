@@ -4,17 +4,18 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2AddMetadataToAccountRequest {
 
@@ -22,13 +23,13 @@ public class V2AddMetadataToAccountRequest {
      * Use an idempotency key
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
-    private Optional<? extends String> idempotencyKey;
+    private Optional<String> idempotencyKey;
 
     /**
      * metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private java.util.Map<String, String> requestBody;
+    private Map<String, String> requestBody;
 
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
@@ -44,7 +45,7 @@ public class V2AddMetadataToAccountRequest {
      * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
-    private Optional<? extends Boolean> dryRun;
+    private Optional<Boolean> dryRun;
 
     /**
      * Name of the ledger.
@@ -54,10 +55,10 @@ public class V2AddMetadataToAccountRequest {
 
     @JsonCreator
     public V2AddMetadataToAccountRequest(
-            Optional<? extends String> idempotencyKey,
-            java.util.Map<String, String> requestBody,
+            Optional<String> idempotencyKey,
+            Map<String, String> requestBody,
             String address,
-            Optional<? extends Boolean> dryRun,
+            Optional<Boolean> dryRun,
             String ledger) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         requestBody = Utils.emptyMapIfNull(requestBody);
@@ -72,7 +73,7 @@ public class V2AddMetadataToAccountRequest {
     }
     
     public V2AddMetadataToAccountRequest(
-            java.util.Map<String, String> requestBody,
+            Map<String, String> requestBody,
             String address,
             String ledger) {
         this(Optional.empty(), requestBody, address, Optional.empty(), ledger);
@@ -81,17 +82,16 @@ public class V2AddMetadataToAccountRequest {
     /**
      * Use an idempotency key
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> idempotencyKey() {
-        return (Optional<String>) idempotencyKey;
+        return idempotencyKey;
     }
 
     /**
      * metadata
      */
     @JsonIgnore
-    public java.util.Map<String, String> requestBody() {
+    public Map<String, String> requestBody() {
         return requestBody;
     }
 
@@ -110,10 +110,9 @@ public class V2AddMetadataToAccountRequest {
     /**
      * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> dryRun() {
-        return (Optional<Boolean>) dryRun;
+        return dryRun;
     }
 
     /**
@@ -140,7 +139,7 @@ public class V2AddMetadataToAccountRequest {
     /**
      * Use an idempotency key
      */
-    public V2AddMetadataToAccountRequest withIdempotencyKey(Optional<? extends String> idempotencyKey) {
+    public V2AddMetadataToAccountRequest withIdempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
         return this;
@@ -149,7 +148,7 @@ public class V2AddMetadataToAccountRequest {
     /**
      * metadata
      */
-    public V2AddMetadataToAccountRequest withRequestBody(java.util.Map<String, String> requestBody) {
+    public V2AddMetadataToAccountRequest withRequestBody(Map<String, String> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -180,7 +179,7 @@ public class V2AddMetadataToAccountRequest {
     /**
      * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    public V2AddMetadataToAccountRequest withDryRun(Optional<? extends Boolean> dryRun) {
+    public V2AddMetadataToAccountRequest withDryRun(Optional<Boolean> dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
         this.dryRun = dryRun;
         return this;
@@ -205,16 +204,16 @@ public class V2AddMetadataToAccountRequest {
         }
         V2AddMetadataToAccountRequest other = (V2AddMetadataToAccountRequest) o;
         return 
-            java.util.Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.dryRun, other.dryRun) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.dryRun, other.dryRun) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             idempotencyKey,
             requestBody,
             address,
@@ -234,13 +233,13 @@ public class V2AddMetadataToAccountRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> idempotencyKey = Optional.empty();
+        private Optional<String> idempotencyKey = Optional.empty();
  
-        private java.util.Map<String, String> requestBody;
+        private Map<String, String> requestBody;
  
         private String address;
  
-        private Optional<? extends Boolean> dryRun = Optional.empty();
+        private Optional<Boolean> dryRun = Optional.empty();
  
         private String ledger;  
         
@@ -260,7 +259,7 @@ public class V2AddMetadataToAccountRequest {
         /**
          * Use an idempotency key
          */
-        public Builder idempotencyKey(Optional<? extends String> idempotencyKey) {
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");
             this.idempotencyKey = idempotencyKey;
             return this;
@@ -269,7 +268,7 @@ public class V2AddMetadataToAccountRequest {
         /**
          * metadata
          */
-        public Builder requestBody(java.util.Map<String, String> requestBody) {
+        public Builder requestBody(Map<String, String> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
@@ -300,7 +299,7 @@ public class V2AddMetadataToAccountRequest {
         /**
          * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
          */
-        public Builder dryRun(Optional<? extends Boolean> dryRun) {
+        public Builder dryRun(Optional<Boolean> dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
             this.dryRun = dryRun;
             return this;

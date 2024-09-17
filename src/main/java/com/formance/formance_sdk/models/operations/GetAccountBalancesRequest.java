@@ -4,19 +4,22 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetAccountBalancesRequest {
 
@@ -32,7 +35,7 @@ public class GetAccountBalancesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=asset")
-    private Optional<? extends String> asset;
+    private Optional<String> asset;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -42,7 +45,7 @@ public class GetAccountBalancesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * Filter balances by date.
@@ -50,26 +53,26 @@ public class GetAccountBalancesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
-    private Optional<? extends OffsetDateTime> from;
+    private Optional<OffsetDateTime> from;
 
     /**
      * The maximum number of results to return per page.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
-    private Optional<? extends Long> limit;
+    private Optional<Long> limit;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * Fields used to sort payments (default is date:desc).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private Optional<? extends java.util.List<String>> sort;
+    private Optional<? extends List<String>> sort;
 
     /**
      * Filter balances by date.
@@ -77,18 +80,18 @@ public class GetAccountBalancesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=to")
-    private Optional<? extends OffsetDateTime> to;
+    private Optional<OffsetDateTime> to;
 
     @JsonCreator
     public GetAccountBalancesRequest(
             String accountId,
-            Optional<? extends String> asset,
-            Optional<? extends String> cursor,
-            Optional<? extends OffsetDateTime> from,
-            Optional<? extends Long> limit,
-            Optional<? extends Long> pageSize,
-            Optional<? extends java.util.List<String>> sort,
-            Optional<? extends OffsetDateTime> to) {
+            Optional<String> asset,
+            Optional<String> cursor,
+            Optional<OffsetDateTime> from,
+            Optional<Long> limit,
+            Optional<Long> pageSize,
+            Optional<? extends List<String>> sort,
+            Optional<OffsetDateTime> to) {
         Utils.checkNotNull(accountId, "accountId");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(cursor, "cursor");
@@ -125,10 +128,9 @@ public class GetAccountBalancesRequest {
      * If not specified, all account's balances will be returned.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> asset() {
-        return (Optional<String>) asset;
+        return asset;
     }
 
     /**
@@ -138,10 +140,9 @@ public class GetAccountBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
@@ -149,29 +150,26 @@ public class GetAccountBalancesRequest {
      * If not specified, all account's balances will be returned.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> from() {
-        return (Optional<OffsetDateTime>) from;
+        return from;
     }
 
     /**
      * The maximum number of results to return per page.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> limit() {
-        return (Optional<Long>) limit;
+        return limit;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
@@ -179,8 +177,8 @@ public class GetAccountBalancesRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> sort() {
-        return (Optional<java.util.List<String>>) sort;
+    public Optional<List<String>> sort() {
+        return (Optional<List<String>>) sort;
     }
 
     /**
@@ -188,10 +186,9 @@ public class GetAccountBalancesRequest {
      * If not specified, default will be set to now.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> to() {
-        return (Optional<OffsetDateTime>) to;
+        return to;
     }
 
     public final static Builder builder() {
@@ -223,7 +220,7 @@ public class GetAccountBalancesRequest {
      * If not specified, all account's balances will be returned.
      * 
      */
-    public GetAccountBalancesRequest withAsset(Optional<? extends String> asset) {
+    public GetAccountBalancesRequest withAsset(Optional<String> asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
@@ -249,7 +246,7 @@ public class GetAccountBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public GetAccountBalancesRequest withCursor(Optional<? extends String> cursor) {
+    public GetAccountBalancesRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -271,7 +268,7 @@ public class GetAccountBalancesRequest {
      * If not specified, all account's balances will be returned.
      * 
      */
-    public GetAccountBalancesRequest withFrom(Optional<? extends OffsetDateTime> from) {
+    public GetAccountBalancesRequest withFrom(Optional<OffsetDateTime> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
@@ -289,7 +286,7 @@ public class GetAccountBalancesRequest {
     /**
      * The maximum number of results to return per page.
      */
-    public GetAccountBalancesRequest withLimit(Optional<? extends Long> limit) {
+    public GetAccountBalancesRequest withLimit(Optional<Long> limit) {
         Utils.checkNotNull(limit, "limit");
         this.limit = limit;
         return this;
@@ -309,7 +306,7 @@ public class GetAccountBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public GetAccountBalancesRequest withPageSize(Optional<? extends Long> pageSize) {
+    public GetAccountBalancesRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -318,7 +315,7 @@ public class GetAccountBalancesRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
-    public GetAccountBalancesRequest withSort(java.util.List<String> sort) {
+    public GetAccountBalancesRequest withSort(List<String> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = Optional.ofNullable(sort);
         return this;
@@ -327,7 +324,7 @@ public class GetAccountBalancesRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
-    public GetAccountBalancesRequest withSort(Optional<? extends java.util.List<String>> sort) {
+    public GetAccountBalancesRequest withSort(Optional<? extends List<String>> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -349,7 +346,7 @@ public class GetAccountBalancesRequest {
      * If not specified, default will be set to now.
      * 
      */
-    public GetAccountBalancesRequest withTo(Optional<? extends OffsetDateTime> to) {
+    public GetAccountBalancesRequest withTo(Optional<OffsetDateTime> to) {
         Utils.checkNotNull(to, "to");
         this.to = to;
         return this;
@@ -365,19 +362,19 @@ public class GetAccountBalancesRequest {
         }
         GetAccountBalancesRequest other = (GetAccountBalancesRequest) o;
         return 
-            java.util.Objects.deepEquals(this.accountId, other.accountId) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.from, other.from) &&
-            java.util.Objects.deepEquals(this.limit, other.limit) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.sort, other.sort) &&
-            java.util.Objects.deepEquals(this.to, other.to);
+            Objects.deepEquals(this.accountId, other.accountId) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.from, other.from) &&
+            Objects.deepEquals(this.limit, other.limit) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.sort, other.sort) &&
+            Objects.deepEquals(this.to, other.to);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accountId,
             asset,
             cursor,
@@ -405,19 +402,19 @@ public class GetAccountBalancesRequest {
  
         private String accountId;
  
-        private Optional<? extends String> asset = Optional.empty();
+        private Optional<String> asset = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> from = Optional.empty();
+        private Optional<OffsetDateTime> from = Optional.empty();
  
-        private Optional<? extends Long> limit = Optional.empty();
+        private Optional<Long> limit = Optional.empty();
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends java.util.List<String>> sort = Optional.empty();
+        private Optional<? extends List<String>> sort = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> to = Optional.empty();  
+        private Optional<OffsetDateTime> to = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -448,7 +445,7 @@ public class GetAccountBalancesRequest {
          * If not specified, all account's balances will be returned.
          * 
          */
-        public Builder asset(Optional<? extends String> asset) {
+        public Builder asset(Optional<String> asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
@@ -474,7 +471,7 @@ public class GetAccountBalancesRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -496,7 +493,7 @@ public class GetAccountBalancesRequest {
          * If not specified, all account's balances will be returned.
          * 
          */
-        public Builder from(Optional<? extends OffsetDateTime> from) {
+        public Builder from(Optional<OffsetDateTime> from) {
             Utils.checkNotNull(from, "from");
             this.from = from;
             return this;
@@ -514,7 +511,7 @@ public class GetAccountBalancesRequest {
         /**
          * The maximum number of results to return per page.
          */
-        public Builder limit(Optional<? extends Long> limit) {
+        public Builder limit(Optional<Long> limit) {
             Utils.checkNotNull(limit, "limit");
             this.limit = limit;
             return this;
@@ -534,7 +531,7 @@ public class GetAccountBalancesRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -543,7 +540,7 @@ public class GetAccountBalancesRequest {
         /**
          * Fields used to sort payments (default is date:desc).
          */
-        public Builder sort(java.util.List<String> sort) {
+        public Builder sort(List<String> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
             return this;
@@ -552,7 +549,7 @@ public class GetAccountBalancesRequest {
         /**
          * Fields used to sort payments (default is date:desc).
          */
-        public Builder sort(Optional<? extends java.util.List<String>> sort) {
+        public Builder sort(Optional<? extends List<String>> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -574,7 +571,7 @@ public class GetAccountBalancesRequest {
          * If not specified, default will be set to now.
          * 
          */
-        public Builder to(Optional<? extends OffsetDateTime> to) {
+        public Builder to(Optional<OffsetDateTime> to) {
             Utils.checkNotNull(to, "to");
             this.to = to;
             return this;
@@ -583,8 +580,7 @@ public class GetAccountBalancesRequest {
         public GetAccountBalancesRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new GetAccountBalancesRequest(
+            }            return new GetAccountBalancesRequest(
                 accountId,
                 asset,
                 cursor,
@@ -595,11 +591,11 @@ public class GetAccountBalancesRequest {
                 to);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

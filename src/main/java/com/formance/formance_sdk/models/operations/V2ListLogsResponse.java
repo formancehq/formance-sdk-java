@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.V2LogsCursorResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class V2ListLogsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2LogsCursorResponse> v2LogsCursorResponse;
+    private Optional<? extends V2LogsCursorResponse> v2LogsCursorResponse;
 
     @JsonCreator
     public V2ListLogsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2LogsCursorResponse> v2LogsCursorResponse) {
+            Optional<? extends V2LogsCursorResponse> v2LogsCursorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2LogsCursorResponse> v2LogsCursorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2LogsCursorResponse>) v2LogsCursorResponse;
+    public Optional<V2LogsCursorResponse> v2LogsCursorResponse() {
+        return (Optional<V2LogsCursorResponse>) v2LogsCursorResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    public V2ListLogsResponse withV2LogsCursorResponse(com.formance.formance_sdk.models.shared.V2LogsCursorResponse v2LogsCursorResponse) {
+    public V2ListLogsResponse withV2LogsCursorResponse(V2LogsCursorResponse v2LogsCursorResponse) {
         Utils.checkNotNull(v2LogsCursorResponse, "v2LogsCursorResponse");
         this.v2LogsCursorResponse = Optional.ofNullable(v2LogsCursorResponse);
         return this;
@@ -137,7 +141,7 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    public V2ListLogsResponse withV2LogsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2LogsCursorResponse> v2LogsCursorResponse) {
+    public V2ListLogsResponse withV2LogsCursorResponse(Optional<? extends V2LogsCursorResponse> v2LogsCursorResponse) {
         Utils.checkNotNull(v2LogsCursorResponse, "v2LogsCursorResponse");
         this.v2LogsCursorResponse = v2LogsCursorResponse;
         return this;
@@ -153,15 +157,15 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
         }
         V2ListLogsResponse other = (V2ListLogsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2LogsCursorResponse, other.v2LogsCursorResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.v2LogsCursorResponse, other.v2LogsCursorResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2LogsCursorResponse> v2LogsCursorResponse = Optional.empty();  
+        private Optional<? extends V2LogsCursorResponse> v2LogsCursorResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
         /**
          * OK
          */
-        public Builder v2LogsCursorResponse(com.formance.formance_sdk.models.shared.V2LogsCursorResponse v2LogsCursorResponse) {
+        public Builder v2LogsCursorResponse(V2LogsCursorResponse v2LogsCursorResponse) {
             Utils.checkNotNull(v2LogsCursorResponse, "v2LogsCursorResponse");
             this.v2LogsCursorResponse = Optional.ofNullable(v2LogsCursorResponse);
             return this;
@@ -230,7 +234,7 @@ public class V2ListLogsResponse implements com.formance.formance_sdk.utils.Respo
         /**
          * OK
          */
-        public Builder v2LogsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2LogsCursorResponse> v2LogsCursorResponse) {
+        public Builder v2LogsCursorResponse(Optional<? extends V2LogsCursorResponse> v2LogsCursorResponse) {
             Utils.checkNotNull(v2LogsCursorResponse, "v2LogsCursorResponse");
             this.v2LogsCursorResponse = v2LogsCursorResponse;
             return this;

@@ -4,18 +4,20 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListConnectorTasksV1Request {
 
@@ -23,7 +25,7 @@ public class ListConnectorTasksV1Request {
      * The name of the connector.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
-    private com.formance.formance_sdk.models.shared.Connector connector;
+    private Connector connector;
 
     /**
      * The connector ID.
@@ -39,21 +41,21 @@ public class ListConnectorTasksV1Request {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     @JsonCreator
     public ListConnectorTasksV1Request(
-            com.formance.formance_sdk.models.shared.Connector connector,
+            Connector connector,
             String connectorId,
-            Optional<? extends String> cursor,
-            Optional<? extends Long> pageSize) {
+            Optional<String> cursor,
+            Optional<Long> pageSize) {
         Utils.checkNotNull(connector, "connector");
         Utils.checkNotNull(connectorId, "connectorId");
         Utils.checkNotNull(cursor, "cursor");
@@ -65,7 +67,7 @@ public class ListConnectorTasksV1Request {
     }
     
     public ListConnectorTasksV1Request(
-            com.formance.formance_sdk.models.shared.Connector connector,
+            Connector connector,
             String connectorId) {
         this(connector, connectorId, Optional.empty(), Optional.empty());
     }
@@ -74,7 +76,7 @@ public class ListConnectorTasksV1Request {
      * The name of the connector.
      */
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.Connector connector() {
+    public Connector connector() {
         return connector;
     }
 
@@ -93,20 +95,18 @@ public class ListConnectorTasksV1Request {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     public final static Builder builder() {
@@ -116,7 +116,7 @@ public class ListConnectorTasksV1Request {
     /**
      * The name of the connector.
      */
-    public ListConnectorTasksV1Request withConnector(com.formance.formance_sdk.models.shared.Connector connector) {
+    public ListConnectorTasksV1Request withConnector(Connector connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
@@ -151,7 +151,7 @@ public class ListConnectorTasksV1Request {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public ListConnectorTasksV1Request withCursor(Optional<? extends String> cursor) {
+    public ListConnectorTasksV1Request withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -171,7 +171,7 @@ public class ListConnectorTasksV1Request {
      * The maximum number of results to return per page.
      * 
      */
-    public ListConnectorTasksV1Request withPageSize(Optional<? extends Long> pageSize) {
+    public ListConnectorTasksV1Request withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -187,15 +187,15 @@ public class ListConnectorTasksV1Request {
         }
         ListConnectorTasksV1Request other = (ListConnectorTasksV1Request) o;
         return 
-            java.util.Objects.deepEquals(this.connector, other.connector) &&
-            java.util.Objects.deepEquals(this.connectorId, other.connectorId) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize);
+            Objects.deepEquals(this.connector, other.connector) &&
+            Objects.deepEquals(this.connectorId, other.connectorId) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connector,
             connectorId,
             cursor,
@@ -213,13 +213,13 @@ public class ListConnectorTasksV1Request {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.Connector connector;
+        private Connector connector;
  
         private String connectorId;
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends Long> pageSize;  
+        private Optional<Long> pageSize;  
         
         private Builder() {
           // force use of static builder() method
@@ -228,7 +228,7 @@ public class ListConnectorTasksV1Request {
         /**
          * The name of the connector.
          */
-        public Builder connector(com.formance.formance_sdk.models.shared.Connector connector) {
+        public Builder connector(Connector connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
             return this;
@@ -263,7 +263,7 @@ public class ListConnectorTasksV1Request {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -283,7 +283,7 @@ public class ListConnectorTasksV1Request {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -292,19 +292,18 @@ public class ListConnectorTasksV1Request {
         public ListConnectorTasksV1Request build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new ListConnectorTasksV1Request(
+            }            return new ListConnectorTasksV1Request(
                 connector,
                 connectorId,
                 cursor,
                 pageSize);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

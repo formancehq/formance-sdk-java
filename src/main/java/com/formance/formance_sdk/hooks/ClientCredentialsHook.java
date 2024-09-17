@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.AuthException;
-
 import com.formance.formance_sdk.utils.Helpers;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.Hook.AfterError;

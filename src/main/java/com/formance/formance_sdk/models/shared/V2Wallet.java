@@ -4,19 +4,17 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class V2Wallet {
 
@@ -36,7 +34,7 @@ public class V2Wallet {
      * Metadata associated with the wallet.
      */
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     @JsonProperty("name")
     private String name;
@@ -46,7 +44,7 @@ public class V2Wallet {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("ledger") String ledger,
-            @JsonProperty("metadata") java.util.Map<String, String> metadata,
+            @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
@@ -82,7 +80,7 @@ public class V2Wallet {
      * Metadata associated with the wallet.
      */
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
@@ -119,7 +117,7 @@ public class V2Wallet {
     /**
      * Metadata associated with the wallet.
      */
-    public V2Wallet withMetadata(java.util.Map<String, String> metadata) {
+    public V2Wallet withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -141,16 +139,16 @@ public class V2Wallet {
         }
         V2Wallet other = (V2Wallet) o;
         return 
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createdAt,
             id,
             ledger,
@@ -176,7 +174,7 @@ public class V2Wallet {
  
         private String ledger;
  
-        private java.util.Map<String, String> metadata;
+        private Map<String, String> metadata;
  
         private String name;  
         
@@ -208,7 +206,7 @@ public class V2Wallet {
         /**
          * Metadata associated with the wallet.
          */
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

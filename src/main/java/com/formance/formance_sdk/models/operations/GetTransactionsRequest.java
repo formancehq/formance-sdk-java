@@ -4,18 +4,19 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetTransactionsRequest {
 
@@ -27,25 +28,25 @@ public class GetTransactionsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * The maximum number of results to return per page
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * A wallet ID to filter on
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=walletID")
-    private Optional<? extends String> walletID;
+    private Optional<String> walletID;
 
     @JsonCreator
     public GetTransactionsRequest(
-            Optional<? extends String> cursor,
-            Optional<? extends Long> pageSize,
-            Optional<? extends String> walletID) {
+            Optional<String> cursor,
+            Optional<Long> pageSize,
+            Optional<String> walletID) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(walletID, "walletID");
@@ -65,28 +66,25 @@ public class GetTransactionsRequest {
      * No other parameters can be set when the cursor is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
      * The maximum number of results to return per page
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
      * A wallet ID to filter on
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> walletID() {
-        return (Optional<String>) walletID;
+        return walletID;
     }
 
     public final static Builder builder() {
@@ -113,7 +111,7 @@ public class GetTransactionsRequest {
      * No other parameters can be set when the cursor is set.
      * 
      */
-    public GetTransactionsRequest withCursor(Optional<? extends String> cursor) {
+    public GetTransactionsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -131,7 +129,7 @@ public class GetTransactionsRequest {
     /**
      * The maximum number of results to return per page
      */
-    public GetTransactionsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public GetTransactionsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -149,7 +147,7 @@ public class GetTransactionsRequest {
     /**
      * A wallet ID to filter on
      */
-    public GetTransactionsRequest withWalletID(Optional<? extends String> walletID) {
+    public GetTransactionsRequest withWalletID(Optional<String> walletID) {
         Utils.checkNotNull(walletID, "walletID");
         this.walletID = walletID;
         return this;
@@ -165,14 +163,14 @@ public class GetTransactionsRequest {
         }
         GetTransactionsRequest other = (GetTransactionsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.walletID, other.walletID);
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.walletID, other.walletID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             cursor,
             pageSize,
             walletID);
@@ -188,11 +186,11 @@ public class GetTransactionsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends String> walletID = Optional.empty();  
+        private Optional<String> walletID = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -218,7 +216,7 @@ public class GetTransactionsRequest {
          * No other parameters can be set when the cursor is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -236,7 +234,7 @@ public class GetTransactionsRequest {
         /**
          * The maximum number of results to return per page
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -254,7 +252,7 @@ public class GetTransactionsRequest {
         /**
          * A wallet ID to filter on
          */
-        public Builder walletID(Optional<? extends String> walletID) {
+        public Builder walletID(Optional<String> walletID) {
             Utils.checkNotNull(walletID, "walletID");
             this.walletID = walletID;
             return this;
@@ -263,18 +261,17 @@ public class GetTransactionsRequest {
         public GetTransactionsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new GetTransactionsRequest(
+            }            return new GetTransactionsRequest(
                 cursor,
                 pageSize,
                 walletID);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

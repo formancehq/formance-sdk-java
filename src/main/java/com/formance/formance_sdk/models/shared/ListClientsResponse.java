@@ -4,29 +4,30 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListClientsResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends java.util.List<Client>> data;
+    private Optional<? extends List<Client>> data;
 
     @JsonCreator
     public ListClientsResponse(
-            @JsonProperty("data") Optional<? extends java.util.List<Client>> data) {
+            @JsonProperty("data") Optional<? extends List<Client>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
@@ -37,21 +38,21 @@ public class ListClientsResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<Client>> data() {
-        return (Optional<java.util.List<Client>>) data;
+    public Optional<List<Client>> data() {
+        return (Optional<List<Client>>) data;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public ListClientsResponse withData(java.util.List<Client> data) {
+    public ListClientsResponse withData(List<Client> data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
     }
 
-    public ListClientsResponse withData(Optional<? extends java.util.List<Client>> data) {
+    public ListClientsResponse withData(Optional<? extends List<Client>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -67,12 +68,12 @@ public class ListClientsResponse {
         }
         ListClientsResponse other = (ListClientsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data);
+            Objects.deepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data);
     }
     
@@ -84,19 +85,19 @@ public class ListClientsResponse {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.List<Client>> data = Optional.empty();  
+        private Optional<? extends List<Client>> data = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(java.util.List<Client> data) {
+        public Builder data(List<Client> data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder data(Optional<? extends java.util.List<Client>> data) {
+        public Builder data(Optional<? extends List<Client>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

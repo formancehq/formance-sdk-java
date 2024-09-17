@@ -4,22 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationCreditWalletRequest {
 
@@ -31,33 +30,33 @@ public class OrchestrationCreditWalletRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance")
-    private Optional<? extends String> balance;
+    private Optional<String> balance;
 
     /**
      * Metadata associated with the wallet.
      */
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     @JsonProperty("sources")
-    private java.util.List<Subject> sources;
+    private List<Subject> sources;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
-    private Optional<? extends OffsetDateTime> timestamp;
+    private Optional<OffsetDateTime> timestamp;
 
     @JsonCreator
     public OrchestrationCreditWalletRequest(
             @JsonProperty("amount") Monetary amount,
-            @JsonProperty("balance") Optional<? extends String> balance,
-            @JsonProperty("metadata") java.util.Map<String, String> metadata,
-            @JsonProperty("reference") Optional<? extends String> reference,
-            @JsonProperty("sources") java.util.List<Subject> sources,
-            @JsonProperty("timestamp") Optional<? extends OffsetDateTime> timestamp) {
+            @JsonProperty("balance") Optional<String> balance,
+            @JsonProperty("metadata") Map<String, String> metadata,
+            @JsonProperty("reference") Optional<String> reference,
+            @JsonProperty("sources") List<Subject> sources,
+            @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(balance, "balance");
         metadata = Utils.emptyMapIfNull(metadata);
@@ -74,8 +73,8 @@ public class OrchestrationCreditWalletRequest {
     
     public OrchestrationCreditWalletRequest(
             Monetary amount,
-            java.util.Map<String, String> metadata,
-            java.util.List<Subject> sources) {
+            Map<String, String> metadata,
+            List<Subject> sources) {
         this(amount, Optional.empty(), metadata, Optional.empty(), sources, Optional.empty());
     }
 
@@ -87,35 +86,32 @@ public class OrchestrationCreditWalletRequest {
     /**
      * The balance to credit
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> balance() {
-        return (Optional<String>) balance;
+        return balance;
     }
 
     /**
      * Metadata associated with the wallet.
      */
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     @JsonIgnore
-    public java.util.List<Subject> sources() {
+    public List<Subject> sources() {
         return sources;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> timestamp() {
-        return (Optional<OffsetDateTime>) timestamp;
+        return timestamp;
     }
 
     public final static Builder builder() {
@@ -140,7 +136,7 @@ public class OrchestrationCreditWalletRequest {
     /**
      * The balance to credit
      */
-    public OrchestrationCreditWalletRequest withBalance(Optional<? extends String> balance) {
+    public OrchestrationCreditWalletRequest withBalance(Optional<String> balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = balance;
         return this;
@@ -149,7 +145,7 @@ public class OrchestrationCreditWalletRequest {
     /**
      * Metadata associated with the wallet.
      */
-    public OrchestrationCreditWalletRequest withMetadata(java.util.Map<String, String> metadata) {
+    public OrchestrationCreditWalletRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -161,13 +157,13 @@ public class OrchestrationCreditWalletRequest {
         return this;
     }
 
-    public OrchestrationCreditWalletRequest withReference(Optional<? extends String> reference) {
+    public OrchestrationCreditWalletRequest withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
-    public OrchestrationCreditWalletRequest withSources(java.util.List<Subject> sources) {
+    public OrchestrationCreditWalletRequest withSources(List<Subject> sources) {
         Utils.checkNotNull(sources, "sources");
         this.sources = sources;
         return this;
@@ -179,7 +175,7 @@ public class OrchestrationCreditWalletRequest {
         return this;
     }
 
-    public OrchestrationCreditWalletRequest withTimestamp(Optional<? extends OffsetDateTime> timestamp) {
+    public OrchestrationCreditWalletRequest withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
@@ -195,17 +191,17 @@ public class OrchestrationCreditWalletRequest {
         }
         OrchestrationCreditWalletRequest other = (OrchestrationCreditWalletRequest) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.balance, other.balance) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.sources, other.sources) &&
-            java.util.Objects.deepEquals(this.timestamp, other.timestamp);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.balance, other.balance) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.sources, other.sources) &&
+            Objects.deepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             balance,
             metadata,
@@ -229,15 +225,15 @@ public class OrchestrationCreditWalletRequest {
  
         private Monetary amount;
  
-        private Optional<? extends String> balance = Optional.empty();
+        private Optional<String> balance = Optional.empty();
  
-        private java.util.Map<String, String> metadata;
+        private Map<String, String> metadata;
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
-        private java.util.List<Subject> sources;
+        private List<Subject> sources;
  
-        private Optional<? extends OffsetDateTime> timestamp = Optional.empty();  
+        private Optional<OffsetDateTime> timestamp = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -261,7 +257,7 @@ public class OrchestrationCreditWalletRequest {
         /**
          * The balance to credit
          */
-        public Builder balance(Optional<? extends String> balance) {
+        public Builder balance(Optional<String> balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = balance;
             return this;
@@ -270,7 +266,7 @@ public class OrchestrationCreditWalletRequest {
         /**
          * Metadata associated with the wallet.
          */
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -282,13 +278,13 @@ public class OrchestrationCreditWalletRequest {
             return this;
         }
 
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
-        public Builder sources(java.util.List<Subject> sources) {
+        public Builder sources(List<Subject> sources) {
             Utils.checkNotNull(sources, "sources");
             this.sources = sources;
             return this;
@@ -300,7 +296,7 @@ public class OrchestrationCreditWalletRequest {
             return this;
         }
 
-        public Builder timestamp(Optional<? extends OffsetDateTime> timestamp) {
+        public Builder timestamp(Optional<OffsetDateTime> timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;

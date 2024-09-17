@@ -4,31 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class GetWorkflowInstanceHistoryResponse {
 
     @JsonProperty("data")
-    private java.util.List<WorkflowInstanceHistory> data;
+    private List<WorkflowInstanceHistory> data;
 
     @JsonCreator
     public GetWorkflowInstanceHistoryResponse(
-            @JsonProperty("data") java.util.List<WorkflowInstanceHistory> data) {
+            @JsonProperty("data") List<WorkflowInstanceHistory> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
     @JsonIgnore
-    public java.util.List<WorkflowInstanceHistory> data() {
+    public List<WorkflowInstanceHistory> data() {
         return data;
     }
 
@@ -36,7 +36,7 @@ public class GetWorkflowInstanceHistoryResponse {
         return new Builder();
     }
 
-    public GetWorkflowInstanceHistoryResponse withData(java.util.List<WorkflowInstanceHistory> data) {
+    public GetWorkflowInstanceHistoryResponse withData(List<WorkflowInstanceHistory> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -52,12 +52,12 @@ public class GetWorkflowInstanceHistoryResponse {
         }
         GetWorkflowInstanceHistoryResponse other = (GetWorkflowInstanceHistoryResponse) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data);
+            Objects.deepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data);
     }
     
@@ -69,13 +69,13 @@ public class GetWorkflowInstanceHistoryResponse {
     
     public final static class Builder {
  
-        private java.util.List<WorkflowInstanceHistory> data;  
+        private List<WorkflowInstanceHistory> data;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(java.util.List<WorkflowInstanceHistory> data) {
+        public Builder data(List<WorkflowInstanceHistory> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

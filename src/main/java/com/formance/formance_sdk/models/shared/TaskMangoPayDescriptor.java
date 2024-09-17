@@ -4,39 +4,38 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskMangoPayDescriptor {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("key")
-    private Optional<? extends String> key;
+    private Optional<String> key;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("userID")
-    private Optional<? extends String> userID;
+    private Optional<String> userID;
 
     @JsonCreator
     public TaskMangoPayDescriptor(
-            @JsonProperty("key") Optional<? extends String> key,
-            @JsonProperty("name") Optional<? extends String> name,
-            @JsonProperty("userID") Optional<? extends String> userID) {
+            @JsonProperty("key") Optional<String> key,
+            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("userID") Optional<String> userID) {
         Utils.checkNotNull(key, "key");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(userID, "userID");
@@ -49,22 +48,19 @@ public class TaskMangoPayDescriptor {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> key() {
-        return (Optional<String>) key;
+        return key;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> userID() {
-        return (Optional<String>) userID;
+        return userID;
     }
 
     public final static Builder builder() {
@@ -77,7 +73,7 @@ public class TaskMangoPayDescriptor {
         return this;
     }
 
-    public TaskMangoPayDescriptor withKey(Optional<? extends String> key) {
+    public TaskMangoPayDescriptor withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
         return this;
@@ -89,7 +85,7 @@ public class TaskMangoPayDescriptor {
         return this;
     }
 
-    public TaskMangoPayDescriptor withName(Optional<? extends String> name) {
+    public TaskMangoPayDescriptor withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -101,7 +97,7 @@ public class TaskMangoPayDescriptor {
         return this;
     }
 
-    public TaskMangoPayDescriptor withUserID(Optional<? extends String> userID) {
+    public TaskMangoPayDescriptor withUserID(Optional<String> userID) {
         Utils.checkNotNull(userID, "userID");
         this.userID = userID;
         return this;
@@ -117,14 +113,14 @@ public class TaskMangoPayDescriptor {
         }
         TaskMangoPayDescriptor other = (TaskMangoPayDescriptor) o;
         return 
-            java.util.Objects.deepEquals(this.key, other.key) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.userID, other.userID);
+            Objects.deepEquals(this.key, other.key) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.userID, other.userID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             key,
             name,
             userID);
@@ -140,11 +136,11 @@ public class TaskMangoPayDescriptor {
     
     public final static class Builder {
  
-        private Optional<? extends String> key = Optional.empty();
+        private Optional<String> key = Optional.empty();
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
-        private Optional<? extends String> userID = Optional.empty();  
+        private Optional<String> userID = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -156,7 +152,7 @@ public class TaskMangoPayDescriptor {
             return this;
         }
 
-        public Builder key(Optional<? extends String> key) {
+        public Builder key(Optional<String> key) {
             Utils.checkNotNull(key, "key");
             this.key = key;
             return this;
@@ -168,7 +164,7 @@ public class TaskMangoPayDescriptor {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -180,7 +176,7 @@ public class TaskMangoPayDescriptor {
             return this;
         }
 
-        public Builder userID(Optional<? extends String> userID) {
+        public Builder userID(Optional<String> userID) {
             Utils.checkNotNull(userID, "userID");
             this.userID = userID;
             return this;

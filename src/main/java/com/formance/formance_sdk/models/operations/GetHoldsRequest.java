@@ -4,18 +4,21 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetHoldsRequest {
 
@@ -27,32 +30,32 @@ public class GetHoldsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
-    private Optional<? extends java.util.Map<String, String>> metadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     /**
      * The maximum number of results to return per page
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * The wallet to filter on
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=walletID")
-    private Optional<? extends String> walletID;
+    private Optional<String> walletID;
 
     @JsonCreator
     public GetHoldsRequest(
-            Optional<? extends String> cursor,
-            Optional<? extends java.util.Map<String, String>> metadata,
-            Optional<? extends Long> pageSize,
-            Optional<? extends String> walletID) {
+            Optional<String> cursor,
+            Optional<? extends Map<String, String>> metadata,
+            Optional<Long> pageSize,
+            Optional<String> walletID) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(pageSize, "pageSize");
@@ -74,10 +77,9 @@ public class GetHoldsRequest {
      * No other parameters can be set when the pagination token is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
@@ -85,26 +87,24 @@ public class GetHoldsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> metadata() {
-        return (Optional<java.util.Map<String, String>>) metadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     /**
      * The maximum number of results to return per page
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
      * The wallet to filter on
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> walletID() {
-        return (Optional<String>) walletID;
+        return walletID;
     }
 
     public final static Builder builder() {
@@ -131,7 +131,7 @@ public class GetHoldsRequest {
      * No other parameters can be set when the pagination token is set.
      * 
      */
-    public GetHoldsRequest withCursor(Optional<? extends String> cursor) {
+    public GetHoldsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -140,7 +140,7 @@ public class GetHoldsRequest {
     /**
      * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public GetHoldsRequest withMetadata(java.util.Map<String, String> metadata) {
+    public GetHoldsRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
@@ -149,7 +149,7 @@ public class GetHoldsRequest {
     /**
      * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public GetHoldsRequest withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+    public GetHoldsRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -167,7 +167,7 @@ public class GetHoldsRequest {
     /**
      * The maximum number of results to return per page
      */
-    public GetHoldsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public GetHoldsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -185,7 +185,7 @@ public class GetHoldsRequest {
     /**
      * The wallet to filter on
      */
-    public GetHoldsRequest withWalletID(Optional<? extends String> walletID) {
+    public GetHoldsRequest withWalletID(Optional<String> walletID) {
         Utils.checkNotNull(walletID, "walletID");
         this.walletID = walletID;
         return this;
@@ -201,15 +201,15 @@ public class GetHoldsRequest {
         }
         GetHoldsRequest other = (GetHoldsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.walletID, other.walletID);
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.walletID, other.walletID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             cursor,
             metadata,
             pageSize,
@@ -227,13 +227,13 @@ public class GetHoldsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends String> walletID = Optional.empty();  
+        private Optional<String> walletID = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -259,7 +259,7 @@ public class GetHoldsRequest {
          * No other parameters can be set when the pagination token is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -268,7 +268,7 @@ public class GetHoldsRequest {
         /**
          * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
@@ -277,7 +277,7 @@ public class GetHoldsRequest {
         /**
          * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
-        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -295,7 +295,7 @@ public class GetHoldsRequest {
         /**
          * The maximum number of results to return per page
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -313,7 +313,7 @@ public class GetHoldsRequest {
         /**
          * The wallet to filter on
          */
-        public Builder walletID(Optional<? extends String> walletID) {
+        public Builder walletID(Optional<String> walletID) {
             Utils.checkNotNull(walletID, "walletID");
             this.walletID = walletID;
             return this;
@@ -322,19 +322,18 @@ public class GetHoldsRequest {
         public GetHoldsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new GetHoldsRequest(
+            }            return new GetHoldsRequest(
                 cursor,
                 metadata,
                 pageSize,
                 walletID);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

@@ -4,17 +4,17 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ListTriggersOccurrencesRequest {
 
@@ -26,14 +26,14 @@ public class V2ListTriggersOccurrencesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * The trigger id
@@ -43,8 +43,8 @@ public class V2ListTriggersOccurrencesRequest {
 
     @JsonCreator
     public V2ListTriggersOccurrencesRequest(
-            Optional<? extends String> cursor,
-            Optional<? extends Long> pageSize,
+            Optional<String> cursor,
+            Optional<Long> pageSize,
             String triggerID) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
@@ -66,20 +66,18 @@ public class V2ListTriggersOccurrencesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
@@ -114,7 +112,7 @@ public class V2ListTriggersOccurrencesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public V2ListTriggersOccurrencesRequest withCursor(Optional<? extends String> cursor) {
+    public V2ListTriggersOccurrencesRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -134,7 +132,7 @@ public class V2ListTriggersOccurrencesRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public V2ListTriggersOccurrencesRequest withPageSize(Optional<? extends Long> pageSize) {
+    public V2ListTriggersOccurrencesRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -159,14 +157,14 @@ public class V2ListTriggersOccurrencesRequest {
         }
         V2ListTriggersOccurrencesRequest other = (V2ListTriggersOccurrencesRequest) o;
         return 
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.triggerID, other.triggerID);
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.triggerID, other.triggerID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             cursor,
             pageSize,
             triggerID);
@@ -182,9 +180,9 @@ public class V2ListTriggersOccurrencesRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends Long> pageSize = Optional.empty();
+        private Optional<Long> pageSize = Optional.empty();
  
         private String triggerID;  
         
@@ -212,7 +210,7 @@ public class V2ListTriggersOccurrencesRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -232,7 +230,7 @@ public class V2ListTriggersOccurrencesRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;

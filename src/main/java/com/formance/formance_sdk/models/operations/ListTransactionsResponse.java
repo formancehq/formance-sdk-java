@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.TransactionsCursorResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListTransactionsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListTransactionsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.TransactionsCursorResponse> transactionsCursorResponse;
+    private Optional<? extends TransactionsCursorResponse> transactionsCursorResponse;
 
     @JsonCreator
     public ListTransactionsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.TransactionsCursorResponse> transactionsCursorResponse) {
+            Optional<? extends TransactionsCursorResponse> transactionsCursorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.TransactionsCursorResponse> transactionsCursorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.TransactionsCursorResponse>) transactionsCursorResponse;
+    public Optional<TransactionsCursorResponse> transactionsCursorResponse() {
+        return (Optional<TransactionsCursorResponse>) transactionsCursorResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
-    public ListTransactionsResponse withTransactionsCursorResponse(com.formance.formance_sdk.models.shared.TransactionsCursorResponse transactionsCursorResponse) {
+    public ListTransactionsResponse withTransactionsCursorResponse(TransactionsCursorResponse transactionsCursorResponse) {
         Utils.checkNotNull(transactionsCursorResponse, "transactionsCursorResponse");
         this.transactionsCursorResponse = Optional.ofNullable(transactionsCursorResponse);
         return this;
@@ -137,7 +141,7 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
     /**
      * OK
      */
-    public ListTransactionsResponse withTransactionsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransactionsCursorResponse> transactionsCursorResponse) {
+    public ListTransactionsResponse withTransactionsCursorResponse(Optional<? extends TransactionsCursorResponse> transactionsCursorResponse) {
         Utils.checkNotNull(transactionsCursorResponse, "transactionsCursorResponse");
         this.transactionsCursorResponse = transactionsCursorResponse;
         return this;
@@ -153,15 +157,15 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
         }
         ListTransactionsResponse other = (ListTransactionsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.transactionsCursorResponse, other.transactionsCursorResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.transactionsCursorResponse, other.transactionsCursorResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.TransactionsCursorResponse> transactionsCursorResponse = Optional.empty();  
+        private Optional<? extends TransactionsCursorResponse> transactionsCursorResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
         /**
          * OK
          */
-        public Builder transactionsCursorResponse(com.formance.formance_sdk.models.shared.TransactionsCursorResponse transactionsCursorResponse) {
+        public Builder transactionsCursorResponse(TransactionsCursorResponse transactionsCursorResponse) {
             Utils.checkNotNull(transactionsCursorResponse, "transactionsCursorResponse");
             this.transactionsCursorResponse = Optional.ofNullable(transactionsCursorResponse);
             return this;
@@ -230,7 +234,7 @@ public class ListTransactionsResponse implements com.formance.formance_sdk.utils
         /**
          * OK
          */
-        public Builder transactionsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransactionsCursorResponse> transactionsCursorResponse) {
+        public Builder transactionsCursorResponse(Optional<? extends TransactionsCursorResponse> transactionsCursorResponse) {
             Utils.checkNotNull(transactionsCursorResponse, "transactionsCursorResponse");
             this.transactionsCursorResponse = transactionsCursorResponse;
             return this;

@@ -4,19 +4,18 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Objects;
+
 
 public class V2PaymentAdjustment {
 
@@ -128,16 +127,16 @@ public class V2PaymentAdjustment {
         }
         V2PaymentAdjustment other = (V2PaymentAdjustment) o;
         return 
-            java.util.Objects.deepEquals(this.absolute, other.absolute) &&
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.date, other.date) &&
-            java.util.Objects.deepEquals(this.raw, other.raw) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.absolute, other.absolute) &&
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.date, other.date) &&
+            Objects.deepEquals(this.raw, other.raw) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             absolute,
             amount,
             date,

@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.TransactionResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class RevertTransactionResponse implements com.formance.formance_sdk.utils.Response {
+
+public class RevertTransactionResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.TransactionResponse> transactionResponse;
+    private Optional<? extends TransactionResponse> transactionResponse;
 
     @JsonCreator
     public RevertTransactionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.TransactionResponse> transactionResponse) {
+            Optional<? extends TransactionResponse> transactionResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.TransactionResponse> transactionResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.TransactionResponse>) transactionResponse;
+    public Optional<TransactionResponse> transactionResponse() {
+        return (Optional<TransactionResponse>) transactionResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
     /**
      * OK
      */
-    public RevertTransactionResponse withTransactionResponse(com.formance.formance_sdk.models.shared.TransactionResponse transactionResponse) {
+    public RevertTransactionResponse withTransactionResponse(TransactionResponse transactionResponse) {
         Utils.checkNotNull(transactionResponse, "transactionResponse");
         this.transactionResponse = Optional.ofNullable(transactionResponse);
         return this;
@@ -137,7 +141,7 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
     /**
      * OK
      */
-    public RevertTransactionResponse withTransactionResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransactionResponse> transactionResponse) {
+    public RevertTransactionResponse withTransactionResponse(Optional<? extends TransactionResponse> transactionResponse) {
         Utils.checkNotNull(transactionResponse, "transactionResponse");
         this.transactionResponse = transactionResponse;
         return this;
@@ -153,15 +157,15 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
         }
         RevertTransactionResponse other = (RevertTransactionResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.transactionResponse, other.transactionResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.transactionResponse, other.transactionResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.TransactionResponse> transactionResponse = Optional.empty();  
+        private Optional<? extends TransactionResponse> transactionResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
         /**
          * OK
          */
-        public Builder transactionResponse(com.formance.formance_sdk.models.shared.TransactionResponse transactionResponse) {
+        public Builder transactionResponse(TransactionResponse transactionResponse) {
             Utils.checkNotNull(transactionResponse, "transactionResponse");
             this.transactionResponse = Optional.ofNullable(transactionResponse);
             return this;
@@ -230,7 +234,7 @@ public class RevertTransactionResponse implements com.formance.formance_sdk.util
         /**
          * OK
          */
-        public Builder transactionResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransactionResponse> transactionResponse) {
+        public Builder transactionResponse(Optional<? extends TransactionResponse> transactionResponse) {
             Utils.checkNotNull(transactionResponse, "transactionResponse");
             this.transactionResponse = transactionResponse;
             return this;

@@ -5,18 +5,14 @@
 package com.formance.formance_sdk.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ErrorsEnum;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.http.HttpResponse;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -26,18 +22,18 @@ public class ErrorResponse extends RuntimeException {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
-    private Optional<? extends String> details;
+    private Optional<String> details;
 
     @JsonProperty("errorCode")
-    private com.formance.formance_sdk.models.shared.ErrorsEnum errorCode;
+    private ErrorsEnum errorCode;
 
     @JsonProperty("errorMessage")
     private String errorMessage;
 
     @JsonCreator
     public ErrorResponse(
-            @JsonProperty("details") Optional<? extends String> details,
-            @JsonProperty("errorCode") com.formance.formance_sdk.models.shared.ErrorsEnum errorCode,
+            @JsonProperty("details") Optional<String> details,
+            @JsonProperty("errorCode") ErrorsEnum errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
         Utils.checkNotNull(details, "details");
         Utils.checkNotNull(errorCode, "errorCode");
@@ -48,16 +44,16 @@ public class ErrorResponse extends RuntimeException {
     }
     
     public ErrorResponse(
-            com.formance.formance_sdk.models.shared.ErrorsEnum errorCode,
+            ErrorsEnum errorCode,
             String errorMessage) {
         this(Optional.empty(), errorCode, errorMessage);
     }
 
-    public Optional<? extends String> details(){
+    public Optional<String> details(){
         return details;
     }
 
-    public com.formance.formance_sdk.models.shared.ErrorsEnum errorCode(){
+    public ErrorsEnum errorCode(){
         return errorCode;
     }
 
@@ -75,13 +71,13 @@ public class ErrorResponse extends RuntimeException {
         return this;
     }
     
-    public ErrorResponse withDetails(Optional<? extends String> details) {
+    public ErrorResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
     }
 
-    public ErrorResponse withErrorCode(com.formance.formance_sdk.models.shared.ErrorsEnum errorCode) {
+    public ErrorResponse withErrorCode(ErrorsEnum errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
@@ -103,9 +99,9 @@ public class ErrorResponse extends RuntimeException {
         }
         ErrorResponse other = (ErrorResponse) o;
         return
-            java.util.Objects.deepEquals(this.details, other.details) &&
-            java.util.Objects.deepEquals(this.errorCode, other.errorCode) &&
-            java.util.Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Objects.deepEquals(this.details, other.details) &&
+            Objects.deepEquals(this.errorCode, other.errorCode) &&
+            Objects.deepEquals(this.errorMessage, other.errorMessage);
     }
 
     @Override
@@ -126,9 +122,9 @@ public class ErrorResponse extends RuntimeException {
 
     public final static class Builder {
 
-        private Optional<? extends String> details = Optional.empty();
+        private Optional<String> details = Optional.empty();
 
-        private com.formance.formance_sdk.models.shared.ErrorsEnum errorCode;
+        private ErrorsEnum errorCode;
 
         private String errorMessage;
 
@@ -142,13 +138,13 @@ public class ErrorResponse extends RuntimeException {
             return this;
         }
         
-        public Builder details(Optional<? extends String> details) {
+        public Builder details(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
         }
 
-        public Builder errorCode(com.formance.formance_sdk.models.shared.ErrorsEnum errorCode) {
+        public Builder errorCode(ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;

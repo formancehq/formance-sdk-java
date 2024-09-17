@@ -4,27 +4,49 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
+
 
 public class VoidHoldRequest {
+
+    /**
+     * Use an idempotency key
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
+    private Optional<String> idempotencyKey;
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=hold_id")
     private String holdId;
 
     @JsonCreator
     public VoidHoldRequest(
+            Optional<String> idempotencyKey,
             String holdId) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(holdId, "holdId");
+        this.idempotencyKey = idempotencyKey;
         this.holdId = holdId;
+    }
+    
+    public VoidHoldRequest(
+            String holdId) {
+        this(Optional.empty(), holdId);
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @JsonIgnore
@@ -34,6 +56,24 @@ public class VoidHoldRequest {
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    public VoidHoldRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    public VoidHoldRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
 
     public VoidHoldRequest withHoldId(String holdId) {
@@ -52,27 +92,50 @@ public class VoidHoldRequest {
         }
         VoidHoldRequest other = (VoidHoldRequest) o;
         return 
-            java.util.Objects.deepEquals(this.holdId, other.holdId);
+            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Objects.deepEquals(this.holdId, other.holdId);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
+            idempotencyKey,
             holdId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(VoidHoldRequest.class,
+                "idempotencyKey", idempotencyKey,
                 "holdId", holdId);
     }
     
     public final static class Builder {
  
+        private Optional<String> idempotencyKey = Optional.empty();
+ 
         private String holdId;  
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
         }
 
         public Builder holdId(String holdId) {
@@ -83,6 +146,7 @@ public class VoidHoldRequest {
         
         public VoidHoldRequest build() {
             return new VoidHoldRequest(
+                idempotencyKey,
                 holdId);
         }
     }

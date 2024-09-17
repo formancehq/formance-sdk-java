@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.LogsCursorResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListLogsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListLogsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.LogsCursorResponse> logsCursorResponse;
+    private Optional<? extends LogsCursorResponse> logsCursorResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
     @JsonCreator
     public ListLogsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.LogsCursorResponse> logsCursorResponse,
+            Optional<? extends LogsCursorResponse> logsCursorResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.LogsCursorResponse> logsCursorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.LogsCursorResponse>) logsCursorResponse;
+    public Optional<LogsCursorResponse> logsCursorResponse() {
+        return (Optional<LogsCursorResponse>) logsCursorResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
     /**
      * OK
      */
-    public ListLogsResponse withLogsCursorResponse(com.formance.formance_sdk.models.shared.LogsCursorResponse logsCursorResponse) {
+    public ListLogsResponse withLogsCursorResponse(LogsCursorResponse logsCursorResponse) {
         Utils.checkNotNull(logsCursorResponse, "logsCursorResponse");
         this.logsCursorResponse = Optional.ofNullable(logsCursorResponse);
         return this;
@@ -119,7 +123,7 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
     /**
      * OK
      */
-    public ListLogsResponse withLogsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.LogsCursorResponse> logsCursorResponse) {
+    public ListLogsResponse withLogsCursorResponse(Optional<? extends LogsCursorResponse> logsCursorResponse) {
         Utils.checkNotNull(logsCursorResponse, "logsCursorResponse");
         this.logsCursorResponse = logsCursorResponse;
         return this;
@@ -153,15 +157,15 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
         }
         ListLogsResponse other = (ListLogsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.logsCursorResponse, other.logsCursorResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.logsCursorResponse, other.logsCursorResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             logsCursorResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.LogsCursorResponse> logsCursorResponse = Optional.empty();
+        private Optional<? extends LogsCursorResponse> logsCursorResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
         /**
          * OK
          */
-        public Builder logsCursorResponse(com.formance.formance_sdk.models.shared.LogsCursorResponse logsCursorResponse) {
+        public Builder logsCursorResponse(LogsCursorResponse logsCursorResponse) {
             Utils.checkNotNull(logsCursorResponse, "logsCursorResponse");
             this.logsCursorResponse = Optional.ofNullable(logsCursorResponse);
             return this;
@@ -212,7 +216,7 @@ public class ListLogsResponse implements com.formance.formance_sdk.utils.Respons
         /**
          * OK
          */
-        public Builder logsCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.LogsCursorResponse> logsCursorResponse) {
+        public Builder logsCursorResponse(Optional<? extends LogsCursorResponse> logsCursorResponse) {
             Utils.checkNotNull(logsCursorResponse, "logsCursorResponse");
             this.logsCursorResponse = logsCursorResponse;
             return this;

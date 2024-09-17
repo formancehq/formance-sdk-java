@@ -4,28 +4,26 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Double;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class StageStatus {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<? extends String> error;
+    private Optional<String> error;
 
     @JsonProperty("instanceID")
     private String instanceID;
@@ -38,15 +36,15 @@ public class StageStatus {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
-    private Optional<? extends OffsetDateTime> terminatedAt;
+    private Optional<OffsetDateTime> terminatedAt;
 
     @JsonCreator
     public StageStatus(
-            @JsonProperty("error") Optional<? extends String> error,
+            @JsonProperty("error") Optional<String> error,
             @JsonProperty("instanceID") String instanceID,
             @JsonProperty("stage") double stage,
             @JsonProperty("startedAt") OffsetDateTime startedAt,
-            @JsonProperty("terminatedAt") Optional<? extends OffsetDateTime> terminatedAt) {
+            @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(instanceID, "instanceID");
         Utils.checkNotNull(stage, "stage");
@@ -66,10 +64,9 @@ public class StageStatus {
         this(Optional.empty(), instanceID, stage, startedAt, Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> error() {
-        return (Optional<String>) error;
+        return error;
     }
 
     @JsonIgnore
@@ -87,10 +84,9 @@ public class StageStatus {
         return startedAt;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
-        return (Optional<OffsetDateTime>) terminatedAt;
+        return terminatedAt;
     }
 
     public final static Builder builder() {
@@ -103,7 +99,7 @@ public class StageStatus {
         return this;
     }
 
-    public StageStatus withError(Optional<? extends String> error) {
+    public StageStatus withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -133,7 +129,7 @@ public class StageStatus {
         return this;
     }
 
-    public StageStatus withTerminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+    public StageStatus withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
@@ -149,16 +145,16 @@ public class StageStatus {
         }
         StageStatus other = (StageStatus) o;
         return 
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.instanceID, other.instanceID) &&
-            java.util.Objects.deepEquals(this.stage, other.stage) &&
-            java.util.Objects.deepEquals(this.startedAt, other.startedAt) &&
-            java.util.Objects.deepEquals(this.terminatedAt, other.terminatedAt);
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.instanceID, other.instanceID) &&
+            Objects.deepEquals(this.stage, other.stage) &&
+            Objects.deepEquals(this.startedAt, other.startedAt) &&
+            Objects.deepEquals(this.terminatedAt, other.terminatedAt);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             error,
             instanceID,
             stage,
@@ -178,7 +174,7 @@ public class StageStatus {
     
     public final static class Builder {
  
-        private Optional<? extends String> error = Optional.empty();
+        private Optional<String> error = Optional.empty();
  
         private String instanceID;
  
@@ -186,7 +182,7 @@ public class StageStatus {
  
         private OffsetDateTime startedAt;
  
-        private Optional<? extends OffsetDateTime> terminatedAt = Optional.empty();  
+        private Optional<OffsetDateTime> terminatedAt = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -198,7 +194,7 @@ public class StageStatus {
             return this;
         }
 
-        public Builder error(Optional<? extends String> error) {
+        public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
@@ -228,7 +224,7 @@ public class StageStatus {
             return this;
         }
 
-        public Builder terminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+        public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
             return this;

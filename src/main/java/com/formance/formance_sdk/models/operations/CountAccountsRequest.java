@@ -4,17 +4,19 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CountAccountsRequest {
 
@@ -22,7 +24,7 @@ public class CountAccountsRequest {
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=address")
-    private Optional<? extends String> address;
+    private Optional<String> address;
 
     /**
      * Name of the ledger.
@@ -34,13 +36,13 @@ public class CountAccountsRequest {
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> metadata;
+    private Optional<? extends Map<String, Object>> metadata;
 
     @JsonCreator
     public CountAccountsRequest(
-            Optional<? extends String> address,
+            Optional<String> address,
             String ledger,
-            Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+            Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(metadata, "metadata");
@@ -57,10 +59,9 @@ public class CountAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> address() {
-        return (Optional<String>) address;
+        return address;
     }
 
     /**
@@ -76,8 +77,8 @@ public class CountAccountsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
     public final static Builder builder() {
@@ -96,7 +97,7 @@ public class CountAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
-    public CountAccountsRequest withAddress(Optional<? extends String> address) {
+    public CountAccountsRequest withAddress(Optional<String> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -114,7 +115,7 @@ public class CountAccountsRequest {
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
-    public CountAccountsRequest withMetadata(java.util.Map<String, java.lang.Object> metadata) {
+    public CountAccountsRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
@@ -123,7 +124,7 @@ public class CountAccountsRequest {
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
-    public CountAccountsRequest withMetadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+    public CountAccountsRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -139,14 +140,14 @@ public class CountAccountsRequest {
         }
         CountAccountsRequest other = (CountAccountsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             ledger,
             metadata);
@@ -162,11 +163,11 @@ public class CountAccountsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> address = Optional.empty();
+        private Optional<String> address = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> metadata = Optional.empty();  
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -184,7 +185,7 @@ public class CountAccountsRequest {
         /**
          * Filter accounts by address pattern (regular expression placed between ^ and $).
          */
-        public Builder address(Optional<? extends String> address) {
+        public Builder address(Optional<String> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
@@ -202,7 +203,7 @@ public class CountAccountsRequest {
         /**
          * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
          */
-        public Builder metadata(java.util.Map<String, java.lang.Object> metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
@@ -211,7 +212,7 @@ public class CountAccountsRequest {
         /**
          * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
          */
-        public Builder metadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

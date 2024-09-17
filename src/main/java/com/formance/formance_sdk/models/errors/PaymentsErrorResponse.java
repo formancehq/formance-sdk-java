@@ -5,16 +5,12 @@
 package com.formance.formance_sdk.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.PaymentsErrorsEnum;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.http.HttpResponse;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 
 /**
  * PaymentsErrorResponse - Error
@@ -22,14 +18,14 @@ import java.net.http.HttpResponse;
 public class PaymentsErrorResponse extends RuntimeException {
 
     @JsonProperty("errorCode")
-    private com.formance.formance_sdk.models.shared.PaymentsErrorsEnum errorCode;
+    private PaymentsErrorsEnum errorCode;
 
     @JsonProperty("errorMessage")
     private String errorMessage;
 
     @JsonCreator
     public PaymentsErrorResponse(
-            @JsonProperty("errorCode") com.formance.formance_sdk.models.shared.PaymentsErrorsEnum errorCode,
+            @JsonProperty("errorCode") PaymentsErrorsEnum errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
@@ -37,7 +33,7 @@ public class PaymentsErrorResponse extends RuntimeException {
         this.errorMessage = errorMessage;
     }
 
-    public com.formance.formance_sdk.models.shared.PaymentsErrorsEnum errorCode(){
+    public PaymentsErrorsEnum errorCode(){
         return errorCode;
     }
 
@@ -49,7 +45,7 @@ public class PaymentsErrorResponse extends RuntimeException {
         return new Builder();
     }
 
-    public PaymentsErrorResponse withErrorCode(com.formance.formance_sdk.models.shared.PaymentsErrorsEnum errorCode) {
+    public PaymentsErrorResponse withErrorCode(PaymentsErrorsEnum errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
@@ -71,8 +67,8 @@ public class PaymentsErrorResponse extends RuntimeException {
         }
         PaymentsErrorResponse other = (PaymentsErrorResponse) o;
         return
-            java.util.Objects.deepEquals(this.errorCode, other.errorCode) &&
-            java.util.Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Objects.deepEquals(this.errorCode, other.errorCode) &&
+            Objects.deepEquals(this.errorMessage, other.errorMessage);
     }
 
     @Override
@@ -91,7 +87,7 @@ public class PaymentsErrorResponse extends RuntimeException {
 
     public final static class Builder {
 
-        private com.formance.formance_sdk.models.shared.PaymentsErrorsEnum errorCode;
+        private PaymentsErrorsEnum errorCode;
 
         private String errorMessage;
 
@@ -99,7 +95,7 @@ public class PaymentsErrorResponse extends RuntimeException {
           // force use of static builder() method
         }
 
-        public Builder errorCode(com.formance.formance_sdk.models.shared.PaymentsErrorsEnum errorCode) {
+        public Builder errorCode(PaymentsErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;

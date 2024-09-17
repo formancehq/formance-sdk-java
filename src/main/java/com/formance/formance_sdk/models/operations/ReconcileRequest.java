@@ -4,21 +4,21 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ReconciliationRequest;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class ReconcileRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.ReconciliationRequest reconciliationRequest;
+    private ReconciliationRequest reconciliationRequest;
 
     /**
      * The policy ID.
@@ -28,7 +28,7 @@ public class ReconcileRequest {
 
     @JsonCreator
     public ReconcileRequest(
-            com.formance.formance_sdk.models.shared.ReconciliationRequest reconciliationRequest,
+            ReconciliationRequest reconciliationRequest,
             String policyID) {
         Utils.checkNotNull(reconciliationRequest, "reconciliationRequest");
         Utils.checkNotNull(policyID, "policyID");
@@ -37,7 +37,7 @@ public class ReconcileRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.ReconciliationRequest reconciliationRequest() {
+    public ReconciliationRequest reconciliationRequest() {
         return reconciliationRequest;
     }
 
@@ -53,7 +53,7 @@ public class ReconcileRequest {
         return new Builder();
     }
 
-    public ReconcileRequest withReconciliationRequest(com.formance.formance_sdk.models.shared.ReconciliationRequest reconciliationRequest) {
+    public ReconcileRequest withReconciliationRequest(ReconciliationRequest reconciliationRequest) {
         Utils.checkNotNull(reconciliationRequest, "reconciliationRequest");
         this.reconciliationRequest = reconciliationRequest;
         return this;
@@ -78,13 +78,13 @@ public class ReconcileRequest {
         }
         ReconcileRequest other = (ReconcileRequest) o;
         return 
-            java.util.Objects.deepEquals(this.reconciliationRequest, other.reconciliationRequest) &&
-            java.util.Objects.deepEquals(this.policyID, other.policyID);
+            Objects.deepEquals(this.reconciliationRequest, other.reconciliationRequest) &&
+            Objects.deepEquals(this.policyID, other.policyID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             reconciliationRequest,
             policyID);
     }
@@ -98,7 +98,7 @@ public class ReconcileRequest {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.ReconciliationRequest reconciliationRequest;
+        private ReconciliationRequest reconciliationRequest;
  
         private String policyID;  
         
@@ -106,7 +106,7 @@ public class ReconcileRequest {
           // force use of static builder() method
         }
 
-        public Builder reconciliationRequest(com.formance.formance_sdk.models.shared.ReconciliationRequest reconciliationRequest) {
+        public Builder reconciliationRequest(ReconciliationRequest reconciliationRequest) {
             Utils.checkNotNull(reconciliationRequest, "reconciliationRequest");
             this.reconciliationRequest = reconciliationRequest;
             return this;

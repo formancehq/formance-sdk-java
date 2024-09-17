@@ -4,8 +4,8 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,11 +13,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class DummyPayConfig {
 
@@ -29,31 +30,31 @@ public class DummyPayConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filePollingPeriod")
-    private Optional<? extends String> filePollingPeriod;
+    private Optional<String> filePollingPeriod;
 
     @JsonProperty("name")
     private String name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numberOfAccountsPreGenerated")
-    private Optional<? extends Long> numberOfAccountsPreGenerated;
+    private Optional<Long> numberOfAccountsPreGenerated;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numberOfPaymentsPreGenerated")
-    private Optional<? extends Long> numberOfPaymentsPreGenerated;
+    private Optional<Long> numberOfPaymentsPreGenerated;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("prefixFileToIngest")
-    private Optional<? extends String> prefixFileToIngest;
+    private Optional<String> prefixFileToIngest;
 
     @JsonCreator
     public DummyPayConfig(
             @JsonProperty("directory") String directory,
-            @JsonProperty("filePollingPeriod") Optional<? extends String> filePollingPeriod,
+            @JsonProperty("filePollingPeriod") Optional<String> filePollingPeriod,
             @JsonProperty("name") String name,
-            @JsonProperty("numberOfAccountsPreGenerated") Optional<? extends Long> numberOfAccountsPreGenerated,
-            @JsonProperty("numberOfPaymentsPreGenerated") Optional<? extends Long> numberOfPaymentsPreGenerated,
-            @JsonProperty("prefixFileToIngest") Optional<? extends String> prefixFileToIngest) {
+            @JsonProperty("numberOfAccountsPreGenerated") Optional<Long> numberOfAccountsPreGenerated,
+            @JsonProperty("numberOfPaymentsPreGenerated") Optional<Long> numberOfPaymentsPreGenerated,
+            @JsonProperty("prefixFileToIngest") Optional<String> prefixFileToIngest) {
         Utils.checkNotNull(directory, "directory");
         Utils.checkNotNull(filePollingPeriod, "filePollingPeriod");
         Utils.checkNotNull(name, "name");
@@ -82,10 +83,9 @@ public class DummyPayConfig {
     /**
      * The frequency at which the connector will try to fetch new payment objects from the directory
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> filePollingPeriod() {
-        return (Optional<String>) filePollingPeriod;
+        return filePollingPeriod;
     }
 
     @JsonIgnore
@@ -93,22 +93,19 @@ public class DummyPayConfig {
         return name;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> numberOfAccountsPreGenerated() {
-        return (Optional<Long>) numberOfAccountsPreGenerated;
+        return numberOfAccountsPreGenerated;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> numberOfPaymentsPreGenerated() {
-        return (Optional<Long>) numberOfPaymentsPreGenerated;
+        return numberOfPaymentsPreGenerated;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> prefixFileToIngest() {
-        return (Optional<String>) prefixFileToIngest;
+        return prefixFileToIngest;
     }
 
     public final static Builder builder() {
@@ -133,7 +130,7 @@ public class DummyPayConfig {
     /**
      * The frequency at which the connector will try to fetch new payment objects from the directory
      */
-    public DummyPayConfig withFilePollingPeriod(Optional<? extends String> filePollingPeriod) {
+    public DummyPayConfig withFilePollingPeriod(Optional<String> filePollingPeriod) {
         Utils.checkNotNull(filePollingPeriod, "filePollingPeriod");
         this.filePollingPeriod = filePollingPeriod;
         return this;
@@ -151,7 +148,7 @@ public class DummyPayConfig {
         return this;
     }
 
-    public DummyPayConfig withNumberOfAccountsPreGenerated(Optional<? extends Long> numberOfAccountsPreGenerated) {
+    public DummyPayConfig withNumberOfAccountsPreGenerated(Optional<Long> numberOfAccountsPreGenerated) {
         Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
         this.numberOfAccountsPreGenerated = numberOfAccountsPreGenerated;
         return this;
@@ -163,7 +160,7 @@ public class DummyPayConfig {
         return this;
     }
 
-    public DummyPayConfig withNumberOfPaymentsPreGenerated(Optional<? extends Long> numberOfPaymentsPreGenerated) {
+    public DummyPayConfig withNumberOfPaymentsPreGenerated(Optional<Long> numberOfPaymentsPreGenerated) {
         Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
         this.numberOfPaymentsPreGenerated = numberOfPaymentsPreGenerated;
         return this;
@@ -175,7 +172,7 @@ public class DummyPayConfig {
         return this;
     }
 
-    public DummyPayConfig withPrefixFileToIngest(Optional<? extends String> prefixFileToIngest) {
+    public DummyPayConfig withPrefixFileToIngest(Optional<String> prefixFileToIngest) {
         Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
         this.prefixFileToIngest = prefixFileToIngest;
         return this;
@@ -191,17 +188,17 @@ public class DummyPayConfig {
         }
         DummyPayConfig other = (DummyPayConfig) o;
         return 
-            java.util.Objects.deepEquals(this.directory, other.directory) &&
-            java.util.Objects.deepEquals(this.filePollingPeriod, other.filePollingPeriod) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.numberOfAccountsPreGenerated, other.numberOfAccountsPreGenerated) &&
-            java.util.Objects.deepEquals(this.numberOfPaymentsPreGenerated, other.numberOfPaymentsPreGenerated) &&
-            java.util.Objects.deepEquals(this.prefixFileToIngest, other.prefixFileToIngest);
+            Objects.deepEquals(this.directory, other.directory) &&
+            Objects.deepEquals(this.filePollingPeriod, other.filePollingPeriod) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.numberOfAccountsPreGenerated, other.numberOfAccountsPreGenerated) &&
+            Objects.deepEquals(this.numberOfPaymentsPreGenerated, other.numberOfPaymentsPreGenerated) &&
+            Objects.deepEquals(this.prefixFileToIngest, other.prefixFileToIngest);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             directory,
             filePollingPeriod,
             name,
@@ -225,15 +222,15 @@ public class DummyPayConfig {
  
         private String directory;
  
-        private Optional<? extends String> filePollingPeriod;
+        private Optional<String> filePollingPeriod;
  
         private String name;
  
-        private Optional<? extends Long> numberOfAccountsPreGenerated = Optional.empty();
+        private Optional<Long> numberOfAccountsPreGenerated = Optional.empty();
  
-        private Optional<? extends Long> numberOfPaymentsPreGenerated = Optional.empty();
+        private Optional<Long> numberOfPaymentsPreGenerated = Optional.empty();
  
-        private Optional<? extends String> prefixFileToIngest = Optional.empty();  
+        private Optional<String> prefixFileToIngest = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -257,7 +254,7 @@ public class DummyPayConfig {
         /**
          * The frequency at which the connector will try to fetch new payment objects from the directory
          */
-        public Builder filePollingPeriod(Optional<? extends String> filePollingPeriod) {
+        public Builder filePollingPeriod(Optional<String> filePollingPeriod) {
             Utils.checkNotNull(filePollingPeriod, "filePollingPeriod");
             this.filePollingPeriod = filePollingPeriod;
             return this;
@@ -275,7 +272,7 @@ public class DummyPayConfig {
             return this;
         }
 
-        public Builder numberOfAccountsPreGenerated(Optional<? extends Long> numberOfAccountsPreGenerated) {
+        public Builder numberOfAccountsPreGenerated(Optional<Long> numberOfAccountsPreGenerated) {
             Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
             this.numberOfAccountsPreGenerated = numberOfAccountsPreGenerated;
             return this;
@@ -287,7 +284,7 @@ public class DummyPayConfig {
             return this;
         }
 
-        public Builder numberOfPaymentsPreGenerated(Optional<? extends Long> numberOfPaymentsPreGenerated) {
+        public Builder numberOfPaymentsPreGenerated(Optional<Long> numberOfPaymentsPreGenerated) {
             Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
             this.numberOfPaymentsPreGenerated = numberOfPaymentsPreGenerated;
             return this;
@@ -299,7 +296,7 @@ public class DummyPayConfig {
             return this;
         }
 
-        public Builder prefixFileToIngest(Optional<? extends String> prefixFileToIngest) {
+        public Builder prefixFileToIngest(Optional<String> prefixFileToIngest) {
             Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
             this.prefixFileToIngest = prefixFileToIngest;
             return this;
@@ -308,8 +305,7 @@ public class DummyPayConfig {
         public DummyPayConfig build() {
             if (filePollingPeriod == null) {
                 filePollingPeriod = _SINGLETON_VALUE_FilePollingPeriod.value();
-            }
-            return new DummyPayConfig(
+            }            return new DummyPayConfig(
                 directory,
                 filePollingPeriod,
                 name,
@@ -318,11 +314,11 @@ public class DummyPayConfig {
                 prefixFileToIngest);
         }
 
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_FilePollingPeriod =
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_FilePollingPeriod =
                 new LazySingletonValue<>(
                         "filePollingPeriod",
                         "\"10s\"",
-                        new TypeReference<Optional<? extends String>>() {});
+                        new TypeReference<Optional<String>>() {});
     }
 }
 

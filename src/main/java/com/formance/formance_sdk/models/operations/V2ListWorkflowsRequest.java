@@ -4,17 +4,17 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ListWorkflowsRequest {
 
@@ -26,19 +26,19 @@ public class V2ListWorkflowsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     @JsonCreator
     public V2ListWorkflowsRequest(
-            Optional<? extends String> cursor,
-            Optional<? extends Long> pageSize) {
+            Optional<String> cursor,
+            Optional<Long> pageSize) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
         this.cursor = cursor;
@@ -56,20 +56,18 @@ public class V2ListWorkflowsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     public final static Builder builder() {
@@ -96,7 +94,7 @@ public class V2ListWorkflowsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public V2ListWorkflowsRequest withCursor(Optional<? extends String> cursor) {
+    public V2ListWorkflowsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -116,7 +114,7 @@ public class V2ListWorkflowsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public V2ListWorkflowsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public V2ListWorkflowsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -132,13 +130,13 @@ public class V2ListWorkflowsRequest {
         }
         V2ListWorkflowsRequest other = (V2ListWorkflowsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize);
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             cursor,
             pageSize);
     }
@@ -152,9 +150,9 @@ public class V2ListWorkflowsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends Long> pageSize = Optional.empty();  
+        private Optional<Long> pageSize = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -180,7 +178,7 @@ public class V2ListWorkflowsRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -200,7 +198,7 @@ public class V2ListWorkflowsRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;

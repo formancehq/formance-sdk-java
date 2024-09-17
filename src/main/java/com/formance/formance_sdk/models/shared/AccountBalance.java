@@ -4,19 +4,18 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
 import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Objects;
+
 
 public class AccountBalance {
 
@@ -157,17 +156,17 @@ public class AccountBalance {
         }
         AccountBalance other = (AccountBalance) o;
         return 
-            java.util.Objects.deepEquals(this.accountId, other.accountId) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.balance, other.balance) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.currency, other.currency) &&
-            java.util.Objects.deepEquals(this.lastUpdatedAt, other.lastUpdatedAt);
+            Objects.deepEquals(this.accountId, other.accountId) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.balance, other.balance) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.currency, other.currency) &&
+            Objects.deepEquals(this.lastUpdatedAt, other.lastUpdatedAt);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accountId,
             asset,
             balance,

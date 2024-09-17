@@ -4,31 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class Transactions {
 
     @JsonProperty("transactions")
-    private java.util.List<TransactionData> transactions;
+    private List<TransactionData> transactions;
 
     @JsonCreator
     public Transactions(
-            @JsonProperty("transactions") java.util.List<TransactionData> transactions) {
+            @JsonProperty("transactions") List<TransactionData> transactions) {
         Utils.checkNotNull(transactions, "transactions");
         this.transactions = transactions;
     }
 
     @JsonIgnore
-    public java.util.List<TransactionData> transactions() {
+    public List<TransactionData> transactions() {
         return transactions;
     }
 
@@ -36,7 +36,7 @@ public class Transactions {
         return new Builder();
     }
 
-    public Transactions withTransactions(java.util.List<TransactionData> transactions) {
+    public Transactions withTransactions(List<TransactionData> transactions) {
         Utils.checkNotNull(transactions, "transactions");
         this.transactions = transactions;
         return this;
@@ -52,12 +52,12 @@ public class Transactions {
         }
         Transactions other = (Transactions) o;
         return 
-            java.util.Objects.deepEquals(this.transactions, other.transactions);
+            Objects.deepEquals(this.transactions, other.transactions);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             transactions);
     }
     
@@ -69,13 +69,13 @@ public class Transactions {
     
     public final static class Builder {
  
-        private java.util.List<TransactionData> transactions;  
+        private List<TransactionData> transactions;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder transactions(java.util.List<TransactionData> transactions) {
+        public Builder transactions(List<TransactionData> transactions) {
             Utils.checkNotNull(transactions, "transactions");
             this.transactions = transactions;
             return this;

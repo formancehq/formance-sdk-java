@@ -4,8 +4,8 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,11 +13,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class AtlarConfig {
 
@@ -35,7 +36,7 @@ public class AtlarConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("baseUrl")
-    private Optional<? extends String> baseUrl;
+    private Optional<String> baseUrl;
 
     @JsonProperty("name")
     private String name;
@@ -46,7 +47,7 @@ public class AtlarConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
@@ -54,7 +55,7 @@ public class AtlarConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
-    private Optional<? extends String> pollingPeriod;
+    private Optional<String> pollingPeriod;
 
     /**
      * The secret used by the connector for authorizing requests to the Atlar API.
@@ -70,17 +71,17 @@ public class AtlarConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferInitiationStatusPollingPeriod")
-    private Optional<? extends String> transferInitiationStatusPollingPeriod;
+    private Optional<String> transferInitiationStatusPollingPeriod;
 
     @JsonCreator
     public AtlarConfig(
             @JsonProperty("accessKey") String accessKey,
-            @JsonProperty("baseUrl") Optional<? extends String> baseUrl,
+            @JsonProperty("baseUrl") Optional<String> baseUrl,
             @JsonProperty("name") String name,
-            @JsonProperty("pageSize") Optional<? extends Long> pageSize,
-            @JsonProperty("pollingPeriod") Optional<? extends String> pollingPeriod,
+            @JsonProperty("pageSize") Optional<Long> pageSize,
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
             @JsonProperty("secret") String secret,
-            @JsonProperty("transferInitiationStatusPollingPeriod") Optional<? extends String> transferInitiationStatusPollingPeriod) {
+            @JsonProperty("transferInitiationStatusPollingPeriod") Optional<String> transferInitiationStatusPollingPeriod) {
         Utils.checkNotNull(accessKey, "accessKey");
         Utils.checkNotNull(baseUrl, "baseUrl");
         Utils.checkNotNull(name, "name");
@@ -118,10 +119,9 @@ public class AtlarConfig {
      * The base URL the client uses for making requests towards the Atlar API.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> baseUrl() {
-        return (Optional<String>) baseUrl;
+        return baseUrl;
     }
 
     @JsonIgnore
@@ -133,20 +133,18 @@ public class AtlarConfig {
      * Number of items to fetch when querying paginated APIs.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
      * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> pollingPeriod() {
-        return (Optional<String>) pollingPeriod;
+        return pollingPeriod;
     }
 
     /**
@@ -163,10 +161,9 @@ public class AtlarConfig {
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> transferInitiationStatusPollingPeriod() {
-        return (Optional<String>) transferInitiationStatusPollingPeriod;
+        return transferInitiationStatusPollingPeriod;
     }
 
     public final static Builder builder() {
@@ -198,7 +195,7 @@ public class AtlarConfig {
      * The base URL the client uses for making requests towards the Atlar API.
      * 
      */
-    public AtlarConfig withBaseUrl(Optional<? extends String> baseUrl) {
+    public AtlarConfig withBaseUrl(Optional<String> baseUrl) {
         Utils.checkNotNull(baseUrl, "baseUrl");
         this.baseUrl = baseUrl;
         return this;
@@ -224,7 +221,7 @@ public class AtlarConfig {
      * Number of items to fetch when querying paginated APIs.
      * 
      */
-    public AtlarConfig withPageSize(Optional<? extends Long> pageSize) {
+    public AtlarConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -244,7 +241,7 @@ public class AtlarConfig {
      * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
      * 
      */
-    public AtlarConfig withPollingPeriod(Optional<? extends String> pollingPeriod) {
+    public AtlarConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         this.pollingPeriod = pollingPeriod;
         return this;
@@ -275,7 +272,7 @@ public class AtlarConfig {
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
      * 
      */
-    public AtlarConfig withTransferInitiationStatusPollingPeriod(Optional<? extends String> transferInitiationStatusPollingPeriod) {
+    public AtlarConfig withTransferInitiationStatusPollingPeriod(Optional<String> transferInitiationStatusPollingPeriod) {
         Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
         this.transferInitiationStatusPollingPeriod = transferInitiationStatusPollingPeriod;
         return this;
@@ -291,18 +288,18 @@ public class AtlarConfig {
         }
         AtlarConfig other = (AtlarConfig) o;
         return 
-            java.util.Objects.deepEquals(this.accessKey, other.accessKey) &&
-            java.util.Objects.deepEquals(this.baseUrl, other.baseUrl) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            java.util.Objects.deepEquals(this.secret, other.secret) &&
-            java.util.Objects.deepEquals(this.transferInitiationStatusPollingPeriod, other.transferInitiationStatusPollingPeriod);
+            Objects.deepEquals(this.accessKey, other.accessKey) &&
+            Objects.deepEquals(this.baseUrl, other.baseUrl) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.secret, other.secret) &&
+            Objects.deepEquals(this.transferInitiationStatusPollingPeriod, other.transferInitiationStatusPollingPeriod);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accessKey,
             baseUrl,
             name,
@@ -328,17 +325,17 @@ public class AtlarConfig {
  
         private String accessKey;
  
-        private Optional<? extends String> baseUrl;
+        private Optional<String> baseUrl;
  
         private String name;
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends String> pollingPeriod;
+        private Optional<String> pollingPeriod;
  
         private String secret;
  
-        private Optional<? extends String> transferInitiationStatusPollingPeriod;  
+        private Optional<String> transferInitiationStatusPollingPeriod;  
         
         private Builder() {
           // force use of static builder() method
@@ -369,7 +366,7 @@ public class AtlarConfig {
          * The base URL the client uses for making requests towards the Atlar API.
          * 
          */
-        public Builder baseUrl(Optional<? extends String> baseUrl) {
+        public Builder baseUrl(Optional<String> baseUrl) {
             Utils.checkNotNull(baseUrl, "baseUrl");
             this.baseUrl = baseUrl;
             return this;
@@ -395,7 +392,7 @@ public class AtlarConfig {
          * Number of items to fetch when querying paginated APIs.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -415,7 +412,7 @@ public class AtlarConfig {
          * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
          * 
          */
-        public Builder pollingPeriod(Optional<? extends String> pollingPeriod) {
+        public Builder pollingPeriod(Optional<String> pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = pollingPeriod;
             return this;
@@ -446,7 +443,7 @@ public class AtlarConfig {
          * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
          * 
          */
-        public Builder transferInitiationStatusPollingPeriod(Optional<? extends String> transferInitiationStatusPollingPeriod) {
+        public Builder transferInitiationStatusPollingPeriod(Optional<String> transferInitiationStatusPollingPeriod) {
             Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
             this.transferInitiationStatusPollingPeriod = transferInitiationStatusPollingPeriod;
             return this;
@@ -464,8 +461,7 @@ public class AtlarConfig {
             }
             if (transferInitiationStatusPollingPeriod == null) {
                 transferInitiationStatusPollingPeriod = _SINGLETON_VALUE_TransferInitiationStatusPollingPeriod.value();
-            }
-            return new AtlarConfig(
+            }            return new AtlarConfig(
                 accessKey,
                 baseUrl,
                 name,
@@ -475,29 +471,29 @@ public class AtlarConfig {
                 transferInitiationStatusPollingPeriod);
         }
 
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_BaseUrl =
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_BaseUrl =
                 new LazySingletonValue<>(
                         "baseUrl",
                         "\"https://api.atlar.com\"",
-                        new TypeReference<Optional<? extends String>>() {});
+                        new TypeReference<Optional<String>>() {});
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "25",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
 
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_PollingPeriod =
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
-                        new TypeReference<Optional<? extends String>>() {});
+                        new TypeReference<Optional<String>>() {});
 
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_TransferInitiationStatusPollingPeriod =
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_TransferInitiationStatusPollingPeriod =
                 new LazySingletonValue<>(
                         "transferInitiationStatusPollingPeriod",
                         "\"120s\"",
-                        new TypeReference<Optional<? extends String>>() {});
+                        new TypeReference<Optional<String>>() {});
     }
 }
 

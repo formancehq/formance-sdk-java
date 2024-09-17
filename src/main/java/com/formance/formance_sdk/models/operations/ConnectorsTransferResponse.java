@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.TransferResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ConnectorsTransferResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ConnectorsTransferResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class ConnectorsTransferResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.TransferResponse> transferResponse;
+    private Optional<? extends TransferResponse> transferResponse;
 
     @JsonCreator
     public ConnectorsTransferResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.TransferResponse> transferResponse) {
+            Optional<? extends TransferResponse> transferResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class ConnectorsTransferResponse implements com.formance.formance_sdk.uti
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.TransferResponse> transferResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.TransferResponse>) transferResponse;
+    public Optional<TransferResponse> transferResponse() {
+        return (Optional<TransferResponse>) transferResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class ConnectorsTransferResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    public ConnectorsTransferResponse withTransferResponse(com.formance.formance_sdk.models.shared.TransferResponse transferResponse) {
+    public ConnectorsTransferResponse withTransferResponse(TransferResponse transferResponse) {
         Utils.checkNotNull(transferResponse, "transferResponse");
         this.transferResponse = Optional.ofNullable(transferResponse);
         return this;
@@ -137,7 +141,7 @@ public class ConnectorsTransferResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    public ConnectorsTransferResponse withTransferResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransferResponse> transferResponse) {
+    public ConnectorsTransferResponse withTransferResponse(Optional<? extends TransferResponse> transferResponse) {
         Utils.checkNotNull(transferResponse, "transferResponse");
         this.transferResponse = transferResponse;
         return this;
@@ -153,15 +157,15 @@ public class ConnectorsTransferResponse implements com.formance.formance_sdk.uti
         }
         ConnectorsTransferResponse other = (ConnectorsTransferResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.transferResponse, other.transferResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.transferResponse, other.transferResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class ConnectorsTransferResponse implements com.formance.formance_sdk.uti
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.TransferResponse> transferResponse = Optional.empty();  
+        private Optional<? extends TransferResponse> transferResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class ConnectorsTransferResponse implements com.formance.formance_sdk.uti
         /**
          * OK
          */
-        public Builder transferResponse(com.formance.formance_sdk.models.shared.TransferResponse transferResponse) {
+        public Builder transferResponse(TransferResponse transferResponse) {
             Utils.checkNotNull(transferResponse, "transferResponse");
             this.transferResponse = Optional.ofNullable(transferResponse);
             return this;
@@ -230,7 +234,7 @@ public class ConnectorsTransferResponse implements com.formance.formance_sdk.uti
         /**
          * OK
          */
-        public Builder transferResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransferResponse> transferResponse) {
+        public Builder transferResponse(Optional<? extends TransferResponse> transferResponse) {
             Utils.checkNotNull(transferResponse, "transferResponse");
             this.transferResponse = transferResponse;
             return this;

@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListTransactionsRequest {
 
@@ -24,13 +28,13 @@ public class ListTransactionsRequest {
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=account")
-    private Optional<? extends String> account;
+    private Optional<String> account;
 
     /**
      * Pagination cursor, will return transactions after given txid (in descending order).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=after")
-    private Optional<? extends String> after;
+    private Optional<String> after;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -40,13 +44,13 @@ public class ListTransactionsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=destination")
-    private Optional<? extends String> destination;
+    private Optional<String> destination;
 
     /**
      * Filter transactions that occurred before this timestamp.
@@ -54,7 +58,7 @@ public class ListTransactionsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")
-    private Optional<? extends OffsetDateTime> endTime;
+    private Optional<OffsetDateTime> endTime;
 
     /**
      * Name of the ledger.
@@ -66,26 +70,26 @@ public class ListTransactionsRequest {
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> metadata;
+    private Optional<? extends Map<String, Object>> metadata;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * Find transactions by reference field.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=source")
-    private Optional<? extends String> source;
+    private Optional<String> source;
 
     /**
      * Filter transactions that occurred after this timestamp.
@@ -93,21 +97,21 @@ public class ListTransactionsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
-    private Optional<? extends OffsetDateTime> startTime;
+    private Optional<OffsetDateTime> startTime;
 
     @JsonCreator
     public ListTransactionsRequest(
-            Optional<? extends String> account,
-            Optional<? extends String> after,
-            Optional<? extends String> cursor,
-            Optional<? extends String> destination,
-            Optional<? extends OffsetDateTime> endTime,
+            Optional<String> account,
+            Optional<String> after,
+            Optional<String> cursor,
+            Optional<String> destination,
+            Optional<OffsetDateTime> endTime,
             String ledger,
-            Optional<? extends java.util.Map<String, java.lang.Object>> metadata,
-            Optional<? extends Long> pageSize,
-            Optional<? extends String> reference,
-            Optional<? extends String> source,
-            Optional<? extends OffsetDateTime> startTime) {
+            Optional<? extends Map<String, Object>> metadata,
+            Optional<Long> pageSize,
+            Optional<String> reference,
+            Optional<String> source,
+            Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(after, "after");
         Utils.checkNotNull(cursor, "cursor");
@@ -140,19 +144,17 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> account() {
-        return (Optional<String>) account;
+        return account;
     }
 
     /**
      * Pagination cursor, will return transactions after given txid (in descending order).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> after() {
-        return (Optional<String>) after;
+        return after;
     }
 
     /**
@@ -162,19 +164,17 @@ public class ListTransactionsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> destination() {
-        return (Optional<String>) destination;
+        return destination;
     }
 
     /**
@@ -182,10 +182,9 @@ public class ListTransactionsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> endTime() {
-        return (Optional<OffsetDateTime>) endTime;
+        return endTime;
     }
 
     /**
@@ -201,36 +200,33 @@ public class ListTransactionsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
      * Find transactions by reference field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> source() {
-        return (Optional<String>) source;
+        return source;
     }
 
     /**
@@ -238,10 +234,9 @@ public class ListTransactionsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> startTime() {
-        return (Optional<OffsetDateTime>) startTime;
+        return startTime;
     }
 
     public final static Builder builder() {
@@ -260,7 +255,7 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
-    public ListTransactionsRequest withAccount(Optional<? extends String> account) {
+    public ListTransactionsRequest withAccount(Optional<String> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
@@ -278,7 +273,7 @@ public class ListTransactionsRequest {
     /**
      * Pagination cursor, will return transactions after given txid (in descending order).
      */
-    public ListTransactionsRequest withAfter(Optional<? extends String> after) {
+    public ListTransactionsRequest withAfter(Optional<String> after) {
         Utils.checkNotNull(after, "after");
         this.after = after;
         return this;
@@ -304,7 +299,7 @@ public class ListTransactionsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public ListTransactionsRequest withCursor(Optional<? extends String> cursor) {
+    public ListTransactionsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -322,7 +317,7 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
-    public ListTransactionsRequest withDestination(Optional<? extends String> destination) {
+    public ListTransactionsRequest withDestination(Optional<String> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
@@ -344,7 +339,7 @@ public class ListTransactionsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
-    public ListTransactionsRequest withEndTime(Optional<? extends OffsetDateTime> endTime) {
+    public ListTransactionsRequest withEndTime(Optional<OffsetDateTime> endTime) {
         Utils.checkNotNull(endTime, "endTime");
         this.endTime = endTime;
         return this;
@@ -362,7 +357,7 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public ListTransactionsRequest withMetadata(java.util.Map<String, java.lang.Object> metadata) {
+    public ListTransactionsRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
@@ -371,7 +366,7 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public ListTransactionsRequest withMetadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+    public ListTransactionsRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -391,7 +386,7 @@ public class ListTransactionsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public ListTransactionsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public ListTransactionsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -409,7 +404,7 @@ public class ListTransactionsRequest {
     /**
      * Find transactions by reference field.
      */
-    public ListTransactionsRequest withReference(Optional<? extends String> reference) {
+    public ListTransactionsRequest withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
@@ -427,7 +422,7 @@ public class ListTransactionsRequest {
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
-    public ListTransactionsRequest withSource(Optional<? extends String> source) {
+    public ListTransactionsRequest withSource(Optional<String> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
@@ -449,7 +444,7 @@ public class ListTransactionsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
-    public ListTransactionsRequest withStartTime(Optional<? extends OffsetDateTime> startTime) {
+    public ListTransactionsRequest withStartTime(Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(startTime, "startTime");
         this.startTime = startTime;
         return this;
@@ -465,22 +460,22 @@ public class ListTransactionsRequest {
         }
         ListTransactionsRequest other = (ListTransactionsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.account, other.account) &&
-            java.util.Objects.deepEquals(this.after, other.after) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.destination, other.destination) &&
-            java.util.Objects.deepEquals(this.endTime, other.endTime) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.source, other.source) &&
-            java.util.Objects.deepEquals(this.startTime, other.startTime);
+            Objects.deepEquals(this.account, other.account) &&
+            Objects.deepEquals(this.after, other.after) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.destination, other.destination) &&
+            Objects.deepEquals(this.endTime, other.endTime) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.source, other.source) &&
+            Objects.deepEquals(this.startTime, other.startTime);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             account,
             after,
             cursor,
@@ -512,27 +507,27 @@ public class ListTransactionsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> account = Optional.empty();
+        private Optional<String> account = Optional.empty();
  
-        private Optional<? extends String> after = Optional.empty();
+        private Optional<String> after = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends String> destination = Optional.empty();
+        private Optional<String> destination = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> endTime = Optional.empty();
+        private Optional<OffsetDateTime> endTime = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> metadata = Optional.empty();
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
-        private Optional<? extends String> source = Optional.empty();
+        private Optional<String> source = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> startTime = Optional.empty();  
+        private Optional<OffsetDateTime> startTime = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -550,7 +545,7 @@ public class ListTransactionsRequest {
         /**
          * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
          */
-        public Builder account(Optional<? extends String> account) {
+        public Builder account(Optional<String> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
             return this;
@@ -568,7 +563,7 @@ public class ListTransactionsRequest {
         /**
          * Pagination cursor, will return transactions after given txid (in descending order).
          */
-        public Builder after(Optional<? extends String> after) {
+        public Builder after(Optional<String> after) {
             Utils.checkNotNull(after, "after");
             this.after = after;
             return this;
@@ -594,7 +589,7 @@ public class ListTransactionsRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -612,7 +607,7 @@ public class ListTransactionsRequest {
         /**
          * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
          */
-        public Builder destination(Optional<? extends String> destination) {
+        public Builder destination(Optional<String> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
@@ -634,7 +629,7 @@ public class ListTransactionsRequest {
          * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
          * 
          */
-        public Builder endTime(Optional<? extends OffsetDateTime> endTime) {
+        public Builder endTime(Optional<OffsetDateTime> endTime) {
             Utils.checkNotNull(endTime, "endTime");
             this.endTime = endTime;
             return this;
@@ -652,7 +647,7 @@ public class ListTransactionsRequest {
         /**
          * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
-        public Builder metadata(java.util.Map<String, java.lang.Object> metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
@@ -661,7 +656,7 @@ public class ListTransactionsRequest {
         /**
          * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
-        public Builder metadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -681,7 +676,7 @@ public class ListTransactionsRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -699,7 +694,7 @@ public class ListTransactionsRequest {
         /**
          * Find transactions by reference field.
          */
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
@@ -717,7 +712,7 @@ public class ListTransactionsRequest {
         /**
          * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
          */
-        public Builder source(Optional<? extends String> source) {
+        public Builder source(Optional<String> source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;
@@ -739,7 +734,7 @@ public class ListTransactionsRequest {
          * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
          * 
          */
-        public Builder startTime(Optional<? extends OffsetDateTime> startTime) {
+        public Builder startTime(Optional<OffsetDateTime> startTime) {
             Utils.checkNotNull(startTime, "startTime");
             this.startTime = startTime;
             return this;
@@ -748,8 +743,7 @@ public class ListTransactionsRequest {
         public ListTransactionsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new ListTransactionsRequest(
+            }            return new ListTransactionsRequest(
                 account,
                 after,
                 cursor,
@@ -763,11 +757,11 @@ public class ListTransactionsRequest {
                 startTime);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

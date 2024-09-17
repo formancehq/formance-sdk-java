@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class TransferRequest {
 
@@ -31,14 +31,14 @@ public class TransferRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
-    private Optional<? extends String> source;
+    private Optional<String> source;
 
     @JsonCreator
     public TransferRequest(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
             @JsonProperty("destination") String destination,
-            @JsonProperty("source") Optional<? extends String> source) {
+            @JsonProperty("source") Optional<String> source) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(destination, "destination");
@@ -71,10 +71,9 @@ public class TransferRequest {
         return destination;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> source() {
-        return (Optional<String>) source;
+        return source;
     }
 
     public final static Builder builder() {
@@ -110,7 +109,7 @@ public class TransferRequest {
         return this;
     }
 
-    public TransferRequest withSource(Optional<? extends String> source) {
+    public TransferRequest withSource(Optional<String> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
@@ -126,15 +125,15 @@ public class TransferRequest {
         }
         TransferRequest other = (TransferRequest) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.destination, other.destination) &&
-            java.util.Objects.deepEquals(this.source, other.source);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.destination, other.destination) &&
+            Objects.deepEquals(this.source, other.source);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             asset,
             destination,
@@ -158,7 +157,7 @@ public class TransferRequest {
  
         private String destination;
  
-        private Optional<? extends String> source = Optional.empty();  
+        private Optional<String> source = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -193,7 +192,7 @@ public class TransferRequest {
             return this;
         }
 
-        public Builder source(Optional<? extends String> source) {
+        public Builder source(Optional<String> source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;

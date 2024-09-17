@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetInstanceResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetInstanceResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * The workflow instance
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse> getWorkflowInstanceResponse;
+    private Optional<? extends GetWorkflowInstanceResponse> getWorkflowInstanceResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
     @JsonCreator
     public GetInstanceResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse> getWorkflowInstanceResponse,
+            Optional<? extends GetWorkflowInstanceResponse> getWorkflowInstanceResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse> getWorkflowInstanceResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse>) getWorkflowInstanceResponse;
+    public Optional<GetWorkflowInstanceResponse> getWorkflowInstanceResponse() {
+        return (Optional<GetWorkflowInstanceResponse>) getWorkflowInstanceResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * The workflow instance
      */
-    public GetInstanceResponse withGetWorkflowInstanceResponse(com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse getWorkflowInstanceResponse) {
+    public GetInstanceResponse withGetWorkflowInstanceResponse(GetWorkflowInstanceResponse getWorkflowInstanceResponse) {
         Utils.checkNotNull(getWorkflowInstanceResponse, "getWorkflowInstanceResponse");
         this.getWorkflowInstanceResponse = Optional.ofNullable(getWorkflowInstanceResponse);
         return this;
@@ -119,7 +123,7 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * The workflow instance
      */
-    public GetInstanceResponse withGetWorkflowInstanceResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse> getWorkflowInstanceResponse) {
+    public GetInstanceResponse withGetWorkflowInstanceResponse(Optional<? extends GetWorkflowInstanceResponse> getWorkflowInstanceResponse) {
         Utils.checkNotNull(getWorkflowInstanceResponse, "getWorkflowInstanceResponse");
         this.getWorkflowInstanceResponse = getWorkflowInstanceResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
         }
         GetInstanceResponse other = (GetInstanceResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.getWorkflowInstanceResponse, other.getWorkflowInstanceResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.getWorkflowInstanceResponse, other.getWorkflowInstanceResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             getWorkflowInstanceResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse> getWorkflowInstanceResponse = Optional.empty();
+        private Optional<? extends GetWorkflowInstanceResponse> getWorkflowInstanceResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
         /**
          * The workflow instance
          */
-        public Builder getWorkflowInstanceResponse(com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse getWorkflowInstanceResponse) {
+        public Builder getWorkflowInstanceResponse(GetWorkflowInstanceResponse getWorkflowInstanceResponse) {
             Utils.checkNotNull(getWorkflowInstanceResponse, "getWorkflowInstanceResponse");
             this.getWorkflowInstanceResponse = Optional.ofNullable(getWorkflowInstanceResponse);
             return this;
@@ -212,7 +216,7 @@ public class GetInstanceResponse implements com.formance.formance_sdk.utils.Resp
         /**
          * The workflow instance
          */
-        public Builder getWorkflowInstanceResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowInstanceResponse> getWorkflowInstanceResponse) {
+        public Builder getWorkflowInstanceResponse(Optional<? extends GetWorkflowInstanceResponse> getWorkflowInstanceResponse) {
             Utils.checkNotNull(getWorkflowInstanceResponse, "getWorkflowInstanceResponse");
             this.getWorkflowInstanceResponse = getWorkflowInstanceResponse;
             return this;

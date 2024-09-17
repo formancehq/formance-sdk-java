@@ -4,19 +4,20 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListLogsRequest {
 
@@ -24,7 +25,7 @@ public class ListLogsRequest {
      * Pagination cursor, will return the logs after a given ID. (in descending order).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=after")
-    private Optional<? extends String> after;
+    private Optional<String> after;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -34,7 +35,7 @@ public class ListLogsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * Filter transactions that occurred before this timestamp.
@@ -42,7 +43,7 @@ public class ListLogsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")
-    private Optional<? extends OffsetDateTime> endTime;
+    private Optional<OffsetDateTime> endTime;
 
     /**
      * Name of the ledger.
@@ -55,7 +56,7 @@ public class ListLogsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * Filter transactions that occurred after this timestamp.
@@ -63,16 +64,16 @@ public class ListLogsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
-    private Optional<? extends OffsetDateTime> startTime;
+    private Optional<OffsetDateTime> startTime;
 
     @JsonCreator
     public ListLogsRequest(
-            Optional<? extends String> after,
-            Optional<? extends String> cursor,
-            Optional<? extends OffsetDateTime> endTime,
+            Optional<String> after,
+            Optional<String> cursor,
+            Optional<OffsetDateTime> endTime,
             String ledger,
-            Optional<? extends Long> pageSize,
-            Optional<? extends OffsetDateTime> startTime) {
+            Optional<Long> pageSize,
+            Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(after, "after");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(endTime, "endTime");
@@ -95,10 +96,9 @@ public class ListLogsRequest {
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> after() {
-        return (Optional<String>) after;
+        return after;
     }
 
     /**
@@ -108,10 +108,9 @@ public class ListLogsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
@@ -119,10 +118,9 @@ public class ListLogsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> endTime() {
-        return (Optional<OffsetDateTime>) endTime;
+        return endTime;
     }
 
     /**
@@ -137,10 +135,9 @@ public class ListLogsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
@@ -148,10 +145,9 @@ public class ListLogsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> startTime() {
-        return (Optional<OffsetDateTime>) startTime;
+        return startTime;
     }
 
     public final static Builder builder() {
@@ -170,7 +166,7 @@ public class ListLogsRequest {
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
      */
-    public ListLogsRequest withAfter(Optional<? extends String> after) {
+    public ListLogsRequest withAfter(Optional<String> after) {
         Utils.checkNotNull(after, "after");
         this.after = after;
         return this;
@@ -196,7 +192,7 @@ public class ListLogsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public ListLogsRequest withCursor(Optional<? extends String> cursor) {
+    public ListLogsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -218,7 +214,7 @@ public class ListLogsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
-    public ListLogsRequest withEndTime(Optional<? extends OffsetDateTime> endTime) {
+    public ListLogsRequest withEndTime(Optional<OffsetDateTime> endTime) {
         Utils.checkNotNull(endTime, "endTime");
         this.endTime = endTime;
         return this;
@@ -247,7 +243,7 @@ public class ListLogsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public ListLogsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public ListLogsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -269,7 +265,7 @@ public class ListLogsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
-    public ListLogsRequest withStartTime(Optional<? extends OffsetDateTime> startTime) {
+    public ListLogsRequest withStartTime(Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(startTime, "startTime");
         this.startTime = startTime;
         return this;
@@ -285,17 +281,17 @@ public class ListLogsRequest {
         }
         ListLogsRequest other = (ListLogsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.after, other.after) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.endTime, other.endTime) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.startTime, other.startTime);
+            Objects.deepEquals(this.after, other.after) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.endTime, other.endTime) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.startTime, other.startTime);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             after,
             cursor,
             endTime,
@@ -317,17 +313,17 @@ public class ListLogsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> after = Optional.empty();
+        private Optional<String> after = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> endTime = Optional.empty();
+        private Optional<OffsetDateTime> endTime = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends OffsetDateTime> startTime = Optional.empty();  
+        private Optional<OffsetDateTime> startTime = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -345,7 +341,7 @@ public class ListLogsRequest {
         /**
          * Pagination cursor, will return the logs after a given ID. (in descending order).
          */
-        public Builder after(Optional<? extends String> after) {
+        public Builder after(Optional<String> after) {
             Utils.checkNotNull(after, "after");
             this.after = after;
             return this;
@@ -371,7 +367,7 @@ public class ListLogsRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -393,7 +389,7 @@ public class ListLogsRequest {
          * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
          * 
          */
-        public Builder endTime(Optional<? extends OffsetDateTime> endTime) {
+        public Builder endTime(Optional<OffsetDateTime> endTime) {
             Utils.checkNotNull(endTime, "endTime");
             this.endTime = endTime;
             return this;
@@ -422,7 +418,7 @@ public class ListLogsRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -444,7 +440,7 @@ public class ListLogsRequest {
          * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
          * 
          */
-        public Builder startTime(Optional<? extends OffsetDateTime> startTime) {
+        public Builder startTime(Optional<OffsetDateTime> startTime) {
             Utils.checkNotNull(startTime, "startTime");
             this.startTime = startTime;
             return this;
@@ -453,8 +449,7 @@ public class ListLogsRequest {
         public ListLogsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new ListLogsRequest(
+            }            return new ListLogsRequest(
                 after,
                 cursor,
                 endTime,
@@ -463,11 +458,11 @@ public class ListLogsRequest {
                 startTime);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

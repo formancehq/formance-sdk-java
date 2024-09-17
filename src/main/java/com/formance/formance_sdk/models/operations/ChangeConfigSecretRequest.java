@@ -4,22 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ConfigChangeSecret;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ChangeConfigSecretRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret;
+    private Optional<? extends ConfigChangeSecret> configChangeSecret;
 
     /**
      * Config ID
@@ -29,7 +30,7 @@ public class ChangeConfigSecretRequest {
 
     @JsonCreator
     public ChangeConfigSecretRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret,
+            Optional<? extends ConfigChangeSecret> configChangeSecret,
             String id) {
         Utils.checkNotNull(configChangeSecret, "configChangeSecret");
         Utils.checkNotNull(id, "id");
@@ -44,8 +45,8 @@ public class ChangeConfigSecretRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret() {
-        return (Optional<com.formance.formance_sdk.models.shared.ConfigChangeSecret>) configChangeSecret;
+    public Optional<ConfigChangeSecret> configChangeSecret() {
+        return (Optional<ConfigChangeSecret>) configChangeSecret;
     }
 
     /**
@@ -60,13 +61,13 @@ public class ChangeConfigSecretRequest {
         return new Builder();
     }
 
-    public ChangeConfigSecretRequest withConfigChangeSecret(com.formance.formance_sdk.models.shared.ConfigChangeSecret configChangeSecret) {
+    public ChangeConfigSecretRequest withConfigChangeSecret(ConfigChangeSecret configChangeSecret) {
         Utils.checkNotNull(configChangeSecret, "configChangeSecret");
         this.configChangeSecret = Optional.ofNullable(configChangeSecret);
         return this;
     }
 
-    public ChangeConfigSecretRequest withConfigChangeSecret(Optional<? extends com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret) {
+    public ChangeConfigSecretRequest withConfigChangeSecret(Optional<? extends ConfigChangeSecret> configChangeSecret) {
         Utils.checkNotNull(configChangeSecret, "configChangeSecret");
         this.configChangeSecret = configChangeSecret;
         return this;
@@ -91,13 +92,13 @@ public class ChangeConfigSecretRequest {
         }
         ChangeConfigSecretRequest other = (ChangeConfigSecretRequest) o;
         return 
-            java.util.Objects.deepEquals(this.configChangeSecret, other.configChangeSecret) &&
-            java.util.Objects.deepEquals(this.id, other.id);
+            Objects.deepEquals(this.configChangeSecret, other.configChangeSecret) &&
+            Objects.deepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             configChangeSecret,
             id);
     }
@@ -111,7 +112,7 @@ public class ChangeConfigSecretRequest {
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret = Optional.empty();
+        private Optional<? extends ConfigChangeSecret> configChangeSecret = Optional.empty();
  
         private String id;  
         
@@ -119,13 +120,13 @@ public class ChangeConfigSecretRequest {
           // force use of static builder() method
         }
 
-        public Builder configChangeSecret(com.formance.formance_sdk.models.shared.ConfigChangeSecret configChangeSecret) {
+        public Builder configChangeSecret(ConfigChangeSecret configChangeSecret) {
             Utils.checkNotNull(configChangeSecret, "configChangeSecret");
             this.configChangeSecret = Optional.ofNullable(configChangeSecret);
             return this;
         }
 
-        public Builder configChangeSecret(Optional<? extends com.formance.formance_sdk.models.shared.ConfigChangeSecret> configChangeSecret) {
+        public Builder configChangeSecret(Optional<? extends ConfigChangeSecret> configChangeSecret) {
             Utils.checkNotNull(configChangeSecret, "configChangeSecret");
             this.configChangeSecret = configChangeSecret;
             return this;

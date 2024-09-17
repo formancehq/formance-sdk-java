@@ -4,29 +4,30 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateBankAccountMetadataRequest {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private Optional<? extends java.util.Map<String, String>> metadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     @JsonCreator
     public UpdateBankAccountMetadataRequest(
-            @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata) {
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
     }
@@ -37,21 +38,21 @@ public class UpdateBankAccountMetadataRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> metadata() {
-        return (Optional<java.util.Map<String, String>>) metadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public UpdateBankAccountMetadataRequest withMetadata(java.util.Map<String, String> metadata) {
+    public UpdateBankAccountMetadataRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
-    public UpdateBankAccountMetadataRequest withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+    public UpdateBankAccountMetadataRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -67,12 +68,12 @@ public class UpdateBankAccountMetadataRequest {
         }
         UpdateBankAccountMetadataRequest other = (UpdateBankAccountMetadataRequest) o;
         return 
-            java.util.Objects.deepEquals(this.metadata, other.metadata);
+            Objects.deepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             metadata);
     }
     
@@ -84,19 +85,19 @@ public class UpdateBankAccountMetadataRequest {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();  
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

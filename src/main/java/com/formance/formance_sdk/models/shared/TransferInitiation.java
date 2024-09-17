@@ -4,23 +4,24 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class TransferInitiation {
 
@@ -53,18 +54,18 @@ public class TransferInitiation {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends java.util.Map<String, String>> metadata;
+    private JsonNullable<? extends Map<String, String>> metadata;
 
     @JsonProperty("reference")
     private String reference;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedAdjustments")
-    private Optional<? extends java.util.List<TransferInitiationAdjusments>> relatedAdjustments;
+    private Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedPayments")
-    private Optional<? extends java.util.List<TransferInitiationPayments>> relatedPayments;
+    private Optional<? extends List<TransferInitiationPayments>> relatedPayments;
 
     @JsonProperty("scheduledAt")
     private OffsetDateTime scheduledAt;
@@ -89,10 +90,10 @@ public class TransferInitiation {
             @JsonProperty("error") String error,
             @JsonProperty("id") String id,
             @JsonProperty("initialAmount") BigInteger initialAmount,
-            @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, String>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("reference") String reference,
-            @JsonProperty("relatedAdjustments") Optional<? extends java.util.List<TransferInitiationAdjusments>> relatedAdjustments,
-            @JsonProperty("relatedPayments") Optional<? extends java.util.List<TransferInitiationPayments>> relatedPayments,
+            @JsonProperty("relatedAdjustments") Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments,
+            @JsonProperty("relatedPayments") Optional<? extends List<TransferInitiationPayments>> relatedPayments,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
             @JsonProperty("sourceAccountID") String sourceAccountID,
             @JsonProperty("status") TransferInitiationStatus status,
@@ -198,8 +199,8 @@ public class TransferInitiation {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.util.Map<String, String>> metadata() {
-        return (JsonNullable<java.util.Map<String, String>>) metadata;
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -209,14 +210,14 @@ public class TransferInitiation {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<TransferInitiationAdjusments>> relatedAdjustments() {
-        return (Optional<java.util.List<TransferInitiationAdjusments>>) relatedAdjustments;
+    public Optional<List<TransferInitiationAdjusments>> relatedAdjustments() {
+        return (Optional<List<TransferInitiationAdjusments>>) relatedAdjustments;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<TransferInitiationPayments>> relatedPayments() {
-        return (Optional<java.util.List<TransferInitiationPayments>>) relatedPayments;
+    public Optional<List<TransferInitiationPayments>> relatedPayments() {
+        return (Optional<List<TransferInitiationPayments>>) relatedPayments;
     }
 
     @JsonIgnore
@@ -307,13 +308,13 @@ public class TransferInitiation {
         return this;
     }
 
-    public TransferInitiation withMetadata(java.util.Map<String, String> metadata) {
+    public TransferInitiation withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public TransferInitiation withMetadata(JsonNullable<? extends java.util.Map<String, String>> metadata) {
+    public TransferInitiation withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -325,25 +326,25 @@ public class TransferInitiation {
         return this;
     }
 
-    public TransferInitiation withRelatedAdjustments(java.util.List<TransferInitiationAdjusments> relatedAdjustments) {
+    public TransferInitiation withRelatedAdjustments(List<TransferInitiationAdjusments> relatedAdjustments) {
         Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
         this.relatedAdjustments = Optional.ofNullable(relatedAdjustments);
         return this;
     }
 
-    public TransferInitiation withRelatedAdjustments(Optional<? extends java.util.List<TransferInitiationAdjusments>> relatedAdjustments) {
+    public TransferInitiation withRelatedAdjustments(Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments) {
         Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
         this.relatedAdjustments = relatedAdjustments;
         return this;
     }
 
-    public TransferInitiation withRelatedPayments(java.util.List<TransferInitiationPayments> relatedPayments) {
+    public TransferInitiation withRelatedPayments(List<TransferInitiationPayments> relatedPayments) {
         Utils.checkNotNull(relatedPayments, "relatedPayments");
         this.relatedPayments = Optional.ofNullable(relatedPayments);
         return this;
     }
 
-    public TransferInitiation withRelatedPayments(Optional<? extends java.util.List<TransferInitiationPayments>> relatedPayments) {
+    public TransferInitiation withRelatedPayments(Optional<? extends List<TransferInitiationPayments>> relatedPayments) {
         Utils.checkNotNull(relatedPayments, "relatedPayments");
         this.relatedPayments = relatedPayments;
         return this;
@@ -383,28 +384,28 @@ public class TransferInitiation {
         }
         TransferInitiation other = (TransferInitiation) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.description, other.description) &&
-            java.util.Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.initialAmount, other.initialAmount) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.relatedAdjustments, other.relatedAdjustments) &&
-            java.util.Objects.deepEquals(this.relatedPayments, other.relatedPayments) &&
-            java.util.Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            java.util.Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.type, other.type);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.description, other.description) &&
+            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.initialAmount, other.initialAmount) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.relatedAdjustments, other.relatedAdjustments) &&
+            Objects.deepEquals(this.relatedPayments, other.relatedPayments) &&
+            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
+            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             asset,
             connectorID,
@@ -466,13 +467,13 @@ public class TransferInitiation {
  
         private BigInteger initialAmount;
  
-        private JsonNullable<? extends java.util.Map<String, String>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
  
         private String reference;
  
-        private Optional<? extends java.util.List<TransferInitiationAdjusments>> relatedAdjustments = Optional.empty();
+        private Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments = Optional.empty();
  
-        private Optional<? extends java.util.List<TransferInitiationPayments>> relatedPayments = Optional.empty();
+        private Optional<? extends List<TransferInitiationPayments>> relatedPayments = Optional.empty();
  
         private OffsetDateTime scheduledAt;
  
@@ -550,13 +551,13 @@ public class TransferInitiation {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(JsonNullable<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -568,25 +569,25 @@ public class TransferInitiation {
             return this;
         }
 
-        public Builder relatedAdjustments(java.util.List<TransferInitiationAdjusments> relatedAdjustments) {
+        public Builder relatedAdjustments(List<TransferInitiationAdjusments> relatedAdjustments) {
             Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
             this.relatedAdjustments = Optional.ofNullable(relatedAdjustments);
             return this;
         }
 
-        public Builder relatedAdjustments(Optional<? extends java.util.List<TransferInitiationAdjusments>> relatedAdjustments) {
+        public Builder relatedAdjustments(Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments) {
             Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
             this.relatedAdjustments = relatedAdjustments;
             return this;
         }
 
-        public Builder relatedPayments(java.util.List<TransferInitiationPayments> relatedPayments) {
+        public Builder relatedPayments(List<TransferInitiationPayments> relatedPayments) {
             Utils.checkNotNull(relatedPayments, "relatedPayments");
             this.relatedPayments = Optional.ofNullable(relatedPayments);
             return this;
         }
 
-        public Builder relatedPayments(Optional<? extends java.util.List<TransferInitiationPayments>> relatedPayments) {
+        public Builder relatedPayments(Optional<? extends List<TransferInitiationPayments>> relatedPayments) {
             Utils.checkNotNull(relatedPayments, "relatedPayments");
             this.relatedPayments = relatedPayments;
             return this;

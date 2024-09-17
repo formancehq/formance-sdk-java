@@ -4,22 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Reconciliation {
 
@@ -27,20 +26,20 @@ public class Reconciliation {
     private OffsetDateTime createdAt;
 
     @JsonProperty("driftBalances")
-    private java.util.Map<String, BigInteger> driftBalances;
+    private Map<String, BigInteger> driftBalances;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<? extends String> error;
+    private Optional<String> error;
 
     @JsonProperty("id")
     private String id;
 
     @JsonProperty("ledgerBalances")
-    private java.util.Map<String, BigInteger> ledgerBalances;
+    private Map<String, BigInteger> ledgerBalances;
 
     @JsonProperty("paymentsBalances")
-    private java.util.Map<String, BigInteger> paymentsBalances;
+    private Map<String, BigInteger> paymentsBalances;
 
     @JsonProperty("policyID")
     private String policyID;
@@ -57,11 +56,11 @@ public class Reconciliation {
     @JsonCreator
     public Reconciliation(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("driftBalances") java.util.Map<String, BigInteger> driftBalances,
-            @JsonProperty("error") Optional<? extends String> error,
+            @JsonProperty("driftBalances") Map<String, BigInteger> driftBalances,
+            @JsonProperty("error") Optional<String> error,
             @JsonProperty("id") String id,
-            @JsonProperty("ledgerBalances") java.util.Map<String, BigInteger> ledgerBalances,
-            @JsonProperty("paymentsBalances") java.util.Map<String, BigInteger> paymentsBalances,
+            @JsonProperty("ledgerBalances") Map<String, BigInteger> ledgerBalances,
+            @JsonProperty("paymentsBalances") Map<String, BigInteger> paymentsBalances,
             @JsonProperty("policyID") String policyID,
             @JsonProperty("reconciledAtLedger") OffsetDateTime reconciledAtLedger,
             @JsonProperty("reconciledAtPayments") OffsetDateTime reconciledAtPayments,
@@ -90,10 +89,10 @@ public class Reconciliation {
     
     public Reconciliation(
             OffsetDateTime createdAt,
-            java.util.Map<String, BigInteger> driftBalances,
+            Map<String, BigInteger> driftBalances,
             String id,
-            java.util.Map<String, BigInteger> ledgerBalances,
-            java.util.Map<String, BigInteger> paymentsBalances,
+            Map<String, BigInteger> ledgerBalances,
+            Map<String, BigInteger> paymentsBalances,
             String policyID,
             OffsetDateTime reconciledAtLedger,
             OffsetDateTime reconciledAtPayments,
@@ -107,14 +106,13 @@ public class Reconciliation {
     }
 
     @JsonIgnore
-    public java.util.Map<String, BigInteger> driftBalances() {
+    public Map<String, BigInteger> driftBalances() {
         return driftBalances;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> error() {
-        return (Optional<String>) error;
+        return error;
     }
 
     @JsonIgnore
@@ -123,12 +121,12 @@ public class Reconciliation {
     }
 
     @JsonIgnore
-    public java.util.Map<String, BigInteger> ledgerBalances() {
+    public Map<String, BigInteger> ledgerBalances() {
         return ledgerBalances;
     }
 
     @JsonIgnore
-    public java.util.Map<String, BigInteger> paymentsBalances() {
+    public Map<String, BigInteger> paymentsBalances() {
         return paymentsBalances;
     }
 
@@ -162,7 +160,7 @@ public class Reconciliation {
         return this;
     }
 
-    public Reconciliation withDriftBalances(java.util.Map<String, BigInteger> driftBalances) {
+    public Reconciliation withDriftBalances(Map<String, BigInteger> driftBalances) {
         Utils.checkNotNull(driftBalances, "driftBalances");
         this.driftBalances = driftBalances;
         return this;
@@ -174,7 +172,7 @@ public class Reconciliation {
         return this;
     }
 
-    public Reconciliation withError(Optional<? extends String> error) {
+    public Reconciliation withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -186,13 +184,13 @@ public class Reconciliation {
         return this;
     }
 
-    public Reconciliation withLedgerBalances(java.util.Map<String, BigInteger> ledgerBalances) {
+    public Reconciliation withLedgerBalances(Map<String, BigInteger> ledgerBalances) {
         Utils.checkNotNull(ledgerBalances, "ledgerBalances");
         this.ledgerBalances = ledgerBalances;
         return this;
     }
 
-    public Reconciliation withPaymentsBalances(java.util.Map<String, BigInteger> paymentsBalances) {
+    public Reconciliation withPaymentsBalances(Map<String, BigInteger> paymentsBalances) {
         Utils.checkNotNull(paymentsBalances, "paymentsBalances");
         this.paymentsBalances = paymentsBalances;
         return this;
@@ -232,21 +230,21 @@ public class Reconciliation {
         }
         Reconciliation other = (Reconciliation) o;
         return 
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.driftBalances, other.driftBalances) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.ledgerBalances, other.ledgerBalances) &&
-            java.util.Objects.deepEquals(this.paymentsBalances, other.paymentsBalances) &&
-            java.util.Objects.deepEquals(this.policyID, other.policyID) &&
-            java.util.Objects.deepEquals(this.reconciledAtLedger, other.reconciledAtLedger) &&
-            java.util.Objects.deepEquals(this.reconciledAtPayments, other.reconciledAtPayments) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.driftBalances, other.driftBalances) &&
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.ledgerBalances, other.ledgerBalances) &&
+            Objects.deepEquals(this.paymentsBalances, other.paymentsBalances) &&
+            Objects.deepEquals(this.policyID, other.policyID) &&
+            Objects.deepEquals(this.reconciledAtLedger, other.reconciledAtLedger) &&
+            Objects.deepEquals(this.reconciledAtPayments, other.reconciledAtPayments) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createdAt,
             driftBalances,
             error,
@@ -278,15 +276,15 @@ public class Reconciliation {
  
         private OffsetDateTime createdAt;
  
-        private java.util.Map<String, BigInteger> driftBalances;
+        private Map<String, BigInteger> driftBalances;
  
-        private Optional<? extends String> error = Optional.empty();
+        private Optional<String> error = Optional.empty();
  
         private String id;
  
-        private java.util.Map<String, BigInteger> ledgerBalances;
+        private Map<String, BigInteger> ledgerBalances;
  
-        private java.util.Map<String, BigInteger> paymentsBalances;
+        private Map<String, BigInteger> paymentsBalances;
  
         private String policyID;
  
@@ -306,7 +304,7 @@ public class Reconciliation {
             return this;
         }
 
-        public Builder driftBalances(java.util.Map<String, BigInteger> driftBalances) {
+        public Builder driftBalances(Map<String, BigInteger> driftBalances) {
             Utils.checkNotNull(driftBalances, "driftBalances");
             this.driftBalances = driftBalances;
             return this;
@@ -318,7 +316,7 @@ public class Reconciliation {
             return this;
         }
 
-        public Builder error(Optional<? extends String> error) {
+        public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
@@ -330,13 +328,13 @@ public class Reconciliation {
             return this;
         }
 
-        public Builder ledgerBalances(java.util.Map<String, BigInteger> ledgerBalances) {
+        public Builder ledgerBalances(Map<String, BigInteger> ledgerBalances) {
             Utils.checkNotNull(ledgerBalances, "ledgerBalances");
             this.ledgerBalances = ledgerBalances;
             return this;
         }
 
-        public Builder paymentsBalances(java.util.Map<String, BigInteger> paymentsBalances) {
+        public Builder paymentsBalances(Map<String, BigInteger> paymentsBalances) {
             Utils.checkNotNull(paymentsBalances, "paymentsBalances");
             this.paymentsBalances = paymentsBalances;
             return this;

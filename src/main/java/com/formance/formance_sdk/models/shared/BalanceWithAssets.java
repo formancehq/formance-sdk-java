@@ -4,31 +4,32 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class BalanceWithAssets {
 
     @JsonProperty("assets")
-    private java.util.Map<String, BigInteger> assets;
+    private Map<String, BigInteger> assets;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiresAt")
-    private Optional<? extends OffsetDateTime> expiresAt;
+    private JsonNullable<OffsetDateTime> expiresAt;
 
     @JsonProperty("name")
     private String name;
@@ -39,8 +40,8 @@ public class BalanceWithAssets {
 
     @JsonCreator
     public BalanceWithAssets(
-            @JsonProperty("assets") java.util.Map<String, BigInteger> assets,
-            @JsonProperty("expiresAt") Optional<? extends OffsetDateTime> expiresAt,
+            @JsonProperty("assets") Map<String, BigInteger> assets,
+            @JsonProperty("expiresAt") JsonNullable<OffsetDateTime> expiresAt,
             @JsonProperty("name") String name,
             @JsonProperty("priority") Optional<? extends BigInteger> priority) {
         assets = Utils.emptyMapIfNull(assets);
@@ -54,20 +55,19 @@ public class BalanceWithAssets {
     }
     
     public BalanceWithAssets(
-            java.util.Map<String, BigInteger> assets,
+            Map<String, BigInteger> assets,
             String name) {
-        this(assets, Optional.empty(), name, Optional.empty());
+        this(assets, JsonNullable.undefined(), name, Optional.empty());
     }
 
     @JsonIgnore
-    public java.util.Map<String, BigInteger> assets() {
+    public Map<String, BigInteger> assets() {
         return assets;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<OffsetDateTime> expiresAt() {
-        return (Optional<OffsetDateTime>) expiresAt;
+    public JsonNullable<OffsetDateTime> expiresAt() {
+        return expiresAt;
     }
 
     @JsonIgnore
@@ -85,7 +85,7 @@ public class BalanceWithAssets {
         return new Builder();
     }
 
-    public BalanceWithAssets withAssets(java.util.Map<String, BigInteger> assets) {
+    public BalanceWithAssets withAssets(Map<String, BigInteger> assets) {
         Utils.checkNotNull(assets, "assets");
         this.assets = assets;
         return this;
@@ -93,11 +93,11 @@ public class BalanceWithAssets {
 
     public BalanceWithAssets withExpiresAt(OffsetDateTime expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
-        this.expiresAt = Optional.ofNullable(expiresAt);
+        this.expiresAt = JsonNullable.of(expiresAt);
         return this;
     }
 
-    public BalanceWithAssets withExpiresAt(Optional<? extends OffsetDateTime> expiresAt) {
+    public BalanceWithAssets withExpiresAt(JsonNullable<OffsetDateTime> expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
         this.expiresAt = expiresAt;
         return this;
@@ -136,15 +136,15 @@ public class BalanceWithAssets {
         }
         BalanceWithAssets other = (BalanceWithAssets) o;
         return 
-            java.util.Objects.deepEquals(this.assets, other.assets) &&
-            java.util.Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.priority, other.priority);
+            Objects.deepEquals(this.assets, other.assets) &&
+            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.priority, other.priority);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             assets,
             expiresAt,
             name,
@@ -162,9 +162,9 @@ public class BalanceWithAssets {
     
     public final static class Builder {
  
-        private java.util.Map<String, BigInteger> assets;
+        private Map<String, BigInteger> assets;
  
-        private Optional<? extends OffsetDateTime> expiresAt = Optional.empty();
+        private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
  
         private String name;
  
@@ -174,7 +174,7 @@ public class BalanceWithAssets {
           // force use of static builder() method
         }
 
-        public Builder assets(java.util.Map<String, BigInteger> assets) {
+        public Builder assets(Map<String, BigInteger> assets) {
             Utils.checkNotNull(assets, "assets");
             this.assets = assets;
             return this;
@@ -182,11 +182,11 @@ public class BalanceWithAssets {
 
         public Builder expiresAt(OffsetDateTime expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
-            this.expiresAt = Optional.ofNullable(expiresAt);
+            this.expiresAt = JsonNullable.of(expiresAt);
             return this;
         }
 
-        public Builder expiresAt(Optional<? extends OffsetDateTime> expiresAt) {
+        public Builder expiresAt(JsonNullable<OffsetDateTime> expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
             this.expiresAt = expiresAt;
             return this;

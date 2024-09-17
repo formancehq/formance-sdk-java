@@ -4,18 +4,7 @@
 
 package com.formance.formance_sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 
 public class V2GetTransactionRequestBuilder {
 
@@ -26,7 +15,7 @@ public class V2GetTransactionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2GetTransactionRequestBuilder request(V2GetTransactionRequest request) {
+    public V2GetTransactionRequestBuilder request(com.formance.formance_sdk.models.operations.V2GetTransactionRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -34,7 +23,7 @@ public class V2GetTransactionRequestBuilder {
 
     public V2GetTransactionResponse call() throws Exception {
 
-        return sdk.v2GetTransaction(
+        return sdk.getTransaction(
             request);
     }
 }

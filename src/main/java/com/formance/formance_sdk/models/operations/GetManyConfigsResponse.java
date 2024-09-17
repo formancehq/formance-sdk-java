@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ConfigsResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetManyConfigsResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse;
+    private Optional<? extends ConfigsResponse> configsResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
 
     @JsonCreator
     public GetManyConfigsResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse,
+            Optional<? extends ConfigsResponse> configsResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ConfigsResponse>) configsResponse;
+    public Optional<ConfigsResponse> configsResponse() {
+        return (Optional<ConfigsResponse>) configsResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
     /**
      * OK
      */
-    public GetManyConfigsResponse withConfigsResponse(com.formance.formance_sdk.models.shared.ConfigsResponse configsResponse) {
+    public GetManyConfigsResponse withConfigsResponse(ConfigsResponse configsResponse) {
         Utils.checkNotNull(configsResponse, "configsResponse");
         this.configsResponse = Optional.ofNullable(configsResponse);
         return this;
@@ -110,7 +114,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
     /**
      * OK
      */
-    public GetManyConfigsResponse withConfigsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse) {
+    public GetManyConfigsResponse withConfigsResponse(Optional<? extends ConfigsResponse> configsResponse) {
         Utils.checkNotNull(configsResponse, "configsResponse");
         this.configsResponse = configsResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
         }
         GetManyConfigsResponse other = (GetManyConfigsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.configsResponse, other.configsResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.configsResponse, other.configsResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             configsResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse = Optional.empty();
+        private Optional<? extends ConfigsResponse> configsResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
         /**
          * OK
          */
-        public Builder configsResponse(com.formance.formance_sdk.models.shared.ConfigsResponse configsResponse) {
+        public Builder configsResponse(ConfigsResponse configsResponse) {
             Utils.checkNotNull(configsResponse, "configsResponse");
             this.configsResponse = Optional.ofNullable(configsResponse);
             return this;
@@ -203,7 +207,7 @@ public class GetManyConfigsResponse implements com.formance.formance_sdk.utils.R
         /**
          * OK
          */
-        public Builder configsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConfigsResponse> configsResponse) {
+        public Builder configsResponse(Optional<? extends ConfigsResponse> configsResponse) {
             Utils.checkNotNull(configsResponse, "configsResponse");
             this.configsResponse = configsResponse;
             return this;

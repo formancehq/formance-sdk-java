@@ -4,22 +4,22 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2Trigger {
 
@@ -31,18 +31,18 @@ public class V2Trigger {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
-    private Optional<? extends String> filter;
+    private Optional<String> filter;
 
     @JsonProperty("id")
     private String id;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> vars;
+    private Optional<? extends Map<String, Object>> vars;
 
     @JsonProperty("workflowID")
     private String workflowID;
@@ -51,10 +51,10 @@ public class V2Trigger {
     public V2Trigger(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("event") String event,
-            @JsonProperty("filter") Optional<? extends String> filter,
+            @JsonProperty("filter") Optional<String> filter,
             @JsonProperty("id") String id,
-            @JsonProperty("name") Optional<? extends String> name,
-            @JsonProperty("vars") Optional<? extends java.util.Map<String, java.lang.Object>> vars,
+            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("vars") Optional<? extends Map<String, Object>> vars,
             @JsonProperty("workflowID") String workflowID) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(event, "event");
@@ -90,10 +90,9 @@ public class V2Trigger {
         return event;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> filter() {
-        return (Optional<String>) filter;
+        return filter;
     }
 
     @JsonIgnore
@@ -101,16 +100,15 @@ public class V2Trigger {
         return id;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> vars() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) vars;
+    public Optional<Map<String, Object>> vars() {
+        return (Optional<Map<String, Object>>) vars;
     }
 
     @JsonIgnore
@@ -140,7 +138,7 @@ public class V2Trigger {
         return this;
     }
 
-    public V2Trigger withFilter(Optional<? extends String> filter) {
+    public V2Trigger withFilter(Optional<String> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -158,19 +156,19 @@ public class V2Trigger {
         return this;
     }
 
-    public V2Trigger withName(Optional<? extends String> name) {
+    public V2Trigger withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
-    public V2Trigger withVars(java.util.Map<String, java.lang.Object> vars) {
+    public V2Trigger withVars(Map<String, Object> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = Optional.ofNullable(vars);
         return this;
     }
 
-    public V2Trigger withVars(Optional<? extends java.util.Map<String, java.lang.Object>> vars) {
+    public V2Trigger withVars(Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
         return this;
@@ -192,18 +190,18 @@ public class V2Trigger {
         }
         V2Trigger other = (V2Trigger) o;
         return 
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.event, other.event) &&
-            java.util.Objects.deepEquals(this.filter, other.filter) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.vars, other.vars) &&
-            java.util.Objects.deepEquals(this.workflowID, other.workflowID);
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.event, other.event) &&
+            Objects.deepEquals(this.filter, other.filter) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.vars, other.vars) &&
+            Objects.deepEquals(this.workflowID, other.workflowID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             createdAt,
             event,
             filter,
@@ -231,13 +229,13 @@ public class V2Trigger {
  
         private String event;
  
-        private Optional<? extends String> filter = Optional.empty();
+        private Optional<String> filter = Optional.empty();
  
         private String id;
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> vars = Optional.empty();
+        private Optional<? extends Map<String, Object>> vars = Optional.empty();
  
         private String workflowID;  
         
@@ -263,7 +261,7 @@ public class V2Trigger {
             return this;
         }
 
-        public Builder filter(Optional<? extends String> filter) {
+        public Builder filter(Optional<String> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;
@@ -281,19 +279,19 @@ public class V2Trigger {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
-        public Builder vars(java.util.Map<String, java.lang.Object> vars) {
+        public Builder vars(Map<String, Object> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
             return this;
         }
 
-        public Builder vars(Optional<? extends java.util.Map<String, java.lang.Object>> vars) {
+        public Builder vars(Optional<? extends Map<String, Object>> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = vars;
             return this;

@@ -3,17 +3,10 @@
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
-import com.formance.formance_sdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
 
 public class Application {
 
@@ -21,16 +14,18 @@ public class Application {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("")
-                    .clientSecret("")
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
                 .build();
 
-            GetOIDCWellKnownsResponse res = sdk.getOIDCWellKnowns()
+            GetVersionsResponse res = sdk.getVersions()
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.SDKError e) {
+            if (res.getVersionsResponse().isPresent()) {
+                // handle response
+            }
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {

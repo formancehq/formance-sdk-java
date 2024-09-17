@@ -4,16 +4,15 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class V2BulkElementResultCreateTransactionSchemas implements V2BulkElementResult {
 
@@ -40,7 +39,7 @@ public class V2BulkElementResultCreateTransactionSchemas implements V2BulkElemen
 
     @JsonIgnore
     @Override
-    public java.lang.String responseType() {
+    public String responseType() {
         return Utils.discriminatorToString(responseType);
     }
 
@@ -70,13 +69,13 @@ public class V2BulkElementResultCreateTransactionSchemas implements V2BulkElemen
         }
         V2BulkElementResultCreateTransactionSchemas other = (V2BulkElementResultCreateTransactionSchemas) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data) &&
-            java.util.Objects.deepEquals(this.responseType, other.responseType);
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.responseType, other.responseType);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data,
             responseType);
     }

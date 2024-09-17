@@ -4,22 +4,23 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationTransaction {
 
@@ -27,14 +28,14 @@ public class OrchestrationTransaction {
     private BigInteger id;
 
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     @JsonProperty("postings")
-    private java.util.List<Posting> postings;
+    private List<Posting> postings;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     @JsonProperty("reverted")
     private boolean reverted;
@@ -45,9 +46,9 @@ public class OrchestrationTransaction {
     @JsonCreator
     public OrchestrationTransaction(
             @JsonProperty("id") BigInteger id,
-            @JsonProperty("metadata") java.util.Map<String, String> metadata,
-            @JsonProperty("postings") java.util.List<Posting> postings,
-            @JsonProperty("reference") Optional<? extends String> reference,
+            @JsonProperty("metadata") Map<String, String> metadata,
+            @JsonProperty("postings") List<Posting> postings,
+            @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("reverted") boolean reverted,
             @JsonProperty("timestamp") OffsetDateTime timestamp) {
         Utils.checkNotNull(id, "id");
@@ -66,8 +67,8 @@ public class OrchestrationTransaction {
     
     public OrchestrationTransaction(
             BigInteger id,
-            java.util.Map<String, String> metadata,
-            java.util.List<Posting> postings,
+            Map<String, String> metadata,
+            List<Posting> postings,
             boolean reverted,
             OffsetDateTime timestamp) {
         this(id, metadata, postings, Optional.empty(), reverted, timestamp);
@@ -79,19 +80,18 @@ public class OrchestrationTransaction {
     }
 
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
     @JsonIgnore
-    public java.util.List<Posting> postings() {
+    public List<Posting> postings() {
         return postings;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     @JsonIgnore
@@ -119,13 +119,13 @@ public class OrchestrationTransaction {
         return this;
     }
 
-    public OrchestrationTransaction withMetadata(java.util.Map<String, String> metadata) {
+    public OrchestrationTransaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    public OrchestrationTransaction withPostings(java.util.List<Posting> postings) {
+    public OrchestrationTransaction withPostings(List<Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
@@ -137,7 +137,7 @@ public class OrchestrationTransaction {
         return this;
     }
 
-    public OrchestrationTransaction withReference(Optional<? extends String> reference) {
+    public OrchestrationTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
@@ -165,17 +165,17 @@ public class OrchestrationTransaction {
         }
         OrchestrationTransaction other = (OrchestrationTransaction) o;
         return 
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.postings, other.postings) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.reverted, other.reverted) &&
-            java.util.Objects.deepEquals(this.timestamp, other.timestamp);
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.postings, other.postings) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.reverted, other.reverted) &&
+            Objects.deepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             id,
             metadata,
             postings,
@@ -199,11 +199,11 @@ public class OrchestrationTransaction {
  
         private BigInteger id;
  
-        private java.util.Map<String, String> metadata;
+        private Map<String, String> metadata;
  
-        private java.util.List<Posting> postings;
+        private List<Posting> postings;
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
         private Boolean reverted;
  
@@ -224,13 +224,13 @@ public class OrchestrationTransaction {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
 
-        public Builder postings(java.util.List<Posting> postings) {
+        public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
@@ -242,7 +242,7 @@ public class OrchestrationTransaction {
             return this;
         }
 
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;

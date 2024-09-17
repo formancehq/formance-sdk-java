@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
+import java.util.Objects;
+
 
 public class V2VolumesWithBalance {
 
@@ -135,16 +135,16 @@ public class V2VolumesWithBalance {
         }
         V2VolumesWithBalance other = (V2VolumesWithBalance) o;
         return 
-            java.util.Objects.deepEquals(this.account, other.account) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.balance, other.balance) &&
-            java.util.Objects.deepEquals(this.input, other.input) &&
-            java.util.Objects.deepEquals(this.output, other.output);
+            Objects.deepEquals(this.account, other.account) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.balance, other.balance) &&
+            Objects.deepEquals(this.input, other.input) &&
+            Objects.deepEquals(this.output, other.output);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             account,
             asset,
             balance,

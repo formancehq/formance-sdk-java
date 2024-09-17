@@ -4,18 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
 import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListAccountsRequest {
 
@@ -23,19 +28,19 @@ public class ListAccountsRequest {
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=address")
-    private Optional<? extends String> address;
+    private Optional<String> address;
 
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=after")
-    private Optional<? extends String> after;
+    private Optional<String> after;
 
     /**
      * Filter accounts by their balance (default operator is gte)
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=balance")
-    private Optional<? extends Long> balance;
+    private Optional<Long> balance;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -45,7 +50,7 @@ public class ListAccountsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * Name of the ledger.
@@ -57,14 +62,14 @@ public class ListAccountsRequest {
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> metadata;
+    private Optional<? extends Map<String, Object>> metadata;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -77,18 +82,18 @@ public class ListAccountsRequest {
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pagination_token")
     @Deprecated
-    private Optional<? extends String> paginationToken;
+    private Optional<String> paginationToken;
 
     @JsonCreator
     public ListAccountsRequest(
-            Optional<? extends String> address,
-            Optional<? extends String> after,
-            Optional<? extends Long> balance,
-            Optional<? extends String> cursor,
+            Optional<String> address,
+            Optional<String> after,
+            Optional<Long> balance,
+            Optional<String> cursor,
             String ledger,
-            Optional<? extends java.util.Map<String, java.lang.Object>> metadata,
-            Optional<? extends Long> pageSize,
-            Optional<? extends String> paginationToken) {
+            Optional<? extends Map<String, Object>> metadata,
+            Optional<Long> pageSize,
+            Optional<String> paginationToken) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(after, "after");
         Utils.checkNotNull(balance, "balance");
@@ -115,28 +120,25 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> address() {
-        return (Optional<String>) address;
+        return address;
     }
 
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> after() {
-        return (Optional<String>) after;
+        return after;
     }
 
     /**
      * Filter accounts by their balance (default operator is gte)
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> balance() {
-        return (Optional<Long>) balance;
+        return balance;
     }
 
     /**
@@ -146,10 +148,9 @@ public class ListAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
@@ -165,18 +166,17 @@ public class ListAccountsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
@@ -189,10 +189,9 @@ public class ListAccountsRequest {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> paginationToken() {
-        return (Optional<String>) paginationToken;
+        return paginationToken;
     }
 
     public final static Builder builder() {
@@ -211,7 +210,7 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
-    public ListAccountsRequest withAddress(Optional<? extends String> address) {
+    public ListAccountsRequest withAddress(Optional<String> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -229,7 +228,7 @@ public class ListAccountsRequest {
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
-    public ListAccountsRequest withAfter(Optional<? extends String> after) {
+    public ListAccountsRequest withAfter(Optional<String> after) {
         Utils.checkNotNull(after, "after");
         this.after = after;
         return this;
@@ -247,7 +246,7 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by their balance (default operator is gte)
      */
-    public ListAccountsRequest withBalance(Optional<? extends Long> balance) {
+    public ListAccountsRequest withBalance(Optional<Long> balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = balance;
         return this;
@@ -273,7 +272,7 @@ public class ListAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public ListAccountsRequest withCursor(Optional<? extends String> cursor) {
+    public ListAccountsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -291,7 +290,7 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public ListAccountsRequest withMetadata(java.util.Map<String, java.lang.Object> metadata) {
+    public ListAccountsRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
@@ -300,7 +299,7 @@ public class ListAccountsRequest {
     /**
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public ListAccountsRequest withMetadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+    public ListAccountsRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -320,7 +319,7 @@ public class ListAccountsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public ListAccountsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public ListAccountsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -352,7 +351,7 @@ public class ListAccountsRequest {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public ListAccountsRequest withPaginationToken(Optional<? extends String> paginationToken) {
+    public ListAccountsRequest withPaginationToken(Optional<String> paginationToken) {
         Utils.checkNotNull(paginationToken, "paginationToken");
         this.paginationToken = paginationToken;
         return this;
@@ -368,19 +367,19 @@ public class ListAccountsRequest {
         }
         ListAccountsRequest other = (ListAccountsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.after, other.after) &&
-            java.util.Objects.deepEquals(this.balance, other.balance) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.paginationToken, other.paginationToken);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.after, other.after) &&
+            Objects.deepEquals(this.balance, other.balance) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.paginationToken, other.paginationToken);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             after,
             balance,
@@ -406,22 +405,22 @@ public class ListAccountsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> address = Optional.empty();
+        private Optional<String> address = Optional.empty();
  
-        private Optional<? extends String> after = Optional.empty();
+        private Optional<String> after = Optional.empty();
  
-        private Optional<? extends Long> balance = Optional.empty();
+        private Optional<Long> balance = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> metadata = Optional.empty();
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
         @Deprecated
-        private Optional<? extends String> paginationToken = Optional.empty();  
+        private Optional<String> paginationToken = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -439,7 +438,7 @@ public class ListAccountsRequest {
         /**
          * Filter accounts by address pattern (regular expression placed between ^ and $).
          */
-        public Builder address(Optional<? extends String> address) {
+        public Builder address(Optional<String> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
@@ -457,7 +456,7 @@ public class ListAccountsRequest {
         /**
          * Pagination cursor, will return accounts after given address, in descending order.
          */
-        public Builder after(Optional<? extends String> after) {
+        public Builder after(Optional<String> after) {
             Utils.checkNotNull(after, "after");
             this.after = after;
             return this;
@@ -475,7 +474,7 @@ public class ListAccountsRequest {
         /**
          * Filter accounts by their balance (default operator is gte)
          */
-        public Builder balance(Optional<? extends Long> balance) {
+        public Builder balance(Optional<Long> balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = balance;
             return this;
@@ -501,7 +500,7 @@ public class ListAccountsRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -519,7 +518,7 @@ public class ListAccountsRequest {
         /**
          * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
-        public Builder metadata(java.util.Map<String, java.lang.Object> metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
@@ -528,7 +527,7 @@ public class ListAccountsRequest {
         /**
          * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
-        public Builder metadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -548,7 +547,7 @@ public class ListAccountsRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -580,7 +579,7 @@ public class ListAccountsRequest {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder paginationToken(Optional<? extends String> paginationToken) {
+        public Builder paginationToken(Optional<String> paginationToken) {
             Utils.checkNotNull(paginationToken, "paginationToken");
             this.paginationToken = paginationToken;
             return this;
@@ -589,8 +588,7 @@ public class ListAccountsRequest {
         public ListAccountsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new ListAccountsRequest(
+            }            return new ListAccountsRequest(
                 address,
                 after,
                 balance,
@@ -601,11 +599,11 @@ public class ListAccountsRequest {
                 paginationToken);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

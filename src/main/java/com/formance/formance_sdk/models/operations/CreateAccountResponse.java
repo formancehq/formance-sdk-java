@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.PaymentsAccountResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateAccountResponse implements com.formance.formance_sdk.utils.Response {
+
+public class CreateAccountResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.PaymentsAccountResponse> paymentsAccountResponse;
+    private Optional<? extends PaymentsAccountResponse> paymentsAccountResponse;
 
     @JsonCreator
     public CreateAccountResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.PaymentsAccountResponse> paymentsAccountResponse) {
+            Optional<? extends PaymentsAccountResponse> paymentsAccountResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.PaymentsAccountResponse> paymentsAccountResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.PaymentsAccountResponse>) paymentsAccountResponse;
+    public Optional<PaymentsAccountResponse> paymentsAccountResponse() {
+        return (Optional<PaymentsAccountResponse>) paymentsAccountResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
     /**
      * OK
      */
-    public CreateAccountResponse withPaymentsAccountResponse(com.formance.formance_sdk.models.shared.PaymentsAccountResponse paymentsAccountResponse) {
+    public CreateAccountResponse withPaymentsAccountResponse(PaymentsAccountResponse paymentsAccountResponse) {
         Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
         this.paymentsAccountResponse = Optional.ofNullable(paymentsAccountResponse);
         return this;
@@ -137,7 +141,7 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
     /**
      * OK
      */
-    public CreateAccountResponse withPaymentsAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.PaymentsAccountResponse> paymentsAccountResponse) {
+    public CreateAccountResponse withPaymentsAccountResponse(Optional<? extends PaymentsAccountResponse> paymentsAccountResponse) {
         Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
         this.paymentsAccountResponse = paymentsAccountResponse;
         return this;
@@ -153,15 +157,15 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
         }
         CreateAccountResponse other = (CreateAccountResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.paymentsAccountResponse, other.paymentsAccountResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.paymentsAccountResponse, other.paymentsAccountResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.PaymentsAccountResponse> paymentsAccountResponse = Optional.empty();  
+        private Optional<? extends PaymentsAccountResponse> paymentsAccountResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
         /**
          * OK
          */
-        public Builder paymentsAccountResponse(com.formance.formance_sdk.models.shared.PaymentsAccountResponse paymentsAccountResponse) {
+        public Builder paymentsAccountResponse(PaymentsAccountResponse paymentsAccountResponse) {
             Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
             this.paymentsAccountResponse = Optional.ofNullable(paymentsAccountResponse);
             return this;
@@ -230,7 +234,7 @@ public class CreateAccountResponse implements com.formance.formance_sdk.utils.Re
         /**
          * OK
          */
-        public Builder paymentsAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.PaymentsAccountResponse> paymentsAccountResponse) {
+        public Builder paymentsAccountResponse(Optional<? extends PaymentsAccountResponse> paymentsAccountResponse) {
             Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
             this.paymentsAccountResponse = paymentsAccountResponse;
             return this;

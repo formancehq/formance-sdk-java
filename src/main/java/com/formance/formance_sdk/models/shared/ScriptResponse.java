@@ -4,25 +4,25 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ScriptResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
-    private Optional<? extends String> details;
+    private Optional<String> details;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorCode")
@@ -30,7 +30,7 @@ public class ScriptResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
-    private Optional<? extends String> errorMessage;
+    private Optional<String> errorMessage;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transaction")
@@ -38,9 +38,9 @@ public class ScriptResponse {
 
     @JsonCreator
     public ScriptResponse(
-            @JsonProperty("details") Optional<? extends String> details,
+            @JsonProperty("details") Optional<String> details,
             @JsonProperty("errorCode") Optional<? extends ErrorsEnum> errorCode,
-            @JsonProperty("errorMessage") Optional<? extends String> errorMessage,
+            @JsonProperty("errorMessage") Optional<String> errorMessage,
             @JsonProperty("transaction") Optional<? extends Transaction> transaction) {
         Utils.checkNotNull(details, "details");
         Utils.checkNotNull(errorCode, "errorCode");
@@ -56,10 +56,9 @@ public class ScriptResponse {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> details() {
-        return (Optional<String>) details;
+        return details;
     }
 
     @SuppressWarnings("unchecked")
@@ -68,10 +67,9 @@ public class ScriptResponse {
         return (Optional<ErrorsEnum>) errorCode;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> errorMessage() {
-        return (Optional<String>) errorMessage;
+        return errorMessage;
     }
 
     @SuppressWarnings("unchecked")
@@ -90,7 +88,7 @@ public class ScriptResponse {
         return this;
     }
 
-    public ScriptResponse withDetails(Optional<? extends String> details) {
+    public ScriptResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
@@ -114,7 +112,7 @@ public class ScriptResponse {
         return this;
     }
 
-    public ScriptResponse withErrorMessage(Optional<? extends String> errorMessage) {
+    public ScriptResponse withErrorMessage(Optional<String> errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = errorMessage;
         return this;
@@ -142,15 +140,15 @@ public class ScriptResponse {
         }
         ScriptResponse other = (ScriptResponse) o;
         return 
-            java.util.Objects.deepEquals(this.details, other.details) &&
-            java.util.Objects.deepEquals(this.errorCode, other.errorCode) &&
-            java.util.Objects.deepEquals(this.errorMessage, other.errorMessage) &&
-            java.util.Objects.deepEquals(this.transaction, other.transaction);
+            Objects.deepEquals(this.details, other.details) &&
+            Objects.deepEquals(this.errorCode, other.errorCode) &&
+            Objects.deepEquals(this.errorMessage, other.errorMessage) &&
+            Objects.deepEquals(this.transaction, other.transaction);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             details,
             errorCode,
             errorMessage,
@@ -168,11 +166,11 @@ public class ScriptResponse {
     
     public final static class Builder {
  
-        private Optional<? extends String> details = Optional.empty();
+        private Optional<String> details = Optional.empty();
  
         private Optional<? extends ErrorsEnum> errorCode = Optional.empty();
  
-        private Optional<? extends String> errorMessage = Optional.empty();
+        private Optional<String> errorMessage = Optional.empty();
  
         private Optional<? extends Transaction> transaction = Optional.empty();  
         
@@ -186,7 +184,7 @@ public class ScriptResponse {
             return this;
         }
 
-        public Builder details(Optional<? extends String> details) {
+        public Builder details(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
@@ -210,7 +208,7 @@ public class ScriptResponse {
             return this;
         }
 
-        public Builder errorMessage(Optional<? extends String> errorMessage) {
+        public Builder errorMessage(Optional<String> errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;

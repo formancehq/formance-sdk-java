@@ -4,24 +4,24 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class Log {
 
     @JsonProperty("data")
-    private java.util.Map<String, java.lang.Object> data;
+    private Map<String, Object> data;
 
     @JsonProperty("date")
     private OffsetDateTime date;
@@ -37,7 +37,7 @@ public class Log {
 
     @JsonCreator
     public Log(
-            @JsonProperty("data") java.util.Map<String, java.lang.Object> data,
+            @JsonProperty("data") Map<String, Object> data,
             @JsonProperty("date") OffsetDateTime date,
             @JsonProperty("hash") String hash,
             @JsonProperty("id") long id,
@@ -55,7 +55,7 @@ public class Log {
     }
 
     @JsonIgnore
-    public java.util.Map<String, java.lang.Object> data() {
+    public Map<String, Object> data() {
         return data;
     }
 
@@ -83,7 +83,7 @@ public class Log {
         return new Builder();
     }
 
-    public Log withData(java.util.Map<String, java.lang.Object> data) {
+    public Log withData(Map<String, Object> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -123,16 +123,16 @@ public class Log {
         }
         Log other = (Log) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data) &&
-            java.util.Objects.deepEquals(this.date, other.date) &&
-            java.util.Objects.deepEquals(this.hash, other.hash) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.type, other.type);
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.date, other.date) &&
+            Objects.deepEquals(this.hash, other.hash) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data,
             date,
             hash,
@@ -152,7 +152,7 @@ public class Log {
     
     public final static class Builder {
  
-        private java.util.Map<String, java.lang.Object> data;
+        private Map<String, Object> data;
  
         private OffsetDateTime date;
  
@@ -166,7 +166,7 @@ public class Log {
           // force use of static builder() method
         }
 
-        public Builder data(java.util.Map<String, java.lang.Object> data) {
+        public Builder data(Map<String, Object> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

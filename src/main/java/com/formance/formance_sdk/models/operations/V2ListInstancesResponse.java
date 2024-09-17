@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.V2ListRunsResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.Response {
+
+public class V2ListInstancesResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
     /**
      * List of workflow instances
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2ListRunsResponse> v2ListRunsResponse;
+    private Optional<? extends V2ListRunsResponse> v2ListRunsResponse;
 
     @JsonCreator
     public V2ListInstancesResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2ListRunsResponse> v2ListRunsResponse) {
+            Optional<? extends V2ListRunsResponse> v2ListRunsResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2ListRunsResponse> v2ListRunsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2ListRunsResponse>) v2ListRunsResponse;
+    public Optional<V2ListRunsResponse> v2ListRunsResponse() {
+        return (Optional<V2ListRunsResponse>) v2ListRunsResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
     /**
      * List of workflow instances
      */
-    public V2ListInstancesResponse withV2ListRunsResponse(com.formance.formance_sdk.models.shared.V2ListRunsResponse v2ListRunsResponse) {
+    public V2ListInstancesResponse withV2ListRunsResponse(V2ListRunsResponse v2ListRunsResponse) {
         Utils.checkNotNull(v2ListRunsResponse, "v2ListRunsResponse");
         this.v2ListRunsResponse = Optional.ofNullable(v2ListRunsResponse);
         return this;
@@ -137,7 +141,7 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
     /**
      * List of workflow instances
      */
-    public V2ListInstancesResponse withV2ListRunsResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2ListRunsResponse> v2ListRunsResponse) {
+    public V2ListInstancesResponse withV2ListRunsResponse(Optional<? extends V2ListRunsResponse> v2ListRunsResponse) {
         Utils.checkNotNull(v2ListRunsResponse, "v2ListRunsResponse");
         this.v2ListRunsResponse = v2ListRunsResponse;
         return this;
@@ -153,15 +157,15 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
         }
         V2ListInstancesResponse other = (V2ListInstancesResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2ListRunsResponse, other.v2ListRunsResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.v2ListRunsResponse, other.v2ListRunsResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2ListRunsResponse> v2ListRunsResponse = Optional.empty();  
+        private Optional<? extends V2ListRunsResponse> v2ListRunsResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
         /**
          * List of workflow instances
          */
-        public Builder v2ListRunsResponse(com.formance.formance_sdk.models.shared.V2ListRunsResponse v2ListRunsResponse) {
+        public Builder v2ListRunsResponse(V2ListRunsResponse v2ListRunsResponse) {
             Utils.checkNotNull(v2ListRunsResponse, "v2ListRunsResponse");
             this.v2ListRunsResponse = Optional.ofNullable(v2ListRunsResponse);
             return this;
@@ -230,7 +234,7 @@ public class V2ListInstancesResponse implements com.formance.formance_sdk.utils.
         /**
          * List of workflow instances
          */
-        public Builder v2ListRunsResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2ListRunsResponse> v2ListRunsResponse) {
+        public Builder v2ListRunsResponse(Optional<? extends V2ListRunsResponse> v2ListRunsResponse) {
             Utils.checkNotNull(v2ListRunsResponse, "v2ListRunsResponse");
             this.v2ListRunsResponse = v2ListRunsResponse;
             return this;

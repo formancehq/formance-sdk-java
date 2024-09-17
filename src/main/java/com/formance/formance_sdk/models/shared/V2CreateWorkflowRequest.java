@@ -4,33 +4,35 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2CreateWorkflowRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     @JsonProperty("stages")
-    private java.util.List<java.util.Map<String, java.lang.Object>> stages;
+    private List<Map<String, Object>> stages;
 
     @JsonCreator
     public V2CreateWorkflowRequest(
-            @JsonProperty("name") Optional<? extends String> name,
-            @JsonProperty("stages") java.util.List<java.util.Map<String, java.lang.Object>> stages) {
+            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("stages") List<Map<String, Object>> stages) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(stages, "stages");
         this.name = name;
@@ -38,18 +40,17 @@ public class V2CreateWorkflowRequest {
     }
     
     public V2CreateWorkflowRequest(
-            java.util.List<java.util.Map<String, java.lang.Object>> stages) {
+            List<Map<String, Object>> stages) {
         this(Optional.empty(), stages);
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
     @JsonIgnore
-    public java.util.List<java.util.Map<String, java.lang.Object>> stages() {
+    public List<Map<String, Object>> stages() {
         return stages;
     }
 
@@ -63,13 +64,13 @@ public class V2CreateWorkflowRequest {
         return this;
     }
 
-    public V2CreateWorkflowRequest withName(Optional<? extends String> name) {
+    public V2CreateWorkflowRequest withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
-    public V2CreateWorkflowRequest withStages(java.util.List<java.util.Map<String, java.lang.Object>> stages) {
+    public V2CreateWorkflowRequest withStages(List<Map<String, Object>> stages) {
         Utils.checkNotNull(stages, "stages");
         this.stages = stages;
         return this;
@@ -85,13 +86,13 @@ public class V2CreateWorkflowRequest {
         }
         V2CreateWorkflowRequest other = (V2CreateWorkflowRequest) o;
         return 
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.stages, other.stages);
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.stages, other.stages);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             name,
             stages);
     }
@@ -105,9 +106,9 @@ public class V2CreateWorkflowRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
-        private java.util.List<java.util.Map<String, java.lang.Object>> stages;  
+        private List<Map<String, Object>> stages;  
         
         private Builder() {
           // force use of static builder() method
@@ -119,13 +120,13 @@ public class V2CreateWorkflowRequest {
             return this;
         }
 
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
-        public Builder stages(java.util.List<java.util.Map<String, java.lang.Object>> stages) {
+        public Builder stages(List<Map<String, Object>> stages) {
             Utils.checkNotNull(stages, "stages");
             this.stages = stages;
             return this;

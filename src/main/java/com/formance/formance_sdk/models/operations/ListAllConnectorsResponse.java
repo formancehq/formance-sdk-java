@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ConnectorsResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListAllConnectorsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListAllConnectorsResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsResponse> connectorsResponse;
+    private Optional<? extends ConnectorsResponse> connectorsResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
 
     @JsonCreator
     public ListAllConnectorsResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsResponse> connectorsResponse,
+            Optional<? extends ConnectorsResponse> connectorsResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ConnectorsResponse> connectorsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ConnectorsResponse>) connectorsResponse;
+    public Optional<ConnectorsResponse> connectorsResponse() {
+        return (Optional<ConnectorsResponse>) connectorsResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
     /**
      * OK
      */
-    public ListAllConnectorsResponse withConnectorsResponse(com.formance.formance_sdk.models.shared.ConnectorsResponse connectorsResponse) {
+    public ListAllConnectorsResponse withConnectorsResponse(ConnectorsResponse connectorsResponse) {
         Utils.checkNotNull(connectorsResponse, "connectorsResponse");
         this.connectorsResponse = Optional.ofNullable(connectorsResponse);
         return this;
@@ -110,7 +114,7 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
     /**
      * OK
      */
-    public ListAllConnectorsResponse withConnectorsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsResponse> connectorsResponse) {
+    public ListAllConnectorsResponse withConnectorsResponse(Optional<? extends ConnectorsResponse> connectorsResponse) {
         Utils.checkNotNull(connectorsResponse, "connectorsResponse");
         this.connectorsResponse = connectorsResponse;
         return this;
@@ -153,15 +157,15 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
         }
         ListAllConnectorsResponse other = (ListAllConnectorsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.connectorsResponse, other.connectorsResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.connectorsResponse, other.connectorsResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connectorsResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsResponse> connectorsResponse = Optional.empty();
+        private Optional<? extends ConnectorsResponse> connectorsResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
         /**
          * OK
          */
-        public Builder connectorsResponse(com.formance.formance_sdk.models.shared.ConnectorsResponse connectorsResponse) {
+        public Builder connectorsResponse(ConnectorsResponse connectorsResponse) {
             Utils.checkNotNull(connectorsResponse, "connectorsResponse");
             this.connectorsResponse = Optional.ofNullable(connectorsResponse);
             return this;
@@ -203,7 +207,7 @@ public class ListAllConnectorsResponse implements com.formance.formance_sdk.util
         /**
          * OK
          */
-        public Builder connectorsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConnectorsResponse> connectorsResponse) {
+        public Builder connectorsResponse(Optional<? extends ConnectorsResponse> connectorsResponse) {
             Utils.checkNotNull(connectorsResponse, "connectorsResponse");
             this.connectorsResponse = connectorsResponse;
             return this;

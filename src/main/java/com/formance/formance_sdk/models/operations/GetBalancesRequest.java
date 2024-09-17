@@ -4,18 +4,19 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class GetBalancesRequest {
 
@@ -23,13 +24,13 @@ public class GetBalancesRequest {
      * Filter balances involving given account, either as source or destination.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=address")
-    private Optional<? extends String> address;
+    private Optional<String> address;
 
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=after")
-    private Optional<? extends String> after;
+    private Optional<String> after;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -39,7 +40,7 @@ public class GetBalancesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * Name of the ledger.
@@ -52,15 +53,15 @@ public class GetBalancesRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     @JsonCreator
     public GetBalancesRequest(
-            Optional<? extends String> address,
-            Optional<? extends String> after,
-            Optional<? extends String> cursor,
+            Optional<String> address,
+            Optional<String> after,
+            Optional<String> cursor,
             String ledger,
-            Optional<? extends Long> pageSize) {
+            Optional<Long> pageSize) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(after, "after");
         Utils.checkNotNull(cursor, "cursor");
@@ -81,19 +82,17 @@ public class GetBalancesRequest {
     /**
      * Filter balances involving given account, either as source or destination.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> address() {
-        return (Optional<String>) address;
+        return address;
     }
 
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> after() {
-        return (Optional<String>) after;
+        return after;
     }
 
     /**
@@ -103,10 +102,9 @@ public class GetBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
@@ -121,10 +119,9 @@ public class GetBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     public final static Builder builder() {
@@ -143,7 +140,7 @@ public class GetBalancesRequest {
     /**
      * Filter balances involving given account, either as source or destination.
      */
-    public GetBalancesRequest withAddress(Optional<? extends String> address) {
+    public GetBalancesRequest withAddress(Optional<String> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -161,7 +158,7 @@ public class GetBalancesRequest {
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
-    public GetBalancesRequest withAfter(Optional<? extends String> after) {
+    public GetBalancesRequest withAfter(Optional<String> after) {
         Utils.checkNotNull(after, "after");
         this.after = after;
         return this;
@@ -187,7 +184,7 @@ public class GetBalancesRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public GetBalancesRequest withCursor(Optional<? extends String> cursor) {
+    public GetBalancesRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -216,7 +213,7 @@ public class GetBalancesRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public GetBalancesRequest withPageSize(Optional<? extends Long> pageSize) {
+    public GetBalancesRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -232,16 +229,16 @@ public class GetBalancesRequest {
         }
         GetBalancesRequest other = (GetBalancesRequest) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.after, other.after) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.after, other.after) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             after,
             cursor,
@@ -261,15 +258,15 @@ public class GetBalancesRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> address = Optional.empty();
+        private Optional<String> address = Optional.empty();
  
-        private Optional<? extends String> after = Optional.empty();
+        private Optional<String> after = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends Long> pageSize;  
+        private Optional<Long> pageSize;  
         
         private Builder() {
           // force use of static builder() method
@@ -287,7 +284,7 @@ public class GetBalancesRequest {
         /**
          * Filter balances involving given account, either as source or destination.
          */
-        public Builder address(Optional<? extends String> address) {
+        public Builder address(Optional<String> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
@@ -305,7 +302,7 @@ public class GetBalancesRequest {
         /**
          * Pagination cursor, will return accounts after given address, in descending order.
          */
-        public Builder after(Optional<? extends String> after) {
+        public Builder after(Optional<String> after) {
             Utils.checkNotNull(after, "after");
             this.after = after;
             return this;
@@ -331,7 +328,7 @@ public class GetBalancesRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -360,7 +357,7 @@ public class GetBalancesRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -369,8 +366,7 @@ public class GetBalancesRequest {
         public GetBalancesRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new GetBalancesRequest(
+            }            return new GetBalancesRequest(
                 address,
                 after,
                 cursor,
@@ -378,11 +374,11 @@ public class GetBalancesRequest {
                 pageSize);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 
