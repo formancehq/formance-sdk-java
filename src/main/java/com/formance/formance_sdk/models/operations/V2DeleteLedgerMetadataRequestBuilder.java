@@ -23,7 +23,7 @@ public class V2DeleteLedgerMetadataRequestBuilder {
 
     public V2DeleteLedgerMetadataResponse call() throws Exception {
 
-        return sdk.deleteLedgerMetadata(
+        return sdk.v2DeleteLedgerMetadata(
             request);
     }
 }

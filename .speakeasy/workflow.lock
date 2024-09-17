@@ -2,8 +2,8 @@ speakeasyVersion: 1.398.0
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:dabbef50d41c9a09bc0c9606228c9e0508dfd9c87c8419cef6b71b3f09703ac9
-        sourceBlobDigest: sha256:47299016bce509dc3728c141f91fb9718011367d7f90e54fe159d7785f78257b
+        sourceRevisionDigest: sha256:510ed00121f483186ba4e77d22ad1b21b1a87bc6e5477c54e8bbf9091b7c65e6
+        sourceBlobDigest: sha256:6102c0dd0a5d5b998bd1b9a91a738493d5bc8356b80c41160d2bac21f58cb4d8
         tags:
             - latest
             - main
@@ -11,8 +11,10 @@ targets:
     Java:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:dabbef50d41c9a09bc0c9606228c9e0508dfd9c87c8419cef6b71b3f09703ac9
-        sourceBlobDigest: sha256:47299016bce509dc3728c141f91fb9718011367d7f90e54fe159d7785f78257b
+        sourceRevisionDigest: sha256:510ed00121f483186ba4e77d22ad1b21b1a87bc6e5477c54e8bbf9091b7c65e6
+        sourceBlobDigest: sha256:6102c0dd0a5d5b998bd1b9a91a738493d5bc8356b80c41160d2bac21f58cb4d8
+        codeSamplesNamespace: code-samples-java-java
+        codeSamplesRevisionDigest: sha256:cd0f84b0e6ea53e8a43a268b4cd7efceb5724f315f15880bdc5dda40c6d48ecd
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -32,4 +34,7 @@ workflow:
                     ossrhPassword: $OSSRH_PASSWORD
                     gpgSecretKey: $JAVA_GPG_SECRET_KEY
                     gpgPassPhrase: $JAVA_GPG_PASSPHRASE
-                    useSonatypeLegacy: true
+            codeSamples:
+                output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/formance/formance/code-samples-java-java

@@ -23,7 +23,7 @@ public class V2GetInstanceStageHistoryRequestBuilder {
 
     public V2GetInstanceStageHistoryResponse call() throws Exception {
 
-        return sdk.getInstanceStageHistory(
+        return sdk.v2GetInstanceStageHistory(
             request);
     }
 }

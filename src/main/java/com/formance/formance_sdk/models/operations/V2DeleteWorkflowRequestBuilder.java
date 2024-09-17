@@ -23,7 +23,7 @@ public class V2DeleteWorkflowRequestBuilder {
 
     public V2DeleteWorkflowResponse call() throws Exception {
 
-        return sdk.deleteWorkflow(
+        return sdk.v2DeleteWorkflow(
             request);
     }
 }

@@ -23,7 +23,7 @@ public class V2CancelEventRequestBuilder {
 
     public V2CancelEventResponse call() throws Exception {
 
-        return sdk.cancelEvent(
+        return sdk.v2CancelEvent(
             request);
     }
 }

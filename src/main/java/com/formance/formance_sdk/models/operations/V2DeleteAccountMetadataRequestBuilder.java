@@ -23,7 +23,7 @@ public class V2DeleteAccountMetadataRequestBuilder {
 
     public V2DeleteAccountMetadataResponse call() throws Exception {
 
-        return sdk.deleteAccountMetadata(
+        return sdk.v2DeleteAccountMetadata(
             request);
     }
 }

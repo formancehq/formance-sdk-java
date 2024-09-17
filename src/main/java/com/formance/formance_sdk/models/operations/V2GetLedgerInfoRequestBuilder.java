@@ -23,7 +23,7 @@ public class V2GetLedgerInfoRequestBuilder {
 
     public V2GetLedgerInfoResponse call() throws Exception {
 
-        return sdk.getLedgerInfo(
+        return sdk.v2GetLedgerInfo(
             request);
     }
 }

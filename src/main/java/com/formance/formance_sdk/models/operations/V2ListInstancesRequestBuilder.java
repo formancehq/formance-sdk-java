@@ -23,7 +23,7 @@ public class V2ListInstancesRequestBuilder {
 
     public V2ListInstancesResponse call() throws Exception {
 
-        return sdk.listInstances(
+        return sdk.v2ListInstances(
             request);
     }
 }
