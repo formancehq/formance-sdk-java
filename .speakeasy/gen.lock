@@ -5,8 +5,8 @@ management:
   docVersion: v2.0.17
   speakeasyVersion: 1.398.0
   generationVersion: 2.415.8
-  releaseVersion: 3.2.0
-  configChecksum: 08459f99cf99f02ef41a8921da541196
+  releaseVersion: 3.2.1
+  configChecksum: ddd0da4d64e06dbe725d39df1666921f
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
