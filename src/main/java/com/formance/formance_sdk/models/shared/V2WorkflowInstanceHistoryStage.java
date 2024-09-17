@@ -4,22 +4,22 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2WorkflowInstanceHistoryStage {
 
@@ -28,21 +28,21 @@ public class V2WorkflowInstanceHistoryStage {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<? extends String> error;
+    private Optional<String> error;
 
     @JsonProperty("input")
     private V2WorkflowInstanceHistoryStageInput input;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastFailure")
-    private Optional<? extends String> lastFailure;
+    private Optional<String> lastFailure;
 
     @JsonProperty("name")
     private String name;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextExecution")
-    private Optional<? extends OffsetDateTime> nextExecution;
+    private Optional<OffsetDateTime> nextExecution;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("output")
@@ -56,20 +56,20 @@ public class V2WorkflowInstanceHistoryStage {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
-    private Optional<? extends OffsetDateTime> terminatedAt;
+    private Optional<OffsetDateTime> terminatedAt;
 
     @JsonCreator
     public V2WorkflowInstanceHistoryStage(
             @JsonProperty("attempt") long attempt,
-            @JsonProperty("error") Optional<? extends String> error,
+            @JsonProperty("error") Optional<String> error,
             @JsonProperty("input") V2WorkflowInstanceHistoryStageInput input,
-            @JsonProperty("lastFailure") Optional<? extends String> lastFailure,
+            @JsonProperty("lastFailure") Optional<String> lastFailure,
             @JsonProperty("name") String name,
-            @JsonProperty("nextExecution") Optional<? extends OffsetDateTime> nextExecution,
+            @JsonProperty("nextExecution") Optional<OffsetDateTime> nextExecution,
             @JsonProperty("output") Optional<? extends V2WorkflowInstanceHistoryStageOutput> output,
             @JsonProperty("startedAt") OffsetDateTime startedAt,
             @JsonProperty("terminated") boolean terminated,
-            @JsonProperty("terminatedAt") Optional<? extends OffsetDateTime> terminatedAt) {
+            @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(attempt, "attempt");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(input, "input");
@@ -106,10 +106,9 @@ public class V2WorkflowInstanceHistoryStage {
         return attempt;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> error() {
-        return (Optional<String>) error;
+        return error;
     }
 
     @JsonIgnore
@@ -117,10 +116,9 @@ public class V2WorkflowInstanceHistoryStage {
         return input;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> lastFailure() {
-        return (Optional<String>) lastFailure;
+        return lastFailure;
     }
 
     @JsonIgnore
@@ -128,10 +126,9 @@ public class V2WorkflowInstanceHistoryStage {
         return name;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> nextExecution() {
-        return (Optional<OffsetDateTime>) nextExecution;
+        return nextExecution;
     }
 
     @SuppressWarnings("unchecked")
@@ -150,10 +147,9 @@ public class V2WorkflowInstanceHistoryStage {
         return terminated;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
-        return (Optional<OffsetDateTime>) terminatedAt;
+        return terminatedAt;
     }
 
     public final static Builder builder() {
@@ -172,7 +168,7 @@ public class V2WorkflowInstanceHistoryStage {
         return this;
     }
 
-    public V2WorkflowInstanceHistoryStage withError(Optional<? extends String> error) {
+    public V2WorkflowInstanceHistoryStage withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -190,7 +186,7 @@ public class V2WorkflowInstanceHistoryStage {
         return this;
     }
 
-    public V2WorkflowInstanceHistoryStage withLastFailure(Optional<? extends String> lastFailure) {
+    public V2WorkflowInstanceHistoryStage withLastFailure(Optional<String> lastFailure) {
         Utils.checkNotNull(lastFailure, "lastFailure");
         this.lastFailure = lastFailure;
         return this;
@@ -208,7 +204,7 @@ public class V2WorkflowInstanceHistoryStage {
         return this;
     }
 
-    public V2WorkflowInstanceHistoryStage withNextExecution(Optional<? extends OffsetDateTime> nextExecution) {
+    public V2WorkflowInstanceHistoryStage withNextExecution(Optional<OffsetDateTime> nextExecution) {
         Utils.checkNotNull(nextExecution, "nextExecution");
         this.nextExecution = nextExecution;
         return this;
@@ -244,7 +240,7 @@ public class V2WorkflowInstanceHistoryStage {
         return this;
     }
 
-    public V2WorkflowInstanceHistoryStage withTerminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+    public V2WorkflowInstanceHistoryStage withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
@@ -260,21 +256,21 @@ public class V2WorkflowInstanceHistoryStage {
         }
         V2WorkflowInstanceHistoryStage other = (V2WorkflowInstanceHistoryStage) o;
         return 
-            java.util.Objects.deepEquals(this.attempt, other.attempt) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.input, other.input) &&
-            java.util.Objects.deepEquals(this.lastFailure, other.lastFailure) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.nextExecution, other.nextExecution) &&
-            java.util.Objects.deepEquals(this.output, other.output) &&
-            java.util.Objects.deepEquals(this.startedAt, other.startedAt) &&
-            java.util.Objects.deepEquals(this.terminated, other.terminated) &&
-            java.util.Objects.deepEquals(this.terminatedAt, other.terminatedAt);
+            Objects.deepEquals(this.attempt, other.attempt) &&
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.input, other.input) &&
+            Objects.deepEquals(this.lastFailure, other.lastFailure) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.nextExecution, other.nextExecution) &&
+            Objects.deepEquals(this.output, other.output) &&
+            Objects.deepEquals(this.startedAt, other.startedAt) &&
+            Objects.deepEquals(this.terminated, other.terminated) &&
+            Objects.deepEquals(this.terminatedAt, other.terminatedAt);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             attempt,
             error,
             input,
@@ -306,15 +302,15 @@ public class V2WorkflowInstanceHistoryStage {
  
         private Long attempt;
  
-        private Optional<? extends String> error = Optional.empty();
+        private Optional<String> error = Optional.empty();
  
         private V2WorkflowInstanceHistoryStageInput input;
  
-        private Optional<? extends String> lastFailure = Optional.empty();
+        private Optional<String> lastFailure = Optional.empty();
  
         private String name;
  
-        private Optional<? extends OffsetDateTime> nextExecution = Optional.empty();
+        private Optional<OffsetDateTime> nextExecution = Optional.empty();
  
         private Optional<? extends V2WorkflowInstanceHistoryStageOutput> output = Optional.empty();
  
@@ -322,7 +318,7 @@ public class V2WorkflowInstanceHistoryStage {
  
         private Boolean terminated;
  
-        private Optional<? extends OffsetDateTime> terminatedAt = Optional.empty();  
+        private Optional<OffsetDateTime> terminatedAt = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -340,7 +336,7 @@ public class V2WorkflowInstanceHistoryStage {
             return this;
         }
 
-        public Builder error(Optional<? extends String> error) {
+        public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
@@ -358,7 +354,7 @@ public class V2WorkflowInstanceHistoryStage {
             return this;
         }
 
-        public Builder lastFailure(Optional<? extends String> lastFailure) {
+        public Builder lastFailure(Optional<String> lastFailure) {
             Utils.checkNotNull(lastFailure, "lastFailure");
             this.lastFailure = lastFailure;
             return this;
@@ -376,7 +372,7 @@ public class V2WorkflowInstanceHistoryStage {
             return this;
         }
 
-        public Builder nextExecution(Optional<? extends OffsetDateTime> nextExecution) {
+        public Builder nextExecution(Optional<OffsetDateTime> nextExecution) {
             Utils.checkNotNull(nextExecution, "nextExecution");
             this.nextExecution = nextExecution;
             return this;
@@ -412,7 +408,7 @@ public class V2WorkflowInstanceHistoryStage {
             return this;
         }
 
-        public Builder terminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+        public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
             return this;

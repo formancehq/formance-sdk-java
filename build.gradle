@@ -31,6 +31,7 @@ java {
     withSourcesJar()
     withJavadocJar()
 }
+
 model {
     tasks.generatePomFileForMavenPublication {
         destination = file("$buildDir/pom.xml")
@@ -54,11 +55,23 @@ javadoc {
     options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-
 tasks.withType(Javadoc) {
   failOnError false
   options.addStringOption('Xdoclint:none', '-quiet')
 }
+
+group = "com.formance"
+version = "3.1.0"
+
+sourcesJar {
+    archiveBaseName = "formance-sdk"
+}
+
+javadocJar {
+    archiveBaseName = "formance-sdk"
+}
+
+
 publishing {
     repositories {
         maven {
@@ -75,7 +88,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.formance'
             artifactId = 'formance-sdk'
-            version = '3.0.0'
+            version = '3.1.0'
 
             from components.java
 
@@ -119,9 +132,9 @@ if (!project.hasProperty('skip.signing')) {
 }
 
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.17.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.17.2'
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
     implementation 'org.apache.httpcomponents:httpclient:4.5.14'
     implementation 'org.apache.httpcomponents:httpmime:4.5.14'

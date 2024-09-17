@@ -4,17 +4,17 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListInstancesRequest {
 
@@ -22,18 +22,18 @@ public class ListInstancesRequest {
      * Filter running instances
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=running")
-    private Optional<? extends Boolean> running;
+    private Optional<Boolean> running;
 
     /**
      * A workflow id
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=workflowID")
-    private Optional<? extends String> workflowID;
+    private Optional<String> workflowID;
 
     @JsonCreator
     public ListInstancesRequest(
-            Optional<? extends Boolean> running,
-            Optional<? extends String> workflowID) {
+            Optional<Boolean> running,
+            Optional<String> workflowID) {
         Utils.checkNotNull(running, "running");
         Utils.checkNotNull(workflowID, "workflowID");
         this.running = running;
@@ -47,19 +47,17 @@ public class ListInstancesRequest {
     /**
      * Filter running instances
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> running() {
-        return (Optional<Boolean>) running;
+        return running;
     }
 
     /**
      * A workflow id
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> workflowID() {
-        return (Optional<String>) workflowID;
+        return workflowID;
     }
 
     public final static Builder builder() {
@@ -78,7 +76,7 @@ public class ListInstancesRequest {
     /**
      * Filter running instances
      */
-    public ListInstancesRequest withRunning(Optional<? extends Boolean> running) {
+    public ListInstancesRequest withRunning(Optional<Boolean> running) {
         Utils.checkNotNull(running, "running");
         this.running = running;
         return this;
@@ -96,7 +94,7 @@ public class ListInstancesRequest {
     /**
      * A workflow id
      */
-    public ListInstancesRequest withWorkflowID(Optional<? extends String> workflowID) {
+    public ListInstancesRequest withWorkflowID(Optional<String> workflowID) {
         Utils.checkNotNull(workflowID, "workflowID");
         this.workflowID = workflowID;
         return this;
@@ -112,13 +110,13 @@ public class ListInstancesRequest {
         }
         ListInstancesRequest other = (ListInstancesRequest) o;
         return 
-            java.util.Objects.deepEquals(this.running, other.running) &&
-            java.util.Objects.deepEquals(this.workflowID, other.workflowID);
+            Objects.deepEquals(this.running, other.running) &&
+            Objects.deepEquals(this.workflowID, other.workflowID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             running,
             workflowID);
     }
@@ -132,9 +130,9 @@ public class ListInstancesRequest {
     
     public final static class Builder {
  
-        private Optional<? extends Boolean> running = Optional.empty();
+        private Optional<Boolean> running = Optional.empty();
  
-        private Optional<? extends String> workflowID = Optional.empty();  
+        private Optional<String> workflowID = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -152,7 +150,7 @@ public class ListInstancesRequest {
         /**
          * Filter running instances
          */
-        public Builder running(Optional<? extends Boolean> running) {
+        public Builder running(Optional<Boolean> running) {
             Utils.checkNotNull(running, "running");
             this.running = running;
             return this;
@@ -170,7 +168,7 @@ public class ListInstancesRequest {
         /**
          * A workflow id
          */
-        public Builder workflowID(Optional<? extends String> workflowID) {
+        public Builder workflowID(Optional<String> workflowID) {
             Utils.checkNotNull(workflowID, "workflowID");
             this.workflowID = workflowID;
             return this;

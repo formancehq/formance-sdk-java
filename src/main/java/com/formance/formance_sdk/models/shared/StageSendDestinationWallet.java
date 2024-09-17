@@ -4,32 +4,31 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class StageSendDestinationWallet {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance")
-    private Optional<? extends String> balance;
+    private Optional<String> balance;
 
     @JsonProperty("id")
     private String id;
 
     @JsonCreator
     public StageSendDestinationWallet(
-            @JsonProperty("balance") Optional<? extends String> balance,
+            @JsonProperty("balance") Optional<String> balance,
             @JsonProperty("id") String id) {
         Utils.checkNotNull(balance, "balance");
         Utils.checkNotNull(id, "id");
@@ -42,10 +41,9 @@ public class StageSendDestinationWallet {
         this(Optional.empty(), id);
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> balance() {
-        return (Optional<String>) balance;
+        return balance;
     }
 
     @JsonIgnore
@@ -63,7 +61,7 @@ public class StageSendDestinationWallet {
         return this;
     }
 
-    public StageSendDestinationWallet withBalance(Optional<? extends String> balance) {
+    public StageSendDestinationWallet withBalance(Optional<String> balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = balance;
         return this;
@@ -85,13 +83,13 @@ public class StageSendDestinationWallet {
         }
         StageSendDestinationWallet other = (StageSendDestinationWallet) o;
         return 
-            java.util.Objects.deepEquals(this.balance, other.balance) &&
-            java.util.Objects.deepEquals(this.id, other.id);
+            Objects.deepEquals(this.balance, other.balance) &&
+            Objects.deepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             balance,
             id);
     }
@@ -105,7 +103,7 @@ public class StageSendDestinationWallet {
     
     public final static class Builder {
  
-        private Optional<? extends String> balance = Optional.empty();
+        private Optional<String> balance = Optional.empty();
  
         private String id;  
         
@@ -119,7 +117,7 @@ public class StageSendDestinationWallet {
             return this;
         }
 
-        public Builder balance(Optional<? extends String> balance) {
+        public Builder balance(Optional<String> balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = balance;
             return this;

@@ -4,17 +4,20 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
+import java.util.Map;
+import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class AddMetadataOnTransactionRequest {
 
@@ -22,7 +25,7 @@ public class AddMetadataOnTransactionRequest {
      * metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private JsonNullable<? extends java.util.Map<String, java.lang.Object>> requestBody;
+    private JsonNullable<? extends Map<String, Object>> requestBody;
 
     /**
      * Name of the ledger.
@@ -38,7 +41,7 @@ public class AddMetadataOnTransactionRequest {
 
     @JsonCreator
     public AddMetadataOnTransactionRequest(
-            JsonNullable<? extends java.util.Map<String, java.lang.Object>> requestBody,
+            JsonNullable<? extends Map<String, Object>> requestBody,
             String ledger,
             BigInteger txid) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -60,8 +63,8 @@ public class AddMetadataOnTransactionRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.util.Map<String, java.lang.Object>> requestBody() {
-        return (JsonNullable<java.util.Map<String, java.lang.Object>>) requestBody;
+    public JsonNullable<Map<String, Object>> requestBody() {
+        return (JsonNullable<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -87,7 +90,7 @@ public class AddMetadataOnTransactionRequest {
     /**
      * metadata
      */
-    public AddMetadataOnTransactionRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
+    public AddMetadataOnTransactionRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = JsonNullable.of(requestBody);
         return this;
@@ -96,7 +99,7 @@ public class AddMetadataOnTransactionRequest {
     /**
      * metadata
      */
-    public AddMetadataOnTransactionRequest withRequestBody(JsonNullable<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+    public AddMetadataOnTransactionRequest withRequestBody(JsonNullable<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -138,14 +141,14 @@ public class AddMetadataOnTransactionRequest {
         }
         AddMetadataOnTransactionRequest other = (AddMetadataOnTransactionRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.txid, other.txid);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             ledger,
             txid);
@@ -161,7 +164,7 @@ public class AddMetadataOnTransactionRequest {
     
     public final static class Builder {
  
-        private JsonNullable<? extends java.util.Map<String, java.lang.Object>> requestBody = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> requestBody = JsonNullable.undefined();
  
         private String ledger;
  
@@ -174,7 +177,7 @@ public class AddMetadataOnTransactionRequest {
         /**
          * metadata
          */
-        public Builder requestBody(java.util.Map<String, java.lang.Object> requestBody) {
+        public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = JsonNullable.of(requestBody);
             return this;
@@ -183,7 +186,7 @@ public class AddMetadataOnTransactionRequest {
         /**
          * metadata
          */
-        public Builder requestBody(JsonNullable<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+        public Builder requestBody(JsonNullable<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

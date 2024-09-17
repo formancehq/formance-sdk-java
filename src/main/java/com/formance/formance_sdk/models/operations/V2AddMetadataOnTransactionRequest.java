@@ -4,17 +4,20 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2AddMetadataOnTransactionRequest {
 
@@ -22,19 +25,19 @@ public class V2AddMetadataOnTransactionRequest {
      * Use an idempotency key
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
-    private Optional<? extends String> idempotencyKey;
+    private Optional<String> idempotencyKey;
 
     /**
      * metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends java.util.Map<String, String>> requestBody;
+    private Optional<? extends Map<String, String>> requestBody;
 
     /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
-    private Optional<? extends Boolean> dryRun;
+    private Optional<Boolean> dryRun;
 
     /**
      * Transaction ID.
@@ -50,9 +53,9 @@ public class V2AddMetadataOnTransactionRequest {
 
     @JsonCreator
     public V2AddMetadataOnTransactionRequest(
-            Optional<? extends String> idempotencyKey,
-            Optional<? extends java.util.Map<String, String>> requestBody,
-            Optional<? extends Boolean> dryRun,
+            Optional<String> idempotencyKey,
+            Optional<? extends Map<String, String>> requestBody,
+            Optional<Boolean> dryRun,
             BigInteger id,
             String ledger) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -76,10 +79,9 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * Use an idempotency key
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> idempotencyKey() {
-        return (Optional<String>) idempotencyKey;
+        return idempotencyKey;
     }
 
     /**
@@ -87,17 +89,16 @@ public class V2AddMetadataOnTransactionRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> requestBody() {
-        return (Optional<java.util.Map<String, String>>) requestBody;
+    public Optional<Map<String, String>> requestBody() {
+        return (Optional<Map<String, String>>) requestBody;
     }
 
     /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> dryRun() {
-        return (Optional<Boolean>) dryRun;
+        return dryRun;
     }
 
     /**
@@ -132,7 +133,7 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * Use an idempotency key
      */
-    public V2AddMetadataOnTransactionRequest withIdempotencyKey(Optional<? extends String> idempotencyKey) {
+    public V2AddMetadataOnTransactionRequest withIdempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
         return this;
@@ -141,7 +142,7 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * metadata
      */
-    public V2AddMetadataOnTransactionRequest withRequestBody(java.util.Map<String, String> requestBody) {
+    public V2AddMetadataOnTransactionRequest withRequestBody(Map<String, String> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
@@ -150,7 +151,7 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * metadata
      */
-    public V2AddMetadataOnTransactionRequest withRequestBody(Optional<? extends java.util.Map<String, String>> requestBody) {
+    public V2AddMetadataOnTransactionRequest withRequestBody(Optional<? extends Map<String, String>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -168,7 +169,7 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    public V2AddMetadataOnTransactionRequest withDryRun(Optional<? extends Boolean> dryRun) {
+    public V2AddMetadataOnTransactionRequest withDryRun(Optional<Boolean> dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
         this.dryRun = dryRun;
         return this;
@@ -210,16 +211,16 @@ public class V2AddMetadataOnTransactionRequest {
         }
         V2AddMetadataOnTransactionRequest other = (V2AddMetadataOnTransactionRequest) o;
         return 
-            java.util.Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.dryRun, other.dryRun) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.dryRun, other.dryRun) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             idempotencyKey,
             requestBody,
             dryRun,
@@ -239,11 +240,11 @@ public class V2AddMetadataOnTransactionRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> idempotencyKey = Optional.empty();
+        private Optional<String> idempotencyKey = Optional.empty();
  
-        private Optional<? extends java.util.Map<String, String>> requestBody = Optional.empty();
+        private Optional<? extends Map<String, String>> requestBody = Optional.empty();
  
-        private Optional<? extends Boolean> dryRun = Optional.empty();
+        private Optional<Boolean> dryRun = Optional.empty();
  
         private BigInteger id;
  
@@ -265,7 +266,7 @@ public class V2AddMetadataOnTransactionRequest {
         /**
          * Use an idempotency key
          */
-        public Builder idempotencyKey(Optional<? extends String> idempotencyKey) {
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");
             this.idempotencyKey = idempotencyKey;
             return this;
@@ -274,7 +275,7 @@ public class V2AddMetadataOnTransactionRequest {
         /**
          * metadata
          */
-        public Builder requestBody(java.util.Map<String, String> requestBody) {
+        public Builder requestBody(Map<String, String> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
             return this;
@@ -283,7 +284,7 @@ public class V2AddMetadataOnTransactionRequest {
         /**
          * metadata
          */
-        public Builder requestBody(Optional<? extends java.util.Map<String, String>> requestBody) {
+        public Builder requestBody(Optional<? extends Map<String, String>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
@@ -301,7 +302,7 @@ public class V2AddMetadataOnTransactionRequest {
         /**
          * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
          */
-        public Builder dryRun(Optional<? extends Boolean> dryRun) {
+        public Builder dryRun(Optional<Boolean> dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
             this.dryRun = dryRun;
             return this;

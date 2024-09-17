@@ -4,8 +4,8 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,11 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class BankingCircleConfig {
 
@@ -39,7 +39,7 @@ public class BankingCircleConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
-    private Optional<? extends String> pollingPeriod;
+    private Optional<String> pollingPeriod;
 
     @JsonProperty("userCertificate")
     private String userCertificate;
@@ -56,7 +56,7 @@ public class BankingCircleConfig {
             @JsonProperty("endpoint") String endpoint,
             @JsonProperty("name") String name,
             @JsonProperty("password") String password,
-            @JsonProperty("pollingPeriod") Optional<? extends String> pollingPeriod,
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
             @JsonProperty("userCertificate") String userCertificate,
             @JsonProperty("userCertificateKey") String userCertificateKey,
             @JsonProperty("username") String username) {
@@ -113,10 +113,9 @@ public class BankingCircleConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> pollingPeriod() {
-        return (Optional<String>) pollingPeriod;
+        return pollingPeriod;
     }
 
     @JsonIgnore
@@ -176,7 +175,7 @@ public class BankingCircleConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
      * 
      */
-    public BankingCircleConfig withPollingPeriod(Optional<? extends String> pollingPeriod) {
+    public BankingCircleConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         this.pollingPeriod = pollingPeriod;
         return this;
@@ -210,19 +209,19 @@ public class BankingCircleConfig {
         }
         BankingCircleConfig other = (BankingCircleConfig) o;
         return 
-            java.util.Objects.deepEquals(this.authorizationEndpoint, other.authorizationEndpoint) &&
-            java.util.Objects.deepEquals(this.endpoint, other.endpoint) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.password, other.password) &&
-            java.util.Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            java.util.Objects.deepEquals(this.userCertificate, other.userCertificate) &&
-            java.util.Objects.deepEquals(this.userCertificateKey, other.userCertificateKey) &&
-            java.util.Objects.deepEquals(this.username, other.username);
+            Objects.deepEquals(this.authorizationEndpoint, other.authorizationEndpoint) &&
+            Objects.deepEquals(this.endpoint, other.endpoint) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.password, other.password) &&
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.userCertificate, other.userCertificate) &&
+            Objects.deepEquals(this.userCertificateKey, other.userCertificateKey) &&
+            Objects.deepEquals(this.username, other.username);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             authorizationEndpoint,
             endpoint,
             name,
@@ -256,7 +255,7 @@ public class BankingCircleConfig {
  
         private String password;
  
-        private Optional<? extends String> pollingPeriod;
+        private Optional<String> pollingPeriod;
  
         private String userCertificate;
  
@@ -306,7 +305,7 @@ public class BankingCircleConfig {
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
          * 
          */
-        public Builder pollingPeriod(Optional<? extends String> pollingPeriod) {
+        public Builder pollingPeriod(Optional<String> pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = pollingPeriod;
             return this;
@@ -333,8 +332,7 @@ public class BankingCircleConfig {
         public BankingCircleConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
-            }
-            return new BankingCircleConfig(
+            }            return new BankingCircleConfig(
                 authorizationEndpoint,
                 endpoint,
                 name,
@@ -345,11 +343,11 @@ public class BankingCircleConfig {
                 username);
         }
 
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_PollingPeriod =
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
-                        new TypeReference<Optional<? extends String>>() {});
+                        new TypeReference<Optional<String>>() {});
     }
 }
 

@@ -4,22 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class StageSend {
 
@@ -33,7 +32,7 @@ public class StageSend {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends java.util.Map<String, String>> metadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
@@ -41,15 +40,15 @@ public class StageSend {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
-    private Optional<? extends OffsetDateTime> timestamp;
+    private Optional<OffsetDateTime> timestamp;
 
     @JsonCreator
     public StageSend(
             @JsonProperty("amount") Optional<? extends Monetary> amount,
             @JsonProperty("destination") Optional<? extends StageSendDestination> destination,
-            @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata,
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("source") Optional<? extends StageSendSource> source,
-            @JsonProperty("timestamp") Optional<? extends OffsetDateTime> timestamp) {
+            @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(metadata, "metadata");
@@ -80,8 +79,8 @@ public class StageSend {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> metadata() {
-        return (Optional<java.util.Map<String, String>>) metadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     @SuppressWarnings("unchecked")
@@ -90,10 +89,9 @@ public class StageSend {
         return (Optional<StageSendSource>) source;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> timestamp() {
-        return (Optional<OffsetDateTime>) timestamp;
+        return timestamp;
     }
 
     public final static Builder builder() {
@@ -124,13 +122,13 @@ public class StageSend {
         return this;
     }
 
-    public StageSend withMetadata(java.util.Map<String, String> metadata) {
+    public StageSend withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
-    public StageSend withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+    public StageSend withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -154,7 +152,7 @@ public class StageSend {
         return this;
     }
 
-    public StageSend withTimestamp(Optional<? extends OffsetDateTime> timestamp) {
+    public StageSend withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
@@ -170,16 +168,16 @@ public class StageSend {
         }
         StageSend other = (StageSend) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.destination, other.destination) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.source, other.source) &&
-            java.util.Objects.deepEquals(this.timestamp, other.timestamp);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.destination, other.destination) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.source, other.source) &&
+            Objects.deepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             destination,
             metadata,
@@ -203,11 +201,11 @@ public class StageSend {
  
         private Optional<? extends StageSendDestination> destination = Optional.empty();
  
-        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
  
         private Optional<? extends StageSendSource> source = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> timestamp = Optional.empty();  
+        private Optional<OffsetDateTime> timestamp = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -237,13 +235,13 @@ public class StageSend {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -267,7 +265,7 @@ public class StageSend {
             return this;
         }
 
-        public Builder timestamp(Optional<? extends OffsetDateTime> timestamp) {
+        public Builder timestamp(Optional<OffsetDateTime> timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;

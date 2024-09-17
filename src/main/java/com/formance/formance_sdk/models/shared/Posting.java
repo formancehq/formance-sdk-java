@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
+import java.util.Objects;
+
 
 public class Posting {
 
@@ -108,15 +108,15 @@ public class Posting {
         }
         Posting other = (Posting) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.destination, other.destination) &&
-            java.util.Objects.deepEquals(this.source, other.source);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.destination, other.destination) &&
+            Objects.deepEquals(this.source, other.source);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             asset,
             destination,

@@ -4,23 +4,24 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class TransferInitiationRequest {
 
@@ -32,7 +33,7 @@ public class TransferInitiationRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
-    private Optional<? extends String> connectorID;
+    private Optional<String> connectorID;
 
     @JsonProperty("description")
     private String description;
@@ -42,7 +43,7 @@ public class TransferInitiationRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends java.util.Map<String, String>> metadata;
+    private JsonNullable<? extends Map<String, String>> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -67,10 +68,10 @@ public class TransferInitiationRequest {
     public TransferInitiationRequest(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
-            @JsonProperty("connectorID") Optional<? extends String> connectorID,
+            @JsonProperty("connectorID") Optional<String> connectorID,
             @JsonProperty("description") String description,
             @JsonProperty("destinationAccountID") String destinationAccountID,
-            @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, String>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("provider") Optional<? extends Connector> provider,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
@@ -126,10 +127,9 @@ public class TransferInitiationRequest {
         return asset;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> connectorID() {
-        return (Optional<String>) connectorID;
+        return connectorID;
     }
 
     @JsonIgnore
@@ -144,8 +144,8 @@ public class TransferInitiationRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.util.Map<String, String>> metadata() {
-        return (JsonNullable<java.util.Map<String, String>>) metadata;
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
     }
 
     @SuppressWarnings("unchecked")
@@ -206,7 +206,7 @@ public class TransferInitiationRequest {
         return this;
     }
 
-    public TransferInitiationRequest withConnectorID(Optional<? extends String> connectorID) {
+    public TransferInitiationRequest withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
@@ -224,13 +224,13 @@ public class TransferInitiationRequest {
         return this;
     }
 
-    public TransferInitiationRequest withMetadata(java.util.Map<String, String> metadata) {
+    public TransferInitiationRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public TransferInitiationRequest withMetadata(JsonNullable<? extends java.util.Map<String, String>> metadata) {
+    public TransferInitiationRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -288,23 +288,23 @@ public class TransferInitiationRequest {
         }
         TransferInitiationRequest other = (TransferInitiationRequest) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.description, other.description) &&
-            java.util.Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.provider, other.provider) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            java.util.Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            java.util.Objects.deepEquals(this.type, other.type) &&
-            java.util.Objects.deepEquals(this.validated, other.validated);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.description, other.description) &&
+            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.provider, other.provider) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
+            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Objects.deepEquals(this.type, other.type) &&
+            Objects.deepEquals(this.validated, other.validated);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             asset,
             connectorID,
@@ -342,13 +342,13 @@ public class TransferInitiationRequest {
  
         private String asset;
  
-        private Optional<? extends String> connectorID = Optional.empty();
+        private Optional<String> connectorID = Optional.empty();
  
         private String description;
  
         private String destinationAccountID;
  
-        private JsonNullable<? extends java.util.Map<String, String>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
  
         private Optional<? extends Connector> provider = Optional.empty();
  
@@ -389,7 +389,7 @@ public class TransferInitiationRequest {
             return this;
         }
 
-        public Builder connectorID(Optional<? extends String> connectorID) {
+        public Builder connectorID(Optional<String> connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
@@ -407,13 +407,13 @@ public class TransferInitiationRequest {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(JsonNullable<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

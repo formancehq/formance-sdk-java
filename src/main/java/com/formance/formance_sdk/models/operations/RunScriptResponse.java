@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ScriptResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class RunScriptResponse implements com.formance.formance_sdk.utils.Response {
+
+public class RunScriptResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -32,7 +36,7 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
      *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
      * 
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ScriptResponse> scriptResponse;
+    private Optional<? extends ScriptResponse> scriptResponse;
 
     /**
      * HTTP response status code for this operation
@@ -47,7 +51,7 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
     @JsonCreator
     public RunScriptResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ScriptResponse> scriptResponse,
+            Optional<? extends ScriptResponse> scriptResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -86,8 +90,8 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ScriptResponse> scriptResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ScriptResponse>) scriptResponse;
+    public Optional<ScriptResponse> scriptResponse() {
+        return (Optional<ScriptResponse>) scriptResponse;
     }
 
     /**
@@ -128,7 +132,7 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
      *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
      * 
      */
-    public RunScriptResponse withScriptResponse(com.formance.formance_sdk.models.shared.ScriptResponse scriptResponse) {
+    public RunScriptResponse withScriptResponse(ScriptResponse scriptResponse) {
         Utils.checkNotNull(scriptResponse, "scriptResponse");
         this.scriptResponse = Optional.ofNullable(scriptResponse);
         return this;
@@ -143,7 +147,7 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
      *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
      * 
      */
-    public RunScriptResponse withScriptResponse(Optional<? extends com.formance.formance_sdk.models.shared.ScriptResponse> scriptResponse) {
+    public RunScriptResponse withScriptResponse(Optional<? extends ScriptResponse> scriptResponse) {
         Utils.checkNotNull(scriptResponse, "scriptResponse");
         this.scriptResponse = scriptResponse;
         return this;
@@ -177,15 +181,15 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
         }
         RunScriptResponse other = (RunScriptResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.scriptResponse, other.scriptResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.scriptResponse, other.scriptResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             scriptResponse,
             statusCode,
@@ -205,7 +209,7 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ScriptResponse> scriptResponse = Optional.empty();
+        private Optional<? extends ScriptResponse> scriptResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -233,7 +237,7 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
          *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
          * 
          */
-        public Builder scriptResponse(com.formance.formance_sdk.models.shared.ScriptResponse scriptResponse) {
+        public Builder scriptResponse(ScriptResponse scriptResponse) {
             Utils.checkNotNull(scriptResponse, "scriptResponse");
             this.scriptResponse = Optional.ofNullable(scriptResponse);
             return this;
@@ -248,7 +252,7 @@ public class RunScriptResponse implements com.formance.formance_sdk.utils.Respon
          *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
          * 
          */
-        public Builder scriptResponse(Optional<? extends com.formance.formance_sdk.models.shared.ScriptResponse> scriptResponse) {
+        public Builder scriptResponse(Optional<? extends ScriptResponse> scriptResponse) {
             Utils.checkNotNull(scriptResponse, "scriptResponse");
             this.scriptResponse = scriptResponse;
             return this;

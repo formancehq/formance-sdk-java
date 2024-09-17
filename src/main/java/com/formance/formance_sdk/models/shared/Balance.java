@@ -4,28 +4,28 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Balance {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiresAt")
-    private Optional<? extends OffsetDateTime> expiresAt;
+    private JsonNullable<OffsetDateTime> expiresAt;
 
     @JsonProperty("name")
     private String name;
@@ -36,7 +36,7 @@ public class Balance {
 
     @JsonCreator
     public Balance(
-            @JsonProperty("expiresAt") Optional<? extends OffsetDateTime> expiresAt,
+            @JsonProperty("expiresAt") JsonNullable<OffsetDateTime> expiresAt,
             @JsonProperty("name") String name,
             @JsonProperty("priority") Optional<? extends BigInteger> priority) {
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -49,13 +49,12 @@ public class Balance {
     
     public Balance(
             String name) {
-        this(Optional.empty(), name, Optional.empty());
+        this(JsonNullable.undefined(), name, Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<OffsetDateTime> expiresAt() {
-        return (Optional<OffsetDateTime>) expiresAt;
+    public JsonNullable<OffsetDateTime> expiresAt() {
+        return expiresAt;
     }
 
     @JsonIgnore
@@ -75,11 +74,11 @@ public class Balance {
 
     public Balance withExpiresAt(OffsetDateTime expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
-        this.expiresAt = Optional.ofNullable(expiresAt);
+        this.expiresAt = JsonNullable.of(expiresAt);
         return this;
     }
 
-    public Balance withExpiresAt(Optional<? extends OffsetDateTime> expiresAt) {
+    public Balance withExpiresAt(JsonNullable<OffsetDateTime> expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
         this.expiresAt = expiresAt;
         return this;
@@ -118,14 +117,14 @@ public class Balance {
         }
         Balance other = (Balance) o;
         return 
-            java.util.Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.priority, other.priority);
+            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.priority, other.priority);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             expiresAt,
             name,
             priority);
@@ -141,7 +140,7 @@ public class Balance {
     
     public final static class Builder {
  
-        private Optional<? extends OffsetDateTime> expiresAt = Optional.empty();
+        private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
  
         private String name;
  
@@ -153,11 +152,11 @@ public class Balance {
 
         public Builder expiresAt(OffsetDateTime expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
-            this.expiresAt = Optional.ofNullable(expiresAt);
+            this.expiresAt = JsonNullable.of(expiresAt);
             return this;
         }
 
-        public Builder expiresAt(Optional<? extends OffsetDateTime> expiresAt) {
+        public Builder expiresAt(JsonNullable<OffsetDateTime> expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
             this.expiresAt = expiresAt;
             return this;

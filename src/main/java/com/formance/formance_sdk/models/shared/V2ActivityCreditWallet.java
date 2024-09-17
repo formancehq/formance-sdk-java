@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ActivityCreditWallet {
 
@@ -26,12 +26,12 @@ public class V2ActivityCreditWallet {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<? extends String> id;
+    private Optional<String> id;
 
     @JsonCreator
     public V2ActivityCreditWallet(
             @JsonProperty("data") Optional<? extends V2CreditWalletRequest> data,
-            @JsonProperty("id") Optional<? extends String> id) {
+            @JsonProperty("id") Optional<String> id) {
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(id, "id");
         this.data = data;
@@ -48,10 +48,9 @@ public class V2ActivityCreditWallet {
         return (Optional<V2CreditWalletRequest>) data;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> id() {
-        return (Optional<String>) id;
+        return id;
     }
 
     public final static Builder builder() {
@@ -76,7 +75,7 @@ public class V2ActivityCreditWallet {
         return this;
     }
 
-    public V2ActivityCreditWallet withId(Optional<? extends String> id) {
+    public V2ActivityCreditWallet withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -92,13 +91,13 @@ public class V2ActivityCreditWallet {
         }
         V2ActivityCreditWallet other = (V2ActivityCreditWallet) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data) &&
-            java.util.Objects.deepEquals(this.id, other.id);
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data,
             id);
     }
@@ -114,7 +113,7 @@ public class V2ActivityCreditWallet {
  
         private Optional<? extends V2CreditWalletRequest> data = Optional.empty();
  
-        private Optional<? extends String> id = Optional.empty();  
+        private Optional<String> id = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -138,7 +137,7 @@ public class V2ActivityCreditWallet {
             return this;
         }
 
-        public Builder id(Optional<? extends String> id) {
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;

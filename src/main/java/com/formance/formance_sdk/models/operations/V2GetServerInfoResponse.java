@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.V2ServerInfo;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.Response {
+
+public class V2GetServerInfoResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
     /**
      * Server information
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2ServerInfo> v2ServerInfo;
+    private Optional<? extends V2ServerInfo> v2ServerInfo;
 
     @JsonCreator
     public V2GetServerInfoResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2ServerInfo> v2ServerInfo) {
+            Optional<? extends V2ServerInfo> v2ServerInfo) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2ServerInfo> v2ServerInfo() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2ServerInfo>) v2ServerInfo;
+    public Optional<V2ServerInfo> v2ServerInfo() {
+        return (Optional<V2ServerInfo>) v2ServerInfo;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
     /**
      * Server information
      */
-    public V2GetServerInfoResponse withV2ServerInfo(com.formance.formance_sdk.models.shared.V2ServerInfo v2ServerInfo) {
+    public V2GetServerInfoResponse withV2ServerInfo(V2ServerInfo v2ServerInfo) {
         Utils.checkNotNull(v2ServerInfo, "v2ServerInfo");
         this.v2ServerInfo = Optional.ofNullable(v2ServerInfo);
         return this;
@@ -137,7 +141,7 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
     /**
      * Server information
      */
-    public V2GetServerInfoResponse withV2ServerInfo(Optional<? extends com.formance.formance_sdk.models.shared.V2ServerInfo> v2ServerInfo) {
+    public V2GetServerInfoResponse withV2ServerInfo(Optional<? extends V2ServerInfo> v2ServerInfo) {
         Utils.checkNotNull(v2ServerInfo, "v2ServerInfo");
         this.v2ServerInfo = v2ServerInfo;
         return this;
@@ -153,15 +157,15 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
         }
         V2GetServerInfoResponse other = (V2GetServerInfoResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2ServerInfo, other.v2ServerInfo);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.v2ServerInfo, other.v2ServerInfo);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2ServerInfo> v2ServerInfo = Optional.empty();  
+        private Optional<? extends V2ServerInfo> v2ServerInfo = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
         /**
          * Server information
          */
-        public Builder v2ServerInfo(com.formance.formance_sdk.models.shared.V2ServerInfo v2ServerInfo) {
+        public Builder v2ServerInfo(V2ServerInfo v2ServerInfo) {
             Utils.checkNotNull(v2ServerInfo, "v2ServerInfo");
             this.v2ServerInfo = Optional.ofNullable(v2ServerInfo);
             return this;
@@ -230,7 +234,7 @@ public class V2GetServerInfoResponse implements com.formance.formance_sdk.utils.
         /**
          * Server information
          */
-        public Builder v2ServerInfo(Optional<? extends com.formance.formance_sdk.models.shared.V2ServerInfo> v2ServerInfo) {
+        public Builder v2ServerInfo(Optional<? extends V2ServerInfo> v2ServerInfo) {
             Utils.checkNotNull(v2ServerInfo, "v2ServerInfo");
             this.v2ServerInfo = v2ServerInfo;
             return this;

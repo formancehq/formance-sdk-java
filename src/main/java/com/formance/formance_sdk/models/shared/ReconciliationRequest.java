@@ -4,19 +4,16 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
+
 
 public class ReconciliationRequest {
 
@@ -72,13 +69,13 @@ public class ReconciliationRequest {
         }
         ReconciliationRequest other = (ReconciliationRequest) o;
         return 
-            java.util.Objects.deepEquals(this.reconciledAtLedger, other.reconciledAtLedger) &&
-            java.util.Objects.deepEquals(this.reconciledAtPayments, other.reconciledAtPayments);
+            Objects.deepEquals(this.reconciledAtLedger, other.reconciledAtLedger) &&
+            Objects.deepEquals(this.reconciledAtPayments, other.reconciledAtPayments);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             reconciledAtLedger,
             reconciledAtPayments);
     }

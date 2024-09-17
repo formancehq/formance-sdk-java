@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.AttemptResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class TestConfigResponse implements com.formance.formance_sdk.utils.Response {
+
+public class TestConfigResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.AttemptResponse> attemptResponse;
+    private Optional<? extends AttemptResponse> attemptResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
 
     @JsonCreator
     public TestConfigResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.AttemptResponse> attemptResponse,
+            Optional<? extends AttemptResponse> attemptResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.AttemptResponse> attemptResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.AttemptResponse>) attemptResponse;
+    public Optional<AttemptResponse> attemptResponse() {
+        return (Optional<AttemptResponse>) attemptResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    public TestConfigResponse withAttemptResponse(com.formance.formance_sdk.models.shared.AttemptResponse attemptResponse) {
+    public TestConfigResponse withAttemptResponse(AttemptResponse attemptResponse) {
         Utils.checkNotNull(attemptResponse, "attemptResponse");
         this.attemptResponse = Optional.ofNullable(attemptResponse);
         return this;
@@ -110,7 +114,7 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
     /**
      * OK
      */
-    public TestConfigResponse withAttemptResponse(Optional<? extends com.formance.formance_sdk.models.shared.AttemptResponse> attemptResponse) {
+    public TestConfigResponse withAttemptResponse(Optional<? extends AttemptResponse> attemptResponse) {
         Utils.checkNotNull(attemptResponse, "attemptResponse");
         this.attemptResponse = attemptResponse;
         return this;
@@ -153,15 +157,15 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
         }
         TestConfigResponse other = (TestConfigResponse) o;
         return 
-            java.util.Objects.deepEquals(this.attemptResponse, other.attemptResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.attemptResponse, other.attemptResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             attemptResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.AttemptResponse> attemptResponse = Optional.empty();
+        private Optional<? extends AttemptResponse> attemptResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
         /**
          * OK
          */
-        public Builder attemptResponse(com.formance.formance_sdk.models.shared.AttemptResponse attemptResponse) {
+        public Builder attemptResponse(AttemptResponse attemptResponse) {
             Utils.checkNotNull(attemptResponse, "attemptResponse");
             this.attemptResponse = Optional.ofNullable(attemptResponse);
             return this;
@@ -203,7 +207,7 @@ public class TestConfigResponse implements com.formance.formance_sdk.utils.Respo
         /**
          * OK
          */
-        public Builder attemptResponse(Optional<? extends com.formance.formance_sdk.models.shared.AttemptResponse> attemptResponse) {
+        public Builder attemptResponse(Optional<? extends AttemptResponse> attemptResponse) {
             Utils.checkNotNull(attemptResponse, "attemptResponse");
             this.attemptResponse = attemptResponse;
             return this;

@@ -4,22 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class TransferInitiationAdjusments {
 
@@ -34,7 +33,7 @@ public class TransferInitiationAdjusments {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends java.util.Map<String, String>> metadata;
+    private JsonNullable<? extends Map<String, String>> metadata;
 
     @JsonProperty("status")
     private TransferInitiationStatus status;
@@ -44,7 +43,7 @@ public class TransferInitiationAdjusments {
             @JsonProperty("adjustmentID") String adjustmentID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("error") String error,
-            @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, String>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("status") TransferInitiationStatus status) {
         Utils.checkNotNull(adjustmentID, "adjustmentID");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -83,8 +82,8 @@ public class TransferInitiationAdjusments {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.util.Map<String, String>> metadata() {
-        return (JsonNullable<java.util.Map<String, String>>) metadata;
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -114,13 +113,13 @@ public class TransferInitiationAdjusments {
         return this;
     }
 
-    public TransferInitiationAdjusments withMetadata(java.util.Map<String, String> metadata) {
+    public TransferInitiationAdjusments withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public TransferInitiationAdjusments withMetadata(JsonNullable<? extends java.util.Map<String, String>> metadata) {
+    public TransferInitiationAdjusments withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -142,16 +141,16 @@ public class TransferInitiationAdjusments {
         }
         TransferInitiationAdjusments other = (TransferInitiationAdjusments) o;
         return 
-            java.util.Objects.deepEquals(this.adjustmentID, other.adjustmentID) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.status, other.status);
+            Objects.deepEquals(this.adjustmentID, other.adjustmentID) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             adjustmentID,
             createdAt,
             error,
@@ -177,7 +176,7 @@ public class TransferInitiationAdjusments {
  
         private String error;
  
-        private JsonNullable<? extends java.util.Map<String, String>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
  
         private TransferInitiationStatus status;  
         
@@ -203,13 +202,13 @@ public class TransferInitiationAdjusments {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(JsonNullable<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

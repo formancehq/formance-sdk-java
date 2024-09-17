@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ServerInfo;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.utils.Response {
+
+public class WalletsgetServerInfoResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
     /**
      * Server information
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ServerInfo> serverInfo;
+    private Optional<? extends ServerInfo> serverInfo;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
     @JsonCreator
     public WalletsgetServerInfoResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ServerInfo> serverInfo,
+            Optional<? extends ServerInfo> serverInfo,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ServerInfo> serverInfo() {
-        return (Optional<com.formance.formance_sdk.models.shared.ServerInfo>) serverInfo;
+    public Optional<ServerInfo> serverInfo() {
+        return (Optional<ServerInfo>) serverInfo;
     }
 
     /**
@@ -110,7 +114,7 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
     /**
      * Server information
      */
-    public WalletsgetServerInfoResponse withServerInfo(com.formance.formance_sdk.models.shared.ServerInfo serverInfo) {
+    public WalletsgetServerInfoResponse withServerInfo(ServerInfo serverInfo) {
         Utils.checkNotNull(serverInfo, "serverInfo");
         this.serverInfo = Optional.ofNullable(serverInfo);
         return this;
@@ -119,7 +123,7 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
     /**
      * Server information
      */
-    public WalletsgetServerInfoResponse withServerInfo(Optional<? extends com.formance.formance_sdk.models.shared.ServerInfo> serverInfo) {
+    public WalletsgetServerInfoResponse withServerInfo(Optional<? extends ServerInfo> serverInfo) {
         Utils.checkNotNull(serverInfo, "serverInfo");
         this.serverInfo = serverInfo;
         return this;
@@ -153,15 +157,15 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
         }
         WalletsgetServerInfoResponse other = (WalletsgetServerInfoResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.serverInfo, other.serverInfo) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.serverInfo, other.serverInfo) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             serverInfo,
             statusCode,
@@ -181,7 +185,7 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ServerInfo> serverInfo = Optional.empty();
+        private Optional<? extends ServerInfo> serverInfo = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
         /**
          * Server information
          */
-        public Builder serverInfo(com.formance.formance_sdk.models.shared.ServerInfo serverInfo) {
+        public Builder serverInfo(ServerInfo serverInfo) {
             Utils.checkNotNull(serverInfo, "serverInfo");
             this.serverInfo = Optional.ofNullable(serverInfo);
             return this;
@@ -212,7 +216,7 @@ public class WalletsgetServerInfoResponse implements com.formance.formance_sdk.u
         /**
          * Server information
          */
-        public Builder serverInfo(Optional<? extends com.formance.formance_sdk.models.shared.ServerInfo> serverInfo) {
+        public Builder serverInfo(Optional<? extends ServerInfo> serverInfo) {
             Utils.checkNotNull(serverInfo, "serverInfo");
             this.serverInfo = serverInfo;
             return this;

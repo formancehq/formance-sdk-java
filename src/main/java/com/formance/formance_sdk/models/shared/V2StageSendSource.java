@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2StageSendSource {
 
@@ -117,14 +117,14 @@ public class V2StageSendSource {
         }
         V2StageSendSource other = (V2StageSendSource) o;
         return 
-            java.util.Objects.deepEquals(this.account, other.account) &&
-            java.util.Objects.deepEquals(this.payment, other.payment) &&
-            java.util.Objects.deepEquals(this.wallet, other.wallet);
+            Objects.deepEquals(this.account, other.account) &&
+            Objects.deepEquals(this.payment, other.payment) &&
+            Objects.deepEquals(this.wallet, other.wallet);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             account,
             payment,
             wallet);

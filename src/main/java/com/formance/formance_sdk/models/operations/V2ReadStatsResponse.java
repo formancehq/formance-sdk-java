@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.V2StatsResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class V2ReadStatsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2StatsResponse> v2StatsResponse;
+    private Optional<? extends V2StatsResponse> v2StatsResponse;
 
     @JsonCreator
     public V2ReadStatsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2StatsResponse> v2StatsResponse) {
+            Optional<? extends V2StatsResponse> v2StatsResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Resp
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2StatsResponse> v2StatsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2StatsResponse>) v2StatsResponse;
+    public Optional<V2StatsResponse> v2StatsResponse() {
+        return (Optional<V2StatsResponse>) v2StatsResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * OK
      */
-    public V2ReadStatsResponse withV2StatsResponse(com.formance.formance_sdk.models.shared.V2StatsResponse v2StatsResponse) {
+    public V2ReadStatsResponse withV2StatsResponse(V2StatsResponse v2StatsResponse) {
         Utils.checkNotNull(v2StatsResponse, "v2StatsResponse");
         this.v2StatsResponse = Optional.ofNullable(v2StatsResponse);
         return this;
@@ -137,7 +141,7 @@ public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Resp
     /**
      * OK
      */
-    public V2ReadStatsResponse withV2StatsResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2StatsResponse> v2StatsResponse) {
+    public V2ReadStatsResponse withV2StatsResponse(Optional<? extends V2StatsResponse> v2StatsResponse) {
         Utils.checkNotNull(v2StatsResponse, "v2StatsResponse");
         this.v2StatsResponse = v2StatsResponse;
         return this;
@@ -153,15 +157,15 @@ public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Resp
         }
         V2ReadStatsResponse other = (V2ReadStatsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.v2StatsResponse, other.v2StatsResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.v2StatsResponse, other.v2StatsResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Resp
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2StatsResponse> v2StatsResponse = Optional.empty();  
+        private Optional<? extends V2StatsResponse> v2StatsResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Resp
         /**
          * OK
          */
-        public Builder v2StatsResponse(com.formance.formance_sdk.models.shared.V2StatsResponse v2StatsResponse) {
+        public Builder v2StatsResponse(V2StatsResponse v2StatsResponse) {
             Utils.checkNotNull(v2StatsResponse, "v2StatsResponse");
             this.v2StatsResponse = Optional.ofNullable(v2StatsResponse);
             return this;
@@ -230,7 +234,7 @@ public class V2ReadStatsResponse implements com.formance.formance_sdk.utils.Resp
         /**
          * OK
          */
-        public Builder v2StatsResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2StatsResponse> v2StatsResponse) {
+        public Builder v2StatsResponse(Optional<? extends V2StatsResponse> v2StatsResponse) {
             Utils.checkNotNull(v2StatsResponse, "v2StatsResponse");
             this.v2StatsResponse = v2StatsResponse;
             return this;

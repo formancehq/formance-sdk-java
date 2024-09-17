@@ -4,37 +4,38 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class PostTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata;
+    private JsonNullable<? extends Map<String, Object>> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postings")
-    private Optional<? extends java.util.List<Posting>> postings;
+    private Optional<? extends List<Posting>> postings;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("script")
@@ -42,15 +43,15 @@ public class PostTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
-    private Optional<? extends OffsetDateTime> timestamp;
+    private Optional<OffsetDateTime> timestamp;
 
     @JsonCreator
     public PostTransaction(
-            @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata,
-            @JsonProperty("postings") Optional<? extends java.util.List<Posting>> postings,
-            @JsonProperty("reference") Optional<? extends String> reference,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
+            @JsonProperty("postings") Optional<? extends List<Posting>> postings,
+            @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("script") Optional<? extends PostTransactionScript> script,
-            @JsonProperty("timestamp") Optional<? extends OffsetDateTime> timestamp) {
+            @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(postings, "postings");
         Utils.checkNotNull(reference, "reference");
@@ -69,20 +70,19 @@ public class PostTransaction {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.util.Map<String, java.lang.Object>> metadata() {
-        return (JsonNullable<java.util.Map<String, java.lang.Object>>) metadata;
+    public JsonNullable<Map<String, Object>> metadata() {
+        return (JsonNullable<Map<String, Object>>) metadata;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<Posting>> postings() {
-        return (Optional<java.util.List<Posting>>) postings;
+    public Optional<List<Posting>> postings() {
+        return (Optional<List<Posting>>) postings;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     @SuppressWarnings("unchecked")
@@ -91,35 +91,34 @@ public class PostTransaction {
         return (Optional<PostTransactionScript>) script;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> timestamp() {
-        return (Optional<OffsetDateTime>) timestamp;
+        return timestamp;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public PostTransaction withMetadata(java.util.Map<String, java.lang.Object> metadata) {
+    public PostTransaction withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public PostTransaction withMetadata(JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata) {
+    public PostTransaction withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    public PostTransaction withPostings(java.util.List<Posting> postings) {
+    public PostTransaction withPostings(List<Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = Optional.ofNullable(postings);
         return this;
     }
 
-    public PostTransaction withPostings(Optional<? extends java.util.List<Posting>> postings) {
+    public PostTransaction withPostings(Optional<? extends List<Posting>> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
@@ -131,7 +130,7 @@ public class PostTransaction {
         return this;
     }
 
-    public PostTransaction withReference(Optional<? extends String> reference) {
+    public PostTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
@@ -155,7 +154,7 @@ public class PostTransaction {
         return this;
     }
 
-    public PostTransaction withTimestamp(Optional<? extends OffsetDateTime> timestamp) {
+    public PostTransaction withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
@@ -171,16 +170,16 @@ public class PostTransaction {
         }
         PostTransaction other = (PostTransaction) o;
         return 
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.postings, other.postings) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.script, other.script) &&
-            java.util.Objects.deepEquals(this.timestamp, other.timestamp);
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.postings, other.postings) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.script, other.script) &&
+            Objects.deepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             metadata,
             postings,
             reference,
@@ -200,39 +199,39 @@ public class PostTransaction {
     
     public final static class Builder {
  
-        private JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
  
-        private Optional<? extends java.util.List<Posting>> postings = Optional.empty();
+        private Optional<? extends List<Posting>> postings = Optional.empty();
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
         private Optional<? extends PostTransactionScript> script = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> timestamp = Optional.empty();  
+        private Optional<OffsetDateTime> timestamp = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder metadata(java.util.Map<String, java.lang.Object> metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
 
-        public Builder postings(java.util.List<Posting> postings) {
+        public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = Optional.ofNullable(postings);
             return this;
         }
 
-        public Builder postings(Optional<? extends java.util.List<Posting>> postings) {
+        public Builder postings(Optional<? extends List<Posting>> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
@@ -244,7 +243,7 @@ public class PostTransaction {
             return this;
         }
 
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
@@ -268,7 +267,7 @@ public class PostTransaction {
             return this;
         }
 
-        public Builder timestamp(Optional<? extends OffsetDateTime> timestamp) {
+        public Builder timestamp(Optional<OffsetDateTime> timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;

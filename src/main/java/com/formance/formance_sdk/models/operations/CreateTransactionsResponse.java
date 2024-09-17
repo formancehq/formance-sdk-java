@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.TransactionsResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class CreateTransactionsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class CreateTransactionsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse;
+    private Optional<? extends TransactionsResponse> transactionsResponse;
 
     @JsonCreator
     public CreateTransactionsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse) {
+            Optional<? extends TransactionsResponse> transactionsResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.TransactionsResponse>) transactionsResponse;
+    public Optional<TransactionsResponse> transactionsResponse() {
+        return (Optional<TransactionsResponse>) transactionsResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    public CreateTransactionsResponse withTransactionsResponse(com.formance.formance_sdk.models.shared.TransactionsResponse transactionsResponse) {
+    public CreateTransactionsResponse withTransactionsResponse(TransactionsResponse transactionsResponse) {
         Utils.checkNotNull(transactionsResponse, "transactionsResponse");
         this.transactionsResponse = Optional.ofNullable(transactionsResponse);
         return this;
@@ -137,7 +141,7 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    public CreateTransactionsResponse withTransactionsResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse) {
+    public CreateTransactionsResponse withTransactionsResponse(Optional<? extends TransactionsResponse> transactionsResponse) {
         Utils.checkNotNull(transactionsResponse, "transactionsResponse");
         this.transactionsResponse = transactionsResponse;
         return this;
@@ -153,15 +157,15 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
         }
         CreateTransactionsResponse other = (CreateTransactionsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.transactionsResponse, other.transactionsResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.transactionsResponse, other.transactionsResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse = Optional.empty();  
+        private Optional<? extends TransactionsResponse> transactionsResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
         /**
          * OK
          */
-        public Builder transactionsResponse(com.formance.formance_sdk.models.shared.TransactionsResponse transactionsResponse) {
+        public Builder transactionsResponse(TransactionsResponse transactionsResponse) {
             Utils.checkNotNull(transactionsResponse, "transactionsResponse");
             this.transactionsResponse = Optional.ofNullable(transactionsResponse);
             return this;
@@ -230,7 +234,7 @@ public class CreateTransactionsResponse implements com.formance.formance_sdk.uti
         /**
          * OK
          */
-        public Builder transactionsResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransactionsResponse> transactionsResponse) {
+        public Builder transactionsResponse(Optional<? extends TransactionsResponse> transactionsResponse) {
             Utils.checkNotNull(transactionsResponse, "transactionsResponse");
             this.transactionsResponse = transactionsResponse;
             return this;

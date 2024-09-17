@@ -4,8 +4,8 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,11 +13,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class StripeConfig {
 
@@ -33,7 +34,7 @@ public class StripeConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
@@ -41,14 +42,14 @@ public class StripeConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
-    private Optional<? extends String> pollingPeriod;
+    private Optional<String> pollingPeriod;
 
     @JsonCreator
     public StripeConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("name") String name,
-            @JsonProperty("pageSize") Optional<? extends Long> pageSize,
-            @JsonProperty("pollingPeriod") Optional<? extends String> pollingPeriod) {
+            @JsonProperty("pageSize") Optional<Long> pageSize,
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
@@ -79,20 +80,18 @@ public class StripeConfig {
      * Number of BalanceTransaction to fetch at each polling interval.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> pollingPeriod() {
-        return (Optional<String>) pollingPeriod;
+        return pollingPeriod;
     }
 
     public final static Builder builder() {
@@ -125,7 +124,7 @@ public class StripeConfig {
      * Number of BalanceTransaction to fetch at each polling interval.
      * 
      */
-    public StripeConfig withPageSize(Optional<? extends Long> pageSize) {
+    public StripeConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -145,7 +144,7 @@ public class StripeConfig {
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
      * 
      */
-    public StripeConfig withPollingPeriod(Optional<? extends String> pollingPeriod) {
+    public StripeConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         this.pollingPeriod = pollingPeriod;
         return this;
@@ -161,15 +160,15 @@ public class StripeConfig {
         }
         StripeConfig other = (StripeConfig) o;
         return 
-            java.util.Objects.deepEquals(this.apiKey, other.apiKey) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
+            Objects.deepEquals(this.apiKey, other.apiKey) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             apiKey,
             name,
             pageSize,
@@ -191,9 +190,9 @@ public class StripeConfig {
  
         private String name;
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends String> pollingPeriod;  
+        private Optional<String> pollingPeriod;  
         
         private Builder() {
           // force use of static builder() method
@@ -225,7 +224,7 @@ public class StripeConfig {
          * Number of BalanceTransaction to fetch at each polling interval.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -245,7 +244,7 @@ public class StripeConfig {
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
          * 
          */
-        public Builder pollingPeriod(Optional<? extends String> pollingPeriod) {
+        public Builder pollingPeriod(Optional<String> pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = pollingPeriod;
             return this;
@@ -257,25 +256,24 @@ public class StripeConfig {
             }
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
-            }
-            return new StripeConfig(
+            }            return new StripeConfig(
                 apiKey,
                 name,
                 pageSize,
                 pollingPeriod);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "10",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
 
-        private static final LazySingletonValue<Optional<? extends String>> _SINGLETON_VALUE_PollingPeriod =
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
-                        new TypeReference<Optional<? extends String>>() {});
+                        new TypeReference<Optional<String>>() {});
     }
 }
 

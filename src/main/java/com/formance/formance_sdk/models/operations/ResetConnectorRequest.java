@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class ResetConnectorRequest {
 
@@ -21,11 +21,11 @@ public class ResetConnectorRequest {
      * The name of the connector.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
-    private com.formance.formance_sdk.models.shared.Connector connector;
+    private Connector connector;
 
     @JsonCreator
     public ResetConnectorRequest(
-            com.formance.formance_sdk.models.shared.Connector connector) {
+            Connector connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
     }
@@ -34,7 +34,7 @@ public class ResetConnectorRequest {
      * The name of the connector.
      */
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.Connector connector() {
+    public Connector connector() {
         return connector;
     }
 
@@ -45,7 +45,7 @@ public class ResetConnectorRequest {
     /**
      * The name of the connector.
      */
-    public ResetConnectorRequest withConnector(com.formance.formance_sdk.models.shared.Connector connector) {
+    public ResetConnectorRequest withConnector(Connector connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
@@ -61,12 +61,12 @@ public class ResetConnectorRequest {
         }
         ResetConnectorRequest other = (ResetConnectorRequest) o;
         return 
-            java.util.Objects.deepEquals(this.connector, other.connector);
+            Objects.deepEquals(this.connector, other.connector);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connector);
     }
     
@@ -78,7 +78,7 @@ public class ResetConnectorRequest {
     
     public final static class Builder {
  
-        private com.formance.formance_sdk.models.shared.Connector connector;  
+        private Connector connector;  
         
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ResetConnectorRequest {
         /**
          * The name of the connector.
          */
-        public Builder connector(com.formance.formance_sdk.models.shared.Connector connector) {
+        public Builder connector(Connector connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
             return this;

@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.LedgerInfoResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetLedgerInfoResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.LedgerInfoResponse> ledgerInfoResponse;
+    private Optional<? extends LedgerInfoResponse> ledgerInfoResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
     @JsonCreator
     public GetLedgerInfoResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.LedgerInfoResponse> ledgerInfoResponse,
+            Optional<? extends LedgerInfoResponse> ledgerInfoResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.LedgerInfoResponse> ledgerInfoResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.LedgerInfoResponse>) ledgerInfoResponse;
+    public Optional<LedgerInfoResponse> ledgerInfoResponse() {
+        return (Optional<LedgerInfoResponse>) ledgerInfoResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
     /**
      * OK
      */
-    public GetLedgerInfoResponse withLedgerInfoResponse(com.formance.formance_sdk.models.shared.LedgerInfoResponse ledgerInfoResponse) {
+    public GetLedgerInfoResponse withLedgerInfoResponse(LedgerInfoResponse ledgerInfoResponse) {
         Utils.checkNotNull(ledgerInfoResponse, "ledgerInfoResponse");
         this.ledgerInfoResponse = Optional.ofNullable(ledgerInfoResponse);
         return this;
@@ -119,7 +123,7 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
     /**
      * OK
      */
-    public GetLedgerInfoResponse withLedgerInfoResponse(Optional<? extends com.formance.formance_sdk.models.shared.LedgerInfoResponse> ledgerInfoResponse) {
+    public GetLedgerInfoResponse withLedgerInfoResponse(Optional<? extends LedgerInfoResponse> ledgerInfoResponse) {
         Utils.checkNotNull(ledgerInfoResponse, "ledgerInfoResponse");
         this.ledgerInfoResponse = ledgerInfoResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
         }
         GetLedgerInfoResponse other = (GetLedgerInfoResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.ledgerInfoResponse, other.ledgerInfoResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.ledgerInfoResponse, other.ledgerInfoResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             ledgerInfoResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.LedgerInfoResponse> ledgerInfoResponse = Optional.empty();
+        private Optional<? extends LedgerInfoResponse> ledgerInfoResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
         /**
          * OK
          */
-        public Builder ledgerInfoResponse(com.formance.formance_sdk.models.shared.LedgerInfoResponse ledgerInfoResponse) {
+        public Builder ledgerInfoResponse(LedgerInfoResponse ledgerInfoResponse) {
             Utils.checkNotNull(ledgerInfoResponse, "ledgerInfoResponse");
             this.ledgerInfoResponse = Optional.ofNullable(ledgerInfoResponse);
             return this;
@@ -212,7 +216,7 @@ public class GetLedgerInfoResponse implements com.formance.formance_sdk.utils.Re
         /**
          * OK
          */
-        public Builder ledgerInfoResponse(Optional<? extends com.formance.formance_sdk.models.shared.LedgerInfoResponse> ledgerInfoResponse) {
+        public Builder ledgerInfoResponse(Optional<? extends LedgerInfoResponse> ledgerInfoResponse) {
             Utils.checkNotNull(ledgerInfoResponse, "ledgerInfoResponse");
             this.ledgerInfoResponse = ledgerInfoResponse;
             return this;

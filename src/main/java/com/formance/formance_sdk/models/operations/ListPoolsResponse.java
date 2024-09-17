@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.PoolsCursor;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListPoolsResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListPoolsResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.PoolsCursor> poolsCursor;
+    private Optional<? extends PoolsCursor> poolsCursor;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
     @JsonCreator
     public ListPoolsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.PoolsCursor> poolsCursor,
+            Optional<? extends PoolsCursor> poolsCursor,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.PoolsCursor> poolsCursor() {
-        return (Optional<com.formance.formance_sdk.models.shared.PoolsCursor>) poolsCursor;
+    public Optional<PoolsCursor> poolsCursor() {
+        return (Optional<PoolsCursor>) poolsCursor;
     }
 
     /**
@@ -110,7 +114,7 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    public ListPoolsResponse withPoolsCursor(com.formance.formance_sdk.models.shared.PoolsCursor poolsCursor) {
+    public ListPoolsResponse withPoolsCursor(PoolsCursor poolsCursor) {
         Utils.checkNotNull(poolsCursor, "poolsCursor");
         this.poolsCursor = Optional.ofNullable(poolsCursor);
         return this;
@@ -119,7 +123,7 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
     /**
      * OK
      */
-    public ListPoolsResponse withPoolsCursor(Optional<? extends com.formance.formance_sdk.models.shared.PoolsCursor> poolsCursor) {
+    public ListPoolsResponse withPoolsCursor(Optional<? extends PoolsCursor> poolsCursor) {
         Utils.checkNotNull(poolsCursor, "poolsCursor");
         this.poolsCursor = poolsCursor;
         return this;
@@ -153,15 +157,15 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
         }
         ListPoolsResponse other = (ListPoolsResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.poolsCursor, other.poolsCursor) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.poolsCursor, other.poolsCursor) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             poolsCursor,
             statusCode,
@@ -181,7 +185,7 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.PoolsCursor> poolsCursor = Optional.empty();
+        private Optional<? extends PoolsCursor> poolsCursor = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
         /**
          * OK
          */
-        public Builder poolsCursor(com.formance.formance_sdk.models.shared.PoolsCursor poolsCursor) {
+        public Builder poolsCursor(PoolsCursor poolsCursor) {
             Utils.checkNotNull(poolsCursor, "poolsCursor");
             this.poolsCursor = Optional.ofNullable(poolsCursor);
             return this;
@@ -212,7 +216,7 @@ public class ListPoolsResponse implements com.formance.formance_sdk.utils.Respon
         /**
          * OK
          */
-        public Builder poolsCursor(Optional<? extends com.formance.formance_sdk.models.shared.PoolsCursor> poolsCursor) {
+        public Builder poolsCursor(Optional<? extends PoolsCursor> poolsCursor) {
             Utils.checkNotNull(poolsCursor, "poolsCursor");
             this.poolsCursor = poolsCursor;
             return this;

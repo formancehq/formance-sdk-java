@@ -4,17 +4,18 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.V2PostTransaction;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2CreateTransactionRequest {
 
@@ -22,7 +23,7 @@ public class V2CreateTransactionRequest {
      * Use an idempotency key
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
-    private Optional<? extends String> idempotencyKey;
+    private Optional<String> idempotencyKey;
 
     /**
      * The request body must contain at least one of the following objects:
@@ -31,13 +32,13 @@ public class V2CreateTransactionRequest {
      * 
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction;
+    private V2PostTransaction v2PostTransaction;
 
     /**
      * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
-    private Optional<? extends Boolean> dryRun;
+    private Optional<Boolean> dryRun;
 
     /**
      * Name of the ledger.
@@ -47,9 +48,9 @@ public class V2CreateTransactionRequest {
 
     @JsonCreator
     public V2CreateTransactionRequest(
-            Optional<? extends String> idempotencyKey,
-            com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction,
-            Optional<? extends Boolean> dryRun,
+            Optional<String> idempotencyKey,
+            V2PostTransaction v2PostTransaction,
+            Optional<Boolean> dryRun,
             String ledger) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
@@ -62,7 +63,7 @@ public class V2CreateTransactionRequest {
     }
     
     public V2CreateTransactionRequest(
-            com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction,
+            V2PostTransaction v2PostTransaction,
             String ledger) {
         this(Optional.empty(), v2PostTransaction, Optional.empty(), ledger);
     }
@@ -70,10 +71,9 @@ public class V2CreateTransactionRequest {
     /**
      * Use an idempotency key
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> idempotencyKey() {
-        return (Optional<String>) idempotencyKey;
+        return idempotencyKey;
     }
 
     /**
@@ -83,17 +83,16 @@ public class V2CreateTransactionRequest {
      * 
      */
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction() {
+    public V2PostTransaction v2PostTransaction() {
         return v2PostTransaction;
     }
 
     /**
      * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> dryRun() {
-        return (Optional<Boolean>) dryRun;
+        return dryRun;
     }
 
     /**
@@ -120,7 +119,7 @@ public class V2CreateTransactionRequest {
     /**
      * Use an idempotency key
      */
-    public V2CreateTransactionRequest withIdempotencyKey(Optional<? extends String> idempotencyKey) {
+    public V2CreateTransactionRequest withIdempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
         return this;
@@ -132,7 +131,7 @@ public class V2CreateTransactionRequest {
      *   - `script`: enabling more complex transactions with Numscript
      * 
      */
-    public V2CreateTransactionRequest withV2PostTransaction(com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction) {
+    public V2CreateTransactionRequest withV2PostTransaction(V2PostTransaction v2PostTransaction) {
         Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
         this.v2PostTransaction = v2PostTransaction;
         return this;
@@ -150,7 +149,7 @@ public class V2CreateTransactionRequest {
     /**
      * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
-    public V2CreateTransactionRequest withDryRun(Optional<? extends Boolean> dryRun) {
+    public V2CreateTransactionRequest withDryRun(Optional<Boolean> dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
         this.dryRun = dryRun;
         return this;
@@ -175,15 +174,15 @@ public class V2CreateTransactionRequest {
         }
         V2CreateTransactionRequest other = (V2CreateTransactionRequest) o;
         return 
-            java.util.Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            java.util.Objects.deepEquals(this.v2PostTransaction, other.v2PostTransaction) &&
-            java.util.Objects.deepEquals(this.dryRun, other.dryRun) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Objects.deepEquals(this.v2PostTransaction, other.v2PostTransaction) &&
+            Objects.deepEquals(this.dryRun, other.dryRun) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             idempotencyKey,
             v2PostTransaction,
             dryRun,
@@ -201,11 +200,11 @@ public class V2CreateTransactionRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> idempotencyKey = Optional.empty();
+        private Optional<String> idempotencyKey = Optional.empty();
  
-        private com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction;
+        private V2PostTransaction v2PostTransaction;
  
-        private Optional<? extends Boolean> dryRun = Optional.empty();
+        private Optional<Boolean> dryRun = Optional.empty();
  
         private String ledger;  
         
@@ -225,7 +224,7 @@ public class V2CreateTransactionRequest {
         /**
          * Use an idempotency key
          */
-        public Builder idempotencyKey(Optional<? extends String> idempotencyKey) {
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");
             this.idempotencyKey = idempotencyKey;
             return this;
@@ -237,7 +236,7 @@ public class V2CreateTransactionRequest {
          *   - `script`: enabling more complex transactions with Numscript
          * 
          */
-        public Builder v2PostTransaction(com.formance.formance_sdk.models.shared.V2PostTransaction v2PostTransaction) {
+        public Builder v2PostTransaction(V2PostTransaction v2PostTransaction) {
             Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
             this.v2PostTransaction = v2PostTransaction;
             return this;
@@ -255,7 +254,7 @@ public class V2CreateTransactionRequest {
         /**
          * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
          */
-        public Builder dryRun(Optional<? extends Boolean> dryRun) {
+        public Builder dryRun(Optional<Boolean> dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
             this.dryRun = dryRun;
             return this;

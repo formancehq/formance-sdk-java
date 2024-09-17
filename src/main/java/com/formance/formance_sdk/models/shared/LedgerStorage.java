@@ -4,16 +4,16 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class LedgerStorage {
 
@@ -21,12 +21,12 @@ public class LedgerStorage {
     private String driver;
 
     @JsonProperty("ledgers")
-    private java.util.List<String> ledgers;
+    private List<String> ledgers;
 
     @JsonCreator
     public LedgerStorage(
             @JsonProperty("driver") String driver,
-            @JsonProperty("ledgers") java.util.List<String> ledgers) {
+            @JsonProperty("ledgers") List<String> ledgers) {
         Utils.checkNotNull(driver, "driver");
         Utils.checkNotNull(ledgers, "ledgers");
         this.driver = driver;
@@ -39,7 +39,7 @@ public class LedgerStorage {
     }
 
     @JsonIgnore
-    public java.util.List<String> ledgers() {
+    public List<String> ledgers() {
         return ledgers;
     }
 
@@ -53,7 +53,7 @@ public class LedgerStorage {
         return this;
     }
 
-    public LedgerStorage withLedgers(java.util.List<String> ledgers) {
+    public LedgerStorage withLedgers(List<String> ledgers) {
         Utils.checkNotNull(ledgers, "ledgers");
         this.ledgers = ledgers;
         return this;
@@ -69,13 +69,13 @@ public class LedgerStorage {
         }
         LedgerStorage other = (LedgerStorage) o;
         return 
-            java.util.Objects.deepEquals(this.driver, other.driver) &&
-            java.util.Objects.deepEquals(this.ledgers, other.ledgers);
+            Objects.deepEquals(this.driver, other.driver) &&
+            Objects.deepEquals(this.ledgers, other.ledgers);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             driver,
             ledgers);
     }
@@ -91,7 +91,7 @@ public class LedgerStorage {
  
         private String driver;
  
-        private java.util.List<String> ledgers;  
+        private List<String> ledgers;  
         
         private Builder() {
           // force use of static builder() method
@@ -103,7 +103,7 @@ public class LedgerStorage {
             return this;
         }
 
-        public Builder ledgers(java.util.List<String> ledgers) {
+        public Builder ledgers(List<String> ledgers) {
             Utils.checkNotNull(ledgers, "ledgers");
             this.ledgers = ledgers;
             return this;

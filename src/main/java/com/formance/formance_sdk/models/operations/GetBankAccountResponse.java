@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.BankAccountResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetBankAccountResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetBankAccountResponse implements Response {
 
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse;
+    private Optional<? extends BankAccountResponse> bankAccountResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
 
     @JsonCreator
     public GetBankAccountResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse,
+            Optional<? extends BankAccountResponse> bankAccountResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.BankAccountResponse>) bankAccountResponse;
+    public Optional<BankAccountResponse> bankAccountResponse() {
+        return (Optional<BankAccountResponse>) bankAccountResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
     /**
      * OK
      */
-    public GetBankAccountResponse withBankAccountResponse(com.formance.formance_sdk.models.shared.BankAccountResponse bankAccountResponse) {
+    public GetBankAccountResponse withBankAccountResponse(BankAccountResponse bankAccountResponse) {
         Utils.checkNotNull(bankAccountResponse, "bankAccountResponse");
         this.bankAccountResponse = Optional.ofNullable(bankAccountResponse);
         return this;
@@ -110,7 +114,7 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
     /**
      * OK
      */
-    public GetBankAccountResponse withBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse) {
+    public GetBankAccountResponse withBankAccountResponse(Optional<? extends BankAccountResponse> bankAccountResponse) {
         Utils.checkNotNull(bankAccountResponse, "bankAccountResponse");
         this.bankAccountResponse = bankAccountResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
         }
         GetBankAccountResponse other = (GetBankAccountResponse) o;
         return 
-            java.util.Objects.deepEquals(this.bankAccountResponse, other.bankAccountResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.bankAccountResponse, other.bankAccountResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             bankAccountResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse = Optional.empty();
+        private Optional<? extends BankAccountResponse> bankAccountResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
         /**
          * OK
          */
-        public Builder bankAccountResponse(com.formance.formance_sdk.models.shared.BankAccountResponse bankAccountResponse) {
+        public Builder bankAccountResponse(BankAccountResponse bankAccountResponse) {
             Utils.checkNotNull(bankAccountResponse, "bankAccountResponse");
             this.bankAccountResponse = Optional.ofNullable(bankAccountResponse);
             return this;
@@ -203,7 +207,7 @@ public class GetBankAccountResponse implements com.formance.formance_sdk.utils.R
         /**
          * OK
          */
-        public Builder bankAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.BankAccountResponse> bankAccountResponse) {
+        public Builder bankAccountResponse(Optional<? extends BankAccountResponse> bankAccountResponse) {
             Utils.checkNotNull(bankAccountResponse, "bankAccountResponse");
             this.bankAccountResponse = bankAccountResponse;
             return this;

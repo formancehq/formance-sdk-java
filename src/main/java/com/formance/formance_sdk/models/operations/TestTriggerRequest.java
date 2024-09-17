@@ -4,22 +4,24 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class TestTriggerRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody;
+    private Optional<? extends Map<String, Object>> requestBody;
 
     /**
      * The trigger id
@@ -29,7 +31,7 @@ public class TestTriggerRequest {
 
     @JsonCreator
     public TestTriggerRequest(
-            Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
+            Optional<? extends Map<String, Object>> requestBody,
             String triggerID) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(triggerID, "triggerID");
@@ -44,8 +46,8 @@ public class TestTriggerRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -60,13 +62,13 @@ public class TestTriggerRequest {
         return new Builder();
     }
 
-    public TestTriggerRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
+    public TestTriggerRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
-    public TestTriggerRequest withRequestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+    public TestTriggerRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -91,13 +93,13 @@ public class TestTriggerRequest {
         }
         TestTriggerRequest other = (TestTriggerRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.triggerID, other.triggerID);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.triggerID, other.triggerID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             triggerID);
     }
@@ -111,7 +113,7 @@ public class TestTriggerRequest {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody = Optional.empty();
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
  
         private String triggerID;  
         
@@ -119,13 +121,13 @@ public class TestTriggerRequest {
           // force use of static builder() method
         }
 
-        public Builder requestBody(java.util.Map<String, java.lang.Object> requestBody) {
+        public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

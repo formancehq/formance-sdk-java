@@ -4,28 +4,25 @@
 
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
-import java.time.OffsetDateTime;
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.formance.formance_sdk.utils.OneOfDeserializer;
 import com.formance.formance_sdk.utils.TypedObject;
 import com.formance.formance_sdk.utils.Utils.JsonShape;
+import com.formance.formance_sdk.utils.Utils.TypeReferenceWithShape;
+import com.formance.formance_sdk.utils.Utils;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 
 
 @JsonDeserialize(using = ConnectorConfig._Deserializer.class)
 public class ConnectorConfig {
 
-    @com.fasterxml.jackson.annotation.JsonValue
+    @JsonValue
     private TypedObject value;
     
     private ConnectorConfig(TypedObject value) {
@@ -90,17 +87,17 @@ public class ConnectorConfig {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code StripeConfig}</li>
-     * <li>{@code DummyPayConfig}</li>
-     * <li>{@code WiseConfig}</li>
-     * <li>{@code ModulrConfig}</li>
-     * <li>{@code CurrencyCloudConfig}</li>
-     * <li>{@code BankingCircleConfig}</li>
-     * <li>{@code MangoPayConfig}</li>
-     * <li>{@code MoneycorpConfig}</li>
-     * <li>{@code AtlarConfig}</li>
-     * <li>{@code AdyenConfig}</li>
-     * <li>{@code GenericConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.StripeConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.DummyPayConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.WiseConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.ModulrConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.CurrencyCloudConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.BankingCircleConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.MangoPayConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.MoneycorpConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.AtlarConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.AdyenConfig}</li>
+     * <li>{@code com.formance.formance_sdk.models.shared.GenericConfig}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -127,30 +124,30 @@ public class ConnectorConfig {
             return false;
         }
         ConnectorConfig other = (ConnectorConfig) o;
-        return java.util.Objects.deepEquals(this.value.value(), other.value.value()); 
+        return Objects.deepEquals(this.value.value(), other.value.value()); 
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(value.value());
+        return Objects.hash(value.value());
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends com.formance.formance_sdk.utils.OneOfDeserializer<ConnectorConfig> {
+    public static final class _Deserializer extends OneOfDeserializer<ConnectorConfig> {
 
         public _Deserializer() {
-            super(ConnectorConfig.class,
-                  Utils.TypeReferenceWithShape.of(new TypeReference<StripeConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<DummyPayConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<WiseConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<ModulrConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<CurrencyCloudConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<BankingCircleConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<MangoPayConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<MoneycorpConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<AtlarConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<AdyenConfig>() {}, Utils.JsonShape.DEFAULT),
-                  Utils.TypeReferenceWithShape.of(new TypeReference<GenericConfig>() {}, Utils.JsonShape.DEFAULT));
+            super(ConnectorConfig.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.BankingCircleConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.AtlarConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.DummyPayConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.AdyenConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.MoneycorpConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.MangoPayConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.CurrencyCloudConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.ModulrConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.GenericConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.StripeConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.WiseConfig>() {}, JsonShape.DEFAULT));
         }
     }
     

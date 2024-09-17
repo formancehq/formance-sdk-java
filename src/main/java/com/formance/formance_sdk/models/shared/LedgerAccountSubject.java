@@ -4,16 +4,15 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class LedgerAccountSubject implements Subject {
 
@@ -40,7 +39,7 @@ public class LedgerAccountSubject implements Subject {
 
     @JsonIgnore
     @Override
-    public java.lang.String type() {
+    public String type() {
         return Utils.discriminatorToString(type);
     }
 
@@ -70,13 +69,13 @@ public class LedgerAccountSubject implements Subject {
         }
         LedgerAccountSubject other = (LedgerAccountSubject) o;
         return 
-            java.util.Objects.deepEquals(this.identifier, other.identifier) &&
-            java.util.Objects.deepEquals(this.type, other.type);
+            Objects.deepEquals(this.identifier, other.identifier) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             identifier,
             type);
     }

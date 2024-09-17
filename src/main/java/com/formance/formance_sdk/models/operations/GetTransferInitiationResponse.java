@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.TransferInitiationResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class GetTransferInitiationResponse implements com.formance.formance_sdk.utils.Response {
+
+public class GetTransferInitiationResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse;
+    private Optional<? extends TransferInitiationResponse> transferInitiationResponse;
 
     @JsonCreator
     public GetTransferInitiationResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse) {
+            Optional<? extends TransferInitiationResponse> transferInitiationResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.TransferInitiationResponse>) transferInitiationResponse;
+    public Optional<TransferInitiationResponse> transferInitiationResponse() {
+        return (Optional<TransferInitiationResponse>) transferInitiationResponse;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
     /**
      * OK
      */
-    public GetTransferInitiationResponse withTransferInitiationResponse(com.formance.formance_sdk.models.shared.TransferInitiationResponse transferInitiationResponse) {
+    public GetTransferInitiationResponse withTransferInitiationResponse(TransferInitiationResponse transferInitiationResponse) {
         Utils.checkNotNull(transferInitiationResponse, "transferInitiationResponse");
         this.transferInitiationResponse = Optional.ofNullable(transferInitiationResponse);
         return this;
@@ -137,7 +141,7 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
     /**
      * OK
      */
-    public GetTransferInitiationResponse withTransferInitiationResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse) {
+    public GetTransferInitiationResponse withTransferInitiationResponse(Optional<? extends TransferInitiationResponse> transferInitiationResponse) {
         Utils.checkNotNull(transferInitiationResponse, "transferInitiationResponse");
         this.transferInitiationResponse = transferInitiationResponse;
         return this;
@@ -153,15 +157,15 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
         }
         GetTransferInitiationResponse other = (GetTransferInitiationResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.transferInitiationResponse, other.transferInitiationResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.transferInitiationResponse, other.transferInitiationResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse = Optional.empty();  
+        private Optional<? extends TransferInitiationResponse> transferInitiationResponse = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
         /**
          * OK
          */
-        public Builder transferInitiationResponse(com.formance.formance_sdk.models.shared.TransferInitiationResponse transferInitiationResponse) {
+        public Builder transferInitiationResponse(TransferInitiationResponse transferInitiationResponse) {
             Utils.checkNotNull(transferInitiationResponse, "transferInitiationResponse");
             this.transferInitiationResponse = Optional.ofNullable(transferInitiationResponse);
             return this;
@@ -230,7 +234,7 @@ public class GetTransferInitiationResponse implements com.formance.formance_sdk.
         /**
          * OK
          */
-        public Builder transferInitiationResponse(Optional<? extends com.formance.formance_sdk.models.shared.TransferInitiationResponse> transferInitiationResponse) {
+        public Builder transferInitiationResponse(Optional<? extends TransferInitiationResponse> transferInitiationResponse) {
             Utils.checkNotNull(transferInitiationResponse, "transferInitiationResponse");
             this.transferInitiationResponse = transferInitiationResponse;
             return this;

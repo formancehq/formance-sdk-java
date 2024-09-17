@@ -4,19 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Response {
 
@@ -29,12 +31,12 @@ public class Response {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> data;
+    private Optional<? extends Map<String, Object>> data;
 
     @JsonCreator
     public Response(
             @JsonProperty("cursor") Optional<? extends ResponseCursor> cursor,
-            @JsonProperty("data") Optional<? extends java.util.Map<String, java.lang.Object>> data) {
+            @JsonProperty("data") Optional<? extends Map<String, Object>> data) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(data, "data");
         this.cursor = cursor;
@@ -56,8 +58,8 @@ public class Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> data() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) data;
+    public Optional<Map<String, Object>> data() {
+        return (Optional<Map<String, Object>>) data;
     }
 
     public final static Builder builder() {
@@ -79,7 +81,7 @@ public class Response {
     /**
      * The payload
      */
-    public Response withData(java.util.Map<String, java.lang.Object> data) {
+    public Response withData(Map<String, Object> data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
@@ -88,7 +90,7 @@ public class Response {
     /**
      * The payload
      */
-    public Response withData(Optional<? extends java.util.Map<String, java.lang.Object>> data) {
+    public Response withData(Optional<? extends Map<String, Object>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -104,13 +106,13 @@ public class Response {
         }
         Response other = (Response) o;
         return 
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.data, other.data);
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             cursor,
             data);
     }
@@ -126,7 +128,7 @@ public class Response {
  
         private Optional<? extends ResponseCursor> cursor = Optional.empty();
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> data = Optional.empty();  
+        private Optional<? extends Map<String, Object>> data = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -147,7 +149,7 @@ public class Response {
         /**
          * The payload
          */
-        public Builder data(java.util.Map<String, java.lang.Object> data) {
+        public Builder data(Map<String, Object> data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
@@ -156,7 +158,7 @@ public class Response {
         /**
          * The payload
          */
-        public Builder data(Optional<? extends java.util.Map<String, java.lang.Object>> data) {
+        public Builder data(Optional<? extends Map<String, Object>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

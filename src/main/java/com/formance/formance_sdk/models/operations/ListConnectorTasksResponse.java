@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.TasksCursor;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListConnectorTasksResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListConnectorTasksResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -36,14 +40,14 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor;
+    private Optional<? extends TasksCursor> tasksCursor;
 
     @JsonCreator
     public ListConnectorTasksResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor) {
+            Optional<? extends TasksCursor> tasksCursor) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +94,8 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor() {
-        return (Optional<com.formance.formance_sdk.models.shared.TasksCursor>) tasksCursor;
+    public Optional<TasksCursor> tasksCursor() {
+        return (Optional<TasksCursor>) tasksCursor;
     }
 
     public final static Builder builder() {
@@ -128,7 +132,7 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    public ListConnectorTasksResponse withTasksCursor(com.formance.formance_sdk.models.shared.TasksCursor tasksCursor) {
+    public ListConnectorTasksResponse withTasksCursor(TasksCursor tasksCursor) {
         Utils.checkNotNull(tasksCursor, "tasksCursor");
         this.tasksCursor = Optional.ofNullable(tasksCursor);
         return this;
@@ -137,7 +141,7 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
     /**
      * OK
      */
-    public ListConnectorTasksResponse withTasksCursor(Optional<? extends com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor) {
+    public ListConnectorTasksResponse withTasksCursor(Optional<? extends TasksCursor> tasksCursor) {
         Utils.checkNotNull(tasksCursor, "tasksCursor");
         this.tasksCursor = tasksCursor;
         return this;
@@ -153,15 +157,15 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
         }
         ListConnectorTasksResponse other = (ListConnectorTasksResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            java.util.Objects.deepEquals(this.tasksCursor, other.tasksCursor);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.tasksCursor, other.tasksCursor);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             statusCode,
             rawResponse,
@@ -185,7 +189,7 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor = Optional.empty();  
+        private Optional<? extends TasksCursor> tasksCursor = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +225,7 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
         /**
          * OK
          */
-        public Builder tasksCursor(com.formance.formance_sdk.models.shared.TasksCursor tasksCursor) {
+        public Builder tasksCursor(TasksCursor tasksCursor) {
             Utils.checkNotNull(tasksCursor, "tasksCursor");
             this.tasksCursor = Optional.ofNullable(tasksCursor);
             return this;
@@ -230,7 +234,7 @@ public class ListConnectorTasksResponse implements com.formance.formance_sdk.uti
         /**
          * OK
          */
-        public Builder tasksCursor(Optional<? extends com.formance.formance_sdk.models.shared.TasksCursor> tasksCursor) {
+        public Builder tasksCursor(Optional<? extends TasksCursor> tasksCursor) {
             Utils.checkNotNull(tasksCursor, "tasksCursor");
             this.tasksCursor = tasksCursor;
             return this;

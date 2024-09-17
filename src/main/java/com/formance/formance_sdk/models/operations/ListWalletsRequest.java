@@ -4,18 +4,21 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListWalletsRequest {
 
@@ -27,36 +30,36 @@ public class ListWalletsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=expand")
-    private Optional<? extends String> expand;
+    private Optional<String> expand;
 
     /**
      * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
-    private Optional<? extends java.util.Map<String, String>> metadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     /**
      * Filter on wallet name
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     /**
      * The maximum number of results to return per page
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     @JsonCreator
     public ListWalletsRequest(
-            Optional<? extends String> cursor,
-            Optional<? extends String> expand,
-            Optional<? extends java.util.Map<String, String>> metadata,
-            Optional<? extends String> name,
-            Optional<? extends Long> pageSize) {
+            Optional<String> cursor,
+            Optional<String> expand,
+            Optional<? extends Map<String, String>> metadata,
+            Optional<String> name,
+            Optional<Long> pageSize) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(metadata, "metadata");
@@ -80,16 +83,14 @@ public class ListWalletsRequest {
      * No other parameters can be set when the pagination token is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> expand() {
-        return (Optional<String>) expand;
+        return expand;
     }
 
     /**
@@ -97,26 +98,24 @@ public class ListWalletsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> metadata() {
-        return (Optional<java.util.Map<String, String>>) metadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     /**
      * Filter on wallet name
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
     /**
      * The maximum number of results to return per page
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     public final static Builder builder() {
@@ -143,7 +142,7 @@ public class ListWalletsRequest {
      * No other parameters can be set when the pagination token is set.
      * 
      */
-    public ListWalletsRequest withCursor(Optional<? extends String> cursor) {
+    public ListWalletsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -155,7 +154,7 @@ public class ListWalletsRequest {
         return this;
     }
 
-    public ListWalletsRequest withExpand(Optional<? extends String> expand) {
+    public ListWalletsRequest withExpand(Optional<String> expand) {
         Utils.checkNotNull(expand, "expand");
         this.expand = expand;
         return this;
@@ -164,7 +163,7 @@ public class ListWalletsRequest {
     /**
      * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public ListWalletsRequest withMetadata(java.util.Map<String, String> metadata) {
+    public ListWalletsRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
@@ -173,7 +172,7 @@ public class ListWalletsRequest {
     /**
      * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public ListWalletsRequest withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+    public ListWalletsRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -191,7 +190,7 @@ public class ListWalletsRequest {
     /**
      * Filter on wallet name
      */
-    public ListWalletsRequest withName(Optional<? extends String> name) {
+    public ListWalletsRequest withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -209,7 +208,7 @@ public class ListWalletsRequest {
     /**
      * The maximum number of results to return per page
      */
-    public ListWalletsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public ListWalletsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -225,16 +224,16 @@ public class ListWalletsRequest {
         }
         ListWalletsRequest other = (ListWalletsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.expand, other.expand) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize);
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.expand, other.expand) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             cursor,
             expand,
             metadata,
@@ -254,15 +253,15 @@ public class ListWalletsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends String> expand = Optional.empty();
+        private Optional<String> expand = Optional.empty();
  
-        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
-        private Optional<? extends Long> pageSize;  
+        private Optional<Long> pageSize;  
         
         private Builder() {
           // force use of static builder() method
@@ -288,7 +287,7 @@ public class ListWalletsRequest {
          * No other parameters can be set when the pagination token is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -300,7 +299,7 @@ public class ListWalletsRequest {
             return this;
         }
 
-        public Builder expand(Optional<? extends String> expand) {
+        public Builder expand(Optional<String> expand) {
             Utils.checkNotNull(expand, "expand");
             this.expand = expand;
             return this;
@@ -309,7 +308,7 @@ public class ListWalletsRequest {
         /**
          * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
@@ -318,7 +317,7 @@ public class ListWalletsRequest {
         /**
          * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
-        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -336,7 +335,7 @@ public class ListWalletsRequest {
         /**
          * Filter on wallet name
          */
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -354,7 +353,7 @@ public class ListWalletsRequest {
         /**
          * The maximum number of results to return per page
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -363,8 +362,7 @@ public class ListWalletsRequest {
         public ListWalletsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new ListWalletsRequest(
+            }            return new ListWalletsRequest(
                 cursor,
                 expand,
                 metadata,
@@ -372,11 +370,11 @@ public class ListWalletsRequest {
                 pageSize);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

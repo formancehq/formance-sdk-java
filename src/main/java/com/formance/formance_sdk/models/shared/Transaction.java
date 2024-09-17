@@ -4,44 +4,46 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Transaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata;
+    private JsonNullable<? extends Map<String, Object>> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitVolumes")
-    private Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes;
+    private Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes;
 
     @JsonProperty("postings")
-    private java.util.List<Posting> postings;
+    private List<Posting> postings;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitVolumes")
-    private Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes;
+    private Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
@@ -51,11 +53,11 @@ public class Transaction {
 
     @JsonCreator
     public Transaction(
-            @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata,
-            @JsonProperty("postCommitVolumes") Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes,
-            @JsonProperty("postings") java.util.List<Posting> postings,
-            @JsonProperty("preCommitVolumes") Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes,
-            @JsonProperty("reference") Optional<? extends String> reference,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
+            @JsonProperty("postCommitVolumes") Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes,
+            @JsonProperty("postings") List<Posting> postings,
+            @JsonProperty("preCommitVolumes") Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes,
+            @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("timestamp") OffsetDateTime timestamp,
             @JsonProperty("txid") BigInteger txid) {
         Utils.checkNotNull(metadata, "metadata");
@@ -75,7 +77,7 @@ public class Transaction {
     }
     
     public Transaction(
-            java.util.List<Posting> postings,
+            List<Posting> postings,
             OffsetDateTime timestamp,
             BigInteger txid) {
         this(JsonNullable.undefined(), Optional.empty(), postings, Optional.empty(), Optional.empty(), timestamp, txid);
@@ -83,31 +85,30 @@ public class Transaction {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.util.Map<String, java.lang.Object>> metadata() {
-        return (JsonNullable<java.util.Map<String, java.lang.Object>>) metadata;
+    public JsonNullable<Map<String, Object>> metadata() {
+        return (JsonNullable<Map<String, Object>>) metadata;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes() {
-        return (Optional<java.util.Map<String, java.util.Map<String, Volume>>>) postCommitVolumes;
+    public Optional<Map<String, Map<String, Volume>>> postCommitVolumes() {
+        return (Optional<Map<String, Map<String, Volume>>>) postCommitVolumes;
     }
 
     @JsonIgnore
-    public java.util.List<Posting> postings() {
+    public List<Posting> postings() {
         return postings;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes() {
-        return (Optional<java.util.Map<String, java.util.Map<String, Volume>>>) preCommitVolumes;
+    public Optional<Map<String, Map<String, Volume>>> preCommitVolumes() {
+        return (Optional<Map<String, Map<String, Volume>>>) preCommitVolumes;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     @JsonIgnore
@@ -124,43 +125,43 @@ public class Transaction {
         return new Builder();
     }
 
-    public Transaction withMetadata(java.util.Map<String, java.lang.Object> metadata) {
+    public Transaction withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public Transaction withMetadata(JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata) {
+    public Transaction withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    public Transaction withPostCommitVolumes(java.util.Map<String, java.util.Map<String, Volume>> postCommitVolumes) {
+    public Transaction withPostCommitVolumes(Map<String, Map<String, Volume>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
         return this;
     }
 
-    public Transaction withPostCommitVolumes(Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes) {
+    public Transaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = postCommitVolumes;
         return this;
     }
 
-    public Transaction withPostings(java.util.List<Posting> postings) {
+    public Transaction withPostings(List<Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
     }
 
-    public Transaction withPreCommitVolumes(java.util.Map<String, java.util.Map<String, Volume>> preCommitVolumes) {
+    public Transaction withPreCommitVolumes(Map<String, Map<String, Volume>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
         return this;
     }
 
-    public Transaction withPreCommitVolumes(Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes) {
+    public Transaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = preCommitVolumes;
         return this;
@@ -172,7 +173,7 @@ public class Transaction {
         return this;
     }
 
-    public Transaction withReference(Optional<? extends String> reference) {
+    public Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
@@ -205,18 +206,18 @@ public class Transaction {
         }
         Transaction other = (Transaction) o;
         return 
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
-            java.util.Objects.deepEquals(this.postings, other.postings) &&
-            java.util.Objects.deepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.timestamp, other.timestamp) &&
-            java.util.Objects.deepEquals(this.txid, other.txid);
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
+            Objects.deepEquals(this.postings, other.postings) &&
+            Objects.deepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.timestamp, other.timestamp) &&
+            Objects.deepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             metadata,
             postCommitVolumes,
             postings,
@@ -240,15 +241,15 @@ public class Transaction {
     
     public final static class Builder {
  
-        private JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
  
-        private Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes = Optional.empty();
+        private Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes = Optional.empty();
  
-        private java.util.List<Posting> postings;
+        private List<Posting> postings;
  
-        private Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes = Optional.empty();
+        private Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes = Optional.empty();
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
         private OffsetDateTime timestamp;
  
@@ -258,43 +259,43 @@ public class Transaction {
           // force use of static builder() method
         }
 
-        public Builder metadata(java.util.Map<String, java.lang.Object> metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
 
-        public Builder postCommitVolumes(java.util.Map<String, java.util.Map<String, Volume>> postCommitVolumes) {
+        public Builder postCommitVolumes(Map<String, Map<String, Volume>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
             return this;
         }
 
-        public Builder postCommitVolumes(Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> postCommitVolumes) {
+        public Builder postCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = postCommitVolumes;
             return this;
         }
 
-        public Builder postings(java.util.List<Posting> postings) {
+        public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
         }
 
-        public Builder preCommitVolumes(java.util.Map<String, java.util.Map<String, Volume>> preCommitVolumes) {
+        public Builder preCommitVolumes(Map<String, Map<String, Volume>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
             return this;
         }
 
-        public Builder preCommitVolumes(Optional<? extends java.util.Map<String, java.util.Map<String, Volume>>> preCommitVolumes) {
+        public Builder preCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = preCommitVolumes;
             return this;
@@ -306,7 +307,7 @@ public class Transaction {
             return this;
         }
 
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;

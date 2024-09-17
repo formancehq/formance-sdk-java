@@ -4,26 +4,28 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Script {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata;
+    private JsonNullable<? extends Map<String, Object>> metadata;
 
     @JsonProperty("plain")
     private String plain;
@@ -33,18 +35,18 @@ public class Script {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> vars;
+    private Optional<? extends Map<String, Object>> vars;
 
     @JsonCreator
     public Script(
-            @JsonProperty("metadata") JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("plain") String plain,
-            @JsonProperty("reference") Optional<? extends String> reference,
-            @JsonProperty("vars") Optional<? extends java.util.Map<String, java.lang.Object>> vars) {
+            @JsonProperty("reference") Optional<String> reference,
+            @JsonProperty("vars") Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(plain, "plain");
         Utils.checkNotNull(reference, "reference");
@@ -62,8 +64,8 @@ public class Script {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<java.util.Map<String, java.lang.Object>> metadata() {
-        return (JsonNullable<java.util.Map<String, java.lang.Object>>) metadata;
+    public JsonNullable<Map<String, Object>> metadata() {
+        return (JsonNullable<Map<String, Object>>) metadata;
     }
 
     @JsonIgnore
@@ -74,29 +76,28 @@ public class Script {
     /**
      * Reference to attach to the generated transaction
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> vars() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) vars;
+    public Optional<Map<String, Object>> vars() {
+        return (Optional<Map<String, Object>>) vars;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public Script withMetadata(java.util.Map<String, java.lang.Object> metadata) {
+    public Script withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public Script withMetadata(JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata) {
+    public Script withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -120,19 +121,19 @@ public class Script {
     /**
      * Reference to attach to the generated transaction
      */
-    public Script withReference(Optional<? extends String> reference) {
+    public Script withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
-    public Script withVars(java.util.Map<String, java.lang.Object> vars) {
+    public Script withVars(Map<String, Object> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = Optional.ofNullable(vars);
         return this;
     }
 
-    public Script withVars(Optional<? extends java.util.Map<String, java.lang.Object>> vars) {
+    public Script withVars(Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
         return this;
@@ -148,15 +149,15 @@ public class Script {
         }
         Script other = (Script) o;
         return 
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.plain, other.plain) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.vars, other.vars);
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.plain, other.plain) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.vars, other.vars);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             metadata,
             plain,
             reference,
@@ -174,25 +175,25 @@ public class Script {
     
     public final static class Builder {
  
-        private JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
  
         private String plain;
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> vars = Optional.empty();  
+        private Optional<? extends Map<String, Object>> vars = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder metadata(java.util.Map<String, java.lang.Object> metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(JsonNullable<? extends java.util.Map<String, java.lang.Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -216,19 +217,19 @@ public class Script {
         /**
          * Reference to attach to the generated transaction
          */
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
-        public Builder vars(java.util.Map<String, java.lang.Object> vars) {
+        public Builder vars(Map<String, Object> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
             return this;
         }
 
-        public Builder vars(Optional<? extends java.util.Map<String, java.lang.Object>> vars) {
+        public Builder vars(Optional<? extends Map<String, Object>> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = vars;
             return this;

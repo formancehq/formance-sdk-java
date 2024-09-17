@@ -4,23 +4,26 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ListLogsRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody;
+    private Optional<? extends Map<String, Object>> requestBody;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -30,7 +33,7 @@ public class V2ListLogsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * Name of the ledger.
@@ -43,18 +46,18 @@ public class V2ListLogsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
-    private Optional<? extends OffsetDateTime> pit;
+    private Optional<OffsetDateTime> pit;
 
     @JsonCreator
     public V2ListLogsRequest(
-            Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
-            Optional<? extends String> cursor,
+            Optional<? extends Map<String, Object>> requestBody,
+            Optional<String> cursor,
             String ledger,
-            Optional<? extends Long> pageSize,
-            Optional<? extends OffsetDateTime> pit) {
+            Optional<Long> pageSize,
+            Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(ledger, "ledger");
@@ -74,8 +77,8 @@ public class V2ListLogsRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -85,10 +88,9 @@ public class V2ListLogsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
@@ -103,29 +105,27 @@ public class V2ListLogsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> pit() {
-        return (Optional<OffsetDateTime>) pit;
+        return pit;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public V2ListLogsRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
+    public V2ListLogsRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
-    public V2ListLogsRequest withRequestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+    public V2ListLogsRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -151,7 +151,7 @@ public class V2ListLogsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public V2ListLogsRequest withCursor(Optional<? extends String> cursor) {
+    public V2ListLogsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -180,7 +180,7 @@ public class V2ListLogsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public V2ListLogsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public V2ListLogsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -192,7 +192,7 @@ public class V2ListLogsRequest {
         return this;
     }
 
-    public V2ListLogsRequest withPit(Optional<? extends OffsetDateTime> pit) {
+    public V2ListLogsRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
         return this;
@@ -208,16 +208,16 @@ public class V2ListLogsRequest {
         }
         V2ListLogsRequest other = (V2ListLogsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.pit, other.pit);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.pit, other.pit);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             cursor,
             ledger,
@@ -237,27 +237,27 @@ public class V2ListLogsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody = Optional.empty();
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends Long> pageSize = Optional.empty();
+        private Optional<Long> pageSize = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> pit = Optional.empty();  
+        private Optional<OffsetDateTime> pit = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder requestBody(java.util.Map<String, java.lang.Object> requestBody) {
+        public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
@@ -283,7 +283,7 @@ public class V2ListLogsRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -312,7 +312,7 @@ public class V2ListLogsRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -324,7 +324,7 @@ public class V2ListLogsRequest {
             return this;
         }
 
-        public Builder pit(Optional<? extends OffsetDateTime> pit) {
+        public Builder pit(Optional<OffsetDateTime> pit) {
             Utils.checkNotNull(pit, "pit");
             this.pit = pit;
             return this;

@@ -4,19 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ClientSecret {
 
@@ -28,7 +30,7 @@ public class ClientSecret {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> metadata;
+    private Optional<? extends Map<String, Object>> metadata;
 
     @JsonProperty("name")
     private String name;
@@ -37,7 +39,7 @@ public class ClientSecret {
     public ClientSecret(
             @JsonProperty("id") String id,
             @JsonProperty("lastDigits") String lastDigits,
-            @JsonProperty("metadata") Optional<? extends java.util.Map<String, java.lang.Object>> metadata,
+            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(lastDigits, "lastDigits");
@@ -68,8 +70,8 @@ public class ClientSecret {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> metadata() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) metadata;
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
     @JsonIgnore
@@ -93,13 +95,13 @@ public class ClientSecret {
         return this;
     }
 
-    public ClientSecret withMetadata(java.util.Map<String, java.lang.Object> metadata) {
+    public ClientSecret withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
-    public ClientSecret withMetadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+    public ClientSecret withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -121,15 +123,15 @@ public class ClientSecret {
         }
         ClientSecret other = (ClientSecret) o;
         return 
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.lastDigits, other.lastDigits) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.lastDigits, other.lastDigits) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             id,
             lastDigits,
             metadata,
@@ -151,7 +153,7 @@ public class ClientSecret {
  
         private String lastDigits;
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> metadata = Optional.empty();
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
  
         private String name;  
         
@@ -171,13 +173,13 @@ public class ClientSecret {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, java.lang.Object> metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends java.util.Map<String, java.lang.Object>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

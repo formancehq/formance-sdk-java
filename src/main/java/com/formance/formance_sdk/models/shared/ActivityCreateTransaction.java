@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ActivityCreateTransaction {
 
@@ -26,12 +26,12 @@ public class ActivityCreateTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
-    private Optional<? extends String> ledger;
+    private Optional<String> ledger;
 
     @JsonCreator
     public ActivityCreateTransaction(
             @JsonProperty("data") Optional<? extends OrchestrationPostTransaction> data,
-            @JsonProperty("ledger") Optional<? extends String> ledger) {
+            @JsonProperty("ledger") Optional<String> ledger) {
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(ledger, "ledger");
         this.data = data;
@@ -48,10 +48,9 @@ public class ActivityCreateTransaction {
         return (Optional<OrchestrationPostTransaction>) data;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> ledger() {
-        return (Optional<String>) ledger;
+        return ledger;
     }
 
     public final static Builder builder() {
@@ -76,7 +75,7 @@ public class ActivityCreateTransaction {
         return this;
     }
 
-    public ActivityCreateTransaction withLedger(Optional<? extends String> ledger) {
+    public ActivityCreateTransaction withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
         return this;
@@ -92,13 +91,13 @@ public class ActivityCreateTransaction {
         }
         ActivityCreateTransaction other = (ActivityCreateTransaction) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data,
             ledger);
     }
@@ -114,7 +113,7 @@ public class ActivityCreateTransaction {
  
         private Optional<? extends OrchestrationPostTransaction> data = Optional.empty();
  
-        private Optional<? extends String> ledger = Optional.empty();  
+        private Optional<String> ledger = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -138,7 +137,7 @@ public class ActivityCreateTransaction {
             return this;
         }
 
-        public Builder ledger(Optional<? extends String> ledger) {
+        public Builder ledger(Optional<String> ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
             return this;

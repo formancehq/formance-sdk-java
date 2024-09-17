@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConnectorsResponseData {
 
@@ -25,7 +25,7 @@ public class ConnectorsResponseData {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
-    private Optional<? extends Boolean> enabled;
+    private Optional<Boolean> enabled;
 
     @JsonProperty("name")
     private String name;
@@ -36,7 +36,7 @@ public class ConnectorsResponseData {
     @JsonCreator
     public ConnectorsResponseData(
             @JsonProperty("connectorID") String connectorID,
-            @JsonProperty("enabled") Optional<? extends Boolean> enabled,
+            @JsonProperty("enabled") Optional<Boolean> enabled,
             @JsonProperty("name") String name,
             @JsonProperty("provider") Connector provider) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -61,10 +61,9 @@ public class ConnectorsResponseData {
         return connectorID;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> enabled() {
-        return (Optional<Boolean>) enabled;
+        return enabled;
     }
 
     @JsonIgnore
@@ -93,7 +92,7 @@ public class ConnectorsResponseData {
         return this;
     }
 
-    public ConnectorsResponseData withEnabled(Optional<? extends Boolean> enabled) {
+    public ConnectorsResponseData withEnabled(Optional<Boolean> enabled) {
         Utils.checkNotNull(enabled, "enabled");
         this.enabled = enabled;
         return this;
@@ -121,15 +120,15 @@ public class ConnectorsResponseData {
         }
         ConnectorsResponseData other = (ConnectorsResponseData) o;
         return 
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.enabled, other.enabled) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.provider, other.provider);
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.enabled, other.enabled) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connectorID,
             enabled,
             name,
@@ -149,7 +148,7 @@ public class ConnectorsResponseData {
  
         private String connectorID;
  
-        private Optional<? extends Boolean> enabled = Optional.empty();
+        private Optional<Boolean> enabled = Optional.empty();
  
         private String name;
  
@@ -171,7 +170,7 @@ public class ConnectorsResponseData {
             return this;
         }
 
-        public Builder enabled(Optional<? extends Boolean> enabled) {
+        public Builder enabled(Optional<Boolean> enabled) {
             Utils.checkNotNull(enabled, "enabled");
             this.enabled = enabled;
             return this;

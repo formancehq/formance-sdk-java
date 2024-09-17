@@ -4,31 +4,32 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
+import java.util.Map;
+import java.util.Objects;
+
 
 public class AssetHolder {
 
     @JsonProperty("assets")
-    private java.util.Map<String, BigInteger> assets;
+    private Map<String, BigInteger> assets;
 
     @JsonCreator
     public AssetHolder(
-            @JsonProperty("assets") java.util.Map<String, BigInteger> assets) {
+            @JsonProperty("assets") Map<String, BigInteger> assets) {
         assets = Utils.emptyMapIfNull(assets);
         this.assets = assets;
     }
 
     @JsonIgnore
-    public java.util.Map<String, BigInteger> assets() {
+    public Map<String, BigInteger> assets() {
         return assets;
     }
 
@@ -36,7 +37,7 @@ public class AssetHolder {
         return new Builder();
     }
 
-    public AssetHolder withAssets(java.util.Map<String, BigInteger> assets) {
+    public AssetHolder withAssets(Map<String, BigInteger> assets) {
         Utils.checkNotNull(assets, "assets");
         this.assets = assets;
         return this;
@@ -52,12 +53,12 @@ public class AssetHolder {
         }
         AssetHolder other = (AssetHolder) o;
         return 
-            java.util.Objects.deepEquals(this.assets, other.assets);
+            Objects.deepEquals(this.assets, other.assets);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             assets);
     }
     
@@ -69,13 +70,13 @@ public class AssetHolder {
     
     public final static class Builder {
  
-        private java.util.Map<String, BigInteger> assets;  
+        private Map<String, BigInteger> assets;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder assets(java.util.Map<String, BigInteger> assets) {
+        public Builder assets(Map<String, BigInteger> assets) {
             Utils.checkNotNull(assets, "assets");
             this.assets = assets;
             return this;

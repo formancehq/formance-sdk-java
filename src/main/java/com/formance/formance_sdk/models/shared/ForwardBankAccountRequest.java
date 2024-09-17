@@ -4,16 +4,15 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
+
 
 public class ForwardBankAccountRequest {
 
@@ -52,12 +51,12 @@ public class ForwardBankAccountRequest {
         }
         ForwardBankAccountRequest other = (ForwardBankAccountRequest) o;
         return 
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID);
+            Objects.deepEquals(this.connectorID, other.connectorID);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             connectorID);
     }
     

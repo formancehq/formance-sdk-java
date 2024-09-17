@@ -4,41 +4,43 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Query {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("after")
-    private Optional<? extends java.util.List<String>> after;
+    private Optional<? extends List<String>> after;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledgers")
-    private Optional<? extends java.util.List<String>> ledgers;
+    private Optional<? extends List<String>> ledgers;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("policy")
-    private Optional<? extends String> policy;
+    private Optional<String> policy;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw")
@@ -46,27 +48,27 @@ public class Query {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sort")
-    private Optional<? extends String> sort;
+    private Optional<String> sort;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target")
-    private Optional<? extends String> target;
+    private Optional<String> target;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terms")
-    private Optional<? extends java.util.List<String>> terms;
+    private Optional<? extends List<String>> terms;
 
     @JsonCreator
     public Query(
-            @JsonProperty("after") Optional<? extends java.util.List<String>> after,
-            @JsonProperty("cursor") Optional<? extends String> cursor,
-            @JsonProperty("ledgers") Optional<? extends java.util.List<String>> ledgers,
-            @JsonProperty("pageSize") Optional<? extends Long> pageSize,
-            @JsonProperty("policy") Optional<? extends String> policy,
+            @JsonProperty("after") Optional<? extends List<String>> after,
+            @JsonProperty("cursor") Optional<String> cursor,
+            @JsonProperty("ledgers") Optional<? extends List<String>> ledgers,
+            @JsonProperty("pageSize") Optional<Long> pageSize,
+            @JsonProperty("policy") Optional<String> policy,
             @JsonProperty("raw") Optional<? extends QueryRaw> raw,
-            @JsonProperty("sort") Optional<? extends String> sort,
-            @JsonProperty("target") Optional<? extends String> target,
-            @JsonProperty("terms") Optional<? extends java.util.List<String>> terms) {
+            @JsonProperty("sort") Optional<String> sort,
+            @JsonProperty("target") Optional<String> target,
+            @JsonProperty("terms") Optional<? extends List<String>> terms) {
         Utils.checkNotNull(after, "after");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(ledgers, "ledgers");
@@ -93,32 +95,29 @@ public class Query {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> after() {
-        return (Optional<java.util.List<String>>) after;
+    public Optional<List<String>> after() {
+        return (Optional<List<String>>) after;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> ledgers() {
-        return (Optional<java.util.List<String>>) ledgers;
+    public Optional<List<String>> ledgers() {
+        return (Optional<List<String>>) ledgers;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> policy() {
-        return (Optional<String>) policy;
+        return policy;
     }
 
     @SuppressWarnings("unchecked")
@@ -127,35 +126,33 @@ public class Query {
         return (Optional<QueryRaw>) raw;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> sort() {
-        return (Optional<String>) sort;
+        return sort;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> target() {
-        return (Optional<String>) target;
+        return target;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> terms() {
-        return (Optional<java.util.List<String>>) terms;
+    public Optional<List<String>> terms() {
+        return (Optional<List<String>>) terms;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public Query withAfter(java.util.List<String> after) {
+    public Query withAfter(List<String> after) {
         Utils.checkNotNull(after, "after");
         this.after = Optional.ofNullable(after);
         return this;
     }
 
-    public Query withAfter(Optional<? extends java.util.List<String>> after) {
+    public Query withAfter(Optional<? extends List<String>> after) {
         Utils.checkNotNull(after, "after");
         this.after = after;
         return this;
@@ -167,19 +164,19 @@ public class Query {
         return this;
     }
 
-    public Query withCursor(Optional<? extends String> cursor) {
+    public Query withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
     }
 
-    public Query withLedgers(java.util.List<String> ledgers) {
+    public Query withLedgers(List<String> ledgers) {
         Utils.checkNotNull(ledgers, "ledgers");
         this.ledgers = Optional.ofNullable(ledgers);
         return this;
     }
 
-    public Query withLedgers(Optional<? extends java.util.List<String>> ledgers) {
+    public Query withLedgers(Optional<? extends List<String>> ledgers) {
         Utils.checkNotNull(ledgers, "ledgers");
         this.ledgers = ledgers;
         return this;
@@ -191,7 +188,7 @@ public class Query {
         return this;
     }
 
-    public Query withPageSize(Optional<? extends Long> pageSize) {
+    public Query withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -203,7 +200,7 @@ public class Query {
         return this;
     }
 
-    public Query withPolicy(Optional<? extends String> policy) {
+    public Query withPolicy(Optional<String> policy) {
         Utils.checkNotNull(policy, "policy");
         this.policy = policy;
         return this;
@@ -227,7 +224,7 @@ public class Query {
         return this;
     }
 
-    public Query withSort(Optional<? extends String> sort) {
+    public Query withSort(Optional<String> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -239,19 +236,19 @@ public class Query {
         return this;
     }
 
-    public Query withTarget(Optional<? extends String> target) {
+    public Query withTarget(Optional<String> target) {
         Utils.checkNotNull(target, "target");
         this.target = target;
         return this;
     }
 
-    public Query withTerms(java.util.List<String> terms) {
+    public Query withTerms(List<String> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = Optional.ofNullable(terms);
         return this;
     }
 
-    public Query withTerms(Optional<? extends java.util.List<String>> terms) {
+    public Query withTerms(Optional<? extends List<String>> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = terms;
         return this;
@@ -267,20 +264,20 @@ public class Query {
         }
         Query other = (Query) o;
         return 
-            java.util.Objects.deepEquals(this.after, other.after) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.ledgers, other.ledgers) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.policy, other.policy) &&
-            java.util.Objects.deepEquals(this.raw, other.raw) &&
-            java.util.Objects.deepEquals(this.sort, other.sort) &&
-            java.util.Objects.deepEquals(this.target, other.target) &&
-            java.util.Objects.deepEquals(this.terms, other.terms);
+            Objects.deepEquals(this.after, other.after) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.ledgers, other.ledgers) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.policy, other.policy) &&
+            Objects.deepEquals(this.raw, other.raw) &&
+            Objects.deepEquals(this.sort, other.sort) &&
+            Objects.deepEquals(this.target, other.target) &&
+            Objects.deepEquals(this.terms, other.terms);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             after,
             cursor,
             ledgers,
@@ -308,35 +305,35 @@ public class Query {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.List<String>> after = Optional.empty();
+        private Optional<? extends List<String>> after = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends java.util.List<String>> ledgers = Optional.empty();
+        private Optional<? extends List<String>> ledgers = Optional.empty();
  
-        private Optional<? extends Long> pageSize = Optional.empty();
+        private Optional<Long> pageSize = Optional.empty();
  
-        private Optional<? extends String> policy = Optional.empty();
+        private Optional<String> policy = Optional.empty();
  
         private Optional<? extends QueryRaw> raw = Optional.empty();
  
-        private Optional<? extends String> sort = Optional.empty();
+        private Optional<String> sort = Optional.empty();
  
-        private Optional<? extends String> target = Optional.empty();
+        private Optional<String> target = Optional.empty();
  
-        private Optional<? extends java.util.List<String>> terms = Optional.empty();  
+        private Optional<? extends List<String>> terms = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder after(java.util.List<String> after) {
+        public Builder after(List<String> after) {
             Utils.checkNotNull(after, "after");
             this.after = Optional.ofNullable(after);
             return this;
         }
 
-        public Builder after(Optional<? extends java.util.List<String>> after) {
+        public Builder after(Optional<? extends List<String>> after) {
             Utils.checkNotNull(after, "after");
             this.after = after;
             return this;
@@ -348,19 +345,19 @@ public class Query {
             return this;
         }
 
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
         }
 
-        public Builder ledgers(java.util.List<String> ledgers) {
+        public Builder ledgers(List<String> ledgers) {
             Utils.checkNotNull(ledgers, "ledgers");
             this.ledgers = Optional.ofNullable(ledgers);
             return this;
         }
 
-        public Builder ledgers(Optional<? extends java.util.List<String>> ledgers) {
+        public Builder ledgers(Optional<? extends List<String>> ledgers) {
             Utils.checkNotNull(ledgers, "ledgers");
             this.ledgers = ledgers;
             return this;
@@ -372,7 +369,7 @@ public class Query {
             return this;
         }
 
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -384,7 +381,7 @@ public class Query {
             return this;
         }
 
-        public Builder policy(Optional<? extends String> policy) {
+        public Builder policy(Optional<String> policy) {
             Utils.checkNotNull(policy, "policy");
             this.policy = policy;
             return this;
@@ -408,7 +405,7 @@ public class Query {
             return this;
         }
 
-        public Builder sort(Optional<? extends String> sort) {
+        public Builder sort(Optional<String> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -420,19 +417,19 @@ public class Query {
             return this;
         }
 
-        public Builder target(Optional<? extends String> target) {
+        public Builder target(Optional<String> target) {
             Utils.checkNotNull(target, "target");
             this.target = target;
             return this;
         }
 
-        public Builder terms(java.util.List<String> terms) {
+        public Builder terms(List<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = Optional.ofNullable(terms);
             return this;
         }
 
-        public Builder terms(Optional<? extends java.util.List<String>> terms) {
+        public Builder terms(Optional<? extends List<String>> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = terms;
             return this;

@@ -4,22 +4,20 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class PaymentRequest {
 
@@ -37,7 +35,7 @@ public class PaymentRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destinationAccountID")
-    private Optional<? extends String> destinationAccountID;
+    private Optional<String> destinationAccountID;
 
     @JsonProperty("reference")
     private String reference;
@@ -47,7 +45,7 @@ public class PaymentRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceAccountID")
-    private Optional<? extends String> sourceAccountID;
+    private Optional<String> sourceAccountID;
 
     @JsonProperty("status")
     private PaymentStatus status;
@@ -61,10 +59,10 @@ public class PaymentRequest {
             @JsonProperty("asset") String asset,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("destinationAccountID") Optional<? extends String> destinationAccountID,
+            @JsonProperty("destinationAccountID") Optional<String> destinationAccountID,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheme") PaymentScheme scheme,
-            @JsonProperty("sourceAccountID") Optional<? extends String> sourceAccountID,
+            @JsonProperty("sourceAccountID") Optional<String> sourceAccountID,
             @JsonProperty("status") PaymentStatus status,
             @JsonProperty("type") PaymentType type) {
         Utils.checkNotNull(amount, "amount");
@@ -121,10 +119,9 @@ public class PaymentRequest {
         return createdAt;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> destinationAccountID() {
-        return (Optional<String>) destinationAccountID;
+        return destinationAccountID;
     }
 
     @JsonIgnore
@@ -137,10 +134,9 @@ public class PaymentRequest {
         return scheme;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> sourceAccountID() {
-        return (Optional<String>) sourceAccountID;
+        return sourceAccountID;
     }
 
     @JsonIgnore
@@ -192,7 +188,7 @@ public class PaymentRequest {
         return this;
     }
 
-    public PaymentRequest withDestinationAccountID(Optional<? extends String> destinationAccountID) {
+    public PaymentRequest withDestinationAccountID(Optional<String> destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = destinationAccountID;
         return this;
@@ -216,7 +212,7 @@ public class PaymentRequest {
         return this;
     }
 
-    public PaymentRequest withSourceAccountID(Optional<? extends String> sourceAccountID) {
+    public PaymentRequest withSourceAccountID(Optional<String> sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
         return this;
@@ -244,21 +240,21 @@ public class PaymentRequest {
         }
         PaymentRequest other = (PaymentRequest) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.scheme, other.scheme) &&
-            java.util.Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.type, other.type);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.scheme, other.scheme) &&
+            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             asset,
             connectorID,
@@ -296,13 +292,13 @@ public class PaymentRequest {
  
         private OffsetDateTime createdAt;
  
-        private Optional<? extends String> destinationAccountID = Optional.empty();
+        private Optional<String> destinationAccountID = Optional.empty();
  
         private String reference;
  
         private PaymentScheme scheme;
  
-        private Optional<? extends String> sourceAccountID = Optional.empty();
+        private Optional<String> sourceAccountID = Optional.empty();
  
         private PaymentStatus status;
  
@@ -347,7 +343,7 @@ public class PaymentRequest {
             return this;
         }
 
-        public Builder destinationAccountID(Optional<? extends String> destinationAccountID) {
+        public Builder destinationAccountID(Optional<String> destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = destinationAccountID;
             return this;
@@ -371,7 +367,7 @@ public class PaymentRequest {
             return this;
         }
 
-        public Builder sourceAccountID(Optional<? extends String> sourceAccountID) {
+        public Builder sourceAccountID(Optional<String> sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
             return this;

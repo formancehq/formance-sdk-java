@@ -4,19 +4,19 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class WorkflowInstanceHistoryStageInput {
 
@@ -342,23 +342,23 @@ public class WorkflowInstanceHistoryStageInput {
         }
         WorkflowInstanceHistoryStageInput other = (WorkflowInstanceHistoryStageInput) o;
         return 
-            java.util.Objects.deepEquals(this.addAccountMetadata, other.addAccountMetadata) &&
-            java.util.Objects.deepEquals(this.confirmHold, other.confirmHold) &&
-            java.util.Objects.deepEquals(this.createTransaction, other.createTransaction) &&
-            java.util.Objects.deepEquals(this.creditWallet, other.creditWallet) &&
-            java.util.Objects.deepEquals(this.debitWallet, other.debitWallet) &&
-            java.util.Objects.deepEquals(this.getAccount, other.getAccount) &&
-            java.util.Objects.deepEquals(this.getPayment, other.getPayment) &&
-            java.util.Objects.deepEquals(this.getWallet, other.getWallet) &&
-            java.util.Objects.deepEquals(this.listWallets, other.listWallets) &&
-            java.util.Objects.deepEquals(this.revertTransaction, other.revertTransaction) &&
-            java.util.Objects.deepEquals(this.stripeTransfer, other.stripeTransfer) &&
-            java.util.Objects.deepEquals(this.voidHold, other.voidHold);
+            Objects.deepEquals(this.addAccountMetadata, other.addAccountMetadata) &&
+            Objects.deepEquals(this.confirmHold, other.confirmHold) &&
+            Objects.deepEquals(this.createTransaction, other.createTransaction) &&
+            Objects.deepEquals(this.creditWallet, other.creditWallet) &&
+            Objects.deepEquals(this.debitWallet, other.debitWallet) &&
+            Objects.deepEquals(this.getAccount, other.getAccount) &&
+            Objects.deepEquals(this.getPayment, other.getPayment) &&
+            Objects.deepEquals(this.getWallet, other.getWallet) &&
+            Objects.deepEquals(this.listWallets, other.listWallets) &&
+            Objects.deepEquals(this.revertTransaction, other.revertTransaction) &&
+            Objects.deepEquals(this.stripeTransfer, other.stripeTransfer) &&
+            Objects.deepEquals(this.voidHold, other.voidHold);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             addAccountMetadata,
             confirmHold,
             createTransaction,

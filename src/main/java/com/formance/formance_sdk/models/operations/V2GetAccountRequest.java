@@ -4,18 +4,17 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2GetAccountRequest {
 
@@ -30,7 +29,7 @@ public class V2GetAccountRequest {
     private String address;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=expand")
-    private Optional<? extends String> expand;
+    private Optional<String> expand;
 
     /**
      * Name of the ledger.
@@ -39,14 +38,14 @@ public class V2GetAccountRequest {
     private String ledger;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
-    private Optional<? extends OffsetDateTime> pit;
+    private Optional<OffsetDateTime> pit;
 
     @JsonCreator
     public V2GetAccountRequest(
             String address,
-            Optional<? extends String> expand,
+            Optional<String> expand,
             String ledger,
-            Optional<? extends OffsetDateTime> pit) {
+            Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(ledger, "ledger");
@@ -75,10 +74,9 @@ public class V2GetAccountRequest {
         return address;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> expand() {
-        return (Optional<String>) expand;
+        return expand;
     }
 
     /**
@@ -89,10 +87,9 @@ public class V2GetAccountRequest {
         return ledger;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> pit() {
-        return (Optional<OffsetDateTime>) pit;
+        return pit;
     }
 
     public final static Builder builder() {
@@ -118,7 +115,7 @@ public class V2GetAccountRequest {
         return this;
     }
 
-    public V2GetAccountRequest withExpand(Optional<? extends String> expand) {
+    public V2GetAccountRequest withExpand(Optional<String> expand) {
         Utils.checkNotNull(expand, "expand");
         this.expand = expand;
         return this;
@@ -139,7 +136,7 @@ public class V2GetAccountRequest {
         return this;
     }
 
-    public V2GetAccountRequest withPit(Optional<? extends OffsetDateTime> pit) {
+    public V2GetAccountRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
         return this;
@@ -155,15 +152,15 @@ public class V2GetAccountRequest {
         }
         V2GetAccountRequest other = (V2GetAccountRequest) o;
         return 
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.expand, other.expand) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.pit, other.pit);
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.expand, other.expand) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.pit, other.pit);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             address,
             expand,
             ledger,
@@ -183,11 +180,11 @@ public class V2GetAccountRequest {
  
         private String address;
  
-        private Optional<? extends String> expand = Optional.empty();
+        private Optional<String> expand = Optional.empty();
  
         private String ledger;
  
-        private Optional<? extends OffsetDateTime> pit = Optional.empty();  
+        private Optional<OffsetDateTime> pit = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -212,7 +209,7 @@ public class V2GetAccountRequest {
             return this;
         }
 
-        public Builder expand(Optional<? extends String> expand) {
+        public Builder expand(Optional<String> expand) {
             Utils.checkNotNull(expand, "expand");
             this.expand = expand;
             return this;
@@ -233,7 +230,7 @@ public class V2GetAccountRequest {
             return this;
         }
 
-        public Builder pit(Optional<? extends OffsetDateTime> pit) {
+        public Builder pit(Optional<OffsetDateTime> pit) {
             Utils.checkNotNull(pit, "pit");
             this.pit = pit;
             return this;

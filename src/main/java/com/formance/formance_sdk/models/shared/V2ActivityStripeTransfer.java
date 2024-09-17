@@ -4,8 +4,8 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -13,11 +13,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ActivityStripeTransfer {
 
@@ -27,15 +30,15 @@ public class V2ActivityStripeTransfer {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("asset")
-    private Optional<? extends String> asset;
+    private Optional<String> asset;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
-    private Optional<? extends String> connectorID;
+    private Optional<String> connectorID;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends String> destination;
+    private Optional<String> destination;
 
     /**
      * A set of key/value pairs that you can attach to a transfer object.
@@ -48,16 +51,16 @@ public class V2ActivityStripeTransfer {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("waitingValidation")
-    private Optional<? extends Boolean> waitingValidation;
+    private Optional<Boolean> waitingValidation;
 
     @JsonCreator
     public V2ActivityStripeTransfer(
             @JsonProperty("amount") Optional<? extends BigInteger> amount,
-            @JsonProperty("asset") Optional<? extends String> asset,
-            @JsonProperty("connectorID") Optional<? extends String> connectorID,
-            @JsonProperty("destination") Optional<? extends String> destination,
+            @JsonProperty("asset") Optional<String> asset,
+            @JsonProperty("connectorID") Optional<String> connectorID,
+            @JsonProperty("destination") Optional<String> destination,
             @JsonProperty("metadata") Optional<? extends V2ActivityStripeTransferMetadata> metadata,
-            @JsonProperty("waitingValidation") Optional<? extends Boolean> waitingValidation) {
+            @JsonProperty("waitingValidation") Optional<Boolean> waitingValidation) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(connectorID, "connectorID");
@@ -82,22 +85,19 @@ public class V2ActivityStripeTransfer {
         return (Optional<BigInteger>) amount;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> asset() {
-        return (Optional<String>) asset;
+        return asset;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> connectorID() {
-        return (Optional<String>) connectorID;
+        return connectorID;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> destination() {
-        return (Optional<String>) destination;
+        return destination;
     }
 
     /**
@@ -111,10 +111,9 @@ public class V2ActivityStripeTransfer {
         return (Optional<V2ActivityStripeTransferMetadata>) metadata;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Boolean> waitingValidation() {
-        return (Optional<Boolean>) waitingValidation;
+        return waitingValidation;
     }
 
     public final static Builder builder() {
@@ -144,7 +143,7 @@ public class V2ActivityStripeTransfer {
         return this;
     }
 
-    public V2ActivityStripeTransfer withAsset(Optional<? extends String> asset) {
+    public V2ActivityStripeTransfer withAsset(Optional<String> asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
@@ -156,7 +155,7 @@ public class V2ActivityStripeTransfer {
         return this;
     }
 
-    public V2ActivityStripeTransfer withConnectorID(Optional<? extends String> connectorID) {
+    public V2ActivityStripeTransfer withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
@@ -168,7 +167,7 @@ public class V2ActivityStripeTransfer {
         return this;
     }
 
-    public V2ActivityStripeTransfer withDestination(Optional<? extends String> destination) {
+    public V2ActivityStripeTransfer withDestination(Optional<String> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
@@ -202,7 +201,7 @@ public class V2ActivityStripeTransfer {
         return this;
     }
 
-    public V2ActivityStripeTransfer withWaitingValidation(Optional<? extends Boolean> waitingValidation) {
+    public V2ActivityStripeTransfer withWaitingValidation(Optional<Boolean> waitingValidation) {
         Utils.checkNotNull(waitingValidation, "waitingValidation");
         this.waitingValidation = waitingValidation;
         return this;
@@ -218,17 +217,17 @@ public class V2ActivityStripeTransfer {
         }
         V2ActivityStripeTransfer other = (V2ActivityStripeTransfer) o;
         return 
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.destination, other.destination) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.waitingValidation, other.waitingValidation);
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.destination, other.destination) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.waitingValidation, other.waitingValidation);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             amount,
             asset,
             connectorID,
@@ -252,15 +251,15 @@ public class V2ActivityStripeTransfer {
  
         private Optional<? extends BigInteger> amount = Optional.empty();
  
-        private Optional<? extends String> asset = Optional.empty();
+        private Optional<String> asset = Optional.empty();
  
-        private Optional<? extends String> connectorID = Optional.empty();
+        private Optional<String> connectorID = Optional.empty();
  
-        private Optional<? extends String> destination = Optional.empty();
+        private Optional<String> destination = Optional.empty();
  
         private Optional<? extends V2ActivityStripeTransferMetadata> metadata = Optional.empty();
  
-        private Optional<? extends Boolean> waitingValidation;  
+        private Optional<Boolean> waitingValidation;  
         
         private Builder() {
           // force use of static builder() method
@@ -289,7 +288,7 @@ public class V2ActivityStripeTransfer {
             return this;
         }
 
-        public Builder asset(Optional<? extends String> asset) {
+        public Builder asset(Optional<String> asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
@@ -301,7 +300,7 @@ public class V2ActivityStripeTransfer {
             return this;
         }
 
-        public Builder connectorID(Optional<? extends String> connectorID) {
+        public Builder connectorID(Optional<String> connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
@@ -313,7 +312,7 @@ public class V2ActivityStripeTransfer {
             return this;
         }
 
-        public Builder destination(Optional<? extends String> destination) {
+        public Builder destination(Optional<String> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
@@ -347,7 +346,7 @@ public class V2ActivityStripeTransfer {
             return this;
         }
 
-        public Builder waitingValidation(Optional<? extends Boolean> waitingValidation) {
+        public Builder waitingValidation(Optional<Boolean> waitingValidation) {
             Utils.checkNotNull(waitingValidation, "waitingValidation");
             this.waitingValidation = waitingValidation;
             return this;
@@ -356,8 +355,7 @@ public class V2ActivityStripeTransfer {
         public V2ActivityStripeTransfer build() {
             if (waitingValidation == null) {
                 waitingValidation = _SINGLETON_VALUE_WaitingValidation.value();
-            }
-            return new V2ActivityStripeTransfer(
+            }            return new V2ActivityStripeTransfer(
                 amount,
                 asset,
                 connectorID,
@@ -366,11 +364,11 @@ public class V2ActivityStripeTransfer {
                 waitingValidation);
         }
 
-        private static final LazySingletonValue<Optional<? extends Boolean>> _SINGLETON_VALUE_WaitingValidation =
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_WaitingValidation =
                 new LazySingletonValue<>(
                         "waitingValidation",
                         "false",
-                        new TypeReference<Optional<? extends Boolean>>() {});
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
 

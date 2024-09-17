@@ -4,24 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ConfigResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class InsertConfigResponse implements com.formance.formance_sdk.utils.Response {
+
+public class InsertConfigResponse implements Response {
 
     /**
      * Config created successfully.
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse;
+    private Optional<? extends ConfigResponse> configResponse;
 
     /**
      * HTTP response content type for this operation
@@ -40,7 +44,7 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
 
     @JsonCreator
     public InsertConfigResponse(
-            Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse,
+            Optional<? extends ConfigResponse> configResponse,
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -66,8 +70,8 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ConfigResponse> configResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ConfigResponse>) configResponse;
+    public Optional<ConfigResponse> configResponse() {
+        return (Optional<ConfigResponse>) configResponse;
     }
 
     /**
@@ -101,7 +105,7 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Config created successfully.
      */
-    public InsertConfigResponse withConfigResponse(com.formance.formance_sdk.models.shared.ConfigResponse configResponse) {
+    public InsertConfigResponse withConfigResponse(ConfigResponse configResponse) {
         Utils.checkNotNull(configResponse, "configResponse");
         this.configResponse = Optional.ofNullable(configResponse);
         return this;
@@ -110,7 +114,7 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
     /**
      * Config created successfully.
      */
-    public InsertConfigResponse withConfigResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse) {
+    public InsertConfigResponse withConfigResponse(Optional<? extends ConfigResponse> configResponse) {
         Utils.checkNotNull(configResponse, "configResponse");
         this.configResponse = configResponse;
         return this;
@@ -153,15 +157,15 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
         }
         InsertConfigResponse other = (InsertConfigResponse) o;
         return 
-            java.util.Objects.deepEquals(this.configResponse, other.configResponse) &&
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.configResponse, other.configResponse) &&
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             configResponse,
             contentType,
             statusCode,
@@ -179,7 +183,7 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
     
     public final static class Builder {
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse = Optional.empty();
+        private Optional<? extends ConfigResponse> configResponse = Optional.empty();
  
         private String contentType;
  
@@ -194,7 +198,7 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
         /**
          * Config created successfully.
          */
-        public Builder configResponse(com.formance.formance_sdk.models.shared.ConfigResponse configResponse) {
+        public Builder configResponse(ConfigResponse configResponse) {
             Utils.checkNotNull(configResponse, "configResponse");
             this.configResponse = Optional.ofNullable(configResponse);
             return this;
@@ -203,7 +207,7 @@ public class InsertConfigResponse implements com.formance.formance_sdk.utils.Res
         /**
          * Config created successfully.
          */
-        public Builder configResponse(Optional<? extends com.formance.formance_sdk.models.shared.ConfigResponse> configResponse) {
+        public Builder configResponse(Optional<? extends ConfigResponse> configResponse) {
             Utils.checkNotNull(configResponse, "configResponse");
             this.configResponse = configResponse;
             return this;

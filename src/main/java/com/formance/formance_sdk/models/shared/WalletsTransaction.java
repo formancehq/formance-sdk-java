@@ -4,22 +4,23 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class WalletsTransaction {
 
@@ -28,28 +29,28 @@ public class WalletsTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
-    private Optional<? extends String> ledger;
+    private Optional<String> ledger;
 
     /**
      * Metadata associated with the wallet.
      */
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitVolumes")
-    private Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes;
+    private Optional<? extends Map<String, Map<String, WalletsVolume>>> postCommitVolumes;
 
     @JsonProperty("postings")
-    private java.util.List<Posting> postings;
+    private List<Posting> postings;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitVolumes")
-    private Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes;
+    private Optional<? extends Map<String, Map<String, WalletsVolume>>> preCommitVolumes;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
@@ -57,12 +58,12 @@ public class WalletsTransaction {
     @JsonCreator
     public WalletsTransaction(
             @JsonProperty("id") long id,
-            @JsonProperty("ledger") Optional<? extends String> ledger,
-            @JsonProperty("metadata") java.util.Map<String, String> metadata,
-            @JsonProperty("postCommitVolumes") Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes,
-            @JsonProperty("postings") java.util.List<Posting> postings,
-            @JsonProperty("preCommitVolumes") Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes,
-            @JsonProperty("reference") Optional<? extends String> reference,
+            @JsonProperty("ledger") Optional<String> ledger,
+            @JsonProperty("metadata") Map<String, String> metadata,
+            @JsonProperty("postCommitVolumes") Optional<? extends Map<String, Map<String, WalletsVolume>>> postCommitVolumes,
+            @JsonProperty("postings") List<Posting> postings,
+            @JsonProperty("preCommitVolumes") Optional<? extends Map<String, Map<String, WalletsVolume>>> preCommitVolumes,
+            @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("timestamp") OffsetDateTime timestamp) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
@@ -84,8 +85,8 @@ public class WalletsTransaction {
     
     public WalletsTransaction(
             long id,
-            java.util.Map<String, String> metadata,
-            java.util.List<Posting> postings,
+            Map<String, String> metadata,
+            List<Posting> postings,
             OffsetDateTime timestamp) {
         this(id, Optional.empty(), metadata, Optional.empty(), postings, Optional.empty(), Optional.empty(), timestamp);
     }
@@ -95,41 +96,39 @@ public class WalletsTransaction {
         return id;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> ledger() {
-        return (Optional<String>) ledger;
+        return ledger;
     }
 
     /**
      * Metadata associated with the wallet.
      */
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes() {
-        return (Optional<java.util.Map<String, java.util.Map<String, WalletsVolume>>>) postCommitVolumes;
+    public Optional<Map<String, Map<String, WalletsVolume>>> postCommitVolumes() {
+        return (Optional<Map<String, Map<String, WalletsVolume>>>) postCommitVolumes;
     }
 
     @JsonIgnore
-    public java.util.List<Posting> postings() {
+    public List<Posting> postings() {
         return postings;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes() {
-        return (Optional<java.util.Map<String, java.util.Map<String, WalletsVolume>>>) preCommitVolumes;
+    public Optional<Map<String, Map<String, WalletsVolume>>> preCommitVolumes() {
+        return (Optional<Map<String, Map<String, WalletsVolume>>>) preCommitVolumes;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     @JsonIgnore
@@ -153,7 +152,7 @@ public class WalletsTransaction {
         return this;
     }
 
-    public WalletsTransaction withLedger(Optional<? extends String> ledger) {
+    public WalletsTransaction withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
         return this;
@@ -162,37 +161,37 @@ public class WalletsTransaction {
     /**
      * Metadata associated with the wallet.
      */
-    public WalletsTransaction withMetadata(java.util.Map<String, String> metadata) {
+    public WalletsTransaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    public WalletsTransaction withPostCommitVolumes(java.util.Map<String, java.util.Map<String, WalletsVolume>> postCommitVolumes) {
+    public WalletsTransaction withPostCommitVolumes(Map<String, Map<String, WalletsVolume>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
         return this;
     }
 
-    public WalletsTransaction withPostCommitVolumes(Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes) {
+    public WalletsTransaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, WalletsVolume>>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = postCommitVolumes;
         return this;
     }
 
-    public WalletsTransaction withPostings(java.util.List<Posting> postings) {
+    public WalletsTransaction withPostings(List<Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
     }
 
-    public WalletsTransaction withPreCommitVolumes(java.util.Map<String, java.util.Map<String, WalletsVolume>> preCommitVolumes) {
+    public WalletsTransaction withPreCommitVolumes(Map<String, Map<String, WalletsVolume>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
         return this;
     }
 
-    public WalletsTransaction withPreCommitVolumes(Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes) {
+    public WalletsTransaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, WalletsVolume>>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = preCommitVolumes;
         return this;
@@ -204,7 +203,7 @@ public class WalletsTransaction {
         return this;
     }
 
-    public WalletsTransaction withReference(Optional<? extends String> reference) {
+    public WalletsTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
@@ -226,19 +225,19 @@ public class WalletsTransaction {
         }
         WalletsTransaction other = (WalletsTransaction) o;
         return 
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
-            java.util.Objects.deepEquals(this.postings, other.postings) &&
-            java.util.Objects.deepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.timestamp, other.timestamp);
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
+            Objects.deepEquals(this.postings, other.postings) &&
+            Objects.deepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             id,
             ledger,
             metadata,
@@ -266,17 +265,17 @@ public class WalletsTransaction {
  
         private Long id;
  
-        private Optional<? extends String> ledger = Optional.empty();
+        private Optional<String> ledger = Optional.empty();
  
-        private java.util.Map<String, String> metadata;
+        private Map<String, String> metadata;
  
-        private Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes = Optional.empty();
+        private Optional<? extends Map<String, Map<String, WalletsVolume>>> postCommitVolumes = Optional.empty();
  
-        private java.util.List<Posting> postings;
+        private List<Posting> postings;
  
-        private Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes = Optional.empty();
+        private Optional<? extends Map<String, Map<String, WalletsVolume>>> preCommitVolumes = Optional.empty();
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
         private OffsetDateTime timestamp;  
         
@@ -296,7 +295,7 @@ public class WalletsTransaction {
             return this;
         }
 
-        public Builder ledger(Optional<? extends String> ledger) {
+        public Builder ledger(Optional<String> ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
             return this;
@@ -305,37 +304,37 @@ public class WalletsTransaction {
         /**
          * Metadata associated with the wallet.
          */
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
 
-        public Builder postCommitVolumes(java.util.Map<String, java.util.Map<String, WalletsVolume>> postCommitVolumes) {
+        public Builder postCommitVolumes(Map<String, Map<String, WalletsVolume>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
             return this;
         }
 
-        public Builder postCommitVolumes(Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> postCommitVolumes) {
+        public Builder postCommitVolumes(Optional<? extends Map<String, Map<String, WalletsVolume>>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = postCommitVolumes;
             return this;
         }
 
-        public Builder postings(java.util.List<Posting> postings) {
+        public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
         }
 
-        public Builder preCommitVolumes(java.util.Map<String, java.util.Map<String, WalletsVolume>> preCommitVolumes) {
+        public Builder preCommitVolumes(Map<String, Map<String, WalletsVolume>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
             return this;
         }
 
-        public Builder preCommitVolumes(Optional<? extends java.util.Map<String, java.util.Map<String, WalletsVolume>>> preCommitVolumes) {
+        public Builder preCommitVolumes(Optional<? extends Map<String, Map<String, WalletsVolume>>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = preCommitVolumes;
             return this;
@@ -347,7 +346,7 @@ public class WalletsTransaction {
             return this;
         }
 
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;

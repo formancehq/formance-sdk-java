@@ -4,27 +4,28 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class Payment {
 
     @JsonProperty("adjustments")
-    private java.util.List<PaymentAdjustment> adjustments;
+    private List<PaymentAdjustment> adjustments;
 
     @JsonProperty("amount")
     private BigInteger amount;
@@ -49,7 +50,7 @@ public class Payment {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private Optional<? extends java.util.Map<String, String>> metadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -76,7 +77,7 @@ public class Payment {
 
     @JsonCreator
     public Payment(
-            @JsonProperty("adjustments") java.util.List<PaymentAdjustment> adjustments,
+            @JsonProperty("adjustments") List<PaymentAdjustment> adjustments,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
             @JsonProperty("connectorID") String connectorID,
@@ -84,7 +85,7 @@ public class Payment {
             @JsonProperty("destinationAccountID") String destinationAccountID,
             @JsonProperty("id") String id,
             @JsonProperty("initialAmount") BigInteger initialAmount,
-            @JsonProperty("metadata") Optional<? extends java.util.Map<String, String>> metadata,
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("provider") Optional<? extends Connector> provider,
             @JsonProperty("raw") Optional<? extends Raw> raw,
             @JsonProperty("reference") String reference,
@@ -127,7 +128,7 @@ public class Payment {
     }
     
     public Payment(
-            java.util.List<PaymentAdjustment> adjustments,
+            List<PaymentAdjustment> adjustments,
             BigInteger amount,
             String asset,
             String connectorID,
@@ -144,7 +145,7 @@ public class Payment {
     }
 
     @JsonIgnore
-    public java.util.List<PaymentAdjustment> adjustments() {
+    public List<PaymentAdjustment> adjustments() {
         return adjustments;
     }
 
@@ -185,8 +186,8 @@ public class Payment {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> metadata() {
-        return (Optional<java.util.Map<String, String>>) metadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     @SuppressWarnings("unchecked")
@@ -230,7 +231,7 @@ public class Payment {
         return new Builder();
     }
 
-    public Payment withAdjustments(java.util.List<PaymentAdjustment> adjustments) {
+    public Payment withAdjustments(List<PaymentAdjustment> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
         this.adjustments = adjustments;
         return this;
@@ -288,13 +289,13 @@ public class Payment {
         return this;
     }
 
-    public Payment withMetadata(java.util.Map<String, String> metadata) {
+    public Payment withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
-    public Payment withMetadata(Optional<? extends java.util.Map<String, String>> metadata) {
+    public Payment withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -364,27 +365,27 @@ public class Payment {
         }
         Payment other = (Payment) o;
         return 
-            java.util.Objects.deepEquals(this.adjustments, other.adjustments) &&
-            java.util.Objects.deepEquals(this.amount, other.amount) &&
-            java.util.Objects.deepEquals(this.asset, other.asset) &&
-            java.util.Objects.deepEquals(this.connectorID, other.connectorID) &&
-            java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
-            java.util.Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.initialAmount, other.initialAmount) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.provider, other.provider) &&
-            java.util.Objects.deepEquals(this.raw, other.raw) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.scheme, other.scheme) &&
-            java.util.Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            java.util.Objects.deepEquals(this.status, other.status) &&
-            java.util.Objects.deepEquals(this.type, other.type);
+            Objects.deepEquals(this.adjustments, other.adjustments) &&
+            Objects.deepEquals(this.amount, other.amount) &&
+            Objects.deepEquals(this.asset, other.asset) &&
+            Objects.deepEquals(this.connectorID, other.connectorID) &&
+            Objects.deepEquals(this.createdAt, other.createdAt) &&
+            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.initialAmount, other.initialAmount) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.provider, other.provider) &&
+            Objects.deepEquals(this.raw, other.raw) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.scheme, other.scheme) &&
+            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Objects.deepEquals(this.status, other.status) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             adjustments,
             amount,
             asset,
@@ -426,7 +427,7 @@ public class Payment {
     
     public final static class Builder {
  
-        private java.util.List<PaymentAdjustment> adjustments;
+        private List<PaymentAdjustment> adjustments;
  
         private BigInteger amount;
  
@@ -442,7 +443,7 @@ public class Payment {
  
         private BigInteger initialAmount;
  
-        private Optional<? extends java.util.Map<String, String>> metadata = Optional.empty();
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
  
         private Optional<? extends Connector> provider = Optional.empty();
  
@@ -462,7 +463,7 @@ public class Payment {
           // force use of static builder() method
         }
 
-        public Builder adjustments(java.util.List<PaymentAdjustment> adjustments) {
+        public Builder adjustments(List<PaymentAdjustment> adjustments) {
             Utils.checkNotNull(adjustments, "adjustments");
             this.adjustments = adjustments;
             return this;
@@ -520,13 +521,13 @@ public class Payment {
             return this;
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends java.util.Map<String, String>> metadata) {
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

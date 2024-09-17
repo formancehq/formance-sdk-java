@@ -4,21 +4,21 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Objects;
+
 
 public class Pool {
 
     @JsonProperty("accounts")
-    private java.util.List<String> accounts;
+    private List<String> accounts;
 
     @JsonProperty("id")
     private String id;
@@ -28,7 +28,7 @@ public class Pool {
 
     @JsonCreator
     public Pool(
-            @JsonProperty("accounts") java.util.List<String> accounts,
+            @JsonProperty("accounts") List<String> accounts,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(accounts, "accounts");
@@ -40,7 +40,7 @@ public class Pool {
     }
 
     @JsonIgnore
-    public java.util.List<String> accounts() {
+    public List<String> accounts() {
         return accounts;
     }
 
@@ -58,7 +58,7 @@ public class Pool {
         return new Builder();
     }
 
-    public Pool withAccounts(java.util.List<String> accounts) {
+    public Pool withAccounts(List<String> accounts) {
         Utils.checkNotNull(accounts, "accounts");
         this.accounts = accounts;
         return this;
@@ -86,14 +86,14 @@ public class Pool {
         }
         Pool other = (Pool) o;
         return 
-            java.util.Objects.deepEquals(this.accounts, other.accounts) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.accounts, other.accounts) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             accounts,
             id,
             name);
@@ -109,7 +109,7 @@ public class Pool {
     
     public final static class Builder {
  
-        private java.util.List<String> accounts;
+        private List<String> accounts;
  
         private String id;
  
@@ -119,7 +119,7 @@ public class Pool {
           // force use of static builder() method
         }
 
-        public Builder accounts(java.util.List<String> accounts) {
+        public Builder accounts(List<String> accounts) {
             Utils.checkNotNull(accounts, "accounts");
             this.accounts = accounts;
             return this;

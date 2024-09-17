@@ -4,39 +4,38 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class User {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<? extends String> email;
+    private Optional<String> email;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<? extends String> id;
+    private Optional<String> id;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subject")
-    private Optional<? extends String> subject;
+    private Optional<String> subject;
 
     @JsonCreator
     public User(
-            @JsonProperty("email") Optional<? extends String> email,
-            @JsonProperty("id") Optional<? extends String> id,
-            @JsonProperty("subject") Optional<? extends String> subject) {
+            @JsonProperty("email") Optional<String> email,
+            @JsonProperty("id") Optional<String> id,
+            @JsonProperty("subject") Optional<String> subject) {
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(subject, "subject");
@@ -49,22 +48,19 @@ public class User {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> email() {
-        return (Optional<String>) email;
+        return email;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> id() {
-        return (Optional<String>) id;
+        return id;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> subject() {
-        return (Optional<String>) subject;
+        return subject;
     }
 
     public final static Builder builder() {
@@ -77,7 +73,7 @@ public class User {
         return this;
     }
 
-    public User withEmail(Optional<? extends String> email) {
+    public User withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
@@ -89,7 +85,7 @@ public class User {
         return this;
     }
 
-    public User withId(Optional<? extends String> id) {
+    public User withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -101,7 +97,7 @@ public class User {
         return this;
     }
 
-    public User withSubject(Optional<? extends String> subject) {
+    public User withSubject(Optional<String> subject) {
         Utils.checkNotNull(subject, "subject");
         this.subject = subject;
         return this;
@@ -117,14 +113,14 @@ public class User {
         }
         User other = (User) o;
         return 
-            java.util.Objects.deepEquals(this.email, other.email) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.subject, other.subject);
+            Objects.deepEquals(this.email, other.email) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.subject, other.subject);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             email,
             id,
             subject);
@@ -140,11 +136,11 @@ public class User {
     
     public final static class Builder {
  
-        private Optional<? extends String> email = Optional.empty();
+        private Optional<String> email = Optional.empty();
  
-        private Optional<? extends String> id = Optional.empty();
+        private Optional<String> id = Optional.empty();
  
-        private Optional<? extends String> subject = Optional.empty();  
+        private Optional<String> subject = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -156,7 +152,7 @@ public class User {
             return this;
         }
 
-        public Builder email(Optional<? extends String> email) {
+        public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
@@ -168,7 +164,7 @@ public class User {
             return this;
         }
 
-        public Builder id(Optional<? extends String> id) {
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -180,7 +176,7 @@ public class User {
             return this;
         }
 
-        public Builder subject(Optional<? extends String> subject) {
+        public Builder subject(Optional<String> subject) {
             Utils.checkNotNull(subject, "subject");
             this.subject = subject;
             return this;

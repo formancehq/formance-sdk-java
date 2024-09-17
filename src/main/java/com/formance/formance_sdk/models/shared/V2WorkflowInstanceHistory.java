@@ -4,28 +4,26 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Override;
+import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2WorkflowInstanceHistory {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<? extends String> error;
+    private Optional<String> error;
 
     @JsonProperty("input")
     private V2Stage input;
@@ -41,16 +39,16 @@ public class V2WorkflowInstanceHistory {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
-    private Optional<? extends OffsetDateTime> terminatedAt;
+    private Optional<OffsetDateTime> terminatedAt;
 
     @JsonCreator
     public V2WorkflowInstanceHistory(
-            @JsonProperty("error") Optional<? extends String> error,
+            @JsonProperty("error") Optional<String> error,
             @JsonProperty("input") V2Stage input,
             @JsonProperty("name") String name,
             @JsonProperty("startedAt") OffsetDateTime startedAt,
             @JsonProperty("terminated") boolean terminated,
-            @JsonProperty("terminatedAt") Optional<? extends OffsetDateTime> terminatedAt) {
+            @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(input, "input");
         Utils.checkNotNull(name, "name");
@@ -73,10 +71,9 @@ public class V2WorkflowInstanceHistory {
         this(Optional.empty(), input, name, startedAt, terminated, Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> error() {
-        return (Optional<String>) error;
+        return error;
     }
 
     @JsonIgnore
@@ -99,10 +96,9 @@ public class V2WorkflowInstanceHistory {
         return terminated;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
-        return (Optional<OffsetDateTime>) terminatedAt;
+        return terminatedAt;
     }
 
     public final static Builder builder() {
@@ -115,7 +111,7 @@ public class V2WorkflowInstanceHistory {
         return this;
     }
 
-    public V2WorkflowInstanceHistory withError(Optional<? extends String> error) {
+    public V2WorkflowInstanceHistory withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -151,7 +147,7 @@ public class V2WorkflowInstanceHistory {
         return this;
     }
 
-    public V2WorkflowInstanceHistory withTerminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+    public V2WorkflowInstanceHistory withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
@@ -167,17 +163,17 @@ public class V2WorkflowInstanceHistory {
         }
         V2WorkflowInstanceHistory other = (V2WorkflowInstanceHistory) o;
         return 
-            java.util.Objects.deepEquals(this.error, other.error) &&
-            java.util.Objects.deepEquals(this.input, other.input) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.startedAt, other.startedAt) &&
-            java.util.Objects.deepEquals(this.terminated, other.terminated) &&
-            java.util.Objects.deepEquals(this.terminatedAt, other.terminatedAt);
+            Objects.deepEquals(this.error, other.error) &&
+            Objects.deepEquals(this.input, other.input) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.startedAt, other.startedAt) &&
+            Objects.deepEquals(this.terminated, other.terminated) &&
+            Objects.deepEquals(this.terminatedAt, other.terminatedAt);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             error,
             input,
             name,
@@ -199,7 +195,7 @@ public class V2WorkflowInstanceHistory {
     
     public final static class Builder {
  
-        private Optional<? extends String> error = Optional.empty();
+        private Optional<String> error = Optional.empty();
  
         private V2Stage input;
  
@@ -209,7 +205,7 @@ public class V2WorkflowInstanceHistory {
  
         private Boolean terminated;
  
-        private Optional<? extends OffsetDateTime> terminatedAt = Optional.empty();  
+        private Optional<OffsetDateTime> terminatedAt = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +217,7 @@ public class V2WorkflowInstanceHistory {
             return this;
         }
 
-        public Builder error(Optional<? extends String> error) {
+        public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
@@ -257,7 +253,7 @@ public class V2WorkflowInstanceHistory {
             return this;
         }
 
-        public Builder terminatedAt(Optional<? extends OffsetDateTime> terminatedAt) {
+        public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
             return this;

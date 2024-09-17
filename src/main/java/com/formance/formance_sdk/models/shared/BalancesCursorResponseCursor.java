@@ -4,46 +4,49 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Boolean;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class BalancesCursorResponseCursor {
 
     @JsonProperty("data")
-    private java.util.List<java.util.Map<String, java.util.Map<String, Long>>> data;
+    private List<Map<String, Map<String, Long>>> data;
 
     @JsonProperty("hasMore")
     private boolean hasMore;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("next")
-    private Optional<? extends String> next;
+    private Optional<String> next;
 
     @JsonProperty("pageSize")
     private long pageSize;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("previous")
-    private Optional<? extends String> previous;
+    private Optional<String> previous;
 
     @JsonCreator
     public BalancesCursorResponseCursor(
-            @JsonProperty("data") java.util.List<java.util.Map<String, java.util.Map<String, Long>>> data,
+            @JsonProperty("data") List<Map<String, Map<String, Long>>> data,
             @JsonProperty("hasMore") boolean hasMore,
-            @JsonProperty("next") Optional<? extends String> next,
+            @JsonProperty("next") Optional<String> next,
             @JsonProperty("pageSize") long pageSize,
-            @JsonProperty("previous") Optional<? extends String> previous) {
+            @JsonProperty("previous") Optional<String> previous) {
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(hasMore, "hasMore");
         Utils.checkNotNull(next, "next");
@@ -57,14 +60,14 @@ public class BalancesCursorResponseCursor {
     }
     
     public BalancesCursorResponseCursor(
-            java.util.List<java.util.Map<String, java.util.Map<String, Long>>> data,
+            List<Map<String, Map<String, Long>>> data,
             boolean hasMore,
             long pageSize) {
         this(data, hasMore, Optional.empty(), pageSize, Optional.empty());
     }
 
     @JsonIgnore
-    public java.util.List<java.util.Map<String, java.util.Map<String, Long>>> data() {
+    public List<Map<String, Map<String, Long>>> data() {
         return data;
     }
 
@@ -73,10 +76,9 @@ public class BalancesCursorResponseCursor {
         return hasMore;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> next() {
-        return (Optional<String>) next;
+        return next;
     }
 
     @JsonIgnore
@@ -84,17 +86,16 @@ public class BalancesCursorResponseCursor {
         return pageSize;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> previous() {
-        return (Optional<String>) previous;
+        return previous;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public BalancesCursorResponseCursor withData(java.util.List<java.util.Map<String, java.util.Map<String, Long>>> data) {
+    public BalancesCursorResponseCursor withData(List<Map<String, Map<String, Long>>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -112,7 +113,7 @@ public class BalancesCursorResponseCursor {
         return this;
     }
 
-    public BalancesCursorResponseCursor withNext(Optional<? extends String> next) {
+    public BalancesCursorResponseCursor withNext(Optional<String> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -130,7 +131,7 @@ public class BalancesCursorResponseCursor {
         return this;
     }
 
-    public BalancesCursorResponseCursor withPrevious(Optional<? extends String> previous) {
+    public BalancesCursorResponseCursor withPrevious(Optional<String> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -146,16 +147,16 @@ public class BalancesCursorResponseCursor {
         }
         BalancesCursorResponseCursor other = (BalancesCursorResponseCursor) o;
         return 
-            java.util.Objects.deepEquals(this.data, other.data) &&
-            java.util.Objects.deepEquals(this.hasMore, other.hasMore) &&
-            java.util.Objects.deepEquals(this.next, other.next) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.previous, other.previous);
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.hasMore, other.hasMore) &&
+            Objects.deepEquals(this.next, other.next) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.previous, other.previous);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             data,
             hasMore,
             next,
@@ -175,21 +176,21 @@ public class BalancesCursorResponseCursor {
     
     public final static class Builder {
  
-        private java.util.List<java.util.Map<String, java.util.Map<String, Long>>> data;
+        private List<Map<String, Map<String, Long>>> data;
  
         private Boolean hasMore;
  
-        private Optional<? extends String> next = Optional.empty();
+        private Optional<String> next = Optional.empty();
  
         private Long pageSize;
  
-        private Optional<? extends String> previous = Optional.empty();  
+        private Optional<String> previous = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(java.util.List<java.util.Map<String, java.util.Map<String, Long>>> data) {
+        public Builder data(List<Map<String, Map<String, Long>>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
@@ -207,7 +208,7 @@ public class BalancesCursorResponseCursor {
             return this;
         }
 
-        public Builder next(Optional<? extends String> next) {
+        public Builder next(Optional<String> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
             return this;
@@ -225,7 +226,7 @@ public class BalancesCursorResponseCursor {
             return this;
         }
 
-        public Builder previous(Optional<? extends String> previous) {
+        public Builder previous(Optional<String> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;
             return this;

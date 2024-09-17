@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.ListRunsResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListInstancesResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListInstancesResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
     /**
      * List of workflow instances
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ListRunsResponse> listRunsResponse;
+    private Optional<? extends ListRunsResponse> listRunsResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
     @JsonCreator
     public ListInstancesResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ListRunsResponse> listRunsResponse,
+            Optional<? extends ListRunsResponse> listRunsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ListRunsResponse> listRunsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ListRunsResponse>) listRunsResponse;
+    public Optional<ListRunsResponse> listRunsResponse() {
+        return (Optional<ListRunsResponse>) listRunsResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
     /**
      * List of workflow instances
      */
-    public ListInstancesResponse withListRunsResponse(com.formance.formance_sdk.models.shared.ListRunsResponse listRunsResponse) {
+    public ListInstancesResponse withListRunsResponse(ListRunsResponse listRunsResponse) {
         Utils.checkNotNull(listRunsResponse, "listRunsResponse");
         this.listRunsResponse = Optional.ofNullable(listRunsResponse);
         return this;
@@ -119,7 +123,7 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
     /**
      * List of workflow instances
      */
-    public ListInstancesResponse withListRunsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListRunsResponse> listRunsResponse) {
+    public ListInstancesResponse withListRunsResponse(Optional<? extends ListRunsResponse> listRunsResponse) {
         Utils.checkNotNull(listRunsResponse, "listRunsResponse");
         this.listRunsResponse = listRunsResponse;
         return this;
@@ -153,15 +157,15 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
         }
         ListInstancesResponse other = (ListInstancesResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.listRunsResponse, other.listRunsResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.listRunsResponse, other.listRunsResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             listRunsResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.ListRunsResponse> listRunsResponse = Optional.empty();
+        private Optional<? extends ListRunsResponse> listRunsResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
         /**
          * List of workflow instances
          */
-        public Builder listRunsResponse(com.formance.formance_sdk.models.shared.ListRunsResponse listRunsResponse) {
+        public Builder listRunsResponse(ListRunsResponse listRunsResponse) {
             Utils.checkNotNull(listRunsResponse, "listRunsResponse");
             this.listRunsResponse = Optional.ofNullable(listRunsResponse);
             return this;
@@ -212,7 +216,7 @@ public class ListInstancesResponse implements com.formance.formance_sdk.utils.Re
         /**
          * List of workflow instances
          */
-        public Builder listRunsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListRunsResponse> listRunsResponse) {
+        public Builder listRunsResponse(Optional<? extends ListRunsResponse> listRunsResponse) {
             Utils.checkNotNull(listRunsResponse, "listRunsResponse");
             this.listRunsResponse = listRunsResponse;
             return this;

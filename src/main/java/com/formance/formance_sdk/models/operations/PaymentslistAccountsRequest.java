@@ -4,23 +4,28 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class PaymentslistAccountsRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody;
+    private Optional<? extends Map<String, Object>> requestBody;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -30,35 +35,35 @@ public class PaymentslistAccountsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * Filters used to filter resources.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=query")
-    private Optional<? extends String> query;
+    private Optional<String> query;
 
     /**
      * Fields used to sort payments (default is date:desc).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private Optional<? extends java.util.List<String>> sort;
+    private Optional<? extends List<String>> sort;
 
     @JsonCreator
     public PaymentslistAccountsRequest(
-            Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
-            Optional<? extends String> cursor,
-            Optional<? extends Long> pageSize,
-            Optional<? extends String> query,
-            Optional<? extends java.util.List<String>> sort) {
+            Optional<? extends Map<String, Object>> requestBody,
+            Optional<String> cursor,
+            Optional<Long> pageSize,
+            Optional<String> query,
+            Optional<? extends List<String>> sort) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
@@ -77,8 +82,8 @@ public class PaymentslistAccountsRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -88,30 +93,27 @@ public class PaymentslistAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
      * Filters used to filter resources.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> query() {
-        return (Optional<String>) query;
+        return query;
     }
 
     /**
@@ -119,21 +121,21 @@ public class PaymentslistAccountsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> sort() {
-        return (Optional<java.util.List<String>>) sort;
+    public Optional<List<String>> sort() {
+        return (Optional<List<String>>) sort;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public PaymentslistAccountsRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
+    public PaymentslistAccountsRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
-    public PaymentslistAccountsRequest withRequestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+    public PaymentslistAccountsRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -159,7 +161,7 @@ public class PaymentslistAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public PaymentslistAccountsRequest withCursor(Optional<? extends String> cursor) {
+    public PaymentslistAccountsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -179,7 +181,7 @@ public class PaymentslistAccountsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public PaymentslistAccountsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public PaymentslistAccountsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -199,7 +201,7 @@ public class PaymentslistAccountsRequest {
      * Filters used to filter resources.
      * 
      */
-    public PaymentslistAccountsRequest withQuery(Optional<? extends String> query) {
+    public PaymentslistAccountsRequest withQuery(Optional<String> query) {
         Utils.checkNotNull(query, "query");
         this.query = query;
         return this;
@@ -208,7 +210,7 @@ public class PaymentslistAccountsRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
-    public PaymentslistAccountsRequest withSort(java.util.List<String> sort) {
+    public PaymentslistAccountsRequest withSort(List<String> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = Optional.ofNullable(sort);
         return this;
@@ -217,7 +219,7 @@ public class PaymentslistAccountsRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
-    public PaymentslistAccountsRequest withSort(Optional<? extends java.util.List<String>> sort) {
+    public PaymentslistAccountsRequest withSort(Optional<? extends List<String>> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -233,16 +235,16 @@ public class PaymentslistAccountsRequest {
         }
         PaymentslistAccountsRequest other = (PaymentslistAccountsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.query, other.query) &&
-            java.util.Objects.deepEquals(this.sort, other.sort);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.query, other.query) &&
+            Objects.deepEquals(this.sort, other.sort);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             cursor,
             pageSize,
@@ -262,27 +264,27 @@ public class PaymentslistAccountsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody = Optional.empty();
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends String> query = Optional.empty();
+        private Optional<String> query = Optional.empty();
  
-        private Optional<? extends java.util.List<String>> sort = Optional.empty();  
+        private Optional<? extends List<String>> sort = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder requestBody(java.util.Map<String, java.lang.Object> requestBody) {
+        public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
@@ -308,7 +310,7 @@ public class PaymentslistAccountsRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -328,7 +330,7 @@ public class PaymentslistAccountsRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -348,7 +350,7 @@ public class PaymentslistAccountsRequest {
          * Filters used to filter resources.
          * 
          */
-        public Builder query(Optional<? extends String> query) {
+        public Builder query(Optional<String> query) {
             Utils.checkNotNull(query, "query");
             this.query = query;
             return this;
@@ -357,7 +359,7 @@ public class PaymentslistAccountsRequest {
         /**
          * Fields used to sort payments (default is date:desc).
          */
-        public Builder sort(java.util.List<String> sort) {
+        public Builder sort(List<String> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
             return this;
@@ -366,7 +368,7 @@ public class PaymentslistAccountsRequest {
         /**
          * Fields used to sort payments (default is date:desc).
          */
-        public Builder sort(Optional<? extends java.util.List<String>> sort) {
+        public Builder sort(Optional<? extends List<String>> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -375,8 +377,7 @@ public class PaymentslistAccountsRequest {
         public PaymentslistAccountsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new PaymentslistAccountsRequest(
+            }            return new PaymentslistAccountsRequest(
                 requestBody,
                 cursor,
                 pageSize,
@@ -384,11 +385,11 @@ public class PaymentslistAccountsRequest {
                 sort);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 

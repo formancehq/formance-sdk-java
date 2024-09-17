@@ -4,17 +4,17 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ListTriggersRequest {
 
@@ -26,26 +26,26 @@ public class V2ListTriggersRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * search by name
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=name")
-    private Optional<? extends String> name;
+    private Optional<String> name;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     @JsonCreator
     public V2ListTriggersRequest(
-            Optional<? extends String> cursor,
-            Optional<? extends String> name,
-            Optional<? extends Long> pageSize) {
+            Optional<String> cursor,
+            Optional<String> name,
+            Optional<Long> pageSize) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
@@ -65,29 +65,26 @@ public class V2ListTriggersRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
      * search by name
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> name() {
-        return (Optional<String>) name;
+        return name;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     public final static Builder builder() {
@@ -114,7 +111,7 @@ public class V2ListTriggersRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public V2ListTriggersRequest withCursor(Optional<? extends String> cursor) {
+    public V2ListTriggersRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -132,7 +129,7 @@ public class V2ListTriggersRequest {
     /**
      * search by name
      */
-    public V2ListTriggersRequest withName(Optional<? extends String> name) {
+    public V2ListTriggersRequest withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -152,7 +149,7 @@ public class V2ListTriggersRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public V2ListTriggersRequest withPageSize(Optional<? extends Long> pageSize) {
+    public V2ListTriggersRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -168,14 +165,14 @@ public class V2ListTriggersRequest {
         }
         V2ListTriggersRequest other = (V2ListTriggersRequest) o;
         return 
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.name, other.name) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize);
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             cursor,
             name,
             pageSize);
@@ -191,11 +188,11 @@ public class V2ListTriggersRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends String> name = Optional.empty();
+        private Optional<String> name = Optional.empty();
  
-        private Optional<? extends Long> pageSize = Optional.empty();  
+        private Optional<Long> pageSize = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -221,7 +218,7 @@ public class V2ListTriggersRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -239,7 +236,7 @@ public class V2ListTriggersRequest {
         /**
          * search by name
          */
-        public Builder name(Optional<? extends String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -259,7 +256,7 @@ public class V2ListTriggersRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;

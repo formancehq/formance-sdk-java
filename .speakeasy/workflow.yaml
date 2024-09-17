@@ -1,8 +1,11 @@
 workflowVersion: 1.0.0
+speakeasyVersion: latest
 sources:
-  my-source:
-    inputs:
-      - location: $openapi_spec_url
+    my-source:
+        inputs:
+            - location: $openapi_spec_url
+        registry:
+            location: registry.speakeasyapi.dev/formance/formance/my-source
 targets:
     Java:
         target: java

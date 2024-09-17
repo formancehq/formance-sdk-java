@@ -4,23 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2GetTransactionRequest {
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=expand")
-    private Optional<? extends String> expand;
+    private Optional<String> expand;
 
     /**
      * Transaction ID.
@@ -35,14 +35,14 @@ public class V2GetTransactionRequest {
     private String ledger;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
-    private Optional<? extends OffsetDateTime> pit;
+    private Optional<OffsetDateTime> pit;
 
     @JsonCreator
     public V2GetTransactionRequest(
-            Optional<? extends String> expand,
+            Optional<String> expand,
             BigInteger id,
             String ledger,
-            Optional<? extends OffsetDateTime> pit) {
+            Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
@@ -59,10 +59,9 @@ public class V2GetTransactionRequest {
         this(Optional.empty(), id, ledger, Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> expand() {
-        return (Optional<String>) expand;
+        return expand;
     }
 
     /**
@@ -81,10 +80,9 @@ public class V2GetTransactionRequest {
         return ledger;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> pit() {
-        return (Optional<OffsetDateTime>) pit;
+        return pit;
     }
 
     public final static Builder builder() {
@@ -97,7 +95,7 @@ public class V2GetTransactionRequest {
         return this;
     }
 
-    public V2GetTransactionRequest withExpand(Optional<? extends String> expand) {
+    public V2GetTransactionRequest withExpand(Optional<String> expand) {
         Utils.checkNotNull(expand, "expand");
         this.expand = expand;
         return this;
@@ -135,7 +133,7 @@ public class V2GetTransactionRequest {
         return this;
     }
 
-    public V2GetTransactionRequest withPit(Optional<? extends OffsetDateTime> pit) {
+    public V2GetTransactionRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
         return this;
@@ -151,15 +149,15 @@ public class V2GetTransactionRequest {
         }
         V2GetTransactionRequest other = (V2GetTransactionRequest) o;
         return 
-            java.util.Objects.deepEquals(this.expand, other.expand) &&
-            java.util.Objects.deepEquals(this.id, other.id) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.pit, other.pit);
+            Objects.deepEquals(this.expand, other.expand) &&
+            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.pit, other.pit);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             expand,
             id,
             ledger,
@@ -177,13 +175,13 @@ public class V2GetTransactionRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> expand = Optional.empty();
+        private Optional<String> expand = Optional.empty();
  
         private BigInteger id;
  
         private String ledger;
  
-        private Optional<? extends OffsetDateTime> pit = Optional.empty();  
+        private Optional<OffsetDateTime> pit = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -195,7 +193,7 @@ public class V2GetTransactionRequest {
             return this;
         }
 
-        public Builder expand(Optional<? extends String> expand) {
+        public Builder expand(Optional<String> expand) {
             Utils.checkNotNull(expand, "expand");
             this.expand = expand;
             return this;
@@ -233,7 +231,7 @@ public class V2GetTransactionRequest {
             return this;
         }
 
-        public Builder pit(Optional<? extends OffsetDateTime> pit) {
+        public Builder pit(Optional<OffsetDateTime> pit) {
             Utils.checkNotNull(pit, "pit");
             this.pit = pit;
             return this;

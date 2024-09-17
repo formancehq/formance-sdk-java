@@ -4,18 +4,18 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class CountTransactionsRequest {
 
@@ -23,13 +23,13 @@ public class CountTransactionsRequest {
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=account")
-    private Optional<? extends String> account;
+    private Optional<String> account;
 
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=destination")
-    private Optional<? extends String> destination;
+    private Optional<String> destination;
 
     /**
      * Filter transactions that occurred before this timestamp.
@@ -37,7 +37,7 @@ public class CountTransactionsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")
-    private Optional<? extends OffsetDateTime> endTime;
+    private Optional<OffsetDateTime> endTime;
 
     /**
      * Name of the ledger.
@@ -55,13 +55,13 @@ public class CountTransactionsRequest {
      * Filter transactions by reference field.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=source")
-    private Optional<? extends String> source;
+    private Optional<String> source;
 
     /**
      * Filter transactions that occurred after this timestamp.
@@ -69,18 +69,18 @@ public class CountTransactionsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
-    private Optional<? extends OffsetDateTime> startTime;
+    private Optional<OffsetDateTime> startTime;
 
     @JsonCreator
     public CountTransactionsRequest(
-            Optional<? extends String> account,
-            Optional<? extends String> destination,
-            Optional<? extends OffsetDateTime> endTime,
+            Optional<String> account,
+            Optional<String> destination,
+            Optional<OffsetDateTime> endTime,
             String ledger,
             Optional<? extends Metadata> metadata,
-            Optional<? extends String> reference,
-            Optional<? extends String> source,
-            Optional<? extends OffsetDateTime> startTime) {
+            Optional<String> reference,
+            Optional<String> source,
+            Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(endTime, "endTime");
@@ -107,19 +107,17 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> account() {
-        return (Optional<String>) account;
+        return account;
     }
 
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> destination() {
-        return (Optional<String>) destination;
+        return destination;
     }
 
     /**
@@ -127,10 +125,9 @@ public class CountTransactionsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> endTime() {
-        return (Optional<OffsetDateTime>) endTime;
+        return endTime;
     }
 
     /**
@@ -153,19 +150,17 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions by reference field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> source() {
-        return (Optional<String>) source;
+        return source;
     }
 
     /**
@@ -173,10 +168,9 @@ public class CountTransactionsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<OffsetDateTime> startTime() {
-        return (Optional<OffsetDateTime>) startTime;
+        return startTime;
     }
 
     public final static Builder builder() {
@@ -195,7 +189,7 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
-    public CountTransactionsRequest withAccount(Optional<? extends String> account) {
+    public CountTransactionsRequest withAccount(Optional<String> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
@@ -213,7 +207,7 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
-    public CountTransactionsRequest withDestination(Optional<? extends String> destination) {
+    public CountTransactionsRequest withDestination(Optional<String> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
@@ -235,7 +229,7 @@ public class CountTransactionsRequest {
      * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
      * 
      */
-    public CountTransactionsRequest withEndTime(Optional<? extends OffsetDateTime> endTime) {
+    public CountTransactionsRequest withEndTime(Optional<OffsetDateTime> endTime) {
         Utils.checkNotNull(endTime, "endTime");
         this.endTime = endTime;
         return this;
@@ -280,7 +274,7 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions by reference field.
      */
-    public CountTransactionsRequest withReference(Optional<? extends String> reference) {
+    public CountTransactionsRequest withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
@@ -298,7 +292,7 @@ public class CountTransactionsRequest {
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      */
-    public CountTransactionsRequest withSource(Optional<? extends String> source) {
+    public CountTransactionsRequest withSource(Optional<String> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
@@ -320,7 +314,7 @@ public class CountTransactionsRequest {
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
      * 
      */
-    public CountTransactionsRequest withStartTime(Optional<? extends OffsetDateTime> startTime) {
+    public CountTransactionsRequest withStartTime(Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(startTime, "startTime");
         this.startTime = startTime;
         return this;
@@ -336,19 +330,19 @@ public class CountTransactionsRequest {
         }
         CountTransactionsRequest other = (CountTransactionsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.account, other.account) &&
-            java.util.Objects.deepEquals(this.destination, other.destination) &&
-            java.util.Objects.deepEquals(this.endTime, other.endTime) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger) &&
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.source, other.source) &&
-            java.util.Objects.deepEquals(this.startTime, other.startTime);
+            Objects.deepEquals(this.account, other.account) &&
+            Objects.deepEquals(this.destination, other.destination) &&
+            Objects.deepEquals(this.endTime, other.endTime) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.source, other.source) &&
+            Objects.deepEquals(this.startTime, other.startTime);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             account,
             destination,
             endTime,
@@ -374,21 +368,21 @@ public class CountTransactionsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> account = Optional.empty();
+        private Optional<String> account = Optional.empty();
  
-        private Optional<? extends String> destination = Optional.empty();
+        private Optional<String> destination = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> endTime = Optional.empty();
+        private Optional<OffsetDateTime> endTime = Optional.empty();
  
         private String ledger;
  
         private Optional<? extends Metadata> metadata = Optional.empty();
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
-        private Optional<? extends String> source = Optional.empty();
+        private Optional<String> source = Optional.empty();
  
-        private Optional<? extends OffsetDateTime> startTime = Optional.empty();  
+        private Optional<OffsetDateTime> startTime = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -406,7 +400,7 @@ public class CountTransactionsRequest {
         /**
          * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
          */
-        public Builder account(Optional<? extends String> account) {
+        public Builder account(Optional<String> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
             return this;
@@ -424,7 +418,7 @@ public class CountTransactionsRequest {
         /**
          * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
          */
-        public Builder destination(Optional<? extends String> destination) {
+        public Builder destination(Optional<String> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
@@ -446,7 +440,7 @@ public class CountTransactionsRequest {
          * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
          * 
          */
-        public Builder endTime(Optional<? extends OffsetDateTime> endTime) {
+        public Builder endTime(Optional<OffsetDateTime> endTime) {
             Utils.checkNotNull(endTime, "endTime");
             this.endTime = endTime;
             return this;
@@ -491,7 +485,7 @@ public class CountTransactionsRequest {
         /**
          * Filter transactions by reference field.
          */
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
@@ -509,7 +503,7 @@ public class CountTransactionsRequest {
         /**
          * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
          */
-        public Builder source(Optional<? extends String> source) {
+        public Builder source(Optional<String> source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;
@@ -531,7 +525,7 @@ public class CountTransactionsRequest {
          * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
          * 
          */
-        public Builder startTime(Optional<? extends OffsetDateTime> startTime) {
+        public Builder startTime(Optional<OffsetDateTime> startTime) {
             Utils.checkNotNull(startTime, "startTime");
             this.startTime = startTime;
             return this;

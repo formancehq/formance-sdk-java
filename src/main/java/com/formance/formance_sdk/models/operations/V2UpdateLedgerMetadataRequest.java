@@ -4,22 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2UpdateLedgerMetadataRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends java.util.Map<String, String>> requestBody;
+    private Optional<? extends Map<String, String>> requestBody;
 
     /**
      * Name of the ledger.
@@ -29,7 +30,7 @@ public class V2UpdateLedgerMetadataRequest {
 
     @JsonCreator
     public V2UpdateLedgerMetadataRequest(
-            Optional<? extends java.util.Map<String, String>> requestBody,
+            Optional<? extends Map<String, String>> requestBody,
             String ledger) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(ledger, "ledger");
@@ -44,8 +45,8 @@ public class V2UpdateLedgerMetadataRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, String>> requestBody() {
-        return (Optional<java.util.Map<String, String>>) requestBody;
+    public Optional<Map<String, String>> requestBody() {
+        return (Optional<Map<String, String>>) requestBody;
     }
 
     /**
@@ -60,13 +61,13 @@ public class V2UpdateLedgerMetadataRequest {
         return new Builder();
     }
 
-    public V2UpdateLedgerMetadataRequest withRequestBody(java.util.Map<String, String> requestBody) {
+    public V2UpdateLedgerMetadataRequest withRequestBody(Map<String, String> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
-    public V2UpdateLedgerMetadataRequest withRequestBody(Optional<? extends java.util.Map<String, String>> requestBody) {
+    public V2UpdateLedgerMetadataRequest withRequestBody(Optional<? extends Map<String, String>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -91,13 +92,13 @@ public class V2UpdateLedgerMetadataRequest {
         }
         V2UpdateLedgerMetadataRequest other = (V2UpdateLedgerMetadataRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             ledger);
     }
@@ -111,7 +112,7 @@ public class V2UpdateLedgerMetadataRequest {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.Map<String, String>> requestBody = Optional.empty();
+        private Optional<? extends Map<String, String>> requestBody = Optional.empty();
  
         private String ledger;  
         
@@ -119,13 +120,13 @@ public class V2UpdateLedgerMetadataRequest {
           // force use of static builder() method
         }
 
-        public Builder requestBody(java.util.Map<String, String> requestBody) {
+        public Builder requestBody(Map<String, String> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends java.util.Map<String, String>> requestBody) {
+        public Builder requestBody(Optional<? extends Map<String, String>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

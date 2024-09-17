@@ -4,17 +4,19 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class AddMetadataToAccountRequest {
 
@@ -22,7 +24,7 @@ public class AddMetadataToAccountRequest {
      * metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody;
+    private Optional<? extends Map<String, Object>> requestBody;
 
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
@@ -42,7 +44,7 @@ public class AddMetadataToAccountRequest {
 
     @JsonCreator
     public AddMetadataToAccountRequest(
-            Optional<? extends java.util.Map<String, java.lang.Object>> requestBody,
+            Optional<? extends Map<String, Object>> requestBody,
             String address,
             String ledger) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -64,8 +66,8 @@ public class AddMetadataToAccountRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.Map<String, java.lang.Object>> requestBody() {
-        return (Optional<java.util.Map<String, java.lang.Object>>) requestBody;
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -95,7 +97,7 @@ public class AddMetadataToAccountRequest {
     /**
      * metadata
      */
-    public AddMetadataToAccountRequest withRequestBody(java.util.Map<String, java.lang.Object> requestBody) {
+    public AddMetadataToAccountRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
@@ -104,7 +106,7 @@ public class AddMetadataToAccountRequest {
     /**
      * metadata
      */
-    public AddMetadataToAccountRequest withRequestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+    public AddMetadataToAccountRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -142,14 +144,14 @@ public class AddMetadataToAccountRequest {
         }
         AddMetadataToAccountRequest other = (AddMetadataToAccountRequest) o;
         return 
-            java.util.Objects.deepEquals(this.requestBody, other.requestBody) &&
-            java.util.Objects.deepEquals(this.address, other.address) &&
-            java.util.Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.address, other.address) &&
+            Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             requestBody,
             address,
             ledger);
@@ -165,7 +167,7 @@ public class AddMetadataToAccountRequest {
     
     public final static class Builder {
  
-        private Optional<? extends java.util.Map<String, java.lang.Object>> requestBody = Optional.empty();
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
  
         private String address;
  
@@ -178,7 +180,7 @@ public class AddMetadataToAccountRequest {
         /**
          * metadata
          */
-        public Builder requestBody(java.util.Map<String, java.lang.Object> requestBody) {
+        public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
             return this;
@@ -187,7 +189,7 @@ public class AddMetadataToAccountRequest {
         /**
          * metadata
          */
-        public Builder requestBody(Optional<? extends java.util.Map<String, java.lang.Object>> requestBody) {
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

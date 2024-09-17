@@ -4,34 +4,34 @@
 
 package com.formance.formance_sdk.models.shared;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
+import java.lang.Override;
+import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationV2Transaction {
 
     @JsonProperty("metadata")
-    private java.util.Map<String, String> metadata;
+    private Map<String, String> metadata;
 
     @JsonProperty("postings")
-    private java.util.List<V2Posting> postings;
+    private List<V2Posting> postings;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<? extends String> reference;
+    private Optional<String> reference;
 
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
@@ -41,9 +41,9 @@ public class OrchestrationV2Transaction {
 
     @JsonCreator
     public OrchestrationV2Transaction(
-            @JsonProperty("metadata") java.util.Map<String, String> metadata,
-            @JsonProperty("postings") java.util.List<V2Posting> postings,
-            @JsonProperty("reference") Optional<? extends String> reference,
+            @JsonProperty("metadata") Map<String, String> metadata,
+            @JsonProperty("postings") List<V2Posting> postings,
+            @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("timestamp") OffsetDateTime timestamp,
             @JsonProperty("txid") BigInteger txid) {
         metadata = Utils.emptyMapIfNull(metadata);
@@ -59,27 +59,26 @@ public class OrchestrationV2Transaction {
     }
     
     public OrchestrationV2Transaction(
-            java.util.Map<String, String> metadata,
-            java.util.List<V2Posting> postings,
+            Map<String, String> metadata,
+            List<V2Posting> postings,
             OffsetDateTime timestamp,
             BigInteger txid) {
         this(metadata, postings, Optional.empty(), timestamp, txid);
     }
 
     @JsonIgnore
-    public java.util.Map<String, String> metadata() {
+    public Map<String, String> metadata() {
         return metadata;
     }
 
     @JsonIgnore
-    public java.util.List<V2Posting> postings() {
+    public List<V2Posting> postings() {
         return postings;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> reference() {
-        return (Optional<String>) reference;
+        return reference;
     }
 
     @JsonIgnore
@@ -96,13 +95,13 @@ public class OrchestrationV2Transaction {
         return new Builder();
     }
 
-    public OrchestrationV2Transaction withMetadata(java.util.Map<String, String> metadata) {
+    public OrchestrationV2Transaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    public OrchestrationV2Transaction withPostings(java.util.List<V2Posting> postings) {
+    public OrchestrationV2Transaction withPostings(List<V2Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
@@ -114,7 +113,7 @@ public class OrchestrationV2Transaction {
         return this;
     }
 
-    public OrchestrationV2Transaction withReference(Optional<? extends String> reference) {
+    public OrchestrationV2Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
@@ -147,16 +146,16 @@ public class OrchestrationV2Transaction {
         }
         OrchestrationV2Transaction other = (OrchestrationV2Transaction) o;
         return 
-            java.util.Objects.deepEquals(this.metadata, other.metadata) &&
-            java.util.Objects.deepEquals(this.postings, other.postings) &&
-            java.util.Objects.deepEquals(this.reference, other.reference) &&
-            java.util.Objects.deepEquals(this.timestamp, other.timestamp) &&
-            java.util.Objects.deepEquals(this.txid, other.txid);
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.postings, other.postings) &&
+            Objects.deepEquals(this.reference, other.reference) &&
+            Objects.deepEquals(this.timestamp, other.timestamp) &&
+            Objects.deepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             metadata,
             postings,
             reference,
@@ -176,11 +175,11 @@ public class OrchestrationV2Transaction {
     
     public final static class Builder {
  
-        private java.util.Map<String, String> metadata;
+        private Map<String, String> metadata;
  
-        private java.util.List<V2Posting> postings;
+        private List<V2Posting> postings;
  
-        private Optional<? extends String> reference = Optional.empty();
+        private Optional<String> reference = Optional.empty();
  
         private OffsetDateTime timestamp;
  
@@ -190,13 +189,13 @@ public class OrchestrationV2Transaction {
           // force use of static builder() method
         }
 
-        public Builder metadata(java.util.Map<String, String> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
 
-        public Builder postings(java.util.List<V2Posting> postings) {
+        public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
@@ -208,7 +207,7 @@ public class OrchestrationV2Transaction {
             return this;
         }
 
-        public Builder reference(Optional<? extends String> reference) {
+        public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;

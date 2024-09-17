@@ -4,19 +4,23 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.shared.PoliciesCursorResponse;
+import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Integer;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.Optional;
 
-public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Response {
+
+public class ListPoliciesResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -26,7 +30,7 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.PoliciesCursorResponse> policiesCursorResponse;
+    private Optional<? extends PoliciesCursorResponse> policiesCursorResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,7 +45,7 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
     @JsonCreator
     public ListPoliciesResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.PoliciesCursorResponse> policiesCursorResponse,
+            Optional<? extends PoliciesCursorResponse> policiesCursorResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +78,8 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.PoliciesCursorResponse> policiesCursorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.PoliciesCursorResponse>) policiesCursorResponse;
+    public Optional<PoliciesCursorResponse> policiesCursorResponse() {
+        return (Optional<PoliciesCursorResponse>) policiesCursorResponse;
     }
 
     /**
@@ -110,7 +114,7 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
-    public ListPoliciesResponse withPoliciesCursorResponse(com.formance.formance_sdk.models.shared.PoliciesCursorResponse policiesCursorResponse) {
+    public ListPoliciesResponse withPoliciesCursorResponse(PoliciesCursorResponse policiesCursorResponse) {
         Utils.checkNotNull(policiesCursorResponse, "policiesCursorResponse");
         this.policiesCursorResponse = Optional.ofNullable(policiesCursorResponse);
         return this;
@@ -119,7 +123,7 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
     /**
      * OK
      */
-    public ListPoliciesResponse withPoliciesCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.PoliciesCursorResponse> policiesCursorResponse) {
+    public ListPoliciesResponse withPoliciesCursorResponse(Optional<? extends PoliciesCursorResponse> policiesCursorResponse) {
         Utils.checkNotNull(policiesCursorResponse, "policiesCursorResponse");
         this.policiesCursorResponse = policiesCursorResponse;
         return this;
@@ -153,15 +157,15 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
         }
         ListPoliciesResponse other = (ListPoliciesResponse) o;
         return 
-            java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.policiesCursorResponse, other.policiesCursorResponse) &&
-            java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
-            java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.policiesCursorResponse, other.policiesCursorResponse) &&
+            Objects.deepEquals(this.statusCode, other.statusCode) &&
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             contentType,
             policiesCursorResponse,
             statusCode,
@@ -181,7 +185,7 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
  
         private String contentType;
  
-        private Optional<? extends com.formance.formance_sdk.models.shared.PoliciesCursorResponse> policiesCursorResponse = Optional.empty();
+        private Optional<? extends PoliciesCursorResponse> policiesCursorResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -203,7 +207,7 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
         /**
          * OK
          */
-        public Builder policiesCursorResponse(com.formance.formance_sdk.models.shared.PoliciesCursorResponse policiesCursorResponse) {
+        public Builder policiesCursorResponse(PoliciesCursorResponse policiesCursorResponse) {
             Utils.checkNotNull(policiesCursorResponse, "policiesCursorResponse");
             this.policiesCursorResponse = Optional.ofNullable(policiesCursorResponse);
             return this;
@@ -212,7 +216,7 @@ public class ListPoliciesResponse implements com.formance.formance_sdk.utils.Res
         /**
          * OK
          */
-        public Builder policiesCursorResponse(Optional<? extends com.formance.formance_sdk.models.shared.PoliciesCursorResponse> policiesCursorResponse) {
+        public Builder policiesCursorResponse(Optional<? extends PoliciesCursorResponse> policiesCursorResponse) {
             Utils.checkNotNull(policiesCursorResponse, "policiesCursorResponse");
             this.policiesCursorResponse = policiesCursorResponse;
             return this;

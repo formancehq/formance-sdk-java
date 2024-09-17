@@ -4,18 +4,21 @@
 
 package com.formance.formance_sdk.models.operations;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
-import java.lang.Deprecated;
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.lang.Long;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListBankAccountsRequest {
 
@@ -27,26 +30,26 @@ public class ListBankAccountsRequest {
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
-    private Optional<? extends String> cursor;
+    private Optional<String> cursor;
 
     /**
      * The maximum number of results to return per page.
      * 
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
-    private Optional<? extends Long> pageSize;
+    private Optional<Long> pageSize;
 
     /**
      * Fields used to sort payments (default is date:desc).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private Optional<? extends java.util.List<String>> sort;
+    private Optional<? extends List<String>> sort;
 
     @JsonCreator
     public ListBankAccountsRequest(
-            Optional<? extends String> cursor,
-            Optional<? extends Long> pageSize,
-            Optional<? extends java.util.List<String>> sort) {
+            Optional<String> cursor,
+            Optional<Long> pageSize,
+            Optional<? extends List<String>> sort) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(sort, "sort");
@@ -66,20 +69,18 @@ public class ListBankAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<String> cursor() {
-        return (Optional<String>) cursor;
+        return cursor;
     }
 
     /**
      * The maximum number of results to return per page.
      * 
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Long> pageSize() {
-        return (Optional<Long>) pageSize;
+        return pageSize;
     }
 
     /**
@@ -87,8 +88,8 @@ public class ListBankAccountsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<java.util.List<String>> sort() {
-        return (Optional<java.util.List<String>>) sort;
+    public Optional<List<String>> sort() {
+        return (Optional<List<String>>) sort;
     }
 
     public final static Builder builder() {
@@ -115,7 +116,7 @@ public class ListBankAccountsRequest {
      * No other parameters can be set when this parameter is set.
      * 
      */
-    public ListBankAccountsRequest withCursor(Optional<? extends String> cursor) {
+    public ListBankAccountsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -135,7 +136,7 @@ public class ListBankAccountsRequest {
      * The maximum number of results to return per page.
      * 
      */
-    public ListBankAccountsRequest withPageSize(Optional<? extends Long> pageSize) {
+    public ListBankAccountsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
@@ -144,7 +145,7 @@ public class ListBankAccountsRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
-    public ListBankAccountsRequest withSort(java.util.List<String> sort) {
+    public ListBankAccountsRequest withSort(List<String> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = Optional.ofNullable(sort);
         return this;
@@ -153,7 +154,7 @@ public class ListBankAccountsRequest {
     /**
      * Fields used to sort payments (default is date:desc).
      */
-    public ListBankAccountsRequest withSort(Optional<? extends java.util.List<String>> sort) {
+    public ListBankAccountsRequest withSort(Optional<? extends List<String>> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -169,14 +170,14 @@ public class ListBankAccountsRequest {
         }
         ListBankAccountsRequest other = (ListBankAccountsRequest) o;
         return 
-            java.util.Objects.deepEquals(this.cursor, other.cursor) &&
-            java.util.Objects.deepEquals(this.pageSize, other.pageSize) &&
-            java.util.Objects.deepEquals(this.sort, other.sort);
+            Objects.deepEquals(this.cursor, other.cursor) &&
+            Objects.deepEquals(this.pageSize, other.pageSize) &&
+            Objects.deepEquals(this.sort, other.sort);
     }
     
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(
+        return Objects.hash(
             cursor,
             pageSize,
             sort);
@@ -192,11 +193,11 @@ public class ListBankAccountsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends String> cursor = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
  
-        private Optional<? extends Long> pageSize;
+        private Optional<Long> pageSize;
  
-        private Optional<? extends java.util.List<String>> sort = Optional.empty();  
+        private Optional<? extends List<String>> sort = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -222,7 +223,7 @@ public class ListBankAccountsRequest {
          * No other parameters can be set when this parameter is set.
          * 
          */
-        public Builder cursor(Optional<? extends String> cursor) {
+        public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
@@ -242,7 +243,7 @@ public class ListBankAccountsRequest {
          * The maximum number of results to return per page.
          * 
          */
-        public Builder pageSize(Optional<? extends Long> pageSize) {
+        public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
@@ -251,7 +252,7 @@ public class ListBankAccountsRequest {
         /**
          * Fields used to sort payments (default is date:desc).
          */
-        public Builder sort(java.util.List<String> sort) {
+        public Builder sort(List<String> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
             return this;
@@ -260,7 +261,7 @@ public class ListBankAccountsRequest {
         /**
          * Fields used to sort payments (default is date:desc).
          */
-        public Builder sort(Optional<? extends java.util.List<String>> sort) {
+        public Builder sort(Optional<? extends List<String>> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -269,18 +270,17 @@ public class ListBankAccountsRequest {
         public ListBankAccountsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
-            }
-            return new ListBankAccountsRequest(
+            }            return new ListBankAccountsRequest(
                 cursor,
                 pageSize,
                 sort);
         }
 
-        private static final LazySingletonValue<Optional<? extends Long>> _SINGLETON_VALUE_PageSize =
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
                         "15",
-                        new TypeReference<Optional<? extends Long>>() {});
+                        new TypeReference<Optional<Long>>() {});
     }
 }
 
