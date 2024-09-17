@@ -28,8 +28,8 @@ jobs:
             force: ${{ github.event.inputs.force }}
             mode: pr
             speakeasy_version: latest
-            openapi_docs: |
-                - ${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
+            environment: |
+                openapi_spec_url=-${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
         secrets:
             github_access_token: ${{ secrets.GITHUB_TOKEN }}
             java_gpg_passphrase: ${{ secrets.JAVA_GPG_PASSPHRASE }}
