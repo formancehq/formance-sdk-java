@@ -15,7 +15,7 @@ public class UpdateClientRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateClientRequestBuilder request(com.formance.formance_sdk.models.operations.UpdateClientRequest request) {
+    public UpdateClientRequestBuilder request(UpdateClientRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

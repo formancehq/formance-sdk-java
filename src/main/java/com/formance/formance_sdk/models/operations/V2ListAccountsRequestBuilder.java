@@ -15,7 +15,7 @@ public class V2ListAccountsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2ListAccountsRequestBuilder request(com.formance.formance_sdk.models.operations.V2ListAccountsRequest request) {
+    public V2ListAccountsRequestBuilder request(V2ListAccountsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

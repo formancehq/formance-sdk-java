@@ -15,7 +15,7 @@ public class V2DeleteTriggerRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2DeleteTriggerRequestBuilder request(com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest request) {
+    public V2DeleteTriggerRequestBuilder request(V2DeleteTriggerRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

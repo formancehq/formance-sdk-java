@@ -119,14 +119,14 @@ public class TaskResponseData {
 
         public _Deserializer() {
             super(TaskResponseData.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskMoneycorp>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskMangoPay>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskBankingCircle>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskModulr>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskDummyPay>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskCurrencyCloud>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskWise>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.TaskStripe>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<TaskMoneycorp>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskMangoPay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskBankingCircle>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskModulr>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskDummyPay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskCurrencyCloud>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskWise>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskStripe>() {}, JsonShape.DEFAULT));
         }
     }
     

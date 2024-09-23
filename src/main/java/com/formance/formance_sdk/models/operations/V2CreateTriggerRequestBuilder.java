@@ -17,13 +17,13 @@ public class V2CreateTriggerRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public V2CreateTriggerRequestBuilder request(com.formance.formance_sdk.models.shared.V2TriggerData request) {
+    public V2CreateTriggerRequestBuilder request(V2TriggerData request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public V2CreateTriggerRequestBuilder request(java.util.Optional<? extends com.formance.formance_sdk.models.shared.V2TriggerData> request) {
+    public V2CreateTriggerRequestBuilder request(Optional<? extends V2TriggerData> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

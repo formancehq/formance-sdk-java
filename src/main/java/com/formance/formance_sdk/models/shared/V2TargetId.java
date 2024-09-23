@@ -84,8 +84,8 @@ public class V2TargetId {
 
         public _Deserializer() {
             super(V2TargetId.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<java.math.BigInteger>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<java.lang.String>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<BigInteger>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     

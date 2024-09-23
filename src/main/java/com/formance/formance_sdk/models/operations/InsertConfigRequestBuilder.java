@@ -16,7 +16,7 @@ public class InsertConfigRequestBuilder {
         this.sdk = sdk;
     }
 
-    public InsertConfigRequestBuilder request(com.formance.formance_sdk.models.shared.ConfigUser request) {
+    public InsertConfigRequestBuilder request(ConfigUser request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

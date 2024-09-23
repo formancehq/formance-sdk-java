@@ -15,7 +15,7 @@ public class ReadConnectorConfigRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ReadConnectorConfigRequestBuilder request(com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest request) {
+    public ReadConnectorConfigRequestBuilder request(ReadConnectorConfigRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

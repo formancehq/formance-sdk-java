@@ -17,13 +17,13 @@ public class CreateClientRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public CreateClientRequestBuilder request(com.formance.formance_sdk.models.shared.CreateClientRequest request) {
+    public CreateClientRequestBuilder request(CreateClientRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateClientRequestBuilder request(java.util.Optional<? extends com.formance.formance_sdk.models.shared.CreateClientRequest> request) {
+    public CreateClientRequestBuilder request(Optional<? extends CreateClientRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

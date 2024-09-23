@@ -134,7 +134,7 @@ public class SDKWalletsV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
@@ -146,7 +146,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "confirmHold", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -157,7 +157,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "confirmHold",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -166,7 +166,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "confirmHold",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -175,7 +175,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "confirmHold",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -256,7 +256,7 @@ public class SDKWalletsV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
@@ -268,7 +268,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "createBalance", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -279,7 +279,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createBalance",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -288,7 +288,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "createBalance",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -297,7 +297,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createBalance",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -387,7 +387,7 @@ public class SDKWalletsV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
@@ -399,7 +399,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "createWallet", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -410,7 +410,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -419,7 +419,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "createWallet",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -428,7 +428,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -520,7 +520,7 @@ public class SDKWalletsV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
@@ -532,7 +532,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "creditWallet", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -543,7 +543,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "creditWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -552,7 +552,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "creditWallet",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -561,7 +561,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "creditWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -642,7 +642,7 @@ public class SDKWalletsV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
@@ -654,7 +654,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "debitWallet", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -665,7 +665,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "debitWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -674,7 +674,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "debitWallet",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -683,7 +683,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "debitWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -769,7 +769,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -780,7 +780,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getBalance", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -791,7 +791,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getBalance",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -800,7 +800,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getBalance",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -809,7 +809,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getBalance",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -891,7 +891,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -902,7 +902,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getHold", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -913,7 +913,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getHold",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -922,7 +922,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getHold",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -931,7 +931,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getHold",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1011,7 +1011,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 GetHoldsRequest.class,
@@ -1027,7 +1027,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getHolds", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1038,7 +1038,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getHolds",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1047,7 +1047,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getHolds",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1056,7 +1056,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getHolds",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1126,7 +1126,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 GetTransactionsRequest.class,
@@ -1142,7 +1142,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getTransactions", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1153,7 +1153,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1162,7 +1162,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getTransactions",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1171,7 +1171,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1253,7 +1253,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1264,7 +1264,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getWallet", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1275,7 +1275,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1284,7 +1284,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getWallet",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1293,7 +1293,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1379,7 +1379,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1390,7 +1390,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getWalletSummary", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1401,7 +1401,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getWalletSummary",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1410,7 +1410,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getWalletSummary",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1419,7 +1419,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getWalletSummary",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1505,7 +1505,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1516,7 +1516,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listBalances", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1527,7 +1527,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listBalances",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1536,7 +1536,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listBalances",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1545,7 +1545,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listBalances",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1619,7 +1619,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 ListWalletsRequest.class,
@@ -1635,7 +1635,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listWallets", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1646,7 +1646,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listWallets",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1655,7 +1655,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listWallets",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1664,7 +1664,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listWallets",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1756,7 +1756,7 @@ public class SDKWalletsV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
@@ -1768,7 +1768,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "updateWallet", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1779,7 +1779,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "updateWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1788,7 +1788,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "updateWallet",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1797,7 +1797,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "updateWallet",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1868,7 +1868,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
 
         Utils.configureSecurity(_req,  
@@ -1880,7 +1880,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "voidHold", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1891,7 +1891,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "voidHold",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1900,7 +1900,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "voidHold",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1909,7 +1909,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "voidHold",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1976,7 +1976,7 @@ public class SDKWalletsV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1987,7 +1987,7 @@ public class SDKWalletsV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "walletsgetServerInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "wallets:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1998,7 +1998,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "walletsgetServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2007,7 +2007,7 @@ public class SDKWalletsV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "walletsgetServerInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "wallets:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2016,7 +2016,7 @@ public class SDKWalletsV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "walletsgetServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "wallets:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));

@@ -17,13 +17,13 @@ public class CreateWorkflowRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public CreateWorkflowRequestBuilder request(com.formance.formance_sdk.models.shared.CreateWorkflowRequest request) {
+    public CreateWorkflowRequestBuilder request(CreateWorkflowRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateWorkflowRequestBuilder request(java.util.Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowRequest> request) {
+    public CreateWorkflowRequestBuilder request(Optional<? extends CreateWorkflowRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

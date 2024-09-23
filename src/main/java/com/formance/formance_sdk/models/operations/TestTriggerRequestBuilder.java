@@ -15,7 +15,7 @@ public class TestTriggerRequestBuilder {
         this.sdk = sdk;
     }
 
-    public TestTriggerRequestBuilder request(com.formance.formance_sdk.models.operations.TestTriggerRequest request) {
+    public TestTriggerRequestBuilder request(TestTriggerRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class DeleteConfigRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteConfigRequestBuilder request(com.formance.formance_sdk.models.operations.DeleteConfigRequest request) {
+    public DeleteConfigRequestBuilder request(DeleteConfigRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class AddMetadataToAccountRequestBuilder {
         this.sdk = sdk;
     }
 
-    public AddMetadataToAccountRequestBuilder request(com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest request) {
+    public AddMetadataToAccountRequestBuilder request(AddMetadataToAccountRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

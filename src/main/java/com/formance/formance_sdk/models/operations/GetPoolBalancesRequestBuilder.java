@@ -15,7 +15,7 @@ public class GetPoolBalancesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetPoolBalancesRequestBuilder request(com.formance.formance_sdk.models.operations.GetPoolBalancesRequest request) {
+    public GetPoolBalancesRequestBuilder request(GetPoolBalancesRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

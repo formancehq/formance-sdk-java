@@ -15,7 +15,7 @@ public class V2ListWorkflowsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2ListWorkflowsRequestBuilder request(com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest request) {
+    public V2ListWorkflowsRequestBuilder request(V2ListWorkflowsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -95,10 +95,10 @@ public class Stage {
 
         public _Deserializer() {
             super(Stage.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.StageSend>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.StageDelay>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.Update>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.StageWaitEvent>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<StageSend>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<StageDelay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Update>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<StageWaitEvent>() {}, JsonShape.DEFAULT));
         }
     }
     

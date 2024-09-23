@@ -117,7 +117,7 @@ public class V1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -128,7 +128,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "createClient", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -139,7 +139,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createClient",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -148,7 +148,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "createClient",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -157,7 +157,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createClient",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -243,7 +243,7 @@ public class V1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -254,7 +254,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "createSecret", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -265,7 +265,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createSecret",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -274,7 +274,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "createSecret",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -283,7 +283,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createSecret",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -359,7 +359,7 @@ public class V1 implements
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -370,7 +370,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "deleteClient", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -381,7 +381,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "deleteClient",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -390,7 +390,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "deleteClient",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -399,7 +399,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "deleteClient",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -464,7 +464,7 @@ public class V1 implements
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -475,7 +475,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "deleteSecret", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -486,7 +486,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "deleteSecret",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -495,7 +495,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "deleteSecret",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -504,7 +504,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "deleteSecret",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -565,7 +565,7 @@ public class V1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -576,7 +576,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getOIDCWellKnowns", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -587,7 +587,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getOIDCWellKnowns",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -596,7 +596,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getOIDCWellKnowns",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -605,7 +605,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getOIDCWellKnowns",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -666,7 +666,7 @@ public class V1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -677,7 +677,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getServerInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -688,7 +688,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -697,7 +697,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getServerInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -706,7 +706,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -778,7 +778,7 @@ public class V1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -789,7 +789,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listClients", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -800,7 +800,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listClients",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -809,7 +809,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listClients",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -818,7 +818,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listClients",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -892,7 +892,7 @@ public class V1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -903,7 +903,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listUsers", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -914,7 +914,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listUsers",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -923,7 +923,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listUsers",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -932,7 +932,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listUsers",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1008,7 +1008,7 @@ public class V1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1019,7 +1019,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "readClient", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1030,7 +1030,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "readClient",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1039,7 +1039,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "readClient",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1048,7 +1048,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "readClient",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1126,7 +1126,7 @@ public class V1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1137,7 +1137,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "readUser", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1148,7 +1148,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "readUser",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1157,7 +1157,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "readUser",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1166,7 +1166,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "readUser",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1252,7 +1252,7 @@ public class V1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1263,7 +1263,7 @@ public class V1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "updateClient", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "auth:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1274,7 +1274,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "updateClient",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1283,7 +1283,7 @@ public class V1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "updateClient",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "auth:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1292,7 +1292,7 @@ public class V1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "updateClient",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "auth:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));

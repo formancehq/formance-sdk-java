@@ -81,7 +81,7 @@ public class SDKSearchV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -92,7 +92,7 @@ public class SDKSearchV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "search", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "search:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -103,7 +103,7 @@ public class SDKSearchV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "search",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "search:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -112,7 +112,7 @@ public class SDKSearchV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "search",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "search:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -121,7 +121,7 @@ public class SDKSearchV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "search",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "search:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -193,7 +193,7 @@ public class SDKSearchV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -204,7 +204,7 @@ public class SDKSearchV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "searchgetServerInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "search:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -215,7 +215,7 @@ public class SDKSearchV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "searchgetServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "search:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -224,7 +224,7 @@ public class SDKSearchV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "searchgetServerInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "search:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -233,7 +233,7 @@ public class SDKSearchV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "searchgetServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "search:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));

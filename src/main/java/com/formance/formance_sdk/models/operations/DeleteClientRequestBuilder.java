@@ -15,7 +15,7 @@ public class DeleteClientRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteClientRequestBuilder request(com.formance.formance_sdk.models.operations.DeleteClientRequest request) {
+    public DeleteClientRequestBuilder request(DeleteClientRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

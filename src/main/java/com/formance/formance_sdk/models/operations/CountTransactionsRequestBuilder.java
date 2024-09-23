@@ -15,7 +15,7 @@ public class CountTransactionsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CountTransactionsRequestBuilder request(com.formance.formance_sdk.models.operations.CountTransactionsRequest request) {
+    public CountTransactionsRequestBuilder request(CountTransactionsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

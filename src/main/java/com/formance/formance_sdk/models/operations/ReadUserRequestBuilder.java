@@ -15,7 +15,7 @@ public class ReadUserRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ReadUserRequestBuilder request(com.formance.formance_sdk.models.operations.ReadUserRequest request) {
+    public ReadUserRequestBuilder request(ReadUserRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

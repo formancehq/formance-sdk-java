@@ -15,7 +15,7 @@ public class V2CountAccountsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2CountAccountsRequestBuilder request(com.formance.formance_sdk.models.operations.V2CountAccountsRequest request) {
+    public V2CountAccountsRequestBuilder request(V2CountAccountsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

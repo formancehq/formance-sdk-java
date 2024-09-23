@@ -15,7 +15,7 @@ public class ChangeConfigSecretRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ChangeConfigSecretRequestBuilder request(com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest request) {
+    public ChangeConfigSecretRequestBuilder request(ChangeConfigSecretRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

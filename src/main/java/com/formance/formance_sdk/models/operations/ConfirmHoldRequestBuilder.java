@@ -15,7 +15,7 @@ public class ConfirmHoldRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ConfirmHoldRequestBuilder request(com.formance.formance_sdk.models.operations.ConfirmHoldRequest request) {
+    public ConfirmHoldRequestBuilder request(ConfirmHoldRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

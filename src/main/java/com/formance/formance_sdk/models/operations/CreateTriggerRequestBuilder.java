@@ -17,13 +17,13 @@ public class CreateTriggerRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public CreateTriggerRequestBuilder request(com.formance.formance_sdk.models.shared.TriggerData request) {
+    public CreateTriggerRequestBuilder request(TriggerData request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateTriggerRequestBuilder request(java.util.Optional<? extends com.formance.formance_sdk.models.shared.TriggerData> request) {
+    public CreateTriggerRequestBuilder request(Optional<? extends TriggerData> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

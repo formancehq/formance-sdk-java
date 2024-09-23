@@ -15,7 +15,7 @@ public class RetryTransferInitiationRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RetryTransferInitiationRequestBuilder request(com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest request) {
+    public RetryTransferInitiationRequestBuilder request(RetryTransferInitiationRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

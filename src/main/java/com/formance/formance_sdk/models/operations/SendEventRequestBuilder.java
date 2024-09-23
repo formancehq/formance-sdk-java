@@ -15,7 +15,7 @@ public class SendEventRequestBuilder {
         this.sdk = sdk;
     }
 
-    public SendEventRequestBuilder request(com.formance.formance_sdk.models.operations.SendEventRequest request) {
+    public SendEventRequestBuilder request(SendEventRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

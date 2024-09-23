@@ -15,7 +15,7 @@ public class GetAccountRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetAccountRequestBuilder request(com.formance.formance_sdk.models.operations.GetAccountRequest request) {
+    public GetAccountRequestBuilder request(GetAccountRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

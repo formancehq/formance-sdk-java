@@ -15,7 +15,7 @@ public class ListPaymentsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ListPaymentsRequestBuilder request(com.formance.formance_sdk.models.operations.ListPaymentsRequest request) {
+    public ListPaymentsRequestBuilder request(ListPaymentsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

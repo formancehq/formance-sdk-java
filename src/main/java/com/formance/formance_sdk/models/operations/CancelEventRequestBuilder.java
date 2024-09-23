@@ -15,7 +15,7 @@ public class CancelEventRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CancelEventRequestBuilder request(com.formance.formance_sdk.models.operations.CancelEventRequest request) {
+    public CancelEventRequestBuilder request(CancelEventRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

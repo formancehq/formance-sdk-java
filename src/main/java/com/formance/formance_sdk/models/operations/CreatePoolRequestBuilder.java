@@ -16,7 +16,7 @@ public class CreatePoolRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreatePoolRequestBuilder request(com.formance.formance_sdk.models.shared.PoolRequest request) {
+    public CreatePoolRequestBuilder request(PoolRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
