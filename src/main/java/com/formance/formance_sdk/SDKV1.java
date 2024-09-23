@@ -166,7 +166,7 @@ public class SDKV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -177,7 +177,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "CreateTransactions", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -188,7 +188,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "CreateTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -197,7 +197,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "CreateTransactions",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -206,7 +206,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "CreateTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -298,7 +298,7 @@ public class SDKV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -309,7 +309,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "addMetadataOnTransaction", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -320,7 +320,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "addMetadataOnTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -329,7 +329,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "addMetadataOnTransaction",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -338,7 +338,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "addMetadataOnTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -422,7 +422,7 @@ public class SDKV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -433,7 +433,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "addMetadataToAccount", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -444,7 +444,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "addMetadataToAccount",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -453,7 +453,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "addMetadataToAccount",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -462,7 +462,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "addMetadataToAccount",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -533,7 +533,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "HEAD");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 CountAccountsRequest.class,
@@ -549,7 +549,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "countAccounts", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -560,7 +560,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "countAccounts",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -569,7 +569,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "countAccounts",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -578,7 +578,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "countAccounts",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -650,7 +650,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "HEAD");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 CountTransactionsRequest.class,
@@ -666,7 +666,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "countTransactions", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -677,7 +677,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "countTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -686,7 +686,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "countTransactions",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -695,7 +695,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "countTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -780,7 +780,7 @@ public class SDKV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 CreateTransactionRequest.class,
@@ -796,7 +796,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "createTransaction", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -807,7 +807,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -816,7 +816,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "createTransaction",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -825,7 +825,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -907,7 +907,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -918,7 +918,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getAccount", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -929,7 +929,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getAccount",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -938,7 +938,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getAccount",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -947,7 +947,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getAccount",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1029,7 +1029,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 GetBalancesRequest.class,
@@ -1045,7 +1045,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getBalances", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1056,7 +1056,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getBalances",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1065,7 +1065,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getBalances",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1074,7 +1074,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getBalances",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1156,7 +1156,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 GetBalancesAggregatedRequest.class,
@@ -1172,7 +1172,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getBalancesAggregated", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1183,7 +1183,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getBalancesAggregated",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1192,7 +1192,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getBalancesAggregated",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1201,7 +1201,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getBalancesAggregated",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1279,7 +1279,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1290,7 +1290,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1301,7 +1301,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1310,7 +1310,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1319,7 +1319,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1401,7 +1401,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1412,7 +1412,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getLedgerInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1423,7 +1423,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getLedgerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1432,7 +1432,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getLedgerInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1441,7 +1441,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getLedgerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1523,7 +1523,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1534,7 +1534,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getMapping", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1545,7 +1545,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getMapping",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1554,7 +1554,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getMapping",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1563,7 +1563,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getMapping",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1645,7 +1645,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1656,7 +1656,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getTransaction", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1667,7 +1667,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1676,7 +1676,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getTransaction",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1685,7 +1685,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1769,7 +1769,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 ListAccountsRequest.class,
@@ -1785,7 +1785,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listAccounts", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1796,7 +1796,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listAccounts",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1805,7 +1805,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listAccounts",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1814,7 +1814,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listAccounts",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1913,7 +1913,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 ListLogsRequest.class,
@@ -1929,7 +1929,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listLogs", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1940,7 +1940,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listLogs",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1949,7 +1949,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listLogs",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1958,7 +1958,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listLogs",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2042,7 +2042,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 ListTransactionsRequest.class,
@@ -2058,7 +2058,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listTransactions", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2069,7 +2069,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2078,7 +2078,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listTransactions",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2087,7 +2087,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2173,7 +2173,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -2184,7 +2184,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "readStats", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2195,7 +2195,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "readStats",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2204,7 +2204,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "readStats",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2213,7 +2213,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "readStats",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2295,7 +2295,7 @@ public class SDKV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 RevertTransactionRequest.class,
@@ -2311,7 +2311,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "revertTransaction", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2322,7 +2322,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "revertTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2331,7 +2331,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "revertTransaction",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2340,7 +2340,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "revertTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2443,7 +2443,7 @@ public class SDKV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 RunScriptRequest.class,
@@ -2459,7 +2459,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "runScript", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2470,7 +2470,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "runScript",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2479,7 +2479,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "runScript",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2488,7 +2488,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "runScript",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2577,7 +2577,7 @@ public class SDKV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -2588,7 +2588,7 @@ public class SDKV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "updateMapping", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2599,7 +2599,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "updateMapping",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2608,7 +2608,7 @@ public class SDKV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "updateMapping",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2617,7 +2617,7 @@ public class SDKV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "updateMapping",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));

@@ -15,7 +15,7 @@ public class DeleteTriggerRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteTriggerRequestBuilder request(com.formance.formance_sdk.models.operations.DeleteTriggerRequest request) {
+    public DeleteTriggerRequestBuilder request(DeleteTriggerRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

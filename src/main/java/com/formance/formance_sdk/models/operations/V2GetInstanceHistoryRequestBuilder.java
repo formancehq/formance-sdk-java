@@ -15,7 +15,7 @@ public class V2GetInstanceHistoryRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2GetInstanceHistoryRequestBuilder request(com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest request) {
+    public V2GetInstanceHistoryRequestBuilder request(V2GetInstanceHistoryRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

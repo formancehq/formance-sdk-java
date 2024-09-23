@@ -15,7 +15,7 @@ public class DeletePolicyRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeletePolicyRequestBuilder request(com.formance.formance_sdk.models.operations.DeletePolicyRequest request) {
+    public DeletePolicyRequestBuilder request(DeletePolicyRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

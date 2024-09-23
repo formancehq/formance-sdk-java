@@ -15,7 +15,7 @@ public class V2ListInstancesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2ListInstancesRequestBuilder request(com.formance.formance_sdk.models.operations.V2ListInstancesRequest request) {
+    public V2ListInstancesRequestBuilder request(V2ListInstancesRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

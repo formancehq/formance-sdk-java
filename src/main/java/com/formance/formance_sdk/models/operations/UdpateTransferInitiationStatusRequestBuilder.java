@@ -15,7 +15,7 @@ public class UdpateTransferInitiationStatusRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UdpateTransferInitiationStatusRequestBuilder request(com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest request) {
+    public UdpateTransferInitiationStatusRequestBuilder request(UdpateTransferInitiationStatusRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -54,7 +54,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:3.1.0'
+implementation 'com.formance:formance-sdk:4.0.0'
 ```
 
 Maven:
@@ -62,7 +62,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>3.1.0</version>
+    <version>4.0.0</version>
 </dependency>
 ```
 
@@ -90,7 +90,6 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -98,28 +97,20 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+        GetVersionsResponse res = sdk.getVersions()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getVersionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -370,6 +361,7 @@ You can override the default server globally by passing a server index to the `s
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
+| 1 | `https://{stack}.sandbox.formance.cloud` | None |
 
 #### Example
 
@@ -377,7 +369,6 @@ You can override the default server globally by passing a server index to the `s
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -385,29 +376,21 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .serverIndex(0)
+
+        SDK sdk = SDK.builder()
+                .serverIndex(1)
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+        GetVersionsResponse res = sdk.getVersions()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getVersionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -420,7 +403,6 @@ The default server can also be overridden globally by passing a URL to the `serv
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -428,29 +410,21 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .serverURL("http://localhost")
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+        GetVersionsResponse res = sdk.getVersions()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getVersionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -472,7 +446,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
 import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Posting;
@@ -485,16 +459,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CreateTransactionsRequest req = CreateTransactionsRequest.builder()
+        CreateTransactionsRequest req = CreateTransactionsRequest.builder()
                 .transactions(Transactions.builder()
                     .transactions(List.of(
                         TransactionData.builder()
@@ -511,24 +485,13 @@ public class Application {
                 .ledger("ledger001")
                 .build();
 
-            CreateTransactionsResponse res = sdk.ledger().v1().createTransactions()
+        CreateTransactionsResponse res = sdk.ledger().v1().createTransactions()
                 .request(req)
                 .call();
 
-            if (res.transactionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transactionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -550,7 +513,6 @@ You can set the security parameters through the `security` builder method when i
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -558,28 +520,20 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetVersionsResponse res = sdk.getVersions()
+        GetVersionsResponse res = sdk.getVersions()
                 .call();
 
-            if (res.getVersionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getVersionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

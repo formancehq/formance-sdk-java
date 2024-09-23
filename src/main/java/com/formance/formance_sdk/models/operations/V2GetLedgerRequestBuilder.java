@@ -15,7 +15,7 @@ public class V2GetLedgerRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2GetLedgerRequestBuilder request(com.formance.formance_sdk.models.operations.V2GetLedgerRequest request) {
+    public V2GetLedgerRequestBuilder request(V2GetLedgerRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

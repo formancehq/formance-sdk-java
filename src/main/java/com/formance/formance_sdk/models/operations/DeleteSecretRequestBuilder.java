@@ -15,7 +15,7 @@ public class DeleteSecretRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteSecretRequestBuilder request(com.formance.formance_sdk.models.operations.DeleteSecretRequest request) {
+    public DeleteSecretRequestBuilder request(DeleteSecretRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class V2DeleteWorkflowRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2DeleteWorkflowRequestBuilder request(com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest request) {
+    public V2DeleteWorkflowRequestBuilder request(V2DeleteWorkflowRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class GetMappingRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetMappingRequestBuilder request(com.formance.formance_sdk.models.operations.GetMappingRequest request) {
+    public GetMappingRequestBuilder request(GetMappingRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

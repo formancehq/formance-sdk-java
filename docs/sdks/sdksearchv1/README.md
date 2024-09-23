@@ -18,7 +18,6 @@ Elasticsearch.v1 query engine
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.SearchResponse;
 import com.formance.formance_sdk.models.shared.Query;
 import com.formance.formance_sdk.models.shared.QueryRaw;
@@ -29,15 +28,15 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            Query req = Query.builder()
+        Query req = Query.builder()
                 .after(List.of(
                     "users:002"))
                 .cursor("YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=")
@@ -51,21 +50,13 @@ public class Application {
                     "destination=central_bank1"))
                 .build();
 
-            SearchResponse res = sdk.search().v1().search()
+        SearchResponse res = sdk.search().v1().search()
                 .request(req)
                 .call();
 
-            if (res.response().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.response().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -97,7 +88,6 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -105,28 +95,20 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            SearchgetServerInfoResponse res = sdk.search().v1().searchgetServerInfo()
+        SearchgetServerInfoResponse res = sdk.search().v1().searchgetServerInfo()
                 .call();
 
-            if (res.serverInfo().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.serverInfo().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

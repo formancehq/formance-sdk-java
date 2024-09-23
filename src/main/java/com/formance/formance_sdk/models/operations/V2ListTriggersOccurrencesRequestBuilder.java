@@ -15,7 +15,7 @@ public class V2ListTriggersOccurrencesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2ListTriggersOccurrencesRequestBuilder request(com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest request) {
+    public V2ListTriggersOccurrencesRequestBuilder request(V2ListTriggersOccurrencesRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

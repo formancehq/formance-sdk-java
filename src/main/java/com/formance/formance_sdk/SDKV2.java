@@ -139,7 +139,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -150,7 +150,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2CancelEvent", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -161,7 +161,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CancelEvent",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -170,7 +170,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2CancelEvent",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -179,7 +179,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CancelEvent",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -270,7 +270,7 @@ public class SDKV2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -281,7 +281,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2CreateTrigger", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -292,7 +292,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateTrigger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -301,7 +301,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2CreateTrigger",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -310,7 +310,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateTrigger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -412,7 +412,7 @@ public class SDKV2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -423,7 +423,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2CreateWorkflow", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -434,7 +434,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateWorkflow",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -443,7 +443,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2CreateWorkflow",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -452,7 +452,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateWorkflow",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -536,7 +536,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -547,7 +547,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2DeleteTrigger", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -558,7 +558,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteTrigger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -567,7 +567,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2DeleteTrigger",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -576,7 +576,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteTrigger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -649,7 +649,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -660,7 +660,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2DeleteWorkflow", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -671,7 +671,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteWorkflow",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -680,7 +680,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2DeleteWorkflow",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -689,7 +689,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteWorkflow",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -762,7 +762,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -773,7 +773,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetInstance", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -784,7 +784,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetInstance",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -793,7 +793,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetInstance",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -802,7 +802,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetInstance",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -886,7 +886,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -897,7 +897,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetInstanceHistory", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -908,7 +908,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetInstanceHistory",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -917,7 +917,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetInstanceHistory",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -926,7 +926,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetInstanceHistory",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1010,7 +1010,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1021,7 +1021,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetInstanceStageHistory", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1032,7 +1032,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetInstanceStageHistory",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1041,7 +1041,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetInstanceStageHistory",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1050,7 +1050,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetInstanceStageHistory",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1128,7 +1128,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1139,7 +1139,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetServerInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1150,7 +1150,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1159,7 +1159,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetServerInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1168,7 +1168,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1252,7 +1252,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1263,7 +1263,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetWorkflow", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1274,7 +1274,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetWorkflow",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1283,7 +1283,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetWorkflow",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1292,7 +1292,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetWorkflow",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1374,7 +1374,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2ListInstancesRequest.class,
@@ -1390,7 +1390,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ListInstances", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1401,7 +1401,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListInstances",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1410,7 +1410,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ListInstances",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1419,7 +1419,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListInstances",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1501,7 +1501,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2ListTriggersRequest.class,
@@ -1517,7 +1517,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ListTriggers", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1528,7 +1528,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListTriggers",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1537,7 +1537,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ListTriggers",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1546,7 +1546,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListTriggers",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1630,7 +1630,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2ListTriggersOccurrencesRequest.class,
@@ -1646,7 +1646,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ListTriggersOccurrences", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1657,7 +1657,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListTriggersOccurrences",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1666,7 +1666,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ListTriggersOccurrences",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1675,7 +1675,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListTriggersOccurrences",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1757,7 +1757,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2ListWorkflowsRequest.class,
@@ -1773,7 +1773,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ListWorkflows", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1784,7 +1784,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListWorkflows",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1793,7 +1793,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ListWorkflows",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1802,7 +1802,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListWorkflows",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1886,7 +1886,7 @@ public class SDKV2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1897,7 +1897,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ReadTrigger", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1908,7 +1908,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ReadTrigger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1917,7 +1917,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ReadTrigger",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1926,7 +1926,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ReadTrigger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2020,7 +2020,7 @@ public class SDKV2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2RunWorkflowRequest.class,
@@ -2036,7 +2036,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2RunWorkflow", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2047,7 +2047,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2RunWorkflow",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2056,7 +2056,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2RunWorkflow",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2065,7 +2065,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2RunWorkflow",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2159,7 +2159,7 @@ public class SDKV2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -2170,7 +2170,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2SendEvent", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2181,7 +2181,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2SendEvent",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2190,7 +2190,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2SendEvent",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2199,7 +2199,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2SendEvent",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2282,7 +2282,7 @@ public class SDKV2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -2293,7 +2293,7 @@ public class SDKV2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "testTrigger", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "orchestration:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2304,7 +2304,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "testTrigger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2313,7 +2313,7 @@ public class SDKV2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "testTrigger",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "orchestration:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2322,7 +2322,7 @@ public class SDKV2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "testTrigger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "orchestration:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));

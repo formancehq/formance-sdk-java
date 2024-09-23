@@ -137,17 +137,17 @@ public class ConnectorConfig {
 
         public _Deserializer() {
             super(ConnectorConfig.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.BankingCircleConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.AtlarConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.DummyPayConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.AdyenConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.MoneycorpConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.MangoPayConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.CurrencyCloudConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.ModulrConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.GenericConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.StripeConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.WiseConfig>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<BankingCircleConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<AtlarConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<DummyPayConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<AdyenConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<MoneycorpConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<MangoPayConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<CurrencyCloudConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<ModulrConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<GenericConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<StripeConfig>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<WiseConfig>() {}, JsonShape.DEFAULT));
         }
     }
     

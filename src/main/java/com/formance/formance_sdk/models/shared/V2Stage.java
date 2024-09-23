@@ -95,10 +95,10 @@ public class V2Stage {
 
         public _Deserializer() {
             super(V2Stage.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.V2StageSend>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.V2StageDelay>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.V2Update>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<com.formance.formance_sdk.models.shared.V2StageWaitEvent>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<V2StageSend>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<V2StageDelay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<V2Update>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<V2StageWaitEvent>() {}, JsonShape.DEFAULT));
         }
     }
     

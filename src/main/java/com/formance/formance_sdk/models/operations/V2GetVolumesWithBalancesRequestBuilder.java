@@ -15,7 +15,7 @@ public class V2GetVolumesWithBalancesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2GetVolumesWithBalancesRequestBuilder request(com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest request) {
+    public V2GetVolumesWithBalancesRequestBuilder request(V2GetVolumesWithBalancesRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

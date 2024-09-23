@@ -15,7 +15,7 @@ public class ConnectorsTransferRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ConnectorsTransferRequestBuilder request(com.formance.formance_sdk.models.operations.ConnectorsTransferRequest request) {
+    public ConnectorsTransferRequestBuilder request(ConnectorsTransferRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

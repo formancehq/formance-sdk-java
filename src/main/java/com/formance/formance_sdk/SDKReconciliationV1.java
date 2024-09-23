@@ -109,7 +109,7 @@ public class SDKReconciliationV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -120,7 +120,7 @@ public class SDKReconciliationV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "createPolicy", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "reconciliation:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -131,7 +131,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createPolicy",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -140,7 +140,7 @@ public class SDKReconciliationV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "createPolicy",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "reconciliation:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -149,7 +149,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "createPolicy",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -233,7 +233,7 @@ public class SDKReconciliationV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -244,7 +244,7 @@ public class SDKReconciliationV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "deletePolicy", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "reconciliation:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -255,7 +255,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "deletePolicy",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -264,7 +264,7 @@ public class SDKReconciliationV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "deletePolicy",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "reconciliation:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -273,7 +273,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "deletePolicy",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -344,7 +344,7 @@ public class SDKReconciliationV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -355,7 +355,7 @@ public class SDKReconciliationV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getPolicy", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "reconciliation:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -366,7 +366,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getPolicy",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -375,7 +375,7 @@ public class SDKReconciliationV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getPolicy",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "reconciliation:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -384,7 +384,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getPolicy",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -466,7 +466,7 @@ public class SDKReconciliationV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -477,7 +477,7 @@ public class SDKReconciliationV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getReconciliation", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "reconciliation:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -488,7 +488,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getReconciliation",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -497,7 +497,7 @@ public class SDKReconciliationV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getReconciliation",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "reconciliation:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -506,7 +506,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getReconciliation",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -586,7 +586,7 @@ public class SDKReconciliationV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 ListPoliciesRequest.class,
@@ -602,7 +602,7 @@ public class SDKReconciliationV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listPolicies", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "reconciliation:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -613,7 +613,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listPolicies",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -622,7 +622,7 @@ public class SDKReconciliationV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listPolicies",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "reconciliation:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -631,7 +631,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listPolicies",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -711,7 +711,7 @@ public class SDKReconciliationV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 ListReconciliationsRequest.class,
@@ -727,7 +727,7 @@ public class SDKReconciliationV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "listReconciliations", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "reconciliation:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -738,7 +738,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listReconciliations",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -747,7 +747,7 @@ public class SDKReconciliationV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "listReconciliations",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "reconciliation:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -756,7 +756,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "listReconciliations",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -853,7 +853,7 @@ public class SDKReconciliationV1 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -864,7 +864,7 @@ public class SDKReconciliationV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "reconcile", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "reconciliation:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -875,7 +875,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "reconcile",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -884,7 +884,7 @@ public class SDKReconciliationV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "reconcile",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "reconciliation:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -893,7 +893,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "reconcile",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -971,7 +971,7 @@ public class SDKReconciliationV1 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -982,7 +982,7 @@ public class SDKReconciliationV1 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "reconciliationgetServerInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "reconciliation:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -993,7 +993,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "reconciliationgetServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1002,7 +1002,7 @@ public class SDKReconciliationV1 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "reconciliationgetServerInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "reconciliation:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1011,7 +1011,7 @@ public class SDKReconciliationV1 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "reconciliationgetServerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "reconciliation:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));

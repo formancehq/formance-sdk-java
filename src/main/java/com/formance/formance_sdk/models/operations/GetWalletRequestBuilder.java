@@ -15,7 +15,7 @@ public class GetWalletRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetWalletRequestBuilder request(com.formance.formance_sdk.models.operations.GetWalletRequest request) {
+    public GetWalletRequestBuilder request(GetWalletRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

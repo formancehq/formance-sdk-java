@@ -15,7 +15,7 @@ public class GetTransferInitiationRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetTransferInitiationRequestBuilder request(com.formance.formance_sdk.models.operations.GetTransferInitiationRequest request) {
+    public GetTransferInitiationRequestBuilder request(GetTransferInitiationRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

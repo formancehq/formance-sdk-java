@@ -36,7 +36,7 @@ Create a new batch of transactions to a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
 import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Posting;
@@ -49,16 +49,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CreateTransactionsRequest req = CreateTransactionsRequest.builder()
+        CreateTransactionsRequest req = CreateTransactionsRequest.builder()
                 .transactions(Transactions.builder()
                     .transactions(List.of(
                         TransactionData.builder()
@@ -75,24 +75,13 @@ public class Application {
                 .ledger("ledger001")
                 .build();
 
-            CreateTransactionsResponse res = sdk.ledger().v1().createTransactions()
+        CreateTransactionsResponse res = sdk.ledger().v1().createTransactions()
                 .request(req)
                 .call();
 
-            if (res.transactionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transactionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -125,7 +114,7 @@ Set the metadata of a transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -134,36 +123,25 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            AddMetadataOnTransactionRequest req = AddMetadataOnTransactionRequest.builder()
+        AddMetadataOnTransactionRequest req = AddMetadataOnTransactionRequest.builder()
                 .ledger("ledger001")
                 .txid(new BigInteger("1234"))
                 .build();
 
-            AddMetadataOnTransactionResponse res = sdk.ledger().v1().addMetadataOnTransaction()
+        AddMetadataOnTransactionResponse res = sdk.ledger().v1().addMetadataOnTransaction()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -196,7 +174,7 @@ Add metadata to an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest;
 import com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -205,38 +183,27 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            AddMetadataToAccountRequest req = AddMetadataToAccountRequest.builder()
+        AddMetadataToAccountRequest req = AddMetadataToAccountRequest.builder()
                 .requestBody(Map.ofEntries(
                     Map.entry("key", "<value>")))
                 .address("users:001")
                 .ledger("ledger001")
                 .build();
 
-            AddMetadataToAccountResponse res = sdk.ledger().v1().addMetadataToAccount()
+        AddMetadataToAccountResponse res = sdk.ledger().v1().addMetadataToAccount()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -269,7 +236,7 @@ Count the accounts from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.CountAccountsRequest;
 import com.formance.formance_sdk.models.operations.CountAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -278,16 +245,16 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CountAccountsRequest req = CountAccountsRequest.builder()
+        CountAccountsRequest req = CountAccountsRequest.builder()
                 .ledger("ledger001")
                 .address("users:.+")
                 .metadata(Map.ofEntries(
@@ -343,22 +310,11 @@ public class Application {
                     Map.entry("49", "2")))
                 .build();
 
-            CountAccountsResponse res = sdk.ledger().v1().countAccounts()
+        CountAccountsResponse res = sdk.ledger().v1().countAccounts()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -391,7 +347,7 @@ Count the transactions from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.CountTransactionsRequest;
 import com.formance.formance_sdk.models.operations.CountTransactionsResponse;
 import com.formance.formance_sdk.models.operations.Metadata;
@@ -400,16 +356,16 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CountTransactionsRequest req = CountTransactionsRequest.builder()
+        CountTransactionsRequest req = CountTransactionsRequest.builder()
                 .ledger("ledger001")
                 .account("users:001")
                 .destination("users:001")
@@ -419,22 +375,11 @@ public class Application {
                 .source("users:001")
                 .build();
 
-            CountTransactionsResponse res = sdk.ledger().v1().countTransactions()
+        CountTransactionsResponse res = sdk.ledger().v1().countTransactions()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -467,7 +412,7 @@ Create a new transaction to a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateTransactionRequest;
 import com.formance.formance_sdk.models.operations.CreateTransactionResponse;
 import com.formance.formance_sdk.models.shared.PostTransaction;
@@ -481,16 +426,16 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CreateTransactionRequest req = CreateTransactionRequest.builder()
+        CreateTransactionRequest req = CreateTransactionRequest.builder()
                 .postTransaction(PostTransaction.builder()
                     .postings(List.of(
                         Posting.builder()
@@ -516,24 +461,13 @@ public class Application {
                 .preview(true)
                 .build();
 
-            CreateTransactionResponse res = sdk.ledger().v1().createTransaction()
+        CreateTransactionResponse res = sdk.ledger().v1().createTransaction()
                 .request(req)
                 .call();
 
-            if (res.transactionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transactionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -566,7 +500,7 @@ Get account by its address
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.GetAccountRequest;
 import com.formance.formance_sdk.models.operations.GetAccountResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -574,38 +508,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetAccountRequest req = GetAccountRequest.builder()
+        GetAccountRequest req = GetAccountRequest.builder()
                 .address("users:001")
                 .ledger("ledger001")
                 .build();
 
-            GetAccountResponse res = sdk.ledger().v1().getAccount()
+        GetAccountResponse res = sdk.ledger().v1().getAccount()
                 .request(req)
                 .call();
 
-            if (res.accountResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.accountResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -638,7 +561,7 @@ Get the balances from a ledger's account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.GetBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetBalancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -646,40 +569,29 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetBalancesRequest req = GetBalancesRequest.builder()
+        GetBalancesRequest req = GetBalancesRequest.builder()
                 .ledger("ledger001")
                 .address("users:001")
                 .after("users:003")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .build();
 
-            GetBalancesResponse res = sdk.ledger().v1().getBalances()
+        GetBalancesResponse res = sdk.ledger().v1().getBalances()
                 .request(req)
                 .call();
 
-            if (res.balancesCursorResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.balancesCursorResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -712,7 +624,7 @@ Get the aggregated balances from selected accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -720,38 +632,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetBalancesAggregatedRequest req = GetBalancesAggregatedRequest.builder()
+        GetBalancesAggregatedRequest req = GetBalancesAggregatedRequest.builder()
                 .ledger("ledger001")
                 .address("users:001")
                 .build();
 
-            GetBalancesAggregatedResponse res = sdk.ledger().v1().getBalancesAggregated()
+        GetBalancesAggregatedResponse res = sdk.ledger().v1().getBalancesAggregated()
                 .request(req)
                 .call();
 
-            if (res.aggregateBalancesResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.aggregateBalancesResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -784,39 +685,28 @@ Show server information
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.GetInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetInfoResponse res = sdk.ledger().v1().getInfo()
+        GetInfoResponse res = sdk.ledger().v1().getInfo()
                 .call();
 
-            if (res.configInfoResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.configInfoResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -843,7 +733,7 @@ Get information about a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.GetLedgerInfoRequest;
 import com.formance.formance_sdk.models.operations.GetLedgerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -851,37 +741,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetLedgerInfoRequest req = GetLedgerInfoRequest.builder()
+        GetLedgerInfoRequest req = GetLedgerInfoRequest.builder()
                 .ledger("ledger001")
                 .build();
 
-            GetLedgerInfoResponse res = sdk.ledger().v1().getLedgerInfo()
+        GetLedgerInfoResponse res = sdk.ledger().v1().getLedgerInfo()
                 .request(req)
                 .call();
 
-            if (res.ledgerInfoResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.ledgerInfoResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -914,7 +793,7 @@ Get the mapping of a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.GetMappingRequest;
 import com.formance.formance_sdk.models.operations.GetMappingResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -922,37 +801,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetMappingRequest req = GetMappingRequest.builder()
+        GetMappingRequest req = GetMappingRequest.builder()
                 .ledger("ledger001")
                 .build();
 
-            GetMappingResponse res = sdk.ledger().v1().getMapping()
+        GetMappingResponse res = sdk.ledger().v1().getMapping()
                 .request(req)
                 .call();
 
-            if (res.mappingResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.mappingResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -985,7 +853,7 @@ Get transaction from a ledger by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.GetTransactionRequest;
 import com.formance.formance_sdk.models.operations.GetTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -994,38 +862,27 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetTransactionRequest req = GetTransactionRequest.builder()
+        GetTransactionRequest req = GetTransactionRequest.builder()
                 .ledger("ledger001")
                 .txid(new BigInteger("1234"))
                 .build();
 
-            GetTransactionResponse res = sdk.ledger().v1().getTransaction()
+        GetTransactionResponse res = sdk.ledger().v1().getTransaction()
                 .request(req)
                 .call();
 
-            if (res.transactionResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transactionResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1058,7 +915,7 @@ List accounts from a ledger, sorted by address in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.ListAccountsRequest;
 import com.formance.formance_sdk.models.operations.ListAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1067,16 +924,16 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListAccountsRequest req = ListAccountsRequest.builder()
+        ListAccountsRequest req = ListAccountsRequest.builder()
                 .ledger("ledger001")
                 .address("users:.+")
                 .after("users:003")
@@ -1136,24 +993,13 @@ public class Application {
                 .pageSize(100L)
                 .build();
 
-            ListAccountsResponse res = sdk.ledger().v1().listAccounts()
+        ListAccountsResponse res = sdk.ledger().v1().listAccounts()
                 .request(req)
                 .call();
 
-            if (res.accountsCursorResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.accountsCursorResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1186,7 +1032,7 @@ List the logs from a ledger, sorted by ID in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.ListLogsRequest;
 import com.formance.formance_sdk.models.operations.ListLogsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1194,40 +1040,29 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListLogsRequest req = ListLogsRequest.builder()
+        ListLogsRequest req = ListLogsRequest.builder()
                 .ledger("ledger001")
                 .after("1234")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .build();
 
-            ListLogsResponse res = sdk.ledger().v1().listLogs()
+        ListLogsResponse res = sdk.ledger().v1().listLogs()
                 .request(req)
                 .call();
 
-            if (res.logsCursorResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.logsCursorResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1260,7 +1095,7 @@ List transactions from a ledger, sorted by txid in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.ListTransactionsRequest;
 import com.formance.formance_sdk.models.operations.ListTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1268,16 +1103,16 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListTransactionsRequest req = ListTransactionsRequest.builder()
+        ListTransactionsRequest req = ListTransactionsRequest.builder()
                 .ledger("ledger001")
                 .account("users:001")
                 .after("1234")
@@ -1288,24 +1123,13 @@ public class Application {
                 .source("users:001")
                 .build();
 
-            ListTransactionsResponse res = sdk.ledger().v1().listTransactions()
+        ListTransactionsResponse res = sdk.ledger().v1().listTransactions()
                 .request(req)
                 .call();
 
-            if (res.transactionsCursorResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transactionsCursorResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1339,7 +1163,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.ReadStatsRequest;
 import com.formance.formance_sdk.models.operations.ReadStatsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1347,37 +1171,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReadStatsRequest req = ReadStatsRequest.builder()
+        ReadStatsRequest req = ReadStatsRequest.builder()
                 .ledger("ledger001")
                 .build();
 
-            ReadStatsResponse res = sdk.ledger().v1().readStats()
+        ReadStatsResponse res = sdk.ledger().v1().readStats()
                 .request(req)
                 .call();
 
-            if (res.statsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.statsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1410,7 +1223,7 @@ Revert a ledger transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.RevertTransactionRequest;
 import com.formance.formance_sdk.models.operations.RevertTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1419,38 +1232,27 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            RevertTransactionRequest req = RevertTransactionRequest.builder()
+        RevertTransactionRequest req = RevertTransactionRequest.builder()
                 .ledger("ledger001")
                 .txid(new BigInteger("1234"))
                 .build();
 
-            RevertTransactionResponse res = sdk.ledger().v1().revertTransaction()
+        RevertTransactionResponse res = sdk.ledger().v1().revertTransaction()
                 .request(req)
                 .call();
 
-            if (res.transactionResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transactionResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1486,7 +1288,6 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.RunScriptRequest;
 import com.formance.formance_sdk.models.operations.RunScriptResponse;
 import com.formance.formance_sdk.models.shared.Script;
@@ -1497,15 +1298,15 @@ import java.util.Map;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            RunScriptRequest req = RunScriptRequest.builder()
+        RunScriptRequest req = RunScriptRequest.builder()
                 .script(Script.builder()
                     .plain("vars {\naccount $user
                     }
@@ -1522,21 +1323,13 @@ public class Application {
                 .preview(true)
                 .build();
 
-            RunScriptResponse res = sdk.ledger().v1().runScript()
+        RunScriptResponse res = sdk.ledger().v1().runScript()
                 .request(req)
                 .call();
 
-            if (res.scriptResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.scriptResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1568,7 +1361,7 @@ Update the mapping of a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateMappingRequest;
 import com.formance.formance_sdk.models.operations.UpdateMappingResponse;
 import com.formance.formance_sdk.models.shared.Contract;
@@ -1580,16 +1373,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UpdateMappingRequest req = UpdateMappingRequest.builder()
+        UpdateMappingRequest req = UpdateMappingRequest.builder()
                 .mapping(Mapping.builder()
                     .contracts(List.of(
                         Contract.builder()
@@ -1601,24 +1394,13 @@ public class Application {
                 .ledger("ledger001")
                 .build();
 
-            UpdateMappingResponse res = sdk.ledger().v1().updateMapping()
+        UpdateMappingResponse res = sdk.ledger().v1().updateMapping()
                 .request(req)
                 .call();
 
-            if (res.mappingResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.mappingResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

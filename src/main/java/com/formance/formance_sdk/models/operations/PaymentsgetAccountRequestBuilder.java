@@ -15,7 +15,7 @@ public class PaymentsgetAccountRequestBuilder {
         this.sdk = sdk;
     }
 
-    public PaymentsgetAccountRequestBuilder request(com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest request) {
+    public PaymentsgetAccountRequestBuilder request(PaymentsgetAccountRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

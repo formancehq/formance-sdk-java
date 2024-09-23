@@ -15,7 +15,7 @@ public class TestConfigRequestBuilder {
         this.sdk = sdk;
     }
 
-    public TestConfigRequestBuilder request(com.formance.formance_sdk.models.operations.TestConfigRequest request) {
+    public TestConfigRequestBuilder request(TestConfigRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

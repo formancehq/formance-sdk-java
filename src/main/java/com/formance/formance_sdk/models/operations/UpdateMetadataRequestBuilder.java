@@ -15,7 +15,7 @@ public class UpdateMetadataRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateMetadataRequestBuilder request(com.formance.formance_sdk.models.operations.UpdateMetadataRequest request) {
+    public UpdateMetadataRequestBuilder request(UpdateMetadataRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

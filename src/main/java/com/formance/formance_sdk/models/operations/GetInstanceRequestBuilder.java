@@ -15,7 +15,7 @@ public class GetInstanceRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetInstanceRequestBuilder request(com.formance.formance_sdk.models.operations.GetInstanceRequest request) {
+    public GetInstanceRequestBuilder request(GetInstanceRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

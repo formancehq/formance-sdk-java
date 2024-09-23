@@ -15,7 +15,7 @@ public class ResetConnectorRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ResetConnectorRequestBuilder request(com.formance.formance_sdk.models.operations.ResetConnectorRequest request) {
+    public ResetConnectorRequestBuilder request(ResetConnectorRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -34,7 +34,7 @@ Cancel a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2CancelEventRequest;
 import com.formance.formance_sdk.models.operations.V2CancelEventResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -42,35 +42,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2CancelEventRequest req = V2CancelEventRequest.builder()
+        V2CancelEventRequest req = V2CancelEventRequest.builder()
                 .instanceID("xxx")
                 .build();
 
-            V2CancelEventResponse res = sdk.orchestration().v2().cancelEvent()
+        V2CancelEventResponse res = sdk.orchestration().v2().cancelEvent()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -103,7 +92,7 @@ Create trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2CreateTriggerResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.V2TriggerData;
@@ -111,38 +100,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2TriggerData req = V2TriggerData.builder()
+        V2TriggerData req = V2TriggerData.builder()
                 .event("<value>")
                 .workflowID("<value>")
                 .build();
 
-            V2CreateTriggerResponse res = sdk.orchestration().v2().createTrigger()
+        V2CreateTriggerResponse res = sdk.orchestration().v2().createTrigger()
                 .request(req)
                 .call();
 
-            if (res.v2CreateTriggerResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2CreateTriggerResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -175,7 +153,7 @@ Create a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest;
@@ -185,39 +163,28 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2CreateWorkflowRequest req = V2CreateWorkflowRequest.builder()
+        V2CreateWorkflowRequest req = V2CreateWorkflowRequest.builder()
                 .stages(List.of(
                     Map.ofEntries(
                         Map.entry("key", "<value>"))))
                 .build();
 
-            V2CreateWorkflowResponse res = sdk.orchestration().v2().createWorkflow()
+        V2CreateWorkflowResponse res = sdk.orchestration().v2().createWorkflow()
                 .request(req)
                 .call();
 
-            if (res.v2CreateWorkflowResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2CreateWorkflowResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -250,7 +217,7 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -258,35 +225,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2DeleteTriggerRequest req = V2DeleteTriggerRequest.builder()
+        V2DeleteTriggerRequest req = V2DeleteTriggerRequest.builder()
                 .triggerID("<value>")
                 .build();
 
-            V2DeleteTriggerResponse res = sdk.orchestration().v2().deleteTrigger()
+        V2DeleteTriggerResponse res = sdk.orchestration().v2().deleteTrigger()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -319,7 +275,7 @@ Delete a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -327,35 +283,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2DeleteWorkflowRequest req = V2DeleteWorkflowRequest.builder()
+        V2DeleteWorkflowRequest req = V2DeleteWorkflowRequest.builder()
                 .flowId("xxx")
                 .build();
 
-            V2DeleteWorkflowResponse res = sdk.orchestration().v2().deleteWorkflow()
+        V2DeleteWorkflowResponse res = sdk.orchestration().v2().deleteWorkflow()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -388,7 +333,7 @@ Get a workflow instance by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetInstanceRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -396,37 +341,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2GetInstanceRequest req = V2GetInstanceRequest.builder()
+        V2GetInstanceRequest req = V2GetInstanceRequest.builder()
                 .instanceID("xxx")
                 .build();
 
-            V2GetInstanceResponse res = sdk.orchestration().v2().getInstance()
+        V2GetInstanceResponse res = sdk.orchestration().v2().getInstance()
                 .request(req)
                 .call();
 
-            if (res.v2GetWorkflowInstanceResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2GetWorkflowInstanceResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -459,7 +393,7 @@ Get a workflow instance history by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -467,37 +401,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2GetInstanceHistoryRequest req = V2GetInstanceHistoryRequest.builder()
+        V2GetInstanceHistoryRequest req = V2GetInstanceHistoryRequest.builder()
                 .instanceID("xxx")
                 .build();
 
-            V2GetInstanceHistoryResponse res = sdk.orchestration().v2().getInstanceHistory()
+        V2GetInstanceHistoryResponse res = sdk.orchestration().v2().getInstanceHistory()
                 .request(req)
                 .call();
 
-            if (res.v2GetWorkflowInstanceHistoryResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2GetWorkflowInstanceHistoryResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -530,7 +453,7 @@ Get a workflow instance stage history
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -538,38 +461,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2GetInstanceStageHistoryRequest req = V2GetInstanceStageHistoryRequest.builder()
+        V2GetInstanceStageHistoryRequest req = V2GetInstanceStageHistoryRequest.builder()
                 .instanceID("xxx")
                 .number(0L)
                 .build();
 
-            V2GetInstanceStageHistoryResponse res = sdk.orchestration().v2().getInstanceStageHistory()
+        V2GetInstanceStageHistoryResponse res = sdk.orchestration().v2().getInstanceStageHistory()
                 .request(req)
                 .call();
 
-            if (res.v2GetWorkflowInstanceHistoryStageResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2GetWorkflowInstanceHistoryStageResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -602,39 +514,28 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2GetServerInfoResponse res = sdk.orchestration().v2().getServerInfo()
+        V2GetServerInfoResponse res = sdk.orchestration().v2().getServerInfo()
                 .call();
 
-            if (res.v2ServerInfo().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2ServerInfo().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -661,7 +562,7 @@ Get a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2GetWorkflowResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -669,37 +570,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2GetWorkflowRequest req = V2GetWorkflowRequest.builder()
+        V2GetWorkflowRequest req = V2GetWorkflowRequest.builder()
                 .flowId("xxx")
                 .build();
 
-            V2GetWorkflowResponse res = sdk.orchestration().v2().getWorkflow()
+        V2GetWorkflowResponse res = sdk.orchestration().v2().getWorkflow()
                 .request(req)
                 .call();
 
-            if (res.v2GetWorkflowResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2GetWorkflowResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -732,7 +622,7 @@ List instances of a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ListInstancesRequest;
 import com.formance.formance_sdk.models.operations.V2ListInstancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -740,40 +630,29 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2ListInstancesRequest req = V2ListInstancesRequest.builder()
+        V2ListInstancesRequest req = V2ListInstancesRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .running(true)
                 .workflowID("xxx")
                 .build();
 
-            V2ListInstancesResponse res = sdk.orchestration().v2().listInstances()
+        V2ListInstancesResponse res = sdk.orchestration().v2().listInstances()
                 .request(req)
                 .call();
 
-            if (res.v2ListRunsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2ListRunsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -806,7 +685,7 @@ List triggers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ListTriggersRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -814,38 +693,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2ListTriggersRequest req = V2ListTriggersRequest.builder()
+        V2ListTriggersRequest req = V2ListTriggersRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .build();
 
-            V2ListTriggersResponse res = sdk.orchestration().v2().listTriggers()
+        V2ListTriggersResponse res = sdk.orchestration().v2().listTriggers()
                 .request(req)
                 .call();
 
-            if (res.v2ListTriggersResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2ListTriggersResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -878,7 +746,7 @@ List triggers occurrences
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -886,39 +754,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2ListTriggersOccurrencesRequest req = V2ListTriggersOccurrencesRequest.builder()
+        V2ListTriggersOccurrencesRequest req = V2ListTriggersOccurrencesRequest.builder()
                 .triggerID("<value>")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .build();
 
-            V2ListTriggersOccurrencesResponse res = sdk.orchestration().v2().listTriggersOccurrences()
+        V2ListTriggersOccurrencesResponse res = sdk.orchestration().v2().listTriggersOccurrences()
                 .request(req)
                 .call();
 
-            if (res.v2ListTriggersOccurrencesResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2ListTriggersOccurrencesResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -951,7 +808,7 @@ List registered workflows
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest;
 import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -959,38 +816,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2ListWorkflowsRequest req = V2ListWorkflowsRequest.builder()
+        V2ListWorkflowsRequest req = V2ListWorkflowsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .build();
 
-            V2ListWorkflowsResponse res = sdk.orchestration().v2().listWorkflows()
+        V2ListWorkflowsResponse res = sdk.orchestration().v2().listWorkflows()
                 .request(req)
                 .call();
 
-            if (res.v2ListWorkflowsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2ListWorkflowsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1023,7 +869,7 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1031,37 +877,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2ReadTriggerRequest req = V2ReadTriggerRequest.builder()
+        V2ReadTriggerRequest req = V2ReadTriggerRequest.builder()
                 .triggerID("<value>")
                 .build();
 
-            V2ReadTriggerResponse res = sdk.orchestration().v2().readTrigger()
+        V2ReadTriggerResponse res = sdk.orchestration().v2().readTrigger()
                 .request(req)
                 .call();
 
-            if (res.v2ReadTriggerResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2ReadTriggerResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1094,7 +929,7 @@ Run workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1102,37 +937,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2RunWorkflowRequest req = V2RunWorkflowRequest.builder()
+        V2RunWorkflowRequest req = V2RunWorkflowRequest.builder()
                 .workflowID("xxx")
                 .build();
 
-            V2RunWorkflowResponse res = sdk.orchestration().v2().runWorkflow()
+        V2RunWorkflowResponse res = sdk.orchestration().v2().runWorkflow()
                 .request(req)
                 .call();
 
-            if (res.v2RunWorkflowResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2RunWorkflowResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1165,7 +989,7 @@ Send an event to a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2SendEventRequest;
 import com.formance.formance_sdk.models.operations.V2SendEventResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1173,35 +997,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            V2SendEventRequest req = V2SendEventRequest.builder()
+        V2SendEventRequest req = V2SendEventRequest.builder()
                 .instanceID("xxx")
                 .build();
 
-            V2SendEventResponse res = sdk.orchestration().v2().sendEvent()
+        V2SendEventResponse res = sdk.orchestration().v2().sendEvent()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -1234,7 +1047,7 @@ Test trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.TestTriggerRequest;
 import com.formance.formance_sdk.models.operations.TestTriggerResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1242,37 +1055,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws V2Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            TestTriggerRequest req = TestTriggerRequest.builder()
+        TestTriggerRequest req = TestTriggerRequest.builder()
                 .triggerID("<value>")
                 .build();
 
-            TestTriggerResponse res = sdk.orchestration().v2().testTrigger()
+        TestTriggerResponse res = sdk.orchestration().v2().testTrigger()
                 .request(req)
                 .call();
 
-            if (res.v2TestTriggerResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.V2Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.v2TestTriggerResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

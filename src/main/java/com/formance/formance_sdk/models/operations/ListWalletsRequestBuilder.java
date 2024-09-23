@@ -15,7 +15,7 @@ public class ListWalletsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ListWalletsRequestBuilder request(com.formance.formance_sdk.models.operations.ListWalletsRequest request) {
+    public ListWalletsRequestBuilder request(ListWalletsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

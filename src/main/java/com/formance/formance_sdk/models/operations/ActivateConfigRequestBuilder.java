@@ -15,7 +15,7 @@ public class ActivateConfigRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ActivateConfigRequestBuilder request(com.formance.formance_sdk.models.operations.ActivateConfigRequest request) {
+    public ActivateConfigRequestBuilder request(ActivateConfigRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

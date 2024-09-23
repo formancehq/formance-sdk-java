@@ -15,7 +15,7 @@ public class ReadTriggerRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ReadTriggerRequestBuilder request(com.formance.formance_sdk.models.operations.ReadTriggerRequest request) {
+    public ReadTriggerRequestBuilder request(ReadTriggerRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class RemoveAccountFromPoolRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RemoveAccountFromPoolRequestBuilder request(com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest request) {
+    public RemoveAccountFromPoolRequestBuilder request(RemoveAccountFromPoolRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

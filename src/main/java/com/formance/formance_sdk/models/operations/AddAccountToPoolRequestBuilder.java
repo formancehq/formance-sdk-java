@@ -15,7 +15,7 @@ public class AddAccountToPoolRequestBuilder {
         this.sdk = sdk;
     }
 
-    public AddAccountToPoolRequestBuilder request(com.formance.formance_sdk.models.operations.AddAccountToPoolRequest request) {
+    public AddAccountToPoolRequestBuilder request(AddAccountToPoolRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

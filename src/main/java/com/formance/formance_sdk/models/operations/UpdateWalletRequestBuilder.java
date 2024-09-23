@@ -15,7 +15,7 @@ public class UpdateWalletRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateWalletRequestBuilder request(com.formance.formance_sdk.models.operations.UpdateWalletRequest request) {
+    public UpdateWalletRequestBuilder request(UpdateWalletRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

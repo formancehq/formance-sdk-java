@@ -32,7 +32,7 @@ Confirm a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.ConfirmHoldRequest;
 import com.formance.formance_sdk.models.operations.ConfirmHoldResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -41,16 +41,16 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ConfirmHoldRequest req = ConfirmHoldRequest.builder()
+        ConfirmHoldRequest req = ConfirmHoldRequest.builder()
                 .holdId("<value>")
                 .confirmHoldRequest(com.formance.formance_sdk.models.shared.ConfirmHoldRequest.builder()
                     .amount(new BigInteger("100"))
@@ -58,22 +58,11 @@ public class Application {
                     .build())
                 .build();
 
-            ConfirmHoldResponse res = sdk.wallets().v1().confirmHold()
+        ConfirmHoldResponse res = sdk.wallets().v1().confirmHold()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -106,7 +95,7 @@ Create a balance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateBalanceRequest;
 import com.formance.formance_sdk.models.operations.CreateBalanceResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -114,37 +103,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CreateBalanceRequest req = CreateBalanceRequest.builder()
+        CreateBalanceRequest req = CreateBalanceRequest.builder()
                 .id("<id>")
                 .build();
 
-            CreateBalanceResponse res = sdk.wallets().v1().createBalance()
+        CreateBalanceResponse res = sdk.wallets().v1().createBalance()
                 .request(req)
                 .call();
 
-            if (res.createBalanceResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.createBalanceResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -177,7 +155,7 @@ Create a new wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateWalletRequest;
 import com.formance.formance_sdk.models.operations.CreateWalletResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -185,36 +163,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
+            .build();
+
+        CreateWalletRequest req = CreateWalletRequest.builder()
                 .build();
 
-            CreateWalletRequest req = CreateWalletRequest.builder()
-                .build();
-
-            CreateWalletResponse res = sdk.wallets().v1().createWallet()
+        CreateWalletResponse res = sdk.wallets().v1().createWallet()
                 .request(req)
                 .call();
 
-            if (res.createWalletResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.createWalletResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -247,51 +214,50 @@ Credit a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreditWalletRequest;
 import com.formance.formance_sdk.models.operations.CreditWalletResponse;
 import com.formance.formance_sdk.models.shared.Monetary;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.WalletSubject;
 import java.lang.Exception;
 import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CreditWalletRequest req = CreditWalletRequest.builder()
+        CreditWalletRequest req = CreditWalletRequest.builder()
                 .id("<id>")
                 .creditWalletRequest(com.formance.formance_sdk.models.shared.CreditWalletRequest.builder()
                     .amount(Monetary.builder()
                         .amount(new BigInteger("201874"))
                         .asset("<value>")
                         .build())
+                    .metadata(Map.ofEntries(
+                        Map.entry("key", "")))
+                    .sources(List.of(
+                        WalletSubject.builder()
+                            .identifier("<value>")
+                            .type("<value>")
+                            .build()))
                     .build())
                 .build();
 
-            CreditWalletResponse res = sdk.wallets().v1().creditWallet()
+        CreditWalletResponse res = sdk.wallets().v1().creditWallet()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -324,7 +290,7 @@ Debit a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.DebitWalletRequest;
 import com.formance.formance_sdk.models.operations.DebitWalletResponse;
 import com.formance.formance_sdk.models.shared.Monetary;
@@ -335,16 +301,16 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DebitWalletRequest req = DebitWalletRequest.builder()
+        DebitWalletRequest req = DebitWalletRequest.builder()
                 .id("<id>")
                 .debitWalletRequest(com.formance.formance_sdk.models.shared.DebitWalletRequest.builder()
                     .amount(Monetary.builder()
@@ -353,27 +319,17 @@ public class Application {
                         .build())
                     .metadata(Map.ofEntries(
                         Map.entry("key", "<value>")))
+                    .pending(true)
                     .build())
                 .build();
 
-            DebitWalletResponse res = sdk.wallets().v1().debitWallet()
+        DebitWalletResponse res = sdk.wallets().v1().debitWallet()
                 .request(req)
                 .call();
 
-            if (res.debitWalletResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.debitWalletResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -406,7 +362,7 @@ Get detailed balance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetBalanceRequest;
 import com.formance.formance_sdk.models.operations.GetBalanceResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -414,38 +370,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetBalanceRequest req = GetBalanceRequest.builder()
+        GetBalanceRequest req = GetBalanceRequest.builder()
                 .balanceName("<value>")
                 .id("<id>")
                 .build();
 
-            GetBalanceResponse res = sdk.wallets().v1().getBalance()
+        GetBalanceResponse res = sdk.wallets().v1().getBalance()
                 .request(req)
                 .call();
 
-            if (res.getBalanceResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getBalanceResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -478,7 +423,7 @@ Get a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetHoldRequest;
 import com.formance.formance_sdk.models.operations.GetHoldResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -486,37 +431,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetHoldRequest req = GetHoldRequest.builder()
+        GetHoldRequest req = GetHoldRequest.builder()
                 .holdID("<value>")
                 .build();
 
-            GetHoldResponse res = sdk.wallets().v1().getHold()
+        GetHoldResponse res = sdk.wallets().v1().getHold()
                 .request(req)
                 .call();
 
-            if (res.getHoldResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getHoldResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -549,7 +483,7 @@ Get all holds for a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetHoldsRequest;
 import com.formance.formance_sdk.models.operations.GetHoldsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -558,16 +492,16 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetHoldsRequest req = GetHoldsRequest.builder()
+        GetHoldsRequest req = GetHoldsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .metadata(Map.ofEntries(
                     Map.entry("admin", "true")))
@@ -575,24 +509,13 @@ public class Application {
                 .walletID("wallet1")
                 .build();
 
-            GetHoldsResponse res = sdk.wallets().v1().getHolds()
+        GetHoldsResponse res = sdk.wallets().v1().getHolds()
                 .request(req)
                 .call();
 
-            if (res.getHoldsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getHoldsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -623,7 +546,7 @@ public class Application {
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetTransactionsRequest;
 import com.formance.formance_sdk.models.operations.GetTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -631,39 +554,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetTransactionsRequest req = GetTransactionsRequest.builder()
+        GetTransactionsRequest req = GetTransactionsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .walletID("wallet1")
                 .build();
 
-            GetTransactionsResponse res = sdk.wallets().v1().getTransactions()
+        GetTransactionsResponse res = sdk.wallets().v1().getTransactions()
                 .request(req)
                 .call();
 
-            if (res.getTransactionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getTransactionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -696,7 +608,7 @@ Get a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetWalletRequest;
 import com.formance.formance_sdk.models.operations.GetWalletResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -704,37 +616,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetWalletRequest req = GetWalletRequest.builder()
+        GetWalletRequest req = GetWalletRequest.builder()
                 .id("<id>")
                 .build();
 
-            GetWalletResponse res = sdk.wallets().v1().getWallet()
+        GetWalletResponse res = sdk.wallets().v1().getWallet()
                 .request(req)
                 .call();
 
-            if (res.getWalletResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getWalletResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -767,7 +668,7 @@ Get wallet summary
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetWalletSummaryRequest;
 import com.formance.formance_sdk.models.operations.GetWalletSummaryResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -775,37 +676,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetWalletSummaryRequest req = GetWalletSummaryRequest.builder()
+        GetWalletSummaryRequest req = GetWalletSummaryRequest.builder()
                 .id("<id>")
                 .build();
 
-            GetWalletSummaryResponse res = sdk.wallets().v1().getWalletSummary()
+        GetWalletSummaryResponse res = sdk.wallets().v1().getWalletSummary()
                 .request(req)
                 .call();
 
-            if (res.getWalletSummaryResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getWalletSummaryResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -838,7 +728,6 @@ List balances of a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.ListBalancesRequest;
 import com.formance.formance_sdk.models.operations.ListBalancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -847,33 +736,25 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListBalancesRequest req = ListBalancesRequest.builder()
+        ListBalancesRequest req = ListBalancesRequest.builder()
                 .id("<id>")
                 .build();
 
-            ListBalancesResponse res = sdk.wallets().v1().listBalances()
+        ListBalancesResponse res = sdk.wallets().v1().listBalances()
                 .request(req)
                 .call();
 
-            if (res.listBalancesResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listBalancesResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -905,7 +786,7 @@ List all wallets
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListWalletsRequest;
 import com.formance.formance_sdk.models.operations.ListWalletsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -914,16 +795,16 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListWalletsRequest req = ListWalletsRequest.builder()
+        ListWalletsRequest req = ListWalletsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .expand("balances")
                 .metadata(Map.ofEntries(
@@ -932,24 +813,13 @@ public class Application {
                 .pageSize(100L)
                 .build();
 
-            ListWalletsResponse res = sdk.wallets().v1().listWallets()
+        ListWalletsResponse res = sdk.wallets().v1().listWallets()
                 .request(req)
                 .call();
 
-            if (res.listWalletsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listWalletsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -982,7 +852,7 @@ Update a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateWalletRequest;
 import com.formance.formance_sdk.models.operations.UpdateWalletResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -990,35 +860,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UpdateWalletRequest req = UpdateWalletRequest.builder()
+        UpdateWalletRequest req = UpdateWalletRequest.builder()
                 .id("<id>")
                 .build();
 
-            UpdateWalletResponse res = sdk.wallets().v1().updateWallet()
+        UpdateWalletResponse res = sdk.wallets().v1().updateWallet()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -1051,7 +910,7 @@ Cancel a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.VoidHoldRequest;
 import com.formance.formance_sdk.models.operations.VoidHoldResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1059,35 +918,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            VoidHoldRequest req = VoidHoldRequest.builder()
+        VoidHoldRequest req = VoidHoldRequest.builder()
                 .holdId("<value>")
                 .build();
 
-            VoidHoldResponse res = sdk.wallets().v1().voidHold()
+        VoidHoldResponse res = sdk.wallets().v1().voidHold()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -1120,39 +968,28 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            WalletsgetServerInfoResponse res = sdk.wallets().v1().walletsgetServerInfo()
+        WalletsgetServerInfoResponse res = sdk.wallets().v1().walletsgetServerInfo()
                 .call();
 
-            if (res.serverInfo().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WalletsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.serverInfo().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

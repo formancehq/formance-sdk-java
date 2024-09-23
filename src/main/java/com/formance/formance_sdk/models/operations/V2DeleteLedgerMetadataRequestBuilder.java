@@ -15,7 +15,7 @@ public class V2DeleteLedgerMetadataRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2DeleteLedgerMetadataRequestBuilder request(com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest request) {
+    public V2DeleteLedgerMetadataRequestBuilder request(V2DeleteLedgerMetadataRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

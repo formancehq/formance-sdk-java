@@ -15,7 +15,7 @@ public class UpdateConnectorConfigV1RequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateConnectorConfigV1RequestBuilder request(com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request request) {
+    public UpdateConnectorConfigV1RequestBuilder request(UpdateConnectorConfigV1Request request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class UninstallConnectorRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UninstallConnectorRequestBuilder request(com.formance.formance_sdk.models.operations.UninstallConnectorRequest request) {
+    public UninstallConnectorRequestBuilder request(UninstallConnectorRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

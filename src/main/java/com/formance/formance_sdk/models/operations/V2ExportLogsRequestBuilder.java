@@ -15,7 +15,7 @@ public class V2ExportLogsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2ExportLogsRequestBuilder request(com.formance.formance_sdk.models.operations.V2ExportLogsRequest request) {
+    public V2ExportLogsRequestBuilder request(V2ExportLogsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class ReverseTransferInitiationRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ReverseTransferInitiationRequestBuilder request(com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest request) {
+    public ReverseTransferInitiationRequestBuilder request(ReverseTransferInitiationRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

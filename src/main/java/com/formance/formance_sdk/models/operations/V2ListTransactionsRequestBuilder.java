@@ -15,7 +15,7 @@ public class V2ListTransactionsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2ListTransactionsRequestBuilder request(com.formance.formance_sdk.models.operations.V2ListTransactionsRequest request) {
+    public V2ListTransactionsRequestBuilder request(V2ListTransactionsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

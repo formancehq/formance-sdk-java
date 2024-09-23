@@ -15,7 +15,7 @@ public class DeactivateConfigRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeactivateConfigRequestBuilder request(com.formance.formance_sdk.models.operations.DeactivateConfigRequest request) {
+    public DeactivateConfigRequestBuilder request(DeactivateConfigRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

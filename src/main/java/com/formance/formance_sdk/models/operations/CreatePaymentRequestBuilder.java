@@ -16,7 +16,7 @@ public class CreatePaymentRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreatePaymentRequestBuilder request(com.formance.formance_sdk.models.shared.PaymentRequest request) {
+    public CreatePaymentRequestBuilder request(PaymentRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

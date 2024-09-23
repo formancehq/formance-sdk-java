@@ -15,7 +15,7 @@ public class V2AddMetadataOnTransactionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2AddMetadataOnTransactionRequestBuilder request(com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest request) {
+    public V2AddMetadataOnTransactionRequestBuilder request(V2AddMetadataOnTransactionRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class GetHoldsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetHoldsRequestBuilder request(com.formance.formance_sdk.models.operations.GetHoldsRequest request) {
+    public GetHoldsRequestBuilder request(GetHoldsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

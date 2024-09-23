@@ -15,7 +15,7 @@ public class ListConnectorTasksV1RequestBuilder {
         this.sdk = sdk;
     }
 
-    public ListConnectorTasksV1RequestBuilder request(com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request request) {
+    public ListConnectorTasksV1RequestBuilder request(ListConnectorTasksV1Request request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

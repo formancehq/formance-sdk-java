@@ -15,7 +15,7 @@ public class V2SendEventRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2SendEventRequestBuilder request(com.formance.formance_sdk.models.operations.V2SendEventRequest request) {
+    public V2SendEventRequestBuilder request(V2SendEventRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

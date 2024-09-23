@@ -15,7 +15,7 @@ public class CreateSecretRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateSecretRequestBuilder request(com.formance.formance_sdk.models.operations.CreateSecretRequest request) {
+    public CreateSecretRequestBuilder request(CreateSecretRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class VoidHoldRequestBuilder {
         this.sdk = sdk;
     }
 
-    public VoidHoldRequestBuilder request(com.formance.formance_sdk.models.operations.VoidHoldRequest request) {
+    public VoidHoldRequestBuilder request(VoidHoldRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

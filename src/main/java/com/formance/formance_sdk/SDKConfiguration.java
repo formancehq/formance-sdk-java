@@ -22,11 +22,14 @@ class SDKConfiguration {
     public HTTPClient defaultClient;
     public String serverUrl;
     public int serverIdx = 0;
-    public String language = "java";
-    public String openapiDocVersion = "v2.1.0-beta.1";
-    public String sdkVersion = "3.1.0";
-    public String genVersion = "2.415.8";
-    public String userAgent = "speakeasy-sdk/java 3.1.0 2.415.8 v2.1.0-beta.1 com.formance.formance_sdk";
+    private static final String LANGUAGE = "java";
+    public static final String OPENAPI_DOC_VERSION = "v2.1.0-beta.2";
+    public static final String SDK_VERSION = "4.0.0";
+    public static final String GEN_VERSION = "2.421.3";
+    private static final String BASE_PACKAGE = "com.formance.formance_sdk";
+    public static final String USER_AGENT = 
+            String.format("speakeasy-sdk/%s %s %s %s %s", 
+                LANGUAGE, SDK_VERSION, GEN_VERSION, OPENAPI_DOC_VERSION, BASE_PACKAGE);
 
     private Hooks _hooks = createHooks();
 

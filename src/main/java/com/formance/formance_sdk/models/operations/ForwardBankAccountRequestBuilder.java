@@ -15,7 +15,7 @@ public class ForwardBankAccountRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ForwardBankAccountRequestBuilder request(com.formance.formance_sdk.models.operations.ForwardBankAccountRequest request) {
+    public ForwardBankAccountRequestBuilder request(ForwardBankAccountRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
