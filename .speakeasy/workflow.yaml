@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     my-source:
         inputs:
-            - location: $openapi_spec_url
+            - location: https://github.com/formancehq/stack/releases/download/v2.1.0-beta.2/generate.json
         registry:
             location: registry.speakeasyapi.dev/formance/formance/my-source
 targets:
