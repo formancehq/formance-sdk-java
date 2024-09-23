@@ -15,7 +15,7 @@ public class V2CreateBulkRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2CreateBulkRequestBuilder request(com.formance.formance_sdk.models.operations.V2CreateBulkRequest request) {
+    public V2CreateBulkRequestBuilder request(V2CreateBulkRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

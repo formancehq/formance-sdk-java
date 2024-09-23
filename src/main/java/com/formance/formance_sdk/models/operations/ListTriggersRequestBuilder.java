@@ -15,7 +15,7 @@ public class ListTriggersRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ListTriggersRequestBuilder request(com.formance.formance_sdk.models.operations.ListTriggersRequest request) {
+    public ListTriggersRequestBuilder request(ListTriggersRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

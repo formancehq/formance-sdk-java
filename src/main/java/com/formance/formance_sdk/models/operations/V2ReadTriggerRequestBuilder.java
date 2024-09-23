@@ -15,7 +15,7 @@ public class V2ReadTriggerRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2ReadTriggerRequestBuilder request(com.formance.formance_sdk.models.operations.V2ReadTriggerRequest request) {
+    public V2ReadTriggerRequestBuilder request(V2ReadTriggerRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class V2CancelEventRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2CancelEventRequestBuilder request(com.formance.formance_sdk.models.operations.V2CancelEventRequest request) {
+    public V2CancelEventRequestBuilder request(V2CancelEventRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

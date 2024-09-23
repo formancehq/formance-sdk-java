@@ -15,7 +15,7 @@ public class ListPoolsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ListPoolsRequestBuilder request(com.formance.formance_sdk.models.operations.ListPoolsRequest request) {
+    public ListPoolsRequestBuilder request(ListPoolsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

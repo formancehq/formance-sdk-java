@@ -15,7 +15,7 @@ public class GetWorkflowRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetWorkflowRequestBuilder request(com.formance.formance_sdk.models.operations.GetWorkflowRequest request) {
+    public GetWorkflowRequestBuilder request(GetWorkflowRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

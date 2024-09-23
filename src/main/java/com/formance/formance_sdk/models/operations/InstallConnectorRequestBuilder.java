@@ -15,7 +15,7 @@ public class InstallConnectorRequestBuilder {
         this.sdk = sdk;
     }
 
-    public InstallConnectorRequestBuilder request(com.formance.formance_sdk.models.operations.InstallConnectorRequest request) {
+    public InstallConnectorRequestBuilder request(InstallConnectorRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

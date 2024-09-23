@@ -15,7 +15,7 @@ public class CountAccountsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CountAccountsRequestBuilder request(com.formance.formance_sdk.models.operations.CountAccountsRequest request) {
+    public CountAccountsRequestBuilder request(CountAccountsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

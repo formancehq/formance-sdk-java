@@ -16,7 +16,7 @@ public class CreateBankAccountRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateBankAccountRequestBuilder request(com.formance.formance_sdk.models.shared.BankAccountRequest request) {
+    public CreateBankAccountRequestBuilder request(BankAccountRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

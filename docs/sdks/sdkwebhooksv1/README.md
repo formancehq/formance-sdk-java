@@ -23,7 +23,7 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.ActivateConfigRequest;
 import com.formance.formance_sdk.models.operations.ActivateConfigResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -31,37 +31,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ActivateConfigRequest req = ActivateConfigRequest.builder()
+        ActivateConfigRequest req = ActivateConfigRequest.builder()
                 .id("4997257d-dfb6-445b-929c-cbe2ab182818")
                 .build();
 
-            ActivateConfigResponse res = sdk.webhooks().v1().activateConfig()
+        ActivateConfigResponse res = sdk.webhooks().v1().activateConfig()
                 .request(req)
                 .call();
 
-            if (res.configResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.configResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -98,7 +87,7 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest;
 import com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse;
 import com.formance.formance_sdk.models.shared.ConfigChangeSecret;
@@ -107,40 +96,29 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ChangeConfigSecretRequest req = ChangeConfigSecretRequest.builder()
+        ChangeConfigSecretRequest req = ChangeConfigSecretRequest.builder()
                 .id("4997257d-dfb6-445b-929c-cbe2ab182818")
                 .configChangeSecret(ConfigChangeSecret.builder()
                     .secret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3")
                     .build())
                 .build();
 
-            ChangeConfigSecretResponse res = sdk.webhooks().v1().changeConfigSecret()
+        ChangeConfigSecretResponse res = sdk.webhooks().v1().changeConfigSecret()
                 .request(req)
                 .call();
 
-            if (res.configResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.configResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -173,7 +151,7 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.DeactivateConfigRequest;
 import com.formance.formance_sdk.models.operations.DeactivateConfigResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -181,37 +159,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeactivateConfigRequest req = DeactivateConfigRequest.builder()
+        DeactivateConfigRequest req = DeactivateConfigRequest.builder()
                 .id("4997257d-dfb6-445b-929c-cbe2ab182818")
                 .build();
 
-            DeactivateConfigResponse res = sdk.webhooks().v1().deactivateConfig()
+        DeactivateConfigResponse res = sdk.webhooks().v1().deactivateConfig()
                 .request(req)
                 .call();
 
-            if (res.configResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.configResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -244,7 +211,7 @@ Delete a webhooks config by ID.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.DeleteConfigRequest;
 import com.formance.formance_sdk.models.operations.DeleteConfigResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -252,35 +219,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeleteConfigRequest req = DeleteConfigRequest.builder()
+        DeleteConfigRequest req = DeleteConfigRequest.builder()
                 .id("4997257d-dfb6-445b-929c-cbe2ab182818")
                 .build();
 
-            DeleteConfigResponse res = sdk.webhooks().v1().deleteConfig()
+        DeleteConfigResponse res = sdk.webhooks().v1().deleteConfig()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -313,7 +269,7 @@ Sorted by updated date descending
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.GetManyConfigsRequest;
 import com.formance.formance_sdk.models.operations.GetManyConfigsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -321,38 +277,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetManyConfigsRequest req = GetManyConfigsRequest.builder()
+        GetManyConfigsRequest req = GetManyConfigsRequest.builder()
                 .endpoint("https://example.com")
                 .id("4997257d-dfb6-445b-929c-cbe2ab182818")
                 .build();
 
-            GetManyConfigsResponse res = sdk.webhooks().v1().getManyConfigs()
+        GetManyConfigsResponse res = sdk.webhooks().v1().getManyConfigs()
                 .request(req)
                 .call();
 
-            if (res.configsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.configsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -394,7 +339,7 @@ All eventTypes are converted to lower-case when inserted.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.InsertConfigResponse;
 import com.formance.formance_sdk.models.shared.ConfigUser;
 import com.formance.formance_sdk.models.shared.Security;
@@ -403,16 +348,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ConfigUser req = ConfigUser.builder()
+        ConfigUser req = ConfigUser.builder()
                 .endpoint("https://example.com")
                 .eventTypes(List.of(
                     "TYPE1",
@@ -421,24 +366,13 @@ public class Application {
                 .secret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3")
                 .build();
 
-            InsertConfigResponse res = sdk.webhooks().v1().insertConfig()
+        InsertConfigResponse res = sdk.webhooks().v1().insertConfig()
                 .request(req)
                 .call();
 
-            if (res.configResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.configResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -471,7 +405,7 @@ Test a config by sending a webhook to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.TestConfigRequest;
 import com.formance.formance_sdk.models.operations.TestConfigResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -479,37 +413,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            TestConfigRequest req = TestConfigRequest.builder()
+        TestConfigRequest req = TestConfigRequest.builder()
                 .id("4997257d-dfb6-445b-929c-cbe2ab182818")
                 .build();
 
-            TestConfigResponse res = sdk.webhooks().v1().testConfig()
+        TestConfigResponse res = sdk.webhooks().v1().testConfig()
                 .request(req)
                 .call();
 
-            if (res.attemptResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.WebhooksErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.attemptResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

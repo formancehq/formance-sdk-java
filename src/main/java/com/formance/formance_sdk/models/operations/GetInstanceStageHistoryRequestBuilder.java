@@ -15,7 +15,7 @@ public class GetInstanceStageHistoryRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetInstanceStageHistoryRequestBuilder request(com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest request) {
+    public GetInstanceStageHistoryRequestBuilder request(GetInstanceStageHistoryRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

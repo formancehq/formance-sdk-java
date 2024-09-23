@@ -15,7 +15,7 @@ public class ReconcileRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ReconcileRequestBuilder request(com.formance.formance_sdk.models.operations.ReconcileRequest request) {
+    public ReconcileRequestBuilder request(ReconcileRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

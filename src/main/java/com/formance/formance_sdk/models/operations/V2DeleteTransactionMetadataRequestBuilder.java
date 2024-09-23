@@ -15,7 +15,7 @@ public class V2DeleteTransactionMetadataRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2DeleteTransactionMetadataRequestBuilder request(com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest request) {
+    public V2DeleteTransactionMetadataRequestBuilder request(V2DeleteTransactionMetadataRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

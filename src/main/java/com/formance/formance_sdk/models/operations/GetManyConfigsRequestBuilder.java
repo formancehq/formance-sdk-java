@@ -15,7 +15,7 @@ public class GetManyConfigsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetManyConfigsRequestBuilder request(com.formance.formance_sdk.models.operations.GetManyConfigsRequest request) {
+    public GetManyConfigsRequestBuilder request(GetManyConfigsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

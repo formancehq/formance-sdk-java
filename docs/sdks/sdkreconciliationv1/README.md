@@ -24,7 +24,7 @@ Create a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
 import com.formance.formance_sdk.models.shared.PolicyRequest;
 import com.formance.formance_sdk.models.shared.Security;
@@ -33,16 +33,16 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PolicyRequest req = PolicyRequest.builder()
+        PolicyRequest req = PolicyRequest.builder()
                 .ledgerName("default")
                 .ledgerQuery(Map.ofEntries(
                     Map.entry("key", "<value>")))
@@ -50,24 +50,13 @@ public class Application {
                 .paymentsPoolID("XXX")
                 .build();
 
-            CreatePolicyResponse res = sdk.reconciliation().v1().createPolicy()
+        CreatePolicyResponse res = sdk.reconciliation().v1().createPolicy()
                 .request(req)
                 .call();
 
-            if (res.policyResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.policyResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -100,7 +89,7 @@ Delete a policy by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.DeletePolicyRequest;
 import com.formance.formance_sdk.models.operations.DeletePolicyResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -108,35 +97,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeletePolicyRequest req = DeletePolicyRequest.builder()
+        DeletePolicyRequest req = DeletePolicyRequest.builder()
                 .policyID("XXX")
                 .build();
 
-            DeletePolicyResponse res = sdk.reconciliation().v1().deletePolicy()
+        DeletePolicyResponse res = sdk.reconciliation().v1().deletePolicy()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -169,7 +147,7 @@ Get a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPolicyRequest;
 import com.formance.formance_sdk.models.operations.GetPolicyResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -177,37 +155,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetPolicyRequest req = GetPolicyRequest.builder()
+        GetPolicyRequest req = GetPolicyRequest.builder()
                 .policyID("XXX")
                 .build();
 
-            GetPolicyResponse res = sdk.reconciliation().v1().getPolicy()
+        GetPolicyResponse res = sdk.reconciliation().v1().getPolicy()
                 .request(req)
                 .call();
 
-            if (res.policyResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.policyResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -240,7 +207,7 @@ Get a reconciliation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.GetReconciliationRequest;
 import com.formance.formance_sdk.models.operations.GetReconciliationResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -248,37 +215,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetReconciliationRequest req = GetReconciliationRequest.builder()
+        GetReconciliationRequest req = GetReconciliationRequest.builder()
                 .reconciliationID("XXX")
                 .build();
 
-            GetReconciliationResponse res = sdk.reconciliation().v1().getReconciliation()
+        GetReconciliationResponse res = sdk.reconciliation().v1().getReconciliation()
                 .request(req)
                 .call();
 
-            if (res.reconciliationResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.reconciliationResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -311,7 +267,7 @@ List policies
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.ListPoliciesRequest;
 import com.formance.formance_sdk.models.operations.ListPoliciesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -319,38 +275,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListPoliciesRequest req = ListPoliciesRequest.builder()
+        ListPoliciesRequest req = ListPoliciesRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .build();
 
-            ListPoliciesResponse res = sdk.reconciliation().v1().listPolicies()
+        ListPoliciesResponse res = sdk.reconciliation().v1().listPolicies()
                 .request(req)
                 .call();
 
-            if (res.policiesCursorResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.policiesCursorResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -383,7 +328,7 @@ List reconciliations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.ListReconciliationsRequest;
 import com.formance.formance_sdk.models.operations.ListReconciliationsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -391,38 +336,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListReconciliationsRequest req = ListReconciliationsRequest.builder()
+        ListReconciliationsRequest req = ListReconciliationsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .build();
 
-            ListReconciliationsResponse res = sdk.reconciliation().v1().listReconciliations()
+        ListReconciliationsResponse res = sdk.reconciliation().v1().listReconciliations()
                 .request(req)
                 .call();
 
-            if (res.reconciliationsCursorResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.reconciliationsCursorResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -455,7 +389,7 @@ Reconcile using a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.ReconcileRequest;
 import com.formance.formance_sdk.models.operations.ReconcileResponse;
 import com.formance.formance_sdk.models.shared.ReconciliationRequest;
@@ -465,16 +399,16 @@ import java.time.OffsetDateTime;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReconcileRequest req = ReconcileRequest.builder()
+        ReconcileRequest req = ReconcileRequest.builder()
                 .reconciliationRequest(ReconciliationRequest.builder()
                     .reconciledAtLedger(OffsetDateTime.parse("2021-01-01T00:00:00.000Z"))
                     .reconciledAtPayments(OffsetDateTime.parse("2021-01-01T00:00:00.000Z"))
@@ -482,24 +416,13 @@ public class Application {
                 .policyID("XXX")
                 .build();
 
-            ReconcileResponse res = sdk.reconciliation().v1().reconcile()
+        ReconcileResponse res = sdk.reconciliation().v1().reconcile()
                 .request(req)
                 .call();
 
-            if (res.reconciliationResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.reconciliationResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -532,39 +455,28 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReconciliationgetServerInfoResponse res = sdk.reconciliation().v1().reconciliationgetServerInfo()
+        ReconciliationgetServerInfoResponse res = sdk.reconciliation().v1().reconciliationgetServerInfo()
                 .call();
 
-            if (res.serverInfo().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.ReconciliationErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.serverInfo().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

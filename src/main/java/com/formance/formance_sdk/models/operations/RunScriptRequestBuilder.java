@@ -15,7 +15,7 @@ public class RunScriptRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RunScriptRequestBuilder request(com.formance.formance_sdk.models.operations.RunScriptRequest request) {
+    public RunScriptRequestBuilder request(RunScriptRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

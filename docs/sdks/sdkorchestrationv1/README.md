@@ -33,7 +33,7 @@ Cancel a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.CancelEventRequest;
 import com.formance.formance_sdk.models.operations.CancelEventResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -41,35 +41,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CancelEventRequest req = CancelEventRequest.builder()
+        CancelEventRequest req = CancelEventRequest.builder()
                 .instanceID("xxx")
                 .build();
 
-            CancelEventResponse res = sdk.orchestration().v1().cancelEvent()
+        CancelEventResponse res = sdk.orchestration().v1().cancelEvent()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -102,7 +91,7 @@ Create trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.CreateTriggerResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.TriggerData;
@@ -110,38 +99,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            TriggerData req = TriggerData.builder()
+        TriggerData req = TriggerData.builder()
                 .event("<value>")
                 .workflowID("<value>")
                 .build();
 
-            CreateTriggerResponse res = sdk.orchestration().v1().createTrigger()
+        CreateTriggerResponse res = sdk.orchestration().v1().createTrigger()
                 .request(req)
                 .call();
 
-            if (res.createTriggerResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.createTriggerResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -174,7 +152,7 @@ Create a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.CreateWorkflowResponse;
 import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
 import com.formance.formance_sdk.models.shared.Security;
@@ -184,39 +162,28 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CreateWorkflowRequest req = CreateWorkflowRequest.builder()
+        CreateWorkflowRequest req = CreateWorkflowRequest.builder()
                 .stages(List.of(
                     Map.ofEntries(
                         Map.entry("key", "<value>"))))
                 .build();
 
-            CreateWorkflowResponse res = sdk.orchestration().v1().createWorkflow()
+        CreateWorkflowResponse res = sdk.orchestration().v1().createWorkflow()
                 .request(req)
                 .call();
 
-            if (res.createWorkflowResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.createWorkflowResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -249,7 +216,7 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.DeleteTriggerRequest;
 import com.formance.formance_sdk.models.operations.DeleteTriggerResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -257,35 +224,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeleteTriggerRequest req = DeleteTriggerRequest.builder()
+        DeleteTriggerRequest req = DeleteTriggerRequest.builder()
                 .triggerID("<value>")
                 .build();
 
-            DeleteTriggerResponse res = sdk.orchestration().v1().deleteTrigger()
+        DeleteTriggerResponse res = sdk.orchestration().v1().deleteTrigger()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -318,7 +274,7 @@ Delete a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.DeleteWorkflowRequest;
 import com.formance.formance_sdk.models.operations.DeleteWorkflowResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -326,35 +282,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeleteWorkflowRequest req = DeleteWorkflowRequest.builder()
+        DeleteWorkflowRequest req = DeleteWorkflowRequest.builder()
                 .flowId("xxx")
                 .build();
 
-            DeleteWorkflowResponse res = sdk.orchestration().v1().deleteWorkflow()
+        DeleteWorkflowResponse res = sdk.orchestration().v1().deleteWorkflow()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -387,7 +332,7 @@ Get a workflow instance by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.GetInstanceRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -395,37 +340,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetInstanceRequest req = GetInstanceRequest.builder()
+        GetInstanceRequest req = GetInstanceRequest.builder()
                 .instanceID("xxx")
                 .build();
 
-            GetInstanceResponse res = sdk.orchestration().v1().getInstance()
+        GetInstanceResponse res = sdk.orchestration().v1().getInstance()
                 .request(req)
                 .call();
 
-            if (res.getWorkflowInstanceResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getWorkflowInstanceResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -458,7 +392,7 @@ Get a workflow instance history by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -466,37 +400,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetInstanceHistoryRequest req = GetInstanceHistoryRequest.builder()
+        GetInstanceHistoryRequest req = GetInstanceHistoryRequest.builder()
                 .instanceID("xxx")
                 .build();
 
-            GetInstanceHistoryResponse res = sdk.orchestration().v1().getInstanceHistory()
+        GetInstanceHistoryResponse res = sdk.orchestration().v1().getInstanceHistory()
                 .request(req)
                 .call();
 
-            if (res.getWorkflowInstanceHistoryResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getWorkflowInstanceHistoryResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -529,7 +452,7 @@ Get a workflow instance stage history
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -537,38 +460,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetInstanceStageHistoryRequest req = GetInstanceStageHistoryRequest.builder()
+        GetInstanceStageHistoryRequest req = GetInstanceStageHistoryRequest.builder()
                 .instanceID("xxx")
                 .number(0L)
                 .build();
 
-            GetInstanceStageHistoryResponse res = sdk.orchestration().v1().getInstanceStageHistory()
+        GetInstanceStageHistoryResponse res = sdk.orchestration().v1().getInstanceStageHistory()
                 .request(req)
                 .call();
 
-            if (res.getWorkflowInstanceHistoryStageResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getWorkflowInstanceHistoryStageResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -601,7 +513,7 @@ Get a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.GetWorkflowRequest;
 import com.formance.formance_sdk.models.operations.GetWorkflowResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -609,37 +521,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetWorkflowRequest req = GetWorkflowRequest.builder()
+        GetWorkflowRequest req = GetWorkflowRequest.builder()
                 .flowId("xxx")
                 .build();
 
-            GetWorkflowResponse res = sdk.orchestration().v1().getWorkflow()
+        GetWorkflowResponse res = sdk.orchestration().v1().getWorkflow()
                 .request(req)
                 .call();
 
-            if (res.getWorkflowResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getWorkflowResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -672,7 +573,7 @@ List instances of a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ListInstancesRequest;
 import com.formance.formance_sdk.models.operations.ListInstancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -680,38 +581,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListInstancesRequest req = ListInstancesRequest.builder()
+        ListInstancesRequest req = ListInstancesRequest.builder()
                 .running(true)
                 .workflowID("xxx")
                 .build();
 
-            ListInstancesResponse res = sdk.orchestration().v1().listInstances()
+        ListInstancesResponse res = sdk.orchestration().v1().listInstances()
                 .request(req)
                 .call();
 
-            if (res.listRunsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listRunsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -744,7 +634,7 @@ List triggers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ListTriggersRequest;
 import com.formance.formance_sdk.models.operations.ListTriggersResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -752,36 +642,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
+            .build();
+
+        ListTriggersRequest req = ListTriggersRequest.builder()
                 .build();
 
-            ListTriggersRequest req = ListTriggersRequest.builder()
-                .build();
-
-            ListTriggersResponse res = sdk.orchestration().v1().listTriggers()
+        ListTriggersResponse res = sdk.orchestration().v1().listTriggers()
                 .request(req)
                 .call();
 
-            if (res.listTriggersResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listTriggersResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -814,7 +693,7 @@ List triggers occurrences
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest;
 import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -822,37 +701,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListTriggersOccurrencesRequest req = ListTriggersOccurrencesRequest.builder()
+        ListTriggersOccurrencesRequest req = ListTriggersOccurrencesRequest.builder()
                 .triggerID("<value>")
                 .build();
 
-            ListTriggersOccurrencesResponse res = sdk.orchestration().v1().listTriggersOccurrences()
+        ListTriggersOccurrencesResponse res = sdk.orchestration().v1().listTriggersOccurrences()
                 .request(req)
                 .call();
 
-            if (res.listTriggersOccurrencesResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listTriggersOccurrencesResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -885,39 +753,28 @@ List registered workflows
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ListWorkflowsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListWorkflowsResponse res = sdk.orchestration().v1().listWorkflows()
+        ListWorkflowsResponse res = sdk.orchestration().v1().listWorkflows()
                 .call();
 
-            if (res.listWorkflowsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listWorkflowsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -944,39 +801,28 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            OrchestrationgetServerInfoResponse res = sdk.orchestration().v1().orchestrationgetServerInfo()
+        OrchestrationgetServerInfoResponse res = sdk.orchestration().v1().orchestrationgetServerInfo()
                 .call();
 
-            if (res.serverInfo().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.serverInfo().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1003,7 +849,7 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ReadTriggerRequest;
 import com.formance.formance_sdk.models.operations.ReadTriggerResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1011,37 +857,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReadTriggerRequest req = ReadTriggerRequest.builder()
+        ReadTriggerRequest req = ReadTriggerRequest.builder()
                 .triggerID("<value>")
                 .build();
 
-            ReadTriggerResponse res = sdk.orchestration().v1().readTrigger()
+        ReadTriggerResponse res = sdk.orchestration().v1().readTrigger()
                 .request(req)
                 .call();
 
-            if (res.readTriggerResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.readTriggerResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1074,7 +909,7 @@ Run workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.RunWorkflowRequest;
 import com.formance.formance_sdk.models.operations.RunWorkflowResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1082,37 +917,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            RunWorkflowRequest req = RunWorkflowRequest.builder()
+        RunWorkflowRequest req = RunWorkflowRequest.builder()
                 .workflowID("xxx")
                 .build();
 
-            RunWorkflowResponse res = sdk.orchestration().v1().runWorkflow()
+        RunWorkflowResponse res = sdk.orchestration().v1().runWorkflow()
                 .request(req)
                 .call();
 
-            if (res.runWorkflowResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.runWorkflowResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1145,7 +969,7 @@ Send an event to a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.SendEventRequest;
 import com.formance.formance_sdk.models.operations.SendEventResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1153,35 +977,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            SendEventRequest req = SendEventRequest.builder()
+        SendEventRequest req = SendEventRequest.builder()
                 .instanceID("xxx")
                 .build();
 
-            SendEventResponse res = sdk.orchestration().v1().sendEvent()
+        SendEventResponse res = sdk.orchestration().v1().sendEvent()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```

@@ -15,7 +15,7 @@ public class AddMetadataOnTransactionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public AddMetadataOnTransactionRequestBuilder request(com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest request) {
+    public AddMetadataOnTransactionRequestBuilder request(AddMetadataOnTransactionRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

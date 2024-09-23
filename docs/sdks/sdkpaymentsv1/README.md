@@ -59,7 +59,7 @@ Add an account to a pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.AddAccountToPoolRequest;
 import com.formance.formance_sdk.models.operations.AddAccountToPoolResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -67,38 +67,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            AddAccountToPoolRequest req = AddAccountToPoolRequest.builder()
+        AddAccountToPoolRequest req = AddAccountToPoolRequest.builder()
                 .addAccountToPoolRequest(com.formance.formance_sdk.models.shared.AddAccountToPoolRequest.builder()
                     .accountID("<value>")
                     .build())
                 .poolId("XXX")
                 .build();
 
-            AddAccountToPoolResponse res = sdk.payments().v1().addAccountToPool()
+        AddAccountToPoolResponse res = sdk.payments().v1().addAccountToPool()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -131,7 +120,7 @@ Execute a transfer between two accounts.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ConnectorsTransferRequest;
 import com.formance.formance_sdk.models.operations.ConnectorsTransferResponse;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -142,16 +131,16 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ConnectorsTransferRequest req = ConnectorsTransferRequest.builder()
+        ConnectorsTransferRequest req = ConnectorsTransferRequest.builder()
                 .transferRequest(TransferRequest.builder()
                     .amount(new BigInteger("100"))
                     .asset("USD")
@@ -161,24 +150,13 @@ public class Application {
                 .connector(Connector.BANKING_CIRCLE)
                 .build();
 
-            ConnectorsTransferResponse res = sdk.payments().v1().connectorsTransfer()
+        ConnectorsTransferResponse res = sdk.payments().v1().connectorsTransfer()
                 .request(req)
                 .call();
 
-            if (res.transferResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transferResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -211,7 +189,7 @@ Create an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateAccountResponse;
 import com.formance.formance_sdk.models.shared.AccountRequest;
 import com.formance.formance_sdk.models.shared.AccountType;
@@ -221,40 +199,29 @@ import java.time.OffsetDateTime;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            AccountRequest req = AccountRequest.builder()
+        AccountRequest req = AccountRequest.builder()
                 .connectorID("<value>")
-                .createdAt(OffsetDateTime.parse("2024-08-19T02:15:08.668Z"))
+                .createdAt(OffsetDateTime.parse("2024-08-19T02:15:08.152Z"))
                 .reference("<value>")
-                .type(AccountType.UNKNOWN)
+                .type(AccountType.INTERNAL)
                 .build();
 
-            CreateAccountResponse res = sdk.payments().v1().createAccount()
+        CreateAccountResponse res = sdk.payments().v1().createAccount()
                 .request(req)
                 .call();
 
-            if (res.paymentsAccountResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.paymentsAccountResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -287,7 +254,7 @@ Create a bank account in Payments and on the PSP.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateBankAccountResponse;
 import com.formance.formance_sdk.models.shared.BankAccountRequest;
 import com.formance.formance_sdk.models.shared.Security;
@@ -295,39 +262,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            BankAccountRequest req = BankAccountRequest.builder()
+        BankAccountRequest req = BankAccountRequest.builder()
                 .connectorID("<value>")
                 .country("GB")
                 .name("My account")
                 .build();
 
-            CreateBankAccountResponse res = sdk.payments().v1().createBankAccount()
+        CreateBankAccountResponse res = sdk.payments().v1().createBankAccount()
                 .request(req)
                 .call();
 
-            if (res.bankAccountResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.bankAccountResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -360,7 +316,7 @@ Create a payment
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreatePaymentResponse;
 import com.formance.formance_sdk.models.shared.PaymentRequest;
 import com.formance.formance_sdk.models.shared.PaymentScheme;
@@ -373,44 +329,33 @@ import java.time.OffsetDateTime;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PaymentRequest req = PaymentRequest.builder()
+        PaymentRequest req = PaymentRequest.builder()
                 .amount(new BigInteger("100"))
                 .asset("USD")
                 .connectorID("<value>")
-                .createdAt(OffsetDateTime.parse("2024-11-09T01:03:21.153Z"))
+                .createdAt(OffsetDateTime.parse("2024-11-09T01:03:21.011Z"))
                 .reference("<value>")
-                .scheme(PaymentScheme.GOOGLE_PAY)
-                .status(PaymentStatus.DISPUTE_WON)
-                .type(PaymentType.TRANSFER)
+                .scheme(PaymentScheme.MOLPAY)
+                .status(PaymentStatus.REFUNDED_FAILURE)
+                .type(PaymentType.PAYOUT)
                 .build();
 
-            CreatePaymentResponse res = sdk.payments().v1().createPayment()
+        CreatePaymentResponse res = sdk.payments().v1().createPayment()
                 .request(req)
                 .call();
 
-            if (res.paymentResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.paymentResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -443,7 +388,7 @@ Create a Pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreatePoolResponse;
 import com.formance.formance_sdk.models.shared.PoolRequest;
 import com.formance.formance_sdk.models.shared.Security;
@@ -452,39 +397,28 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PoolRequest req = PoolRequest.builder()
+        PoolRequest req = PoolRequest.builder()
                 .accountIDs(List.of(
                     "<value>"))
                 .name("<value>")
                 .build();
 
-            CreatePoolResponse res = sdk.payments().v1().createPool()
+        CreatePoolResponse res = sdk.payments().v1().createPool()
                 .request(req)
                 .call();
 
-            if (res.poolResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.poolResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -517,7 +451,7 @@ Create a transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
@@ -528,45 +462,34 @@ import java.time.OffsetDateTime;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            TransferInitiationRequest req = TransferInitiationRequest.builder()
+        TransferInitiationRequest req = TransferInitiationRequest.builder()
                 .amount(new BigInteger("256698"))
                 .asset("USD")
-                .description("Multi-tiered incremental methodology")
+                .description("Open-architected heuristic knowledge user")
                 .destinationAccountID("<value>")
                 .reference("XXX")
-                .scheduledAt(OffsetDateTime.parse("2023-05-04T22:47:54.364Z"))
+                .scheduledAt(OffsetDateTime.parse("2024-05-21T00:04:35.840Z"))
                 .sourceAccountID("<value>")
-                .type(TransferInitiationRequestType.TRANSFER)
+                .type(TransferInitiationRequestType.PAYOUT)
                 .validated(false)
                 .build();
 
-            CreateTransferInitiationResponse res = sdk.payments().v1().createTransferInitiation()
+        CreateTransferInitiationResponse res = sdk.payments().v1().createTransferInitiation()
                 .request(req)
                 .call();
 
-            if (res.transferInitiationResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transferInitiationResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -599,7 +522,7 @@ Delete a pool by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.DeletePoolRequest;
 import com.formance.formance_sdk.models.operations.DeletePoolResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -607,35 +530,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeletePoolRequest req = DeletePoolRequest.builder()
+        DeletePoolRequest req = DeletePoolRequest.builder()
                 .poolId("XXX")
                 .build();
 
-            DeletePoolResponse res = sdk.payments().v1().deletePool()
+        DeletePoolResponse res = sdk.payments().v1().deletePool()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -668,7 +580,7 @@ Delete a transfer initiation by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -676,35 +588,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeleteTransferInitiationRequest req = DeleteTransferInitiationRequest.builder()
+        DeleteTransferInitiationRequest req = DeleteTransferInitiationRequest.builder()
                 .transferId("XXX")
                 .build();
 
-            DeleteTransferInitiationResponse res = sdk.payments().v1().deleteTransferInitiation()
+        DeleteTransferInitiationResponse res = sdk.payments().v1().deleteTransferInitiation()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -737,7 +638,7 @@ Forward a bank account to a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ForwardBankAccountRequest;
 import com.formance.formance_sdk.models.operations.ForwardBankAccountResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -745,40 +646,29 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ForwardBankAccountRequest req = ForwardBankAccountRequest.builder()
+        ForwardBankAccountRequest req = ForwardBankAccountRequest.builder()
                 .forwardBankAccountRequest(com.formance.formance_sdk.models.shared.ForwardBankAccountRequest.builder()
                     .connectorID("<value>")
                     .build())
                 .bankAccountId("XXX")
                 .build();
 
-            ForwardBankAccountResponse res = sdk.payments().v1().forwardBankAccount()
+        ForwardBankAccountResponse res = sdk.payments().v1().forwardBankAccount()
                 .request(req)
                 .call();
 
-            if (res.bankAccountResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.bankAccountResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -811,7 +701,7 @@ Get account balances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -820,16 +710,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetAccountBalancesRequest req = GetAccountBalancesRequest.builder()
+        GetAccountBalancesRequest req = GetAccountBalancesRequest.builder()
                 .accountId("XXX")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -838,24 +728,13 @@ public class Application {
                     "status:desc"))
                 .build();
 
-            GetAccountBalancesResponse res = sdk.payments().v1().getAccountBalances()
+        GetAccountBalancesResponse res = sdk.payments().v1().getAccountBalances()
                 .request(req)
                 .call();
 
-            if (res.balancesCursor().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.balancesCursor().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -888,7 +767,7 @@ Get a bank account created by user on Formance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetBankAccountRequest;
 import com.formance.formance_sdk.models.operations.GetBankAccountResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -896,37 +775,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetBankAccountRequest req = GetBankAccountRequest.builder()
+        GetBankAccountRequest req = GetBankAccountRequest.builder()
                 .bankAccountId("XXX")
                 .build();
 
-            GetBankAccountResponse res = sdk.payments().v1().getBankAccount()
+        GetBankAccountResponse res = sdk.payments().v1().getBankAccount()
                 .request(req)
                 .call();
 
-            if (res.bankAccountResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.bankAccountResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -961,7 +829,7 @@ Get a specific task associated to the connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskRequest;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskResponse;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -970,38 +838,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetConnectorTaskRequest req = GetConnectorTaskRequest.builder()
+        GetConnectorTaskRequest req = GetConnectorTaskRequest.builder()
                 .connector(Connector.ADYEN)
                 .taskId("task1")
                 .build();
 
-            GetConnectorTaskResponse res = sdk.payments().v1().getConnectorTask()
+        GetConnectorTaskResponse res = sdk.payments().v1().getConnectorTask()
                 .request(req)
                 .call();
 
-            if (res.taskResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.taskResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1034,7 +891,7 @@ Get a specific task associated to the connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -1043,39 +900,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetConnectorTaskV1Request req = GetConnectorTaskV1Request.builder()
+        GetConnectorTaskV1Request req = GetConnectorTaskV1Request.builder()
                 .connector(Connector.BANKING_CIRCLE)
                 .connectorId("XXX")
                 .taskId("task1")
                 .build();
 
-            GetConnectorTaskV1Response res = sdk.payments().v1().getConnectorTaskV1()
+        GetConnectorTaskV1Response res = sdk.payments().v1().getConnectorTaskV1()
                 .request(req)
                 .call();
 
-            if (res.taskResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.taskResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1108,7 +954,7 @@ Get a payment
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPaymentRequest;
 import com.formance.formance_sdk.models.operations.GetPaymentResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1116,37 +962,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetPaymentRequest req = GetPaymentRequest.builder()
+        GetPaymentRequest req = GetPaymentRequest.builder()
                 .paymentId("XXX")
                 .build();
 
-            GetPaymentResponse res = sdk.payments().v1().getPayment()
+        GetPaymentResponse res = sdk.payments().v1().getPayment()
                 .request(req)
                 .call();
 
-            if (res.paymentResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.paymentResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1179,7 +1014,7 @@ Get a Pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPoolRequest;
 import com.formance.formance_sdk.models.operations.GetPoolResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1187,37 +1022,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetPoolRequest req = GetPoolRequest.builder()
+        GetPoolRequest req = GetPoolRequest.builder()
                 .poolId("XXX")
                 .build();
 
-            GetPoolResponse res = sdk.payments().v1().getPool()
+        GetPoolResponse res = sdk.payments().v1().getPool()
                 .request(req)
                 .call();
 
-            if (res.poolResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.poolResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1250,7 +1074,7 @@ Get pool balances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1259,38 +1083,27 @@ import java.time.OffsetDateTime;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetPoolBalancesRequest req = GetPoolBalancesRequest.builder()
-                .at(OffsetDateTime.parse("2023-05-05T06:40:23.018Z"))
+        GetPoolBalancesRequest req = GetPoolBalancesRequest.builder()
+                .at(OffsetDateTime.parse("2023-05-05T06:40:23.119Z"))
                 .poolId("XXX")
                 .build();
 
-            GetPoolBalancesResponse res = sdk.payments().v1().getPoolBalances()
+        GetPoolBalancesResponse res = sdk.payments().v1().getPoolBalances()
                 .request(req)
                 .call();
 
-            if (res.poolBalancesResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.poolBalancesResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1323,7 +1136,7 @@ Get a transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1331,37 +1144,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetTransferInitiationRequest req = GetTransferInitiationRequest.builder()
+        GetTransferInitiationRequest req = GetTransferInitiationRequest.builder()
                 .transferId("XXX")
                 .build();
 
-            GetTransferInitiationResponse res = sdk.payments().v1().getTransferInitiation()
+        GetTransferInitiationResponse res = sdk.payments().v1().getTransferInitiation()
                 .request(req)
                 .call();
 
-            if (res.transferInitiationResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transferInitiationResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1394,7 +1196,7 @@ Install a connector by its name and config.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.InstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.InstallConnectorResponse;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -1405,42 +1207,31 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            InstallConnectorRequest req = InstallConnectorRequest.builder()
+        InstallConnectorRequest req = InstallConnectorRequest.builder()
                 .connectorConfig(ConnectorConfig.of(WiseConfig.builder()
                     .apiKey("XXX")
                     .name("My Wise Account")
                     .pollingPeriod("60s")
                     .build()))
-                .connector(Connector.ADYEN)
+                .connector(Connector.ATLAR)
                 .build();
 
-            InstallConnectorResponse res = sdk.payments().v1().installConnector()
+        InstallConnectorResponse res = sdk.payments().v1().installConnector()
                 .request(req)
                 .call();
 
-            if (res.connectorResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.connectorResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1473,39 +1264,28 @@ List all installed connectors.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListAllConnectorsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListAllConnectorsResponse res = sdk.payments().v1().listAllConnectors()
+        ListAllConnectorsResponse res = sdk.payments().v1().listAllConnectors()
                 .call();
 
-            if (res.connectorsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.connectorsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1532,7 +1312,7 @@ List all bank accounts created by user on Formance.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListBankAccountsRequest;
 import com.formance.formance_sdk.models.operations.ListBankAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1541,16 +1321,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListBankAccountsRequest req = ListBankAccountsRequest.builder()
+        ListBankAccountsRequest req = ListBankAccountsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .sort(List.of(
@@ -1558,24 +1338,13 @@ public class Application {
                     "status:desc"))
                 .build();
 
-            ListBankAccountsResponse res = sdk.payments().v1().listBankAccounts()
+        ListBankAccountsResponse res = sdk.payments().v1().listBankAccounts()
                 .request(req)
                 .call();
 
-            if (res.bankAccountsCursor().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.bankAccountsCursor().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1608,39 +1377,28 @@ List the configs of each available connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListConfigsAvailableConnectorsResponse res = sdk.payments().v1().listConfigsAvailableConnectors()
+        ListConfigsAvailableConnectorsResponse res = sdk.payments().v1().listConfigsAvailableConnectors()
                 .call();
 
-            if (res.connectorsConfigsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.connectorsConfigsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1669,7 +1427,7 @@ List all tasks associated with this connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksRequest;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksResponse;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -1678,39 +1436,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListConnectorTasksRequest req = ListConnectorTasksRequest.builder()
+        ListConnectorTasksRequest req = ListConnectorTasksRequest.builder()
                 .connector(Connector.MODULR)
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .build();
 
-            ListConnectorTasksResponse res = sdk.payments().v1().listConnectorTasks()
+        ListConnectorTasksResponse res = sdk.payments().v1().listConnectorTasks()
                 .request(req)
                 .call();
 
-            if (res.tasksCursor().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.tasksCursor().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1743,7 +1490,7 @@ List all tasks associated with this connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -1752,40 +1499,29 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListConnectorTasksV1Request req = ListConnectorTasksV1Request.builder()
+        ListConnectorTasksV1Request req = ListConnectorTasksV1Request.builder()
                 .connector(Connector.BANKING_CIRCLE)
                 .connectorId("XXX")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .build();
 
-            ListConnectorTasksV1Response res = sdk.payments().v1().listConnectorTasksV1()
+        ListConnectorTasksV1Response res = sdk.payments().v1().listConnectorTasksV1()
                 .request(req)
                 .call();
 
-            if (res.tasksCursor().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.tasksCursor().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1818,7 +1554,7 @@ List payments
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListPaymentsRequest;
 import com.formance.formance_sdk.models.operations.ListPaymentsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1827,16 +1563,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListPaymentsRequest req = ListPaymentsRequest.builder()
+        ListPaymentsRequest req = ListPaymentsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .sort(List.of(
@@ -1844,24 +1580,13 @@ public class Application {
                     "status:desc"))
                 .build();
 
-            ListPaymentsResponse res = sdk.payments().v1().listPayments()
+        ListPaymentsResponse res = sdk.payments().v1().listPayments()
                 .request(req)
                 .call();
 
-            if (res.paymentsCursor().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.paymentsCursor().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1894,7 +1619,7 @@ List Pools
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListPoolsRequest;
 import com.formance.formance_sdk.models.operations.ListPoolsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1903,16 +1628,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListPoolsRequest req = ListPoolsRequest.builder()
+        ListPoolsRequest req = ListPoolsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .sort(List.of(
@@ -1920,24 +1645,13 @@ public class Application {
                     "status:desc"))
                 .build();
 
-            ListPoolsResponse res = sdk.payments().v1().listPools()
+        ListPoolsResponse res = sdk.payments().v1().listPools()
                 .request(req)
                 .call();
 
-            if (res.poolsCursor().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.poolsCursor().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -1970,7 +1684,7 @@ List Transfer Initiations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1979,16 +1693,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListTransferInitiationsRequest req = ListTransferInitiationsRequest.builder()
+        ListTransferInitiationsRequest req = ListTransferInitiationsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .sort(List.of(
@@ -1996,24 +1710,13 @@ public class Application {
                     "status:desc"))
                 .build();
 
-            ListTransferInitiationsResponse res = sdk.payments().v1().listTransferInitiations()
+        ListTransferInitiationsResponse res = sdk.payments().v1().listTransferInitiations()
                 .request(req)
                 .call();
 
-            if (res.transferInitiationsCursor().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.transferInitiationsCursor().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -2046,7 +1749,7 @@ Get an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest;
 import com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2054,37 +1757,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PaymentsgetAccountRequest req = PaymentsgetAccountRequest.builder()
+        PaymentsgetAccountRequest req = PaymentsgetAccountRequest.builder()
                 .accountId("XXX")
                 .build();
 
-            PaymentsgetAccountResponse res = sdk.payments().v1().paymentsgetAccount()
+        PaymentsgetAccountResponse res = sdk.payments().v1().paymentsgetAccount()
                 .request(req)
                 .call();
 
-            if (res.paymentsAccountResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.paymentsAccountResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -2117,39 +1809,28 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PaymentsgetServerInfoResponse res = sdk.payments().v1().paymentsgetServerInfo()
+        PaymentsgetServerInfoResponse res = sdk.payments().v1().paymentsgetServerInfo()
                 .call();
 
-            if (res.serverInfo().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.serverInfo().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -2176,7 +1857,7 @@ List accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest;
 import com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2185,16 +1866,16 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PaymentslistAccountsRequest req = PaymentslistAccountsRequest.builder()
+        PaymentslistAccountsRequest req = PaymentslistAccountsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .sort(List.of(
@@ -2202,24 +1883,13 @@ public class Application {
                     "status:desc"))
                 .build();
 
-            PaymentslistAccountsResponse res = sdk.payments().v1().paymentslistAccounts()
+        PaymentslistAccountsResponse res = sdk.payments().v1().paymentslistAccounts()
                 .request(req)
                 .call();
 
-            if (res.accountsCursor().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.accountsCursor().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -2254,7 +1924,7 @@ Read connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -2263,37 +1933,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReadConnectorConfigRequest req = ReadConnectorConfigRequest.builder()
+        ReadConnectorConfigRequest req = ReadConnectorConfigRequest.builder()
                 .connector(Connector.GENERIC)
                 .build();
 
-            ReadConnectorConfigResponse res = sdk.payments().v1().readConnectorConfig()
+        ReadConnectorConfigResponse res = sdk.payments().v1().readConnectorConfig()
                 .request(req)
                 .call();
 
-            if (res.connectorConfigResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.connectorConfigResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -2326,7 +1985,7 @@ Read connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -2335,38 +1994,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReadConnectorConfigV1Request req = ReadConnectorConfigV1Request.builder()
+        ReadConnectorConfigV1Request req = ReadConnectorConfigV1Request.builder()
                 .connector(Connector.CURRENCY_CLOUD)
                 .connectorId("XXX")
                 .build();
 
-            ReadConnectorConfigV1Response res = sdk.payments().v1().readConnectorConfigV1()
+        ReadConnectorConfigV1Response res = sdk.payments().v1().readConnectorConfigV1()
                 .request(req)
                 .call();
 
-            if (res.connectorConfigResponse().isPresent()) {
-                // handle response
-            }
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.connectorConfigResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -2399,7 +2047,7 @@ Remove an account from a pool by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest;
 import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2407,36 +2055,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            RemoveAccountFromPoolRequest req = RemoveAccountFromPoolRequest.builder()
+        RemoveAccountFromPoolRequest req = RemoveAccountFromPoolRequest.builder()
                 .accountId("XXX")
                 .poolId("XXX")
                 .build();
 
-            RemoveAccountFromPoolResponse res = sdk.payments().v1().removeAccountFromPool()
+        RemoveAccountFromPoolResponse res = sdk.payments().v1().removeAccountFromPool()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -2473,7 +2110,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ResetConnectorRequest;
 import com.formance.formance_sdk.models.operations.ResetConnectorResponse;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -2482,35 +2119,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ResetConnectorRequest req = ResetConnectorRequest.builder()
+        ResetConnectorRequest req = ResetConnectorRequest.builder()
                 .connector(Connector.ATLAR)
                 .build();
 
-            ResetConnectorResponse res = sdk.payments().v1().resetConnector()
+        ResetConnectorResponse res = sdk.payments().v1().resetConnector()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -2545,7 +2171,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ResetConnectorV1Request;
 import com.formance.formance_sdk.models.operations.ResetConnectorV1Response;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -2554,36 +2180,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ResetConnectorV1Request req = ResetConnectorV1Request.builder()
+        ResetConnectorV1Request req = ResetConnectorV1Request.builder()
                 .connector(Connector.GENERIC)
                 .connectorId("XXX")
                 .build();
 
-            ResetConnectorV1Response res = sdk.payments().v1().resetConnectorV1()
+        ResetConnectorV1Response res = sdk.payments().v1().resetConnectorV1()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -2616,7 +2231,7 @@ Retry a failed transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2624,35 +2239,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            RetryTransferInitiationRequest req = RetryTransferInitiationRequest.builder()
+        RetryTransferInitiationRequest req = RetryTransferInitiationRequest.builder()
                 .transferId("XXX")
                 .build();
 
-            RetryTransferInitiationResponse res = sdk.payments().v1().retryTransferInitiation()
+        RetryTransferInitiationResponse res = sdk.payments().v1().retryTransferInitiation()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -2685,7 +2289,7 @@ Reverse transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ReverseTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2695,20 +2299,20 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReverseTransferInitiationRequest req = ReverseTransferInitiationRequest.builder()
+        ReverseTransferInitiationRequest req = ReverseTransferInitiationRequest.builder()
                 .reverseTransferInitiationRequest(com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest.builder()
                     .amount(new BigInteger("327549"))
                     .asset("USD")
-                    .description("Streamlined high-level local area network")
+                    .description("Multi-channelled responsive capability")
                     .metadata(Map.ofEntries(
                         Map.entry("key", "<value>")))
                     .reference("XXX")
@@ -2716,22 +2320,11 @@ public class Application {
                 .transferId("XXX")
                 .build();
 
-            ReverseTransferInitiationResponse res = sdk.payments().v1().reverseTransferInitiation()
+        ReverseTransferInitiationResponse res = sdk.payments().v1().reverseTransferInitiation()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -2764,7 +2357,7 @@ Update a transfer initiation status
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest;
 import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2774,38 +2367,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UdpateTransferInitiationStatusRequest req = UdpateTransferInitiationStatusRequest.builder()
+        UdpateTransferInitiationStatusRequest req = UdpateTransferInitiationStatusRequest.builder()
                 .updateTransferInitiationStatusRequest(UpdateTransferInitiationStatusRequest.builder()
                     .status(Status.VALIDATED)
                     .build())
                 .transferId("XXX")
                 .build();
 
-            UdpateTransferInitiationStatusResponse res = sdk.payments().v1().udpateTransferInitiationStatus()
+        UdpateTransferInitiationStatusResponse res = sdk.payments().v1().udpateTransferInitiationStatus()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -2840,7 +2422,7 @@ Uninstall a connector by its name.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UninstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.UninstallConnectorResponse;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -2849,35 +2431,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UninstallConnectorRequest req = UninstallConnectorRequest.builder()
+        UninstallConnectorRequest req = UninstallConnectorRequest.builder()
                 .connector(Connector.MODULR)
                 .build();
 
-            UninstallConnectorResponse res = sdk.payments().v1().uninstallConnector()
+        UninstallConnectorResponse res = sdk.payments().v1().uninstallConnector()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -2910,7 +2481,7 @@ Uninstall a connector by its name.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UninstallConnectorV1Request;
 import com.formance.formance_sdk.models.operations.UninstallConnectorV1Response;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -2919,36 +2490,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UninstallConnectorV1Request req = UninstallConnectorV1Request.builder()
+        UninstallConnectorV1Request req = UninstallConnectorV1Request.builder()
                 .connector(Connector.GENERIC)
                 .connectorId("XXX")
                 .build();
 
-            UninstallConnectorV1Response res = sdk.payments().v1().uninstallConnectorV1()
+        UninstallConnectorV1Response res = sdk.payments().v1().uninstallConnectorV1()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -2981,7 +2541,7 @@ Update metadata of a bank account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest;
 import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2990,16 +2550,16 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UpdateBankAccountMetadataRequest req = UpdateBankAccountMetadataRequest.builder()
+        UpdateBankAccountMetadataRequest req = UpdateBankAccountMetadataRequest.builder()
                 .updateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest.builder()
                     .metadata(Map.ofEntries(
                         Map.entry("key", "<value>")))
@@ -3007,22 +2567,11 @@ public class Application {
                 .bankAccountId("XXX")
                 .build();
 
-            UpdateBankAccountMetadataResponse res = sdk.payments().v1().updateBankAccountMetadata()
+        UpdateBankAccountMetadataResponse res = sdk.payments().v1().updateBankAccountMetadata()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -3055,7 +2604,7 @@ Update connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request;
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response;
 import com.formance.formance_sdk.models.shared.Connector;
@@ -3066,42 +2615,31 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UpdateConnectorConfigV1Request req = UpdateConnectorConfigV1Request.builder()
+        UpdateConnectorConfigV1Request req = UpdateConnectorConfigV1Request.builder()
                 .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
                     .apiKey("XXX")
                     .name("My Stripe Account")
                     .pageSize(50L)
                     .pollingPeriod("60s")
                     .build()))
-                .connector(Connector.STRIPE)
+                .connector(Connector.ADYEN)
                 .connectorId("XXX")
                 .build();
 
-            UpdateConnectorConfigV1Response res = sdk.payments().v1().updateConnectorConfigV1()
+        UpdateConnectorConfigV1Response res = sdk.payments().v1().updateConnectorConfigV1()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -3134,7 +2672,7 @@ Update metadata
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateMetadataRequest;
 import com.formance.formance_sdk.models.operations.UpdateMetadataResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -3143,37 +2681,26 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UpdateMetadataRequest req = UpdateMetadataRequest.builder()
+        UpdateMetadataRequest req = UpdateMetadataRequest.builder()
                 .requestBody(Map.ofEntries(
                     Map.entry("key", "<value>")))
                 .paymentId("XXX")
                 .build();
 
-            UpdateMetadataResponse res = sdk.payments().v1().updateMetadata()
+        UpdateMetadataResponse res = sdk.payments().v1().updateMetadata()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (com.formance.formance_sdk.models.errors.PaymentsErrorResponse e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```

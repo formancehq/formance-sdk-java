@@ -15,7 +15,7 @@ public class UpdateBankAccountMetadataRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpdateBankAccountMetadataRequestBuilder request(com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest request) {
+    public UpdateBankAccountMetadataRequestBuilder request(UpdateBankAccountMetadataRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class V2UpdateLedgerMetadataRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2UpdateLedgerMetadataRequestBuilder request(com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest request) {
+    public V2UpdateLedgerMetadataRequestBuilder request(V2UpdateLedgerMetadataRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class DeletePoolRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeletePoolRequestBuilder request(com.formance.formance_sdk.models.operations.DeletePoolRequest request) {
+    public DeletePoolRequestBuilder request(DeletePoolRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

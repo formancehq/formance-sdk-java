@@ -15,7 +15,7 @@ public class GetLedgerInfoRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetLedgerInfoRequestBuilder request(com.formance.formance_sdk.models.operations.GetLedgerInfoRequest request) {
+    public GetLedgerInfoRequestBuilder request(GetLedgerInfoRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

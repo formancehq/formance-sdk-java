@@ -15,7 +15,7 @@ public class DeleteWorkflowRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteWorkflowRequestBuilder request(com.formance.formance_sdk.models.operations.DeleteWorkflowRequest request) {
+    public DeleteWorkflowRequestBuilder request(DeleteWorkflowRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

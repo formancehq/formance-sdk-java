@@ -15,7 +15,7 @@ public class ListBankAccountsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ListBankAccountsRequestBuilder request(com.formance.formance_sdk.models.operations.ListBankAccountsRequest request) {
+    public ListBankAccountsRequestBuilder request(ListBankAccountsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

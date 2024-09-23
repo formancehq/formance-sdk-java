@@ -15,7 +15,7 @@ public class GetPolicyRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetPolicyRequestBuilder request(com.formance.formance_sdk.models.operations.GetPolicyRequest request) {
+    public GetPolicyRequestBuilder request(GetPolicyRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

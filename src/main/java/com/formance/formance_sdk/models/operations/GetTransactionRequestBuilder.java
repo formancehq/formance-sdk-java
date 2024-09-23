@@ -15,7 +15,7 @@ public class GetTransactionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetTransactionRequestBuilder request(com.formance.formance_sdk.models.operations.GetTransactionRequest request) {
+    public GetTransactionRequestBuilder request(GetTransactionRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

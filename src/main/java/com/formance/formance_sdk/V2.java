@@ -184,7 +184,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2AddMetadataOnTransactionRequest.class,
@@ -201,7 +201,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2AddMetadataOnTransaction", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -212,7 +212,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2AddMetadataOnTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -221,7 +221,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2AddMetadataOnTransaction",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -230,7 +230,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2AddMetadataOnTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -314,7 +314,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2AddMetadataToAccountRequest.class,
@@ -331,7 +331,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2AddMetadataToAccount", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -342,7 +342,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2AddMetadataToAccount",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -351,7 +351,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2AddMetadataToAccount",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -360,7 +360,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2AddMetadataToAccount",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -441,7 +441,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2CountAccountsRequest.class,
@@ -457,7 +457,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2CountAccounts", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -468,7 +468,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CountAccounts",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -477,7 +477,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2CountAccounts",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -486,7 +486,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CountAccounts",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -568,7 +568,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2CountTransactionsRequest.class,
@@ -584,7 +584,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2CountTransactions", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -595,7 +595,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CountTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -604,7 +604,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2CountTransactions",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -613,7 +613,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CountTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -695,7 +695,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -706,7 +706,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2CreateBulk", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -717,7 +717,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateBulk",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -726,7 +726,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2CreateBulk",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -735,7 +735,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateBulk",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -827,7 +827,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -838,7 +838,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2CreateLedger", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -849,7 +849,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateLedger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -858,7 +858,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2CreateLedger",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -867,7 +867,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateLedger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -951,7 +951,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2CreateTransactionRequest.class,
@@ -968,7 +968,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2CreateTransaction", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -979,7 +979,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -988,7 +988,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2CreateTransaction",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -997,7 +997,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2CreateTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1081,7 +1081,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1092,7 +1092,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2DeleteAccountMetadata", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1103,7 +1103,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteAccountMetadata",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1112,7 +1112,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2DeleteAccountMetadata",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1121,7 +1121,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteAccountMetadata",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1192,7 +1192,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1203,7 +1203,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2DeleteLedgerMetadata", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1214,7 +1214,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteLedgerMetadata",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1223,7 +1223,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2DeleteLedgerMetadata",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1232,7 +1232,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteLedgerMetadata",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1305,7 +1305,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1316,7 +1316,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2DeleteTransactionMetadata", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1327,7 +1327,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteTransactionMetadata",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1336,7 +1336,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2DeleteTransactionMetadata",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1345,7 +1345,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2DeleteTransactionMetadata",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1416,7 +1416,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1427,7 +1427,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ExportLogs", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1438,7 +1438,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ExportLogs",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1447,7 +1447,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ExportLogs",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1456,7 +1456,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ExportLogs",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1521,7 +1521,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2GetAccountRequest.class,
@@ -1537,7 +1537,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetAccount", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1548,7 +1548,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetAccount",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1557,7 +1557,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetAccount",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1566,7 +1566,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetAccount",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1658,7 +1658,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2GetBalancesAggregatedRequest.class,
@@ -1674,7 +1674,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetBalancesAggregated", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1685,7 +1685,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetBalancesAggregated",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1694,7 +1694,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetBalancesAggregated",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1703,7 +1703,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetBalancesAggregated",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1781,7 +1781,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1792,7 +1792,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1803,7 +1803,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1812,7 +1812,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1821,7 +1821,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -1918,7 +1918,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1929,7 +1929,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetLedger", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -1940,7 +1940,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetLedger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -1949,7 +1949,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetLedger",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -1958,7 +1958,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetLedger",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2040,7 +2040,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -2051,7 +2051,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetLedgerInfo", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2062,7 +2062,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetLedgerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2071,7 +2071,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetLedgerInfo",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2080,7 +2080,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetLedgerInfo",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2162,7 +2162,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2GetTransactionRequest.class,
@@ -2178,7 +2178,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetTransaction", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2189,7 +2189,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2198,7 +2198,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetTransaction",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2207,7 +2207,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2299,7 +2299,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2GetVolumesWithBalancesRequest.class,
@@ -2315,7 +2315,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2GetVolumesWithBalances", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2326,7 +2326,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetVolumesWithBalances",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2335,7 +2335,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2GetVolumesWithBalances",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2344,7 +2344,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2GetVolumesWithBalances",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2426,7 +2426,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -2437,7 +2437,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ImportLogs", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2448,7 +2448,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ImportLogs",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2457,7 +2457,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ImportLogs",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2466,7 +2466,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ImportLogs",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2549,7 +2549,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2ListAccountsRequest.class,
@@ -2565,7 +2565,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ListAccounts", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2576,7 +2576,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListAccounts",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2585,7 +2585,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ListAccounts",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2594,7 +2594,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListAccounts",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2674,7 +2674,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2ListLedgersRequest.class,
@@ -2690,7 +2690,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ListLedgers", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2701,7 +2701,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListLedgers",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2710,7 +2710,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ListLedgers",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2719,7 +2719,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListLedgers",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2813,7 +2813,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2ListLogsRequest.class,
@@ -2829,7 +2829,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ListLogs", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2840,7 +2840,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListLogs",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2849,7 +2849,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ListLogs",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2858,7 +2858,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListLogs",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -2952,7 +2952,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2ListTransactionsRequest.class,
@@ -2968,7 +2968,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ListTransactions", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -2979,7 +2979,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -2988,7 +2988,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ListTransactions",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -2997,7 +2997,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ListTransactions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -3083,7 +3083,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -3094,7 +3094,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2ReadStats", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -3105,7 +3105,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ReadStats",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -3114,7 +3114,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2ReadStats",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -3123,7 +3123,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2ReadStats",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -3205,7 +3205,7 @@ public class V2 implements
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 V2RevertTransactionRequest.class,
@@ -3221,7 +3221,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2RevertTransaction", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -3232,7 +3232,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2RevertTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -3241,7 +3241,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2RevertTransaction",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -3250,7 +3250,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2RevertTransaction",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
@@ -3342,7 +3342,7 @@ public class V2 implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -3353,7 +3353,7 @@ public class V2 implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "v2UpdateLedgerMetadata", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read", "ledger:write")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -3364,7 +3364,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2UpdateLedgerMetadata",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -3373,7 +3373,7 @@ public class V2 implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "v2UpdateLedgerMetadata",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read", "ledger:write")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -3382,7 +3382,7 @@ public class V2 implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "v2UpdateLedgerMetadata",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read", "ledger:write")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));

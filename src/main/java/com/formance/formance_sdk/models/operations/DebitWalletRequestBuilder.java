@@ -15,7 +15,7 @@ public class DebitWalletRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DebitWalletRequestBuilder request(com.formance.formance_sdk.models.operations.DebitWalletRequest request) {
+    public DebitWalletRequestBuilder request(DebitWalletRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class V2RevertTransactionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2RevertTransactionRequestBuilder request(com.formance.formance_sdk.models.operations.V2RevertTransactionRequest request) {
+    public V2RevertTransactionRequestBuilder request(V2RevertTransactionRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

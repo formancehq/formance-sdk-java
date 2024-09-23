@@ -27,7 +27,6 @@ Create client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.CreateClientResponse;
 import com.formance.formance_sdk.models.shared.CreateClientRequest;
 import com.formance.formance_sdk.models.shared.Security;
@@ -36,33 +35,25 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CreateClientRequest req = CreateClientRequest.builder()
+        CreateClientRequest req = CreateClientRequest.builder()
                 .name("<value>")
                 .build();
 
-            CreateClientResponse res = sdk.auth().v1().createClient()
+        CreateClientResponse res = sdk.auth().v1().createClient()
                 .request(req)
                 .call();
 
-            if (res.createClientResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.createClientResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -94,7 +85,6 @@ Add a secret to a client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.CreateSecretRequest;
 import com.formance.formance_sdk.models.operations.CreateSecretResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -103,33 +93,25 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CreateSecretRequest req = CreateSecretRequest.builder()
+        CreateSecretRequest req = CreateSecretRequest.builder()
                 .clientId("<value>")
                 .build();
 
-            CreateSecretResponse res = sdk.auth().v1().createSecret()
+        CreateSecretResponse res = sdk.auth().v1().createSecret()
                 .request(req)
                 .call();
 
-            if (res.createSecretResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.createSecretResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -161,7 +143,6 @@ Delete client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.DeleteClientRequest;
 import com.formance.formance_sdk.models.operations.DeleteClientResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -170,31 +151,23 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeleteClientRequest req = DeleteClientRequest.builder()
+        DeleteClientRequest req = DeleteClientRequest.builder()
                 .clientId("<value>")
                 .build();
 
-            DeleteClientResponse res = sdk.auth().v1().deleteClient()
+        DeleteClientResponse res = sdk.auth().v1().deleteClient()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -226,7 +199,6 @@ Delete a secret from a client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.DeleteSecretRequest;
 import com.formance.formance_sdk.models.operations.DeleteSecretResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -235,32 +207,24 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            DeleteSecretRequest req = DeleteSecretRequest.builder()
+        DeleteSecretRequest req = DeleteSecretRequest.builder()
                 .clientId("<value>")
                 .secretId("<value>")
                 .build();
 
-            DeleteSecretResponse res = sdk.auth().v1().deleteSecret()
+        DeleteSecretResponse res = sdk.auth().v1().deleteSecret()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -292,7 +256,6 @@ Retrieve OpenID connect well-knowns.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -300,26 +263,18 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetOIDCWellKnownsResponse res = sdk.auth().v1().getOIDCWellKnowns()
+        GetOIDCWellKnownsResponse res = sdk.auth().v1().getOIDCWellKnowns()
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -345,7 +300,6 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -353,28 +307,20 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetServerInfoResponse res = sdk.auth().v1().getServerInfo()
+        GetServerInfoResponse res = sdk.auth().v1().getServerInfo()
                 .call();
 
-            if (res.serverInfo().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.serverInfo().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -400,7 +346,6 @@ List clients
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.ListClientsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -408,28 +353,20 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListClientsResponse res = sdk.auth().v1().listClients()
+        ListClientsResponse res = sdk.auth().v1().listClients()
                 .call();
 
-            if (res.listClientsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listClientsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -455,7 +392,6 @@ List users
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.ListUsersResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
@@ -463,28 +399,20 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ListUsersResponse res = sdk.auth().v1().listUsers()
+        ListUsersResponse res = sdk.auth().v1().listUsers()
                 .call();
 
-            if (res.listUsersResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.listUsersResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -510,7 +438,6 @@ Read client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.ReadClientRequest;
 import com.formance.formance_sdk.models.operations.ReadClientResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -519,33 +446,25 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReadClientRequest req = ReadClientRequest.builder()
+        ReadClientRequest req = ReadClientRequest.builder()
                 .clientId("<value>")
                 .build();
 
-            ReadClientResponse res = sdk.auth().v1().readClient()
+        ReadClientResponse res = sdk.auth().v1().readClient()
                 .request(req)
                 .call();
 
-            if (res.readClientResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.readClientResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -577,7 +496,6 @@ Read user
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.ReadUserRequest;
 import com.formance.formance_sdk.models.operations.ReadUserResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -586,33 +504,25 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            ReadUserRequest req = ReadUserRequest.builder()
+        ReadUserRequest req = ReadUserRequest.builder()
                 .userId("<value>")
                 .build();
 
-            ReadUserResponse res = sdk.auth().v1().readUser()
+        ReadUserResponse res = sdk.auth().v1().readUser()
                 .request(req)
                 .call();
 
-            if (res.readUserResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.readUserResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -644,7 +554,6 @@ Update client
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.UpdateClientRequest;
 import com.formance.formance_sdk.models.operations.UpdateClientResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -653,33 +562,25 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UpdateClientRequest req = UpdateClientRequest.builder()
+        UpdateClientRequest req = UpdateClientRequest.builder()
                 .clientId("<value>")
                 .build();
 
-            UpdateClientResponse res = sdk.auth().v1().updateClient()
+        UpdateClientResponse res = sdk.auth().v1().updateClient()
                 .request(req)
                 .call();
 
-            if (res.updateClientResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.updateClientResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

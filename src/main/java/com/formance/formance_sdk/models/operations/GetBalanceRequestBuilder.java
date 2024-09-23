@@ -15,7 +15,7 @@ public class GetBalanceRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetBalanceRequestBuilder request(com.formance.formance_sdk.models.operations.GetBalanceRequest request) {
+    public GetBalanceRequestBuilder request(GetBalanceRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

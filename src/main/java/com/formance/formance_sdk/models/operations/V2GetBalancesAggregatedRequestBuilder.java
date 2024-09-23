@@ -15,7 +15,7 @@ public class V2GetBalancesAggregatedRequestBuilder {
         this.sdk = sdk;
     }
 
-    public V2GetBalancesAggregatedRequestBuilder request(com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest request) {
+    public V2GetBalancesAggregatedRequestBuilder request(V2GetBalancesAggregatedRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

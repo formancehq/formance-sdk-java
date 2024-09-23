@@ -16,7 +16,7 @@ public class SearchRequestBuilder {
         this.sdk = sdk;
     }
 
-    public SearchRequestBuilder request(com.formance.formance_sdk.models.shared.Query request) {
+    public SearchRequestBuilder request(Query request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -52,6 +52,10 @@ public class SDK implements
          * local server
          */
         "http://localhost",
+        /**
+         * sandbox server
+         */
+        "https://{stack}.sandbox.formance.cloud",
     };
 
     private final Auth auth;
@@ -165,7 +169,7 @@ public class SDK implements
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = com.formance.formance_sdk.utils.Utils.templateUrl(serverUrl, params);
+            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         
@@ -261,7 +265,7 @@ public class SDK implements
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -272,7 +276,7 @@ public class SDK implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       "getVersions", 
-                      Optional.of(List.of()), 
+                      Optional.of(List.of("auth:read")), 
                       sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
@@ -283,7 +287,7 @@ public class SDK implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getVersions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read")),
                             sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
@@ -292,7 +296,7 @@ public class SDK implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             "getVersions",
-                            Optional.of(List.of()), 
+                            Optional.of(List.of("auth:read")), 
                             sdkConfiguration.securitySource()),
                          _httpRes);
             }
@@ -301,7 +305,7 @@ public class SDK implements
                     .afterError(
                         new AfterErrorContextImpl(
                             "getVersions",
-                            Optional.of(List.of()),
+                            Optional.of(List.of("auth:read")),
                             sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));

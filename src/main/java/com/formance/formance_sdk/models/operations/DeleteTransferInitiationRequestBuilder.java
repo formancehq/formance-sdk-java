@@ -15,7 +15,7 @@ public class DeleteTransferInitiationRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteTransferInitiationRequestBuilder request(com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest request) {
+    public DeleteTransferInitiationRequestBuilder request(DeleteTransferInitiationRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

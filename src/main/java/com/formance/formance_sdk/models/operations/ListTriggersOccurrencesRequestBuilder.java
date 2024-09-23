@@ -15,7 +15,7 @@ public class ListTriggersOccurrencesRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ListTriggersOccurrencesRequestBuilder request(com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest request) {
+    public ListTriggersOccurrencesRequestBuilder request(ListTriggersOccurrencesRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
