@@ -114,7 +114,8 @@ public class SDKWalletsV1 implements
      */
     public ConfirmHoldResponse confirmHold(
             ConfirmHoldRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ConfirmHoldRequest.class,
                 _baseUrl,
@@ -236,7 +237,8 @@ public class SDKWalletsV1 implements
      */
     public CreateBalanceResponse createBalance(
             CreateBalanceRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreateBalanceRequest.class,
                 _baseUrl,
@@ -369,7 +371,8 @@ public class SDKWalletsV1 implements
      */
     public CreateWalletResponse createWallet(
             CreateWalletRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/wallets/wallets");
@@ -500,7 +503,8 @@ public class SDKWalletsV1 implements
      */
     public CreditWalletResponse creditWallet(
             CreditWalletRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreditWalletRequest.class,
                 _baseUrl,
@@ -622,7 +626,8 @@ public class SDKWalletsV1 implements
      */
     public DebitWalletResponse debitWallet(
             DebitWalletRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DebitWalletRequest.class,
                 _baseUrl,
@@ -759,7 +764,8 @@ public class SDKWalletsV1 implements
      */
     public GetBalanceResponse getBalance(
             GetBalanceRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetBalanceRequest.class,
                 _baseUrl,
@@ -881,7 +887,8 @@ public class SDKWalletsV1 implements
      */
     public GetHoldResponse getHold(
             GetHoldRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetHoldRequest.class,
                 _baseUrl,
@@ -1003,7 +1010,8 @@ public class SDKWalletsV1 implements
      */
     public GetHoldsResponse getHolds(
             GetHoldsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/wallets/holds");
@@ -1118,7 +1126,8 @@ public class SDKWalletsV1 implements
 
     public GetTransactionsResponse getTransactions(
             GetTransactionsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/wallets/transactions");
@@ -1243,7 +1252,8 @@ public class SDKWalletsV1 implements
      */
     public GetWalletResponse getWallet(
             GetWalletRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetWalletRequest.class,
                 _baseUrl,
@@ -1369,7 +1379,8 @@ public class SDKWalletsV1 implements
      */
     public GetWalletSummaryResponse getWalletSummary(
             GetWalletSummaryRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetWalletSummaryRequest.class,
                 _baseUrl,
@@ -1495,7 +1506,8 @@ public class SDKWalletsV1 implements
      */
     public ListBalancesResponse listBalances(
             ListBalancesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListBalancesRequest.class,
                 _baseUrl,
@@ -1611,7 +1623,8 @@ public class SDKWalletsV1 implements
      */
     public ListWalletsResponse listWallets(
             ListWalletsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/wallets/wallets");
@@ -1736,7 +1749,8 @@ public class SDKWalletsV1 implements
      */
     public UpdateWalletResponse updateWallet(
             UpdateWalletRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateWalletRequest.class,
                 _baseUrl,
@@ -1858,7 +1872,8 @@ public class SDKWalletsV1 implements
      */
     public VoidHoldResponse voidHold(
             VoidHoldRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 VoidHoldRequest.class,
                 _baseUrl,
@@ -1968,7 +1983,8 @@ public class SDKWalletsV1 implements
      * @throws Exception if the API call fails
      */
     public WalletsgetServerInfoResponse walletsgetServerInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/wallets/_info");

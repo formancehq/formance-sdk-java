@@ -129,7 +129,8 @@ public class SDKV2 implements
      */
     public V2CancelEventResponse cancelEvent(
             V2CancelEventRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2CancelEventRequest.class,
                 _baseUrl,
@@ -252,7 +253,8 @@ public class SDKV2 implements
      */
     public V2CreateTriggerResponse createTrigger(
             Optional<? extends V2TriggerData> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/v2/triggers");
@@ -394,7 +396,8 @@ public class SDKV2 implements
      */
     public V2CreateWorkflowResponse createWorkflow(
             Optional<? extends V2CreateWorkflowRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/v2/workflows");
@@ -526,7 +529,8 @@ public class SDKV2 implements
      */
     public V2DeleteTriggerResponse deleteTrigger(
             V2DeleteTriggerRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2DeleteTriggerRequest.class,
                 _baseUrl,
@@ -639,7 +643,8 @@ public class SDKV2 implements
      */
     public V2DeleteWorkflowResponse deleteWorkflow(
             V2DeleteWorkflowRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2DeleteWorkflowRequest.class,
                 _baseUrl,
@@ -752,7 +757,8 @@ public class SDKV2 implements
      */
     public V2GetInstanceResponse getInstance(
             V2GetInstanceRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetInstanceRequest.class,
                 _baseUrl,
@@ -876,7 +882,8 @@ public class SDKV2 implements
      */
     public V2GetInstanceHistoryResponse getInstanceHistory(
             V2GetInstanceHistoryRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetInstanceHistoryRequest.class,
                 _baseUrl,
@@ -1000,7 +1007,8 @@ public class SDKV2 implements
      */
     public V2GetInstanceStageHistoryResponse getInstanceStageHistory(
             V2GetInstanceStageHistoryRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetInstanceStageHistoryRequest.class,
                 _baseUrl,
@@ -1120,7 +1128,8 @@ public class SDKV2 implements
      * @throws Exception if the API call fails
      */
     public V2GetServerInfoResponse getServerInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/v2/_info");
@@ -1242,7 +1251,8 @@ public class SDKV2 implements
      */
     public V2GetWorkflowResponse getWorkflow(
             V2GetWorkflowRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetWorkflowRequest.class,
                 _baseUrl,
@@ -1366,7 +1376,8 @@ public class SDKV2 implements
      */
     public V2ListInstancesResponse listInstances(
             V2ListInstancesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/v2/instances");
@@ -1493,7 +1504,8 @@ public class SDKV2 implements
      */
     public V2ListTriggersResponse listTriggers(
             V2ListTriggersRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/v2/triggers");
@@ -1620,7 +1632,8 @@ public class SDKV2 implements
      */
     public V2ListTriggersOccurrencesResponse listTriggersOccurrences(
             V2ListTriggersOccurrencesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2ListTriggersOccurrencesRequest.class,
                 _baseUrl,
@@ -1749,7 +1762,8 @@ public class SDKV2 implements
      */
     public V2ListWorkflowsResponse listWorkflows(
             V2ListWorkflowsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/v2/workflows");
@@ -1876,7 +1890,8 @@ public class SDKV2 implements
      */
     public V2ReadTriggerResponse readTrigger(
             V2ReadTriggerRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2ReadTriggerRequest.class,
                 _baseUrl,
@@ -2000,7 +2015,8 @@ public class SDKV2 implements
      */
     public V2RunWorkflowResponse runWorkflow(
             V2RunWorkflowRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2RunWorkflowRequest.class,
                 _baseUrl,
@@ -2139,7 +2155,8 @@ public class SDKV2 implements
      */
     public V2SendEventResponse sendEvent(
             V2SendEventRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2SendEventRequest.class,
                 _baseUrl,
@@ -2262,7 +2279,8 @@ public class SDKV2 implements
      */
     public TestTriggerResponse testTrigger(
             TestTriggerRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 TestTriggerRequest.class,
                 _baseUrl,

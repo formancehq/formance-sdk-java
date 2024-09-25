@@ -5,6 +5,6 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `clientID`         | *String*           | :heavy_check_mark: | N/A                |
-| `clientSecret`     | *String*           | :heavy_check_mark: | N/A                |
-| `tokenURL`         | *String*           | :heavy_check_mark: | N/A                |
+| `clientID`         | *Optional<String>* | :heavy_minus_sign: | N/A                |
+| `clientSecret`     | *Optional<String>* | :heavy_minus_sign: | N/A                |
+| `tokenURL`         | *Optional<String>* | :heavy_minus_sign: | N/A                |

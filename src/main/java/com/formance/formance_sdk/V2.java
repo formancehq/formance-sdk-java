@@ -164,7 +164,8 @@ public class V2 implements
      */
     public V2AddMetadataOnTransactionResponse addMetadataOnTransaction(
             V2AddMetadataOnTransactionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2AddMetadataOnTransactionRequest.class,
                 _baseUrl,
@@ -291,7 +292,8 @@ public class V2 implements
      */
     public V2AddMetadataToAccountResponse addMetadataToAccount(
             V2AddMetadataToAccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2AddMetadataToAccountRequest.class,
                 _baseUrl,
@@ -421,7 +423,8 @@ public class V2 implements
      */
     public V2CountAccountsResponse countAccounts(
             V2CountAccountsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2CountAccountsRequest.class,
                 _baseUrl,
@@ -548,7 +551,8 @@ public class V2 implements
      */
     public V2CountTransactionsResponse countTransactions(
             V2CountTransactionsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2CountTransactionsRequest.class,
                 _baseUrl,
@@ -675,7 +679,8 @@ public class V2 implements
      */
     public V2CreateBulkResponse createBulk(
             V2CreateBulkRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2CreateBulkRequest.class,
                 _baseUrl,
@@ -807,7 +812,8 @@ public class V2 implements
      */
     public V2CreateLedgerResponse createLedger(
             V2CreateLedgerRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2CreateLedgerRequest.class,
                 _baseUrl,
@@ -928,7 +934,8 @@ public class V2 implements
      */
     public V2CreateTransactionResponse createTransaction(
             V2CreateTransactionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2CreateTransactionRequest.class,
                 _baseUrl,
@@ -1071,7 +1078,8 @@ public class V2 implements
      */
     public V2DeleteAccountMetadataResponse deleteAccountMetadata(
             V2DeleteAccountMetadataRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2DeleteAccountMetadataRequest.class,
                 _baseUrl,
@@ -1182,7 +1190,8 @@ public class V2 implements
      */
     public V2DeleteLedgerMetadataResponse deleteLedgerMetadata(
             V2DeleteLedgerMetadataRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2DeleteLedgerMetadataRequest.class,
                 _baseUrl,
@@ -1295,7 +1304,8 @@ public class V2 implements
      */
     public V2DeleteTransactionMetadataResponse deleteTransactionMetadata(
             V2DeleteTransactionMetadataRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2DeleteTransactionMetadataRequest.class,
                 _baseUrl,
@@ -1406,7 +1416,8 @@ public class V2 implements
      */
     public V2ExportLogsResponse exportLogs(
             V2ExportLogsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2ExportLogsRequest.class,
                 _baseUrl,
@@ -1511,7 +1522,8 @@ public class V2 implements
      */
     public V2GetAccountResponse getAccount(
             V2GetAccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetAccountRequest.class,
                 _baseUrl,
@@ -1638,7 +1650,8 @@ public class V2 implements
      */
     public V2GetBalancesAggregatedResponse getBalancesAggregated(
             V2GetBalancesAggregatedRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetBalancesAggregatedRequest.class,
                 _baseUrl,
@@ -1773,7 +1786,8 @@ public class V2 implements
      * @throws Exception if the API call fails
      */
     public V2GetInfoResponse getInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/ledger/v2/_info");
@@ -1908,7 +1922,8 @@ public class V2 implements
      */
     public V2GetLedgerResponse getLedger(
             V2GetLedgerRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetLedgerRequest.class,
                 _baseUrl,
@@ -2030,7 +2045,8 @@ public class V2 implements
      */
     public V2GetLedgerInfoResponse getLedgerInfo(
             V2GetLedgerInfoRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetLedgerInfoRequest.class,
                 _baseUrl,
@@ -2152,7 +2168,8 @@ public class V2 implements
      */
     public V2GetTransactionResponse getTransaction(
             V2GetTransactionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetTransactionRequest.class,
                 _baseUrl,
@@ -2279,7 +2296,8 @@ public class V2 implements
      */
     public V2GetVolumesWithBalancesResponse getVolumesWithBalances(
             V2GetVolumesWithBalancesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2GetVolumesWithBalancesRequest.class,
                 _baseUrl,
@@ -2406,7 +2424,8 @@ public class V2 implements
 
     public V2ImportLogsResponse importLogs(
             V2ImportLogsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2ImportLogsRequest.class,
                 _baseUrl,
@@ -2529,7 +2548,8 @@ public class V2 implements
      */
     public V2ListAccountsResponse listAccounts(
             V2ListAccountsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2ListAccountsRequest.class,
                 _baseUrl,
@@ -2666,7 +2686,8 @@ public class V2 implements
      */
     public V2ListLedgersResponse listLedgers(
             V2ListLedgersRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/ledger/v2");
@@ -2793,7 +2814,8 @@ public class V2 implements
      */
     public V2ListLogsResponse listLogs(
             V2ListLogsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2ListLogsRequest.class,
                 _baseUrl,
@@ -2932,7 +2954,8 @@ public class V2 implements
      */
     public V2ListTransactionsResponse listTransactions(
             V2ListTransactionsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2ListTransactionsRequest.class,
                 _baseUrl,
@@ -3073,7 +3096,8 @@ public class V2 implements
      */
     public V2ReadStatsResponse readStats(
             V2ReadStatsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2ReadStatsRequest.class,
                 _baseUrl,
@@ -3195,7 +3219,8 @@ public class V2 implements
      */
     public V2RevertTransactionResponse revertTransaction(
             V2RevertTransactionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2RevertTransactionRequest.class,
                 _baseUrl,
@@ -3322,7 +3347,8 @@ public class V2 implements
      */
     public V2UpdateLedgerMetadataResponse updateLedgerMetadata(
             V2UpdateLedgerMetadataRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V2UpdateLedgerMetadataRequest.class,
                 _baseUrl,

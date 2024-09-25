@@ -4,6 +4,7 @@
 
 package com.formance.formance_sdk;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetVersionsRequestBuilder;
@@ -53,9 +54,9 @@ public class SDK implements
          */
         "http://localhost",
         /**
-         * sandbox server
+         * A per-organization and per-environment API
          */
-        "https://{stack}.sandbox.formance.cloud",
+        "https://{organization}.{environment}.formance.cloud",
     };
 
     private final Auth auth;
@@ -195,6 +196,59 @@ public class SDK implements
             this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
             return this;
         }
+        /**
+         * ServerEnvironment - The environment name. Defaults to the production environment.
+         */
+        public enum ServerEnvironment {
+            SANDBOX("sandbox"),
+            EU_WEST1("eu-west-1"),
+            US_EAST1("us-east-1");
+
+            @JsonValue    
+            private final String value;
+
+            private ServerEnvironment(String value) {
+                this.value = value;
+            }
+
+            public String value() {
+                return value;
+            }
+        }
+        /**
+         * Sets the environment variable for url substitution.
+         *
+         * @param environment The value to set.
+         * @return The builder instance.
+         */
+        public Builder environment(ServerEnvironment environment) {
+            for (Map<String, String> server : this.sdkConfiguration.serverDefaults) {
+                if (!server.containsKey("environment")) {
+                    continue;
+                }
+                server.put("environment", environment.toString());
+            }
+
+            return this;
+        }
+        
+        /**
+         * Sets the organization variable for url substitution.
+         *
+         * @param organization The value to set.
+         * @return The builder instance.
+         */
+        public Builder organization(String organization) {
+            for (Map<String, String> server : this.sdkConfiguration.serverDefaults) {
+                if (!server.containsKey("organization")) {
+                    continue;
+                }
+                server.put("organization", organization.toString());
+            }
+
+            return this;
+        }
+        
         // Visible for testing, will be accessed via reflection
         void _hooks(com.formance.formance_sdk.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);    
@@ -257,7 +311,8 @@ public class SDK implements
      * @throws Exception if the API call fails
      */
     public GetVersionsResponse getVersionsDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/versions");
