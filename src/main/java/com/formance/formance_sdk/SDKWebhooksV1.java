@@ -83,7 +83,8 @@ public class SDKWebhooksV1 implements
      */
     public ActivateConfigResponse activateConfig(
             ActivateConfigRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ActivateConfigRequest.class,
                 _baseUrl,
@@ -215,7 +216,8 @@ public class SDKWebhooksV1 implements
      */
     public ChangeConfigSecretResponse changeConfigSecret(
             ChangeConfigSecretRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ChangeConfigSecretRequest.class,
                 _baseUrl,
@@ -349,7 +351,8 @@ public class SDKWebhooksV1 implements
      */
     public DeactivateConfigResponse deactivateConfig(
             DeactivateConfigRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeactivateConfigRequest.class,
                 _baseUrl,
@@ -473,7 +476,8 @@ public class SDKWebhooksV1 implements
      */
     public DeleteConfigResponse deleteConfig(
             DeleteConfigRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteConfigRequest.class,
                 _baseUrl,
@@ -586,7 +590,8 @@ public class SDKWebhooksV1 implements
      */
     public GetManyConfigsResponse getManyConfigs(
             GetManyConfigsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/webhooks/configs");
@@ -731,7 +736,8 @@ public class SDKWebhooksV1 implements
      */
     public InsertConfigResponse insertConfig(
             ConfigUser request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/webhooks/configs");
@@ -866,7 +872,8 @@ public class SDKWebhooksV1 implements
      */
     public TestConfigResponse testConfig(
             TestConfigRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 TestConfigRequest.class,
                 _baseUrl,

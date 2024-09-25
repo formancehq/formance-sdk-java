@@ -60,7 +60,8 @@ public class SDKSearchV1 implements
      */
     public SearchResponse search(
             Query request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/search/");
@@ -185,7 +186,8 @@ public class SDKSearchV1 implements
      * @throws Exception if the API call fails
      */
     public SearchgetServerInfoResponse searchgetServerInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/search/_info");

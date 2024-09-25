@@ -54,7 +54,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:4.0.0'
+implementation 'com.formance:formance-sdk:4.0.1'
 ```
 
 Maven:
@@ -62,7 +62,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
 </dependency>
 ```
 
@@ -361,7 +361,7 @@ You can override the default server globally by passing a server index to the `s
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
-| 1 | `https://{stack}.sandbox.formance.cloud` | None |
+| 1 | `https://{organization}.{environment}.formance.cloud` | `environment` (default is `sandbox`), `organization` (default is `orgID-stackID`) |
 
 #### Example
 
@@ -395,6 +395,11 @@ public class Application {
 }
 ```
 
+#### Variables
+
+Some of the server options above contain variables. If you want to set the values of those variables, the following optional parameters are available when initializing the SDK client instance:
+ * `ServerEnvironment environment`
+ * `String organization`
 
 ### Override Server URL Per-Client
 

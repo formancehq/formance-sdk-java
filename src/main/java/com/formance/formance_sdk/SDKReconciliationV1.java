@@ -88,7 +88,8 @@ public class SDKReconciliationV1 implements
      */
     public CreatePolicyResponse createPolicy(
             PolicyRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/reconciliation/policies");
@@ -223,7 +224,8 @@ public class SDKReconciliationV1 implements
      */
     public DeletePolicyResponse deletePolicy(
             DeletePolicyRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeletePolicyRequest.class,
                 _baseUrl,
@@ -334,7 +336,8 @@ public class SDKReconciliationV1 implements
      */
     public GetPolicyResponse getPolicy(
             GetPolicyRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetPolicyRequest.class,
                 _baseUrl,
@@ -456,7 +459,8 @@ public class SDKReconciliationV1 implements
      */
     public GetReconciliationResponse getReconciliation(
             GetReconciliationRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetReconciliationRequest.class,
                 _baseUrl,
@@ -578,7 +582,8 @@ public class SDKReconciliationV1 implements
      */
     public ListPoliciesResponse listPolicies(
             ListPoliciesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/reconciliation/policies");
@@ -703,7 +708,8 @@ public class SDKReconciliationV1 implements
      */
     public ListReconciliationsResponse listReconciliations(
             ListReconciliationsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/reconciliation/reconciliations");
@@ -830,7 +836,8 @@ public class SDKReconciliationV1 implements
      */
     public ReconcileResponse reconcile(
             ReconcileRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ReconcileRequest.class,
                 _baseUrl,
@@ -963,7 +970,8 @@ public class SDKReconciliationV1 implements
      * @throws Exception if the API call fails
      */
     public ReconciliationgetServerInfoResponse reconciliationgetServerInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/reconciliation/_info");

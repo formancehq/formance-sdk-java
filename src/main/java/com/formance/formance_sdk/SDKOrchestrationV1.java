@@ -123,7 +123,8 @@ public class SDKOrchestrationV1 implements
      */
     public CancelEventResponse cancelEvent(
             CancelEventRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CancelEventRequest.class,
                 _baseUrl,
@@ -246,7 +247,8 @@ public class SDKOrchestrationV1 implements
      */
     public CreateTriggerResponse createTrigger(
             Optional<? extends TriggerData> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/triggers");
@@ -388,7 +390,8 @@ public class SDKOrchestrationV1 implements
      */
     public CreateWorkflowResponse createWorkflow(
             Optional<? extends CreateWorkflowRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/workflows");
@@ -520,7 +523,8 @@ public class SDKOrchestrationV1 implements
      */
     public DeleteTriggerResponse deleteTrigger(
             DeleteTriggerRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteTriggerRequest.class,
                 _baseUrl,
@@ -633,7 +637,8 @@ public class SDKOrchestrationV1 implements
      */
     public DeleteWorkflowResponse deleteWorkflow(
             DeleteWorkflowRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteWorkflowRequest.class,
                 _baseUrl,
@@ -746,7 +751,8 @@ public class SDKOrchestrationV1 implements
      */
     public GetInstanceResponse getInstance(
             GetInstanceRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetInstanceRequest.class,
                 _baseUrl,
@@ -870,7 +876,8 @@ public class SDKOrchestrationV1 implements
      */
     public GetInstanceHistoryResponse getInstanceHistory(
             GetInstanceHistoryRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetInstanceHistoryRequest.class,
                 _baseUrl,
@@ -994,7 +1001,8 @@ public class SDKOrchestrationV1 implements
      */
     public GetInstanceStageHistoryResponse getInstanceStageHistory(
             GetInstanceStageHistoryRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetInstanceStageHistoryRequest.class,
                 _baseUrl,
@@ -1118,7 +1126,8 @@ public class SDKOrchestrationV1 implements
      */
     public GetWorkflowResponse getWorkflow(
             GetWorkflowRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetWorkflowRequest.class,
                 _baseUrl,
@@ -1242,7 +1251,8 @@ public class SDKOrchestrationV1 implements
      */
     public ListInstancesResponse listInstances(
             ListInstancesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/instances");
@@ -1369,7 +1379,8 @@ public class SDKOrchestrationV1 implements
      */
     public ListTriggersResponse listTriggers(
             ListTriggersRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/triggers");
@@ -1496,7 +1507,8 @@ public class SDKOrchestrationV1 implements
      */
     public ListTriggersOccurrencesResponse listTriggersOccurrences(
             ListTriggersOccurrencesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListTriggersOccurrencesRequest.class,
                 _baseUrl,
@@ -1618,7 +1630,8 @@ public class SDKOrchestrationV1 implements
      * @throws Exception if the API call fails
      */
     public ListWorkflowsResponse listWorkflowsDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/workflows");
@@ -1736,7 +1749,8 @@ public class SDKOrchestrationV1 implements
      * @throws Exception if the API call fails
      */
     public OrchestrationgetServerInfoResponse orchestrationgetServerInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/orchestration/_info");
@@ -1858,7 +1872,8 @@ public class SDKOrchestrationV1 implements
      */
     public ReadTriggerResponse readTrigger(
             ReadTriggerRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ReadTriggerRequest.class,
                 _baseUrl,
@@ -1982,7 +1997,8 @@ public class SDKOrchestrationV1 implements
      */
     public RunWorkflowResponse runWorkflow(
             RunWorkflowRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 RunWorkflowRequest.class,
                 _baseUrl,
@@ -2121,7 +2137,8 @@ public class SDKOrchestrationV1 implements
      */
     public SendEventResponse sendEvent(
             SendEventRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 SendEventRequest.class,
                 _baseUrl,

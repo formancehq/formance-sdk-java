@@ -99,7 +99,8 @@ public class V1 implements
      */
     public CreateClientResponse createClient(
             Optional<? extends CreateClientRequest> request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/auth/clients");
@@ -223,7 +224,8 @@ public class V1 implements
      */
     public CreateSecretResponse createSecret(
             CreateSecretRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreateSecretRequest.class,
                 _baseUrl,
@@ -349,7 +351,8 @@ public class V1 implements
      */
     public DeleteClientResponse deleteClient(
             DeleteClientRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteClientRequest.class,
                 _baseUrl,
@@ -454,7 +457,8 @@ public class V1 implements
      */
     public DeleteSecretResponse deleteSecret(
             DeleteSecretRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteSecretRequest.class,
                 _baseUrl,
@@ -557,7 +561,8 @@ public class V1 implements
      * @throws Exception if the API call fails
      */
     public GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/auth/.well-known/openid-configuration");
@@ -658,7 +663,8 @@ public class V1 implements
      * @throws Exception if the API call fails
      */
     public GetServerInfoResponse getServerInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/auth/_info");
@@ -770,7 +776,8 @@ public class V1 implements
      * @throws Exception if the API call fails
      */
     public ListClientsResponse listClientsDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/auth/clients");
@@ -884,7 +891,8 @@ public class V1 implements
      * @throws Exception if the API call fails
      */
     public ListUsersResponse listUsersDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/auth/users");
@@ -998,7 +1006,8 @@ public class V1 implements
      */
     public ReadClientResponse readClient(
             ReadClientRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ReadClientRequest.class,
                 _baseUrl,
@@ -1116,7 +1125,8 @@ public class V1 implements
      */
     public ReadUserResponse readUser(
             ReadUserRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ReadUserRequest.class,
                 _baseUrl,
@@ -1232,7 +1242,8 @@ public class V1 implements
      */
     public UpdateClientResponse updateClient(
             UpdateClientRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateClientRequest.class,
                 _baseUrl,

@@ -143,7 +143,8 @@ public class SDKV1 implements
      */
     public CreateTransactionsResponse createTransactions(
             CreateTransactionsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreateTransactionsRequest.class,
                 _baseUrl,
@@ -278,7 +279,8 @@ public class SDKV1 implements
      */
     public AddMetadataOnTransactionResponse addMetadataOnTransaction(
             AddMetadataOnTransactionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 AddMetadataOnTransactionRequest.class,
                 _baseUrl,
@@ -399,7 +401,8 @@ public class SDKV1 implements
      */
     public AddMetadataToAccountResponse addMetadataToAccount(
             AddMetadataToAccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 AddMetadataToAccountRequest.class,
                 _baseUrl,
@@ -523,7 +526,8 @@ public class SDKV1 implements
      */
     public CountAccountsResponse countAccounts(
             CountAccountsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CountAccountsRequest.class,
                 _baseUrl,
@@ -640,7 +644,8 @@ public class SDKV1 implements
      */
     public CountTransactionsResponse countTransactions(
             CountTransactionsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CountTransactionsRequest.class,
                 _baseUrl,
@@ -757,7 +762,8 @@ public class SDKV1 implements
      */
     public CreateTransactionResponse createTransaction(
             CreateTransactionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreateTransactionRequest.class,
                 _baseUrl,
@@ -897,7 +903,8 @@ public class SDKV1 implements
      */
     public GetAccountResponse getAccount(
             GetAccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetAccountRequest.class,
                 _baseUrl,
@@ -1019,7 +1026,8 @@ public class SDKV1 implements
      */
     public GetBalancesResponse getBalances(
             GetBalancesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetBalancesRequest.class,
                 _baseUrl,
@@ -1146,7 +1154,8 @@ public class SDKV1 implements
      */
     public GetBalancesAggregatedResponse getBalancesAggregated(
             GetBalancesAggregatedRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetBalancesAggregatedRequest.class,
                 _baseUrl,
@@ -1271,7 +1280,8 @@ public class SDKV1 implements
      * @throws Exception if the API call fails
      */
     public GetInfoResponse getInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/ledger/_info");
@@ -1391,7 +1401,8 @@ public class SDKV1 implements
      */
     public GetLedgerInfoResponse getLedgerInfo(
             GetLedgerInfoRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetLedgerInfoRequest.class,
                 _baseUrl,
@@ -1513,7 +1524,8 @@ public class SDKV1 implements
      */
     public GetMappingResponse getMapping(
             GetMappingRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetMappingRequest.class,
                 _baseUrl,
@@ -1635,7 +1647,8 @@ public class SDKV1 implements
      */
     public GetTransactionResponse getTransaction(
             GetTransactionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetTransactionRequest.class,
                 _baseUrl,
@@ -1759,7 +1772,8 @@ public class SDKV1 implements
      */
     public ListAccountsResponse listAccounts(
             ListAccountsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListAccountsRequest.class,
                 _baseUrl,
@@ -1903,7 +1917,8 @@ public class SDKV1 implements
      */
     public ListLogsResponse listLogs(
             ListLogsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListLogsRequest.class,
                 _baseUrl,
@@ -2032,7 +2047,8 @@ public class SDKV1 implements
      */
     public ListTransactionsResponse listTransactions(
             ListTransactionsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListTransactionsRequest.class,
                 _baseUrl,
@@ -2163,7 +2179,8 @@ public class SDKV1 implements
      */
     public ReadStatsResponse readStats(
             ReadStatsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ReadStatsRequest.class,
                 _baseUrl,
@@ -2285,7 +2302,8 @@ public class SDKV1 implements
      */
     public RevertTransactionResponse revertTransaction(
             RevertTransactionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 RevertTransactionRequest.class,
                 _baseUrl,
@@ -2420,7 +2438,8 @@ public class SDKV1 implements
     @Deprecated
     public RunScriptResponse runScript(
             RunScriptRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 RunScriptRequest.class,
                 _baseUrl,
@@ -2554,7 +2573,8 @@ public class SDKV1 implements
      */
     public UpdateMappingResponse updateMapping(
             UpdateMappingRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateMappingRequest.class,
                 _baseUrl,

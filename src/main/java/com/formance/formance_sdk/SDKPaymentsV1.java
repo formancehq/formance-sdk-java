@@ -242,7 +242,8 @@ public class SDKPaymentsV1 implements
      */
     public AddAccountToPoolResponse addAccountToPool(
             AddAccountToPoolRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 AddAccountToPoolRequest.class,
                 _baseUrl,
@@ -368,7 +369,8 @@ public class SDKPaymentsV1 implements
      */
     public ConnectorsTransferResponse connectorsTransfer(
             ConnectorsTransferRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ConnectorsTransferRequest.class,
                 _baseUrl,
@@ -505,7 +507,8 @@ public class SDKPaymentsV1 implements
      */
     public CreateAccountResponse createAccount(
             AccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/accounts");
@@ -640,7 +643,8 @@ public class SDKPaymentsV1 implements
      */
     public CreateBankAccountResponse createBankAccount(
             BankAccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/bank-accounts");
@@ -775,7 +779,8 @@ public class SDKPaymentsV1 implements
      */
     public CreatePaymentResponse createPayment(
             PaymentRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/payments");
@@ -910,7 +915,8 @@ public class SDKPaymentsV1 implements
      */
     public CreatePoolResponse createPool(
             PoolRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/pools");
@@ -1045,7 +1051,8 @@ public class SDKPaymentsV1 implements
      */
     public CreateTransferInitiationResponse createTransferInitiation(
             TransferInitiationRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/transfer-initiations");
@@ -1180,7 +1187,8 @@ public class SDKPaymentsV1 implements
      */
     public DeletePoolResponse deletePool(
             DeletePoolRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeletePoolRequest.class,
                 _baseUrl,
@@ -1293,7 +1301,8 @@ public class SDKPaymentsV1 implements
      */
     public DeleteTransferInitiationResponse deleteTransferInitiation(
             DeleteTransferInitiationRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteTransferInitiationRequest.class,
                 _baseUrl,
@@ -1404,7 +1413,8 @@ public class SDKPaymentsV1 implements
      */
     public ForwardBankAccountResponse forwardBankAccount(
             ForwardBankAccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ForwardBankAccountRequest.class,
                 _baseUrl,
@@ -1539,7 +1549,8 @@ public class SDKPaymentsV1 implements
      */
     public GetAccountBalancesResponse getAccountBalances(
             GetAccountBalancesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetAccountBalancesRequest.class,
                 _baseUrl,
@@ -1666,7 +1677,8 @@ public class SDKPaymentsV1 implements
      */
     public GetBankAccountResponse getBankAccount(
             GetBankAccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetBankAccountRequest.class,
                 _baseUrl,
@@ -1794,7 +1806,8 @@ public class SDKPaymentsV1 implements
     @Deprecated
     public GetConnectorTaskResponse getConnectorTask(
             GetConnectorTaskRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetConnectorTaskRequest.class,
                 _baseUrl,
@@ -1918,7 +1931,8 @@ public class SDKPaymentsV1 implements
      */
     public GetConnectorTaskV1Response getConnectorTaskV1(
             GetConnectorTaskV1Request request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetConnectorTaskV1Request.class,
                 _baseUrl,
@@ -2040,7 +2054,8 @@ public class SDKPaymentsV1 implements
      */
     public GetPaymentResponse getPayment(
             GetPaymentRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetPaymentRequest.class,
                 _baseUrl,
@@ -2162,7 +2177,8 @@ public class SDKPaymentsV1 implements
      */
     public GetPoolResponse getPool(
             GetPoolRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetPoolRequest.class,
                 _baseUrl,
@@ -2284,7 +2300,8 @@ public class SDKPaymentsV1 implements
      */
     public GetPoolBalancesResponse getPoolBalances(
             GetPoolBalancesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetPoolBalancesRequest.class,
                 _baseUrl,
@@ -2411,7 +2428,8 @@ public class SDKPaymentsV1 implements
      */
     public GetTransferInitiationResponse getTransferInitiation(
             GetTransferInitiationRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetTransferInitiationRequest.class,
                 _baseUrl,
@@ -2535,7 +2553,8 @@ public class SDKPaymentsV1 implements
      */
     public InstallConnectorResponse installConnector(
             InstallConnectorRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 InstallConnectorRequest.class,
                 _baseUrl,
@@ -2670,7 +2689,8 @@ public class SDKPaymentsV1 implements
      * @throws Exception if the API call fails
      */
     public ListAllConnectorsResponse listAllConnectorsDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/connectors");
@@ -2792,7 +2812,8 @@ public class SDKPaymentsV1 implements
      */
     public ListBankAccountsResponse listBankAccounts(
             ListBankAccountsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/bank-accounts");
@@ -2917,7 +2938,8 @@ public class SDKPaymentsV1 implements
      * @throws Exception if the API call fails
      */
     public ListConfigsAvailableConnectorsResponse listConfigsAvailableConnectorsDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/connectors/configs");
@@ -3043,7 +3065,8 @@ public class SDKPaymentsV1 implements
     @Deprecated
     public ListConnectorTasksResponse listConnectorTasks(
             ListConnectorTasksRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListConnectorTasksRequest.class,
                 _baseUrl,
@@ -3172,7 +3195,8 @@ public class SDKPaymentsV1 implements
      */
     public ListConnectorTasksV1Response listConnectorTasksV1(
             ListConnectorTasksV1Request request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListConnectorTasksV1Request.class,
                 _baseUrl,
@@ -3299,7 +3323,8 @@ public class SDKPaymentsV1 implements
      */
     public ListPaymentsResponse listPayments(
             ListPaymentsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/payments");
@@ -3424,7 +3449,8 @@ public class SDKPaymentsV1 implements
      */
     public ListPoolsResponse listPools(
             ListPoolsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/pools");
@@ -3549,7 +3575,8 @@ public class SDKPaymentsV1 implements
      */
     public ListTransferInitiationsResponse listTransferInitiations(
             ListTransferInitiationsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/transfer-initiations");
@@ -3674,7 +3701,8 @@ public class SDKPaymentsV1 implements
      */
     public PaymentsgetAccountResponse paymentsgetAccount(
             PaymentsgetAccountRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 PaymentsgetAccountRequest.class,
                 _baseUrl,
@@ -3794,7 +3822,8 @@ public class SDKPaymentsV1 implements
      * @throws Exception if the API call fails
      */
     public PaymentsgetServerInfoResponse paymentsgetServerInfoDirect() throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/_info");
@@ -3914,7 +3943,8 @@ public class SDKPaymentsV1 implements
      */
     public PaymentslistAccountsResponse paymentslistAccounts(
             PaymentslistAccountsRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/accounts");
@@ -4055,7 +4085,8 @@ public class SDKPaymentsV1 implements
     @Deprecated
     public ReadConnectorConfigResponse readConnectorConfig(
             ReadConnectorConfigRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ReadConnectorConfigRequest.class,
                 _baseUrl,
@@ -4179,7 +4210,8 @@ public class SDKPaymentsV1 implements
      */
     public ReadConnectorConfigV1Response readConnectorConfigV1(
             ReadConnectorConfigV1Request request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ReadConnectorConfigV1Request.class,
                 _baseUrl,
@@ -4303,7 +4335,8 @@ public class SDKPaymentsV1 implements
      */
     public RemoveAccountFromPoolResponse removeAccountFromPool(
             RemoveAccountFromPoolRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 RemoveAccountFromPoolRequest.class,
                 _baseUrl,
@@ -4424,7 +4457,8 @@ public class SDKPaymentsV1 implements
     @Deprecated
     public ResetConnectorResponse resetConnector(
             ResetConnectorRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ResetConnectorRequest.class,
                 _baseUrl,
@@ -4541,7 +4575,8 @@ public class SDKPaymentsV1 implements
      */
     public ResetConnectorV1Response resetConnectorV1(
             ResetConnectorV1Request request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ResetConnectorV1Request.class,
                 _baseUrl,
@@ -4654,7 +4689,8 @@ public class SDKPaymentsV1 implements
      */
     public RetryTransferInitiationResponse retryTransferInitiation(
             RetryTransferInitiationRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 RetryTransferInitiationRequest.class,
                 _baseUrl,
@@ -4767,7 +4803,8 @@ public class SDKPaymentsV1 implements
      */
     public ReverseTransferInitiationResponse reverseTransferInitiation(
             ReverseTransferInitiationRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ReverseTransferInitiationRequest.class,
                 _baseUrl,
@@ -4893,7 +4930,8 @@ public class SDKPaymentsV1 implements
      */
     public UdpateTransferInitiationStatusResponse udpateTransferInitiationStatus(
             UdpateTransferInitiationStatusRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UdpateTransferInitiationStatusRequest.class,
                 _baseUrl,
@@ -5023,7 +5061,8 @@ public class SDKPaymentsV1 implements
     @Deprecated
     public UninstallConnectorResponse uninstallConnector(
             UninstallConnectorRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UninstallConnectorRequest.class,
                 _baseUrl,
@@ -5136,7 +5175,8 @@ public class SDKPaymentsV1 implements
      */
     public UninstallConnectorV1Response uninstallConnectorV1(
             UninstallConnectorV1Request request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UninstallConnectorV1Request.class,
                 _baseUrl,
@@ -5247,7 +5287,8 @@ public class SDKPaymentsV1 implements
      */
     public UpdateBankAccountMetadataResponse updateBankAccountMetadata(
             UpdateBankAccountMetadataRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateBankAccountMetadataRequest.class,
                 _baseUrl,
@@ -5373,7 +5414,8 @@ public class SDKPaymentsV1 implements
      */
     public UpdateConnectorConfigV1Response updateConnectorConfigV1(
             UpdateConnectorConfigV1Request request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateConnectorConfigV1Request.class,
                 _baseUrl,
@@ -5497,7 +5539,8 @@ public class SDKPaymentsV1 implements
      */
     public UpdateMetadataResponse updateMetadata(
             UpdateMetadataRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateMetadataRequest.class,
                 _baseUrl,
