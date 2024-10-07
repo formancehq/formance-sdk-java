@@ -9,13 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Boolean;
-import java.lang.Long;
-import java.lang.Object;
-import java.lang.Override;
-import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.time.OffsetDateTime;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,7 +31,7 @@ public class V2GetVolumesWithBalancesRequest {
     private Optional<String> cursor;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")
-    private Optional<OffsetDateTime> endTime;
+    private Optional<String> endTime;
 
     /**
      * Group volumes and balance by the level of the segment of the address
@@ -65,18 +59,18 @@ public class V2GetVolumesWithBalancesRequest {
     private Optional<Long> pageSize;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
-    private Optional<OffsetDateTime> startTime;
+    private Optional<String> startTime;
 
     @JsonCreator
     public V2GetVolumesWithBalancesRequest(
             Optional<? extends Map<String, Object>> requestBody,
             Optional<String> cursor,
-            Optional<OffsetDateTime> endTime,
+            Optional<String> endTime,
             Optional<Long> groupBy,
             Optional<Boolean> insertionDate,
             String ledger,
             Optional<Long> pageSize,
-            Optional<OffsetDateTime> startTime) {
+            Optional<String> startTime) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(endTime, "endTime");
@@ -119,7 +113,7 @@ public class V2GetVolumesWithBalancesRequest {
     }
 
     @JsonIgnore
-    public Optional<OffsetDateTime> endTime() {
+    public Optional<String> endTime() {
         return endTime;
     }
 
@@ -157,7 +151,7 @@ public class V2GetVolumesWithBalancesRequest {
     }
 
     @JsonIgnore
-    public Optional<OffsetDateTime> startTime() {
+    public Optional<String> startTime() {
         return startTime;
     }
 
@@ -203,13 +197,13 @@ public class V2GetVolumesWithBalancesRequest {
         return this;
     }
 
-    public V2GetVolumesWithBalancesRequest withEndTime(OffsetDateTime endTime) {
+    public V2GetVolumesWithBalancesRequest withEndTime(String endTime) {
         Utils.checkNotNull(endTime, "endTime");
         this.endTime = Optional.ofNullable(endTime);
         return this;
     }
 
-    public V2GetVolumesWithBalancesRequest withEndTime(Optional<OffsetDateTime> endTime) {
+    public V2GetVolumesWithBalancesRequest withEndTime(Optional<String> endTime) {
         Utils.checkNotNull(endTime, "endTime");
         this.endTime = endTime;
         return this;
@@ -280,13 +274,13 @@ public class V2GetVolumesWithBalancesRequest {
         return this;
     }
 
-    public V2GetVolumesWithBalancesRequest withStartTime(OffsetDateTime startTime) {
+    public V2GetVolumesWithBalancesRequest withStartTime(String startTime) {
         Utils.checkNotNull(startTime, "startTime");
         this.startTime = Optional.ofNullable(startTime);
         return this;
     }
 
-    public V2GetVolumesWithBalancesRequest withStartTime(Optional<OffsetDateTime> startTime) {
+    public V2GetVolumesWithBalancesRequest withStartTime(Optional<String> startTime) {
         Utils.checkNotNull(startTime, "startTime");
         this.startTime = startTime;
         return this;
@@ -344,7 +338,7 @@ public class V2GetVolumesWithBalancesRequest {
  
         private Optional<String> cursor = Optional.empty();
  
-        private Optional<OffsetDateTime> endTime = Optional.empty();
+        private Optional<String> endTime = Optional.empty();
  
         private Optional<Long> groupBy = Optional.empty();
  
@@ -354,7 +348,7 @@ public class V2GetVolumesWithBalancesRequest {
  
         private Optional<Long> pageSize = Optional.empty();
  
-        private Optional<OffsetDateTime> startTime = Optional.empty();  
+        private Optional<String> startTime = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -398,13 +392,13 @@ public class V2GetVolumesWithBalancesRequest {
             return this;
         }
 
-        public Builder endTime(OffsetDateTime endTime) {
+        public Builder endTime(String endTime) {
             Utils.checkNotNull(endTime, "endTime");
             this.endTime = Optional.ofNullable(endTime);
             return this;
         }
 
-        public Builder endTime(Optional<OffsetDateTime> endTime) {
+        public Builder endTime(Optional<String> endTime) {
             Utils.checkNotNull(endTime, "endTime");
             this.endTime = endTime;
             return this;
@@ -475,13 +469,13 @@ public class V2GetVolumesWithBalancesRequest {
             return this;
         }
 
-        public Builder startTime(OffsetDateTime startTime) {
+        public Builder startTime(String startTime) {
             Utils.checkNotNull(startTime, "startTime");
             this.startTime = Optional.ofNullable(startTime);
             return this;
         }
 
-        public Builder startTime(Optional<OffsetDateTime> startTime) {
+        public Builder startTime(Optional<String> startTime) {
             Utils.checkNotNull(startTime, "startTime");
             this.startTime = startTime;
             return this;

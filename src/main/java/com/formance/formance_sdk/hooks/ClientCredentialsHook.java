@@ -234,6 +234,11 @@ public final class ClientCredentialsHook implements SdkInit, BeforeRequest, Afte
         if (!source.isPresent()) {
             return Optional.empty();
         }
+
+        // To add to bybass Optional<String> client param below
+        if(source.get().getSecurity() == null)
+            return Optional.empty();
+
         // clientID, clientSecret etc will be typed as `Optional` if global security not present
         Optional<String> clientId = toOptional(source.get().getSecurity().clientID());
         Optional<String> clientSecret = toOptional(source.get().getSecurity().clientSecret());
