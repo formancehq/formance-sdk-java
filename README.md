@@ -54,7 +54,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:4.0.1'
+implementation 'com.formance:formance-sdk:4.0.2'
 ```
 
 Maven:
@@ -62,7 +62,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>4.0.1</version>
+    <version>4.0.2</version>
 </dependency>
 ```
 
