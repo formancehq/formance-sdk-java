@@ -182,7 +182,8 @@ Based on:
 
 ## 2024-10-23 16:23:10
 ### Changes
-Upgrade SDK
+- OpenAPI Doc  
+- Speakeasy CLI 1.402.14 (2.422.22) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [java v4.0.3] .
 ### Releases
