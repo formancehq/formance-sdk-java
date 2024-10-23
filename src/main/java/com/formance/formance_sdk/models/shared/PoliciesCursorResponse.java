@@ -13,6 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 
+/**
+ * PoliciesCursorResponse - OK
+ */
 
 public class PoliciesCursorResponse {
 

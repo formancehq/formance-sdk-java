@@ -35,8 +35,8 @@ class SDKConfiguration {
     } };
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "v2.1.0-beta.3";
-    public static final String SDK_VERSION = "4.0.3";
-    public static final String GEN_VERSION = "2.422.22";
+    public static final String SDK_VERSION = "4.1.0";
+    public static final String GEN_VERSION = "2.438.15";
     private static final String BASE_PACKAGE = "com.formance.formance_sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s", 

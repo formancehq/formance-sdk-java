@@ -1870,9 +1870,9 @@ public class V2 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                V2ErrorResponse _out = Utils.mapper().readValue(
+                com.formance.formance_sdk.models.shared.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<V2ErrorResponse>() {});
+                    new TypeReference<com.formance.formance_sdk.models.shared.V2ErrorResponse>() {});
                 _res.withV2ErrorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
@@ -3432,9 +3432,9 @@ public class V2 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                V2ErrorResponse _out = Utils.mapper().readValue(
+                com.formance.formance_sdk.models.shared.V2ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<V2ErrorResponse>() {});
+                    new TypeReference<com.formance.formance_sdk.models.shared.V2ErrorResponse>() {});
                 _res.withV2ErrorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {

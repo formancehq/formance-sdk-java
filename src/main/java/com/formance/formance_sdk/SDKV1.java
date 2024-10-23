@@ -1863,9 +1863,9 @@ public class SDKV1 implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ErrorResponse _out = Utils.mapper().readValue(
+                com.formance.formance_sdk.models.shared.ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ErrorResponse>() {});
+                    new TypeReference<com.formance.formance_sdk.models.shared.ErrorResponse>() {});
                 _res.withErrorResponse(Optional.ofNullable(_out));
                 return _res;
             } else {

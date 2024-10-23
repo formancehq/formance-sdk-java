@@ -67,11 +67,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## changeConfigSecret
 
@@ -135,11 +134,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deactivateConfig
 
@@ -195,11 +193,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deleteConfig
 
@@ -253,11 +250,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getManyConfigs
 
@@ -314,11 +310,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## insertConfig
 
@@ -389,11 +384,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## testConfig
 
@@ -449,7 +443,7 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |

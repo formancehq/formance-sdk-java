@@ -11,9 +11,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 
-/**
- * WalletsErrorResponse - Error
- */
 public class WalletsErrorResponse extends RuntimeException {
 
     @JsonProperty("errorCode")

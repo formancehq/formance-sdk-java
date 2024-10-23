@@ -3,21 +3,22 @@ id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
   docChecksum: d5d12540f5ed5f4996d23aae4cd97c31
   docVersion: v2.1.0-beta.3
-  speakeasyVersion: 1.402.14
-  generationVersion: 2.422.22
-  releaseVersion: 4.0.3
-  configChecksum: 90871597abb1956daf89589cbf84293a
+  speakeasyVersion: 1.421.0
+  generationVersion: 2.438.15
+  releaseVersion: 4.1.0
+  configChecksum: d307b9ee32aad1a508acf05aafc71b5b
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
+    bigint: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.30.2
+    core: 3.30.5
     deprecations: 2.81.1
     downloadStreams: 0.1.1
-    errors: 0.1.3
+    errors: 0.1.4
     getRequestBodies: 2.81.1
     globalSecurity: 2.82.7
     globalSecurityCallbacks: 0.1.0
@@ -446,6 +447,7 @@ generatedFiles:
   - docs/models/shared/DebitWalletResponse.md
   - docs/models/shared/Descriptor.md
   - docs/models/shared/DummyPayConfig.md
+  - docs/models/shared/ErrorResponse.md
   - docs/models/shared/ErrorsEnum.md
   - docs/models/shared/ExpandedDebitHold.md
   - docs/models/shared/Expr.md
@@ -687,6 +689,7 @@ generatedFiles:
   - docs/models/shared/V2CreateWorkflowResponse.md
   - docs/models/shared/V2CreditWalletRequest.md
   - docs/models/shared/V2DebitWalletRequest.md
+  - docs/models/shared/V2ErrorResponse.md
   - docs/models/shared/V2ErrorsEnum.md
   - docs/models/shared/V2ExpandedTransaction.md
   - docs/models/shared/V2GetLedgerResponse.md
@@ -841,7 +844,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/V2.java
   - src/main/java/com/formance/formance_sdk/Wallets.java
   - src/main/java/com/formance/formance_sdk/Webhooks.java
-  - src/main/java/com/formance/formance_sdk/hooks/ClientCredentialsHook.java
   - src/main/java/com/formance/formance_sdk/models/errors/AuthException.java
   - src/main/java/com/formance/formance_sdk/models/errors/Error.java
   - src/main/java/com/formance/formance_sdk/models/errors/ErrorCode.java
@@ -1282,7 +1284,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetTransactionRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetTransactionRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetTransactionResponse.java
-  - src/main/java/com/formance/formance_sdk/models/operations/V2GetVolumesWithBalancesRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetVolumesWithBalancesRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetVolumesWithBalancesResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/V2GetWorkflowRequest.java
@@ -1427,6 +1428,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/DebitWalletResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Descriptor.java
   - src/main/java/com/formance/formance_sdk/models/shared/DummyPayConfig.java
+  - src/main/java/com/formance/formance_sdk/models/shared/ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ErrorsEnum.java
   - src/main/java/com/formance/formance_sdk/models/shared/ExpandedDebitHold.java
   - src/main/java/com/formance/formance_sdk/models/shared/Expr.java
@@ -1668,6 +1670,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/V2CreateWorkflowResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2CreditWalletRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2DebitWalletRequest.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2ErrorsEnum.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2ExpandedTransaction.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2GetLedgerResponse.java
@@ -2850,7 +2853,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2022-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2022-08-01T16:40:57.832Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2022-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2022-08-01T16:40:57.832Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2862,7 +2865,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-05-15T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2022-05-07T01:38:27.888Z"}}
+          application/json: {"data": {"connectorID": "<id>", "createdAt": "2023-05-15T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2022-05-07T01:38:27.888Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPayment:

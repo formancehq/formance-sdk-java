@@ -189,3 +189,14 @@ Based on:
 ### Releases
 - [Maven Central v4.0.3] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.0.3 - .
 
+
+
+## 2024-10-23 15:02:42
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.421.0 (2.438.15) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v4.1.0] .
+### Releases
+- [Maven Central v4.1.0] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.1.0 - .

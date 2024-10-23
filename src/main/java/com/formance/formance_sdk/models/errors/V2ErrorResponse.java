@@ -15,9 +15,6 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * V2ErrorResponse - Error
- */
 public class V2ErrorResponse extends RuntimeException {
 
     @JsonInclude(Include.NON_ABSENT)
