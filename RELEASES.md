@@ -179,3 +179,11 @@ Based on:
 - [java v4.0.2] .
 ### Releases
 - [Maven Central v4.0.2] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.0.2 - .
+
+## 2024-10-23 16:23:10
+### Changes
+Upgrade SDK
+### Generated
+- [java v4.0.3] .
+### Releases
+- [Maven Central v4.0.3] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.0.3 - .
