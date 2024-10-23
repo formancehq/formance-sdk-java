@@ -14,6 +14,9 @@ import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * ConnectorsResponse - OK
+ */
 
 public class ConnectorsResponse {
 

@@ -98,11 +98,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## addMetadataOnTransaction
 
@@ -158,11 +157,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## addMetadataToAccount
 
@@ -220,11 +218,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## countAccounts
 
@@ -331,11 +328,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## countTransactions
 
@@ -396,11 +392,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## createTransaction
 
@@ -484,11 +479,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getAccount
 
@@ -545,11 +539,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getBalances
 
@@ -608,11 +601,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getBalancesAggregated
 
@@ -669,11 +661,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getInfo
 
@@ -717,11 +708,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getLedgerInfo
 
@@ -777,11 +767,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getMapping
 
@@ -837,11 +826,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getTransaction
 
@@ -899,11 +887,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listAccounts
 
@@ -1016,11 +1003,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listLogs
 
@@ -1079,11 +1065,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listTransactions
 
@@ -1146,11 +1131,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## readStats
 
@@ -1207,11 +1191,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## revertTransaction
 
@@ -1269,11 +1252,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
-
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## ~~runScript~~
 
@@ -1346,10 +1328,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## updateMapping
 
@@ -1417,7 +1398,7 @@ public class Application {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
+| Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4xx-5xx                     | \*\/*                       |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |

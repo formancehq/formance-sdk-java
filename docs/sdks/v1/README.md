@@ -70,10 +70,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## createSecret
 
@@ -102,7 +101,7 @@ public class Application {
             .build();
 
         CreateSecretRequest req = CreateSecretRequest.builder()
-                .clientId("<value>")
+                .clientId("<id>")
                 .build();
 
         CreateSecretResponse res = sdk.auth().v1().createSecret()
@@ -128,10 +127,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## deleteClient
 
@@ -160,7 +158,7 @@ public class Application {
             .build();
 
         DeleteClientRequest req = DeleteClientRequest.builder()
-                .clientId("<value>")
+                .clientId("<id>")
                 .build();
 
         DeleteClientResponse res = sdk.auth().v1().deleteClient()
@@ -184,10 +182,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## deleteSecret
 
@@ -216,8 +213,8 @@ public class Application {
             .build();
 
         DeleteSecretRequest req = DeleteSecretRequest.builder()
-                .clientId("<value>")
-                .secretId("<value>")
+                .clientId("<id>")
+                .secretId("<id>")
                 .build();
 
         DeleteSecretResponse res = sdk.auth().v1().deleteSecret()
@@ -241,10 +238,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getOIDCWellKnowns
 
@@ -285,10 +281,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getServerInfo
 
@@ -331,10 +326,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## listClients
 
@@ -377,10 +371,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## listUsers
 
@@ -423,10 +416,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## readClient
 
@@ -455,7 +447,7 @@ public class Application {
             .build();
 
         ReadClientRequest req = ReadClientRequest.builder()
-                .clientId("<value>")
+                .clientId("<id>")
                 .build();
 
         ReadClientResponse res = sdk.auth().v1().readClient()
@@ -481,10 +473,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## readUser
 
@@ -513,7 +504,7 @@ public class Application {
             .build();
 
         ReadUserRequest req = ReadUserRequest.builder()
-                .userId("<value>")
+                .userId("<id>")
                 .build();
 
         ReadUserResponse res = sdk.auth().v1().readUser()
@@ -539,10 +530,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## updateClient
 
@@ -571,7 +561,7 @@ public class Application {
             .build();
 
         UpdateClientRequest req = UpdateClientRequest.builder()
-                .clientId("<value>")
+                .clientId("<id>")
                 .build();
 
         UpdateClientResponse res = sdk.auth().v1().updateClient()
@@ -597,6 +587,6 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

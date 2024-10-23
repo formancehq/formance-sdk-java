@@ -15,9 +15,6 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * ErrorResponse - Error
- */
 public class ErrorResponse extends RuntimeException {
 
     @JsonInclude(Include.NON_ABSENT)

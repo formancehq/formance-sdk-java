@@ -73,11 +73,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4xx-5xx                                   | \*\/*                                     |
-
+| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## deletePolicy
 
@@ -131,11 +130,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4xx-5xx                                   | \*\/*                                     |
-
+| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## getPolicy
 
@@ -191,11 +189,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4xx-5xx                                   | \*\/*                                     |
-
+| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## getReconciliation
 
@@ -251,11 +248,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4xx-5xx                                   | \*\/*                                     |
-
+| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## listPolicies
 
@@ -312,11 +308,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4xx-5xx                                   | \*\/*                                     |
-
+| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## listReconciliations
 
@@ -373,11 +368,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4xx-5xx                                   | \*\/*                                     |
-
+| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## reconcile
 
@@ -439,11 +433,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4xx-5xx                                   | \*\/*                                     |
-
+| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## reconciliationgetServerInfo
 
@@ -487,7 +480,7 @@ public class Application {
 
 ### Errors
 
-| Error Object                              | Status Code                               | Content Type                              |
+| Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4xx-5xx                                   | \*\/*                                     |
+| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |

@@ -51,7 +51,7 @@ public class Application {
             .build();
 
         ConfirmHoldRequest req = ConfirmHoldRequest.builder()
-                .holdId("<value>")
+                .holdId("<id>")
                 .confirmHoldRequest(com.formance.formance_sdk.models.shared.ConfirmHoldRequest.builder()
                     .amount(new BigInteger("100"))
                     .final_(true)
@@ -79,11 +79,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## createBalance
 
@@ -139,11 +138,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## createWallet
 
@@ -198,11 +196,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## creditWallet
 
@@ -274,11 +271,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## debitWallet
 
@@ -346,11 +342,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## getBalance
 
@@ -407,11 +402,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## getHold
 
@@ -441,7 +435,7 @@ public class Application {
             .build();
 
         GetHoldRequest req = GetHoldRequest.builder()
-                .holdID("<value>")
+                .holdID("<id>")
                 .build();
 
         GetHoldResponse res = sdk.wallets().v1().getHold()
@@ -467,11 +461,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## getHolds
 
@@ -532,11 +525,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## getTransactions
 
@@ -592,11 +584,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## getWallet
 
@@ -652,11 +643,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## getWalletSummary
 
@@ -712,11 +702,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## listBalances
 
@@ -771,10 +760,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## listWallets
 
@@ -836,11 +824,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## updateWallet
 
@@ -894,11 +881,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## voidHold
 
@@ -928,7 +914,7 @@ public class Application {
             .build();
 
         VoidHoldRequest req = VoidHoldRequest.builder()
-                .holdId("<value>")
+                .holdId("<id>")
                 .build();
 
         VoidHoldResponse res = sdk.wallets().v1().voidHold()
@@ -952,11 +938,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
-
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
 
 ## walletsgetServerInfo
 
@@ -1000,7 +985,7 @@ public class Application {
 
 ### Errors
 
-| Error Object                       | Status Code                        | Content Type                       |
+| Error Type                         | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4xx-5xx                            | \*\/*                              |
+| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |

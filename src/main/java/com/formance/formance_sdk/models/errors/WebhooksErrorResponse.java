@@ -15,9 +15,6 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * WebhooksErrorResponse - Error
- */
 public class WebhooksErrorResponse extends RuntimeException {
 
     @JsonInclude(Include.NON_ABSENT)

@@ -16,6 +16,9 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * TransferResponse - OK
+ */
 
 public class TransferResponse {
 
