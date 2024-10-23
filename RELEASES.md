@@ -188,3 +188,4 @@ Based on:
 - [java v4.0.3] .
 ### Releases
 - [Maven Central v4.0.3] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.0.3 - .
+
