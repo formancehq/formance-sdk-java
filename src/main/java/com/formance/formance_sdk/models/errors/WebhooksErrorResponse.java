@@ -12,9 +12,11 @@ import com.formance.formance_sdk.models.shared.WebhooksErrorsEnum;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
+@SuppressWarnings("serial")
 public class WebhooksErrorResponse extends RuntimeException {
 
     @JsonInclude(Include.NON_ABSENT)

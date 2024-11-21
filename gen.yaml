@@ -9,10 +9,11 @@ generation:
     requestResponseComponentNamesFeb2024: false
   auth:
     oAuth2ClientCredentialsEnabled: true
+    oAuth2PasswordEnabled: false
   comments: {}
   telemetryEnabled: false
 java:
-  version: 4.1.0
+  version: 4.2.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: formance-sdk
@@ -20,6 +21,7 @@ java:
   companyEmail: support@formance.com
   companyName: Formance
   companyURL: https://www.formance.com
+  defaultErrorName: SDKError
   flattenGlobalSecurity: false
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance

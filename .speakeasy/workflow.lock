@@ -1,18 +1,20 @@
-speakeasyVersion: 1.421.0
+speakeasyVersion: 1.441.1
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:fa2e3aa1fd792f707714e877e971d28c7aaa6568b764da11497eab3682b0b657
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        sourceRevisionDigest: sha256:46d2d3fbc172da81f06233dd1ca6447ffda4f61e1a070e1a3ebf2d79833158bb
+        sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
         tags:
             - latest
-            - main
+            - speakeasy-sdk-regen-1732202901
 targets:
     Java:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:fa2e3aa1fd792f707714e877e971d28c7aaa6568b764da11497eab3682b0b657
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        sourceRevisionDigest: sha256:46d2d3fbc172da81f06233dd1ca6447ffda4f61e1a070e1a3ebf2d79833158bb
+        sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
+        codeSamplesNamespace: my-source-code-samples
+        codeSamplesRevisionDigest: sha256:57582f2c1b9155cba0154b47cbdc6c8cf147c3cc83c2fe49fcb54e565da67280
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -33,3 +35,7 @@ workflow:
                     gpgSecretKey: $JAVA_GPG_SECRET_KEY
                     gpgPassPhrase: $JAVA_GPG_PASSPHRASE
                     useSonatypeLegacy: true
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                blocking: false
