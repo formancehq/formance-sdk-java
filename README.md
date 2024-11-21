@@ -54,7 +54,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:4.1.0'
+implementation 'com.formance:formance-sdk:4.2.0'
 ```
 
 Maven:
@@ -62,7 +62,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>4.1.0</version>
+    <version>4.2.0</version>
 </dependency>
 ```
 
@@ -305,13 +305,13 @@ public class Application {
 
 * [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
 
-### [search()](docs/sdks/search/README.md)
+### [~~search()~~](docs/sdks/search/README.md)
 
 
-#### [search().v1()](docs/sdks/sdksearchv1/README.md)
+#### [~~search().v1()~~](docs/sdks/sdksearchv1/README.md)
 
-* [search](docs/sdks/sdksearchv1/README.md#search) - search.v1
-* [searchgetServerInfo](docs/sdks/sdksearchv1/README.md#searchgetserverinfo) - Get server info
+* [~~search~~](docs/sdks/sdksearchv1/README.md#search) - search.v1 :warning: **Deprecated**
+* [~~searchgetServerInfo~~](docs/sdks/sdksearchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
 
 ### [wallets()](docs/sdks/wallets/README.md)
 
@@ -356,12 +356,16 @@ public class Application {
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIndex` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally using the `.serverIndex(int serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `http://localhost` | None |
-| 1 | `https://{organization}.{environment}.formance.cloud` | `environment` (default is `sandbox`), `organization` (default is `orgID-stackID`) |
+| #   | Server                                                | Variables                                                 | Default values                    |
+| --- | ----------------------------------------------------- | --------------------------------------------------------- | --------------------------------- |
+| 0   | `http://localhost`                                    |                                                           |                                   |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `ServerEnvironment environment`<br/>`String organization` | `"sandbox"`<br/>`"orgID-stackID"` |
+
+If the selected server has variables, you may override their default values using their associated builder method(s):
+ * `environment(ServerEnvironment environment)`
+ * `organization(String organization)`
 
 #### Example
 
@@ -395,15 +399,9 @@ public class Application {
 }
 ```
 
-#### Variables
-
-Some of the server options above contain variables. If you want to set the values of those variables, the following optional parameters are available when initializing the SDK client instance:
- * `ServerEnvironment environment`
- * `String organization`
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` builder method when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
@@ -442,10 +440,10 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `createTransactions` method throws the following exceptions:
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                  | Status Code | Content Type     |
+| --------------------------- | ----------- | ---------------- |
+| models/errors/ErrorResponse | default     | application/json |
+| models/errors/SDKError      | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -511,9 +509,9 @@ public class Application {
 
 This SDK supports the following security scheme globally:
 
-| Name                           | Type                           | Scheme                         |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| `clientID` `clientSecret`      | oauth2                         | OAuth2 Client Credentials Flow |
+| Name                          | Type   | Scheme                         |
+| ----------------------------- | ------ | ------------------------------ |
+| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
 ```java

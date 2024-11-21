@@ -11,12 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
 /**
  * ReconciliationErrorResponse - Error response
  */
+@SuppressWarnings("serial")
 public class ReconciliationErrorResponse extends RuntimeException {
 
     @JsonInclude(Include.NON_ABSENT)

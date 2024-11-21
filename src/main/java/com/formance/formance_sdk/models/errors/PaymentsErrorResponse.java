@@ -10,11 +10,13 @@ import com.formance.formance_sdk.models.shared.PaymentsErrorsEnum;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 
 /**
  * PaymentsErrorResponse - Error
  */
+@SuppressWarnings("serial")
 public class PaymentsErrorResponse extends RuntimeException {
 
     @JsonProperty("errorCode")

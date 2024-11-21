@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 
+@SuppressWarnings("serial")
 public class WalletsErrorResponse extends RuntimeException {
 
     @JsonProperty("errorCode")
