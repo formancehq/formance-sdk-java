@@ -2,19 +2,19 @@ speakeasyVersion: 1.441.1
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:46d2d3fbc172da81f06233dd1ca6447ffda4f61e1a070e1a3ebf2d79833158bb
+        sourceRevisionDigest: sha256:a48e51f8b9cd65d16d9156d12e3efd17525cb6f7aa73b922a8bc8a9cbbb3e193
         sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
         tags:
             - latest
-            - speakeasy-sdk-regen-1732202901
+            - speakeasy-sdk-regen-1738258609
 targets:
     Java:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:46d2d3fbc172da81f06233dd1ca6447ffda4f61e1a070e1a3ebf2d79833158bb
+        sourceRevisionDigest: sha256:a48e51f8b9cd65d16d9156d12e3efd17525cb6f7aa73b922a8bc8a9cbbb3e193
         sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
-        codeSamplesNamespace: my-source-code-samples
-        codeSamplesRevisionDigest: sha256:57582f2c1b9155cba0154b47cbdc6c8cf147c3cc83c2fe49fcb54e565da67280
+        codeSamplesNamespace: my-source-java-code-samples
+        codeSamplesRevisionDigest: sha256:3a799af2de3adfd042df58a15e860eb39e7733f8d4b89dbf9f9a770b40dbc004
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -37,5 +37,5 @@ workflow:
                     useSonatypeLegacy: true
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                    location: registry.speakeasyapi.dev/formance/formance/my-source-java-code-samples
                 blocking: false

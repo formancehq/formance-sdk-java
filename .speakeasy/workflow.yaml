@@ -19,5 +19,5 @@ targets:
                 useSonatypeLegacy: true
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                location: registry.speakeasyapi.dev/formance/formance/my-source-java-code-samples
             blocking: false

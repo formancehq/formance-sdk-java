@@ -35,7 +35,7 @@ class SDKConfiguration {
     } };
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "v2.1.1";
-    public static final String SDK_VERSION = "4.2.0";
+    public static final String SDK_VERSION = "4.4.0";
     public static final String GEN_VERSION = "2.461.2";
     private static final String BASE_PACKAGE = "com.formance.formance_sdk";
     public static final String USER_AGENT = 
