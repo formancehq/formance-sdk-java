@@ -1,15 +1,15 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    my-source:
+    stacks-source:
         inputs:
-            - location: https://github.com/formancehq/stack/releases/download/v2.1.1/generate.json
+            - location: https://github.com/formancehq/stack/releases/download/v3.0.0/generate.json
         registry:
-            location: registry.speakeasyapi.dev/formance/formance/my-source
+            location: registry.speakeasyapi.dev/formance/formance/stacks-source
 targets:
     Java:
         target: java
-        source: my-source
+        source: stacks-source
         publish:
             java:
                 ossrhUsername: $OSSRH_USERNAME
@@ -17,7 +17,3 @@ targets:
                 gpgSecretKey: $JAVA_GPG_SECRET_KEY
                 gpgPassPhrase: $JAVA_GPG_PASSPHRASE
                 useSonatypeLegacy: true
-        codeSamples:
-            registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
-            blocking: false
