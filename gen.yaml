@@ -14,7 +14,8 @@ generation:
   telemetryEnabled: false
 java:
   version: 4.2.0
-  additionalDependencies: []
+  additionalDependencies:
+    - "implementation:org.apache.httpcomponents.client5:httpclient5:5.4.2" 
   additionalPlugins: []
   artifactID: formance-sdk
   clientServerStatusCodesAsErrors: true
