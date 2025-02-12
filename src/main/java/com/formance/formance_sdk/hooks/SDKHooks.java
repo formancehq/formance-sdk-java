@@ -12,15 +12,32 @@ package com.formance.formance_sdk.hooks;
 
 import com.formance.formance_sdk.utils.Helpers;
 import com.formance.formance_sdk.utils.Hook;
-import org.apache.http.client.utils.URIBuilder;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 
 public final class SDKHooks {
 
     private SDKHooks() {
         // prevent instantiation
+    }
+
+    private static URI unescapeColonsInPath(URI uri)  {
+        String u = uri.toString();
+        // ? can legally occur in fragment portion
+        int fragmentLocation = u.indexOf("#");
+        int withoutFragmentLength = fragmentLocation == -1 ? u.length() : fragmentLocation;
+        String withoutFragment = u.substring(0, withoutFragmentLength);
+        int queryLocation = withoutFragment.indexOf("?");
+        int withoutQueryLength = queryLocation == -1 ? withoutFragment.length() : queryLocation;
+        String withoutQuery = withoutFragment.substring(0, withoutQueryLength);
+        String path = withoutQuery.replace("%3A", ":");
+        try {
+            return new URI(path + u.substring(withoutQueryLength));
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static final void initialize(com.formance.formance_sdk.utils.Hooks hooks) {
@@ -31,13 +48,12 @@ public final class SDKHooks {
                 String uriRawPath = request.uri().getRawPath();
 
                 if (uriRawPath.contains("%3A")){
-                    // Replace path with decoded request.uri().getPath()
-                    URI newUri = new URIBuilder(request.uri()).setPath(request.uri().getPath()).build();
+                    URI newUri = unescapeColonsInPath(request.uri());
                     HttpRequest nextRequest =  Helpers.copy(request)
                             .uri(newUri)
                             .build();
 
-                    return nextRequest;
+                   return nextRequest;
                 }
 
                 return request;
