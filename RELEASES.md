@@ -169,3 +169,44 @@ Based on:
 - [java v4.0.1] .
 ### Releases
 - [Maven Central v4.0.1] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.0.1 - .
+
+## 2024-10-07 11:48:10
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.402.14 (2.422.22) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v4.0.2] .
+### Releases
+- [Maven Central v4.0.2] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.0.2 - .
+
+## 2024-10-23 16:23:10
+### Changes
+- OpenAPI Doc  
+- Speakeasy CLI 1.402.14 (2.422.22) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v4.0.3] .
+### Releases
+- [Maven Central v4.0.3] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.0.3 - .
+
+
+
+## 2024-10-23 15:02:42
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.421.0 (2.438.15) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v4.1.0] .
+### Releases
+- [Maven Central v4.1.0] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.1.0 - .
+
+## 2024-11-21 15:28:16
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.441.1 (2.461.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v4.2.0] .
+### Releases
+- [Maven Central v4.2.0] https://central.sonatype.com/artifact/com.formance/formance-sdk/4.2.0 - .

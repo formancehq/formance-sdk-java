@@ -5,12 +5,14 @@
 
 ### Available Operations
 
-* [search](#search) - search.v1
-* [searchgetServerInfo](#searchgetserverinfo) - Get server info
+* [~~search~~](#search) - search.v1 :warning: **Deprecated**
+* [~~searchgetServerInfo~~](#searchgetserverinfo) - Get server info :warning: **Deprecated**
 
-## search
+## ~~search~~
 
 Elasticsearch.v1 query engine
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -73,14 +75,15 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
-
-## searchgetServerInfo
+## ~~searchgetServerInfo~~
 
 Get server info
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -119,6 +122,6 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

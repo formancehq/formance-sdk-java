@@ -12,12 +12,11 @@ import com.formance.formance_sdk.models.shared.ErrorsEnum;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * ErrorResponse - Error
- */
+@SuppressWarnings("serial")
 public class ErrorResponse extends RuntimeException {
 
     @JsonInclude(Include.NON_ABSENT)

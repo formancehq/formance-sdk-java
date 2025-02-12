@@ -78,7 +78,7 @@ public class Application {
 
         AddAccountToPoolRequest req = AddAccountToPoolRequest.builder()
                 .addAccountToPoolRequest(com.formance.formance_sdk.models.shared.AddAccountToPoolRequest.builder()
-                    .accountID("<value>")
+                    .accountID("<id>")
                     .build())
                 .poolId("XXX")
                 .build();
@@ -104,11 +104,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## connectorsTransfer
 
@@ -173,11 +172,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createAccount
 
@@ -209,7 +207,7 @@ public class Application {
             .build();
 
         AccountRequest req = AccountRequest.builder()
-                .connectorID("<value>")
+                .connectorID("<id>")
                 .createdAt(OffsetDateTime.parse("2024-08-19T02:15:08.152Z"))
                 .reference("<value>")
                 .type(AccountType.INTERNAL)
@@ -238,11 +236,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createBankAccount
 
@@ -272,7 +269,7 @@ public class Application {
             .build();
 
         BankAccountRequest req = BankAccountRequest.builder()
-                .connectorID("<value>")
+                .connectorID("<id>")
                 .country("GB")
                 .name("My account")
                 .build();
@@ -300,11 +297,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createPayment
 
@@ -341,7 +337,7 @@ public class Application {
         PaymentRequest req = PaymentRequest.builder()
                 .amount(new BigInteger("100"))
                 .asset("USD")
-                .connectorID("<value>")
+                .connectorID("<id>")
                 .createdAt(OffsetDateTime.parse("2024-11-09T01:03:21.011Z"))
                 .reference("<value>")
                 .scheme(PaymentScheme.MOLPAY)
@@ -372,11 +368,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createPool
 
@@ -435,11 +430,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createTransferInitiation
 
@@ -474,11 +468,11 @@ public class Application {
         TransferInitiationRequest req = TransferInitiationRequest.builder()
                 .amount(new BigInteger("256698"))
                 .asset("USD")
-                .description("Open-architected heuristic knowledge user")
-                .destinationAccountID("<value>")
+                .description("worthy pace vague ick liberalize between um")
+                .destinationAccountID("<id>")
                 .reference("XXX")
-                .scheduledAt(OffsetDateTime.parse("2024-05-21T00:04:35.840Z"))
-                .sourceAccountID("<value>")
+                .scheduledAt(OffsetDateTime.parse("2024-05-02T09:50:03.622Z"))
+                .sourceAccountID("<id>")
                 .type(TransferInitiationRequestType.PAYOUT)
                 .validated(false)
                 .build();
@@ -506,11 +500,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deletePool
 
@@ -564,11 +557,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deleteTransferInitiation
 
@@ -622,11 +614,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## forwardBankAccount
 
@@ -657,7 +648,7 @@ public class Application {
 
         ForwardBankAccountRequest req = ForwardBankAccountRequest.builder()
                 .forwardBankAccountRequest(com.formance.formance_sdk.models.shared.ForwardBankAccountRequest.builder()
-                    .connectorID("<value>")
+                    .connectorID("<id>")
                     .build())
                 .bankAccountId("XXX")
                 .build();
@@ -685,11 +676,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getAccountBalances
 
@@ -751,11 +741,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getBankAccount
 
@@ -811,11 +800,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## ~~getConnectorTask~~
 
@@ -875,11 +863,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getConnectorTaskV1
 
@@ -938,11 +925,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getPayment
 
@@ -998,11 +984,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getPool
 
@@ -1058,11 +1043,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getPoolBalances
 
@@ -1120,11 +1104,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getTransferInitiation
 
@@ -1180,11 +1163,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## installConnector
 
@@ -1248,11 +1230,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listAllConnectors
 
@@ -1296,11 +1277,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listBankAccounts
 
@@ -1361,11 +1341,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listConfigsAvailableConnectors
 
@@ -1409,11 +1388,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## ~~listConnectorTasks~~
 
@@ -1474,11 +1452,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listConnectorTasksV1
 
@@ -1538,11 +1515,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listPayments
 
@@ -1603,11 +1579,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listPools
 
@@ -1668,11 +1643,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listTransferInitiations
 
@@ -1733,11 +1707,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## paymentsgetAccount
 
@@ -1793,11 +1766,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## paymentsgetServerInfo
 
@@ -1841,11 +1813,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## paymentslistAccounts
 
@@ -1906,11 +1877,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## ~~readConnectorConfig~~
 
@@ -1969,11 +1939,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## readConnectorConfigV1
 
@@ -2031,11 +2000,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## removeAccountFromPool
 
@@ -2090,11 +2058,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## ~~resetConnector~~
 
@@ -2153,11 +2120,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## resetConnectorV1
 
@@ -2215,11 +2181,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## retryTransferInitiation
 
@@ -2273,11 +2238,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## reverseTransferInitiation
 
@@ -2312,7 +2276,7 @@ public class Application {
                 .reverseTransferInitiationRequest(com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest.builder()
                     .amount(new BigInteger("327549"))
                     .asset("USD")
-                    .description("Multi-channelled responsive capability")
+                    .description("till gosh how proselytise worriedly whoa")
                     .metadata(Map.ofEntries(
                         Map.entry("key", "<value>")))
                     .reference("XXX")
@@ -2341,11 +2305,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## udpateTransferInitiationStatus
 
@@ -2404,11 +2367,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## ~~uninstallConnector~~
 
@@ -2465,11 +2427,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## uninstallConnectorV1
 
@@ -2525,11 +2486,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## updateBankAccountMetadata
 
@@ -2588,11 +2548,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## updateConnectorConfigV1
 
@@ -2656,11 +2615,10 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
-
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## updateMetadata
 
@@ -2717,7 +2675,7 @@ public class Application {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4xx-5xx                             | \*\/*                               |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |

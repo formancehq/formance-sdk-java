@@ -23,6 +23,7 @@ import com.formance.formance_sdk.utils.SerializedBody;
 import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -46,7 +47,9 @@ public class SDKSearchV1 implements
      * search.v1
      * Elasticsearch.v1 query engine
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SearchRequestBuilder search() {
         return new SearchRequestBuilder(this);
     }
@@ -57,7 +60,9 @@ public class SDKSearchV1 implements
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SearchResponse search(
             Query request) throws Exception {
         String _baseUrl = Utils.templateUrl(
@@ -175,7 +180,9 @@ public class SDKSearchV1 implements
     /**
      * Get server info
      * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SearchgetServerInfoRequestBuilder searchgetServerInfo() {
         return new SearchgetServerInfoRequestBuilder(this);
     }
@@ -184,7 +191,9 @@ public class SDKSearchV1 implements
      * Get server info
      * @return The response from the API call
      * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SearchgetServerInfoResponse searchgetServerInfoDirect() throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());

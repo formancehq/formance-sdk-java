@@ -9,11 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 
 /**
  * Error - General error
  */
+@SuppressWarnings("serial")
 public class Error extends RuntimeException {
 
     @JsonProperty("errorCode")

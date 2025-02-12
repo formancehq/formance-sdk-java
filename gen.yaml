@@ -9,17 +9,20 @@ generation:
     requestResponseComponentNamesFeb2024: false
   auth:
     oAuth2ClientCredentialsEnabled: true
+    oAuth2PasswordEnabled: false
   comments: {}
   telemetryEnabled: false
 java:
-  version: 4.0.1
-  additionalDependencies: []
+  version: 4.2.0
+  additionalDependencies:
+    - "implementation:org.apache.httpcomponents.client5:httpclient5:5.4.2" 
   additionalPlugins: []
   artifactID: formance-sdk
   clientServerStatusCodesAsErrors: true
   companyEmail: support@formance.com
   companyName: Formance
   companyURL: https://www.formance.com
+  defaultErrorName: SDKError
   flattenGlobalSecurity: false
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance
