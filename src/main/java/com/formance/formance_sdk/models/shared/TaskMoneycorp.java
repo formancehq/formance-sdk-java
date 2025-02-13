@@ -13,9 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TaskMoneycorp {
@@ -36,11 +38,12 @@ public class TaskMoneycorp {
     @JsonProperty("id")
     private String id;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private TaskMoneycorpState state;
+    private JsonNullable<? extends TaskMoneycorpState> state;
 
     @JsonProperty("status")
-    private PaymentStatus status;
+    private TaskStatus status;
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
@@ -52,8 +55,8 @@ public class TaskMoneycorp {
             @JsonProperty("descriptor") TaskMoneycorpDescriptor descriptor,
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("id") String id,
-            @JsonProperty("state") TaskMoneycorpState state,
-            @JsonProperty("status") PaymentStatus status,
+            @JsonProperty("state") JsonNullable<? extends TaskMoneycorpState> state,
+            @JsonProperty("status") TaskStatus status,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -78,10 +81,9 @@ public class TaskMoneycorp {
             OffsetDateTime createdAt,
             TaskMoneycorpDescriptor descriptor,
             String id,
-            TaskMoneycorpState state,
-            PaymentStatus status,
+            TaskStatus status,
             OffsetDateTime updatedAt) {
-        this(connectorID, createdAt, descriptor, Optional.empty(), id, state, status, updatedAt);
+        this(connectorID, createdAt, descriptor, Optional.empty(), id, JsonNullable.undefined(), status, updatedAt);
     }
 
     @JsonIgnore
@@ -109,13 +111,14 @@ public class TaskMoneycorp {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public TaskMoneycorpState state() {
-        return state;
+    public JsonNullable<TaskMoneycorpState> state() {
+        return (JsonNullable<TaskMoneycorpState>) state;
     }
 
     @JsonIgnore
-    public PaymentStatus status() {
+    public TaskStatus status() {
         return status;
     }
 
@@ -166,11 +169,17 @@ public class TaskMoneycorp {
 
     public TaskMoneycorp withState(TaskMoneycorpState state) {
         Utils.checkNotNull(state, "state");
+        this.state = JsonNullable.of(state);
+        return this;
+    }
+
+    public TaskMoneycorp withState(JsonNullable<? extends TaskMoneycorpState> state) {
+        Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
     }
 
-    public TaskMoneycorp withStatus(PaymentStatus status) {
+    public TaskMoneycorp withStatus(TaskStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -240,9 +249,9 @@ public class TaskMoneycorp {
  
         private String id;
  
-        private TaskMoneycorpState state;
+        private JsonNullable<? extends TaskMoneycorpState> state = JsonNullable.undefined();
  
-        private PaymentStatus status;
+        private TaskStatus status;
  
         private OffsetDateTime updatedAt;  
         
@@ -288,11 +297,17 @@ public class TaskMoneycorp {
 
         public Builder state(TaskMoneycorpState state) {
             Utils.checkNotNull(state, "state");
+            this.state = JsonNullable.of(state);
+            return this;
+        }
+
+        public Builder state(JsonNullable<? extends TaskMoneycorpState> state) {
+            Utils.checkNotNull(state, "state");
             this.state = state;
             return this;
         }
 
-        public Builder status(PaymentStatus status) {
+        public Builder status(TaskStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

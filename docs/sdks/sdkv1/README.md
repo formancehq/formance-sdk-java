@@ -68,6 +68,18 @@ public class Application {
                                     .asset("COIN")
                                     .destination("users:002")
                                     .source("users:001")
+                                    .build(),
+                                Posting.builder()
+                                    .amount(new BigInteger("100"))
+                                    .asset("COIN")
+                                    .destination("users:002")
+                                    .source("users:001")
+                                    .build(),
+                                Posting.builder()
+                                    .amount(new BigInteger("100"))
+                                    .asset("COIN")
+                                    .destination("users:002")
+                                    .source("users:001")
                                     .build()))
                             .reference("ref:001")
                             .build()))
@@ -438,16 +450,22 @@ public class Application {
                             .asset("COIN")
                             .destination("users:002")
                             .source("users:001")
+                            .build(),
+                        Posting.builder()
+                            .amount(new BigInteger("100"))
+                            .asset("COIN")
+                            .destination("users:002")
+                            .source("users:001")
+                            .build(),
+                        Posting.builder()
+                            .amount(new BigInteger("100"))
+                            .asset("COIN")
+                            .destination("users:002")
+                            .source("users:001")
                             .build()))
                     .reference("ref:001")
                     .script(PostTransactionScript.builder()
-                        .plain("vars {\naccount $user
-                        }
-                        send [COIN 10] (
-                        	source = @world
-                        	destination = $user
-                        )
-                        ")
+                        .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n")
                         .vars(Map.ofEntries(
                             Map.entry("user", "users:042")))
                         .build())
@@ -978,6 +996,7 @@ public class Application {
                     Map.entry("48", "e"),
                     Map.entry("49", "2")))
                 .pageSize(100L)
+                .paginationToken("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .build();
 
         ListAccountsResponse res = sdk.ledger().v1().listAccounts()
@@ -1290,13 +1309,7 @@ public class Application {
 
         RunScriptRequest req = RunScriptRequest.builder()
                 .script(Script.builder()
-                    .plain("vars {\naccount $user
-                    }
-                    send [COIN 10] (
-                    	source = @world
-                    	destination = $user
-                    )
-                    ")
+                    .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n")
                     .reference("order_1234")
                     .vars(Map.ofEntries(
                         Map.entry("user", "users:042")))
@@ -1366,6 +1379,11 @@ public class Application {
         UpdateMappingRequest req = UpdateMappingRequest.builder()
                 .mapping(Mapping.builder()
                     .contracts(List.of(
+                        Contract.builder()
+                            .expr(Expr.builder()
+                                .build())
+                            .account("users:001")
+                            .build(),
                         Contract.builder()
                             .expr(Expr.builder()
                                 .build())

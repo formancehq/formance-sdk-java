@@ -13,9 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TaskStripe {
@@ -36,11 +38,12 @@ public class TaskStripe {
     @JsonProperty("id")
     private String id;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private TaskStripeState state;
+    private JsonNullable<? extends TaskStripeState> state;
 
     @JsonProperty("status")
-    private PaymentStatus status;
+    private TaskStatus status;
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
@@ -52,8 +55,8 @@ public class TaskStripe {
             @JsonProperty("descriptor") TaskStripeDescriptor descriptor,
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("id") String id,
-            @JsonProperty("state") TaskStripeState state,
-            @JsonProperty("status") PaymentStatus status,
+            @JsonProperty("state") JsonNullable<? extends TaskStripeState> state,
+            @JsonProperty("status") TaskStatus status,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -78,10 +81,9 @@ public class TaskStripe {
             OffsetDateTime createdAt,
             TaskStripeDescriptor descriptor,
             String id,
-            TaskStripeState state,
-            PaymentStatus status,
+            TaskStatus status,
             OffsetDateTime updatedAt) {
-        this(connectorID, createdAt, descriptor, Optional.empty(), id, state, status, updatedAt);
+        this(connectorID, createdAt, descriptor, Optional.empty(), id, JsonNullable.undefined(), status, updatedAt);
     }
 
     @JsonIgnore
@@ -109,13 +111,14 @@ public class TaskStripe {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public TaskStripeState state() {
-        return state;
+    public JsonNullable<TaskStripeState> state() {
+        return (JsonNullable<TaskStripeState>) state;
     }
 
     @JsonIgnore
-    public PaymentStatus status() {
+    public TaskStatus status() {
         return status;
     }
 
@@ -166,11 +169,17 @@ public class TaskStripe {
 
     public TaskStripe withState(TaskStripeState state) {
         Utils.checkNotNull(state, "state");
+        this.state = JsonNullable.of(state);
+        return this;
+    }
+
+    public TaskStripe withState(JsonNullable<? extends TaskStripeState> state) {
+        Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
     }
 
-    public TaskStripe withStatus(PaymentStatus status) {
+    public TaskStripe withStatus(TaskStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -240,9 +249,9 @@ public class TaskStripe {
  
         private String id;
  
-        private TaskStripeState state;
+        private JsonNullable<? extends TaskStripeState> state = JsonNullable.undefined();
  
-        private PaymentStatus status;
+        private TaskStatus status;
  
         private OffsetDateTime updatedAt;  
         
@@ -288,11 +297,17 @@ public class TaskStripe {
 
         public Builder state(TaskStripeState state) {
             Utils.checkNotNull(state, "state");
+            this.state = JsonNullable.of(state);
+            return this;
+        }
+
+        public Builder state(JsonNullable<? extends TaskStripeState> state) {
+            Utils.checkNotNull(state, "state");
             this.state = state;
             return this;
         }
 
-        public Builder status(PaymentStatus status) {
+        public Builder status(TaskStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

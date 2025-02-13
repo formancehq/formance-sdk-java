@@ -21,6 +21,7 @@
 * [getInfo](#getinfo) - Show server information
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
+* [getMetrics](#getmetrics) - Read in memory metrics
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](#importlogs)
@@ -306,6 +307,9 @@ public class Application {
                     V2BulkElementAddMetadata.builder()
                         .action("<value>")
                         .build()))
+                .atomic(true)
+                .continueOnFailure(true)
+                .parallel(true)
                 .build();
 
         V2CreateBulkResponse res = sdk.ledger().v2().createBulk()
@@ -441,22 +445,23 @@ public class Application {
                             .asset("COIN")
                             .destination("users:002")
                             .source("users:001")
+                            .build(),
+                        V2Posting.builder()
+                            .amount(new BigInteger("100"))
+                            .asset("COIN")
+                            .destination("users:002")
+                            .source("users:001")
                             .build()))
                     .reference("ref:001")
                     .script(V2PostTransactionScript.builder()
-                        .plain("vars {\naccount $user
-                        }
-                        send [COIN 10] (
-                        	source = @world
-                        	destination = $user
-                        )
-                        ")
+                        .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n")
                         .vars(Map.ofEntries(
                             Map.entry("user", "users:042")))
                         .build())
                     .build())
                 .ledger("ledger001")
                 .dryRun(true)
+                .force(true)
                 .build();
 
         V2CreateTransactionResponse res = sdk.ledger().v2().createTransaction()
@@ -1003,6 +1008,53 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## getMetrics
+
+Read in memory metrics
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.GetMetricsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .build())
+            .build();
+
+        GetMetricsResponse res = sdk.ledger().v2().getMetrics()
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Response
+
+**[GetMetricsResponse](../../models/operations/GetMetricsResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## getTransaction
 
 Get transaction from a ledger by its ID
@@ -1515,6 +1567,7 @@ public class Application {
         V2RevertTransactionRequest req = V2RevertTransactionRequest.builder()
                 .id(new BigInteger("1234"))
                 .ledger("ledger001")
+                .dryRun(true)
                 .build();
 
         V2RevertTransactionResponse res = sdk.ledger().v2().revertTransaction()

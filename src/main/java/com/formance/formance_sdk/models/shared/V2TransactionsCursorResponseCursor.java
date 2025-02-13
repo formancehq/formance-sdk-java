@@ -23,7 +23,7 @@ import java.util.Optional;
 public class V2TransactionsCursorResponseCursor {
 
     @JsonProperty("data")
-    private List<V2ExpandedTransaction> data;
+    private List<V2Transaction> data;
 
     @JsonProperty("hasMore")
     private boolean hasMore;
@@ -41,7 +41,7 @@ public class V2TransactionsCursorResponseCursor {
 
     @JsonCreator
     public V2TransactionsCursorResponseCursor(
-            @JsonProperty("data") List<V2ExpandedTransaction> data,
+            @JsonProperty("data") List<V2Transaction> data,
             @JsonProperty("hasMore") boolean hasMore,
             @JsonProperty("next") Optional<String> next,
             @JsonProperty("pageSize") long pageSize,
@@ -59,14 +59,14 @@ public class V2TransactionsCursorResponseCursor {
     }
     
     public V2TransactionsCursorResponseCursor(
-            List<V2ExpandedTransaction> data,
+            List<V2Transaction> data,
             boolean hasMore,
             long pageSize) {
         this(data, hasMore, Optional.empty(), pageSize, Optional.empty());
     }
 
     @JsonIgnore
-    public List<V2ExpandedTransaction> data() {
+    public List<V2Transaction> data() {
         return data;
     }
 
@@ -94,7 +94,7 @@ public class V2TransactionsCursorResponseCursor {
         return new Builder();
     }
 
-    public V2TransactionsCursorResponseCursor withData(List<V2ExpandedTransaction> data) {
+    public V2TransactionsCursorResponseCursor withData(List<V2Transaction> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -175,7 +175,7 @@ public class V2TransactionsCursorResponseCursor {
     
     public final static class Builder {
  
-        private List<V2ExpandedTransaction> data;
+        private List<V2Transaction> data;
  
         private Boolean hasMore;
  
@@ -189,7 +189,7 @@ public class V2TransactionsCursorResponseCursor {
           // force use of static builder() method
         }
 
-        public Builder data(List<V2ExpandedTransaction> data) {
+        public Builder data(List<V2Transaction> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

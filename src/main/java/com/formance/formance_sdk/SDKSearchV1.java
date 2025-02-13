@@ -88,10 +88,10 @@ public class SDKSearchV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -99,7 +99,7 @@ public class SDKSearchV1 implements
                   new BeforeRequestContextImpl(
                       "search", 
                       Optional.of(List.of("auth:read", "search:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -110,7 +110,7 @@ public class SDKSearchV1 implements
                         new AfterErrorContextImpl(
                             "search",
                             Optional.of(List.of("auth:read", "search:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -119,7 +119,7 @@ public class SDKSearchV1 implements
                         new AfterSuccessContextImpl(
                             "search",
                             Optional.of(List.of("auth:read", "search:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -128,7 +128,7 @@ public class SDKSearchV1 implements
                         new AfterErrorContextImpl(
                             "search",
                             Optional.of(List.of("auth:read", "search:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -205,10 +205,10 @@ public class SDKSearchV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -216,7 +216,7 @@ public class SDKSearchV1 implements
                   new BeforeRequestContextImpl(
                       "searchgetServerInfo", 
                       Optional.of(List.of("auth:read", "search:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -227,7 +227,7 @@ public class SDKSearchV1 implements
                         new AfterErrorContextImpl(
                             "searchgetServerInfo",
                             Optional.of(List.of("auth:read", "search:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -236,7 +236,7 @@ public class SDKSearchV1 implements
                         new AfterSuccessContextImpl(
                             "searchgetServerInfo",
                             Optional.of(List.of("auth:read", "search:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -245,7 +245,7 @@ public class SDKSearchV1 implements
                         new AfterErrorContextImpl(
                             "searchgetServerInfo",
                             Optional.of(List.of("auth:read", "search:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

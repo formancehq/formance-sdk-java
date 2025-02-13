@@ -13,9 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TaskModulr {
@@ -36,11 +38,12 @@ public class TaskModulr {
     @JsonProperty("id")
     private String id;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private TaskModulrState state;
+    private JsonNullable<? extends TaskModulrState> state;
 
     @JsonProperty("status")
-    private PaymentStatus status;
+    private TaskStatus status;
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
@@ -52,8 +55,8 @@ public class TaskModulr {
             @JsonProperty("descriptor") TaskModulrDescriptor descriptor,
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("id") String id,
-            @JsonProperty("state") TaskModulrState state,
-            @JsonProperty("status") PaymentStatus status,
+            @JsonProperty("state") JsonNullable<? extends TaskModulrState> state,
+            @JsonProperty("status") TaskStatus status,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -78,10 +81,9 @@ public class TaskModulr {
             OffsetDateTime createdAt,
             TaskModulrDescriptor descriptor,
             String id,
-            TaskModulrState state,
-            PaymentStatus status,
+            TaskStatus status,
             OffsetDateTime updatedAt) {
-        this(connectorID, createdAt, descriptor, Optional.empty(), id, state, status, updatedAt);
+        this(connectorID, createdAt, descriptor, Optional.empty(), id, JsonNullable.undefined(), status, updatedAt);
     }
 
     @JsonIgnore
@@ -109,13 +111,14 @@ public class TaskModulr {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public TaskModulrState state() {
-        return state;
+    public JsonNullable<TaskModulrState> state() {
+        return (JsonNullable<TaskModulrState>) state;
     }
 
     @JsonIgnore
-    public PaymentStatus status() {
+    public TaskStatus status() {
         return status;
     }
 
@@ -166,11 +169,17 @@ public class TaskModulr {
 
     public TaskModulr withState(TaskModulrState state) {
         Utils.checkNotNull(state, "state");
+        this.state = JsonNullable.of(state);
+        return this;
+    }
+
+    public TaskModulr withState(JsonNullable<? extends TaskModulrState> state) {
+        Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
     }
 
-    public TaskModulr withStatus(PaymentStatus status) {
+    public TaskModulr withStatus(TaskStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -240,9 +249,9 @@ public class TaskModulr {
  
         private String id;
  
-        private TaskModulrState state;
+        private JsonNullable<? extends TaskModulrState> state = JsonNullable.undefined();
  
-        private PaymentStatus status;
+        private TaskStatus status;
  
         private OffsetDateTime updatedAt;  
         
@@ -288,11 +297,17 @@ public class TaskModulr {
 
         public Builder state(TaskModulrState state) {
             Utils.checkNotNull(state, "state");
+            this.state = JsonNullable.of(state);
+            return this;
+        }
+
+        public Builder state(JsonNullable<? extends TaskModulrState> state) {
+            Utils.checkNotNull(state, "state");
             this.state = state;
             return this;
         }
 
-        public Builder status(PaymentStatus status) {
+        public Builder status(TaskStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

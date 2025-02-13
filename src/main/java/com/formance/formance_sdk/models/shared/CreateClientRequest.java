@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CreateClientRequest {
@@ -30,7 +31,7 @@ public class CreateClientRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends Map<String, Object>> metadata;
+    private JsonNullable<? extends Map<String, Object>> metadata;
 
     @JsonProperty("name")
     private String name;
@@ -58,7 +59,7 @@ public class CreateClientRequest {
     @JsonCreator
     public CreateClientRequest(
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("name") String name,
             @JsonProperty("postLogoutRedirectUris") Optional<? extends List<String>> postLogoutRedirectUris,
             @JsonProperty("public") Optional<Boolean> public_,
@@ -85,7 +86,7 @@ public class CreateClientRequest {
     
     public CreateClientRequest(
             String name) {
-        this(Optional.empty(), Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -95,8 +96,8 @@ public class CreateClientRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> metadata() {
-        return (Optional<Map<String, Object>>) metadata;
+    public JsonNullable<Map<String, Object>> metadata() {
+        return (JsonNullable<Map<String, Object>>) metadata;
     }
 
     @JsonIgnore
@@ -150,11 +151,11 @@ public class CreateClientRequest {
 
     public CreateClientRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
-        this.metadata = Optional.ofNullable(metadata);
+        this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public CreateClientRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
+    public CreateClientRequest withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -276,7 +277,7 @@ public class CreateClientRequest {
  
         private Optional<String> description = Optional.empty();
  
-        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
+        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
  
         private String name;
  
@@ -308,11 +309,11 @@ public class CreateClientRequest {
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
-            this.metadata = Optional.ofNullable(metadata);
+            this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Client {
@@ -33,7 +34,7 @@ public class Client {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends Map<String, Object>> metadata;
+    private JsonNullable<? extends Map<String, Object>> metadata;
 
     @JsonProperty("name")
     private String name;
@@ -66,7 +67,7 @@ public class Client {
     public Client(
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("id") String id,
-            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("name") String name,
             @JsonProperty("postLogoutRedirectUris") Optional<? extends List<String>> postLogoutRedirectUris,
             @JsonProperty("public") Optional<Boolean> public_,
@@ -99,7 +100,7 @@ public class Client {
     public Client(
             String id,
             String name) {
-        this(Optional.empty(), id, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), id, JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -114,8 +115,8 @@ public class Client {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> metadata() {
-        return (Optional<Map<String, Object>>) metadata;
+    public JsonNullable<Map<String, Object>> metadata() {
+        return (JsonNullable<Map<String, Object>>) metadata;
     }
 
     @JsonIgnore
@@ -181,11 +182,11 @@ public class Client {
 
     public Client withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
-        this.metadata = Optional.ofNullable(metadata);
+        this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public Client withMetadata(Optional<? extends Map<String, Object>> metadata) {
+    public Client withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -327,7 +328,7 @@ public class Client {
  
         private String id;
  
-        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
+        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
  
         private String name;
  
@@ -367,11 +368,11 @@ public class Client {
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
-            this.metadata = Optional.ofNullable(metadata);
+            this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

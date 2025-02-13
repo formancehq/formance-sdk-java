@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum V2Connector {
     STRIPE("STRIPE"),
@@ -26,5 +28,14 @@ public enum V2Connector {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<V2Connector> fromValue(String value) {
+        for (V2Connector o: V2Connector.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

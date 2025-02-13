@@ -17,21 +17,21 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CreateSecretRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends Map<String, Object>> metadata;
+    private JsonNullable<? extends Map<String, Object>> metadata;
 
     @JsonProperty("name")
     private String name;
 
     @JsonCreator
     public CreateSecretRequest(
-            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
@@ -41,13 +41,13 @@ public class CreateSecretRequest {
     
     public CreateSecretRequest(
             String name) {
-        this(Optional.empty(), name);
+        this(JsonNullable.undefined(), name);
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> metadata() {
-        return (Optional<Map<String, Object>>) metadata;
+    public JsonNullable<Map<String, Object>> metadata() {
+        return (JsonNullable<Map<String, Object>>) metadata;
     }
 
     @JsonIgnore
@@ -61,11 +61,11 @@ public class CreateSecretRequest {
 
     public CreateSecretRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
-        this.metadata = Optional.ofNullable(metadata);
+        this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public CreateSecretRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
+    public CreateSecretRequest withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -107,7 +107,7 @@ public class CreateSecretRequest {
     
     public final static class Builder {
  
-        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
+        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
  
         private String name;  
         
@@ -117,11 +117,11 @@ public class CreateSecretRequest {
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
-            this.metadata = Optional.ofNullable(metadata);
+            this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

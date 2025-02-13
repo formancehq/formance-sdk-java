@@ -22,7 +22,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.SearchResponse;
 import com.formance.formance_sdk.models.shared.Query;
-import com.formance.formance_sdk.models.shared.QueryRaw;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
@@ -45,8 +44,6 @@ public class Application {
                 .ledgers(List.of(
                     "quickstart"))
                 .policy("OR")
-                .raw(QueryRaw.builder()
-                    .build())
                 .sort("id:asc")
                 .terms(List.of(
                     "destination=central_bank1"))

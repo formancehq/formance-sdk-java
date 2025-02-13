@@ -267,10 +267,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -278,7 +278,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "addAccountToPool", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -289,7 +289,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "addAccountToPool",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -298,7 +298,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "addAccountToPool",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -307,7 +307,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "addAccountToPool",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -394,10 +394,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -405,7 +405,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "connectorsTransfer", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -416,7 +416,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "connectorsTransfer",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -425,7 +425,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "connectorsTransfer",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -434,7 +434,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "connectorsTransfer",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -530,10 +530,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -541,7 +541,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "createAccount", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -552,7 +552,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -561,7 +561,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "createAccount",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -570,7 +570,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -666,10 +666,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -677,7 +677,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "createBankAccount", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -688,7 +688,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -697,7 +697,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "createBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -706,7 +706,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -802,10 +802,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -813,7 +813,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "createPayment", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -824,7 +824,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createPayment",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -833,7 +833,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "createPayment",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -842,7 +842,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createPayment",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -938,10 +938,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -949,7 +949,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "createPool", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -960,7 +960,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createPool",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -969,7 +969,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "createPool",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -978,7 +978,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createPool",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1074,10 +1074,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1085,7 +1085,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "createTransferInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1096,7 +1096,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1105,7 +1105,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "createTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1114,7 +1114,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "createTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1199,10 +1199,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1210,7 +1210,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "deletePool", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1221,7 +1221,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "deletePool",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1230,7 +1230,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "deletePool",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1239,7 +1239,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "deletePool",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1313,10 +1313,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1324,7 +1324,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "deleteTransferInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1335,7 +1335,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "deleteTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1344,7 +1344,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "deleteTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1353,7 +1353,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "deleteTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1438,10 +1438,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1449,7 +1449,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "forwardBankAccount", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1460,7 +1460,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "forwardBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1469,7 +1469,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "forwardBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1478,7 +1478,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "forwardBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1566,10 +1566,10 @@ public class SDKPaymentsV1 implements
                 GetAccountBalancesRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1577,7 +1577,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "getAccountBalances", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1588,7 +1588,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getAccountBalances",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1597,7 +1597,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "getAccountBalances",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1606,7 +1606,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getAccountBalances",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1689,10 +1689,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1700,7 +1700,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "getBankAccount", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1711,7 +1711,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getBankAccount",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1720,7 +1720,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "getBankAccount",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1729,7 +1729,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getBankAccount",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1818,10 +1818,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1829,7 +1829,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "getConnectorTask", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1840,7 +1840,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getConnectorTask",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1849,7 +1849,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "getConnectorTask",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1858,7 +1858,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getConnectorTask",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1943,10 +1943,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1954,7 +1954,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "getConnectorTaskV1", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1965,7 +1965,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getConnectorTaskV1",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1974,7 +1974,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "getConnectorTaskV1",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1983,7 +1983,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getConnectorTaskV1",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2066,10 +2066,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2077,7 +2077,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "getPayment", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2088,7 +2088,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getPayment",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2097,7 +2097,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "getPayment",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2106,7 +2106,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getPayment",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2189,10 +2189,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2200,7 +2200,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "getPool", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2211,7 +2211,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getPool",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2220,7 +2220,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "getPool",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2229,7 +2229,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getPool",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2317,10 +2317,10 @@ public class SDKPaymentsV1 implements
                 GetPoolBalancesRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2328,7 +2328,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "getPoolBalances", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2339,7 +2339,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getPoolBalances",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2348,7 +2348,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "getPoolBalances",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2357,7 +2357,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getPoolBalances",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2440,10 +2440,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2451,7 +2451,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "getTransferInitiation", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2462,7 +2462,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2471,7 +2471,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "getTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2480,7 +2480,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "getTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2578,10 +2578,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2589,7 +2589,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "installConnector", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2600,7 +2600,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "installConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2609,7 +2609,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "installConnector",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2618,7 +2618,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "installConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2699,10 +2699,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2710,7 +2710,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "listAllConnectors", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2721,7 +2721,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listAllConnectors",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2730,7 +2730,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "listAllConnectors",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2739,7 +2739,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listAllConnectors",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2827,10 +2827,10 @@ public class SDKPaymentsV1 implements
                 ListBankAccountsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2838,7 +2838,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "listBankAccounts", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2849,7 +2849,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listBankAccounts",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2858,7 +2858,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "listBankAccounts",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2867,7 +2867,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listBankAccounts",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2948,10 +2948,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2959,7 +2959,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "listConfigsAvailableConnectors", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2970,7 +2970,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listConfigsAvailableConnectors",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2979,7 +2979,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "listConfigsAvailableConnectors",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2988,7 +2988,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listConfigsAvailableConnectors",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3082,10 +3082,10 @@ public class SDKPaymentsV1 implements
                 ListConnectorTasksRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3093,7 +3093,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "listConnectorTasks", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3104,7 +3104,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listConnectorTasks",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3113,7 +3113,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "listConnectorTasks",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3122,7 +3122,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listConnectorTasks",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3212,10 +3212,10 @@ public class SDKPaymentsV1 implements
                 ListConnectorTasksV1Request.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3223,7 +3223,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "listConnectorTasksV1", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3234,7 +3234,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listConnectorTasksV1",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3243,7 +3243,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "listConnectorTasksV1",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3252,7 +3252,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listConnectorTasksV1",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3338,10 +3338,10 @@ public class SDKPaymentsV1 implements
                 ListPaymentsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3349,7 +3349,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "listPayments", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3360,7 +3360,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listPayments",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3369,7 +3369,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "listPayments",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3378,7 +3378,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listPayments",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3464,10 +3464,10 @@ public class SDKPaymentsV1 implements
                 ListPoolsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3475,7 +3475,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "listPools", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3486,7 +3486,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listPools",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3495,7 +3495,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "listPools",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3504,7 +3504,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listPools",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3590,10 +3590,10 @@ public class SDKPaymentsV1 implements
                 ListTransferInitiationsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3601,7 +3601,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "listTransferInitiations", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3612,7 +3612,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listTransferInitiations",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3621,7 +3621,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "listTransferInitiations",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3630,7 +3630,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "listTransferInitiations",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3713,10 +3713,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3724,7 +3724,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "paymentsgetAccount", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3735,7 +3735,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "paymentsgetAccount",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3744,7 +3744,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "paymentsgetAccount",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3753,7 +3753,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "paymentsgetAccount",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3832,10 +3832,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3843,7 +3843,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "paymentsgetServerInfo", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3854,7 +3854,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "paymentsgetServerInfo",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3863,7 +3863,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "paymentsgetServerInfo",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3872,7 +3872,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "paymentsgetServerInfo",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3968,10 +3968,10 @@ public class SDKPaymentsV1 implements
                 PaymentslistAccountsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3979,7 +3979,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "paymentslistAccounts", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3990,7 +3990,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "paymentslistAccounts",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3999,7 +3999,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "paymentslistAccounts",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4008,7 +4008,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "paymentslistAccounts",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4097,10 +4097,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -4108,7 +4108,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "readConnectorConfig", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4119,7 +4119,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "readConnectorConfig",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -4128,7 +4128,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "readConnectorConfig",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4137,7 +4137,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "readConnectorConfig",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4222,10 +4222,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -4233,7 +4233,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "readConnectorConfigV1", 
                       Optional.of(List.of("auth:read", "payments:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4244,7 +4244,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "readConnectorConfigV1",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -4253,7 +4253,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "readConnectorConfigV1",
                             Optional.of(List.of("auth:read", "payments:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4262,7 +4262,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "readConnectorConfigV1",
                             Optional.of(List.of("auth:read", "payments:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4347,10 +4347,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -4358,7 +4358,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "removeAccountFromPool", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4369,7 +4369,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "removeAccountFromPool",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -4378,7 +4378,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "removeAccountFromPool",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4387,7 +4387,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "removeAccountFromPool",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4469,10 +4469,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -4480,7 +4480,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "resetConnector", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4491,7 +4491,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "resetConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -4500,7 +4500,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "resetConnector",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4509,7 +4509,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "resetConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4587,10 +4587,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -4598,7 +4598,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "resetConnectorV1", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4609,7 +4609,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "resetConnectorV1",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -4618,7 +4618,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "resetConnectorV1",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4627,7 +4627,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "resetConnectorV1",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4701,10 +4701,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -4712,7 +4712,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "retryTransferInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4723,7 +4723,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "retryTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -4732,7 +4732,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "retryTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4741,7 +4741,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "retryTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4828,10 +4828,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -4839,7 +4839,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "reverseTransferInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4850,7 +4850,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "reverseTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -4859,7 +4859,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "reverseTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4868,7 +4868,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "reverseTransferInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -4955,10 +4955,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -4966,7 +4966,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "udpateTransferInitiationStatus", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -4977,7 +4977,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "udpateTransferInitiationStatus",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -4986,7 +4986,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "udpateTransferInitiationStatus",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -4995,7 +4995,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "udpateTransferInitiationStatus",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -5073,10 +5073,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -5084,7 +5084,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "uninstallConnector", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -5095,7 +5095,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "uninstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -5104,7 +5104,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "uninstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -5113,7 +5113,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "uninstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -5187,10 +5187,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -5198,7 +5198,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "uninstallConnectorV1", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -5209,7 +5209,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "uninstallConnectorV1",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -5218,7 +5218,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "uninstallConnectorV1",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -5227,7 +5227,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "uninstallConnectorV1",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -5312,10 +5312,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -5323,7 +5323,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "updateBankAccountMetadata", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -5334,7 +5334,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "updateBankAccountMetadata",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -5343,7 +5343,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "updateBankAccountMetadata",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -5352,7 +5352,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "updateBankAccountMetadata",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -5439,10 +5439,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -5450,7 +5450,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "updateConnectorConfigV1", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -5461,7 +5461,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "updateConnectorConfigV1",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -5470,7 +5470,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "updateConnectorConfigV1",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -5479,7 +5479,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "updateConnectorConfigV1",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -5564,10 +5564,10 @@ public class SDKPaymentsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -5575,7 +5575,7 @@ public class SDKPaymentsV1 implements
                   new BeforeRequestContextImpl(
                       "updateMetadata", 
                       Optional.of(List.of("auth:read", "payments:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -5586,7 +5586,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "updateMetadata",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -5595,7 +5595,7 @@ public class SDKPaymentsV1 implements
                         new AfterSuccessContextImpl(
                             "updateMetadata",
                             Optional.of(List.of("auth:read", "payments:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -5604,7 +5604,7 @@ public class SDKPaymentsV1 implements
                         new AfterErrorContextImpl(
                             "updateMetadata",
                             Optional.of(List.of("auth:read", "payments:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum Status {
     WAITING_FOR_VALIDATION("WAITING_FOR_VALIDATION"),
@@ -24,5 +26,14 @@ public enum Status {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Status> fromValue(String value) {
+        for (Status o: Status.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

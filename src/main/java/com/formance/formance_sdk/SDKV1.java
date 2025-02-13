@@ -168,10 +168,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -179,7 +179,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "CreateTransactions", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -190,7 +190,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "CreateTransactions",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -199,7 +199,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "CreateTransactions",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -208,7 +208,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "CreateTransactions",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -301,10 +301,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -312,7 +312,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "addMetadataOnTransaction", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -323,7 +323,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "addMetadataOnTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -332,7 +332,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "addMetadataOnTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -341,7 +341,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "addMetadataOnTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -426,10 +426,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -437,7 +437,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "addMetadataToAccount", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -448,7 +448,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "addMetadataToAccount",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -457,7 +457,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "addMetadataToAccount",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -466,7 +466,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "addMetadataToAccount",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -543,10 +543,10 @@ public class SDKV1 implements
                 CountAccountsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -554,7 +554,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "countAccounts", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -565,7 +565,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "countAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -574,7 +574,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "countAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -583,7 +583,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "countAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -661,10 +661,10 @@ public class SDKV1 implements
                 CountTransactionsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -672,7 +672,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "countTransactions", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -683,7 +683,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "countTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -692,7 +692,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "countTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -701,7 +701,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "countTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -792,10 +792,10 @@ public class SDKV1 implements
                 CreateTransactionRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -803,7 +803,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "createTransaction", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -814,7 +814,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "createTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -823,7 +823,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "createTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -832,7 +832,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "createTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -915,10 +915,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -926,7 +926,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "getAccount", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -937,7 +937,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getAccount",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -946,7 +946,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "getAccount",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -955,7 +955,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getAccount",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1043,10 +1043,10 @@ public class SDKV1 implements
                 GetBalancesRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1054,7 +1054,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "getBalances", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1065,7 +1065,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getBalances",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1074,7 +1074,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "getBalances",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1083,7 +1083,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getBalances",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1171,10 +1171,10 @@ public class SDKV1 implements
                 GetBalancesAggregatedRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1182,7 +1182,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "getBalancesAggregated", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1193,7 +1193,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getBalancesAggregated",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1202,7 +1202,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "getBalancesAggregated",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1211,7 +1211,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getBalancesAggregated",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1290,10 +1290,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1301,7 +1301,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "getInfo", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1312,7 +1312,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getInfo",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1321,7 +1321,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "getInfo",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1330,7 +1330,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getInfo",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1413,10 +1413,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1424,7 +1424,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "getLedgerInfo", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1435,7 +1435,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getLedgerInfo",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1444,7 +1444,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "getLedgerInfo",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1453,7 +1453,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getLedgerInfo",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1536,10 +1536,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1547,7 +1547,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "getMapping", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1558,7 +1558,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getMapping",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1567,7 +1567,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "getMapping",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1576,7 +1576,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getMapping",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1659,10 +1659,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1670,7 +1670,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "getTransaction", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1681,7 +1681,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getTransaction",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1690,7 +1690,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "getTransaction",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1699,7 +1699,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "getTransaction",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1789,10 +1789,10 @@ public class SDKV1 implements
                 ListAccountsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1800,7 +1800,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "listAccounts", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1811,7 +1811,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "listAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1820,7 +1820,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "listAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1829,7 +1829,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "listAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1934,10 +1934,10 @@ public class SDKV1 implements
                 ListLogsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1945,7 +1945,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "listLogs", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1956,7 +1956,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "listLogs",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1965,7 +1965,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "listLogs",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1974,7 +1974,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "listLogs",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2064,10 +2064,10 @@ public class SDKV1 implements
                 ListTransactionsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2075,7 +2075,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "listTransactions", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2086,7 +2086,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "listTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2095,7 +2095,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "listTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2104,7 +2104,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "listTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2191,10 +2191,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2202,7 +2202,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "readStats", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2213,7 +2213,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "readStats",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2222,7 +2222,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "readStats",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2231,7 +2231,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "readStats",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2319,10 +2319,10 @@ public class SDKV1 implements
                 RevertTransactionRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2330,7 +2330,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "revertTransaction", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2341,7 +2341,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "revertTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2350,7 +2350,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "revertTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2359,7 +2359,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "revertTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2468,10 +2468,10 @@ public class SDKV1 implements
                 RunScriptRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2479,7 +2479,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "runScript", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2490,7 +2490,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "runScript",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2499,7 +2499,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "runScript",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2508,7 +2508,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "runScript",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2598,10 +2598,10 @@ public class SDKV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2609,7 +2609,7 @@ public class SDKV1 implements
                   new BeforeRequestContextImpl(
                       "updateMapping", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2620,7 +2620,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "updateMapping",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2629,7 +2629,7 @@ public class SDKV1 implements
                         new AfterSuccessContextImpl(
                             "updateMapping",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2638,7 +2638,7 @@ public class SDKV1 implements
                         new AfterErrorContextImpl(
                             "updateMapping",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

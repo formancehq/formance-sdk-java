@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum V2PaymentStatus {
     PENDING("PENDING"),
@@ -24,5 +26,14 @@ public enum V2PaymentStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<V2PaymentStatus> fromValue(String value) {
+        for (V2PaymentStatus o: V2PaymentStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

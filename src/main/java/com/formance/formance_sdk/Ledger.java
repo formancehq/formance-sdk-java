@@ -3,26 +3,25 @@
  */
 
 package com.formance.formance_sdk;
-
-import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*; 
+ 
 
 public class Ledger {
 
     private final SDKConfiguration sdkConfiguration;
-    private final SDKV1 v1;
     private final V2 v2;
+    private final SDKV1 v1;
 
     Ledger(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.v1 = new SDKV1(this.sdkConfiguration);
         this.v2 = new V2(this.sdkConfiguration);
-    }
-
-    public final SDKV1 v1() {
-        return v1;
+        this.v1 = new SDKV1(this.sdkConfiguration);
     }
 
     public final V2 v2() {
         return v2;
+    }
+
+    public final SDKV1 v1() {
+        return v1;
     }
 }

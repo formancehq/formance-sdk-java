@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Order
@@ -22,5 +24,14 @@ public enum Order {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Order> fromValue(String value) {
+        for (Order o: Order.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

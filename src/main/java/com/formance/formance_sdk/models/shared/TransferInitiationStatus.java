@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum TransferInitiationStatus {
     WAITING_FOR_VALIDATION("WAITING_FOR_VALIDATION"),
@@ -30,5 +32,14 @@ public enum TransferInitiationStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<TransferInitiationStatus> fromValue(String value) {
+        for (TransferInitiationStatus o: TransferInitiationStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

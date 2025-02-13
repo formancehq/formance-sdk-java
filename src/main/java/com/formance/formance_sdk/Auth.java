@@ -3,8 +3,7 @@
  */
 
 package com.formance.formance_sdk;
-
-import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*; 
+ 
 
 public class Auth {
 

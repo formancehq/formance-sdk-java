@@ -7,8 +7,6 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Deprecated;
@@ -417,7 +415,7 @@ public class ListAccountsRequest {
  
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
  
-        private Optional<Long> pageSize;
+        private Optional<Long> pageSize = Optional.empty();
  
         @Deprecated
         private Optional<String> paginationToken = Optional.empty();  
@@ -586,9 +584,7 @@ public class ListAccountsRequest {
         }
         
         public ListAccountsRequest build() {
-            if (pageSize == null) {
-                pageSize = _SINGLETON_VALUE_PageSize.value();
-            }            return new ListAccountsRequest(
+            return new ListAccountsRequest(
                 address,
                 after,
                 balance,
@@ -598,12 +594,6 @@ public class ListAccountsRequest {
                 pageSize,
                 paginationToken);
         }
-
-        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
-                new LazySingletonValue<>(
-                        "pageSize",
-                        "15",
-                        new TypeReference<Optional<Long>>() {});
     }
 }
 

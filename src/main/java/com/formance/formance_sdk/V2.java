@@ -7,6 +7,8 @@ package com.formance.formance_sdk;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.GetMetricsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetMetricsResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequestBuilder;
@@ -111,6 +113,7 @@ import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional; 
 
 public class V2 implements
@@ -130,6 +133,7 @@ public class V2 implements
             MethodCallV2GetInfo,
             MethodCallV2GetLedger,
             MethodCallV2GetLedgerInfo,
+            MethodCallGetMetrics,
             MethodCallV2GetTransaction,
             MethodCallV2GetVolumesWithBalances,
             MethodCallV2ImportLogs,
@@ -192,10 +196,10 @@ public class V2 implements
                 request, 
                 null));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -203,7 +207,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2AddMetadataOnTransaction", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -214,7 +218,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2AddMetadataOnTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -223,7 +227,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2AddMetadataOnTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -232,7 +236,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2AddMetadataOnTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -323,10 +327,10 @@ public class V2 implements
                 request, 
                 null));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -334,7 +338,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2AddMetadataToAccount", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -345,7 +349,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2AddMetadataToAccount",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -354,7 +358,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2AddMetadataToAccount",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -363,7 +367,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2AddMetadataToAccount",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -450,10 +454,10 @@ public class V2 implements
                 V2CountAccountsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -461,7 +465,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2CountAccounts", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -472,7 +476,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CountAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -481,7 +485,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2CountAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -490,7 +494,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CountAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -578,10 +582,10 @@ public class V2 implements
                 V2CountTransactionsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -589,7 +593,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2CountTransactions", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -600,7 +604,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CountTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -609,7 +613,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2CountTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -618,7 +622,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CountTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -702,9 +706,14 @@ public class V2 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
+        _req.addQueryParams(Utils.getQueryParams(
+                V2CreateBulkRequest.class,
+                request, 
+                null));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -712,7 +721,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2CreateBulk", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -723,7 +732,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CreateBulk",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -732,7 +741,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2CreateBulk",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -741,7 +750,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CreateBulk",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -758,7 +767,22 @@ public class V2 implements
 
         V2CreateBulkResponse _res = _resBuilder.build();
         
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200", "400")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V2BulkResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V2BulkResponse>() {});
+                _res.withV2BulkResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 V2BulkResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
@@ -834,10 +858,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -845,7 +869,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2CreateLedger", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -856,7 +880,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CreateLedger",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -865,7 +889,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2CreateLedger",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -874,7 +898,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CreateLedger",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -965,10 +989,10 @@ public class V2 implements
                 request, 
                 null));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -976,7 +1000,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2CreateTransaction", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -987,7 +1011,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CreateTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -996,7 +1020,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2CreateTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1005,7 +1029,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2CreateTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1090,10 +1114,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1101,7 +1125,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2DeleteAccountMetadata", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1112,7 +1136,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2DeleteAccountMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1121,7 +1145,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2DeleteAccountMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1130,7 +1154,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2DeleteAccountMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1202,10 +1226,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1213,7 +1237,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2DeleteLedgerMetadata", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1224,7 +1248,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2DeleteLedgerMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1233,7 +1257,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2DeleteLedgerMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1242,7 +1266,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2DeleteLedgerMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1316,10 +1340,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1327,7 +1351,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2DeleteTransactionMetadata", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1338,7 +1362,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2DeleteTransactionMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1347,7 +1371,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2DeleteTransactionMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1356,7 +1380,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2DeleteTransactionMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1428,10 +1452,10 @@ public class V2 implements
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1439,7 +1463,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2ExportLogs", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1450,7 +1474,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ExportLogs",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1459,7 +1483,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2ExportLogs",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1468,7 +1492,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ExportLogs",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1539,10 +1563,10 @@ public class V2 implements
                 V2GetAccountRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1550,7 +1574,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2GetAccount", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1561,7 +1585,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetAccount",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1570,7 +1594,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2GetAccount",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1579,7 +1603,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetAccount",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1677,10 +1701,10 @@ public class V2 implements
                 V2GetBalancesAggregatedRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1688,7 +1712,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2GetBalancesAggregated", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1699,7 +1723,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetBalancesAggregated",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1708,7 +1732,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2GetBalancesAggregated",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1717,7 +1741,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetBalancesAggregated",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1790,16 +1814,16 @@ public class V2 implements
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
-                "/api/ledger/v2/_info");
+                "/api/ledger/_/info");
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1807,7 +1831,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2GetInfo", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1818,7 +1842,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetInfo",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1827,7 +1851,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2GetInfo",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1836,7 +1860,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetInfo",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1934,10 +1958,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1945,7 +1969,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2GetLedger", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1956,7 +1980,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetLedger",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1965,7 +1989,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2GetLedger",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1974,7 +1998,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetLedger",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2057,10 +2081,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2068,7 +2092,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2GetLedgerInfo", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2079,7 +2103,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetLedgerInfo",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2088,7 +2112,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2GetLedgerInfo",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2097,7 +2121,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetLedgerInfo",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2120,6 +2144,125 @@ public class V2 implements
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<V2LedgerInfoResponse>() {});
                 _res.withV2LedgerInfoResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V2ErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V2ErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Read in memory metrics
+     * @return The call builder
+     */
+    public GetMetricsRequestBuilder getMetrics() {
+        return new GetMetricsRequestBuilder(this);
+    }
+
+    /**
+     * Read in memory metrics
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetMetricsResponse getMetricsDirect() throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/api/ledger/_/metrics");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "getMetrics", 
+                      Optional.of(List.of("auth:read", "ledger:read")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getMetrics",
+                            Optional.of(List.of("auth:read", "ledger:read")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "getMetrics",
+                            Optional.of(List.of("auth:read", "ledger:read")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getMetrics",
+                            Optional.of(List.of("auth:read", "ledger:read")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetMetricsResponse.Builder _resBuilder = 
+            GetMetricsResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetMetricsResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Map<String, Object> _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Map<String, Object>>() {});
+                _res.withObject(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(
@@ -2185,10 +2328,10 @@ public class V2 implements
                 V2GetTransactionRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2196,7 +2339,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2GetTransaction", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2207,7 +2350,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetTransaction",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2216,7 +2359,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2GetTransaction",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2225,7 +2368,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetTransaction",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2323,10 +2466,10 @@ public class V2 implements
                 V2GetVolumesWithBalancesRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2334,7 +2477,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2GetVolumesWithBalances", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2345,7 +2488,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetVolumesWithBalances",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2354,7 +2497,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2GetVolumesWithBalances",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2363,7 +2506,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2GetVolumesWithBalances",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2446,10 +2589,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2457,7 +2600,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2ImportLogs", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2468,7 +2611,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ImportLogs",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2477,7 +2620,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2ImportLogs",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2486,7 +2629,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ImportLogs",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2575,10 +2718,10 @@ public class V2 implements
                 V2ListAccountsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2586,7 +2729,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2ListAccounts", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2597,7 +2740,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ListAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2606,7 +2749,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2ListAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2615,7 +2758,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ListAccounts",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2701,10 +2844,10 @@ public class V2 implements
                 V2ListLedgersRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2712,7 +2855,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2ListLedgers", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2723,7 +2866,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ListLedgers",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2732,7 +2875,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2ListLedgers",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2741,7 +2884,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ListLedgers",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2841,10 +2984,10 @@ public class V2 implements
                 V2ListLogsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2852,7 +2995,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2ListLogs", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2863,7 +3006,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ListLogs",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2872,7 +3015,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2ListLogs",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2881,7 +3024,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ListLogs",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2981,10 +3124,10 @@ public class V2 implements
                 V2ListTransactionsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2992,7 +3135,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2ListTransactions", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3003,7 +3146,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ListTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3012,7 +3155,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2ListTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3021,7 +3164,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ListTransactions",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3108,10 +3251,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3119,7 +3262,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2ReadStats", 
                       Optional.of(List.of("auth:read", "ledger:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3130,7 +3273,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ReadStats",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3139,7 +3282,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2ReadStats",
                             Optional.of(List.of("auth:read", "ledger:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3148,7 +3291,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2ReadStats",
                             Optional.of(List.of("auth:read", "ledger:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3236,10 +3379,10 @@ public class V2 implements
                 V2RevertTransactionRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3247,7 +3390,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2RevertTransaction", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3258,7 +3401,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2RevertTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3267,7 +3410,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2RevertTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3276,7 +3419,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2RevertTransaction",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -3369,10 +3512,10 @@ public class V2 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -3380,7 +3523,7 @@ public class V2 implements
                   new BeforeRequestContextImpl(
                       "v2UpdateLedgerMetadata", 
                       Optional.of(List.of("auth:read", "ledger:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -3391,7 +3534,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2UpdateLedgerMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -3400,7 +3543,7 @@ public class V2 implements
                         new AfterSuccessContextImpl(
                             "v2UpdateLedgerMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -3409,7 +3552,7 @@ public class V2 implements
                         new AfterErrorContextImpl(
                             "v2UpdateLedgerMetadata",
                             Optional.of(List.of("auth:read", "ledger:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

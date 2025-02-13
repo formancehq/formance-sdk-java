@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum Type {
     NEW_TRANSACTION("NEW_TRANSACTION"),
@@ -20,5 +22,14 @@ public enum Type {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Type> fromValue(String value) {
+        for (Type o: Type.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

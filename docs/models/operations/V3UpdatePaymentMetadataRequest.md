@@ -1,0 +1,9 @@
+# V3UpdatePaymentMetadataRequest
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `v3UpdatePaymentMetadataRequest`                                                                   | [Optional\<V3UpdatePaymentMetadataRequest>](../../models/shared/V3UpdatePaymentMetadataRequest.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
+| `paymentID`                                                                                        | *String*                                                                                           | :heavy_check_mark:                                                                                 | The payment ID                                                                                     |

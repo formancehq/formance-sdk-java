@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum OrchestrationPaymentScheme {
     VISA("visa"),
@@ -36,5 +38,14 @@ public enum OrchestrationPaymentScheme {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<OrchestrationPaymentScheme> fromValue(String value) {
+        for (OrchestrationPaymentScheme o: OrchestrationPaymentScheme.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

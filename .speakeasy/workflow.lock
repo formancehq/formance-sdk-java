@@ -1,4 +1,4 @@
-speakeasyVersion: 1.441.1
+speakeasyVersion: 1.490.0
 sources:
     my-source:
         sourceNamespace: my-source
@@ -7,27 +7,35 @@ sources:
         tags:
             - latest
             - speakeasy-sdk-regen-1732202901
+    stacks-source:
+        sourceNamespace: stacks-source
+        sourceRevisionDigest: sha256:3df5d4d819a999e65b60fc436006fb1cbb20ea21ae9c64f53b089b85111d6292
+        sourceBlobDigest: sha256:c4b18881641c3898b7b6dd5676a2f39abfbb54a22bbe8516e5135e67b373dbd5
+        tags:
+            - latest
+            - speakeasy-sdk-regen-1739437348
+            - v3.0.0
 targets:
     Java:
-        source: my-source
-        sourceNamespace: my-source
-        sourceRevisionDigest: sha256:46d2d3fbc172da81f06233dd1ca6447ffda4f61e1a070e1a3ebf2d79833158bb
-        sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
-        codeSamplesNamespace: my-source-code-samples
-        codeSamplesRevisionDigest: sha256:57582f2c1b9155cba0154b47cbdc6c8cf147c3cc83c2fe49fcb54e565da67280
+        source: stacks-source
+        sourceNamespace: stacks-source
+        sourceRevisionDigest: sha256:3df5d4d819a999e65b60fc436006fb1cbb20ea21ae9c64f53b089b85111d6292
+        sourceBlobDigest: sha256:c4b18881641c3898b7b6dd5676a2f39abfbb54a22bbe8516e5135e67b373dbd5
+        codeSamplesNamespace: stacks-source-java-code-samples
+        codeSamplesRevisionDigest: sha256:97349ea0d4d3365d13614814211459267d65397804d67a0800b037591c44a86f
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        my-source:
+        stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v2.1.1/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.0.0/generate.json
             registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source
+                location: registry.speakeasyapi.dev/formance/formance/stacks-source
     targets:
         Java:
             target: java
-            source: my-source
+            source: stacks-source
             publish:
                 java:
                     ossrhUsername: $OSSRH_USERNAME
@@ -37,5 +45,7 @@ workflow:
                     useSonatypeLegacy: true
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-java-code-samples
+                labelOverride:
+                    fixedValue: Java (SDK)
                 blocking: false

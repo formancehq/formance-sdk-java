@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum WebhooksErrorsEnum {
     INTERNAL("INTERNAL"),
@@ -21,5 +23,14 @@ public enum WebhooksErrorsEnum {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<WebhooksErrorsEnum> fromValue(String value) {
+        for (WebhooksErrorsEnum o: WebhooksErrorsEnum.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

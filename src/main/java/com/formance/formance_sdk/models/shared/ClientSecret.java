@@ -17,7 +17,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ClientSecret {
@@ -30,7 +30,7 @@ public class ClientSecret {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends Map<String, Object>> metadata;
+    private JsonNullable<? extends Map<String, Object>> metadata;
 
     @JsonProperty("name")
     private String name;
@@ -39,7 +39,7 @@ public class ClientSecret {
     public ClientSecret(
             @JsonProperty("id") String id,
             @JsonProperty("lastDigits") String lastDigits,
-            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(lastDigits, "lastDigits");
@@ -55,7 +55,7 @@ public class ClientSecret {
             String id,
             String lastDigits,
             String name) {
-        this(id, lastDigits, Optional.empty(), name);
+        this(id, lastDigits, JsonNullable.undefined(), name);
     }
 
     @JsonIgnore
@@ -70,8 +70,8 @@ public class ClientSecret {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> metadata() {
-        return (Optional<Map<String, Object>>) metadata;
+    public JsonNullable<Map<String, Object>> metadata() {
+        return (JsonNullable<Map<String, Object>>) metadata;
     }
 
     @JsonIgnore
@@ -97,11 +97,11 @@ public class ClientSecret {
 
     public ClientSecret withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
-        this.metadata = Optional.ofNullable(metadata);
+        this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public ClientSecret withMetadata(Optional<? extends Map<String, Object>> metadata) {
+    public ClientSecret withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -153,7 +153,7 @@ public class ClientSecret {
  
         private String lastDigits;
  
-        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
+        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
  
         private String name;  
         
@@ -175,11 +175,11 @@ public class ClientSecret {
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
-            this.metadata = Optional.ofNullable(metadata);
+            this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

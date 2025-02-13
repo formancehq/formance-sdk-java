@@ -26,6 +26,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 /**
  * Formance Stack API: Open, modular foundation for unique payments flows
@@ -200,6 +201,7 @@ public class SDK implements
          * ServerEnvironment - The environment name. Defaults to the production environment.
          */
         public enum ServerEnvironment {
+            EU_SANDBOX("eu.sandbox"),
             SANDBOX("sandbox"),
             EU_WEST1("eu-west-1"),
             US_EAST1("us-east-1");
@@ -249,9 +251,16 @@ public class SDK implements
             return this;
         }
         
-        // Visible for testing, will be accessed via reflection
-        void _hooks(com.formance.formance_sdk.utils.Hooks hooks) {
-            sdkConfiguration.setHooks(hooks);    
+        // Visible for testing, may be accessed via reflection in tests
+        Builder _hooks(com.formance.formance_sdk.utils.Hooks hooks) {
+            sdkConfiguration.setHooks(hooks);  
+            return this;  
+        }
+        
+        // Visible for testing, may be accessed via reflection in tests
+        Builder _hooks(Consumer<? super com.formance.formance_sdk.utils.Hooks> consumer) {
+            consumer.accept(sdkConfiguration.hooks());
+            return this;    
         }
         
         /**
@@ -321,10 +330,10 @@ public class SDK implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -332,7 +341,7 @@ public class SDK implements
                   new BeforeRequestContextImpl(
                       "getVersions", 
                       Optional.of(List.of("auth:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -343,7 +352,7 @@ public class SDK implements
                         new AfterErrorContextImpl(
                             "getVersions",
                             Optional.of(List.of("auth:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -352,7 +361,7 @@ public class SDK implements
                         new AfterSuccessContextImpl(
                             "getVersions",
                             Optional.of(List.of("auth:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -361,7 +370,7 @@ public class SDK implements
                         new AfterErrorContextImpl(
                             "getVersions",
                             Optional.of(List.of("auth:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

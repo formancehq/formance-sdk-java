@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum PaymentScheme {
     UNKNOWN("unknown"),
@@ -42,5 +44,14 @@ public enum PaymentScheme {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<PaymentScheme> fromValue(String value) {
+        for (PaymentScheme o: PaymentScheme.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }
