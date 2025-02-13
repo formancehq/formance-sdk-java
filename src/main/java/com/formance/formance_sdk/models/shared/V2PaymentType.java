@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum V2PaymentType {
     PAY_IN("PAY-IN"),
@@ -22,5 +24,14 @@ public enum V2PaymentType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<V2PaymentType> fromValue(String value) {
+        for (V2PaymentType o: V2PaymentType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -27,12 +26,12 @@ public class V2PostTransactionScript {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
-    private Optional<? extends Map<String, Object>> vars;
+    private Optional<? extends Map<String, String>> vars;
 
     @JsonCreator
     public V2PostTransactionScript(
             @JsonProperty("plain") String plain,
-            @JsonProperty("vars") Optional<? extends Map<String, Object>> vars) {
+            @JsonProperty("vars") Optional<? extends Map<String, String>> vars) {
         Utils.checkNotNull(plain, "plain");
         Utils.checkNotNull(vars, "vars");
         this.plain = plain;
@@ -51,8 +50,8 @@ public class V2PostTransactionScript {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> vars() {
-        return (Optional<Map<String, Object>>) vars;
+    public Optional<Map<String, String>> vars() {
+        return (Optional<Map<String, String>>) vars;
     }
 
     public final static Builder builder() {
@@ -65,13 +64,13 @@ public class V2PostTransactionScript {
         return this;
     }
 
-    public V2PostTransactionScript withVars(Map<String, Object> vars) {
+    public V2PostTransactionScript withVars(Map<String, String> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = Optional.ofNullable(vars);
         return this;
     }
 
-    public V2PostTransactionScript withVars(Optional<? extends Map<String, Object>> vars) {
+    public V2PostTransactionScript withVars(Optional<? extends Map<String, String>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
         return this;
@@ -109,7 +108,7 @@ public class V2PostTransactionScript {
  
         private String plain;
  
-        private Optional<? extends Map<String, Object>> vars = Optional.empty();  
+        private Optional<? extends Map<String, String>> vars = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -121,13 +120,13 @@ public class V2PostTransactionScript {
             return this;
         }
 
-        public Builder vars(Map<String, Object> vars) {
+        public Builder vars(Map<String, String> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
             return this;
         }
 
-        public Builder vars(Optional<? extends Map<String, Object>> vars) {
+        public Builder vars(Optional<? extends Map<String, String>> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = vars;
             return this;

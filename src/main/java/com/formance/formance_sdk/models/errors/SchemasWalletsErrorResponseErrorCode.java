@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum SchemasWalletsErrorResponseErrorCode {
     VALIDATION("VALIDATION"),
@@ -22,5 +24,14 @@ public enum SchemasWalletsErrorResponseErrorCode {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<SchemasWalletsErrorResponseErrorCode> fromValue(String value) {
+        for (SchemasWalletsErrorResponseErrorCode o: SchemasWalletsErrorResponseErrorCode.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -1,0 +1,11 @@
+# V3Pool
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `createdAt`                                                                               | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `id`                                                                                      | *String*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `name`                                                                                    | *String*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `poolAccounts`                                                                            | List\<*String*>                                                                           | :heavy_check_mark:                                                                        | N/A                                                                                       |

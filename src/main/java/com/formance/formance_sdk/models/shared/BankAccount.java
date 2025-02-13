@@ -32,8 +32,9 @@ public class BankAccount {
     @JsonProperty("accountNumber")
     private Optional<String> accountNumber;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
-    private String connectorID;
+    private Optional<String> connectorID;
 
     @JsonProperty("country")
     private String country;
@@ -71,7 +72,7 @@ public class BankAccount {
     public BankAccount(
             @JsonProperty("accountID") Optional<String> accountID,
             @JsonProperty("accountNumber") Optional<String> accountNumber,
-            @JsonProperty("connectorID") String connectorID,
+            @JsonProperty("connectorID") Optional<String> connectorID,
             @JsonProperty("country") String country,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("iban") Optional<String> iban,
@@ -108,12 +109,11 @@ public class BankAccount {
     }
     
     public BankAccount(
-            String connectorID,
             String country,
             OffsetDateTime createdAt,
             String id,
             String name) {
-        this(Optional.empty(), Optional.empty(), connectorID, country, createdAt, Optional.empty(), id, JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), country, createdAt, Optional.empty(), id, JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -127,7 +127,7 @@ public class BankAccount {
     }
 
     @JsonIgnore
-    public String connectorID() {
+    public Optional<String> connectorID() {
         return connectorID;
     }
 
@@ -207,6 +207,12 @@ public class BankAccount {
     }
 
     public BankAccount withConnectorID(String connectorID) {
+        Utils.checkNotNull(connectorID, "connectorID");
+        this.connectorID = Optional.ofNullable(connectorID);
+        return this;
+    }
+
+    public BankAccount withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
@@ -360,7 +366,7 @@ public class BankAccount {
  
         private Optional<String> accountNumber = Optional.empty();
  
-        private String connectorID;
+        private Optional<String> connectorID = Optional.empty();
  
         private String country;
  
@@ -409,6 +415,12 @@ public class BankAccount {
         }
 
         public Builder connectorID(String connectorID) {
+            Utils.checkNotNull(connectorID, "connectorID");
+            this.connectorID = Optional.ofNullable(connectorID);
+            return this;
+        }
+
+        public Builder connectorID(Optional<String> connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;

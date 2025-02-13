@@ -26,6 +26,12 @@ public class V2RevertTransactionRequest {
     private Optional<Boolean> atEffectiveDate;
 
     /**
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
+    private Optional<Boolean> dryRun;
+
+    /**
      * Force revert
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")
@@ -46,14 +52,17 @@ public class V2RevertTransactionRequest {
     @JsonCreator
     public V2RevertTransactionRequest(
             Optional<Boolean> atEffectiveDate,
+            Optional<Boolean> dryRun,
             Optional<Boolean> force,
             BigInteger id,
             String ledger) {
         Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
+        Utils.checkNotNull(dryRun, "dryRun");
         Utils.checkNotNull(force, "force");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         this.atEffectiveDate = atEffectiveDate;
+        this.dryRun = dryRun;
         this.force = force;
         this.id = id;
         this.ledger = ledger;
@@ -62,7 +71,7 @@ public class V2RevertTransactionRequest {
     public V2RevertTransactionRequest(
             BigInteger id,
             String ledger) {
-        this(Optional.empty(), Optional.empty(), id, ledger);
+        this(Optional.empty(), Optional.empty(), Optional.empty(), id, ledger);
     }
 
     /**
@@ -71,6 +80,14 @@ public class V2RevertTransactionRequest {
     @JsonIgnore
     public Optional<Boolean> atEffectiveDate() {
         return atEffectiveDate;
+    }
+
+    /**
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     */
+    @JsonIgnore
+    public Optional<Boolean> dryRun() {
+        return dryRun;
     }
 
     /**
@@ -116,6 +133,24 @@ public class V2RevertTransactionRequest {
     public V2RevertTransactionRequest withAtEffectiveDate(Optional<Boolean> atEffectiveDate) {
         Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
         this.atEffectiveDate = atEffectiveDate;
+        return this;
+    }
+
+    /**
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     */
+    public V2RevertTransactionRequest withDryRun(boolean dryRun) {
+        Utils.checkNotNull(dryRun, "dryRun");
+        this.dryRun = Optional.ofNullable(dryRun);
+        return this;
+    }
+
+    /**
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     */
+    public V2RevertTransactionRequest withDryRun(Optional<Boolean> dryRun) {
+        Utils.checkNotNull(dryRun, "dryRun");
+        this.dryRun = dryRun;
         return this;
     }
 
@@ -174,6 +209,7 @@ public class V2RevertTransactionRequest {
         V2RevertTransactionRequest other = (V2RevertTransactionRequest) o;
         return 
             Objects.deepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
+            Objects.deepEquals(this.dryRun, other.dryRun) &&
             Objects.deepEquals(this.force, other.force) &&
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.ledger, other.ledger);
@@ -183,6 +219,7 @@ public class V2RevertTransactionRequest {
     public int hashCode() {
         return Objects.hash(
             atEffectiveDate,
+            dryRun,
             force,
             id,
             ledger);
@@ -192,6 +229,7 @@ public class V2RevertTransactionRequest {
     public String toString() {
         return Utils.toString(V2RevertTransactionRequest.class,
                 "atEffectiveDate", atEffectiveDate,
+                "dryRun", dryRun,
                 "force", force,
                 "id", id,
                 "ledger", ledger);
@@ -200,6 +238,8 @@ public class V2RevertTransactionRequest {
     public final static class Builder {
  
         private Optional<Boolean> atEffectiveDate = Optional.empty();
+ 
+        private Optional<Boolean> dryRun = Optional.empty();
  
         private Optional<Boolean> force = Optional.empty();
  
@@ -226,6 +266,24 @@ public class V2RevertTransactionRequest {
         public Builder atEffectiveDate(Optional<Boolean> atEffectiveDate) {
             Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
             this.atEffectiveDate = atEffectiveDate;
+            return this;
+        }
+
+        /**
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         */
+        public Builder dryRun(boolean dryRun) {
+            Utils.checkNotNull(dryRun, "dryRun");
+            this.dryRun = Optional.ofNullable(dryRun);
+            return this;
+        }
+
+        /**
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         */
+        public Builder dryRun(Optional<Boolean> dryRun) {
+            Utils.checkNotNull(dryRun, "dryRun");
+            this.dryRun = dryRun;
             return this;
         }
 
@@ -276,6 +334,7 @@ public class V2RevertTransactionRequest {
         public V2RevertTransactionRequest build() {
             return new V2RevertTransactionRequest(
                 atEffectiveDate,
+                dryRun,
                 force,
                 id,
                 ledger);

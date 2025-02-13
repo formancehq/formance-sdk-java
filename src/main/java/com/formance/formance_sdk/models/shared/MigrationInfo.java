@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -36,14 +35,14 @@ public class MigrationInfo {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
-    private Optional<Long> version;
+    private Optional<String> version;
 
     @JsonCreator
     public MigrationInfo(
             @JsonProperty("date") Optional<OffsetDateTime> date,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("state") Optional<? extends State> state,
-            @JsonProperty("version") Optional<Long> version) {
+            @JsonProperty("version") Optional<String> version) {
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(state, "state");
@@ -75,7 +74,7 @@ public class MigrationInfo {
     }
 
     @JsonIgnore
-    public Optional<Long> version() {
+    public Optional<String> version() {
         return version;
     }
 
@@ -119,13 +118,13 @@ public class MigrationInfo {
         return this;
     }
 
-    public MigrationInfo withVersion(long version) {
+    public MigrationInfo withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = Optional.ofNullable(version);
         return this;
     }
 
-    public MigrationInfo withVersion(Optional<Long> version) {
+    public MigrationInfo withVersion(Optional<String> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
         return this;
@@ -173,7 +172,7 @@ public class MigrationInfo {
  
         private Optional<? extends State> state = Optional.empty();
  
-        private Optional<Long> version = Optional.empty();  
+        private Optional<String> version = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -215,13 +214,13 @@ public class MigrationInfo {
             return this;
         }
 
-        public Builder version(long version) {
+        public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = Optional.ofNullable(version);
             return this;
         }
 
-        public Builder version(Optional<Long> version) {
+        public Builder version(Optional<String> version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
             return this;

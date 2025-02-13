@@ -12,6 +12,7 @@
 * [getManyConfigs](#getmanyconfigs) - Get many configs
 * [insertConfig](#insertconfig) - Insert a new config
 * [testConfig](#testconfig) - Test one config
+* [updateConfig](#updateconfig) - Update one config
 
 ## activateConfig
 
@@ -355,8 +356,7 @@ public class Application {
         ConfigUser req = ConfigUser.builder()
                 .endpoint("https://example.com")
                 .eventTypes(List.of(
-                    "TYPE1",
-                    "TYPE2"))
+                    "TYPE1"))
                 .name("customer_payment")
                 .secret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3")
                 .build();
@@ -440,6 +440,72 @@ public class Application {
 ### Response
 
 **[TestConfigResponse](../../models/operations/TestConfigResponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/WebhooksErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+
+## updateConfig
+
+Update a webhooks config by ID.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
+import com.formance.formance_sdk.models.operations.UpdateConfigRequest;
+import com.formance.formance_sdk.models.operations.UpdateConfigResponse;
+import com.formance.formance_sdk.models.shared.ConfigUser;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID("<YOUR_CLIENT_ID_HERE>")
+                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .build())
+            .build();
+
+        UpdateConfigRequest req = UpdateConfigRequest.builder()
+                .configUser(ConfigUser.builder()
+                    .endpoint("https://example.com")
+                    .eventTypes(List.of(
+                        "TYPE1"))
+                    .name("customer_payment")
+                    .secret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3")
+                    .build())
+                .id("4997257d-dfb6-445b-929c-cbe2ab182818")
+                .build();
+
+        UpdateConfigResponse res = sdk.webhooks().v1().updateConfig()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [UpdateConfigRequest](../../models/operations/UpdateConfigRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[UpdateConfigResponse](../../models/operations/UpdateConfigResponse.md)**
 
 ### Errors
 

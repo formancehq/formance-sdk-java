@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum V2ErrorsEnum {
     INTERNAL("INTERNAL"),
@@ -19,7 +21,13 @@ public enum V2ErrorsEnum {
     ALREADY_REVERT("ALREADY_REVERT"),
     NO_POSTINGS("NO_POSTINGS"),
     LEDGER_NOT_FOUND("LEDGER_NOT_FOUND"),
-    IMPORT("IMPORT");
+    IMPORT("IMPORT"),
+    TIMEOUT("TIMEOUT"),
+    BULK_SIZE_EXCEEDED("BULK_SIZE_EXCEEDED"),
+    INTERPRETER_PARSE("INTERPRETER_PARSE"),
+    INTERPRETER_RUNTIME("INTERPRETER_RUNTIME"),
+    LEDGER_ALREADY_EXISTS("LEDGER_ALREADY_EXISTS"),
+    OUTDATED_SCHEMA("OUTDATED_SCHEMA");
 
     @JsonValue
     private final String value;
@@ -30,5 +38,14 @@ public enum V2ErrorsEnum {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<V2ErrorsEnum> fromValue(String value) {
+        for (V2ErrorsEnum o: V2ErrorsEnum.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

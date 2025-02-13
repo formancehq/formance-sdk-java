@@ -208,7 +208,7 @@ public class Application {
 
         AccountRequest req = AccountRequest.builder()
                 .connectorID("<id>")
-                .createdAt(OffsetDateTime.parse("2024-08-19T02:15:08.152Z"))
+                .createdAt(OffsetDateTime.parse("2025-08-19T02:15:08.152Z"))
                 .reference("<value>")
                 .type(AccountType.INTERNAL)
                 .build();
@@ -338,7 +338,7 @@ public class Application {
                 .amount(new BigInteger("100"))
                 .asset("USD")
                 .connectorID("<id>")
-                .createdAt(OffsetDateTime.parse("2024-11-09T01:03:21.011Z"))
+                .createdAt(OffsetDateTime.parse("2025-11-09T01:03:21.011Z"))
                 .reference("<value>")
                 .scheme(PaymentScheme.MOLPAY)
                 .status(PaymentStatus.REFUNDED_FAILURE)
@@ -403,6 +403,8 @@ public class Application {
 
         PoolRequest req = PoolRequest.builder()
                 .accountIDs(List.of(
+                    "<value>",
+                    "<value>",
                     "<value>"))
                 .name("<value>")
                 .build();
@@ -471,10 +473,10 @@ public class Application {
                 .description("worthy pace vague ick liberalize between um")
                 .destinationAccountID("<id>")
                 .reference("XXX")
-                .scheduledAt(OffsetDateTime.parse("2024-05-02T09:50:03.622Z"))
+                .scheduledAt(OffsetDateTime.parse("2025-05-02T09:50:03.622Z"))
                 .sourceAccountID("<id>")
                 .type(TransferInitiationRequestType.PAYOUT)
-                .validated(false)
+                .validated(true)
                 .build();
 
         CreateTransferInitiationResponse res = sdk.payments().v1().createTransferInitiation()
@@ -712,7 +714,6 @@ public class Application {
         GetAccountBalancesRequest req = GetAccountBalancesRequest.builder()
                 .accountId("XXX")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .sort(List.of(
                     "date:asc",
                     "status:desc"))
@@ -1077,7 +1078,7 @@ public class Application {
             .build();
 
         GetPoolBalancesRequest req = GetPoolBalancesRequest.builder()
-                .at(OffsetDateTime.parse("2023-05-05T06:40:23.119Z"))
+                .at(OffsetDateTime.parse("2024-05-04T06:40:23.119Z"))
                 .poolId("XXX")
                 .build();
 
@@ -1184,7 +1185,7 @@ import com.formance.formance_sdk.models.operations.InstallConnectorResponse;
 import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.ConnectorConfig;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.WiseConfig;
+import com.formance.formance_sdk.models.shared.StripeConfig;
 import java.lang.Exception;
 
 public class Application {
@@ -1199,10 +1200,9 @@ public class Application {
             .build();
 
         InstallConnectorRequest req = InstallConnectorRequest.builder()
-                .connectorConfig(ConnectorConfig.of(WiseConfig.builder()
+                .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
                     .apiKey("XXX")
                     .name("My Wise Account")
-                    .pollingPeriod("60s")
                     .build()))
                 .connector(Connector.ATLAR)
                 .build();
@@ -1312,7 +1312,6 @@ public class Application {
 
         ListBankAccountsRequest req = ListBankAccountsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .sort(List.of(
                     "date:asc",
                     "status:desc"))
@@ -1426,7 +1425,6 @@ public class Application {
         ListConnectorTasksRequest req = ListConnectorTasksRequest.builder()
                 .connector(Connector.MODULR)
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .build();
 
         ListConnectorTasksResponse res = sdk.payments().v1().listConnectorTasks()
@@ -1489,7 +1487,6 @@ public class Application {
                 .connector(Connector.BANKING_CIRCLE)
                 .connectorId("XXX")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .build();
 
         ListConnectorTasksV1Response res = sdk.payments().v1().listConnectorTasksV1()
@@ -1550,7 +1547,6 @@ public class Application {
 
         ListPaymentsRequest req = ListPaymentsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .sort(List.of(
                     "date:asc",
                     "status:desc"))
@@ -1614,7 +1610,6 @@ public class Application {
 
         ListPoolsRequest req = ListPoolsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .sort(List.of(
                     "date:asc",
                     "status:desc"))
@@ -1678,7 +1673,6 @@ public class Application {
 
         ListTransferInitiationsRequest req = ListTransferInitiationsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .sort(List.of(
                     "date:asc",
                     "status:desc"))
@@ -1848,7 +1842,6 @@ public class Application {
 
         PaymentslistAccountsRequest req = PaymentslistAccountsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .sort(List.of(
                     "date:asc",
                     "status:desc"))
@@ -2587,8 +2580,6 @@ public class Application {
                 .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
                     .apiKey("XXX")
                     .name("My Stripe Account")
-                    .pageSize(50L)
-                    .pollingPeriod("60s")
                     .build()))
                 .connector(Connector.ADYEN)
                 .connectorId("XXX")
@@ -2650,7 +2641,8 @@ public class Application {
 
         UpdateMetadataRequest req = UpdateMetadataRequest.builder()
                 .requestBody(Map.ofEntries(
-                    Map.entry("key", "<value>")))
+                    Map.entry("key", "<value>"),
+                    Map.entry("key1", "<value>")))
                 .paymentId("XXX")
                 .build();
 

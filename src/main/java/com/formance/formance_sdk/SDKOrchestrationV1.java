@@ -135,10 +135,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -146,7 +146,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "cancelEvent", 
                       Optional.of(List.of("auth:read", "orchestration:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -157,7 +157,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "cancelEvent",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -166,7 +166,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "cancelEvent",
                             Optional.of(List.of("auth:read", "orchestration:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -175,7 +175,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "cancelEvent",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -267,10 +267,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -278,7 +278,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "createTrigger", 
                       Optional.of(List.of("auth:read", "orchestration:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -289,7 +289,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "createTrigger",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -298,7 +298,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "createTrigger",
                             Optional.of(List.of("auth:read", "orchestration:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -307,7 +307,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "createTrigger",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -410,10 +410,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -421,7 +421,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "createWorkflow", 
                       Optional.of(List.of("auth:read", "orchestration:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -432,7 +432,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "createWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -441,7 +441,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "createWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -450,7 +450,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "createWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -535,10 +535,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -546,7 +546,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "deleteTrigger", 
                       Optional.of(List.of("auth:read", "orchestration:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -557,7 +557,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "deleteTrigger",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -566,7 +566,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "deleteTrigger",
                             Optional.of(List.of("auth:read", "orchestration:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -575,7 +575,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "deleteTrigger",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -649,10 +649,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -660,7 +660,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "deleteWorkflow", 
                       Optional.of(List.of("auth:read", "orchestration:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -671,7 +671,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "deleteWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -680,7 +680,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "deleteWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -689,7 +689,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "deleteWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -763,10 +763,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -774,7 +774,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "getInstance", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -785,7 +785,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "getInstance",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -794,7 +794,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "getInstance",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -803,7 +803,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "getInstance",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -888,10 +888,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -899,7 +899,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "getInstanceHistory", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -910,7 +910,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "getInstanceHistory",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -919,7 +919,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "getInstanceHistory",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -928,7 +928,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "getInstanceHistory",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1013,10 +1013,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1024,7 +1024,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "getInstanceStageHistory", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1035,7 +1035,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "getInstanceStageHistory",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1044,7 +1044,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "getInstanceStageHistory",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1053,7 +1053,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "getInstanceStageHistory",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1138,10 +1138,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1149,7 +1149,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "getWorkflow", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1160,7 +1160,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "getWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1169,7 +1169,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "getWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1178,7 +1178,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "getWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1266,10 +1266,10 @@ public class SDKOrchestrationV1 implements
                 ListInstancesRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1277,7 +1277,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "listInstances", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1288,7 +1288,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "listInstances",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1297,7 +1297,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "listInstances",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1306,7 +1306,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "listInstances",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1394,10 +1394,10 @@ public class SDKOrchestrationV1 implements
                 ListTriggersRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1405,7 +1405,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "listTriggers", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1416,7 +1416,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "listTriggers",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1425,7 +1425,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "listTriggers",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1434,7 +1434,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "listTriggers",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1519,10 +1519,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1530,7 +1530,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "listTriggersOccurrences", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1541,7 +1541,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "listTriggersOccurrences",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1550,7 +1550,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "listTriggersOccurrences",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1559,7 +1559,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "listTriggersOccurrences",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1640,10 +1640,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1651,7 +1651,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "listWorkflows", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1662,7 +1662,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "listWorkflows",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1671,7 +1671,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "listWorkflows",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1680,7 +1680,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "listWorkflows",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1759,10 +1759,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1770,7 +1770,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "orchestrationgetServerInfo", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1781,7 +1781,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "orchestrationgetServerInfo",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1790,7 +1790,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "orchestrationgetServerInfo",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1799,7 +1799,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "orchestrationgetServerInfo",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1884,10 +1884,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1895,7 +1895,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "readTrigger", 
                       Optional.of(List.of("auth:read", "orchestration:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1906,7 +1906,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "readTrigger",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1915,7 +1915,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "readTrigger",
                             Optional.of(List.of("auth:read", "orchestration:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1924,7 +1924,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "readTrigger",
                             Optional.of(List.of("auth:read", "orchestration:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2024,10 +2024,10 @@ public class SDKOrchestrationV1 implements
                 RunWorkflowRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2035,7 +2035,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "runWorkflow", 
                       Optional.of(List.of("auth:read", "orchestration:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2046,7 +2046,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "runWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2055,7 +2055,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "runWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2064,7 +2064,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "runWorkflow",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -2159,10 +2159,10 @@ public class SDKOrchestrationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2170,7 +2170,7 @@ public class SDKOrchestrationV1 implements
                   new BeforeRequestContextImpl(
                       "sendEvent", 
                       Optional.of(List.of("auth:read", "orchestration:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2181,7 +2181,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "sendEvent",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2190,7 +2190,7 @@ public class SDKOrchestrationV1 implements
                         new AfterSuccessContextImpl(
                             "sendEvent",
                             Optional.of(List.of("auth:read", "orchestration:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2199,7 +2199,7 @@ public class SDKOrchestrationV1 implements
                         new AfterErrorContextImpl(
                             "sendEvent",
                             Optional.of(List.of("auth:read", "orchestration:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

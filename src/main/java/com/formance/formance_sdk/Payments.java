@@ -3,20 +3,25 @@
  */
 
 package com.formance.formance_sdk;
-
-import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*; 
+ 
 
 public class Payments {
 
     private final SDKConfiguration sdkConfiguration;
     private final SDKPaymentsV1 v1;
+    private final V3 v3;
 
     Payments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.v1 = new SDKPaymentsV1(this.sdkConfiguration);
+        this.v3 = new V3(this.sdkConfiguration);
     }
 
     public final SDKPaymentsV1 v1() {
         return v1;
+    }
+
+    public final V3 v3() {
+        return v3;
     }
 }

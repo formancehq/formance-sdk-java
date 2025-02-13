@@ -17,6 +17,10 @@ import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
 import com.formance.formance_sdk.models.shared.TriggerData;
 import com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest;
 import com.formance.formance_sdk.models.shared.V2TriggerData;
+import com.formance.formance_sdk.models.shared.V3CreateAccountRequest;
+import com.formance.formance_sdk.models.shared.V3CreateBankAccountRequest;
+import com.formance.formance_sdk.models.shared.V3CreatePaymentRequest;
+import com.formance.formance_sdk.models.shared.V3CreatePoolRequest;
 import java.lang.Exception;
 import java.util.Optional;
 
@@ -87,6 +91,166 @@ public class SDKMethodInterfaces {
     public interface MethodCallUpdateClient {
         UpdateClientResponse updateClient(
             UpdateClientRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2AddMetadataOnTransaction {
+        V2AddMetadataOnTransactionResponse addMetadataOnTransaction(
+            V2AddMetadataOnTransactionRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2AddMetadataToAccount {
+        V2AddMetadataToAccountResponse addMetadataToAccount(
+            V2AddMetadataToAccountRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2CountAccounts {
+        V2CountAccountsResponse countAccounts(
+            V2CountAccountsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2CountTransactions {
+        V2CountTransactionsResponse countTransactions(
+            V2CountTransactionsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2CreateBulk {
+        V2CreateBulkResponse createBulk(
+            V2CreateBulkRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2CreateLedger {
+        V2CreateLedgerResponse createLedger(
+            V2CreateLedgerRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2CreateTransaction {
+        V2CreateTransactionResponse createTransaction(
+            V2CreateTransactionRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2DeleteAccountMetadata {
+        V2DeleteAccountMetadataResponse deleteAccountMetadata(
+            V2DeleteAccountMetadataRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2DeleteLedgerMetadata {
+        V2DeleteLedgerMetadataResponse deleteLedgerMetadata(
+            V2DeleteLedgerMetadataRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2DeleteTransactionMetadata {
+        V2DeleteTransactionMetadataResponse deleteTransactionMetadata(
+            V2DeleteTransactionMetadataRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2ExportLogs {
+        V2ExportLogsResponse exportLogs(
+            V2ExportLogsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2GetAccount {
+        V2GetAccountResponse getAccount(
+            V2GetAccountRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2GetBalancesAggregated {
+        V2GetBalancesAggregatedResponse getBalancesAggregated(
+            V2GetBalancesAggregatedRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2GetInfo {
+        V2GetInfoResponse getInfoDirect() throws Exception;
+    }
+
+
+    public interface MethodCallV2GetLedger {
+        V2GetLedgerResponse getLedger(
+            V2GetLedgerRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2GetLedgerInfo {
+        V2GetLedgerInfoResponse getLedgerInfo(
+            V2GetLedgerInfoRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallGetMetrics {
+        GetMetricsResponse getMetricsDirect() throws Exception;
+    }
+
+
+    public interface MethodCallV2GetTransaction {
+        V2GetTransactionResponse getTransaction(
+            V2GetTransactionRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2GetVolumesWithBalances {
+        V2GetVolumesWithBalancesResponse getVolumesWithBalances(
+            V2GetVolumesWithBalancesRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2ImportLogs {
+        V2ImportLogsResponse importLogs(
+            V2ImportLogsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2ListAccounts {
+        V2ListAccountsResponse listAccounts(
+            V2ListAccountsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2ListLedgers {
+        V2ListLedgersResponse listLedgers(
+            V2ListLedgersRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2ListLogs {
+        V2ListLogsResponse listLogs(
+            V2ListLogsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2ListTransactions {
+        V2ListTransactionsResponse listTransactions(
+            V2ListTransactionsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2ReadStats {
+        V2ReadStatsResponse readStats(
+            V2ReadStatsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2RevertTransaction {
+        V2RevertTransactionResponse revertTransaction(
+            V2RevertTransactionRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV2UpdateLedgerMetadata {
+        V2UpdateLedgerMetadataResponse updateLedgerMetadata(
+            V2UpdateLedgerMetadataRequest request) throws Exception;
     }
 
 
@@ -206,161 +370,6 @@ public class SDKMethodInterfaces {
     public interface MethodCallUpdateMapping {
         UpdateMappingResponse updateMapping(
             UpdateMappingRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2AddMetadataOnTransaction {
-        V2AddMetadataOnTransactionResponse addMetadataOnTransaction(
-            V2AddMetadataOnTransactionRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2AddMetadataToAccount {
-        V2AddMetadataToAccountResponse addMetadataToAccount(
-            V2AddMetadataToAccountRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2CountAccounts {
-        V2CountAccountsResponse countAccounts(
-            V2CountAccountsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2CountTransactions {
-        V2CountTransactionsResponse countTransactions(
-            V2CountTransactionsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2CreateBulk {
-        V2CreateBulkResponse createBulk(
-            V2CreateBulkRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2CreateLedger {
-        V2CreateLedgerResponse createLedger(
-            V2CreateLedgerRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2CreateTransaction {
-        V2CreateTransactionResponse createTransaction(
-            V2CreateTransactionRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2DeleteAccountMetadata {
-        V2DeleteAccountMetadataResponse deleteAccountMetadata(
-            V2DeleteAccountMetadataRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2DeleteLedgerMetadata {
-        V2DeleteLedgerMetadataResponse deleteLedgerMetadata(
-            V2DeleteLedgerMetadataRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2DeleteTransactionMetadata {
-        V2DeleteTransactionMetadataResponse deleteTransactionMetadata(
-            V2DeleteTransactionMetadataRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2ExportLogs {
-        V2ExportLogsResponse exportLogs(
-            V2ExportLogsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2GetAccount {
-        V2GetAccountResponse getAccount(
-            V2GetAccountRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2GetBalancesAggregated {
-        V2GetBalancesAggregatedResponse getBalancesAggregated(
-            V2GetBalancesAggregatedRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2GetInfo {
-        V2GetInfoResponse getInfoDirect() throws Exception;
-    }
-
-
-    public interface MethodCallV2GetLedger {
-        V2GetLedgerResponse getLedger(
-            V2GetLedgerRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2GetLedgerInfo {
-        V2GetLedgerInfoResponse getLedgerInfo(
-            V2GetLedgerInfoRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2GetTransaction {
-        V2GetTransactionResponse getTransaction(
-            V2GetTransactionRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2GetVolumesWithBalances {
-        V2GetVolumesWithBalancesResponse getVolumesWithBalances(
-            V2GetVolumesWithBalancesRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2ImportLogs {
-        V2ImportLogsResponse importLogs(
-            V2ImportLogsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2ListAccounts {
-        V2ListAccountsResponse listAccounts(
-            V2ListAccountsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2ListLedgers {
-        V2ListLedgersResponse listLedgers(
-            V2ListLedgersRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2ListLogs {
-        V2ListLogsResponse listLogs(
-            V2ListLogsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2ListTransactions {
-        V2ListTransactionsResponse listTransactions(
-            V2ListTransactionsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2ReadStats {
-        V2ReadStatsResponse readStats(
-            V2ReadStatsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2RevertTransaction {
-        V2RevertTransactionResponse revertTransaction(
-            V2RevertTransactionRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallV2UpdateLedgerMetadata {
-        V2UpdateLedgerMetadataResponse updateLedgerMetadata(
-            V2UpdateLedgerMetadataRequest request) throws Exception;
     }
 
 
@@ -826,6 +835,250 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallV3AddAccountToPool {
+        V3AddAccountToPoolResponse addAccountToPool(
+            V3AddAccountToPoolRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ApprovePaymentInitiation {
+        V3ApprovePaymentInitiationResponse approvePaymentInitiation(
+            V3ApprovePaymentInitiationRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3CreateAccount {
+        V3CreateAccountResponse createAccount(
+            Optional<? extends V3CreateAccountRequest> request) throws Exception;
+    }
+
+
+    public interface MethodCallV3CreateBankAccount {
+        V3CreateBankAccountResponse createBankAccount(
+            Optional<? extends V3CreateBankAccountRequest> request) throws Exception;
+    }
+
+
+    public interface MethodCallV3CreatePayment {
+        V3CreatePaymentResponse createPayment(
+            Optional<? extends V3CreatePaymentRequest> request) throws Exception;
+    }
+
+
+    public interface MethodCallV3CreatePool {
+        V3CreatePoolResponse createPool(
+            Optional<? extends V3CreatePoolRequest> request) throws Exception;
+    }
+
+
+    public interface MethodCallV3DeletePaymentInitiation {
+        V3DeletePaymentInitiationResponse deletePaymentInitiation(
+            V3DeletePaymentInitiationRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3DeletePool {
+        V3DeletePoolResponse deletePool(
+            V3DeletePoolRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ForwardBankAccount {
+        V3ForwardBankAccountResponse forwardBankAccount(
+            V3ForwardBankAccountRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetAccount {
+        V3GetAccountResponse getAccount(
+            V3GetAccountRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetAccountBalances {
+        V3GetAccountBalancesResponse getAccountBalances(
+            V3GetAccountBalancesRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetBankAccount {
+        V3GetBankAccountResponse getBankAccount(
+            V3GetBankAccountRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetConnectorConfig {
+        V3GetConnectorConfigResponse getConnectorConfig(
+            V3GetConnectorConfigRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetConnectorSchedule {
+        V3GetConnectorScheduleResponse getConnectorSchedule(
+            V3GetConnectorScheduleRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetInfo {
+        V3GetInfoResponse getInfoDirect() throws Exception;
+    }
+
+
+    public interface MethodCallV3GetPayment {
+        V3GetPaymentResponse getPayment(
+            V3GetPaymentRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetPaymentInitiation {
+        V3GetPaymentInitiationResponse getPaymentInitiation(
+            V3GetPaymentInitiationRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetPool {
+        V3GetPoolResponse getPool(
+            V3GetPoolRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetPoolBalances {
+        V3GetPoolBalancesResponse getPoolBalances(
+            V3GetPoolBalancesRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3GetTask {
+        V3GetTaskResponse getTask(
+            V3GetTaskRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3InitiatePayment {
+        V3InitiatePaymentResponse initiatePayment(
+            V3InitiatePaymentRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3InstallConnector {
+        V3InstallConnectorResponse installConnector(
+            V3InstallConnectorRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListAccounts {
+        V3ListAccountsResponse listAccounts(
+            V3ListAccountsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListBankAccounts {
+        V3ListBankAccountsResponse listBankAccounts(
+            V3ListBankAccountsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListConnectorConfigs {
+        V3ListConnectorConfigsResponse listConnectorConfigsDirect() throws Exception;
+    }
+
+
+    public interface MethodCallV3ListConnectorScheduleInstances {
+        V3ListConnectorScheduleInstancesResponse listConnectorScheduleInstances(
+            V3ListConnectorScheduleInstancesRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListConnectorSchedules {
+        V3ListConnectorSchedulesResponse listConnectorSchedules(
+            V3ListConnectorSchedulesRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListConnectors {
+        V3ListConnectorsResponse listConnectors(
+            V3ListConnectorsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListPaymentInitiationAdjustments {
+        V3ListPaymentInitiationAdjustmentsResponse listPaymentInitiationAdjustments(
+            V3ListPaymentInitiationAdjustmentsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListPaymentInitiationRelatedPayments {
+        V3ListPaymentInitiationRelatedPaymentsResponse listPaymentInitiationRelatedPayments(
+            V3ListPaymentInitiationRelatedPaymentsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListPaymentInitiations {
+        V3ListPaymentInitiationsResponse listPaymentInitiations(
+            V3ListPaymentInitiationsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListPayments {
+        V3ListPaymentsResponse listPayments(
+            V3ListPaymentsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ListPools {
+        V3ListPoolsResponse listPools(
+            V3ListPoolsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3RejectPaymentInitiation {
+        V3RejectPaymentInitiationResponse rejectPaymentInitiation(
+            V3RejectPaymentInitiationRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3RemoveAccountFromPool {
+        V3RemoveAccountFromPoolResponse removeAccountFromPool(
+            V3RemoveAccountFromPoolRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ResetConnector {
+        V3ResetConnectorResponse resetConnector(
+            V3ResetConnectorRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3RetryPaymentInitiation {
+        V3RetryPaymentInitiationResponse retryPaymentInitiation(
+            V3RetryPaymentInitiationRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3ReversePaymentInitiation {
+        V3ReversePaymentInitiationResponse reversePaymentInitiation(
+            V3ReversePaymentInitiationRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3UninstallConnector {
+        V3UninstallConnectorResponse uninstallConnector(
+            V3UninstallConnectorRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3UpdateBankAccountMetadata {
+        V3UpdateBankAccountMetadataResponse updateBankAccountMetadata(
+            V3UpdateBankAccountMetadataRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallV3UpdatePaymentMetadata {
+        V3UpdatePaymentMetadataResponse updatePaymentMetadata(
+            V3UpdatePaymentMetadataRequest request) throws Exception;
+    }
+
+
     public interface MethodCallCreatePolicy {
         CreatePolicyResponse createPolicy(
             PolicyRequest request) throws Exception;
@@ -1018,6 +1271,12 @@ public class SDKMethodInterfaces {
     public interface MethodCallTestConfig {
         TestConfigResponse testConfig(
             TestConfigRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallUpdateConfig {
+        UpdateConfigResponse updateConfig(
+            UpdateConfigRequest request) throws Exception;
     }
 
 

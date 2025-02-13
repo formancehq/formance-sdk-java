@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.models.shared.V2BulkElement;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -24,24 +25,51 @@ public class V2CreateBulkRequest {
     private Optional<? extends List<V2BulkElement>> requestBody;
 
     /**
+     * Make bulk atomic
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=atomic")
+    private Optional<Boolean> atomic;
+
+    /**
+     * Continue on failure
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=continueOnFailure")
+    private Optional<Boolean> continueOnFailure;
+
+    /**
      * Name of the ledger.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    /**
+     * Process bulk elements in parallel
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=parallel")
+    private Optional<Boolean> parallel;
+
     @JsonCreator
     public V2CreateBulkRequest(
             Optional<? extends List<V2BulkElement>> requestBody,
-            String ledger) {
+            Optional<Boolean> atomic,
+            Optional<Boolean> continueOnFailure,
+            String ledger,
+            Optional<Boolean> parallel) {
         Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(atomic, "atomic");
+        Utils.checkNotNull(continueOnFailure, "continueOnFailure");
         Utils.checkNotNull(ledger, "ledger");
+        Utils.checkNotNull(parallel, "parallel");
         this.requestBody = requestBody;
+        this.atomic = atomic;
+        this.continueOnFailure = continueOnFailure;
         this.ledger = ledger;
+        this.parallel = parallel;
     }
     
     public V2CreateBulkRequest(
             String ledger) {
-        this(Optional.empty(), ledger);
+        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -51,11 +79,35 @@ public class V2CreateBulkRequest {
     }
 
     /**
+     * Make bulk atomic
+     */
+    @JsonIgnore
+    public Optional<Boolean> atomic() {
+        return atomic;
+    }
+
+    /**
+     * Continue on failure
+     */
+    @JsonIgnore
+    public Optional<Boolean> continueOnFailure() {
+        return continueOnFailure;
+    }
+
+    /**
      * Name of the ledger.
      */
     @JsonIgnore
     public String ledger() {
         return ledger;
+    }
+
+    /**
+     * Process bulk elements in parallel
+     */
+    @JsonIgnore
+    public Optional<Boolean> parallel() {
+        return parallel;
     }
 
     public final static Builder builder() {
@@ -75,11 +127,65 @@ public class V2CreateBulkRequest {
     }
 
     /**
+     * Make bulk atomic
+     */
+    public V2CreateBulkRequest withAtomic(boolean atomic) {
+        Utils.checkNotNull(atomic, "atomic");
+        this.atomic = Optional.ofNullable(atomic);
+        return this;
+    }
+
+    /**
+     * Make bulk atomic
+     */
+    public V2CreateBulkRequest withAtomic(Optional<Boolean> atomic) {
+        Utils.checkNotNull(atomic, "atomic");
+        this.atomic = atomic;
+        return this;
+    }
+
+    /**
+     * Continue on failure
+     */
+    public V2CreateBulkRequest withContinueOnFailure(boolean continueOnFailure) {
+        Utils.checkNotNull(continueOnFailure, "continueOnFailure");
+        this.continueOnFailure = Optional.ofNullable(continueOnFailure);
+        return this;
+    }
+
+    /**
+     * Continue on failure
+     */
+    public V2CreateBulkRequest withContinueOnFailure(Optional<Boolean> continueOnFailure) {
+        Utils.checkNotNull(continueOnFailure, "continueOnFailure");
+        this.continueOnFailure = continueOnFailure;
+        return this;
+    }
+
+    /**
      * Name of the ledger.
      */
     public V2CreateBulkRequest withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
+        return this;
+    }
+
+    /**
+     * Process bulk elements in parallel
+     */
+    public V2CreateBulkRequest withParallel(boolean parallel) {
+        Utils.checkNotNull(parallel, "parallel");
+        this.parallel = Optional.ofNullable(parallel);
+        return this;
+    }
+
+    /**
+     * Process bulk elements in parallel
+     */
+    public V2CreateBulkRequest withParallel(Optional<Boolean> parallel) {
+        Utils.checkNotNull(parallel, "parallel");
+        this.parallel = parallel;
         return this;
     }
     
@@ -94,28 +200,43 @@ public class V2CreateBulkRequest {
         V2CreateBulkRequest other = (V2CreateBulkRequest) o;
         return 
             Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Objects.deepEquals(this.atomic, other.atomic) &&
+            Objects.deepEquals(this.continueOnFailure, other.continueOnFailure) &&
+            Objects.deepEquals(this.ledger, other.ledger) &&
+            Objects.deepEquals(this.parallel, other.parallel);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
             requestBody,
-            ledger);
+            atomic,
+            continueOnFailure,
+            ledger,
+            parallel);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2CreateBulkRequest.class,
                 "requestBody", requestBody,
-                "ledger", ledger);
+                "atomic", atomic,
+                "continueOnFailure", continueOnFailure,
+                "ledger", ledger,
+                "parallel", parallel);
     }
     
     public final static class Builder {
  
         private Optional<? extends List<V2BulkElement>> requestBody = Optional.empty();
  
-        private String ledger;  
+        private Optional<Boolean> atomic = Optional.empty();
+ 
+        private Optional<Boolean> continueOnFailure = Optional.empty();
+ 
+        private String ledger;
+ 
+        private Optional<Boolean> parallel = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -134,6 +255,42 @@ public class V2CreateBulkRequest {
         }
 
         /**
+         * Make bulk atomic
+         */
+        public Builder atomic(boolean atomic) {
+            Utils.checkNotNull(atomic, "atomic");
+            this.atomic = Optional.ofNullable(atomic);
+            return this;
+        }
+
+        /**
+         * Make bulk atomic
+         */
+        public Builder atomic(Optional<Boolean> atomic) {
+            Utils.checkNotNull(atomic, "atomic");
+            this.atomic = atomic;
+            return this;
+        }
+
+        /**
+         * Continue on failure
+         */
+        public Builder continueOnFailure(boolean continueOnFailure) {
+            Utils.checkNotNull(continueOnFailure, "continueOnFailure");
+            this.continueOnFailure = Optional.ofNullable(continueOnFailure);
+            return this;
+        }
+
+        /**
+         * Continue on failure
+         */
+        public Builder continueOnFailure(Optional<Boolean> continueOnFailure) {
+            Utils.checkNotNull(continueOnFailure, "continueOnFailure");
+            this.continueOnFailure = continueOnFailure;
+            return this;
+        }
+
+        /**
          * Name of the ledger.
          */
         public Builder ledger(String ledger) {
@@ -141,11 +298,32 @@ public class V2CreateBulkRequest {
             this.ledger = ledger;
             return this;
         }
+
+        /**
+         * Process bulk elements in parallel
+         */
+        public Builder parallel(boolean parallel) {
+            Utils.checkNotNull(parallel, "parallel");
+            this.parallel = Optional.ofNullable(parallel);
+            return this;
+        }
+
+        /**
+         * Process bulk elements in parallel
+         */
+        public Builder parallel(Optional<Boolean> parallel) {
+            Utils.checkNotNull(parallel, "parallel");
+            this.parallel = parallel;
+            return this;
+        }
         
         public V2CreateBulkRequest build() {
             return new V2CreateBulkRequest(
                 requestBody,
-                ledger);
+                atomic,
+                continueOnFailure,
+                ledger,
+                parallel);
         }
     }
 }

@@ -216,7 +216,6 @@ import com.formance.formance_sdk.models.operations.CreditWalletRequest;
 import com.formance.formance_sdk.models.operations.CreditWalletResponse;
 import com.formance.formance_sdk.models.shared.Monetary;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.WalletSubject;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.util.List;
@@ -237,16 +236,13 @@ public class Application {
                 .id("<id>")
                 .creditWalletRequest(com.formance.formance_sdk.models.shared.CreditWalletRequest.builder()
                     .amount(Monetary.builder()
-                        .amount(new BigInteger("201874"))
-                        .asset("<value>")
+                        .amount(new BigInteger("100"))
+                        .asset("USD/2")
                         .build())
                     .metadata(Map.ofEntries(
                         Map.entry("key", "")))
                     .sources(List.of(
-                        WalletSubject.builder()
-                            .identifier("<value>")
-                            .type("<value>")
-                            .build()))
+                    ))
                     .build())
                 .build();
 
@@ -310,11 +306,11 @@ public class Application {
                 .id("<id>")
                 .debitWalletRequest(com.formance.formance_sdk.models.shared.DebitWalletRequest.builder()
                     .amount(Monetary.builder()
-                        .amount(new BigInteger("245256"))
-                        .asset("<value>")
+                        .amount(new BigInteger("100"))
+                        .asset("USD/2")
                         .build())
                     .metadata(Map.ofEntries(
-                        Map.entry("key", "<value>")))
+                        Map.entry("key", "")))
                     .pending(true)
                     .build())
                 .build();
@@ -498,7 +494,6 @@ public class Application {
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .metadata(Map.ofEntries(
                     Map.entry("admin", "true")))
-                .pageSize(100L)
                 .walletID("wallet1")
                 .build();
 
@@ -557,7 +552,6 @@ public class Application {
 
         GetTransactionsRequest req = GetTransactionsRequest.builder()
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
                 .walletID("wallet1")
                 .build();
 
@@ -798,7 +792,6 @@ public class Application {
                 .metadata(Map.ofEntries(
                     Map.entry("admin", "true")))
                 .name("wallet1")
-                .pageSize(100L)
                 .build();
 
         ListWalletsResponse res = sdk.wallets().v1().listWallets()

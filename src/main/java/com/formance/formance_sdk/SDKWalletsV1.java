@@ -137,10 +137,10 @@ public class SDKWalletsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -148,7 +148,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "confirmHold", 
                       Optional.of(List.of("auth:read", "wallets:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -159,7 +159,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "confirmHold",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -168,7 +168,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "confirmHold",
                             Optional.of(List.of("auth:read", "wallets:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -177,7 +177,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "confirmHold",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -260,10 +260,10 @@ public class SDKWalletsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -271,7 +271,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "createBalance", 
                       Optional.of(List.of("auth:read", "wallets:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -282,7 +282,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "createBalance",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -291,7 +291,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "createBalance",
                             Optional.of(List.of("auth:read", "wallets:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -300,7 +300,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "createBalance",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -392,10 +392,10 @@ public class SDKWalletsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -403,7 +403,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "createWallet", 
                       Optional.of(List.of("auth:read", "wallets:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -414,7 +414,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "createWallet",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -423,7 +423,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "createWallet",
                             Optional.of(List.of("auth:read", "wallets:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -432,7 +432,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "createWallet",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -526,10 +526,10 @@ public class SDKWalletsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -537,7 +537,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "creditWallet", 
                       Optional.of(List.of("auth:read", "wallets:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -548,7 +548,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "creditWallet",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -557,7 +557,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "creditWallet",
                             Optional.of(List.of("auth:read", "wallets:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -566,7 +566,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "creditWallet",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -649,10 +649,10 @@ public class SDKWalletsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -660,7 +660,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "debitWallet", 
                       Optional.of(List.of("auth:read", "wallets:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -671,7 +671,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "debitWallet",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -680,7 +680,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "debitWallet",
                             Optional.of(List.of("auth:read", "wallets:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -689,7 +689,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "debitWallet",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -776,10 +776,10 @@ public class SDKWalletsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -787,7 +787,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "getBalance", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -798,7 +798,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getBalance",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -807,7 +807,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "getBalance",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -816,7 +816,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getBalance",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -899,10 +899,10 @@ public class SDKWalletsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -910,7 +910,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "getHold", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -921,7 +921,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getHold",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -930,7 +930,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "getHold",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -939,7 +939,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getHold",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1025,10 +1025,10 @@ public class SDKWalletsV1 implements
                 GetHoldsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1036,7 +1036,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "getHolds", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1047,7 +1047,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getHolds",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1056,7 +1056,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "getHolds",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1065,7 +1065,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getHolds",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1141,10 +1141,10 @@ public class SDKWalletsV1 implements
                 GetTransactionsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1152,7 +1152,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "getTransactions", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1163,7 +1163,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getTransactions",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1172,7 +1172,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "getTransactions",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1181,7 +1181,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getTransactions",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1264,10 +1264,10 @@ public class SDKWalletsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1275,7 +1275,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "getWallet", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1286,7 +1286,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getWallet",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1295,7 +1295,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "getWallet",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1304,7 +1304,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getWallet",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1391,10 +1391,10 @@ public class SDKWalletsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1402,7 +1402,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "getWalletSummary", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1413,7 +1413,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getWalletSummary",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1422,7 +1422,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "getWalletSummary",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1431,7 +1431,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "getWalletSummary",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1518,10 +1518,10 @@ public class SDKWalletsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1529,7 +1529,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "listBalances", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1540,7 +1540,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "listBalances",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1549,7 +1549,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "listBalances",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1558,7 +1558,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "listBalances",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1638,10 +1638,10 @@ public class SDKWalletsV1 implements
                 ListWalletsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1649,7 +1649,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "listWallets", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1660,7 +1660,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "listWallets",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1669,7 +1669,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "listWallets",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1678,7 +1678,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "listWallets",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1772,10 +1772,10 @@ public class SDKWalletsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1783,7 +1783,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "updateWallet", 
                       Optional.of(List.of("auth:read", "wallets:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1794,7 +1794,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "updateWallet",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1803,7 +1803,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "updateWallet",
                             Optional.of(List.of("auth:read", "wallets:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1812,7 +1812,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "updateWallet",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1885,10 +1885,10 @@ public class SDKWalletsV1 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1896,7 +1896,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "voidHold", 
                       Optional.of(List.of("auth:read", "wallets:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1907,7 +1907,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "voidHold",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1916,7 +1916,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "voidHold",
                             Optional.of(List.of("auth:read", "wallets:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1925,7 +1925,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "voidHold",
                             Optional.of(List.of("auth:read", "wallets:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1993,10 +1993,10 @@ public class SDKWalletsV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -2004,7 +2004,7 @@ public class SDKWalletsV1 implements
                   new BeforeRequestContextImpl(
                       "walletsgetServerInfo", 
                       Optional.of(List.of("auth:read", "wallets:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -2015,7 +2015,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "walletsgetServerInfo",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -2024,7 +2024,7 @@ public class SDKWalletsV1 implements
                         new AfterSuccessContextImpl(
                             "walletsgetServerInfo",
                             Optional.of(List.of("auth:read", "wallets:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -2033,7 +2033,7 @@ public class SDKWalletsV1 implements
                         new AfterErrorContextImpl(
                             "walletsgetServerInfo",
                             Optional.of(List.of("auth:read", "wallets:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

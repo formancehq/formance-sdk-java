@@ -17,17 +17,17 @@ import java.util.Objects;
 public class V2GetTransactionResponse {
 
     @JsonProperty("data")
-    private V2ExpandedTransaction data;
+    private V2Transaction data;
 
     @JsonCreator
     public V2GetTransactionResponse(
-            @JsonProperty("data") V2ExpandedTransaction data) {
+            @JsonProperty("data") V2Transaction data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
     @JsonIgnore
-    public V2ExpandedTransaction data() {
+    public V2Transaction data() {
         return data;
     }
 
@@ -35,7 +35,7 @@ public class V2GetTransactionResponse {
         return new Builder();
     }
 
-    public V2GetTransactionResponse withData(V2ExpandedTransaction data) {
+    public V2GetTransactionResponse withData(V2Transaction data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -68,13 +68,13 @@ public class V2GetTransactionResponse {
     
     public final static class Builder {
  
-        private V2ExpandedTransaction data;  
+        private V2Transaction data;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(V2ExpandedTransaction data) {
+        public Builder data(V2Transaction data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

@@ -28,6 +28,9 @@ import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
 import com.formance.formance_sdk.models.operations.TestConfigRequest;
 import com.formance.formance_sdk.models.operations.TestConfigRequestBuilder;
 import com.formance.formance_sdk.models.operations.TestConfigResponse;
+import com.formance.formance_sdk.models.operations.UpdateConfigRequest;
+import com.formance.formance_sdk.models.operations.UpdateConfigRequestBuilder;
+import com.formance.formance_sdk.models.operations.UpdateConfigResponse;
 import com.formance.formance_sdk.models.shared.AttemptResponse;
 import com.formance.formance_sdk.models.shared.ConfigResponse;
 import com.formance.formance_sdk.models.shared.ConfigUser;
@@ -56,7 +59,8 @@ public class SDKWebhooksV1 implements
             MethodCallDeleteConfig,
             MethodCallGetManyConfigs,
             MethodCallInsertConfig,
-            MethodCallTestConfig {
+            MethodCallTestConfig,
+            MethodCallUpdateConfig {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -95,10 +99,10 @@ public class SDKWebhooksV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -106,7 +110,7 @@ public class SDKWebhooksV1 implements
                   new BeforeRequestContextImpl(
                       "activateConfig", 
                       Optional.of(List.of("auth:read", "webhooks:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -117,7 +121,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "activateConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -126,7 +130,7 @@ public class SDKWebhooksV1 implements
                         new AfterSuccessContextImpl(
                             "activateConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -135,7 +139,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "activateConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -238,10 +242,10 @@ public class SDKWebhooksV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -249,7 +253,7 @@ public class SDKWebhooksV1 implements
                   new BeforeRequestContextImpl(
                       "changeConfigSecret", 
                       Optional.of(List.of("auth:read", "webhooks:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -260,7 +264,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "changeConfigSecret",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -269,7 +273,7 @@ public class SDKWebhooksV1 implements
                         new AfterSuccessContextImpl(
                             "changeConfigSecret",
                             Optional.of(List.of("auth:read", "webhooks:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -278,7 +282,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "changeConfigSecret",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -363,10 +367,10 @@ public class SDKWebhooksV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -374,7 +378,7 @@ public class SDKWebhooksV1 implements
                   new BeforeRequestContextImpl(
                       "deactivateConfig", 
                       Optional.of(List.of("auth:read", "webhooks:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -385,7 +389,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "deactivateConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -394,7 +398,7 @@ public class SDKWebhooksV1 implements
                         new AfterSuccessContextImpl(
                             "deactivateConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -403,7 +407,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "deactivateConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -488,10 +492,10 @@ public class SDKWebhooksV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -499,7 +503,7 @@ public class SDKWebhooksV1 implements
                   new BeforeRequestContextImpl(
                       "deleteConfig", 
                       Optional.of(List.of("auth:read", "webhooks:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -510,7 +514,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "deleteConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -519,7 +523,7 @@ public class SDKWebhooksV1 implements
                         new AfterSuccessContextImpl(
                             "deleteConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -528,7 +532,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "deleteConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -605,10 +609,10 @@ public class SDKWebhooksV1 implements
                 GetManyConfigsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -616,7 +620,7 @@ public class SDKWebhooksV1 implements
                   new BeforeRequestContextImpl(
                       "getManyConfigs", 
                       Optional.of(List.of("auth:read", "webhooks:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -627,7 +631,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "getManyConfigs",
                             Optional.of(List.of("auth:read", "webhooks:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -636,7 +640,7 @@ public class SDKWebhooksV1 implements
                         new AfterSuccessContextImpl(
                             "getManyConfigs",
                             Optional.of(List.of("auth:read", "webhooks:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -645,7 +649,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "getManyConfigs",
                             Optional.of(List.of("auth:read", "webhooks:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -759,10 +763,10 @@ public class SDKWebhooksV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -770,7 +774,7 @@ public class SDKWebhooksV1 implements
                   new BeforeRequestContextImpl(
                       "insertConfig", 
                       Optional.of(List.of("auth:read", "webhooks:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -781,7 +785,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "insertConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -790,7 +794,7 @@ public class SDKWebhooksV1 implements
                         new AfterSuccessContextImpl(
                             "insertConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -799,7 +803,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "insertConfig",
                             Optional.of(List.of("auth:read", "webhooks:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -884,10 +888,10 @@ public class SDKWebhooksV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -895,7 +899,7 @@ public class SDKWebhooksV1 implements
                   new BeforeRequestContextImpl(
                       "testConfig", 
                       Optional.of(List.of("auth:read", "webhooks:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -906,7 +910,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "testConfig",
                             Optional.of(List.of("auth:read", "webhooks:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -915,7 +919,7 @@ public class SDKWebhooksV1 implements
                         new AfterSuccessContextImpl(
                             "testConfig",
                             Optional.of(List.of("auth:read", "webhooks:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -924,7 +928,7 @@ public class SDKWebhooksV1 implements
                         new AfterErrorContextImpl(
                             "testConfig",
                             Optional.of(List.of("auth:read", "webhooks:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -955,6 +959,133 @@ public class SDKWebhooksV1 implements
                     "Unexpected content-type received: " + _contentType, 
                     Utils.extractByteArrayFromBody(_httpRes));
             }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                WebhooksErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<WebhooksErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Update one config
+     * Update a webhooks config by ID.
+     * @return The call builder
+     */
+    public UpdateConfigRequestBuilder updateConfig() {
+        return new UpdateConfigRequestBuilder(this);
+    }
+
+    /**
+     * Update one config
+     * Update a webhooks config by ID.
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public UpdateConfigResponse updateConfig(
+            UpdateConfigRequest request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                UpdateConfigRequest.class,
+                _baseUrl,
+                "/api/webhooks/configs/{id}",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "PUT");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<UpdateConfigRequest>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "configUser",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "updateConfig", 
+                      Optional.of(List.of("auth:read", "webhooks:write")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "updateConfig",
+                            Optional.of(List.of("auth:read", "webhooks:write")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "updateConfig",
+                            Optional.of(List.of("auth:read", "webhooks:write")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "updateConfig",
+                            Optional.of(List.of("auth:read", "webhooks:write")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        UpdateConfigResponse.Builder _resBuilder = 
+            UpdateConfigResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        UpdateConfigResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {

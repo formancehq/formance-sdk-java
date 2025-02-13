@@ -7,8 +7,6 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
@@ -321,7 +319,7 @@ public class ListLogsRequest {
  
         private String ledger;
  
-        private Optional<Long> pageSize;
+        private Optional<Long> pageSize = Optional.empty();
  
         private Optional<OffsetDateTime> startTime = Optional.empty();  
         
@@ -447,9 +445,7 @@ public class ListLogsRequest {
         }
         
         public ListLogsRequest build() {
-            if (pageSize == null) {
-                pageSize = _SINGLETON_VALUE_PageSize.value();
-            }            return new ListLogsRequest(
+            return new ListLogsRequest(
                 after,
                 cursor,
                 endTime,
@@ -457,12 +453,6 @@ public class ListLogsRequest {
                 pageSize,
                 startTime);
         }
-
-        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
-                new LazySingletonValue<>(
-                        "pageSize",
-                        "15",
-                        new TypeReference<Optional<Long>>() {});
     }
 }
 

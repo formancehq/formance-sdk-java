@@ -1,0 +1,9 @@
+# V3ReversePaymentInitiationRequest
+
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `v3ReversePaymentInitiationRequest`                                                                      | [Optional\<V3ReversePaymentInitiationRequest>](../../models/shared/V3ReversePaymentInitiationRequest.md) | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |
+| `paymentInitiationID`                                                                                    | *String*                                                                                                 | :heavy_check_mark:                                                                                       | The payment initiation ID                                                                                |

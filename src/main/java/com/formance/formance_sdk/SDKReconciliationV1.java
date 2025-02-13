@@ -111,10 +111,10 @@ public class SDKReconciliationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -122,7 +122,7 @@ public class SDKReconciliationV1 implements
                   new BeforeRequestContextImpl(
                       "createPolicy", 
                       Optional.of(List.of("auth:read", "reconciliation:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -133,7 +133,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "createPolicy",
                             Optional.of(List.of("auth:read", "reconciliation:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -142,7 +142,7 @@ public class SDKReconciliationV1 implements
                         new AfterSuccessContextImpl(
                             "createPolicy",
                             Optional.of(List.of("auth:read", "reconciliation:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -151,7 +151,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "createPolicy",
                             Optional.of(List.of("auth:read", "reconciliation:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -236,10 +236,10 @@ public class SDKReconciliationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -247,7 +247,7 @@ public class SDKReconciliationV1 implements
                   new BeforeRequestContextImpl(
                       "deletePolicy", 
                       Optional.of(List.of("auth:read", "reconciliation:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -258,7 +258,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "deletePolicy",
                             Optional.of(List.of("auth:read", "reconciliation:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -267,7 +267,7 @@ public class SDKReconciliationV1 implements
                         new AfterSuccessContextImpl(
                             "deletePolicy",
                             Optional.of(List.of("auth:read", "reconciliation:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -276,7 +276,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "deletePolicy",
                             Optional.of(List.of("auth:read", "reconciliation:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -348,10 +348,10 @@ public class SDKReconciliationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -359,7 +359,7 @@ public class SDKReconciliationV1 implements
                   new BeforeRequestContextImpl(
                       "getPolicy", 
                       Optional.of(List.of("auth:read", "reconciliation:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -370,7 +370,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "getPolicy",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -379,7 +379,7 @@ public class SDKReconciliationV1 implements
                         new AfterSuccessContextImpl(
                             "getPolicy",
                             Optional.of(List.of("auth:read", "reconciliation:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -388,7 +388,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "getPolicy",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -471,10 +471,10 @@ public class SDKReconciliationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -482,7 +482,7 @@ public class SDKReconciliationV1 implements
                   new BeforeRequestContextImpl(
                       "getReconciliation", 
                       Optional.of(List.of("auth:read", "reconciliation:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -493,7 +493,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "getReconciliation",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -502,7 +502,7 @@ public class SDKReconciliationV1 implements
                         new AfterSuccessContextImpl(
                             "getReconciliation",
                             Optional.of(List.of("auth:read", "reconciliation:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -511,7 +511,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "getReconciliation",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -597,10 +597,10 @@ public class SDKReconciliationV1 implements
                 ListPoliciesRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -608,7 +608,7 @@ public class SDKReconciliationV1 implements
                   new BeforeRequestContextImpl(
                       "listPolicies", 
                       Optional.of(List.of("auth:read", "reconciliation:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -619,7 +619,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "listPolicies",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -628,7 +628,7 @@ public class SDKReconciliationV1 implements
                         new AfterSuccessContextImpl(
                             "listPolicies",
                             Optional.of(List.of("auth:read", "reconciliation:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -637,7 +637,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "listPolicies",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -723,10 +723,10 @@ public class SDKReconciliationV1 implements
                 ListReconciliationsRequest.class,
                 request, 
                 null));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -734,7 +734,7 @@ public class SDKReconciliationV1 implements
                   new BeforeRequestContextImpl(
                       "listReconciliations", 
                       Optional.of(List.of("auth:read", "reconciliation:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -745,7 +745,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "listReconciliations",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -754,7 +754,7 @@ public class SDKReconciliationV1 implements
                         new AfterSuccessContextImpl(
                             "listReconciliations",
                             Optional.of(List.of("auth:read", "reconciliation:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -763,7 +763,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "listReconciliations",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -861,10 +861,10 @@ public class SDKReconciliationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -872,7 +872,7 @@ public class SDKReconciliationV1 implements
                   new BeforeRequestContextImpl(
                       "reconcile", 
                       Optional.of(List.of("auth:read", "reconciliation:write")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -883,7 +883,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "reconcile",
                             Optional.of(List.of("auth:read", "reconciliation:write")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -892,7 +892,7 @@ public class SDKReconciliationV1 implements
                         new AfterSuccessContextImpl(
                             "reconcile",
                             Optional.of(List.of("auth:read", "reconciliation:write")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -901,7 +901,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "reconcile",
                             Optional.of(List.of("auth:read", "reconciliation:write")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -980,10 +980,10 @@ public class SDKReconciliationV1 implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -991,7 +991,7 @@ public class SDKReconciliationV1 implements
                   new BeforeRequestContextImpl(
                       "reconciliationgetServerInfo", 
                       Optional.of(List.of("auth:read", "reconciliation:read")), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1002,7 +1002,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "reconciliationgetServerInfo",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1011,7 +1011,7 @@ public class SDKReconciliationV1 implements
                         new AfterSuccessContextImpl(
                             "reconciliationgetServerInfo",
                             Optional.of(List.of("auth:read", "reconciliation:read")), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1020,7 +1020,7 @@ public class SDKReconciliationV1 implements
                         new AfterErrorContextImpl(
                             "reconciliationgetServerInfo",
                             Optional.of(List.of("auth:read", "reconciliation:read")),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

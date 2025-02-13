@@ -41,6 +41,12 @@ public class V2CreateTransactionRequest {
     private Optional<Boolean> dryRun;
 
     /**
+     * Disable balance checks when passing postings
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")
+    private Optional<Boolean> force;
+
+    /**
      * Name of the ledger.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
@@ -51,21 +57,24 @@ public class V2CreateTransactionRequest {
             Optional<String> idempotencyKey,
             V2PostTransaction v2PostTransaction,
             Optional<Boolean> dryRun,
+            Optional<Boolean> force,
             String ledger) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
         Utils.checkNotNull(dryRun, "dryRun");
+        Utils.checkNotNull(force, "force");
         Utils.checkNotNull(ledger, "ledger");
         this.idempotencyKey = idempotencyKey;
         this.v2PostTransaction = v2PostTransaction;
         this.dryRun = dryRun;
+        this.force = force;
         this.ledger = ledger;
     }
     
     public V2CreateTransactionRequest(
             V2PostTransaction v2PostTransaction,
             String ledger) {
-        this(Optional.empty(), v2PostTransaction, Optional.empty(), ledger);
+        this(Optional.empty(), v2PostTransaction, Optional.empty(), Optional.empty(), ledger);
     }
 
     /**
@@ -93,6 +102,14 @@ public class V2CreateTransactionRequest {
     @JsonIgnore
     public Optional<Boolean> dryRun() {
         return dryRun;
+    }
+
+    /**
+     * Disable balance checks when passing postings
+     */
+    @JsonIgnore
+    public Optional<Boolean> force() {
+        return force;
     }
 
     /**
@@ -156,6 +173,24 @@ public class V2CreateTransactionRequest {
     }
 
     /**
+     * Disable balance checks when passing postings
+     */
+    public V2CreateTransactionRequest withForce(boolean force) {
+        Utils.checkNotNull(force, "force");
+        this.force = Optional.ofNullable(force);
+        return this;
+    }
+
+    /**
+     * Disable balance checks when passing postings
+     */
+    public V2CreateTransactionRequest withForce(Optional<Boolean> force) {
+        Utils.checkNotNull(force, "force");
+        this.force = force;
+        return this;
+    }
+
+    /**
      * Name of the ledger.
      */
     public V2CreateTransactionRequest withLedger(String ledger) {
@@ -177,6 +212,7 @@ public class V2CreateTransactionRequest {
             Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Objects.deepEquals(this.v2PostTransaction, other.v2PostTransaction) &&
             Objects.deepEquals(this.dryRun, other.dryRun) &&
+            Objects.deepEquals(this.force, other.force) &&
             Objects.deepEquals(this.ledger, other.ledger);
     }
     
@@ -186,6 +222,7 @@ public class V2CreateTransactionRequest {
             idempotencyKey,
             v2PostTransaction,
             dryRun,
+            force,
             ledger);
     }
     
@@ -195,6 +232,7 @@ public class V2CreateTransactionRequest {
                 "idempotencyKey", idempotencyKey,
                 "v2PostTransaction", v2PostTransaction,
                 "dryRun", dryRun,
+                "force", force,
                 "ledger", ledger);
     }
     
@@ -205,6 +243,8 @@ public class V2CreateTransactionRequest {
         private V2PostTransaction v2PostTransaction;
  
         private Optional<Boolean> dryRun = Optional.empty();
+ 
+        private Optional<Boolean> force = Optional.empty();
  
         private String ledger;  
         
@@ -261,6 +301,24 @@ public class V2CreateTransactionRequest {
         }
 
         /**
+         * Disable balance checks when passing postings
+         */
+        public Builder force(boolean force) {
+            Utils.checkNotNull(force, "force");
+            this.force = Optional.ofNullable(force);
+            return this;
+        }
+
+        /**
+         * Disable balance checks when passing postings
+         */
+        public Builder force(Optional<Boolean> force) {
+            Utils.checkNotNull(force, "force");
+            this.force = force;
+            return this;
+        }
+
+        /**
          * Name of the ledger.
          */
         public Builder ledger(String ledger) {
@@ -274,6 +332,7 @@ public class V2CreateTransactionRequest {
                 idempotencyKey,
                 v2PostTransaction,
                 dryRun,
+                force,
                 ledger);
         }
     }

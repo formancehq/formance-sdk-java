@@ -34,13 +34,21 @@ and standard method from web, mobile and desktop applications.
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
-
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
+<!-- $toc-max-depth=2 -->
+* [formance-sdk-java](#formance-sdk-java)
+  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
+* [Introduction](#introduction)
 * [Authentication](#authentication)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Server Selection](#server-selection)
+  * [Error Handling](#error-handling)
+  * [Authentication](#authentication-1)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
+
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -54,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:4.2.0'
+implementation 'com.formance:formance-sdk:5.0.0'
 ```
 
 Maven:
@@ -62,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>4.2.0</version>
+    <version>5.0.0</version>
 </dependency>
 ```
 
@@ -183,6 +191,7 @@ public class Application {
 * [getInfo](docs/sdks/v2/README.md#getinfo) - Show server information
 * [getLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/v2/README.md#getledgerinfo) - Get information about a ledger
+* [getMetrics](docs/sdks/v2/README.md#getmetrics) - Read in memory metrics
 * [getTransaction](docs/sdks/v2/README.md#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](docs/sdks/v2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](docs/sdks/v2/README.md#importlogs)
@@ -287,6 +296,53 @@ public class Application {
 * [updateConnectorConfigV1](docs/sdks/sdkpaymentsv1/README.md#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](docs/sdks/sdkpaymentsv1/README.md#updatemetadata) - Update metadata
 
+#### [payments().v3()](docs/sdks/v3/README.md)
+
+* [addAccountToPool](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
+* [approvePaymentInitiation](docs/sdks/v3/README.md#approvepaymentinitiation) - Approve a payment initiation
+* [createAccount](docs/sdks/v3/README.md#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+* [createBankAccount](docs/sdks/v3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+
+* [createPayment](docs/sdks/v3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+* [createPool](docs/sdks/v3/README.md#createpool) - Create a formance pool object
+* [deletePaymentInitiation](docs/sdks/v3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
+* [deletePool](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
+* [forwardBankAccount](docs/sdks/v3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
+* [getAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
+* [getAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
+* [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
+* [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
+* [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
+* [getInfo](docs/sdks/v3/README.md#getinfo) - Show server information
+* [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
+* [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
+* [getPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
+* [getPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get pool balances
+* [getTask](docs/sdks/v3/README.md#gettask) - Get a task and its result by ID
+* [initiatePayment](docs/sdks/v3/README.md#initiatepayment) - Initiate a payment
+* [installConnector](docs/sdks/v3/README.md#installconnector) - Install a connector
+* [listAccounts](docs/sdks/v3/README.md#listaccounts) - List all accounts
+* [listBankAccounts](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
+* [listConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
+* [listConnectorScheduleInstances](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
+* [listConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
+* [listConnectors](docs/sdks/v3/README.md#listconnectors) - List all connectors
+* [listPaymentInitiationAdjustments](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
+* [listPaymentInitiationRelatedPayments](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
+* [listPaymentInitiations](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
+* [listPayments](docs/sdks/v3/README.md#listpayments) - List all payments
+* [listPools](docs/sdks/v3/README.md#listpools) - List all pools
+* [rejectPaymentInitiation](docs/sdks/v3/README.md#rejectpaymentinitiation) - Reject a payment initiation
+* [removeAccountFromPool](docs/sdks/v3/README.md#removeaccountfrompool) - Remove an account from a pool
+* [resetConnector](docs/sdks/v3/README.md#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+* [retryPaymentInitiation](docs/sdks/v3/README.md#retrypaymentinitiation) - Retry a payment initiation
+* [reversePaymentInitiation](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
+* [uninstallConnector](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
+* [updateBankAccountMetadata](docs/sdks/v3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
+* [updatePaymentMetadata](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
+
 ### [reconciliation()](docs/sdks/reconciliation/README.md)
 
 
@@ -347,6 +403,7 @@ public class Application {
 * [getManyConfigs](docs/sdks/sdkwebhooksv1/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/sdkwebhooksv1/README.md#insertconfig) - Insert a new config
 * [testConfig](docs/sdks/sdkwebhooksv1/README.md#testconfig) - Test one config
+* [updateConfig](docs/sdks/sdkwebhooksv1/README.md#updateconfig) - Update one config
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -358,10 +415,10 @@ public class Application {
 
 You can override the default server globally using the `.serverIndex(int serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                 | Default values                    |
-| --- | ----------------------------------------------------- | --------------------------------------------------------- | --------------------------------- |
-| 0   | `http://localhost`                                    |                                                           |                                   |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `ServerEnvironment environment`<br/>`String organization` | `"sandbox"`<br/>`"orgID-stackID"` |
+| #   | Server                                                | Variables                                                 | Default values                       |
+| --- | ----------------------------------------------------- | --------------------------------------------------------- | ------------------------------------ |
+| 0   | `http://localhost`                                    |                                                           |                                      |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `ServerEnvironment environment`<br/>`String organization` | `"eu.sandbox"`<br/>`"orgID-stackID"` |
 
 If the selected server has variables, you may override their default values using their associated builder method(s):
  * `environment(ServerEnvironment environment)`
@@ -438,12 +495,12 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `createTransactions` method throws the following exceptions:
+By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `addMetadataOnTransaction` method throws the following exceptions:
 
-| Error Type                  | Status Code | Content Type     |
-| --------------------------- | ----------- | ---------------- |
-| models/errors/ErrorResponse | default     | application/json |
-| models/errors/SDKError      | 4XX, 5XX    | \*/\*            |
+| Error Type                    | Status Code | Content Type     |
+| ----------------------------- | ----------- | ---------------- |
+| models/errors/V2ErrorResponse | default     | application/json |
+| models/errors/SDKError        | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -451,20 +508,17 @@ By default, an API error will throw a `models/errors/SDKError` exception. When c
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
-import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
-import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
-import com.formance.formance_sdk.models.shared.Posting;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
+import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.TransactionData;
-import com.formance.formance_sdk.models.shared.Transactions;
 import java.lang.Exception;
 import java.math.BigInteger;
-import java.util.List;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -473,30 +527,19 @@ public class Application {
                     .build())
             .build();
 
-        CreateTransactionsRequest req = CreateTransactionsRequest.builder()
-                .transactions(Transactions.builder()
-                    .transactions(List.of(
-                        TransactionData.builder()
-                            .postings(List.of(
-                                Posting.builder()
-                                    .amount(new BigInteger("100"))
-                                    .asset("COIN")
-                                    .destination("users:002")
-                                    .source("users:001")
-                                    .build()))
-                            .reference("ref:001")
-                            .build()))
-                    .build())
+        V2AddMetadataOnTransactionRequest req = V2AddMetadataOnTransactionRequest.builder()
+                .id(new BigInteger("1234"))
                 .ledger("ledger001")
+                .requestBody(Map.ofEntries(
+                    Map.entry("admin", "true")))
+                .dryRun(true)
                 .build();
 
-        CreateTransactionsResponse res = sdk.ledger().v1().createTransactions()
+        V2AddMetadataOnTransactionResponse res = sdk.ledger().v2().addMetadataOnTransaction()
                 .request(req)
                 .call();
 
-        if (res.transactionsResponse().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

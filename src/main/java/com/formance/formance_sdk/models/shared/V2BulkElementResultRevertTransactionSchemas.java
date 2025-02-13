@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
@@ -19,22 +20,33 @@ public class V2BulkElementResultRevertTransactionSchemas implements V2BulkElemen
     @JsonProperty("data")
     private V2Transaction data;
 
+    @JsonProperty("logID")
+    private long logID;
+
     @JsonProperty("responseType")
     private String responseType;
 
     @JsonCreator
     public V2BulkElementResultRevertTransactionSchemas(
             @JsonProperty("data") V2Transaction data,
+            @JsonProperty("logID") long logID,
             @JsonProperty("responseType") String responseType) {
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(logID, "logID");
         Utils.checkNotNull(responseType, "responseType");
         this.data = data;
+        this.logID = logID;
         this.responseType = responseType;
     }
 
     @JsonIgnore
     public V2Transaction data() {
         return data;
+    }
+
+    @JsonIgnore
+    public long logID() {
+        return logID;
     }
 
     @JsonIgnore
@@ -50,6 +62,12 @@ public class V2BulkElementResultRevertTransactionSchemas implements V2BulkElemen
     public V2BulkElementResultRevertTransactionSchemas withData(V2Transaction data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
+        return this;
+    }
+
+    public V2BulkElementResultRevertTransactionSchemas withLogID(long logID) {
+        Utils.checkNotNull(logID, "logID");
+        this.logID = logID;
         return this;
     }
 
@@ -70,6 +88,7 @@ public class V2BulkElementResultRevertTransactionSchemas implements V2BulkElemen
         V2BulkElementResultRevertTransactionSchemas other = (V2BulkElementResultRevertTransactionSchemas) o;
         return 
             Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.logID, other.logID) &&
             Objects.deepEquals(this.responseType, other.responseType);
     }
     
@@ -77,6 +96,7 @@ public class V2BulkElementResultRevertTransactionSchemas implements V2BulkElemen
     public int hashCode() {
         return Objects.hash(
             data,
+            logID,
             responseType);
     }
     
@@ -84,12 +104,15 @@ public class V2BulkElementResultRevertTransactionSchemas implements V2BulkElemen
     public String toString() {
         return Utils.toString(V2BulkElementResultRevertTransactionSchemas.class,
                 "data", data,
+                "logID", logID,
                 "responseType", responseType);
     }
     
     public final static class Builder {
  
         private V2Transaction data;
+ 
+        private Long logID;
  
         private String responseType;  
         
@@ -103,6 +126,12 @@ public class V2BulkElementResultRevertTransactionSchemas implements V2BulkElemen
             return this;
         }
 
+        public Builder logID(long logID) {
+            Utils.checkNotNull(logID, "logID");
+            this.logID = logID;
+            return this;
+        }
+
         public Builder responseType(String responseType) {
             Utils.checkNotNull(responseType, "responseType");
             this.responseType = responseType;
@@ -112,6 +141,7 @@ public class V2BulkElementResultRevertTransactionSchemas implements V2BulkElemen
         public V2BulkElementResultRevertTransactionSchemas build() {
             return new V2BulkElementResultRevertTransactionSchemas(
                 data,
+                logID,
                 responseType);
         }
     }

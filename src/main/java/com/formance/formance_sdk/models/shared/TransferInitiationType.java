@@ -6,6 +6,8 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum TransferInitiationType {
     TRANSFER("TRANSFER"),
@@ -20,5 +22,14 @@ public enum TransferInitiationType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<TransferInitiationType> fromValue(String value) {
+        for (TransferInitiationType o: TransferInitiationType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

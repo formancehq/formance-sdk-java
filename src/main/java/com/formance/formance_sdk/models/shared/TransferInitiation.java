@@ -65,7 +65,7 @@ public class TransferInitiation {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedPayments")
-    private Optional<? extends List<TransferInitiationPayments>> relatedPayments;
+    private JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments;
 
     @JsonProperty("scheduledAt")
     private OffsetDateTime scheduledAt;
@@ -93,7 +93,7 @@ public class TransferInitiation {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("reference") String reference,
             @JsonProperty("relatedAdjustments") Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments,
-            @JsonProperty("relatedPayments") Optional<? extends List<TransferInitiationPayments>> relatedPayments,
+            @JsonProperty("relatedPayments") JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
             @JsonProperty("sourceAccountID") String sourceAccountID,
             @JsonProperty("status") TransferInitiationStatus status,
@@ -149,7 +149,7 @@ public class TransferInitiation {
             String sourceAccountID,
             TransferInitiationStatus status,
             TransferInitiationType type) {
-        this(amount, asset, connectorID, createdAt, description, destinationAccountID, error, id, initialAmount, JsonNullable.undefined(), reference, Optional.empty(), Optional.empty(), scheduledAt, sourceAccountID, status, type);
+        this(amount, asset, connectorID, createdAt, description, destinationAccountID, error, id, initialAmount, JsonNullable.undefined(), reference, Optional.empty(), JsonNullable.undefined(), scheduledAt, sourceAccountID, status, type);
     }
 
     @JsonIgnore
@@ -216,8 +216,8 @@ public class TransferInitiation {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<TransferInitiationPayments>> relatedPayments() {
-        return (Optional<List<TransferInitiationPayments>>) relatedPayments;
+    public JsonNullable<List<TransferInitiationPayments>> relatedPayments() {
+        return (JsonNullable<List<TransferInitiationPayments>>) relatedPayments;
     }
 
     @JsonIgnore
@@ -340,11 +340,11 @@ public class TransferInitiation {
 
     public TransferInitiation withRelatedPayments(List<TransferInitiationPayments> relatedPayments) {
         Utils.checkNotNull(relatedPayments, "relatedPayments");
-        this.relatedPayments = Optional.ofNullable(relatedPayments);
+        this.relatedPayments = JsonNullable.of(relatedPayments);
         return this;
     }
 
-    public TransferInitiation withRelatedPayments(Optional<? extends List<TransferInitiationPayments>> relatedPayments) {
+    public TransferInitiation withRelatedPayments(JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments) {
         Utils.checkNotNull(relatedPayments, "relatedPayments");
         this.relatedPayments = relatedPayments;
         return this;
@@ -473,7 +473,7 @@ public class TransferInitiation {
  
         private Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments = Optional.empty();
  
-        private Optional<? extends List<TransferInitiationPayments>> relatedPayments = Optional.empty();
+        private JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments = JsonNullable.undefined();
  
         private OffsetDateTime scheduledAt;
  
@@ -583,11 +583,11 @@ public class TransferInitiation {
 
         public Builder relatedPayments(List<TransferInitiationPayments> relatedPayments) {
             Utils.checkNotNull(relatedPayments, "relatedPayments");
-            this.relatedPayments = Optional.ofNullable(relatedPayments);
+            this.relatedPayments = JsonNullable.of(relatedPayments);
             return this;
         }
 
-        public Builder relatedPayments(Optional<? extends List<TransferInitiationPayments>> relatedPayments) {
+        public Builder relatedPayments(JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments) {
             Utils.checkNotNull(relatedPayments, "relatedPayments");
             this.relatedPayments = relatedPayments;
             return this;

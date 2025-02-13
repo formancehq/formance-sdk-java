@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
@@ -29,6 +30,9 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
     @JsonProperty("errorDetails")
     private Optional<String> errorDetails;
 
+    @JsonProperty("logID")
+    private long logID;
+
     @JsonProperty("responseType")
     private String responseType;
 
@@ -37,22 +41,26 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
             @JsonProperty("errorCode") String errorCode,
             @JsonProperty("errorDescription") String errorDescription,
             @JsonProperty("errorDetails") Optional<String> errorDetails,
+            @JsonProperty("logID") long logID,
             @JsonProperty("responseType") String responseType) {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorDescription, "errorDescription");
         Utils.checkNotNull(errorDetails, "errorDetails");
+        Utils.checkNotNull(logID, "logID");
         Utils.checkNotNull(responseType, "responseType");
         this.errorCode = errorCode;
         this.errorDescription = errorDescription;
         this.errorDetails = errorDetails;
+        this.logID = logID;
         this.responseType = responseType;
     }
     
     public V2BulkElementResultErrorSchemas(
             String errorCode,
             String errorDescription,
+            long logID,
             String responseType) {
-        this(errorCode, errorDescription, Optional.empty(), responseType);
+        this(errorCode, errorDescription, Optional.empty(), logID, responseType);
     }
 
     @JsonIgnore
@@ -68,6 +76,11 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
     @JsonIgnore
     public Optional<String> errorDetails() {
         return errorDetails;
+    }
+
+    @JsonIgnore
+    public long logID() {
+        return logID;
     }
 
     @JsonIgnore
@@ -104,6 +117,12 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
         return this;
     }
 
+    public V2BulkElementResultErrorSchemas withLogID(long logID) {
+        Utils.checkNotNull(logID, "logID");
+        this.logID = logID;
+        return this;
+    }
+
     public V2BulkElementResultErrorSchemas withResponseType(String responseType) {
         Utils.checkNotNull(responseType, "responseType");
         this.responseType = responseType;
@@ -123,6 +142,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
             Objects.deepEquals(this.errorCode, other.errorCode) &&
             Objects.deepEquals(this.errorDescription, other.errorDescription) &&
             Objects.deepEquals(this.errorDetails, other.errorDetails) &&
+            Objects.deepEquals(this.logID, other.logID) &&
             Objects.deepEquals(this.responseType, other.responseType);
     }
     
@@ -132,6 +152,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
             errorCode,
             errorDescription,
             errorDetails,
+            logID,
             responseType);
     }
     
@@ -141,6 +162,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
                 "errorCode", errorCode,
                 "errorDescription", errorDescription,
                 "errorDetails", errorDetails,
+                "logID", logID,
                 "responseType", responseType);
     }
     
@@ -151,6 +173,8 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
         private String errorDescription;
  
         private Optional<String> errorDetails = Optional.empty();
+ 
+        private Long logID;
  
         private String responseType;  
         
@@ -182,6 +206,12 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
             return this;
         }
 
+        public Builder logID(long logID) {
+            Utils.checkNotNull(logID, "logID");
+            this.logID = logID;
+            return this;
+        }
+
         public Builder responseType(String responseType) {
             Utils.checkNotNull(responseType, "responseType");
             this.responseType = responseType;
@@ -193,6 +223,7 @@ public class V2BulkElementResultErrorSchemas implements V2BulkElementResult {
                 errorCode,
                 errorDescription,
                 errorDetails,
+                logID,
                 responseType);
         }
     }

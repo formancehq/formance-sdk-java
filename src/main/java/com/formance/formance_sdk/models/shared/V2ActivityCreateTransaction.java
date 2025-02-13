@@ -22,7 +22,7 @@ public class V2ActivityCreateTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends V2PostTransaction> data;
+    private Optional<? extends OrchestrationV2PostTransaction> data;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
@@ -30,7 +30,7 @@ public class V2ActivityCreateTransaction {
 
     @JsonCreator
     public V2ActivityCreateTransaction(
-            @JsonProperty("data") Optional<? extends V2PostTransaction> data,
+            @JsonProperty("data") Optional<? extends OrchestrationV2PostTransaction> data,
             @JsonProperty("ledger") Optional<String> ledger) {
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(ledger, "ledger");
@@ -44,8 +44,8 @@ public class V2ActivityCreateTransaction {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2PostTransaction> data() {
-        return (Optional<V2PostTransaction>) data;
+    public Optional<OrchestrationV2PostTransaction> data() {
+        return (Optional<OrchestrationV2PostTransaction>) data;
     }
 
     @JsonIgnore
@@ -57,13 +57,13 @@ public class V2ActivityCreateTransaction {
         return new Builder();
     }
 
-    public V2ActivityCreateTransaction withData(V2PostTransaction data) {
+    public V2ActivityCreateTransaction withData(OrchestrationV2PostTransaction data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
     }
 
-    public V2ActivityCreateTransaction withData(Optional<? extends V2PostTransaction> data) {
+    public V2ActivityCreateTransaction withData(Optional<? extends OrchestrationV2PostTransaction> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -111,7 +111,7 @@ public class V2ActivityCreateTransaction {
     
     public final static class Builder {
  
-        private Optional<? extends V2PostTransaction> data = Optional.empty();
+        private Optional<? extends OrchestrationV2PostTransaction> data = Optional.empty();
  
         private Optional<String> ledger = Optional.empty();  
         
@@ -119,13 +119,13 @@ public class V2ActivityCreateTransaction {
           // force use of static builder() method
         }
 
-        public Builder data(V2PostTransaction data) {
+        public Builder data(OrchestrationV2PostTransaction data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder data(Optional<? extends V2PostTransaction> data) {
+        public Builder data(Optional<? extends OrchestrationV2PostTransaction> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
