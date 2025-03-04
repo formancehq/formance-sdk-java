@@ -4,7 +4,7 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   fixes:
-    nameResolutionDec2023: false
+    nameResolutionFeb2025: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
@@ -14,7 +14,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 java:
-  version: 5.0.0
+  version: 5.0.1
   additionalDependencies:
     - implementation:org.apache.httpcomponents.client5:httpclient5:5.4.2
   additionalPlugins: []
