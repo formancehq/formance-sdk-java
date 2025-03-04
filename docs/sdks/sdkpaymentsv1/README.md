@@ -1202,7 +1202,7 @@ public class Application {
         InstallConnectorRequest req = InstallConnectorRequest.builder()
                 .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
                     .apiKey("XXX")
-                    .name("My Wise Account")
+                    .name("My Stripe Account")
                     .build()))
                 .connector(Connector.ATLAR)
                 .build();

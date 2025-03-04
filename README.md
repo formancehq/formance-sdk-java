@@ -62,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:5.0.0'
+implementation 'com.formance:formance-sdk:5.0.1'
 ```
 
 Maven:
@@ -70,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
 </dependency>
 ```
 
@@ -415,14 +415,17 @@ public class Application {
 
 You can override the default server globally using the `.serverIndex(int serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                 | Default values                       |
-| --- | ----------------------------------------------------- | --------------------------------------------------------- | ------------------------------------ |
-| 0   | `http://localhost`                                    |                                                           |                                      |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `ServerEnvironment environment`<br/>`String organization` | `"eu.sandbox"`<br/>`"orgID-stackID"` |
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
 
-If the selected server has variables, you may override their default values using their associated builder method(s):
- * `environment(ServerEnvironment environment)`
- * `organization(String organization)`
+If the selected server has variables, you may override its default values using the associated builder method(s):
+
+| Variable       | BuilderMethod                                | Supported Values                                                           | Default           | Description                                                   |
+| -------------- | -------------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment(ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `organization(String organization)`          | java.lang.String                                                           | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -440,6 +443,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .serverIndex(1)
+                .environment("us-east-1")
+                .organization("<value>")
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
                     .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
