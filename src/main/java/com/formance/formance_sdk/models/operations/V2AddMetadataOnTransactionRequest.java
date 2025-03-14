@@ -11,7 +11,6 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.util.Map;
 import java.util.Objects;
@@ -29,7 +28,7 @@ public class V2AddMetadataOnTransactionRequest {
      * metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends Map<String, String>> requestBody;
+    private Map<String, String> requestBody;
 
     /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
@@ -52,12 +51,12 @@ public class V2AddMetadataOnTransactionRequest {
     @JsonCreator
     public V2AddMetadataOnTransactionRequest(
             Optional<String> idempotencyKey,
-            Optional<? extends Map<String, String>> requestBody,
+            Map<String, String> requestBody,
             Optional<Boolean> dryRun,
             BigInteger id,
             String ledger) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(requestBody, "requestBody");
+        requestBody = Utils.emptyMapIfNull(requestBody);
         Utils.checkNotNull(dryRun, "dryRun");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
@@ -69,9 +68,10 @@ public class V2AddMetadataOnTransactionRequest {
     }
     
     public V2AddMetadataOnTransactionRequest(
+            Map<String, String> requestBody,
             BigInteger id,
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), id, ledger);
+        this(Optional.empty(), requestBody, Optional.empty(), id, ledger);
     }
 
     /**
@@ -85,10 +85,9 @@ public class V2AddMetadataOnTransactionRequest {
     /**
      * metadata
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, String>> requestBody() {
-        return (Optional<Map<String, String>>) requestBody;
+    public Map<String, String> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -141,15 +140,6 @@ public class V2AddMetadataOnTransactionRequest {
      * metadata
      */
     public V2AddMetadataOnTransactionRequest withRequestBody(Map<String, String> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
-        return this;
-    }
-
-    /**
-     * metadata
-     */
-    public V2AddMetadataOnTransactionRequest withRequestBody(Optional<? extends Map<String, String>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -240,7 +230,7 @@ public class V2AddMetadataOnTransactionRequest {
  
         private Optional<String> idempotencyKey = Optional.empty();
  
-        private Optional<? extends Map<String, String>> requestBody = Optional.empty();
+        private Map<String, String> requestBody;
  
         private Optional<Boolean> dryRun = Optional.empty();
  
@@ -274,15 +264,6 @@ public class V2AddMetadataOnTransactionRequest {
          * metadata
          */
         public Builder requestBody(Map<String, String> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        /**
-         * metadata
-         */
-        public Builder requestBody(Optional<? extends Map<String, String>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

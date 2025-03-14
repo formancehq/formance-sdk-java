@@ -63,10 +63,10 @@ public class Application {
             .build();
 
         V2AddMetadataOnTransactionRequest req = V2AddMetadataOnTransactionRequest.builder()
-                .id(new BigInteger("1234"))
-                .ledger("ledger001")
                 .requestBody(Map.ofEntries(
                     Map.entry("admin", "true")))
+                .id(new BigInteger("1234"))
+                .ledger("ledger001")
                 .dryRun(true)
                 .build();
 
@@ -173,6 +173,7 @@ import com.formance.formance_sdk.models.operations.V2CountAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2CountAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -186,6 +187,8 @@ public class Application {
             .build();
 
         V2CountAccountsRequest req = V2CountAccountsRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -230,6 +233,7 @@ import com.formance.formance_sdk.models.operations.V2CountTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2CountTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -243,6 +247,9 @@ public class Application {
             .build();
 
         V2CountTransactionsRequest req = V2CountTransactionsRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>"),
+                    Map.entry("key1", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -302,11 +309,11 @@ public class Application {
             .build();
 
         V2CreateBulkRequest req = V2CreateBulkRequest.builder()
-                .ledger("ledger001")
                 .requestBody(List.of(
                     V2BulkElementAddMetadata.builder()
                         .action("<value>")
                         .build()))
+                .ledger("ledger001")
                 .atomic(true)
                 .continueOnFailure(true)
                 .parallel(true)
@@ -369,11 +376,11 @@ public class Application {
             .build();
 
         V2CreateLedgerRequest req = V2CreateLedgerRequest.builder()
-                .ledger("ledger001")
                 .v2CreateLedgerRequest(com.formance.formance_sdk.models.shared.V2CreateLedgerRequest.builder()
                     .metadata(Map.ofEntries(
                         Map.entry("admin", "true")))
                     .build())
+                .ledger("ledger001")
                 .build();
 
         V2CreateLedgerResponse res = sdk.ledger().v2().createLedger()
@@ -799,6 +806,7 @@ import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedReques
 import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -812,6 +820,8 @@ public class Application {
             .build();
 
         V2GetBalancesAggregatedRequest req = V2GetBalancesAggregatedRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -1131,6 +1141,7 @@ import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesReque
 import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -1144,6 +1155,8 @@ public class Application {
             .build();
 
         V2GetVolumesWithBalancesRequest req = V2GetVolumesWithBalancesRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .groupBy(3L)
@@ -1191,6 +1204,7 @@ import com.formance.formance_sdk.models.operations.V2ImportLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ImportLogsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
 
 public class Application {
 
@@ -1204,6 +1218,7 @@ public class Application {
             .build();
 
         V2ImportLogsRequest req = V2ImportLogsRequest.builder()
+                .v2ImportLogsRequest("0xeC7ae8CBbd".getBytes(StandardCharsets.UTF_8))
                 .ledger("ledger001")
                 .build();
 
@@ -1248,6 +1263,7 @@ import com.formance.formance_sdk.models.operations.V2ListAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2ListAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -1261,6 +1277,8 @@ public class Application {
             .build();
 
         V2ListAccountsRequest req = V2ListAccountsRequest.builder()
+                .requestBody(Map.ofEntries(
+                ))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -1369,6 +1387,7 @@ import com.formance.formance_sdk.models.operations.V2ListLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ListLogsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -1382,6 +1401,8 @@ public class Application {
             .build();
 
         V2ListLogsRequest req = V2ListLogsRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -1430,6 +1451,7 @@ import com.formance.formance_sdk.models.operations.V2ListTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -1443,6 +1465,8 @@ public class Application {
             .build();
 
         V2ListTransactionsRequest req = V2ListTransactionsRequest.builder()
+                .requestBody(Map.ofEntries(
+                ))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -1627,9 +1651,9 @@ public class Application {
             .build();
 
         V2UpdateLedgerMetadataRequest req = V2UpdateLedgerMetadataRequest.builder()
-                .ledger("ledger001")
                 .requestBody(Map.ofEntries(
                     Map.entry("admin", "true")))
+                .ledger("ledger001")
                 .build();
 
         V2UpdateLedgerMetadataResponse res = sdk.ledger().v2().updateLedgerMetadata()

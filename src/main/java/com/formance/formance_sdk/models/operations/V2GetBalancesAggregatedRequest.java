@@ -12,7 +12,6 @@ import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Objects;
@@ -21,7 +20,7 @@ import java.util.Optional;
 public class V2GetBalancesAggregatedRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends Map<String, Object>> requestBody;
+    private Map<String, Object> requestBody;
 
     /**
      * Name of the ledger.
@@ -40,11 +39,11 @@ public class V2GetBalancesAggregatedRequest {
 
     @JsonCreator
     public V2GetBalancesAggregatedRequest(
-            Optional<? extends Map<String, Object>> requestBody,
+            Map<String, Object> requestBody,
             String ledger,
             Optional<OffsetDateTime> pit,
             Optional<Boolean> useInsertionDate) {
-        Utils.checkNotNull(requestBody, "requestBody");
+        requestBody = Utils.emptyMapIfNull(requestBody);
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pit, "pit");
         Utils.checkNotNull(useInsertionDate, "useInsertionDate");
@@ -55,14 +54,14 @@ public class V2GetBalancesAggregatedRequest {
     }
     
     public V2GetBalancesAggregatedRequest(
+            Map<String, Object> requestBody,
             String ledger) {
-        this(Optional.empty(), ledger, Optional.empty(), Optional.empty());
+        this(requestBody, ledger, Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> requestBody() {
-        return (Optional<Map<String, Object>>) requestBody;
+    public Map<String, Object> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -91,12 +90,6 @@ public class V2GetBalancesAggregatedRequest {
     }
 
     public V2GetBalancesAggregatedRequest withRequestBody(Map<String, Object> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
-        return this;
-    }
-
-    public V2GetBalancesAggregatedRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -177,7 +170,7 @@ public class V2GetBalancesAggregatedRequest {
     
     public final static class Builder {
  
-        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
+        private Map<String, Object> requestBody;
  
         private String ledger;
  
@@ -190,12 +183,6 @@ public class V2GetBalancesAggregatedRequest {
         }
 
         public Builder requestBody(Map<String, Object> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

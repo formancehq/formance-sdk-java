@@ -15,7 +15,7 @@ import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.util.Map;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
 public class AddMetadataOnTransactionRequest {
 
@@ -23,7 +23,7 @@ public class AddMetadataOnTransactionRequest {
      * metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private JsonNullable<? extends Map<String, Object>> requestBody;
+    private Optional<? extends Map<String, Object>> requestBody;
 
     /**
      * Name of the ledger.
@@ -39,7 +39,7 @@ public class AddMetadataOnTransactionRequest {
 
     @JsonCreator
     public AddMetadataOnTransactionRequest(
-            JsonNullable<? extends Map<String, Object>> requestBody,
+            Optional<? extends Map<String, Object>> requestBody,
             String ledger,
             BigInteger txid) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -53,7 +53,7 @@ public class AddMetadataOnTransactionRequest {
     public AddMetadataOnTransactionRequest(
             String ledger,
             BigInteger txid) {
-        this(JsonNullable.undefined(), ledger, txid);
+        this(Optional.empty(), ledger, txid);
     }
 
     /**
@@ -61,8 +61,8 @@ public class AddMetadataOnTransactionRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Map<String, Object>> requestBody() {
-        return (JsonNullable<Map<String, Object>>) requestBody;
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -90,14 +90,14 @@ public class AddMetadataOnTransactionRequest {
      */
     public AddMetadataOnTransactionRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = JsonNullable.of(requestBody);
+        this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
     /**
      * metadata
      */
-    public AddMetadataOnTransactionRequest withRequestBody(JsonNullable<? extends Map<String, Object>> requestBody) {
+    public AddMetadataOnTransactionRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -162,7 +162,7 @@ public class AddMetadataOnTransactionRequest {
     
     public final static class Builder {
  
-        private JsonNullable<? extends Map<String, Object>> requestBody = JsonNullable.undefined();
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
  
         private String ledger;
  
@@ -177,14 +177,14 @@ public class AddMetadataOnTransactionRequest {
          */
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = JsonNullable.of(requestBody);
+            this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
         /**
          * metadata
          */
-        public Builder requestBody(JsonNullable<? extends Map<String, Object>> requestBody) {
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

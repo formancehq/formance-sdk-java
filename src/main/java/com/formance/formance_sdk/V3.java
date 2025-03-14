@@ -46,8 +46,6 @@ import com.formance.formance_sdk.models.operations.V3GetConnectorConfigResponse;
 import com.formance.formance_sdk.models.operations.V3GetConnectorScheduleRequest;
 import com.formance.formance_sdk.models.operations.V3GetConnectorScheduleRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetConnectorScheduleResponse;
-import com.formance.formance_sdk.models.operations.V3GetInfoRequestBuilder;
-import com.formance.formance_sdk.models.operations.V3GetInfoResponse;
 import com.formance.formance_sdk.models.operations.V3GetPaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3GetPaymentInitiationRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetPaymentInitiationResponse;
@@ -128,7 +126,6 @@ import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataRespon
 import com.formance.formance_sdk.models.shared.V3AccountsCursorResponse;
 import com.formance.formance_sdk.models.shared.V3BalancesCursorResponse;
 import com.formance.formance_sdk.models.shared.V3BankAccountsCursorResponse;
-import com.formance.formance_sdk.models.shared.V3ConfigInfoResponse;
 import com.formance.formance_sdk.models.shared.V3ConnectorConfigsResponse;
 import com.formance.formance_sdk.models.shared.V3ConnectorScheduleInstancesCursorResponse;
 import com.formance.formance_sdk.models.shared.V3ConnectorScheduleResponse;
@@ -176,7 +173,6 @@ public class V3 implements
             MethodCallV3GetBankAccount,
             MethodCallV3GetConnectorConfig,
             MethodCallV3GetConnectorSchedule,
-            MethodCallV3GetInfo,
             MethodCallV3GetPayment,
             MethodCallV3GetPaymentInitiation,
             MethodCallV3GetPool,
@@ -1951,125 +1947,6 @@ public class V3 implements
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<V3ConnectorScheduleResponse>() {});
                 _res.withV3ConnectorScheduleResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                V3ErrorResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<V3ErrorResponse>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Show server information
-     * @return The call builder
-     */
-    public V3GetInfoRequestBuilder getInfo() {
-        return new V3GetInfoRequestBuilder(this);
-    }
-
-    /**
-     * Show server information
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public V3GetInfoResponse getInfoDirect() throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/payments/v3/_info");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      "v3GetInfo", 
-                      Optional.of(List.of("auth:read", "payments:read")), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            "v3GetInfo",
-                            Optional.of(List.of("auth:read", "payments:read")),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            "v3GetInfo",
-                            Optional.of(List.of("auth:read", "payments:read")), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            "v3GetInfo",
-                            Optional.of(List.of("auth:read", "payments:read")),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        V3GetInfoResponse.Builder _resBuilder = 
-            V3GetInfoResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        V3GetInfoResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                V3ConfigInfoResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<V3ConfigInfoResponse>() {});
-                _res.withV3ConfigInfoResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(

@@ -10,15 +10,13 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 public class V2UpdateLedgerMetadataRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends Map<String, String>> requestBody;
+    private Map<String, String> requestBody;
 
     /**
      * Name of the ledger.
@@ -28,23 +26,17 @@ public class V2UpdateLedgerMetadataRequest {
 
     @JsonCreator
     public V2UpdateLedgerMetadataRequest(
-            Optional<? extends Map<String, String>> requestBody,
+            Map<String, String> requestBody,
             String ledger) {
-        Utils.checkNotNull(requestBody, "requestBody");
+        requestBody = Utils.emptyMapIfNull(requestBody);
         Utils.checkNotNull(ledger, "ledger");
         this.requestBody = requestBody;
         this.ledger = ledger;
     }
-    
-    public V2UpdateLedgerMetadataRequest(
-            String ledger) {
-        this(Optional.empty(), ledger);
-    }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, String>> requestBody() {
-        return (Optional<Map<String, String>>) requestBody;
+    public Map<String, String> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -60,12 +52,6 @@ public class V2UpdateLedgerMetadataRequest {
     }
 
     public V2UpdateLedgerMetadataRequest withRequestBody(Map<String, String> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
-        return this;
-    }
-
-    public V2UpdateLedgerMetadataRequest withRequestBody(Optional<? extends Map<String, String>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -110,7 +96,7 @@ public class V2UpdateLedgerMetadataRequest {
     
     public final static class Builder {
  
-        private Optional<? extends Map<String, String>> requestBody = Optional.empty();
+        private Map<String, String> requestBody;
  
         private String ledger;  
         
@@ -119,12 +105,6 @@ public class V2UpdateLedgerMetadataRequest {
         }
 
         public Builder requestBody(Map<String, String> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        public Builder requestBody(Optional<? extends Map<String, String>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

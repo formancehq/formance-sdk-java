@@ -16,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V3Account {
@@ -40,7 +39,7 @@ public class V3Account {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     @JsonProperty("provider")
     private String provider;
@@ -61,7 +60,7 @@ public class V3Account {
             @JsonProperty("defaultAsset") JsonNullable<String> defaultAsset,
             @JsonProperty("id") String id,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
-            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("provider") String provider,
             @JsonProperty("raw") V3AccountRaw raw,
             @JsonProperty("reference") String reference,
@@ -96,7 +95,7 @@ public class V3Account {
             V3AccountRaw raw,
             String reference,
             V3AccountTypeEnum type) {
-        this(connectorID, createdAt, JsonNullable.undefined(), id, JsonNullable.undefined(), Optional.empty(), provider, raw, reference, type);
+        this(connectorID, createdAt, JsonNullable.undefined(), id, JsonNullable.undefined(), JsonNullable.undefined(), provider, raw, reference, type);
     }
 
     @JsonIgnore
@@ -126,7 +125,7 @@ public class V3Account {
     }
 
     @JsonIgnore
-    public Optional<String> name() {
+    public JsonNullable<String> name() {
         return name;
     }
 
@@ -198,11 +197,11 @@ public class V3Account {
 
     public V3Account withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+        this.name = JsonNullable.of(name);
         return this;
     }
 
-    public V3Account withName(Optional<String> name) {
+    public V3Account withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -296,7 +295,7 @@ public class V3Account {
  
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
  
-        private Optional<String> name = Optional.empty();
+        private JsonNullable<String> name = JsonNullable.undefined();
  
         private String provider;
  
@@ -354,11 +353,11 @@ public class V3Account {
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
+            this.name = JsonNullable.of(name);
             return this;
         }
 
-        public Builder name(Optional<String> name) {
+        public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;

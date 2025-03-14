@@ -62,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:5.0.1'
+implementation 'com.formance:formance-sdk:5.0.2'
 ```
 
 Maven:
@@ -70,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>5.0.1</version>
+    <version>5.0.2</version>
 </dependency>
 ```
 
@@ -315,7 +315,6 @@ public class Application {
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
 * [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
-* [getInfo](docs/sdks/v3/README.md#getinfo) - Show server information
 * [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 * [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 * [getPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
@@ -533,10 +532,10 @@ public class Application {
             .build();
 
         V2AddMetadataOnTransactionRequest req = V2AddMetadataOnTransactionRequest.builder()
-                .id(new BigInteger("1234"))
-                .ledger("ledger001")
                 .requestBody(Map.ofEntries(
                     Map.entry("admin", "true")))
+                .id(new BigInteger("1234"))
+                .ledger("ledger001")
                 .dryRun(true)
                 .build();
 
