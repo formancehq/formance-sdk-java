@@ -11,12 +11,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 public class V2ImportLogsRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/octet-stream")
-    private Optional<String> requestBody;
+    private byte[] v2ImportLogsRequest;
 
     /**
      * Name of the ledger.
@@ -26,22 +25,17 @@ public class V2ImportLogsRequest {
 
     @JsonCreator
     public V2ImportLogsRequest(
-            Optional<String> requestBody,
+            byte[] v2ImportLogsRequest,
             String ledger) {
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(v2ImportLogsRequest, "v2ImportLogsRequest");
         Utils.checkNotNull(ledger, "ledger");
-        this.requestBody = requestBody;
+        this.v2ImportLogsRequest = v2ImportLogsRequest;
         this.ledger = ledger;
-    }
-    
-    public V2ImportLogsRequest(
-            String ledger) {
-        this(Optional.empty(), ledger);
     }
 
     @JsonIgnore
-    public Optional<String> requestBody() {
-        return requestBody;
+    public byte[] v2ImportLogsRequest() {
+        return v2ImportLogsRequest;
     }
 
     /**
@@ -56,15 +50,9 @@ public class V2ImportLogsRequest {
         return new Builder();
     }
 
-    public V2ImportLogsRequest withRequestBody(String requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
-        return this;
-    }
-
-    public V2ImportLogsRequest withRequestBody(Optional<String> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public V2ImportLogsRequest withV2ImportLogsRequest(byte[] v2ImportLogsRequest) {
+        Utils.checkNotNull(v2ImportLogsRequest, "v2ImportLogsRequest");
+        this.v2ImportLogsRequest = v2ImportLogsRequest;
         return this;
     }
 
@@ -87,27 +75,27 @@ public class V2ImportLogsRequest {
         }
         V2ImportLogsRequest other = (V2ImportLogsRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
+            Objects.deepEquals(this.v2ImportLogsRequest, other.v2ImportLogsRequest) &&
             Objects.deepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            requestBody,
+            v2ImportLogsRequest,
             ledger);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ImportLogsRequest.class,
-                "requestBody", requestBody,
+                "v2ImportLogsRequest", v2ImportLogsRequest,
                 "ledger", ledger);
     }
     
     public final static class Builder {
  
-        private Optional<String> requestBody = Optional.empty();
+        private byte[] v2ImportLogsRequest;
  
         private String ledger;  
         
@@ -115,15 +103,9 @@ public class V2ImportLogsRequest {
           // force use of static builder() method
         }
 
-        public Builder requestBody(String requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        public Builder requestBody(Optional<String> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder v2ImportLogsRequest(byte[] v2ImportLogsRequest) {
+            Utils.checkNotNull(v2ImportLogsRequest, "v2ImportLogsRequest");
+            this.v2ImportLogsRequest = v2ImportLogsRequest;
             return this;
         }
 
@@ -138,7 +120,7 @@ public class V2ImportLogsRequest {
         
         public V2ImportLogsRequest build() {
             return new V2ImportLogsRequest(
-                requestBody,
+                v2ImportLogsRequest,
                 ledger);
         }
     }

@@ -22,7 +22,7 @@ import java.util.Optional;
 public class V2ListTransactionsRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends Map<String, Object>> requestBody;
+    private Map<String, Object> requestBody;
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -61,7 +61,7 @@ public class V2ListTransactionsRequest {
 
     @JsonCreator
     public V2ListTransactionsRequest(
-            Optional<? extends Map<String, Object>> requestBody,
+            Map<String, Object> requestBody,
             Optional<String> cursor,
             Optional<String> expand,
             String ledger,
@@ -69,7 +69,7 @@ public class V2ListTransactionsRequest {
             Optional<Long> pageSize,
             Optional<OffsetDateTime> pit,
             Optional<Boolean> reverse) {
-        Utils.checkNotNull(requestBody, "requestBody");
+        requestBody = Utils.emptyMapIfNull(requestBody);
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(ledger, "ledger");
@@ -88,14 +88,14 @@ public class V2ListTransactionsRequest {
     }
     
     public V2ListTransactionsRequest(
+            Map<String, Object> requestBody,
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(requestBody, Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> requestBody() {
-        return (Optional<Map<String, Object>>) requestBody;
+    public Map<String, Object> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -153,12 +153,6 @@ public class V2ListTransactionsRequest {
     }
 
     public V2ListTransactionsRequest withRequestBody(Map<String, Object> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
-        return this;
-    }
-
-    public V2ListTransactionsRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -315,7 +309,7 @@ public class V2ListTransactionsRequest {
     
     public final static class Builder {
  
-        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
+        private Map<String, Object> requestBody;
  
         private Optional<String> cursor = Optional.empty();
  
@@ -336,12 +330,6 @@ public class V2ListTransactionsRequest {
         }
 
         public Builder requestBody(Map<String, Object> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

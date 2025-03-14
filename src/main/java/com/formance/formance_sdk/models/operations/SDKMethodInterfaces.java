@@ -919,11 +919,6 @@ public class SDKMethodInterfaces {
     }
 
 
-    public interface MethodCallV3GetInfo {
-        V3GetInfoResponse getInfoDirect() throws Exception;
-    }
-
-
     public interface MethodCallV3GetPayment {
         V3GetPaymentResponse getPayment(
             V3GetPaymentRequest request) throws Exception;

@@ -12,7 +12,6 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,7 +19,7 @@ import java.util.Optional;
 public class V2CreateBulkRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends List<V2BulkElement>> requestBody;
+    private List<V2BulkElement> requestBody;
 
     /**
      * Make bulk atomic
@@ -48,7 +47,7 @@ public class V2CreateBulkRequest {
 
     @JsonCreator
     public V2CreateBulkRequest(
-            Optional<? extends List<V2BulkElement>> requestBody,
+            List<V2BulkElement> requestBody,
             Optional<Boolean> atomic,
             Optional<Boolean> continueOnFailure,
             String ledger,
@@ -66,14 +65,14 @@ public class V2CreateBulkRequest {
     }
     
     public V2CreateBulkRequest(
+            List<V2BulkElement> requestBody,
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty());
+        this(requestBody, Optional.empty(), Optional.empty(), ledger, Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<V2BulkElement>> requestBody() {
-        return (Optional<List<V2BulkElement>>) requestBody;
+    public List<V2BulkElement> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -113,12 +112,6 @@ public class V2CreateBulkRequest {
     }
 
     public V2CreateBulkRequest withRequestBody(List<V2BulkElement> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
-        return this;
-    }
-
-    public V2CreateBulkRequest withRequestBody(Optional<? extends List<V2BulkElement>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -226,7 +219,7 @@ public class V2CreateBulkRequest {
     
     public final static class Builder {
  
-        private Optional<? extends List<V2BulkElement>> requestBody = Optional.empty();
+        private List<V2BulkElement> requestBody;
  
         private Optional<Boolean> atomic = Optional.empty();
  
@@ -241,12 +234,6 @@ public class V2CreateBulkRequest {
         }
 
         public Builder requestBody(List<V2BulkElement> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        public Builder requestBody(Optional<? extends List<V2BulkElement>> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

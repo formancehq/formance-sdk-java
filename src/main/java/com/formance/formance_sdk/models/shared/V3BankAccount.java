@@ -26,6 +26,10 @@ public class V3BankAccount {
     @JsonProperty("accountNumber")
     private JsonNullable<String> accountNumber;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("country")
+    private JsonNullable<String> country;
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -54,6 +58,7 @@ public class V3BankAccount {
     @JsonCreator
     public V3BankAccount(
             @JsonProperty("accountNumber") JsonNullable<String> accountNumber,
+            @JsonProperty("country") JsonNullable<String> country,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("iban") JsonNullable<String> iban,
             @JsonProperty("id") String id,
@@ -62,6 +67,7 @@ public class V3BankAccount {
             @JsonProperty("relatedAccounts") Optional<? extends List<V3BankAccountRelatedAccount>> relatedAccounts,
             @JsonProperty("swiftBicCode") JsonNullable<String> swiftBicCode) {
         Utils.checkNotNull(accountNumber, "accountNumber");
+        Utils.checkNotNull(country, "country");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(iban, "iban");
         Utils.checkNotNull(id, "id");
@@ -70,6 +76,7 @@ public class V3BankAccount {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.accountNumber = accountNumber;
+        this.country = country;
         this.createdAt = createdAt;
         this.iban = iban;
         this.id = id;
@@ -83,12 +90,17 @@ public class V3BankAccount {
             OffsetDateTime createdAt,
             String id,
             String name) {
-        this(JsonNullable.undefined(), createdAt, JsonNullable.undefined(), id, JsonNullable.undefined(), name, Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), createdAt, JsonNullable.undefined(), id, JsonNullable.undefined(), name, Optional.empty(), JsonNullable.undefined());
     }
 
     @JsonIgnore
     public JsonNullable<String> accountNumber() {
         return accountNumber;
+    }
+
+    @JsonIgnore
+    public JsonNullable<String> country() {
+        return country;
     }
 
     @JsonIgnore
@@ -141,6 +153,18 @@ public class V3BankAccount {
     public V3BankAccount withAccountNumber(JsonNullable<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = accountNumber;
+        return this;
+    }
+
+    public V3BankAccount withCountry(String country) {
+        Utils.checkNotNull(country, "country");
+        this.country = JsonNullable.of(country);
+        return this;
+    }
+
+    public V3BankAccount withCountry(JsonNullable<String> country) {
+        Utils.checkNotNull(country, "country");
+        this.country = country;
         return this;
     }
 
@@ -221,6 +245,7 @@ public class V3BankAccount {
         V3BankAccount other = (V3BankAccount) o;
         return 
             Objects.deepEquals(this.accountNumber, other.accountNumber) &&
+            Objects.deepEquals(this.country, other.country) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.iban, other.iban) &&
             Objects.deepEquals(this.id, other.id) &&
@@ -234,6 +259,7 @@ public class V3BankAccount {
     public int hashCode() {
         return Objects.hash(
             accountNumber,
+            country,
             createdAt,
             iban,
             id,
@@ -247,6 +273,7 @@ public class V3BankAccount {
     public String toString() {
         return Utils.toString(V3BankAccount.class,
                 "accountNumber", accountNumber,
+                "country", country,
                 "createdAt", createdAt,
                 "iban", iban,
                 "id", id,
@@ -259,6 +286,8 @@ public class V3BankAccount {
     public final static class Builder {
  
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
+ 
+        private JsonNullable<String> country = JsonNullable.undefined();
  
         private OffsetDateTime createdAt;
  
@@ -287,6 +316,18 @@ public class V3BankAccount {
         public Builder accountNumber(JsonNullable<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
             this.accountNumber = accountNumber;
+            return this;
+        }
+
+        public Builder country(String country) {
+            Utils.checkNotNull(country, "country");
+            this.country = JsonNullable.of(country);
+            return this;
+        }
+
+        public Builder country(JsonNullable<String> country) {
+            Utils.checkNotNull(country, "country");
+            this.country = country;
             return this;
         }
 
@@ -359,6 +400,7 @@ public class V3BankAccount {
         public V3BankAccount build() {
             return new V3BankAccount(
                 accountNumber,
+                country,
                 createdAt,
                 iban,
                 id,

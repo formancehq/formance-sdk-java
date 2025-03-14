@@ -131,6 +131,7 @@ import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRespo
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.math.BigInteger;
+import java.util.Map;
 
 public class Application {
 
@@ -144,6 +145,8 @@ public class Application {
             .build();
 
         AddMetadataOnTransactionRequest req = AddMetadataOnTransactionRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .txid(new BigInteger("1234"))
                 .build();

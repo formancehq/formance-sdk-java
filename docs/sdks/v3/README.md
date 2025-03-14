@@ -22,7 +22,6 @@
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
 * [getConnectorConfig](#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
-* [getInfo](#getinfo) - Show server information
 * [getPayment](#getpayment) - Get a payment by ID
 * [getPaymentInitiation](#getpaymentinitiation) - Get a payment initiation by ID
 * [getPool](#getpool) - Get a pool by ID
@@ -888,53 +887,6 @@ public class Application {
 ### Response
 
 **[V3GetConnectorScheduleResponse](../../models/operations/V3GetConnectorScheduleResponse.md)**
-
-### Errors
-
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V3ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
-
-## getInfo
-
-Show server information
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
-import com.formance.formance_sdk.models.operations.V3GetInfoResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws V3ErrorResponse, Exception {
-
-        SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
-                    .build())
-            .build();
-
-        V3GetInfoResponse res = sdk.payments().v3().getInfo()
-                .call();
-
-        if (res.v3ConfigInfoResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Response
-
-**[V3GetInfoResponse](../../models/operations/V3GetInfoResponse.md)**
 
 ### Errors
 

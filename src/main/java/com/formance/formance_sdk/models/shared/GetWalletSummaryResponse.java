@@ -10,103 +10,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class GetWalletSummaryResponse {
 
-    @JsonProperty("availableFunds")
-    private Map<String, BigInteger> availableFunds;
-
-    @JsonProperty("balances")
-    private List<BalanceWithAssets> balances;
-
-    @JsonProperty("expirableFunds")
-    private Map<String, BigInteger> expirableFunds;
-
-    @JsonProperty("expiredFunds")
-    private Map<String, BigInteger> expiredFunds;
-
-    @JsonProperty("holdFunds")
-    private Map<String, BigInteger> holdFunds;
+    @JsonProperty("data")
+    private WalletSummary data;
 
     @JsonCreator
     public GetWalletSummaryResponse(
-            @JsonProperty("availableFunds") Map<String, BigInteger> availableFunds,
-            @JsonProperty("balances") List<BalanceWithAssets> balances,
-            @JsonProperty("expirableFunds") Map<String, BigInteger> expirableFunds,
-            @JsonProperty("expiredFunds") Map<String, BigInteger> expiredFunds,
-            @JsonProperty("holdFunds") Map<String, BigInteger> holdFunds) {
-        availableFunds = Utils.emptyMapIfNull(availableFunds);
-        Utils.checkNotNull(balances, "balances");
-        expirableFunds = Utils.emptyMapIfNull(expirableFunds);
-        expiredFunds = Utils.emptyMapIfNull(expiredFunds);
-        holdFunds = Utils.emptyMapIfNull(holdFunds);
-        this.availableFunds = availableFunds;
-        this.balances = balances;
-        this.expirableFunds = expirableFunds;
-        this.expiredFunds = expiredFunds;
-        this.holdFunds = holdFunds;
+            @JsonProperty("data") WalletSummary data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Map<String, BigInteger> availableFunds() {
-        return availableFunds;
-    }
-
-    @JsonIgnore
-    public List<BalanceWithAssets> balances() {
-        return balances;
-    }
-
-    @JsonIgnore
-    public Map<String, BigInteger> expirableFunds() {
-        return expirableFunds;
-    }
-
-    @JsonIgnore
-    public Map<String, BigInteger> expiredFunds() {
-        return expiredFunds;
-    }
-
-    @JsonIgnore
-    public Map<String, BigInteger> holdFunds() {
-        return holdFunds;
+    public WalletSummary data() {
+        return data;
     }
 
     public final static Builder builder() {
         return new Builder();
     }
 
-    public GetWalletSummaryResponse withAvailableFunds(Map<String, BigInteger> availableFunds) {
-        Utils.checkNotNull(availableFunds, "availableFunds");
-        this.availableFunds = availableFunds;
-        return this;
-    }
-
-    public GetWalletSummaryResponse withBalances(List<BalanceWithAssets> balances) {
-        Utils.checkNotNull(balances, "balances");
-        this.balances = balances;
-        return this;
-    }
-
-    public GetWalletSummaryResponse withExpirableFunds(Map<String, BigInteger> expirableFunds) {
-        Utils.checkNotNull(expirableFunds, "expirableFunds");
-        this.expirableFunds = expirableFunds;
-        return this;
-    }
-
-    public GetWalletSummaryResponse withExpiredFunds(Map<String, BigInteger> expiredFunds) {
-        Utils.checkNotNull(expiredFunds, "expiredFunds");
-        this.expiredFunds = expiredFunds;
-        return this;
-    }
-
-    public GetWalletSummaryResponse withHoldFunds(Map<String, BigInteger> holdFunds) {
-        Utils.checkNotNull(holdFunds, "holdFunds");
-        this.holdFunds = holdFunds;
+    public GetWalletSummaryResponse withData(WalletSummary data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
     
@@ -120,86 +49,38 @@ public class GetWalletSummaryResponse {
         }
         GetWalletSummaryResponse other = (GetWalletSummaryResponse) o;
         return 
-            Objects.deepEquals(this.availableFunds, other.availableFunds) &&
-            Objects.deepEquals(this.balances, other.balances) &&
-            Objects.deepEquals(this.expirableFunds, other.expirableFunds) &&
-            Objects.deepEquals(this.expiredFunds, other.expiredFunds) &&
-            Objects.deepEquals(this.holdFunds, other.holdFunds);
+            Objects.deepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            availableFunds,
-            balances,
-            expirableFunds,
-            expiredFunds,
-            holdFunds);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWalletSummaryResponse.class,
-                "availableFunds", availableFunds,
-                "balances", balances,
-                "expirableFunds", expirableFunds,
-                "expiredFunds", expiredFunds,
-                "holdFunds", holdFunds);
+                "data", data);
     }
     
     public final static class Builder {
  
-        private Map<String, BigInteger> availableFunds;
- 
-        private List<BalanceWithAssets> balances;
- 
-        private Map<String, BigInteger> expirableFunds;
- 
-        private Map<String, BigInteger> expiredFunds;
- 
-        private Map<String, BigInteger> holdFunds;  
+        private WalletSummary data;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder availableFunds(Map<String, BigInteger> availableFunds) {
-            Utils.checkNotNull(availableFunds, "availableFunds");
-            this.availableFunds = availableFunds;
-            return this;
-        }
-
-        public Builder balances(List<BalanceWithAssets> balances) {
-            Utils.checkNotNull(balances, "balances");
-            this.balances = balances;
-            return this;
-        }
-
-        public Builder expirableFunds(Map<String, BigInteger> expirableFunds) {
-            Utils.checkNotNull(expirableFunds, "expirableFunds");
-            this.expirableFunds = expirableFunds;
-            return this;
-        }
-
-        public Builder expiredFunds(Map<String, BigInteger> expiredFunds) {
-            Utils.checkNotNull(expiredFunds, "expiredFunds");
-            this.expiredFunds = expiredFunds;
-            return this;
-        }
-
-        public Builder holdFunds(Map<String, BigInteger> holdFunds) {
-            Utils.checkNotNull(holdFunds, "holdFunds");
-            this.holdFunds = holdFunds;
+        public Builder data(WalletSummary data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
         
         public GetWalletSummaryResponse build() {
             return new GetWalletSummaryResponse(
-                availableFunds,
-                balances,
-                expirableFunds,
-                expiredFunds,
-                holdFunds);
+                data);
         }
     }
 }
