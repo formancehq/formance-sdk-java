@@ -61,7 +61,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "com.formance"
-version = "5.0.2"
+version = "6.0.1"
 
 sourcesJar {
     archiveBaseName = "formance-sdk"
@@ -88,7 +88,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.formance'
             artifactId = 'formance-sdk'
-            version = '5.0.2'
+            version = '6.0.1'
 
             from components.java
 
