@@ -14,7 +14,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 java:
-  version: 5.0.2
+  version: 6.0.1
   additionalDependencies:
     - implementation:org.apache.httpcomponents.client5:httpclient5:5.4.2
   additionalPlugins: []
