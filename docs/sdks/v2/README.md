@@ -293,7 +293,6 @@ import com.formance.formance_sdk.models.errors.V2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
 import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2BulkElementAddMetadata;
 import java.lang.Exception;
 import java.util.List;
 
@@ -310,9 +309,7 @@ public class Application {
 
         V2CreateBulkRequest req = V2CreateBulkRequest.builder()
                 .requestBody(List.of(
-                    V2BulkElementAddMetadata.builder()
-                        .action("<value>")
-                        .build()))
+                ))
                 .ledger("ledger001")
                 .atomic(true)
                 .continueOnFailure(true)
