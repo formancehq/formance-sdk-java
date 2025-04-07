@@ -319,7 +319,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.debitWalletResponse().isPresent()) {
+        if (res.activityDebitWalletOutput().isPresent()) {
             // handle response
         }
     }
@@ -618,7 +618,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.getWalletResponse().isPresent()) {
+        if (res.activityGetWalletOutput().isPresent()) {
             // handle response
         }
     }

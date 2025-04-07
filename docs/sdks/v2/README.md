@@ -293,7 +293,6 @@ import com.formance.formance_sdk.models.errors.V2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
 import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2BulkElementAddMetadata;
 import java.lang.Exception;
 import java.util.List;
 
@@ -310,9 +309,7 @@ public class Application {
 
         V2CreateBulkRequest req = V2CreateBulkRequest.builder()
                 .requestBody(List.of(
-                    V2BulkElementAddMetadata.builder()
-                        .action("<value>")
-                        .build()))
+                ))
                 .ledger("ledger001")
                 .atomic(true)
                 .continueOnFailure(true)
@@ -422,10 +419,7 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.V2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2CreateTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2CreateTransactionResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2PostTransaction;
-import com.formance.formance_sdk.models.shared.V2PostTransactionScript;
-import com.formance.formance_sdk.models.shared.V2Posting;
+import com.formance.formance_sdk.models.shared.*;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.util.List;
@@ -1598,7 +1592,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.v2RevertTransactionResponse().isPresent()) {
+        if (res.v2CreateTransactionResponse().isPresent()) {
             // handle response
         }
     }

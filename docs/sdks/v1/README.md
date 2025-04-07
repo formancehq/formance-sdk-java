@@ -28,7 +28,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.CreateClientResponse;
-import com.formance.formance_sdk.models.shared.CreateClientRequest;
+import com.formance.formance_sdk.models.shared.ClientOptions;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -43,7 +43,7 @@ public class Application {
                     .build())
             .build();
 
-        CreateClientRequest req = CreateClientRequest.builder()
+        ClientOptions req = ClientOptions.builder()
                 .name("<value>")
                 .build();
 
@@ -60,9 +60,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [CreateClientRequest](../../models/shared/CreateClientRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [ClientOptions](../../models/shared/ClientOptions.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 ### Response
 
@@ -568,7 +568,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.updateClientResponse().isPresent()) {
+        if (res.createClientResponse().isPresent()) {
             // handle response
         }
     }

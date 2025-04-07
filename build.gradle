@@ -38,6 +38,9 @@ model {
     }
 }
 
+version = "${version}"
+group = "${groupId}"
+
 jar {
     dependsOn(":generatePomFileForMavenPublication")
 
@@ -60,15 +63,12 @@ tasks.withType(Javadoc) {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-group = "com.formance"
-version = "6.0.1"
-
 sourcesJar {
-    archiveBaseName = "formance-sdk"
+    archiveBaseName = "${artifactId}"
 }
 
 javadocJar {
-    archiveBaseName = "formance-sdk"
+    archiveBaseName = "${artifactId}"
 }
 
 
@@ -86,9 +86,11 @@ publishing {
 
     publications {
         maven(MavenPublication) {
-            groupId = 'com.formance'
-            artifactId = 'formance-sdk'
-            version = '6.0.1'
+            // note that properties can't yet be used below!
+            // https://github.com/gradle/gradle/issues/18619
+            groupId = "com.formance"
+            artifactId = "formance-sdk"
+            version = "7.0.2"
 
             from components.java
 

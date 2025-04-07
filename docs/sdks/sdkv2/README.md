@@ -154,7 +154,7 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2CreateWorkflowRequest;
+import com.formance.formance_sdk.models.shared.V2WorkflowConfig;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Map;
@@ -170,7 +170,7 @@ public class Application {
                     .build())
             .build();
 
-        V2CreateWorkflowRequest req = V2CreateWorkflowRequest.builder()
+        V2WorkflowConfig req = V2WorkflowConfig.builder()
                 .stages(List.of(
                     Map.ofEntries(
                         Map.entry("key", "<value>"))))
@@ -189,9 +189,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `request`                                                                 | [V2CreateWorkflowRequest](../../models/shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [V2WorkflowConfig](../../models/shared/V2WorkflowConfig.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 ### Response
 
