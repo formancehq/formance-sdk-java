@@ -122,9 +122,7 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ConnectorsTransferRequest;
 import com.formance.formance_sdk.models.operations.ConnectorsTransferResponse;
-import com.formance.formance_sdk.models.shared.Connector;
-import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.TransferRequest;
+import com.formance.formance_sdk.models.shared.*;
 import java.lang.Exception;
 import java.math.BigInteger;
 
@@ -189,9 +187,7 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateAccountResponse;
-import com.formance.formance_sdk.models.shared.AccountRequest;
-import com.formance.formance_sdk.models.shared.AccountType;
-import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.*;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 
@@ -314,11 +310,7 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreatePaymentResponse;
-import com.formance.formance_sdk.models.shared.PaymentRequest;
-import com.formance.formance_sdk.models.shared.PaymentScheme;
-import com.formance.formance_sdk.models.shared.PaymentStatus;
-import com.formance.formance_sdk.models.shared.PaymentType;
-import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.*;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
@@ -449,9 +441,7 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
-import com.formance.formance_sdk.models.shared.TransferInitiationRequestType;
+import com.formance.formance_sdk.models.shared.*;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
@@ -1182,10 +1172,7 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.InstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.InstallConnectorResponse;
-import com.formance.formance_sdk.models.shared.Connector;
-import com.formance.formance_sdk.models.shared.ConnectorConfig;
-import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.StripeConfig;
+import com.formance.formance_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -2316,9 +2303,7 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusRequest;
 import com.formance.formance_sdk.models.operations.UdpateTransferInitiationStatusResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.Status;
-import com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest;
+import com.formance.formance_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {
@@ -2559,10 +2544,7 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request;
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response;
-import com.formance.formance_sdk.models.shared.Connector;
-import com.formance.formance_sdk.models.shared.ConnectorConfig;
-import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.StripeConfig;
+import com.formance.formance_sdk.models.shared.*;
 import java.lang.Exception;
 
 public class Application {

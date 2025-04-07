@@ -152,8 +152,8 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.CreateWorkflowResponse;
-import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.WorkflowConfig;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Map;
@@ -169,7 +169,7 @@ public class Application {
                     .build())
             .build();
 
-        CreateWorkflowRequest req = CreateWorkflowRequest.builder()
+        WorkflowConfig req = WorkflowConfig.builder()
                 .stages(List.of(
                     Map.ofEntries(
                         Map.entry("key", "<value>"))))
@@ -188,9 +188,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `request`                                                             | [CreateWorkflowRequest](../../models/shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `request`                                               | [WorkflowConfig](../../models/shared/WorkflowConfig.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
 
 ### Response
 

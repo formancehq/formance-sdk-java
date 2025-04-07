@@ -1,4 +1,4 @@
-# UpdateClientRequest
+# ClientOptions
 
 
 ## Fields

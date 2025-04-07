@@ -62,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:6.0.1'
+implementation 'com.formance:formance-sdk:7.0.2'
 ```
 
 Maven:
@@ -70,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>6.0.1</version>
+    <version>7.0.2</version>
 </dependency>
 ```
 
@@ -431,6 +431,7 @@ If the selected server has variables, you may override its default values using 
 ```java
 package hello.world;
 
+import com.formance.formance_sdk.SDK.Builder.ServerEnvironment;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -442,7 +443,7 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .serverIndex(1)
-                .environment("us-east-1")
+                .environment(ServerEnvironment.US_EAST1)
                 .organization("<value>")
                 .security(Security.builder()
                     .clientID("<YOUR_CLIENT_ID_HERE>")
