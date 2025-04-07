@@ -9,7 +9,7 @@ sources:
             - speakeasy-sdk-regen-1732202901
     stacks-source:
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:ba23573810f5c051e52916ed65a0fdcc15d56131becad5c527943a16746213df
+        sourceRevisionDigest: sha256:27ac2232f76c00ae497e4a0cae1e70be64ab26aac575484f36b9b96418575c9c
         sourceBlobDigest: sha256:1e47a07e206e4bf2107ed8e4579e5b29ff089879b726be270aade9e8dbce9f52
         tags:
             - latest
@@ -18,10 +18,10 @@ targets:
     Java:
         source: stacks-source
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:ba23573810f5c051e52916ed65a0fdcc15d56131becad5c527943a16746213df
+        sourceRevisionDigest: sha256:27ac2232f76c00ae497e4a0cae1e70be64ab26aac575484f36b9b96418575c9c
         sourceBlobDigest: sha256:1e47a07e206e4bf2107ed8e4579e5b29ff089879b726be270aade9e8dbce9f52
         codeSamplesNamespace: stacks-source-java-code-samples
-        codeSamplesRevisionDigest: sha256:13e882006659853759b95e4952a36fc04f7aa79af443fa3a9268784e5f6d1867
+        codeSamplesRevisionDigest: sha256:6c4d60db16226308580c39855220f65256ff4f4897905d6a01119e38699ff835
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -48,3 +48,5 @@ workflow:
                 labelOverride:
                     fixedValue: Java (SDK)
                 blocking: false
+            testing:
+                enabled: true

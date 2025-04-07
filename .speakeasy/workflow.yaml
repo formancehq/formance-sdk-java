@@ -23,3 +23,5 @@ targets:
             labelOverride:
                 fixedValue: Java (SDK)
             blocking: false
+        testing:
+            enabled: true

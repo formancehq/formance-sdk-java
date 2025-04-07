@@ -11,10 +11,12 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+  tests:
+    generateNewTests: true
   comments: {}
   telemetryEnabled: false
 java:
-  version: 7.0.2
+  version: 7.0.5
   additionalDependencies:
     - implementation:org.apache.httpcomponents.client5:httpclient5:5.4.2
   additionalPlugins: []
