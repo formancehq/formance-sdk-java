@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class StripeConfig {
+public class StripeConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -39,26 +39,33 @@ public class StripeConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonCreator
     public StripeConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
-            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod) {
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         this.apiKey = apiKey;
         this.name = name;
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
     }
     
     public StripeConfig(
             String apiKey,
             String name) {
-        this(apiKey, name, Optional.empty(), Optional.empty());
+        this(apiKey, name, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -85,6 +92,12 @@ public class StripeConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public final static Builder builder() {
@@ -139,6 +152,18 @@ public class StripeConfig {
         return this;
     }
 
+    public StripeConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public StripeConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -153,7 +178,8 @@ public class StripeConfig {
             Objects.deepEquals(this.apiKey, other.apiKey) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider);
     }
     
     @Override
@@ -162,7 +188,8 @@ public class StripeConfig {
             apiKey,
             name,
             pageSize,
-            pollingPeriod);
+            pollingPeriod,
+            provider);
     }
     
     @Override
@@ -171,7 +198,8 @@ public class StripeConfig {
                 "apiKey", apiKey,
                 "name", name,
                 "pageSize", pageSize,
-                "pollingPeriod", pollingPeriod);
+                "pollingPeriod", pollingPeriod,
+                "provider", provider);
     }
     
     public final static class Builder {
@@ -183,6 +211,8 @@ public class StripeConfig {
         private Optional<Long> pageSize;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
         
         private Builder() {
           // force use of static builder() method
@@ -235,6 +265,18 @@ public class StripeConfig {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
         
         public StripeConfig build() {
             if (pageSize == null) {
@@ -243,11 +285,15 @@ public class StripeConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new StripeConfig(
                 apiKey,
                 name,
                 pageSize,
-                pollingPeriod);
+                pollingPeriod,
+                provider);
         }
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
@@ -260,6 +306,12 @@ public class StripeConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Stripe\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

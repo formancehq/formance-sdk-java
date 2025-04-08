@@ -16,7 +16,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class CurrencyCloudConfig {
+public class CurrencyCloudConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -44,30 +44,37 @@ public class CurrencyCloudConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonCreator
     public CurrencyCloudConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("endpoint") Optional<String> endpoint,
             @JsonProperty("loginID") String loginID,
             @JsonProperty("name") String name,
-            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod) {
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(endpoint, "endpoint");
         Utils.checkNotNull(loginID, "loginID");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         this.apiKey = apiKey;
         this.endpoint = endpoint;
         this.loginID = loginID;
         this.name = name;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
     }
     
     public CurrencyCloudConfig(
             String apiKey,
             String loginID,
             String name) {
-        this(apiKey, Optional.empty(), loginID, name, Optional.empty());
+        this(apiKey, Optional.empty(), loginID, name, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -102,6 +109,12 @@ public class CurrencyCloudConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public final static Builder builder() {
@@ -165,6 +178,18 @@ public class CurrencyCloudConfig {
         return this;
     }
 
+    public CurrencyCloudConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public CurrencyCloudConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -180,7 +205,8 @@ public class CurrencyCloudConfig {
             Objects.deepEquals(this.endpoint, other.endpoint) &&
             Objects.deepEquals(this.loginID, other.loginID) &&
             Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider);
     }
     
     @Override
@@ -190,7 +216,8 @@ public class CurrencyCloudConfig {
             endpoint,
             loginID,
             name,
-            pollingPeriod);
+            pollingPeriod,
+            provider);
     }
     
     @Override
@@ -200,7 +227,8 @@ public class CurrencyCloudConfig {
                 "endpoint", endpoint,
                 "loginID", loginID,
                 "name", name,
-                "pollingPeriod", pollingPeriod);
+                "pollingPeriod", pollingPeriod,
+                "provider", provider);
     }
     
     public final static class Builder {
@@ -214,6 +242,8 @@ public class CurrencyCloudConfig {
         private String name;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
         
         private Builder() {
           // force use of static builder() method
@@ -275,23 +305,45 @@ public class CurrencyCloudConfig {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
         
         public CurrencyCloudConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
+            }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
             }
             return new CurrencyCloudConfig(
                 apiKey,
                 endpoint,
                 loginID,
                 name,
-                pollingPeriod);
+                pollingPeriod,
+                provider);
         }
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Currencycloud\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

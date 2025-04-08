@@ -1187,10 +1187,15 @@ public class Application {
             .build();
 
         InstallConnectorRequest req = InstallConnectorRequest.builder()
-                .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
-                    .apiKey("XXX")
-                    .name("My Stripe Account")
-                    .build()))
+                .connectorConfig(BankingCircleConfig.builder()
+                    .authorizationEndpoint("XXX")
+                    .endpoint("XXX")
+                    .name("My Banking Circle Account")
+                    .password("XXX")
+                    .userCertificate("XXX")
+                    .userCertificateKey("XXX")
+                    .username("XXX")
+                    .build())
                 .connector(Connector.ATLAR)
                 .build();
 
@@ -2559,10 +2564,12 @@ public class Application {
             .build();
 
         UpdateConnectorConfigV1Request req = UpdateConnectorConfigV1Request.builder()
-                .connectorConfig(ConnectorConfig.of(StripeConfig.builder()
+                .connectorConfig(AdyenConfig.builder()
                     .apiKey("XXX")
-                    .name("My Stripe Account")
-                    .build()))
+                    .hmacKey("XXX")
+                    .name("My Adyen Account")
+                    .liveEndpointPrefix("XXX")
+                    .build())
                 .connector(Connector.ADYEN)
                 .connectorId("XXX")
                 .build();

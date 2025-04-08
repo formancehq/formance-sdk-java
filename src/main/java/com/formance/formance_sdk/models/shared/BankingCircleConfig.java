@@ -16,7 +16,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class BankingCircleConfig {
+public class BankingCircleConfig implements ConnectorConfig {
 
     @JsonProperty("authorizationEndpoint")
     private String authorizationEndpoint;
@@ -37,6 +37,10 @@ public class BankingCircleConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonProperty("userCertificate")
     private String userCertificate;
 
@@ -53,6 +57,7 @@ public class BankingCircleConfig {
             @JsonProperty("name") String name,
             @JsonProperty("password") String password,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("userCertificate") String userCertificate,
             @JsonProperty("userCertificateKey") String userCertificateKey,
             @JsonProperty("username") String username) {
@@ -61,6 +66,7 @@ public class BankingCircleConfig {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(password, "password");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(userCertificate, "userCertificate");
         Utils.checkNotNull(userCertificateKey, "userCertificateKey");
         Utils.checkNotNull(username, "username");
@@ -69,6 +75,7 @@ public class BankingCircleConfig {
         this.name = name;
         this.password = password;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
         this.userCertificate = userCertificate;
         this.userCertificateKey = userCertificateKey;
         this.username = username;
@@ -82,7 +89,7 @@ public class BankingCircleConfig {
             String userCertificate,
             String userCertificateKey,
             String username) {
-        this(authorizationEndpoint, endpoint, name, password, Optional.empty(), userCertificate, userCertificateKey, username);
+        this(authorizationEndpoint, endpoint, name, password, Optional.empty(), Optional.empty(), userCertificate, userCertificateKey, username);
     }
 
     @JsonIgnore
@@ -111,6 +118,12 @@ public class BankingCircleConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     @JsonIgnore
@@ -174,6 +187,18 @@ public class BankingCircleConfig {
         return this;
     }
 
+    public BankingCircleConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public BankingCircleConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public BankingCircleConfig withUserCertificate(String userCertificate) {
         Utils.checkNotNull(userCertificate, "userCertificate");
         this.userCertificate = userCertificate;
@@ -208,6 +233,7 @@ public class BankingCircleConfig {
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.password, other.password) &&
             Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.userCertificate, other.userCertificate) &&
             Objects.deepEquals(this.userCertificateKey, other.userCertificateKey) &&
             Objects.deepEquals(this.username, other.username);
@@ -221,6 +247,7 @@ public class BankingCircleConfig {
             name,
             password,
             pollingPeriod,
+            provider,
             userCertificate,
             userCertificateKey,
             username);
@@ -234,6 +261,7 @@ public class BankingCircleConfig {
                 "name", name,
                 "password", password,
                 "pollingPeriod", pollingPeriod,
+                "provider", provider,
                 "userCertificate", userCertificate,
                 "userCertificateKey", userCertificateKey,
                 "username", username);
@@ -250,6 +278,8 @@ public class BankingCircleConfig {
         private String password;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
  
         private String userCertificate;
  
@@ -303,6 +333,18 @@ public class BankingCircleConfig {
             return this;
         }
 
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         public Builder userCertificate(String userCertificate) {
             Utils.checkNotNull(userCertificate, "userCertificate");
             this.userCertificate = userCertificate;
@@ -325,12 +367,16 @@ public class BankingCircleConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new BankingCircleConfig(
                 authorizationEndpoint,
                 endpoint,
                 name,
                 password,
                 pollingPeriod,
+                provider,
                 userCertificate,
                 userCertificateKey,
                 username);
@@ -340,6 +386,12 @@ public class BankingCircleConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Bankingcircle\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

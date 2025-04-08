@@ -16,7 +16,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class GenericConfig {
+public class GenericConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -34,27 +34,34 @@ public class GenericConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonCreator
     public GenericConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("endpoint") String endpoint,
             @JsonProperty("name") String name,
-            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod) {
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(endpoint, "endpoint");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         this.apiKey = apiKey;
         this.endpoint = endpoint;
         this.name = name;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
     }
     
     public GenericConfig(
             String apiKey,
             String endpoint,
             String name) {
-        this(apiKey, endpoint, name, Optional.empty());
+        this(apiKey, endpoint, name, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -78,6 +85,12 @@ public class GenericConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public final static Builder builder() {
@@ -120,6 +133,18 @@ public class GenericConfig {
         return this;
     }
 
+    public GenericConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public GenericConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -134,7 +159,8 @@ public class GenericConfig {
             Objects.deepEquals(this.apiKey, other.apiKey) &&
             Objects.deepEquals(this.endpoint, other.endpoint) &&
             Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider);
     }
     
     @Override
@@ -143,7 +169,8 @@ public class GenericConfig {
             apiKey,
             endpoint,
             name,
-            pollingPeriod);
+            pollingPeriod,
+            provider);
     }
     
     @Override
@@ -152,7 +179,8 @@ public class GenericConfig {
                 "apiKey", apiKey,
                 "endpoint", endpoint,
                 "name", name,
-                "pollingPeriod", pollingPeriod);
+                "pollingPeriod", pollingPeriod,
+                "provider", provider);
     }
     
     public final static class Builder {
@@ -164,6 +192,8 @@ public class GenericConfig {
         private String name;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
         
         private Builder() {
           // force use of static builder() method
@@ -204,22 +234,44 @@ public class GenericConfig {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
         
         public GenericConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new GenericConfig(
                 apiKey,
                 endpoint,
                 name,
-                pollingPeriod);
+                pollingPeriod,
+                provider);
         }
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Generic\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

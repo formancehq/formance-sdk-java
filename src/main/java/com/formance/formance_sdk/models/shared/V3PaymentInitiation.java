@@ -51,6 +51,9 @@ public class V3PaymentInitiation {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+    @JsonProperty("provider")
+    private String provider;
+
     @JsonProperty("reference")
     private String reference;
 
@@ -78,6 +81,7 @@ public class V3PaymentInitiation {
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
+            @JsonProperty("provider") String provider,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
             @JsonProperty("sourceAccountID") Optional<String> sourceAccountID,
@@ -92,6 +96,7 @@ public class V3PaymentInitiation {
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(scheduledAt, "scheduledAt");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
@@ -106,6 +111,7 @@ public class V3PaymentInitiation {
         this.error = error;
         this.id = id;
         this.metadata = metadata;
+        this.provider = provider;
         this.reference = reference;
         this.scheduledAt = scheduledAt;
         this.sourceAccountID = sourceAccountID;
@@ -120,11 +126,12 @@ public class V3PaymentInitiation {
             OffsetDateTime createdAt,
             String description,
             String id,
+            String provider,
             String reference,
             OffsetDateTime scheduledAt,
             V3PaymentInitiationStatusEnum status,
             V3PaymentInitiationTypeEnum type) {
-        this(amount, asset, connectorID, createdAt, description, Optional.empty(), Optional.empty(), id, JsonNullable.undefined(), reference, scheduledAt, Optional.empty(), status, type);
+        this(amount, asset, connectorID, createdAt, description, Optional.empty(), Optional.empty(), id, JsonNullable.undefined(), provider, reference, scheduledAt, Optional.empty(), status, type);
     }
 
     @JsonIgnore
@@ -171,6 +178,11 @@ public class V3PaymentInitiation {
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
+    }
+
+    @JsonIgnore
+    public String provider() {
+        return provider;
     }
 
     @JsonIgnore
@@ -279,6 +291,12 @@ public class V3PaymentInitiation {
         return this;
     }
 
+    public V3PaymentInitiation withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public V3PaymentInitiation withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -335,6 +353,7 @@ public class V3PaymentInitiation {
             Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.reference, other.reference) &&
             Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
             Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
@@ -354,6 +373,7 @@ public class V3PaymentInitiation {
             error,
             id,
             metadata,
+            provider,
             reference,
             scheduledAt,
             sourceAccountID,
@@ -373,6 +393,7 @@ public class V3PaymentInitiation {
                 "error", error,
                 "id", id,
                 "metadata", metadata,
+                "provider", provider,
                 "reference", reference,
                 "scheduledAt", scheduledAt,
                 "sourceAccountID", sourceAccountID,
@@ -399,6 +420,8 @@ public class V3PaymentInitiation {
         private String id;
  
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+ 
+        private String provider;
  
         private String reference;
  
@@ -491,6 +514,12 @@ public class V3PaymentInitiation {
             return this;
         }
 
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -538,6 +567,7 @@ public class V3PaymentInitiation {
                 error,
                 id,
                 metadata,
+                provider,
                 reference,
                 scheduledAt,
                 sourceAccountID,

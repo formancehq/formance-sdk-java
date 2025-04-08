@@ -16,7 +16,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class AdyenConfig {
+public class AdyenConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -38,30 +38,37 @@ public class AdyenConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonCreator
     public AdyenConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("hmacKey") String hmacKey,
             @JsonProperty("liveEndpointPrefix") Optional<String> liveEndpointPrefix,
             @JsonProperty("name") String name,
-            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod) {
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(hmacKey, "hmacKey");
         Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         this.apiKey = apiKey;
         this.hmacKey = hmacKey;
         this.liveEndpointPrefix = liveEndpointPrefix;
         this.name = name;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
     }
     
     public AdyenConfig(
             String apiKey,
             String hmacKey,
             String name) {
-        this(apiKey, hmacKey, Optional.empty(), name, Optional.empty());
+        this(apiKey, hmacKey, Optional.empty(), name, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -90,6 +97,12 @@ public class AdyenConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public final static Builder builder() {
@@ -144,6 +157,18 @@ public class AdyenConfig {
         return this;
     }
 
+    public AdyenConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public AdyenConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -159,7 +184,8 @@ public class AdyenConfig {
             Objects.deepEquals(this.hmacKey, other.hmacKey) &&
             Objects.deepEquals(this.liveEndpointPrefix, other.liveEndpointPrefix) &&
             Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider);
     }
     
     @Override
@@ -169,7 +195,8 @@ public class AdyenConfig {
             hmacKey,
             liveEndpointPrefix,
             name,
-            pollingPeriod);
+            pollingPeriod,
+            provider);
     }
     
     @Override
@@ -179,7 +206,8 @@ public class AdyenConfig {
                 "hmacKey", hmacKey,
                 "liveEndpointPrefix", liveEndpointPrefix,
                 "name", name,
-                "pollingPeriod", pollingPeriod);
+                "pollingPeriod", pollingPeriod,
+                "provider", provider);
     }
     
     public final static class Builder {
@@ -193,6 +221,8 @@ public class AdyenConfig {
         private String name;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
         
         private Builder() {
           // force use of static builder() method
@@ -245,23 +275,45 @@ public class AdyenConfig {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
         
         public AdyenConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
+            }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
             }
             return new AdyenConfig(
                 apiKey,
                 hmacKey,
                 liveEndpointPrefix,
                 name,
-                pollingPeriod);
+                pollingPeriod,
+                provider);
         }
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Adyen\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

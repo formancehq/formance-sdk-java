@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class DummyPayConfig {
+public class DummyPayConfig implements ConnectorConfig {
 
     @JsonProperty("directory")
     private String directory;
@@ -44,6 +44,10 @@ public class DummyPayConfig {
     @JsonProperty("prefixFileToIngest")
     private Optional<String> prefixFileToIngest;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonCreator
     public DummyPayConfig(
             @JsonProperty("directory") String directory,
@@ -51,25 +55,28 @@ public class DummyPayConfig {
             @JsonProperty("name") String name,
             @JsonProperty("numberOfAccountsPreGenerated") Optional<Long> numberOfAccountsPreGenerated,
             @JsonProperty("numberOfPaymentsPreGenerated") Optional<Long> numberOfPaymentsPreGenerated,
-            @JsonProperty("prefixFileToIngest") Optional<String> prefixFileToIngest) {
+            @JsonProperty("prefixFileToIngest") Optional<String> prefixFileToIngest,
+            @JsonProperty("provider") Optional<String> provider) {
         Utils.checkNotNull(directory, "directory");
         Utils.checkNotNull(filePollingPeriod, "filePollingPeriod");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
         Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
         Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
+        Utils.checkNotNull(provider, "provider");
         this.directory = directory;
         this.filePollingPeriod = filePollingPeriod;
         this.name = name;
         this.numberOfAccountsPreGenerated = numberOfAccountsPreGenerated;
         this.numberOfPaymentsPreGenerated = numberOfPaymentsPreGenerated;
         this.prefixFileToIngest = prefixFileToIngest;
+        this.provider = provider;
     }
     
     public DummyPayConfig(
             String directory,
             String name) {
-        this(directory, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty());
+        this(directory, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -103,6 +110,12 @@ public class DummyPayConfig {
     @JsonIgnore
     public Optional<String> prefixFileToIngest() {
         return prefixFileToIngest;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public final static Builder builder() {
@@ -175,6 +188,18 @@ public class DummyPayConfig {
         return this;
     }
 
+    public DummyPayConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public DummyPayConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -191,7 +216,8 @@ public class DummyPayConfig {
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.numberOfAccountsPreGenerated, other.numberOfAccountsPreGenerated) &&
             Objects.deepEquals(this.numberOfPaymentsPreGenerated, other.numberOfPaymentsPreGenerated) &&
-            Objects.deepEquals(this.prefixFileToIngest, other.prefixFileToIngest);
+            Objects.deepEquals(this.prefixFileToIngest, other.prefixFileToIngest) &&
+            Objects.deepEquals(this.provider, other.provider);
     }
     
     @Override
@@ -202,7 +228,8 @@ public class DummyPayConfig {
             name,
             numberOfAccountsPreGenerated,
             numberOfPaymentsPreGenerated,
-            prefixFileToIngest);
+            prefixFileToIngest,
+            provider);
     }
     
     @Override
@@ -213,7 +240,8 @@ public class DummyPayConfig {
                 "name", name,
                 "numberOfAccountsPreGenerated", numberOfAccountsPreGenerated,
                 "numberOfPaymentsPreGenerated", numberOfPaymentsPreGenerated,
-                "prefixFileToIngest", prefixFileToIngest);
+                "prefixFileToIngest", prefixFileToIngest,
+                "provider", provider);
     }
     
     public final static class Builder {
@@ -229,6 +257,8 @@ public class DummyPayConfig {
         private Optional<Long> numberOfPaymentsPreGenerated = Optional.empty();
  
         private Optional<String> prefixFileToIngest = Optional.empty();
+ 
+        private Optional<String> provider;
         
         private Builder() {
           // force use of static builder() method
@@ -299,10 +329,25 @@ public class DummyPayConfig {
             this.prefixFileToIngest = prefixFileToIngest;
             return this;
         }
+
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
         
         public DummyPayConfig build() {
             if (filePollingPeriod == null) {
                 filePollingPeriod = _SINGLETON_VALUE_FilePollingPeriod.value();
+            }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
             }
             return new DummyPayConfig(
                 directory,
@@ -310,13 +355,20 @@ public class DummyPayConfig {
                 name,
                 numberOfAccountsPreGenerated,
                 numberOfPaymentsPreGenerated,
-                prefixFileToIngest);
+                prefixFileToIngest,
+                provider);
         }
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_FilePollingPeriod =
                 new LazySingletonValue<>(
                         "filePollingPeriod",
                         "\"10s\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Dummypay\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

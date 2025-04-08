@@ -11,65 +11,56 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 public class V2BulkResponse {
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private List<V2BulkElementResult> data;
+    private Optional<? extends List<V2BulkElementResult>> data;
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("details")
-    private Optional<String> details;
-
     @JsonProperty("errorCode")
-    private V2ErrorsEnum errorCode;
+    private Optional<? extends V2ErrorsEnum> errorCode;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
-    private String errorMessage;
+    private Optional<String> errorMessage;
 
     @JsonCreator
     public V2BulkResponse(
-            @JsonProperty("data") List<V2BulkElementResult> data,
-            @JsonProperty("details") Optional<String> details,
-            @JsonProperty("errorCode") V2ErrorsEnum errorCode,
-            @JsonProperty("errorMessage") String errorMessage) {
+            @JsonProperty("data") Optional<? extends List<V2BulkElementResult>> data,
+            @JsonProperty("errorCode") Optional<? extends V2ErrorsEnum> errorCode,
+            @JsonProperty("errorMessage") Optional<String> errorMessage) {
         Utils.checkNotNull(data, "data");
-        Utils.checkNotNull(details, "details");
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.data = data;
-        this.details = details;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
     
-    public V2BulkResponse(
-            List<V2BulkElementResult> data,
-            V2ErrorsEnum errorCode,
-            String errorMessage) {
-        this(data, Optional.empty(), errorCode, errorMessage);
+    public V2BulkResponse() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<V2BulkElementResult>> data() {
+        return (Optional<List<V2BulkElementResult>>) data;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2ErrorsEnum> errorCode() {
+        return (Optional<V2ErrorsEnum>) errorCode;
     }
 
     @JsonIgnore
-    public List<V2BulkElementResult> data() {
-        return data;
-    }
-
-    @JsonIgnore
-    public Optional<String> details() {
-        return details;
-    }
-
-    @JsonIgnore
-    public V2ErrorsEnum errorCode() {
-        return errorCode;
-    }
-
-    @JsonIgnore
-    public String errorMessage() {
+    public Optional<String> errorMessage() {
         return errorMessage;
     }
 
@@ -79,29 +70,35 @@ public class V2BulkResponse {
 
     public V2BulkResponse withData(List<V2BulkElementResult> data) {
         Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
+        return this;
+    }
+
+    public V2BulkResponse withData(Optional<? extends List<V2BulkElementResult>> data) {
+        Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
-    public V2BulkResponse withDetails(String details) {
-        Utils.checkNotNull(details, "details");
-        this.details = Optional.ofNullable(details);
-        return this;
-    }
-
-    public V2BulkResponse withDetails(Optional<String> details) {
-        Utils.checkNotNull(details, "details");
-        this.details = details;
-        return this;
-    }
-
     public V2BulkResponse withErrorCode(V2ErrorsEnum errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = Optional.ofNullable(errorCode);
+        return this;
+    }
+
+    public V2BulkResponse withErrorCode(Optional<? extends V2ErrorsEnum> errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
     }
 
     public V2BulkResponse withErrorMessage(String errorMessage) {
+        Utils.checkNotNull(errorMessage, "errorMessage");
+        this.errorMessage = Optional.ofNullable(errorMessage);
+        return this;
+    }
+
+    public V2BulkResponse withErrorMessage(Optional<String> errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = errorMessage;
         return this;
@@ -119,7 +116,6 @@ public class V2BulkResponse {
         V2BulkResponse other = (V2BulkResponse) o;
         return 
             Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.details, other.details) &&
             Objects.deepEquals(this.errorCode, other.errorCode) &&
             Objects.deepEquals(this.errorMessage, other.errorMessage);
     }
@@ -128,7 +124,6 @@ public class V2BulkResponse {
     public int hashCode() {
         return Objects.hash(
             data,
-            details,
             errorCode,
             errorMessage);
     }
@@ -137,20 +132,17 @@ public class V2BulkResponse {
     public String toString() {
         return Utils.toString(V2BulkResponse.class,
                 "data", data,
-                "details", details,
                 "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
     
     public final static class Builder {
  
-        private List<V2BulkElementResult> data;
+        private Optional<? extends List<V2BulkElementResult>> data = Optional.empty();
  
-        private Optional<String> details = Optional.empty();
+        private Optional<? extends V2ErrorsEnum> errorCode = Optional.empty();
  
-        private V2ErrorsEnum errorCode;
- 
-        private String errorMessage;
+        private Optional<String> errorMessage = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -158,29 +150,35 @@ public class V2BulkResponse {
 
         public Builder data(List<V2BulkElementResult> data) {
             Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
+            return this;
+        }
+
+        public Builder data(Optional<? extends List<V2BulkElementResult>> data) {
+            Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
 
-        public Builder details(String details) {
-            Utils.checkNotNull(details, "details");
-            this.details = Optional.ofNullable(details);
-            return this;
-        }
-
-        public Builder details(Optional<String> details) {
-            Utils.checkNotNull(details, "details");
-            this.details = details;
-            return this;
-        }
-
         public Builder errorCode(V2ErrorsEnum errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = Optional.ofNullable(errorCode);
+            return this;
+        }
+
+        public Builder errorCode(Optional<? extends V2ErrorsEnum> errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
         public Builder errorMessage(String errorMessage) {
+            Utils.checkNotNull(errorMessage, "errorMessage");
+            this.errorMessage = Optional.ofNullable(errorMessage);
+            return this;
+        }
+
+        public Builder errorMessage(Optional<String> errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
@@ -189,7 +187,6 @@ public class V2BulkResponse {
         public V2BulkResponse build() {
             return new V2BulkResponse(
                 data,
-                details,
                 errorCode,
                 errorMessage);
         }

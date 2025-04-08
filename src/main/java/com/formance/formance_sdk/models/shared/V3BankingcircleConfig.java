@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class V3BankingcircleConfig {
+public class V3BankingcircleConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("authorizationEndpoint")
     private String authorizationEndpoint;
@@ -39,6 +39,10 @@ public class V3BankingcircleConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonProperty("userCertificate")
     private String userCertificate;
 
@@ -56,6 +60,7 @@ public class V3BankingcircleConfig {
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("password") String password,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("userCertificate") String userCertificate,
             @JsonProperty("userCertificateKey") String userCertificateKey,
             @JsonProperty("username") String username) {
@@ -65,6 +70,7 @@ public class V3BankingcircleConfig {
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(password, "password");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(userCertificate, "userCertificate");
         Utils.checkNotNull(userCertificateKey, "userCertificateKey");
         Utils.checkNotNull(username, "username");
@@ -74,6 +80,7 @@ public class V3BankingcircleConfig {
         this.pageSize = pageSize;
         this.password = password;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
         this.userCertificate = userCertificate;
         this.userCertificateKey = userCertificateKey;
         this.username = username;
@@ -87,7 +94,7 @@ public class V3BankingcircleConfig {
             String userCertificate,
             String userCertificateKey,
             String username) {
-        this(authorizationEndpoint, endpoint, name, Optional.empty(), password, Optional.empty(), userCertificate, userCertificateKey, username);
+        this(authorizationEndpoint, endpoint, name, Optional.empty(), password, Optional.empty(), Optional.empty(), userCertificate, userCertificateKey, username);
     }
 
     @JsonIgnore
@@ -118,6 +125,12 @@ public class V3BankingcircleConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     @JsonIgnore
@@ -187,6 +200,18 @@ public class V3BankingcircleConfig {
         return this;
     }
 
+    public V3BankingcircleConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public V3BankingcircleConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public V3BankingcircleConfig withUserCertificate(String userCertificate) {
         Utils.checkNotNull(userCertificate, "userCertificate");
         this.userCertificate = userCertificate;
@@ -222,6 +247,7 @@ public class V3BankingcircleConfig {
             Objects.deepEquals(this.pageSize, other.pageSize) &&
             Objects.deepEquals(this.password, other.password) &&
             Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.userCertificate, other.userCertificate) &&
             Objects.deepEquals(this.userCertificateKey, other.userCertificateKey) &&
             Objects.deepEquals(this.username, other.username);
@@ -236,6 +262,7 @@ public class V3BankingcircleConfig {
             pageSize,
             password,
             pollingPeriod,
+            provider,
             userCertificate,
             userCertificateKey,
             username);
@@ -250,6 +277,7 @@ public class V3BankingcircleConfig {
                 "pageSize", pageSize,
                 "password", password,
                 "pollingPeriod", pollingPeriod,
+                "provider", provider,
                 "userCertificate", userCertificate,
                 "userCertificateKey", userCertificateKey,
                 "username", username);
@@ -268,6 +296,8 @@ public class V3BankingcircleConfig {
         private String password;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
  
         private String userCertificate;
  
@@ -327,6 +357,18 @@ public class V3BankingcircleConfig {
             return this;
         }
 
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         public Builder userCertificate(String userCertificate) {
             Utils.checkNotNull(userCertificate, "userCertificate");
             this.userCertificate = userCertificate;
@@ -352,6 +394,9 @@ public class V3BankingcircleConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new V3BankingcircleConfig(
                 authorizationEndpoint,
                 endpoint,
@@ -359,6 +404,7 @@ public class V3BankingcircleConfig {
                 pageSize,
                 password,
                 pollingPeriod,
+                provider,
                 userCertificate,
                 userCertificateKey,
                 username);
@@ -374,6 +420,12 @@ public class V3BankingcircleConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"2m\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Bankingcircle\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

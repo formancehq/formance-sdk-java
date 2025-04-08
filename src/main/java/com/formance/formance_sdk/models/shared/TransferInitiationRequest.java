@@ -42,10 +42,6 @@ public class TransferInitiationRequest {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("provider")
-    private Optional<? extends Connector> provider;
-
     @JsonProperty("reference")
     private String reference;
 
@@ -69,7 +65,6 @@ public class TransferInitiationRequest {
             @JsonProperty("description") String description,
             @JsonProperty("destinationAccountID") String destinationAccountID,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
-            @JsonProperty("provider") Optional<? extends Connector> provider,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
             @JsonProperty("sourceAccountID") String sourceAccountID,
@@ -81,7 +76,6 @@ public class TransferInitiationRequest {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(scheduledAt, "scheduledAt");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
@@ -93,7 +87,6 @@ public class TransferInitiationRequest {
         this.description = description;
         this.destinationAccountID = destinationAccountID;
         this.metadata = metadata;
-        this.provider = provider;
         this.reference = reference;
         this.scheduledAt = scheduledAt;
         this.sourceAccountID = sourceAccountID;
@@ -111,7 +104,7 @@ public class TransferInitiationRequest {
             String sourceAccountID,
             TransferInitiationRequestType type,
             boolean validated) {
-        this(amount, asset, Optional.empty(), description, destinationAccountID, JsonNullable.undefined(), Optional.empty(), reference, scheduledAt, sourceAccountID, type, validated);
+        this(amount, asset, Optional.empty(), description, destinationAccountID, JsonNullable.undefined(), reference, scheduledAt, sourceAccountID, type, validated);
     }
 
     @JsonIgnore
@@ -143,12 +136,6 @@ public class TransferInitiationRequest {
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Connector> provider() {
-        return (Optional<Connector>) provider;
     }
 
     @JsonIgnore
@@ -233,18 +220,6 @@ public class TransferInitiationRequest {
         return this;
     }
 
-    public TransferInitiationRequest withProvider(Connector provider) {
-        Utils.checkNotNull(provider, "provider");
-        this.provider = Optional.ofNullable(provider);
-        return this;
-    }
-
-    public TransferInitiationRequest withProvider(Optional<? extends Connector> provider) {
-        Utils.checkNotNull(provider, "provider");
-        this.provider = provider;
-        return this;
-    }
-
     public TransferInitiationRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -292,7 +267,6 @@ public class TransferInitiationRequest {
             Objects.deepEquals(this.description, other.description) &&
             Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
             Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.reference, other.reference) &&
             Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
             Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
@@ -309,7 +283,6 @@ public class TransferInitiationRequest {
             description,
             destinationAccountID,
             metadata,
-            provider,
             reference,
             scheduledAt,
             sourceAccountID,
@@ -326,7 +299,6 @@ public class TransferInitiationRequest {
                 "description", description,
                 "destinationAccountID", destinationAccountID,
                 "metadata", metadata,
-                "provider", provider,
                 "reference", reference,
                 "scheduledAt", scheduledAt,
                 "sourceAccountID", sourceAccountID,
@@ -347,8 +319,6 @@ public class TransferInitiationRequest {
         private String destinationAccountID;
  
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
-        private Optional<? extends Connector> provider = Optional.empty();
  
         private String reference;
  
@@ -417,18 +387,6 @@ public class TransferInitiationRequest {
             return this;
         }
 
-        public Builder provider(Connector provider) {
-            Utils.checkNotNull(provider, "provider");
-            this.provider = Optional.ofNullable(provider);
-            return this;
-        }
-
-        public Builder provider(Optional<? extends Connector> provider) {
-            Utils.checkNotNull(provider, "provider");
-            this.provider = provider;
-            return this;
-        }
-
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -467,7 +425,6 @@ public class TransferInitiationRequest {
                 description,
                 destinationAccountID,
                 metadata,
-                provider,
                 reference,
                 scheduledAt,
                 sourceAccountID,

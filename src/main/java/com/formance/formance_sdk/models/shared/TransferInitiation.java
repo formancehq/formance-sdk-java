@@ -53,6 +53,10 @@ public class TransferInitiation {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonProperty("reference")
     private String reference;
 
@@ -88,6 +92,7 @@ public class TransferInitiation {
             @JsonProperty("id") String id,
             @JsonProperty("initialAmount") BigInteger initialAmount,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
+            @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("reference") String reference,
             @JsonProperty("relatedAdjustments") Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments,
             @JsonProperty("relatedPayments") JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments,
@@ -105,6 +110,7 @@ public class TransferInitiation {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(initialAmount, "initialAmount");
         Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
         Utils.checkNotNull(relatedPayments, "relatedPayments");
@@ -122,6 +128,7 @@ public class TransferInitiation {
         this.id = id;
         this.initialAmount = initialAmount;
         this.metadata = metadata;
+        this.provider = provider;
         this.reference = reference;
         this.relatedAdjustments = relatedAdjustments;
         this.relatedPayments = relatedPayments;
@@ -146,7 +153,7 @@ public class TransferInitiation {
             String sourceAccountID,
             TransferInitiationStatus status,
             TransferInitiationType type) {
-        this(amount, asset, connectorID, createdAt, description, destinationAccountID, error, id, initialAmount, JsonNullable.undefined(), reference, Optional.empty(), JsonNullable.undefined(), scheduledAt, sourceAccountID, status, type);
+        this(amount, asset, connectorID, createdAt, description, destinationAccountID, error, id, initialAmount, JsonNullable.undefined(), Optional.empty(), reference, Optional.empty(), JsonNullable.undefined(), scheduledAt, sourceAccountID, status, type);
     }
 
     @JsonIgnore
@@ -198,6 +205,11 @@ public class TransferInitiation {
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
+    }
+
+    @JsonIgnore
+    public Optional<String> provider() {
+        return provider;
     }
 
     @JsonIgnore
@@ -317,6 +329,18 @@ public class TransferInitiation {
         return this;
     }
 
+    public TransferInitiation withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public TransferInitiation withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public TransferInitiation withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -392,6 +416,7 @@ public class TransferInitiation {
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.initialAmount, other.initialAmount) &&
             Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.reference, other.reference) &&
             Objects.deepEquals(this.relatedAdjustments, other.relatedAdjustments) &&
             Objects.deepEquals(this.relatedPayments, other.relatedPayments) &&
@@ -414,6 +439,7 @@ public class TransferInitiation {
             id,
             initialAmount,
             metadata,
+            provider,
             reference,
             relatedAdjustments,
             relatedPayments,
@@ -436,6 +462,7 @@ public class TransferInitiation {
                 "id", id,
                 "initialAmount", initialAmount,
                 "metadata", metadata,
+                "provider", provider,
                 "reference", reference,
                 "relatedAdjustments", relatedAdjustments,
                 "relatedPayments", relatedPayments,
@@ -466,6 +493,8 @@ public class TransferInitiation {
         private BigInteger initialAmount;
  
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+ 
+        private Optional<String> provider = Optional.empty();
  
         private String reference;
  
@@ -561,6 +590,18 @@ public class TransferInitiation {
             return this;
         }
 
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -627,6 +668,7 @@ public class TransferInitiation {
                 id,
                 initialAmount,
                 metadata,
+                provider,
                 reference,
                 relatedAdjustments,
                 relatedPayments,

@@ -3,156 +3,29 @@
  */
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.formance.formance_sdk.utils.OneOfDeserializer;
-import com.formance.formance_sdk.utils.TypedObject;
-import com.formance.formance_sdk.utils.Utils.JsonShape;
-import com.formance.formance_sdk.utils.Utils.TypeReferenceWithShape;
-import com.formance.formance_sdk.utils.Utils;
-import java.lang.Override;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Objects;
 
-@JsonDeserialize(using = V3InstallConnectorRequest._Deserializer.class)
-public class V3InstallConnectorRequest {
+@JsonTypeInfo(use = Id.NAME, property = "provider", include = As.EXISTING_PROPERTY, visible = true)
+@JsonSubTypes({
+    @Type(value = V3AdyenConfig.class, name="Adyen"),
+    @Type(value = V3AtlarConfig.class, name="Atlar"),
+    @Type(value = V3BankingcircleConfig.class, name="Bankingcircle"),
+    @Type(value = V3CurrencycloudConfig.class, name="Currencycloud"),
+    @Type(value = V3DummypayConfig.class, name="Dummypay"),
+    @Type(value = V3GenericConfig.class, name="Generic"),
+    @Type(value = V3MangopayConfig.class, name="Mangopay"),
+    @Type(value = V3ModulrConfig.class, name="Modulr"),
+    @Type(value = V3MoneycorpConfig.class, name="Moneycorp"),
+    @Type(value = V3StripeConfig.class, name="Stripe"),
+    @Type(value = V3WiseConfig.class, name="Wise")})
+public interface V3InstallConnectorRequest {
 
-    @JsonValue
-    private TypedObject value;
-    
-    private V3InstallConnectorRequest(TypedObject value) {
-        this.value = value;
-    }
+    String provider();
 
-    public static V3InstallConnectorRequest of(V3AdyenConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3AdyenConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3AtlarConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3AtlarConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3BankingcircleConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3BankingcircleConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3CurrencycloudConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3CurrencycloudConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3DummypayConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3DummypayConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3GenericConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3GenericConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3MangopayConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3MangopayConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3ModulrConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3ModulrConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3MoneycorpConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3MoneycorpConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3StripeConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3StripeConfig>(){}));
-    }
-
-    public static V3InstallConnectorRequest of(V3WiseConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new V3InstallConnectorRequest(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V3WiseConfig>(){}));
-    }
-    
-    /**
-     * Returns an instance of one of these types:
-     * <ul>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3AdyenConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3AtlarConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3BankingcircleConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3CurrencycloudConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3DummypayConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3GenericConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3MangopayConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3ModulrConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3MoneycorpConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3StripeConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V3WiseConfig}</li>
-     * </ul>
-     * 
-     * <p>Use {@code instanceof} to determine what type is returned. For example:
-     * 
-     * <pre>
-     * if (obj.value() instanceof String) {
-     *     String answer = (String) obj.value();
-     *     System.out.println("answer=" + answer);
-     * }
-     * </pre>
-     * 
-     * @return value of oneOf type
-     **/ 
-    public java.lang.Object value() {
-        return value.value();
-    }    
-    
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        V3InstallConnectorRequest other = (V3InstallConnectorRequest) o;
-        return Objects.deepEquals(this.value.value(), other.value.value()); 
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(value.value());
-    }
-    
-    @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<V3InstallConnectorRequest> {
-
-        public _Deserializer() {
-            super(V3InstallConnectorRequest.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<V3BankingcircleConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3AdyenConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3MoneycorpConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3ModulrConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3MangopayConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3CurrencycloudConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3AtlarConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3WiseConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3GenericConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3StripeConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V3DummypayConfig>() {}, JsonShape.DEFAULT));
-        }
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(V3InstallConnectorRequest.class,
-                "value", value);
-    }
- 
 }
 

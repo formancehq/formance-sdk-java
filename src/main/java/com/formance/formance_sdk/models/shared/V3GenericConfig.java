@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class V3GenericConfig {
+public class V3GenericConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -36,30 +36,37 @@ public class V3GenericConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonCreator
     public V3GenericConfig(
             @JsonProperty("apiKey") String apiKey,
             @JsonProperty("endpoint") String endpoint,
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
-            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod) {
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(endpoint, "endpoint");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         this.apiKey = apiKey;
         this.endpoint = endpoint;
         this.name = name;
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
     }
     
     public V3GenericConfig(
             String apiKey,
             String endpoint,
             String name) {
-        this(apiKey, endpoint, name, Optional.empty(), Optional.empty());
+        this(apiKey, endpoint, name, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -85,6 +92,12 @@ public class V3GenericConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public final static Builder builder() {
@@ -133,6 +146,18 @@ public class V3GenericConfig {
         return this;
     }
 
+    public V3GenericConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public V3GenericConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -148,7 +173,8 @@ public class V3GenericConfig {
             Objects.deepEquals(this.endpoint, other.endpoint) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider);
     }
     
     @Override
@@ -158,7 +184,8 @@ public class V3GenericConfig {
             endpoint,
             name,
             pageSize,
-            pollingPeriod);
+            pollingPeriod,
+            provider);
     }
     
     @Override
@@ -168,7 +195,8 @@ public class V3GenericConfig {
                 "endpoint", endpoint,
                 "name", name,
                 "pageSize", pageSize,
-                "pollingPeriod", pollingPeriod);
+                "pollingPeriod", pollingPeriod,
+                "provider", provider);
     }
     
     public final static class Builder {
@@ -182,6 +210,8 @@ public class V3GenericConfig {
         private Optional<Long> pageSize;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
         
         private Builder() {
           // force use of static builder() method
@@ -228,6 +258,18 @@ public class V3GenericConfig {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
         
         public V3GenericConfig build() {
             if (pageSize == null) {
@@ -236,12 +278,16 @@ public class V3GenericConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new V3GenericConfig(
                 apiKey,
                 endpoint,
                 name,
                 pageSize,
-                pollingPeriod);
+                pollingPeriod,
+                provider);
         }
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
@@ -254,6 +300,12 @@ public class V3GenericConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"2m\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Generic\"",
                         new TypeReference<Optional<String>>() {});
     }
 }
