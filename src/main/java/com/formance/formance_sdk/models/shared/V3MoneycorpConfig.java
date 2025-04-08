@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class V3MoneycorpConfig {
+public class V3MoneycorpConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -39,6 +39,10 @@ public class V3MoneycorpConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonCreator
     public V3MoneycorpConfig(
             @JsonProperty("apiKey") String apiKey,
@@ -46,19 +50,22 @@ public class V3MoneycorpConfig {
             @JsonProperty("endpoint") String endpoint,
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
-            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod) {
+            @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(clientID, "clientID");
         Utils.checkNotNull(endpoint, "endpoint");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         this.apiKey = apiKey;
         this.clientID = clientID;
         this.endpoint = endpoint;
         this.name = name;
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
     }
     
     public V3MoneycorpConfig(
@@ -66,7 +73,7 @@ public class V3MoneycorpConfig {
             String clientID,
             String endpoint,
             String name) {
-        this(apiKey, clientID, endpoint, name, Optional.empty(), Optional.empty());
+        this(apiKey, clientID, endpoint, name, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -97,6 +104,12 @@ public class V3MoneycorpConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public final static Builder builder() {
@@ -151,6 +164,18 @@ public class V3MoneycorpConfig {
         return this;
     }
 
+    public V3MoneycorpConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public V3MoneycorpConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -167,7 +192,8 @@ public class V3MoneycorpConfig {
             Objects.deepEquals(this.endpoint, other.endpoint) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod);
+            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider);
     }
     
     @Override
@@ -178,7 +204,8 @@ public class V3MoneycorpConfig {
             endpoint,
             name,
             pageSize,
-            pollingPeriod);
+            pollingPeriod,
+            provider);
     }
     
     @Override
@@ -189,7 +216,8 @@ public class V3MoneycorpConfig {
                 "endpoint", endpoint,
                 "name", name,
                 "pageSize", pageSize,
-                "pollingPeriod", pollingPeriod);
+                "pollingPeriod", pollingPeriod,
+                "provider", provider);
     }
     
     public final static class Builder {
@@ -205,6 +233,8 @@ public class V3MoneycorpConfig {
         private Optional<Long> pageSize;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
         
         private Builder() {
           // force use of static builder() method
@@ -257,6 +287,18 @@ public class V3MoneycorpConfig {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
         
         public V3MoneycorpConfig build() {
             if (pageSize == null) {
@@ -265,13 +307,17 @@ public class V3MoneycorpConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new V3MoneycorpConfig(
                 apiKey,
                 clientID,
                 endpoint,
                 name,
                 pageSize,
-                pollingPeriod);
+                pollingPeriod,
+                provider);
         }
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
@@ -284,6 +330,12 @@ public class V3MoneycorpConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"2m\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Moneycorp\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

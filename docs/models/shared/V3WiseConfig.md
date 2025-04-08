@@ -9,4 +9,5 @@
 | `name`              | *String*            | :heavy_check_mark:  | N/A                 |
 | `pageSize`          | *Optional\<Long>*   | :heavy_minus_sign:  | N/A                 |
 | `pollingPeriod`     | *Optional\<String>* | :heavy_minus_sign:  | N/A                 |
+| `provider`          | *Optional\<String>* | :heavy_minus_sign:  | N/A                 |
 | `webhookPublicKey`  | *String*            | :heavy_check_mark:  | N/A                 |

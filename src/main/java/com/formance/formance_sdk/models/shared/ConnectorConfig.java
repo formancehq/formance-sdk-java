@@ -3,156 +3,29 @@
  */
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.formance.formance_sdk.utils.OneOfDeserializer;
-import com.formance.formance_sdk.utils.TypedObject;
-import com.formance.formance_sdk.utils.Utils.JsonShape;
-import com.formance.formance_sdk.utils.Utils.TypeReferenceWithShape;
-import com.formance.formance_sdk.utils.Utils;
-import java.lang.Override;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Objects;
 
-@JsonDeserialize(using = ConnectorConfig._Deserializer.class)
-public class ConnectorConfig {
+@JsonTypeInfo(use = Id.NAME, property = "provider", include = As.EXISTING_PROPERTY, visible = true)
+@JsonSubTypes({
+    @Type(value = StripeConfig.class, name="Stripe"),
+    @Type(value = DummyPayConfig.class, name="Dummypay"),
+    @Type(value = WiseConfig.class, name="Wise"),
+    @Type(value = ModulrConfig.class, name="Modulr"),
+    @Type(value = CurrencyCloudConfig.class, name="Currencycloud"),
+    @Type(value = BankingCircleConfig.class, name="Bankingcircle"),
+    @Type(value = MangoPayConfig.class, name="Mangopay"),
+    @Type(value = MoneycorpConfig.class, name="Moneycorp"),
+    @Type(value = AtlarConfig.class, name="Atlar"),
+    @Type(value = AdyenConfig.class, name="Adyen"),
+    @Type(value = GenericConfig.class, name="Generic")})
+public interface ConnectorConfig {
 
-    @JsonValue
-    private TypedObject value;
-    
-    private ConnectorConfig(TypedObject value) {
-        this.value = value;
-    }
+    String provider();
 
-    public static ConnectorConfig of(StripeConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<StripeConfig>(){}));
-    }
-
-    public static ConnectorConfig of(DummyPayConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DummyPayConfig>(){}));
-    }
-
-    public static ConnectorConfig of(WiseConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<WiseConfig>(){}));
-    }
-
-    public static ConnectorConfig of(ModulrConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ModulrConfig>(){}));
-    }
-
-    public static ConnectorConfig of(CurrencyCloudConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CurrencyCloudConfig>(){}));
-    }
-
-    public static ConnectorConfig of(BankingCircleConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<BankingCircleConfig>(){}));
-    }
-
-    public static ConnectorConfig of(MangoPayConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<MangoPayConfig>(){}));
-    }
-
-    public static ConnectorConfig of(MoneycorpConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<MoneycorpConfig>(){}));
-    }
-
-    public static ConnectorConfig of(AtlarConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<AtlarConfig>(){}));
-    }
-
-    public static ConnectorConfig of(AdyenConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<AdyenConfig>(){}));
-    }
-
-    public static ConnectorConfig of(GenericConfig value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectorConfig(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GenericConfig>(){}));
-    }
-    
-    /**
-     * Returns an instance of one of these types:
-     * <ul>
-     * <li>{@code com.formance.formance_sdk.models.shared.StripeConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.DummyPayConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.WiseConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.ModulrConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.CurrencyCloudConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.BankingCircleConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.MangoPayConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.MoneycorpConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.AtlarConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.AdyenConfig}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.GenericConfig}</li>
-     * </ul>
-     * 
-     * <p>Use {@code instanceof} to determine what type is returned. For example:
-     * 
-     * <pre>
-     * if (obj.value() instanceof String) {
-     *     String answer = (String) obj.value();
-     *     System.out.println("answer=" + answer);
-     * }
-     * </pre>
-     * 
-     * @return value of oneOf type
-     **/ 
-    public java.lang.Object value() {
-        return value.value();
-    }    
-    
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ConnectorConfig other = (ConnectorConfig) o;
-        return Objects.deepEquals(this.value.value(), other.value.value()); 
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(value.value());
-    }
-    
-    @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<ConnectorConfig> {
-
-        public _Deserializer() {
-            super(ConnectorConfig.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<BankingCircleConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<AtlarConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<DummyPayConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<AdyenConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<MoneycorpConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<MangoPayConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CurrencyCloudConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<ModulrConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<GenericConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<StripeConfig>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<WiseConfig>() {}, JsonShape.DEFAULT));
-        }
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(ConnectorConfig.class,
-                "value", value);
-    }
- 
 }
 

@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class AtlarConfig {
+public class AtlarConfig implements ConnectorConfig {
 
     /**
      * The access key used by the connector for authorizing requests to the Atlar API.
@@ -50,6 +50,10 @@ public class AtlarConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     /**
      * The secret used by the connector for authorizing requests to the Atlar API.
      * You can obtain it along with the associated access key from the Atlar dashboard.
@@ -71,6 +75,7 @@ public class AtlarConfig {
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("secret") String secret,
             @JsonProperty("transferInitiationStatusPollingPeriod") Optional<String> transferInitiationStatusPollingPeriod) {
         Utils.checkNotNull(accessKey, "accessKey");
@@ -78,6 +83,7 @@ public class AtlarConfig {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(secret, "secret");
         Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
         this.accessKey = accessKey;
@@ -85,6 +91,7 @@ public class AtlarConfig {
         this.name = name;
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
         this.secret = secret;
         this.transferInitiationStatusPollingPeriod = transferInitiationStatusPollingPeriod;
     }
@@ -93,7 +100,7 @@ public class AtlarConfig {
             String accessKey,
             String name,
             String secret) {
-        this(accessKey, Optional.empty(), name, Optional.empty(), Optional.empty(), secret, Optional.empty());
+        this(accessKey, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), secret, Optional.empty());
     }
 
     /**
@@ -132,6 +139,12 @@ public class AtlarConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     /**
@@ -225,6 +238,18 @@ public class AtlarConfig {
         return this;
     }
 
+    public AtlarConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public AtlarConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     /**
      * The secret used by the connector for authorizing requests to the Atlar API.
      * You can obtain it along with the associated access key from the Atlar dashboard.
@@ -269,6 +294,7 @@ public class AtlarConfig {
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.pageSize, other.pageSize) &&
             Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.secret, other.secret) &&
             Objects.deepEquals(this.transferInitiationStatusPollingPeriod, other.transferInitiationStatusPollingPeriod);
     }
@@ -281,6 +307,7 @@ public class AtlarConfig {
             name,
             pageSize,
             pollingPeriod,
+            provider,
             secret,
             transferInitiationStatusPollingPeriod);
     }
@@ -293,6 +320,7 @@ public class AtlarConfig {
                 "name", name,
                 "pageSize", pageSize,
                 "pollingPeriod", pollingPeriod,
+                "provider", provider,
                 "secret", secret,
                 "transferInitiationStatusPollingPeriod", transferInitiationStatusPollingPeriod);
     }
@@ -308,6 +336,8 @@ public class AtlarConfig {
         private Optional<Long> pageSize;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
  
         private String secret;
  
@@ -387,6 +417,18 @@ public class AtlarConfig {
             return this;
         }
 
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         /**
          * The secret used by the connector for authorizing requests to the Atlar API.
          * You can obtain it along with the associated access key from the Atlar dashboard.
@@ -425,6 +467,9 @@ public class AtlarConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             if (transferInitiationStatusPollingPeriod == null) {
                 transferInitiationStatusPollingPeriod = _SINGLETON_VALUE_TransferInitiationStatusPollingPeriod.value();
             }
@@ -434,6 +479,7 @@ public class AtlarConfig {
                 name,
                 pageSize,
                 pollingPeriod,
+                provider,
                 secret,
                 transferInitiationStatusPollingPeriod);
         }
@@ -454,6 +500,12 @@ public class AtlarConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"120s\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Atlar\"",
                         new TypeReference<Optional<String>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_TransferInitiationStatusPollingPeriod =

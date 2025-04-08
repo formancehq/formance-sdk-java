@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class V3AdyenConfig {
+public class V3AdyenConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -41,6 +41,10 @@ public class V3AdyenConfig {
     private Optional<String> pollingPeriod;
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookPassword")
     private Optional<String> webhookPassword;
 
@@ -56,6 +60,7 @@ public class V3AdyenConfig {
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("webhookPassword") Optional<String> webhookPassword,
             @JsonProperty("webhookUsername") Optional<String> webhookUsername) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -64,6 +69,7 @@ public class V3AdyenConfig {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(webhookPassword, "webhookPassword");
         Utils.checkNotNull(webhookUsername, "webhookUsername");
         this.apiKey = apiKey;
@@ -72,6 +78,7 @@ public class V3AdyenConfig {
         this.name = name;
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
         this.webhookPassword = webhookPassword;
         this.webhookUsername = webhookUsername;
     }
@@ -80,7 +87,7 @@ public class V3AdyenConfig {
             String apiKey,
             String companyID,
             String name) {
-        this(apiKey, companyID, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(apiKey, companyID, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -111,6 +118,12 @@ public class V3AdyenConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     @JsonIgnore
@@ -181,6 +194,18 @@ public class V3AdyenConfig {
         return this;
     }
 
+    public V3AdyenConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public V3AdyenConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public V3AdyenConfig withWebhookPassword(String webhookPassword) {
         Utils.checkNotNull(webhookPassword, "webhookPassword");
         this.webhookPassword = Optional.ofNullable(webhookPassword);
@@ -222,6 +247,7 @@ public class V3AdyenConfig {
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.pageSize, other.pageSize) &&
             Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.webhookPassword, other.webhookPassword) &&
             Objects.deepEquals(this.webhookUsername, other.webhookUsername);
     }
@@ -235,6 +261,7 @@ public class V3AdyenConfig {
             name,
             pageSize,
             pollingPeriod,
+            provider,
             webhookPassword,
             webhookUsername);
     }
@@ -248,6 +275,7 @@ public class V3AdyenConfig {
                 "name", name,
                 "pageSize", pageSize,
                 "pollingPeriod", pollingPeriod,
+                "provider", provider,
                 "webhookPassword", webhookPassword,
                 "webhookUsername", webhookUsername);
     }
@@ -265,6 +293,8 @@ public class V3AdyenConfig {
         private Optional<Long> pageSize;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
  
         private Optional<String> webhookPassword = Optional.empty();
  
@@ -328,6 +358,18 @@ public class V3AdyenConfig {
             return this;
         }
 
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         public Builder webhookPassword(String webhookPassword) {
             Utils.checkNotNull(webhookPassword, "webhookPassword");
             this.webhookPassword = Optional.ofNullable(webhookPassword);
@@ -359,6 +401,9 @@ public class V3AdyenConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new V3AdyenConfig(
                 apiKey,
                 companyID,
@@ -366,6 +411,7 @@ public class V3AdyenConfig {
                 name,
                 pageSize,
                 pollingPeriod,
+                provider,
                 webhookPassword,
                 webhookUsername);
         }
@@ -380,6 +426,12 @@ public class V3AdyenConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"2m\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Adyen\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

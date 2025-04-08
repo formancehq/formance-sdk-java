@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class V3WiseConfig {
+public class V3WiseConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -33,6 +33,10 @@ public class V3WiseConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonProperty("webhookPublicKey")
     private String webhookPublicKey;
 
@@ -42,16 +46,19 @@ public class V3WiseConfig {
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("webhookPublicKey") String webhookPublicKey) {
         Utils.checkNotNull(apiKey, "apiKey");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(webhookPublicKey, "webhookPublicKey");
         this.apiKey = apiKey;
         this.name = name;
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
         this.webhookPublicKey = webhookPublicKey;
     }
     
@@ -59,7 +66,7 @@ public class V3WiseConfig {
             String apiKey,
             String name,
             String webhookPublicKey) {
-        this(apiKey, name, Optional.empty(), Optional.empty(), webhookPublicKey);
+        this(apiKey, name, Optional.empty(), Optional.empty(), Optional.empty(), webhookPublicKey);
     }
 
     @JsonIgnore
@@ -80,6 +87,12 @@ public class V3WiseConfig {
     @JsonIgnore
     public Optional<String> pollingPeriod() {
         return pollingPeriod;
+    }
+
+    @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     @JsonIgnore
@@ -127,6 +140,18 @@ public class V3WiseConfig {
         return this;
     }
 
+    public V3WiseConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public V3WiseConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public V3WiseConfig withWebhookPublicKey(String webhookPublicKey) {
         Utils.checkNotNull(webhookPublicKey, "webhookPublicKey");
         this.webhookPublicKey = webhookPublicKey;
@@ -148,6 +173,7 @@ public class V3WiseConfig {
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.pageSize, other.pageSize) &&
             Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.webhookPublicKey, other.webhookPublicKey);
     }
     
@@ -158,6 +184,7 @@ public class V3WiseConfig {
             name,
             pageSize,
             pollingPeriod,
+            provider,
             webhookPublicKey);
     }
     
@@ -168,6 +195,7 @@ public class V3WiseConfig {
                 "name", name,
                 "pageSize", pageSize,
                 "pollingPeriod", pollingPeriod,
+                "provider", provider,
                 "webhookPublicKey", webhookPublicKey);
     }
     
@@ -180,6 +208,8 @@ public class V3WiseConfig {
         private Optional<Long> pageSize;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
  
         private String webhookPublicKey;
         
@@ -223,6 +253,18 @@ public class V3WiseConfig {
             return this;
         }
 
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         public Builder webhookPublicKey(String webhookPublicKey) {
             Utils.checkNotNull(webhookPublicKey, "webhookPublicKey");
             this.webhookPublicKey = webhookPublicKey;
@@ -236,11 +278,15 @@ public class V3WiseConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new V3WiseConfig(
                 apiKey,
                 name,
                 pageSize,
                 pollingPeriod,
+                provider,
                 webhookPublicKey);
         }
 
@@ -254,6 +300,12 @@ public class V3WiseConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"2m\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Wise\"",
                         new TypeReference<Optional<String>>() {});
     }
 }

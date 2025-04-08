@@ -1,4 +1,4 @@
-speakeasyVersion: 1.529.1
+speakeasyVersion: 1.531.0
 sources:
     my-source:
         sourceNamespace: my-source
@@ -9,26 +9,26 @@ sources:
             - speakeasy-sdk-regen-1732202901
     stacks-source:
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:ba23573810f5c051e52916ed65a0fdcc15d56131becad5c527943a16746213df
-        sourceBlobDigest: sha256:1e47a07e206e4bf2107ed8e4579e5b29ff089879b726be270aade9e8dbce9f52
+        sourceRevisionDigest: sha256:eb6c4d3ed872ed10b7a67e08750bbcae374e1acbf7ed24273e9fc2a916782936
+        sourceBlobDigest: sha256:d7707e7839c0592f7ebcfeae3d3ce0cc28ec3362939a19974e3ee1f494514a7e
         tags:
             - latest
-            - v3.0.2
+            - v3.0.4
 targets:
     Java:
         source: stacks-source
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:ba23573810f5c051e52916ed65a0fdcc15d56131becad5c527943a16746213df
-        sourceBlobDigest: sha256:1e47a07e206e4bf2107ed8e4579e5b29ff089879b726be270aade9e8dbce9f52
+        sourceRevisionDigest: sha256:eb6c4d3ed872ed10b7a67e08750bbcae374e1acbf7ed24273e9fc2a916782936
+        sourceBlobDigest: sha256:d7707e7839c0592f7ebcfeae3d3ce0cc28ec3362939a19974e3ee1f494514a7e
         codeSamplesNamespace: stacks-source-java-code-samples
-        codeSamplesRevisionDigest: sha256:13e882006659853759b95e4952a36fc04f7aa79af443fa3a9268784e5f6d1867
+        codeSamplesRevisionDigest: sha256:6ed9919143f5f3cf6cccd15e741a6c5738dbefb16101be93cb32387fa5e506ee
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v3.0.2/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.0.4/generate.json
             registry:
                 location: registry.speakeasyapi.dev/formance/formance/stacks-source
     targets:

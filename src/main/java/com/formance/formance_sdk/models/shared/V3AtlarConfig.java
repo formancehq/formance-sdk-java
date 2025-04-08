@@ -17,13 +17,13 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class V3AtlarConfig {
+public class V3AtlarConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("accessKey")
     private String accessKey;
 
-    @JsonProperty("baseURL")
-    private String baseURL;
+    @JsonProperty("baseUrl")
+    private String baseUrl;
 
     @JsonProperty("name")
     private String name;
@@ -36,37 +36,44 @@ public class V3AtlarConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<String> provider;
+
     @JsonProperty("secret")
     private String secret;
 
     @JsonCreator
     public V3AtlarConfig(
             @JsonProperty("accessKey") String accessKey,
-            @JsonProperty("baseURL") String baseURL,
+            @JsonProperty("baseUrl") String baseUrl,
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
+            @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("secret") String secret) {
         Utils.checkNotNull(accessKey, "accessKey");
-        Utils.checkNotNull(baseURL, "baseURL");
+        Utils.checkNotNull(baseUrl, "baseUrl");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(secret, "secret");
         this.accessKey = accessKey;
-        this.baseURL = baseURL;
+        this.baseUrl = baseUrl;
         this.name = name;
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
+        this.provider = provider;
         this.secret = secret;
     }
     
     public V3AtlarConfig(
             String accessKey,
-            String baseURL,
+            String baseUrl,
             String name,
             String secret) {
-        this(accessKey, baseURL, name, Optional.empty(), Optional.empty(), secret);
+        this(accessKey, baseUrl, name, Optional.empty(), Optional.empty(), Optional.empty(), secret);
     }
 
     @JsonIgnore
@@ -75,8 +82,8 @@ public class V3AtlarConfig {
     }
 
     @JsonIgnore
-    public String baseURL() {
-        return baseURL;
+    public String baseUrl() {
+        return baseUrl;
     }
 
     @JsonIgnore
@@ -95,6 +102,12 @@ public class V3AtlarConfig {
     }
 
     @JsonIgnore
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
+    }
+
+    @JsonIgnore
     public String secret() {
         return secret;
     }
@@ -109,9 +122,9 @@ public class V3AtlarConfig {
         return this;
     }
 
-    public V3AtlarConfig withBaseURL(String baseURL) {
-        Utils.checkNotNull(baseURL, "baseURL");
-        this.baseURL = baseURL;
+    public V3AtlarConfig withBaseUrl(String baseUrl) {
+        Utils.checkNotNull(baseUrl, "baseUrl");
+        this.baseUrl = baseUrl;
         return this;
     }
 
@@ -145,6 +158,18 @@ public class V3AtlarConfig {
         return this;
     }
 
+    public V3AtlarConfig withProvider(String provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+    public V3AtlarConfig withProvider(Optional<String> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public V3AtlarConfig withSecret(String secret) {
         Utils.checkNotNull(secret, "secret");
         this.secret = secret;
@@ -163,10 +188,11 @@ public class V3AtlarConfig {
         V3AtlarConfig other = (V3AtlarConfig) o;
         return 
             Objects.deepEquals(this.accessKey, other.accessKey) &&
-            Objects.deepEquals(this.baseURL, other.baseURL) &&
+            Objects.deepEquals(this.baseUrl, other.baseUrl) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.pageSize, other.pageSize) &&
             Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Objects.deepEquals(this.provider, other.provider) &&
             Objects.deepEquals(this.secret, other.secret);
     }
     
@@ -174,10 +200,11 @@ public class V3AtlarConfig {
     public int hashCode() {
         return Objects.hash(
             accessKey,
-            baseURL,
+            baseUrl,
             name,
             pageSize,
             pollingPeriod,
+            provider,
             secret);
     }
     
@@ -185,10 +212,11 @@ public class V3AtlarConfig {
     public String toString() {
         return Utils.toString(V3AtlarConfig.class,
                 "accessKey", accessKey,
-                "baseURL", baseURL,
+                "baseUrl", baseUrl,
                 "name", name,
                 "pageSize", pageSize,
                 "pollingPeriod", pollingPeriod,
+                "provider", provider,
                 "secret", secret);
     }
     
@@ -196,13 +224,15 @@ public class V3AtlarConfig {
  
         private String accessKey;
  
-        private String baseURL;
+        private String baseUrl;
  
         private String name;
  
         private Optional<Long> pageSize;
  
         private Optional<String> pollingPeriod;
+ 
+        private Optional<String> provider;
  
         private String secret;
         
@@ -216,9 +246,9 @@ public class V3AtlarConfig {
             return this;
         }
 
-        public Builder baseURL(String baseURL) {
-            Utils.checkNotNull(baseURL, "baseURL");
-            this.baseURL = baseURL;
+        public Builder baseUrl(String baseUrl) {
+            Utils.checkNotNull(baseUrl, "baseUrl");
+            this.baseUrl = baseUrl;
             return this;
         }
 
@@ -252,6 +282,18 @@ public class V3AtlarConfig {
             return this;
         }
 
+        public Builder provider(String provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<String> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = secret;
@@ -265,12 +307,16 @@ public class V3AtlarConfig {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
             }
+            if (provider == null) {
+                provider = _SINGLETON_VALUE_Provider.value();
+            }
             return new V3AtlarConfig(
                 accessKey,
-                baseURL,
+                baseUrl,
                 name,
                 pageSize,
                 pollingPeriod,
+                provider,
                 secret);
         }
 
@@ -284,6 +330,12 @@ public class V3AtlarConfig {
                 new LazySingletonValue<>(
                         "pollingPeriod",
                         "\"2m\"",
+                        new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =
+                new LazySingletonValue<>(
+                        "provider",
+                        "\"Atlar\"",
                         new TypeReference<Optional<String>>() {});
     }
 }
