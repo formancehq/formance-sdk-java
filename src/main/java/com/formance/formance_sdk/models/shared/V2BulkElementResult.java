@@ -12,11 +12,11 @@ import java.lang.String;
 
 @JsonTypeInfo(use = Id.NAME, property = "responseType", include = As.EXISTING_PROPERTY, visible = true)
 @JsonSubTypes({
-    @Type(value = V2BulkElementResultCreateTransactionSchemas.class, name="ADD_METADATA"),
+    @Type(value = V2BulkElementResultCreateTransactionSchemas.class, name="CREATE_TRANSACTION"),
     @Type(value = Schemas.class, name="ADD_METADATA"),
-    @Type(value = V2BulkElementResultRevertTransactionSchemas.class, name="ADD_METADATA"),
-    @Type(value = V2BulkElementResultDeleteMetadataSchemas.class, name="ADD_METADATA"),
-    @Type(value = V2BulkElementResultErrorSchemas.class, name="ADD_METADATA")})
+    @Type(value = V2BulkElementResultRevertTransactionSchemas.class, name="REVERT_TRANSACTION"),
+    @Type(value = V2BulkElementResultDeleteMetadataSchemas.class, name="DELETE_METADATA"),
+    @Type(value = V2BulkElementResultErrorSchemas.class, name="ERROR")})
 public interface V2BulkElementResult {
 
     String responseType();
