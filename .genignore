@@ -1,3 +1,2 @@
 src/main/java/com/formance/formance_sdk/hooks/SDKHooks.java
 src/main/java/com/formance/formance_sdk/models/operations/V2GetVolumesWithBalancesRequest.java
-src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResult.java
