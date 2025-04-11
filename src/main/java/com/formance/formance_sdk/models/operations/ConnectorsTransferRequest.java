@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.shared.ConnectorEnum;
 import com.formance.formance_sdk.models.shared.TransferRequest;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,12 +22,12 @@ public class ConnectorsTransferRequest {
      * The name of the connector.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
-    private Connector connector;
+    private ConnectorEnum connector;
 
     @JsonCreator
     public ConnectorsTransferRequest(
             TransferRequest transferRequest,
-            Connector connector) {
+            ConnectorEnum connector) {
         Utils.checkNotNull(transferRequest, "transferRequest");
         Utils.checkNotNull(connector, "connector");
         this.transferRequest = transferRequest;
@@ -43,7 +43,7 @@ public class ConnectorsTransferRequest {
      * The name of the connector.
      */
     @JsonIgnore
-    public Connector connector() {
+    public ConnectorEnum connector() {
         return connector;
     }
 
@@ -60,7 +60,7 @@ public class ConnectorsTransferRequest {
     /**
      * The name of the connector.
      */
-    public ConnectorsTransferRequest withConnector(Connector connector) {
+    public ConnectorsTransferRequest withConnector(ConnectorEnum connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
@@ -99,7 +99,7 @@ public class ConnectorsTransferRequest {
  
         private TransferRequest transferRequest;
  
-        private Connector connector;
+        private ConnectorEnum connector;
         
         private Builder() {
           // force use of static builder() method
@@ -114,7 +114,7 @@ public class ConnectorsTransferRequest {
         /**
          * The name of the connector.
          */
-        public Builder connector(Connector connector) {
+        public Builder connector(ConnectorEnum connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
             return this;

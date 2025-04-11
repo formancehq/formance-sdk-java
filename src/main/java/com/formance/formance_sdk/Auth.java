@@ -5,14 +5,14 @@ package com.formance.formance_sdk;
 public class Auth {
 
     private final SDKConfiguration sdkConfiguration;
-    private final V1 v1;
+    private final AuthV1 v1;
 
     Auth(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.v1 = new V1(this.sdkConfiguration);
+        this.v1 = new AuthV1(this.sdkConfiguration);
     }
 
-    public final V1 v1() {
+    public final AuthV1 v1() {
         return v1;
     }
 }

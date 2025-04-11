@@ -5,8 +5,8 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.Connector;
 import com.formance.formance_sdk.models.shared.ConnectorConfig;
+import com.formance.formance_sdk.models.shared.ConnectorEnum;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -22,7 +22,7 @@ public class UpdateConnectorConfigV1Request {
      * The name of the connector.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
-    private Connector connector;
+    private ConnectorEnum connector;
 
     /**
      * The connector ID.
@@ -33,7 +33,7 @@ public class UpdateConnectorConfigV1Request {
     @JsonCreator
     public UpdateConnectorConfigV1Request(
             ConnectorConfig connectorConfig,
-            Connector connector,
+            ConnectorEnum connector,
             String connectorId) {
         Utils.checkNotNull(connectorConfig, "connectorConfig");
         Utils.checkNotNull(connector, "connector");
@@ -52,7 +52,7 @@ public class UpdateConnectorConfigV1Request {
      * The name of the connector.
      */
     @JsonIgnore
-    public Connector connector() {
+    public ConnectorEnum connector() {
         return connector;
     }
 
@@ -77,7 +77,7 @@ public class UpdateConnectorConfigV1Request {
     /**
      * The name of the connector.
      */
-    public UpdateConnectorConfigV1Request withConnector(Connector connector) {
+    public UpdateConnectorConfigV1Request withConnector(ConnectorEnum connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
@@ -128,7 +128,7 @@ public class UpdateConnectorConfigV1Request {
  
         private ConnectorConfig connectorConfig;
  
-        private Connector connector;
+        private ConnectorEnum connector;
  
         private String connectorId;
         
@@ -145,7 +145,7 @@ public class UpdateConnectorConfigV1Request {
         /**
          * The name of the connector.
          */
-        public Builder connector(Connector connector) {
+        public Builder connector(ConnectorEnum connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
             return this;

@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.shared.ConnectorEnum;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -18,11 +18,11 @@ public class ResetConnectorRequest {
      * The name of the connector.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
-    private Connector connector;
+    private ConnectorEnum connector;
 
     @JsonCreator
     public ResetConnectorRequest(
-            Connector connector) {
+            ConnectorEnum connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
     }
@@ -31,7 +31,7 @@ public class ResetConnectorRequest {
      * The name of the connector.
      */
     @JsonIgnore
-    public Connector connector() {
+    public ConnectorEnum connector() {
         return connector;
     }
 
@@ -42,7 +42,7 @@ public class ResetConnectorRequest {
     /**
      * The name of the connector.
      */
-    public ResetConnectorRequest withConnector(Connector connector) {
+    public ResetConnectorRequest withConnector(ConnectorEnum connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
@@ -76,7 +76,7 @@ public class ResetConnectorRequest {
     
     public final static class Builder {
  
-        private Connector connector;
+        private ConnectorEnum connector;
         
         private Builder() {
           // force use of static builder() method
@@ -85,7 +85,7 @@ public class ResetConnectorRequest {
         /**
          * The name of the connector.
          */
-        public Builder connector(Connector connector) {
+        public Builder connector(ConnectorEnum connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
             return this;

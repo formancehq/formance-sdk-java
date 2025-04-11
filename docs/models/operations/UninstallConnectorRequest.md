@@ -3,6 +3,6 @@
 
 ## Fields
 
-| Field                                         | Type                                          | Required                                      | Description                                   |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `connector`                                   | [Connector](../../models/shared/Connector.md) | :heavy_check_mark:                            | The name of the connector.                    |
+| Field                                                 | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `connector`                                           | [ConnectorEnum](../../models/shared/ConnectorEnum.md) | :heavy_check_mark:                                    | The name of the connector.                            |

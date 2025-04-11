@@ -28,14 +28,14 @@ public class ConnectorsResponseData {
     private String name;
 
     @JsonProperty("provider")
-    private Connector provider;
+    private ConnectorEnum provider;
 
     @JsonCreator
     public ConnectorsResponseData(
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("enabled") Optional<Boolean> enabled,
             @JsonProperty("name") String name,
-            @JsonProperty("provider") Connector provider) {
+            @JsonProperty("provider") ConnectorEnum provider) {
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(enabled, "enabled");
         Utils.checkNotNull(name, "name");
@@ -49,7 +49,7 @@ public class ConnectorsResponseData {
     public ConnectorsResponseData(
             String connectorID,
             String name,
-            Connector provider) {
+            ConnectorEnum provider) {
         this(connectorID, Optional.empty(), name, provider);
     }
 
@@ -69,7 +69,7 @@ public class ConnectorsResponseData {
     }
 
     @JsonIgnore
-    public Connector provider() {
+    public ConnectorEnum provider() {
         return provider;
     }
 
@@ -101,7 +101,7 @@ public class ConnectorsResponseData {
         return this;
     }
 
-    public ConnectorsResponseData withProvider(Connector provider) {
+    public ConnectorsResponseData withProvider(ConnectorEnum provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
@@ -150,7 +150,7 @@ public class ConnectorsResponseData {
  
         private String name;
  
-        private Connector provider;
+        private ConnectorEnum provider;
         
         private Builder() {
           // force use of static builder() method
@@ -180,7 +180,7 @@ public class ConnectorsResponseData {
             return this;
         }
 
-        public Builder provider(Connector provider) {
+        public Builder provider(ConnectorEnum provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;

@@ -3,10 +3,10 @@ id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
   docChecksum: 38130b06fd30dd21a57600670bf064ee
   docVersion: v3.0.4
-  speakeasyVersion: 1.531.1
-  generationVersion: 2.568.5
-  releaseVersion: 7.0.5
-  configChecksum: a0d366b68d93b374a79adcaa36686776
+  speakeasyVersion: 1.531.3
+  generationVersion: 2.570.3
+  releaseVersion: 7.1.0
+  configChecksum: 6c41531ed6ecb543280efca618e8f512
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.36.3
+    core: 3.37.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     errors: 0.3.0
@@ -34,16 +34,16 @@ generatedFiles:
   - USAGE.md
   - build.gradle
   - docs/models/errors/Error.md
-  - docs/models/errors/ErrorCode.md
+  - docs/models/errors/ErrorErrorCode.md
   - docs/models/errors/ErrorResponse.md
   - docs/models/errors/PaymentsErrorResponse.md
   - docs/models/errors/ReconciliationErrorResponse.md
-  - docs/models/errors/SchemasErrorCode.md
-  - docs/models/errors/SchemasWalletsErrorResponseErrorCode.md
   - docs/models/errors/V2Error.md
+  - docs/models/errors/V2ErrorErrorCode.md
   - docs/models/errors/V2ErrorResponse.md
   - docs/models/errors/V3ErrorResponse.md
   - docs/models/errors/WalletsErrorResponse.md
+  - docs/models/errors/WalletsErrorResponseErrorCode.md
   - docs/models/errors/WebhooksErrorResponse.md
   - docs/models/operations/ActivateConfigRequest.md
   - docs/models/operations/ActivateConfigResponse.md
@@ -444,6 +444,7 @@ generatedFiles:
   - docs/models/shared/AccountType.md
   - docs/models/shared/AccountWithVolumesAndBalances.md
   - docs/models/shared/AccountsCursor.md
+  - docs/models/shared/AccountsCursorCursor.md
   - docs/models/shared/AccountsCursorResponse.md
   - docs/models/shared/AccountsCursorResponseCursor.md
   - docs/models/shared/ActivityAddAccountMetadata.md
@@ -462,6 +463,7 @@ generatedFiles:
   - docs/models/shared/ActivityListWallets.md
   - docs/models/shared/ActivityRevertTransaction.md
   - docs/models/shared/ActivityStripeTransfer.md
+  - docs/models/shared/ActivityStripeTransferMetadata.md
   - docs/models/shared/ActivityVoidHold.md
   - docs/models/shared/AddAccountToPoolRequest.md
   - docs/models/shared/AdyenConfig.md
@@ -472,7 +474,6 @@ generatedFiles:
   - docs/models/shared/AttemptResponse.md
   - docs/models/shared/Balance.md
   - docs/models/shared/BalanceWithAssets.md
-  - docs/models/shared/Balances.md
   - docs/models/shared/BalancesCursor.md
   - docs/models/shared/BalancesCursorCursor.md
   - docs/models/shared/BalancesCursorResponse.md
@@ -496,13 +497,15 @@ generatedFiles:
   - docs/models/shared/ConfigsResponse.md
   - docs/models/shared/ConfigsResponseCursor.md
   - docs/models/shared/ConfirmHoldRequest.md
-  - docs/models/shared/Connector.md
   - docs/models/shared/ConnectorConfig.md
   - docs/models/shared/ConnectorConfigResponse.md
+  - docs/models/shared/ConnectorEnum.md
   - docs/models/shared/ConnectorResponse.md
+  - docs/models/shared/ConnectorResponseData.md
   - docs/models/shared/ConnectorsConfigsResponse.md
   - docs/models/shared/ConnectorsConfigsResponseConnector.md
   - docs/models/shared/ConnectorsConfigsResponseData.md
+  - docs/models/shared/ConnectorsConfigsResponseKey.md
   - docs/models/shared/ConnectorsResponse.md
   - docs/models/shared/ConnectorsResponseData.md
   - docs/models/shared/Contract.md
@@ -517,10 +520,7 @@ generatedFiles:
   - docs/models/shared/CreateWorkflowResponse.md
   - docs/models/shared/CreditWalletRequest.md
   - docs/models/shared/CurrencyCloudConfig.md
-  - docs/models/shared/Cursor.md
-  - docs/models/shared/Data.md
   - docs/models/shared/DebitWalletRequest.md
-  - docs/models/shared/Descriptor.md
   - docs/models/shared/DummyPayConfig.md
   - docs/models/shared/ErrorResponse.md
   - docs/models/shared/ErrorsEnum.md
@@ -542,10 +542,10 @@ generatedFiles:
   - docs/models/shared/GetWorkflowInstanceResponse.md
   - docs/models/shared/GetWorkflowResponse.md
   - docs/models/shared/Hold.md
-  - docs/models/shared/Key.md
   - docs/models/shared/LedgerAccountSubject.md
   - docs/models/shared/LedgerInfo.md
   - docs/models/shared/LedgerInfoResponse.md
+  - docs/models/shared/LedgerInfoStorage.md
   - docs/models/shared/LedgerStorage.md
   - docs/models/shared/ListBalancesResponse.md
   - docs/models/shared/ListBalancesResponseCursor.md
@@ -558,13 +558,14 @@ generatedFiles:
   - docs/models/shared/ListWalletsResponseCursor.md
   - docs/models/shared/ListWorkflowsResponse.md
   - docs/models/shared/Log.md
+  - docs/models/shared/LogType.md
   - docs/models/shared/LogsCursorResponse.md
   - docs/models/shared/LogsCursorResponseCursor.md
   - docs/models/shared/MangoPayConfig.md
   - docs/models/shared/Mapping.md
   - docs/models/shared/MappingResponse.md
-  - docs/models/shared/Metadata.md
   - docs/models/shared/MigrationInfo.md
+  - docs/models/shared/MigrationInfoState.md
   - docs/models/shared/ModulrConfig.md
   - docs/models/shared/Monetary.md
   - docs/models/shared/MoneycorpConfig.md
@@ -591,6 +592,7 @@ generatedFiles:
   - docs/models/shared/Payment.md
   - docs/models/shared/PaymentAdjustment.md
   - docs/models/shared/PaymentAdjustmentRaw.md
+  - docs/models/shared/PaymentRaw.md
   - docs/models/shared/PaymentRequest.md
   - docs/models/shared/PaymentResponse.md
   - docs/models/shared/PaymentScheme.md
@@ -620,7 +622,6 @@ generatedFiles:
   - docs/models/shared/Posting.md
   - docs/models/shared/Query.md
   - docs/models/shared/QueryRaw.md
-  - docs/models/shared/Raw.md
   - docs/models/shared/ReadClientResponse.md
   - docs/models/shared/ReadTriggerResponse.md
   - docs/models/shared/ReadUserResponse.md
@@ -633,8 +634,6 @@ generatedFiles:
   - docs/models/shared/ResponseCursor.md
   - docs/models/shared/ReverseTransferInitiationRequest.md
   - docs/models/shared/RunWorkflowResponse.md
-  - docs/models/shared/Schemas.md
-  - docs/models/shared/Scheme.md
   - docs/models/shared/Script.md
   - docs/models/shared/ScriptResponse.md
   - docs/models/shared/Secret.md
@@ -651,14 +650,13 @@ generatedFiles:
   - docs/models/shared/StageSendSourcePayment.md
   - docs/models/shared/StageStatus.md
   - docs/models/shared/StageWaitEvent.md
-  - docs/models/shared/State.md
   - docs/models/shared/Stats.md
   - docs/models/shared/StatsResponse.md
   - docs/models/shared/Status.md
-  - docs/models/shared/Storage.md
   - docs/models/shared/StripeConfig.md
   - docs/models/shared/Subject.md
   - docs/models/shared/TaskBankingCircle.md
+  - docs/models/shared/TaskBankingCircleDescriptor.md
   - docs/models/shared/TaskBankingCircleState.md
   - docs/models/shared/TaskCurrencyCloud.md
   - docs/models/shared/TaskCurrencyCloudDescriptor.md
@@ -710,7 +708,6 @@ generatedFiles:
   - docs/models/shared/Trigger.md
   - docs/models/shared/TriggerData.md
   - docs/models/shared/TriggerOccurrence.md
-  - docs/models/shared/Type.md
   - docs/models/shared/Update.md
   - docs/models/shared/UpdateAccount.md
   - docs/models/shared/UpdateBankAccountMetadataRequest.md
@@ -745,10 +742,11 @@ generatedFiles:
   - docs/models/shared/V2BulkElementDeleteMetadata.md
   - docs/models/shared/V2BulkElementDeleteMetadataData.md
   - docs/models/shared/V2BulkElementResult.md
-  - docs/models/shared/V2BulkElementResultCreateTransactionSchemas.md
-  - docs/models/shared/V2BulkElementResultDeleteMetadataSchemas.md
-  - docs/models/shared/V2BulkElementResultErrorSchemas.md
-  - docs/models/shared/V2BulkElementResultRevertTransactionSchemas.md
+  - docs/models/shared/V2BulkElementResultAddMetadata.md
+  - docs/models/shared/V2BulkElementResultCreateTransaction.md
+  - docs/models/shared/V2BulkElementResultDeleteMetadata.md
+  - docs/models/shared/V2BulkElementResultError.md
+  - docs/models/shared/V2BulkElementResultRevertTransaction.md
   - docs/models/shared/V2BulkElementRevertTransaction.md
   - docs/models/shared/V2BulkElementRevertTransactionData.md
   - docs/models/shared/V2BulkResponse.md
@@ -798,6 +796,7 @@ generatedFiles:
   - docs/models/shared/V2PaymentAdjustmentRaw.md
   - docs/models/shared/V2PaymentMetadata.md
   - docs/models/shared/V2PaymentRaw.md
+  - docs/models/shared/V2PaymentScheme.md
   - docs/models/shared/V2PaymentStatus.md
   - docs/models/shared/V2PaymentType.md
   - docs/models/shared/V2PostTransaction.md
@@ -839,6 +838,7 @@ generatedFiles:
   - docs/models/shared/V2Wallet.md
   - docs/models/shared/V2WalletSubject.md
   - docs/models/shared/V2WalletWithBalances.md
+  - docs/models/shared/V2WalletWithBalancesBalances.md
   - docs/models/shared/V2Workflow.md
   - docs/models/shared/V2WorkflowConfig.md
   - docs/models/shared/V2WorkflowInstance.md
@@ -967,25 +967,25 @@ generatedFiles:
   - docs/models/shared/WorkflowInstanceHistoryStageInput.md
   - docs/models/shared/WorkflowInstanceHistoryStageOutput.md
   - docs/sdks/auth/README.md
+  - docs/sdks/authv1/README.md
   - docs/sdks/ledger/README.md
+  - docs/sdks/ledgerv1/README.md
+  - docs/sdks/ledgerv2/README.md
   - docs/sdks/orchestration/README.md
+  - docs/sdks/orchestrationv1/README.md
+  - docs/sdks/orchestrationv2/README.md
   - docs/sdks/payments/README.md
+  - docs/sdks/paymentsv1/README.md
   - docs/sdks/reconciliation/README.md
+  - docs/sdks/reconciliationv1/README.md
   - docs/sdks/sdk/README.md
-  - docs/sdks/sdkorchestrationv1/README.md
-  - docs/sdks/sdkpaymentsv1/README.md
-  - docs/sdks/sdkreconciliationv1/README.md
-  - docs/sdks/sdksearchv1/README.md
-  - docs/sdks/sdkv1/README.md
-  - docs/sdks/sdkv2/README.md
-  - docs/sdks/sdkwalletsv1/README.md
-  - docs/sdks/sdkwebhooksv1/README.md
   - docs/sdks/search/README.md
-  - docs/sdks/v1/README.md
-  - docs/sdks/v2/README.md
+  - docs/sdks/searchv1/README.md
   - docs/sdks/v3/README.md
   - docs/sdks/wallets/README.md
+  - docs/sdks/walletsv1/README.md
   - docs/sdks/webhooks/README.md
+  - docs/sdks/webhooksv1/README.md
   - gradle.properties
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
@@ -993,41 +993,41 @@ generatedFiles:
   - gradlew.bat
   - settings.gradle
   - src/main/java/com/formance/formance_sdk/Auth.java
+  - src/main/java/com/formance/formance_sdk/AuthV1.java
   - src/main/java/com/formance/formance_sdk/Ledger.java
+  - src/main/java/com/formance/formance_sdk/LedgerV1.java
+  - src/main/java/com/formance/formance_sdk/LedgerV2.java
   - src/main/java/com/formance/formance_sdk/Orchestration.java
+  - src/main/java/com/formance/formance_sdk/OrchestrationV1.java
+  - src/main/java/com/formance/formance_sdk/OrchestrationV2.java
   - src/main/java/com/formance/formance_sdk/Payments.java
+  - src/main/java/com/formance/formance_sdk/PaymentsV1.java
   - src/main/java/com/formance/formance_sdk/Reconciliation.java
+  - src/main/java/com/formance/formance_sdk/ReconciliationV1.java
   - src/main/java/com/formance/formance_sdk/SDK.java
   - src/main/java/com/formance/formance_sdk/SDKConfiguration.java
-  - src/main/java/com/formance/formance_sdk/SDKOrchestrationV1.java
-  - src/main/java/com/formance/formance_sdk/SDKPaymentsV1.java
-  - src/main/java/com/formance/formance_sdk/SDKReconciliationV1.java
-  - src/main/java/com/formance/formance_sdk/SDKSearchV1.java
-  - src/main/java/com/formance/formance_sdk/SDKV1.java
-  - src/main/java/com/formance/formance_sdk/SDKV2.java
-  - src/main/java/com/formance/formance_sdk/SDKWalletsV1.java
-  - src/main/java/com/formance/formance_sdk/SDKWebhooksV1.java
   - src/main/java/com/formance/formance_sdk/Search.java
+  - src/main/java/com/formance/formance_sdk/SearchV1.java
   - src/main/java/com/formance/formance_sdk/SecuritySource.java
-  - src/main/java/com/formance/formance_sdk/V1.java
-  - src/main/java/com/formance/formance_sdk/V2.java
   - src/main/java/com/formance/formance_sdk/V3.java
   - src/main/java/com/formance/formance_sdk/Wallets.java
+  - src/main/java/com/formance/formance_sdk/WalletsV1.java
   - src/main/java/com/formance/formance_sdk/Webhooks.java
+  - src/main/java/com/formance/formance_sdk/WebhooksV1.java
   - src/main/java/com/formance/formance_sdk/hooks/ClientCredentialsHook.java
   - src/main/java/com/formance/formance_sdk/models/errors/AuthException.java
   - src/main/java/com/formance/formance_sdk/models/errors/Error.java
-  - src/main/java/com/formance/formance_sdk/models/errors/ErrorCode.java
+  - src/main/java/com/formance/formance_sdk/models/errors/ErrorErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/PaymentsErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/ReconciliationErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/SDKError.java
-  - src/main/java/com/formance/formance_sdk/models/errors/SchemasErrorCode.java
-  - src/main/java/com/formance/formance_sdk/models/errors/SchemasWalletsErrorResponseErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/V2Error.java
+  - src/main/java/com/formance/formance_sdk/models/errors/V2ErrorErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/V2ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/V3ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/errors/WalletsErrorResponse.java
+  - src/main/java/com/formance/formance_sdk/models/errors/WalletsErrorResponseErrorCode.java
   - src/main/java/com/formance/formance_sdk/models/errors/WebhooksErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/ActivateConfigRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/ActivateConfigRequestBuilder.java
@@ -1639,6 +1639,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/AccountType.java
   - src/main/java/com/formance/formance_sdk/models/shared/AccountWithVolumesAndBalances.java
   - src/main/java/com/formance/formance_sdk/models/shared/AccountsCursor.java
+  - src/main/java/com/formance/formance_sdk/models/shared/AccountsCursorCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/AccountsCursorResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/AccountsCursorResponseCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityAddAccountMetadata.java
@@ -1657,6 +1658,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityListWallets.java
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityRevertTransaction.java
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityStripeTransfer.java
+  - src/main/java/com/formance/formance_sdk/models/shared/ActivityStripeTransferMetadata.java
   - src/main/java/com/formance/formance_sdk/models/shared/ActivityVoidHold.java
   - src/main/java/com/formance/formance_sdk/models/shared/AddAccountToPoolRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/AdyenConfig.java
@@ -1667,7 +1669,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/AttemptResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Balance.java
   - src/main/java/com/formance/formance_sdk/models/shared/BalanceWithAssets.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Balances.java
   - src/main/java/com/formance/formance_sdk/models/shared/BalancesCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/BalancesCursorCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/BalancesCursorResponse.java
@@ -1691,13 +1692,15 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/ConfigsResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConfigsResponseCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConfirmHoldRequest.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Connector.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorConfigResponse.java
+  - src/main/java/com/formance/formance_sdk/models/shared/ConnectorEnum.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorResponse.java
+  - src/main/java/com/formance/formance_sdk/models/shared/ConnectorResponseData.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorsConfigsResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorsConfigsResponseConnector.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorsConfigsResponseData.java
+  - src/main/java/com/formance/formance_sdk/models/shared/ConnectorsConfigsResponseKey.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorsResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ConnectorsResponseData.java
   - src/main/java/com/formance/formance_sdk/models/shared/Contract.java
@@ -1712,10 +1715,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/CreateWorkflowResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/CreditWalletRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/CurrencyCloudConfig.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Cursor.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Data.java
   - src/main/java/com/formance/formance_sdk/models/shared/DebitWalletRequest.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Descriptor.java
   - src/main/java/com/formance/formance_sdk/models/shared/DummyPayConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/ErrorResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ErrorsEnum.java
@@ -1737,10 +1737,10 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/GetWorkflowInstanceResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/GetWorkflowResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Hold.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Key.java
   - src/main/java/com/formance/formance_sdk/models/shared/LedgerAccountSubject.java
   - src/main/java/com/formance/formance_sdk/models/shared/LedgerInfo.java
   - src/main/java/com/formance/formance_sdk/models/shared/LedgerInfoResponse.java
+  - src/main/java/com/formance/formance_sdk/models/shared/LedgerInfoStorage.java
   - src/main/java/com/formance/formance_sdk/models/shared/LedgerStorage.java
   - src/main/java/com/formance/formance_sdk/models/shared/ListBalancesResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ListBalancesResponseCursor.java
@@ -1753,13 +1753,14 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/ListWalletsResponseCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/ListWorkflowsResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Log.java
+  - src/main/java/com/formance/formance_sdk/models/shared/LogType.java
   - src/main/java/com/formance/formance_sdk/models/shared/LogsCursorResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/LogsCursorResponseCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/MangoPayConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/Mapping.java
   - src/main/java/com/formance/formance_sdk/models/shared/MappingResponse.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Metadata.java
   - src/main/java/com/formance/formance_sdk/models/shared/MigrationInfo.java
+  - src/main/java/com/formance/formance_sdk/models/shared/MigrationInfoState.java
   - src/main/java/com/formance/formance_sdk/models/shared/ModulrConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/Monetary.java
   - src/main/java/com/formance/formance_sdk/models/shared/MoneycorpConfig.java
@@ -1786,6 +1787,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/Payment.java
   - src/main/java/com/formance/formance_sdk/models/shared/PaymentAdjustment.java
   - src/main/java/com/formance/formance_sdk/models/shared/PaymentAdjustmentRaw.java
+  - src/main/java/com/formance/formance_sdk/models/shared/PaymentRaw.java
   - src/main/java/com/formance/formance_sdk/models/shared/PaymentRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/PaymentResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/PaymentScheme.java
@@ -1815,7 +1817,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/Posting.java
   - src/main/java/com/formance/formance_sdk/models/shared/Query.java
   - src/main/java/com/formance/formance_sdk/models/shared/QueryRaw.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Raw.java
   - src/main/java/com/formance/formance_sdk/models/shared/ReadClientResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ReadTriggerResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/ReadUserResponse.java
@@ -1828,8 +1829,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/ResponseCursor.java
   - src/main/java/com/formance/formance_sdk/models/shared/ReverseTransferInitiationRequest.java
   - src/main/java/com/formance/formance_sdk/models/shared/RunWorkflowResponse.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Schemas.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Scheme.java
   - src/main/java/com/formance/formance_sdk/models/shared/Script.java
   - src/main/java/com/formance/formance_sdk/models/shared/ScriptResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Secret.java
@@ -1846,14 +1845,13 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/StageSendSourcePayment.java
   - src/main/java/com/formance/formance_sdk/models/shared/StageStatus.java
   - src/main/java/com/formance/formance_sdk/models/shared/StageWaitEvent.java
-  - src/main/java/com/formance/formance_sdk/models/shared/State.java
   - src/main/java/com/formance/formance_sdk/models/shared/Stats.java
   - src/main/java/com/formance/formance_sdk/models/shared/StatsResponse.java
   - src/main/java/com/formance/formance_sdk/models/shared/Status.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Storage.java
   - src/main/java/com/formance/formance_sdk/models/shared/StripeConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/Subject.java
   - src/main/java/com/formance/formance_sdk/models/shared/TaskBankingCircle.java
+  - src/main/java/com/formance/formance_sdk/models/shared/TaskBankingCircleDescriptor.java
   - src/main/java/com/formance/formance_sdk/models/shared/TaskBankingCircleState.java
   - src/main/java/com/formance/formance_sdk/models/shared/TaskCurrencyCloud.java
   - src/main/java/com/formance/formance_sdk/models/shared/TaskCurrencyCloudDescriptor.java
@@ -1905,7 +1903,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/Trigger.java
   - src/main/java/com/formance/formance_sdk/models/shared/TriggerData.java
   - src/main/java/com/formance/formance_sdk/models/shared/TriggerOccurrence.java
-  - src/main/java/com/formance/formance_sdk/models/shared/Type.java
   - src/main/java/com/formance/formance_sdk/models/shared/Update.java
   - src/main/java/com/formance/formance_sdk/models/shared/UpdateAccount.java
   - src/main/java/com/formance/formance_sdk/models/shared/UpdateBankAccountMetadataRequest.java
@@ -1939,10 +1936,12 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementCreateTransaction.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementDeleteMetadata.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementDeleteMetadataData.java
-  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultCreateTransactionSchemas.java
-  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultDeleteMetadataSchemas.java
-  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultErrorSchemas.java
-  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultRevertTransactionSchemas.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResult.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultAddMetadata.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultCreateTransaction.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultDeleteMetadata.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultError.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementResultRevertTransaction.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementRevertTransaction.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2BulkElementRevertTransactionData.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2BulkResponse.java
@@ -1992,6 +1991,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/V2PaymentAdjustmentRaw.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2PaymentMetadata.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2PaymentRaw.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2PaymentScheme.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2PaymentStatus.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2PaymentType.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2PostTransaction.java
@@ -2033,6 +2033,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/V2Wallet.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2WalletSubject.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2WalletWithBalances.java
+  - src/main/java/com/formance/formance_sdk/models/shared/V2WalletWithBalancesBalances.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2Workflow.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2WorkflowConfig.java
   - src/main/java/com/formance/formance_sdk/models/shared/V2WorkflowInstance.java

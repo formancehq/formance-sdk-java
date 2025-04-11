@@ -14,17 +14,17 @@ import java.util.Objects;
 public class ConnectorsConfigsResponseConnector {
 
     @JsonProperty("key")
-    private Key key;
+    private ConnectorsConfigsResponseKey key;
 
     @JsonCreator
     public ConnectorsConfigsResponseConnector(
-            @JsonProperty("key") Key key) {
+            @JsonProperty("key") ConnectorsConfigsResponseKey key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
     }
 
     @JsonIgnore
-    public Key key() {
+    public ConnectorsConfigsResponseKey key() {
         return key;
     }
 
@@ -32,7 +32,7 @@ public class ConnectorsConfigsResponseConnector {
         return new Builder();
     }    
 
-    public ConnectorsConfigsResponseConnector withKey(Key key) {
+    public ConnectorsConfigsResponseConnector withKey(ConnectorsConfigsResponseKey key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
         return this;
@@ -66,13 +66,13 @@ public class ConnectorsConfigsResponseConnector {
     
     public final static class Builder {
  
-        private Key key;
+        private ConnectorsConfigsResponseKey key;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder key(Key key) {
+        public Builder key(ConnectorsConfigsResponseKey key) {
             Utils.checkNotNull(key, "key");
             this.key = key;
             return this;
