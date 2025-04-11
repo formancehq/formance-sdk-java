@@ -19,17 +19,17 @@ import java.util.Objects;
 public class ConnectorResponse {
 
     @JsonProperty("data")
-    private Data data;
+    private ConnectorResponseData data;
 
     @JsonCreator
     public ConnectorResponse(
-            @JsonProperty("data") Data data) {
+            @JsonProperty("data") ConnectorResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
     @JsonIgnore
-    public Data data() {
+    public ConnectorResponseData data() {
         return data;
     }
 
@@ -37,7 +37,7 @@ public class ConnectorResponse {
         return new Builder();
     }    
 
-    public ConnectorResponse withData(Data data) {
+    public ConnectorResponse withData(ConnectorResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -71,13 +71,13 @@ public class ConnectorResponse {
     
     public final static class Builder {
  
-        private Data data;
+        private ConnectorResponseData data;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(Data data) {
+        public Builder data(ConnectorResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

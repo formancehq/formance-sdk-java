@@ -22,14 +22,14 @@ import java.util.Objects;
 public class V2Error extends RuntimeException {
 
     @JsonProperty("errorCode")
-    private SchemasErrorCode errorCode;
+    private V2ErrorErrorCode errorCode;
 
     @JsonProperty("errorMessage")
     private String errorMessage;
 
     @JsonCreator
     public V2Error(
-            @JsonProperty("errorCode") SchemasErrorCode errorCode,
+            @JsonProperty("errorCode") V2ErrorErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
@@ -38,7 +38,7 @@ public class V2Error extends RuntimeException {
     }
 
     @JsonIgnore
-    public SchemasErrorCode errorCode() {
+    public V2ErrorErrorCode errorCode() {
         return errorCode;
     }
 
@@ -51,7 +51,7 @@ public class V2Error extends RuntimeException {
         return new Builder();
     }    
 
-    public V2Error withErrorCode(SchemasErrorCode errorCode) {
+    public V2Error withErrorCode(V2ErrorErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
@@ -94,7 +94,7 @@ public class V2Error extends RuntimeException {
     
     public final static class Builder {
  
-        private SchemasErrorCode errorCode;
+        private V2ErrorErrorCode errorCode;
  
         private String errorMessage;
         
@@ -102,7 +102,7 @@ public class V2Error extends RuntimeException {
           // force use of static builder() method
         }
 
-        public Builder errorCode(SchemasErrorCode errorCode) {
+        public Builder errorCode(V2ErrorErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;

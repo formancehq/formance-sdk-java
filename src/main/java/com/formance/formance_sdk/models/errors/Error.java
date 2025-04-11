@@ -22,14 +22,14 @@ import java.util.Objects;
 public class Error extends RuntimeException {
 
     @JsonProperty("errorCode")
-    private ErrorCode errorCode;
+    private ErrorErrorCode errorCode;
 
     @JsonProperty("errorMessage")
     private String errorMessage;
 
     @JsonCreator
     public Error(
-            @JsonProperty("errorCode") ErrorCode errorCode,
+            @JsonProperty("errorCode") ErrorErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
@@ -38,7 +38,7 @@ public class Error extends RuntimeException {
     }
 
     @JsonIgnore
-    public ErrorCode errorCode() {
+    public ErrorErrorCode errorCode() {
         return errorCode;
     }
 
@@ -51,7 +51,7 @@ public class Error extends RuntimeException {
         return new Builder();
     }    
 
-    public Error withErrorCode(ErrorCode errorCode) {
+    public Error withErrorCode(ErrorErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
@@ -94,7 +94,7 @@ public class Error extends RuntimeException {
     
     public final static class Builder {
  
-        private ErrorCode errorCode;
+        private ErrorErrorCode errorCode;
  
         private String errorMessage;
         
@@ -102,7 +102,7 @@ public class Error extends RuntimeException {
           // force use of static builder() method
         }
 
-        public Builder errorCode(ErrorCode errorCode) {
+        public Builder errorCode(ErrorErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;

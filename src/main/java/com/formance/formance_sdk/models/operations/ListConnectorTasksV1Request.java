@@ -6,7 +6,7 @@ package com.formance.formance_sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.shared.ConnectorEnum;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
@@ -22,7 +22,7 @@ public class ListConnectorTasksV1Request {
      * The name of the connector.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")
-    private Connector connector;
+    private ConnectorEnum connector;
 
     /**
      * The connector ID.
@@ -47,7 +47,7 @@ public class ListConnectorTasksV1Request {
 
     @JsonCreator
     public ListConnectorTasksV1Request(
-            Connector connector,
+            ConnectorEnum connector,
             String connectorId,
             Optional<String> cursor,
             Optional<Long> pageSize) {
@@ -62,7 +62,7 @@ public class ListConnectorTasksV1Request {
     }
     
     public ListConnectorTasksV1Request(
-            Connector connector,
+            ConnectorEnum connector,
             String connectorId) {
         this(connector, connectorId, Optional.empty(), Optional.empty());
     }
@@ -71,7 +71,7 @@ public class ListConnectorTasksV1Request {
      * The name of the connector.
      */
     @JsonIgnore
-    public Connector connector() {
+    public ConnectorEnum connector() {
         return connector;
     }
 
@@ -109,7 +109,7 @@ public class ListConnectorTasksV1Request {
     /**
      * The name of the connector.
      */
-    public ListConnectorTasksV1Request withConnector(Connector connector) {
+    public ListConnectorTasksV1Request withConnector(ConnectorEnum connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
@@ -203,7 +203,7 @@ public class ListConnectorTasksV1Request {
     
     public final static class Builder {
  
-        private Connector connector;
+        private ConnectorEnum connector;
  
         private String connectorId;
  
@@ -218,7 +218,7 @@ public class ListConnectorTasksV1Request {
         /**
          * The name of the connector.
          */
-        public Builder connector(Connector connector) {
+        public Builder connector(ConnectorEnum connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
             return this;

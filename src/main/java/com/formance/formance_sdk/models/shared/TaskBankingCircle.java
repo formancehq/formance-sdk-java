@@ -26,7 +26,7 @@ public class TaskBankingCircle {
     private OffsetDateTime createdAt;
 
     @JsonProperty("descriptor")
-    private Descriptor descriptor;
+    private TaskBankingCircleDescriptor descriptor;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
@@ -49,7 +49,7 @@ public class TaskBankingCircle {
     public TaskBankingCircle(
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("descriptor") Descriptor descriptor,
+            @JsonProperty("descriptor") TaskBankingCircleDescriptor descriptor,
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("state") JsonNullable<? extends TaskBankingCircleState> state,
@@ -76,7 +76,7 @@ public class TaskBankingCircle {
     public TaskBankingCircle(
             String connectorID,
             OffsetDateTime createdAt,
-            Descriptor descriptor,
+            TaskBankingCircleDescriptor descriptor,
             String id,
             TaskStatus status,
             OffsetDateTime updatedAt) {
@@ -94,7 +94,7 @@ public class TaskBankingCircle {
     }
 
     @JsonIgnore
-    public Descriptor descriptor() {
+    public TaskBankingCircleDescriptor descriptor() {
         return descriptor;
     }
 
@@ -140,7 +140,7 @@ public class TaskBankingCircle {
         return this;
     }
 
-    public TaskBankingCircle withDescriptor(Descriptor descriptor) {
+    public TaskBankingCircle withDescriptor(TaskBankingCircleDescriptor descriptor) {
         Utils.checkNotNull(descriptor, "descriptor");
         this.descriptor = descriptor;
         return this;
@@ -241,7 +241,7 @@ public class TaskBankingCircle {
  
         private OffsetDateTime createdAt;
  
-        private Descriptor descriptor;
+        private TaskBankingCircleDescriptor descriptor;
  
         private Optional<String> error = Optional.empty();
  
@@ -269,7 +269,7 @@ public class TaskBankingCircle {
             return this;
         }
 
-        public Builder descriptor(Descriptor descriptor) {
+        public Builder descriptor(TaskBankingCircleDescriptor descriptor) {
             Utils.checkNotNull(descriptor, "descriptor");
             this.descriptor = descriptor;
             return this;

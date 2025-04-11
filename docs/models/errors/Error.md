@@ -5,7 +5,7 @@ General error
 
 ## Fields
 
-| Field                                         | Type                                          | Required                                      | Description                                   |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `errorCode`                                   | [ErrorCode](../../models/errors/ErrorCode.md) | :heavy_check_mark:                            | N/A                                           |
-| `errorMessage`                                | *String*                                      | :heavy_check_mark:                            | N/A                                           |
+| Field                                                   | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `errorCode`                                             | [ErrorErrorCode](../../models/errors/ErrorErrorCode.md) | :heavy_check_mark:                                      | N/A                                                     |
+| `errorMessage`                                          | *String*                                                | :heavy_check_mark:                                      | N/A                                                     |
