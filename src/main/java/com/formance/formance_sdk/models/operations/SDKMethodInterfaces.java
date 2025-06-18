@@ -18,6 +18,7 @@ import com.formance.formance_sdk.models.shared.V2WorkflowConfig;
 import com.formance.formance_sdk.models.shared.V3CreateAccountRequest;
 import com.formance.formance_sdk.models.shared.V3CreateBankAccountRequest;
 import com.formance.formance_sdk.models.shared.V3CreatePaymentRequest;
+import com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserRequest;
 import com.formance.formance_sdk.models.shared.V3CreatePoolRequest;
 import com.formance.formance_sdk.models.shared.WorkflowConfig;
 import java.lang.Exception;
@@ -569,6 +570,11 @@ public class SDKMethodInterfaces {
             GetPoolBalancesRequest request) throws Exception;
     }
 
+    public interface MethodCallGetPoolBalancesLatest {
+        GetPoolBalancesLatestResponse getPoolBalancesLatest(
+            GetPoolBalancesLatestRequest request) throws Exception;
+    }
+
     public interface MethodCallGetTransferInitiation {
         GetTransferInitiationResponse getTransferInitiation(
             GetTransferInitiationRequest request) throws Exception;
@@ -666,11 +672,6 @@ public class SDKMethodInterfaces {
             ReverseTransferInitiationRequest request) throws Exception;
     }
 
-    public interface MethodCallUdpateTransferInitiationStatus {
-        UdpateTransferInitiationStatusResponse udpateTransferInitiationStatus(
-            UdpateTransferInitiationStatusRequest request) throws Exception;
-    }
-
     public interface MethodCallUninstallConnector {
         UninstallConnectorResponse uninstallConnector(
             UninstallConnectorRequest request) throws Exception;
@@ -696,9 +697,19 @@ public class SDKMethodInterfaces {
             UpdateMetadataRequest request) throws Exception;
     }
 
+    public interface MethodCallUpdateTransferInitiationStatus {
+        UpdateTransferInitiationStatusResponse updateTransferInitiationStatus(
+            UpdateTransferInitiationStatusRequest request) throws Exception;
+    }
+
     public interface MethodCallV3AddAccountToPool {
         V3AddAccountToPoolResponse addAccountToPool(
             V3AddAccountToPoolRequest request) throws Exception;
+    }
+
+    public interface MethodCallV3AddBankAccountToPaymentServiceUser {
+        V3AddBankAccountToPaymentServiceUserResponse addBankAccountToPaymentServiceUser(
+            V3AddBankAccountToPaymentServiceUserRequest request) throws Exception;
     }
 
     public interface MethodCallV3ApprovePaymentInitiation {
@@ -721,6 +732,11 @@ public class SDKMethodInterfaces {
             Optional<? extends V3CreatePaymentRequest> request) throws Exception;
     }
 
+    public interface MethodCallV3CreatePaymentServiceUser {
+        V3CreatePaymentServiceUserResponse createPaymentServiceUser(
+            Optional<? extends V3CreatePaymentServiceUserRequest> request) throws Exception;
+    }
+
     public interface MethodCallV3CreatePool {
         V3CreatePoolResponse createPool(
             Optional<? extends V3CreatePoolRequest> request) throws Exception;
@@ -739,6 +755,11 @@ public class SDKMethodInterfaces {
     public interface MethodCallV3ForwardBankAccount {
         V3ForwardBankAccountResponse forwardBankAccount(
             V3ForwardBankAccountRequest request) throws Exception;
+    }
+
+    public interface MethodCallV3ForwardPaymentServiceUserBankAccount {
+        V3ForwardPaymentServiceUserBankAccountResponse forwardPaymentServiceUserBankAccount(
+            V3ForwardPaymentServiceUserBankAccountRequest request) throws Exception;
     }
 
     public interface MethodCallV3GetAccount {
@@ -776,6 +797,11 @@ public class SDKMethodInterfaces {
             V3GetPaymentInitiationRequest request) throws Exception;
     }
 
+    public interface MethodCallV3GetPaymentServiceUser {
+        V3GetPaymentServiceUserResponse getPaymentServiceUser(
+            V3GetPaymentServiceUserRequest request) throws Exception;
+    }
+
     public interface MethodCallV3GetPool {
         V3GetPoolResponse getPool(
             V3GetPoolRequest request) throws Exception;
@@ -784,6 +810,11 @@ public class SDKMethodInterfaces {
     public interface MethodCallV3GetPoolBalances {
         V3GetPoolBalancesResponse getPoolBalances(
             V3GetPoolBalancesRequest request) throws Exception;
+    }
+
+    public interface MethodCallV3GetPoolBalancesLatest {
+        V3GetPoolBalancesLatestResponse getPoolBalancesLatest(
+            V3GetPoolBalancesLatestRequest request) throws Exception;
     }
 
     public interface MethodCallV3GetTask {
@@ -845,6 +876,11 @@ public class SDKMethodInterfaces {
             V3ListPaymentInitiationsRequest request) throws Exception;
     }
 
+    public interface MethodCallV3ListPaymentServiceUsers {
+        V3ListPaymentServiceUsersResponse listPaymentServiceUsers(
+            V3ListPaymentServiceUsersRequest request) throws Exception;
+    }
+
     public interface MethodCallV3ListPayments {
         V3ListPaymentsResponse listPayments(
             V3ListPaymentsRequest request) throws Exception;
@@ -893,6 +929,11 @@ public class SDKMethodInterfaces {
     public interface MethodCallV3UpdatePaymentMetadata {
         V3UpdatePaymentMetadataResponse updatePaymentMetadata(
             V3UpdatePaymentMetadataRequest request) throws Exception;
+    }
+
+    public interface MethodCallV3UpdateConnectorConfig {
+        V3UpdateConnectorConfigResponse v3UpdateConnectorConfig(
+            V3UpdateConnectorConfigRequest request) throws Exception;
     }
 
     public interface MethodCallCreatePolicy {

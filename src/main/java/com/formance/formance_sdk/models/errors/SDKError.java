@@ -23,6 +23,7 @@ public class SDKError extends Exception {
             int code,
             String message,
             byte[] body) {
+        super(message);
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(message, "message");
         Utils.checkNotNull(body, "body");

@@ -23,12 +23,12 @@ public class LedgerInfo {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("storage")
-    private Optional<? extends Storage> storage;
+    private Optional<? extends LedgerInfoStorage> storage;
 
     @JsonCreator
     public LedgerInfo(
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("storage") Optional<? extends Storage> storage) {
+            @JsonProperty("storage") Optional<? extends LedgerInfoStorage> storage) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(storage, "storage");
         this.name = name;
@@ -46,8 +46,8 @@ public class LedgerInfo {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Storage> storage() {
-        return (Optional<Storage>) storage;
+    public Optional<LedgerInfoStorage> storage() {
+        return (Optional<LedgerInfoStorage>) storage;
     }
 
     public final static Builder builder() {
@@ -66,13 +66,13 @@ public class LedgerInfo {
         return this;
     }
 
-    public LedgerInfo withStorage(Storage storage) {
+    public LedgerInfo withStorage(LedgerInfoStorage storage) {
         Utils.checkNotNull(storage, "storage");
         this.storage = Optional.ofNullable(storage);
         return this;
     }
 
-    public LedgerInfo withStorage(Optional<? extends Storage> storage) {
+    public LedgerInfo withStorage(Optional<? extends LedgerInfoStorage> storage) {
         Utils.checkNotNull(storage, "storage");
         this.storage = storage;
         return this;
@@ -111,7 +111,7 @@ public class LedgerInfo {
  
         private Optional<String> name = Optional.empty();
  
-        private Optional<? extends Storage> storage = Optional.empty();
+        private Optional<? extends LedgerInfoStorage> storage = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -129,13 +129,13 @@ public class LedgerInfo {
             return this;
         }
 
-        public Builder storage(Storage storage) {
+        public Builder storage(LedgerInfoStorage storage) {
             Utils.checkNotNull(storage, "storage");
             this.storage = Optional.ofNullable(storage);
             return this;
         }
 
-        public Builder storage(Optional<? extends Storage> storage) {
+        public Builder storage(Optional<? extends LedgerInfoStorage> storage) {
             Utils.checkNotNull(storage, "storage");
             this.storage = storage;
             return this;

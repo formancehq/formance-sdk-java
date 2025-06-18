@@ -16,7 +16,7 @@ import java.util.Objects;
 public class V2WalletWithBalances {
 
     @JsonProperty("balances")
-    private Balances balances;
+    private V2WalletWithBalancesBalances balances;
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
@@ -41,7 +41,7 @@ public class V2WalletWithBalances {
 
     @JsonCreator
     public V2WalletWithBalances(
-            @JsonProperty("balances") Balances balances,
+            @JsonProperty("balances") V2WalletWithBalancesBalances balances,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("ledger") String ledger,
@@ -62,7 +62,7 @@ public class V2WalletWithBalances {
     }
 
     @JsonIgnore
-    public Balances balances() {
+    public V2WalletWithBalancesBalances balances() {
         return balances;
     }
 
@@ -101,7 +101,7 @@ public class V2WalletWithBalances {
         return new Builder();
     }    
 
-    public V2WalletWithBalances withBalances(Balances balances) {
+    public V2WalletWithBalances withBalances(V2WalletWithBalancesBalances balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
@@ -186,7 +186,7 @@ public class V2WalletWithBalances {
     
     public final static class Builder {
  
-        private Balances balances;
+        private V2WalletWithBalancesBalances balances;
  
         private OffsetDateTime createdAt;
  
@@ -202,7 +202,7 @@ public class V2WalletWithBalances {
           // force use of static builder() method
         }
 
-        public Builder balances(Balances balances) {
+        public Builder balances(V2WalletWithBalancesBalances balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
             return this;

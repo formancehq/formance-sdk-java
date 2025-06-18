@@ -5,7 +5,6 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.ActivityDebitWalletOutput;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -20,14 +19,14 @@ import java.util.Optional;
 public class DebitWalletResponse implements Response {
 
     /**
-     * Wallet successfully debited as a pending hold
-     */
-    private Optional<? extends ActivityDebitWalletOutput> activityDebitWalletOutput;
-
-    /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
+    /**
+     * Wallet successfully debited as a pending hold
+     */
+    private Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletResponse> debitWalletResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,16 +40,16 @@ public class DebitWalletResponse implements Response {
 
     @JsonCreator
     public DebitWalletResponse(
-            Optional<? extends ActivityDebitWalletOutput> activityDebitWalletOutput,
             String contentType,
+            Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletResponse> debitWalletResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(activityDebitWalletOutput, "activityDebitWalletOutput");
         Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.activityDebitWalletOutput = activityDebitWalletOutput;
         this.contentType = contentType;
+        this.debitWalletResponse = debitWalletResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -59,16 +58,7 @@ public class DebitWalletResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
-    }
-
-    /**
-     * Wallet successfully debited as a pending hold
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ActivityDebitWalletOutput> activityDebitWalletOutput() {
-        return (Optional<ActivityDebitWalletOutput>) activityDebitWalletOutput;
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -77,6 +67,15 @@ public class DebitWalletResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    /**
+     * Wallet successfully debited as a pending hold
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<com.formance.formance_sdk.models.shared.DebitWalletResponse> debitWalletResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.DebitWalletResponse>) debitWalletResponse;
     }
 
     /**
@@ -100,29 +99,29 @@ public class DebitWalletResponse implements Response {
     }    
 
     /**
-     * Wallet successfully debited as a pending hold
-     */
-    public DebitWalletResponse withActivityDebitWalletOutput(ActivityDebitWalletOutput activityDebitWalletOutput) {
-        Utils.checkNotNull(activityDebitWalletOutput, "activityDebitWalletOutput");
-        this.activityDebitWalletOutput = Optional.ofNullable(activityDebitWalletOutput);
-        return this;
-    }
-
-    /**
-     * Wallet successfully debited as a pending hold
-     */
-    public DebitWalletResponse withActivityDebitWalletOutput(Optional<? extends ActivityDebitWalletOutput> activityDebitWalletOutput) {
-        Utils.checkNotNull(activityDebitWalletOutput, "activityDebitWalletOutput");
-        this.activityDebitWalletOutput = activityDebitWalletOutput;
-        return this;
-    }
-
-    /**
      * HTTP response content type for this operation
      */
     public DebitWalletResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * Wallet successfully debited as a pending hold
+     */
+    public DebitWalletResponse withDebitWalletResponse(com.formance.formance_sdk.models.shared.DebitWalletResponse debitWalletResponse) {
+        Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
+        this.debitWalletResponse = Optional.ofNullable(debitWalletResponse);
+        return this;
+    }
+
+    /**
+     * Wallet successfully debited as a pending hold
+     */
+    public DebitWalletResponse withDebitWalletResponse(Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletResponse> debitWalletResponse) {
+        Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
+        this.debitWalletResponse = debitWalletResponse;
         return this;
     }
 
@@ -155,8 +154,8 @@ public class DebitWalletResponse implements Response {
         }
         DebitWalletResponse other = (DebitWalletResponse) o;
         return 
-            Objects.deepEquals(this.activityDebitWalletOutput, other.activityDebitWalletOutput) &&
             Objects.deepEquals(this.contentType, other.contentType) &&
+            Objects.deepEquals(this.debitWalletResponse, other.debitWalletResponse) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -164,8 +163,8 @@ public class DebitWalletResponse implements Response {
     @Override
     public int hashCode() {
         return Objects.hash(
-            activityDebitWalletOutput,
             contentType,
+            debitWalletResponse,
             statusCode,
             rawResponse);
     }
@@ -173,17 +172,17 @@ public class DebitWalletResponse implements Response {
     @Override
     public String toString() {
         return Utils.toString(DebitWalletResponse.class,
-                "activityDebitWalletOutput", activityDebitWalletOutput,
                 "contentType", contentType,
+                "debitWalletResponse", debitWalletResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<? extends ActivityDebitWalletOutput> activityDebitWalletOutput = Optional.empty();
- 
         private String contentType;
+ 
+        private Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletResponse> debitWalletResponse = Optional.empty();
  
         private Integer statusCode;
  
@@ -194,29 +193,29 @@ public class DebitWalletResponse implements Response {
         }
 
         /**
-         * Wallet successfully debited as a pending hold
-         */
-        public Builder activityDebitWalletOutput(ActivityDebitWalletOutput activityDebitWalletOutput) {
-            Utils.checkNotNull(activityDebitWalletOutput, "activityDebitWalletOutput");
-            this.activityDebitWalletOutput = Optional.ofNullable(activityDebitWalletOutput);
-            return this;
-        }
-
-        /**
-         * Wallet successfully debited as a pending hold
-         */
-        public Builder activityDebitWalletOutput(Optional<? extends ActivityDebitWalletOutput> activityDebitWalletOutput) {
-            Utils.checkNotNull(activityDebitWalletOutput, "activityDebitWalletOutput");
-            this.activityDebitWalletOutput = activityDebitWalletOutput;
-            return this;
-        }
-
-        /**
          * HTTP response content type for this operation
          */
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * Wallet successfully debited as a pending hold
+         */
+        public Builder debitWalletResponse(com.formance.formance_sdk.models.shared.DebitWalletResponse debitWalletResponse) {
+            Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
+            this.debitWalletResponse = Optional.ofNullable(debitWalletResponse);
+            return this;
+        }
+
+        /**
+         * Wallet successfully debited as a pending hold
+         */
+        public Builder debitWalletResponse(Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletResponse> debitWalletResponse) {
+            Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
+            this.debitWalletResponse = debitWalletResponse;
             return this;
         }
 
@@ -240,8 +239,8 @@ public class DebitWalletResponse implements Response {
         
         public DebitWalletResponse build() {
             return new DebitWalletResponse(
-                activityDebitWalletOutput,
                 contentType,
+                debitWalletResponse,
                 statusCode,
                 rawResponse);
         }

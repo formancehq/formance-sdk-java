@@ -19,17 +19,17 @@ import java.util.Objects;
 public class AccountsCursor {
 
     @JsonProperty("cursor")
-    private Cursor cursor;
+    private AccountsCursorCursor cursor;
 
     @JsonCreator
     public AccountsCursor(
-            @JsonProperty("cursor") Cursor cursor) {
+            @JsonProperty("cursor") AccountsCursorCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
     }
 
     @JsonIgnore
-    public Cursor cursor() {
+    public AccountsCursorCursor cursor() {
         return cursor;
     }
 
@@ -37,7 +37,7 @@ public class AccountsCursor {
         return new Builder();
     }    
 
-    public AccountsCursor withCursor(Cursor cursor) {
+    public AccountsCursor withCursor(AccountsCursorCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -71,13 +71,13 @@ public class AccountsCursor {
     
     public final static class Builder {
  
-        private Cursor cursor;
+        private AccountsCursorCursor cursor;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder cursor(Cursor cursor) {
+        public Builder cursor(AccountsCursorCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;

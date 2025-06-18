@@ -11,8 +11,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.util.Objects;
+import java.util.Optional;
 
 public class V2DeleteTransactionMetadataRequest {
+
+    /**
+     * Use an idempotency key
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
+    private Optional<String> idempotencyKey;
 
     /**
      * Transaction ID.
@@ -34,15 +41,33 @@ public class V2DeleteTransactionMetadataRequest {
 
     @JsonCreator
     public V2DeleteTransactionMetadataRequest(
+            Optional<String> idempotencyKey,
             BigInteger id,
             String key,
             String ledger) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(key, "key");
         Utils.checkNotNull(ledger, "ledger");
+        this.idempotencyKey = idempotencyKey;
         this.id = id;
         this.key = key;
         this.ledger = ledger;
+    }
+    
+    public V2DeleteTransactionMetadataRequest(
+            BigInteger id,
+            String key,
+            String ledger) {
+        this(Optional.empty(), id, key, ledger);
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     /**
@@ -72,6 +97,24 @@ public class V2DeleteTransactionMetadataRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    /**
+     * Use an idempotency key
+     */
+    public V2DeleteTransactionMetadataRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    public V2DeleteTransactionMetadataRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
 
         /**
          * Transaction ID.
@@ -119,6 +162,7 @@ public class V2DeleteTransactionMetadataRequest {
         }
         V2DeleteTransactionMetadataRequest other = (V2DeleteTransactionMetadataRequest) o;
         return 
+            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.key, other.key) &&
             Objects.deepEquals(this.ledger, other.ledger);
@@ -127,6 +171,7 @@ public class V2DeleteTransactionMetadataRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            idempotencyKey,
             id,
             key,
             ledger);
@@ -135,12 +180,15 @@ public class V2DeleteTransactionMetadataRequest {
     @Override
     public String toString() {
         return Utils.toString(V2DeleteTransactionMetadataRequest.class,
+                "idempotencyKey", idempotencyKey,
                 "id", id,
                 "key", key,
                 "ledger", ledger);
     }
     
     public final static class Builder {
+ 
+        private Optional<String> idempotencyKey = Optional.empty();
  
         private BigInteger id;
  
@@ -150,6 +198,24 @@ public class V2DeleteTransactionMetadataRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
         }
 
         /**
@@ -189,6 +255,7 @@ public class V2DeleteTransactionMetadataRequest {
         
         public V2DeleteTransactionMetadataRequest build() {
             return new V2DeleteTransactionMetadataRequest(
+                idempotencyKey,
                 id,
                 key,
                 ledger);

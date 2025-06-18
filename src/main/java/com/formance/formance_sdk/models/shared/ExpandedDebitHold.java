@@ -19,6 +19,9 @@ import java.util.Optional;
 
 public class ExpandedDebitHold {
 
+    @JsonProperty("asset")
+    private String asset;
+
     @JsonProperty("description")
     private String description;
 
@@ -58,6 +61,7 @@ public class ExpandedDebitHold {
 
     @JsonCreator
     public ExpandedDebitHold(
+            @JsonProperty("asset") String asset,
             @JsonProperty("description") String description,
             @JsonProperty("destination") Optional<? extends Subject> destination,
             @JsonProperty("id") String id,
@@ -65,6 +69,7 @@ public class ExpandedDebitHold {
             @JsonProperty("originalAmount") BigInteger originalAmount,
             @JsonProperty("remaining") BigInteger remaining,
             @JsonProperty("walletID") String walletID) {
+        Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(id, "id");
@@ -72,6 +77,7 @@ public class ExpandedDebitHold {
         Utils.checkNotNull(originalAmount, "originalAmount");
         Utils.checkNotNull(remaining, "remaining");
         Utils.checkNotNull(walletID, "walletID");
+        this.asset = asset;
         this.description = description;
         this.destination = destination;
         this.id = id;
@@ -82,13 +88,19 @@ public class ExpandedDebitHold {
     }
     
     public ExpandedDebitHold(
+            String asset,
             String description,
             String id,
             Map<String, String> metadata,
             BigInteger originalAmount,
             BigInteger remaining,
             String walletID) {
-        this(description, Optional.empty(), id, metadata, originalAmount, remaining, walletID);
+        this(asset, description, Optional.empty(), id, metadata, originalAmount, remaining, walletID);
+    }
+
+    @JsonIgnore
+    public String asset() {
+        return asset;
     }
 
     @JsonIgnore
@@ -145,6 +157,12 @@ public class ExpandedDebitHold {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public ExpandedDebitHold withAsset(String asset) {
+        Utils.checkNotNull(asset, "asset");
+        this.asset = asset;
+        return this;
+    }
 
     public ExpandedDebitHold withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -236,6 +254,7 @@ public class ExpandedDebitHold {
         }
         ExpandedDebitHold other = (ExpandedDebitHold) o;
         return 
+            Objects.deepEquals(this.asset, other.asset) &&
             Objects.deepEquals(this.description, other.description) &&
             Objects.deepEquals(this.destination, other.destination) &&
             Objects.deepEquals(this.id, other.id) &&
@@ -248,6 +267,7 @@ public class ExpandedDebitHold {
     @Override
     public int hashCode() {
         return Objects.hash(
+            asset,
             description,
             destination,
             id,
@@ -260,6 +280,7 @@ public class ExpandedDebitHold {
     @Override
     public String toString() {
         return Utils.toString(ExpandedDebitHold.class,
+                "asset", asset,
                 "description", description,
                 "destination", destination,
                 "id", id,
@@ -270,6 +291,8 @@ public class ExpandedDebitHold {
     }
     
     public final static class Builder {
+ 
+        private String asset;
  
         private String description;
  
@@ -287,6 +310,12 @@ public class ExpandedDebitHold {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder asset(String asset) {
+            Utils.checkNotNull(asset, "asset");
+            this.asset = asset;
+            return this;
         }
 
         public Builder description(String description) {
@@ -370,6 +399,7 @@ public class ExpandedDebitHold {
         
         public ExpandedDebitHold build() {
             return new ExpandedDebitHold(
+                asset,
                 description,
                 destination,
                 id,

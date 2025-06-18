@@ -42,7 +42,7 @@ public class V3PaymentInitiation {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<String> error;
+    private JsonNullable<String> error;
 
     @JsonProperty("id")
     private String id;
@@ -78,7 +78,7 @@ public class V3PaymentInitiation {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("description") String description,
             @JsonProperty("destinationAccountID") Optional<String> destinationAccountID,
-            @JsonProperty("error") Optional<String> error,
+            @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("provider") String provider,
@@ -131,7 +131,7 @@ public class V3PaymentInitiation {
             OffsetDateTime scheduledAt,
             V3PaymentInitiationStatusEnum status,
             V3PaymentInitiationTypeEnum type) {
-        this(amount, asset, connectorID, createdAt, description, Optional.empty(), Optional.empty(), id, JsonNullable.undefined(), provider, reference, scheduledAt, Optional.empty(), status, type);
+        this(amount, asset, connectorID, createdAt, description, Optional.empty(), JsonNullable.undefined(), id, JsonNullable.undefined(), provider, reference, scheduledAt, Optional.empty(), status, type);
     }
 
     @JsonIgnore
@@ -165,7 +165,7 @@ public class V3PaymentInitiation {
     }
 
     @JsonIgnore
-    public Optional<String> error() {
+    public JsonNullable<String> error() {
         return error;
     }
 
@@ -263,11 +263,11 @@ public class V3PaymentInitiation {
 
     public V3PaymentInitiation withError(String error) {
         Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
+        this.error = JsonNullable.of(error);
         return this;
     }
 
-    public V3PaymentInitiation withError(Optional<String> error) {
+    public V3PaymentInitiation withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -415,7 +415,7 @@ public class V3PaymentInitiation {
  
         private Optional<String> destinationAccountID = Optional.empty();
  
-        private Optional<String> error = Optional.empty();
+        private JsonNullable<String> error = JsonNullable.undefined();
  
         private String id;
  
@@ -486,11 +486,11 @@ public class V3PaymentInitiation {
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
+            this.error = JsonNullable.of(error);
             return this;
         }
 
-        public Builder error(Optional<String> error) {
+        public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

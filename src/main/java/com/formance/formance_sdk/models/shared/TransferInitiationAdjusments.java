@@ -25,8 +25,9 @@ public class TransferInitiationAdjusments {
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private String error;
+    private JsonNullable<String> error;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -39,7 +40,7 @@ public class TransferInitiationAdjusments {
     public TransferInitiationAdjusments(
             @JsonProperty("adjustmentID") String adjustmentID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("error") String error,
+            @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("status") TransferInitiationStatus status) {
         Utils.checkNotNull(adjustmentID, "adjustmentID");
@@ -57,9 +58,8 @@ public class TransferInitiationAdjusments {
     public TransferInitiationAdjusments(
             String adjustmentID,
             OffsetDateTime createdAt,
-            String error,
             TransferInitiationStatus status) {
-        this(adjustmentID, createdAt, error, JsonNullable.undefined(), status);
+        this(adjustmentID, createdAt, JsonNullable.undefined(), JsonNullable.undefined(), status);
     }
 
     @JsonIgnore
@@ -73,7 +73,7 @@ public class TransferInitiationAdjusments {
     }
 
     @JsonIgnore
-    public String error() {
+    public JsonNullable<String> error() {
         return error;
     }
 
@@ -105,6 +105,12 @@ public class TransferInitiationAdjusments {
     }
 
     public TransferInitiationAdjusments withError(String error) {
+        Utils.checkNotNull(error, "error");
+        this.error = JsonNullable.of(error);
+        return this;
+    }
+
+    public TransferInitiationAdjusments withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -172,7 +178,7 @@ public class TransferInitiationAdjusments {
  
         private OffsetDateTime createdAt;
  
-        private String error;
+        private JsonNullable<String> error = JsonNullable.undefined();
  
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
  
@@ -195,6 +201,12 @@ public class TransferInitiationAdjusments {
         }
 
         public Builder error(String error) {
+            Utils.checkNotNull(error, "error");
+            this.error = JsonNullable.of(error);
+            return this;
+        }
+
+        public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

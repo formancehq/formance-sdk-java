@@ -5,14 +5,14 @@ package com.formance.formance_sdk;
 public class Webhooks {
 
     private final SDKConfiguration sdkConfiguration;
-    private final SDKWebhooksV1 v1;
+    private final WebhooksV1 v1;
 
     Webhooks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.v1 = new SDKWebhooksV1(this.sdkConfiguration);
+        this.v1 = new WebhooksV1(this.sdkConfiguration);
     }
 
-    public final SDKWebhooksV1 v1() {
+    public final WebhooksV1 v1() {
         return v1;
     }
 }

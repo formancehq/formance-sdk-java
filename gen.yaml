@@ -3,28 +3,32 @@ generation:
   sdkClassName: SDK
   usageSnippets:
     optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
   fixes:
     nameResolutionDec2023: true
     nameResolutionFeb2025: true
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
+    sharedErrorComponentsApr2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
   comments: {}
   telemetryEnabled: false
 java:
-  version: 7.0.5
+  version: 7.1.0
   additionalDependencies:
     - implementation:org.apache.httpcomponents.client5:httpclient5:5.4.2
   additionalPlugins: []
   artifactID: formance-sdk
+  baseErrorName: SDKBaseError
   clientServerStatusCodesAsErrors: true
   companyEmail: support@formance.com
   companyName: Formance
   companyURL: https://www.formance.com
   defaultErrorName: SDKError
+  enableCustomCodeRegions: false
   flattenGlobalSecurity: false
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance

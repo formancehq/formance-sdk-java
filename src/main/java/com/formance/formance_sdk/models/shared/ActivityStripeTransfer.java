@@ -43,7 +43,7 @@ public class ActivityStripeTransfer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends Metadata> metadata;
+    private Optional<? extends ActivityStripeTransferMetadata> metadata;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("waitingValidation")
@@ -55,7 +55,7 @@ public class ActivityStripeTransfer {
             @JsonProperty("asset") Optional<String> asset,
             @JsonProperty("connectorID") Optional<String> connectorID,
             @JsonProperty("destination") Optional<String> destination,
-            @JsonProperty("metadata") Optional<? extends Metadata> metadata,
+            @JsonProperty("metadata") Optional<? extends ActivityStripeTransferMetadata> metadata,
             @JsonProperty("waitingValidation") Optional<Boolean> waitingValidation) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
@@ -102,8 +102,8 @@ public class ActivityStripeTransfer {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Metadata> metadata() {
-        return (Optional<Metadata>) metadata;
+    public Optional<ActivityStripeTransferMetadata> metadata() {
+        return (Optional<ActivityStripeTransferMetadata>) metadata;
     }
 
     @JsonIgnore
@@ -172,7 +172,7 @@ public class ActivityStripeTransfer {
      * A set of key/value pairs that you can attach to a transfer object.
      * It can be useful for storing additional information about the transfer in a structured format.
      */
-    public ActivityStripeTransfer withMetadata(Metadata metadata) {
+    public ActivityStripeTransfer withMetadata(ActivityStripeTransferMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
@@ -182,7 +182,7 @@ public class ActivityStripeTransfer {
      * A set of key/value pairs that you can attach to a transfer object.
      * It can be useful for storing additional information about the transfer in a structured format.
      */
-    public ActivityStripeTransfer withMetadata(Optional<? extends Metadata> metadata) {
+    public ActivityStripeTransfer withMetadata(Optional<? extends ActivityStripeTransferMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -251,7 +251,7 @@ public class ActivityStripeTransfer {
  
         private Optional<String> destination = Optional.empty();
  
-        private Optional<? extends Metadata> metadata = Optional.empty();
+        private Optional<? extends ActivityStripeTransferMetadata> metadata = Optional.empty();
  
         private Optional<Boolean> waitingValidation;
         
@@ -316,7 +316,7 @@ public class ActivityStripeTransfer {
          * A set of key/value pairs that you can attach to a transfer object.
          * It can be useful for storing additional information about the transfer in a structured format.
          */
-        public Builder metadata(Metadata metadata) {
+        public Builder metadata(ActivityStripeTransferMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
@@ -326,7 +326,7 @@ public class ActivityStripeTransfer {
          * A set of key/value pairs that you can attach to a transfer object.
          * It can be useful for storing additional information about the transfer in a structured format.
          */
-        public Builder metadata(Optional<? extends Metadata> metadata) {
+        public Builder metadata(Optional<? extends ActivityStripeTransferMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

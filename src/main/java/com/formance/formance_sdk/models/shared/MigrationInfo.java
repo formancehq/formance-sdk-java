@@ -28,7 +28,7 @@ public class MigrationInfo {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private Optional<? extends State> state;
+    private Optional<? extends MigrationInfoState> state;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
@@ -38,7 +38,7 @@ public class MigrationInfo {
     public MigrationInfo(
             @JsonProperty("date") Optional<OffsetDateTime> date,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("state") Optional<? extends State> state,
+            @JsonProperty("state") Optional<? extends MigrationInfoState> state,
             @JsonProperty("version") Optional<String> version) {
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(name, "name");
@@ -66,8 +66,8 @@ public class MigrationInfo {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<State> state() {
-        return (Optional<State>) state;
+    public Optional<MigrationInfoState> state() {
+        return (Optional<MigrationInfoState>) state;
     }
 
     @JsonIgnore
@@ -103,13 +103,13 @@ public class MigrationInfo {
         return this;
     }
 
-    public MigrationInfo withState(State state) {
+    public MigrationInfo withState(MigrationInfoState state) {
         Utils.checkNotNull(state, "state");
         this.state = Optional.ofNullable(state);
         return this;
     }
 
-    public MigrationInfo withState(Optional<? extends State> state) {
+    public MigrationInfo withState(Optional<? extends MigrationInfoState> state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
@@ -168,7 +168,7 @@ public class MigrationInfo {
  
         private Optional<String> name = Optional.empty();
  
-        private Optional<? extends State> state = Optional.empty();
+        private Optional<? extends MigrationInfoState> state = Optional.empty();
  
         private Optional<String> version = Optional.empty();
         
@@ -200,13 +200,13 @@ public class MigrationInfo {
             return this;
         }
 
-        public Builder state(State state) {
+        public Builder state(MigrationInfoState state) {
             Utils.checkNotNull(state, "state");
             this.state = Optional.ofNullable(state);
             return this;
         }
 
-        public Builder state(Optional<? extends State> state) {
+        public Builder state(Optional<? extends MigrationInfoState> state) {
             Utils.checkNotNull(state, "state");
             this.state = state;
             return this;

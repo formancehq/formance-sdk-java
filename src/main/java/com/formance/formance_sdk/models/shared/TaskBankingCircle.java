@@ -14,7 +14,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TaskBankingCircle {
@@ -26,11 +25,11 @@ public class TaskBankingCircle {
     private OffsetDateTime createdAt;
 
     @JsonProperty("descriptor")
-    private Descriptor descriptor;
+    private TaskBankingCircleDescriptor descriptor;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<String> error;
+    private JsonNullable<String> error;
 
     @JsonProperty("id")
     private String id;
@@ -49,8 +48,8 @@ public class TaskBankingCircle {
     public TaskBankingCircle(
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("descriptor") Descriptor descriptor,
-            @JsonProperty("error") Optional<String> error,
+            @JsonProperty("descriptor") TaskBankingCircleDescriptor descriptor,
+            @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("state") JsonNullable<? extends TaskBankingCircleState> state,
             @JsonProperty("status") TaskStatus status,
@@ -76,11 +75,11 @@ public class TaskBankingCircle {
     public TaskBankingCircle(
             String connectorID,
             OffsetDateTime createdAt,
-            Descriptor descriptor,
+            TaskBankingCircleDescriptor descriptor,
             String id,
             TaskStatus status,
             OffsetDateTime updatedAt) {
-        this(connectorID, createdAt, descriptor, Optional.empty(), id, JsonNullable.undefined(), status, updatedAt);
+        this(connectorID, createdAt, descriptor, JsonNullable.undefined(), id, JsonNullable.undefined(), status, updatedAt);
     }
 
     @JsonIgnore
@@ -94,12 +93,12 @@ public class TaskBankingCircle {
     }
 
     @JsonIgnore
-    public Descriptor descriptor() {
+    public TaskBankingCircleDescriptor descriptor() {
         return descriptor;
     }
 
     @JsonIgnore
-    public Optional<String> error() {
+    public JsonNullable<String> error() {
         return error;
     }
 
@@ -140,7 +139,7 @@ public class TaskBankingCircle {
         return this;
     }
 
-    public TaskBankingCircle withDescriptor(Descriptor descriptor) {
+    public TaskBankingCircle withDescriptor(TaskBankingCircleDescriptor descriptor) {
         Utils.checkNotNull(descriptor, "descriptor");
         this.descriptor = descriptor;
         return this;
@@ -148,11 +147,11 @@ public class TaskBankingCircle {
 
     public TaskBankingCircle withError(String error) {
         Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
+        this.error = JsonNullable.of(error);
         return this;
     }
 
-    public TaskBankingCircle withError(Optional<String> error) {
+    public TaskBankingCircle withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -241,9 +240,9 @@ public class TaskBankingCircle {
  
         private OffsetDateTime createdAt;
  
-        private Descriptor descriptor;
+        private TaskBankingCircleDescriptor descriptor;
  
-        private Optional<String> error = Optional.empty();
+        private JsonNullable<String> error = JsonNullable.undefined();
  
         private String id;
  
@@ -269,7 +268,7 @@ public class TaskBankingCircle {
             return this;
         }
 
-        public Builder descriptor(Descriptor descriptor) {
+        public Builder descriptor(TaskBankingCircleDescriptor descriptor) {
             Utils.checkNotNull(descriptor, "descriptor");
             this.descriptor = descriptor;
             return this;
@@ -277,11 +276,11 @@ public class TaskBankingCircle {
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
+            this.error = JsonNullable.of(error);
             return this;
         }
 
-        public Builder error(Optional<String> error) {
+        public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

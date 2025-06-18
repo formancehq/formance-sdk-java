@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -19,17 +20,17 @@ import java.util.Objects;
 public class ConnectorsConfigsResponse {
 
     @JsonProperty("data")
-    private ConnectorsConfigsResponseData data;
+    private Map<String, Map<String, ConnectorsConfigsResponseData>> data;
 
     @JsonCreator
     public ConnectorsConfigsResponse(
-            @JsonProperty("data") ConnectorsConfigsResponseData data) {
-        Utils.checkNotNull(data, "data");
+            @JsonProperty("data") Map<String, Map<String, ConnectorsConfigsResponseData>> data) {
+        data = Utils.emptyMapIfNull(data);
         this.data = data;
     }
 
     @JsonIgnore
-    public ConnectorsConfigsResponseData data() {
+    public Map<String, Map<String, ConnectorsConfigsResponseData>> data() {
         return data;
     }
 
@@ -37,7 +38,7 @@ public class ConnectorsConfigsResponse {
         return new Builder();
     }    
 
-    public ConnectorsConfigsResponse withData(ConnectorsConfigsResponseData data) {
+    public ConnectorsConfigsResponse withData(Map<String, Map<String, ConnectorsConfigsResponseData>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -71,13 +72,13 @@ public class ConnectorsConfigsResponse {
     
     public final static class Builder {
  
-        private ConnectorsConfigsResponseData data;
+        private Map<String, Map<String, ConnectorsConfigsResponseData>> data;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(ConnectorsConfigsResponseData data) {
+        public Builder data(Map<String, Map<String, ConnectorsConfigsResponseData>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
