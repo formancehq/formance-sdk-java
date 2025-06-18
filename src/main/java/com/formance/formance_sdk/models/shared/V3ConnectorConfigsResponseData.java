@@ -5,36 +5,87 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 
 public class V3ConnectorConfigsResponseData {
 
-    @JsonProperty("connector")
-    private V3ConnectorConfigsResponseConnector connector;
+    @JsonProperty("dataType")
+    private String dataType;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("defaultValue")
+    private Optional<String> defaultValue;
+
+    @JsonProperty("required")
+    private boolean required;
 
     @JsonCreator
     public V3ConnectorConfigsResponseData(
-            @JsonProperty("connector") V3ConnectorConfigsResponseConnector connector) {
-        Utils.checkNotNull(connector, "connector");
-        this.connector = connector;
+            @JsonProperty("dataType") String dataType,
+            @JsonProperty("defaultValue") Optional<String> defaultValue,
+            @JsonProperty("required") boolean required) {
+        Utils.checkNotNull(dataType, "dataType");
+        Utils.checkNotNull(defaultValue, "defaultValue");
+        Utils.checkNotNull(required, "required");
+        this.dataType = dataType;
+        this.defaultValue = defaultValue;
+        this.required = required;
+    }
+    
+    public V3ConnectorConfigsResponseData(
+            String dataType,
+            boolean required) {
+        this(dataType, Optional.empty(), required);
     }
 
     @JsonIgnore
-    public V3ConnectorConfigsResponseConnector connector() {
-        return connector;
+    public String dataType() {
+        return dataType;
+    }
+
+    @JsonIgnore
+    public Optional<String> defaultValue() {
+        return defaultValue;
+    }
+
+    @JsonIgnore
+    public boolean required() {
+        return required;
     }
 
     public final static Builder builder() {
         return new Builder();
     }    
 
-    public V3ConnectorConfigsResponseData withConnector(V3ConnectorConfigsResponseConnector connector) {
-        Utils.checkNotNull(connector, "connector");
-        this.connector = connector;
+    public V3ConnectorConfigsResponseData withDataType(String dataType) {
+        Utils.checkNotNull(dataType, "dataType");
+        this.dataType = dataType;
+        return this;
+    }
+
+    public V3ConnectorConfigsResponseData withDefaultValue(String defaultValue) {
+        Utils.checkNotNull(defaultValue, "defaultValue");
+        this.defaultValue = Optional.ofNullable(defaultValue);
+        return this;
+    }
+
+    public V3ConnectorConfigsResponseData withDefaultValue(Optional<String> defaultValue) {
+        Utils.checkNotNull(defaultValue, "defaultValue");
+        this.defaultValue = defaultValue;
+        return this;
+    }
+
+    public V3ConnectorConfigsResponseData withRequired(boolean required) {
+        Utils.checkNotNull(required, "required");
+        this.required = required;
         return this;
     }
 
@@ -49,38 +100,68 @@ public class V3ConnectorConfigsResponseData {
         }
         V3ConnectorConfigsResponseData other = (V3ConnectorConfigsResponseData) o;
         return 
-            Objects.deepEquals(this.connector, other.connector);
+            Objects.deepEquals(this.dataType, other.dataType) &&
+            Objects.deepEquals(this.defaultValue, other.defaultValue) &&
+            Objects.deepEquals(this.required, other.required);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            connector);
+            dataType,
+            defaultValue,
+            required);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ConnectorConfigsResponseData.class,
-                "connector", connector);
+                "dataType", dataType,
+                "defaultValue", defaultValue,
+                "required", required);
     }
     
     public final static class Builder {
  
-        private V3ConnectorConfigsResponseConnector connector;
+        private String dataType;
+ 
+        private Optional<String> defaultValue = Optional.empty();
+ 
+        private Boolean required;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder connector(V3ConnectorConfigsResponseConnector connector) {
-            Utils.checkNotNull(connector, "connector");
-            this.connector = connector;
+        public Builder dataType(String dataType) {
+            Utils.checkNotNull(dataType, "dataType");
+            this.dataType = dataType;
+            return this;
+        }
+
+        public Builder defaultValue(String defaultValue) {
+            Utils.checkNotNull(defaultValue, "defaultValue");
+            this.defaultValue = Optional.ofNullable(defaultValue);
+            return this;
+        }
+
+        public Builder defaultValue(Optional<String> defaultValue) {
+            Utils.checkNotNull(defaultValue, "defaultValue");
+            this.defaultValue = defaultValue;
+            return this;
+        }
+
+        public Builder required(boolean required) {
+            Utils.checkNotNull(required, "required");
+            this.required = required;
             return this;
         }
         
         public V3ConnectorConfigsResponseData build() {
             return new V3ConnectorConfigsResponseData(
-                connector);
+                dataType,
+                defaultValue,
+                required);
         }
     }
 }

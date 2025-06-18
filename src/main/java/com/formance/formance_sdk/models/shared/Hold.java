@@ -18,6 +18,9 @@ import java.util.Optional;
 
 public class Hold {
 
+    @JsonProperty("asset")
+    private String asset;
+
     @JsonProperty("description")
     private String description;
 
@@ -45,16 +48,19 @@ public class Hold {
 
     @JsonCreator
     public Hold(
+            @JsonProperty("asset") String asset,
             @JsonProperty("description") String description,
             @JsonProperty("destination") Optional<? extends Subject> destination,
             @JsonProperty("id") String id,
             @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("walletID") String walletID) {
+        Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(id, "id");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(walletID, "walletID");
+        this.asset = asset;
         this.description = description;
         this.destination = destination;
         this.id = id;
@@ -63,11 +69,17 @@ public class Hold {
     }
     
     public Hold(
+            String asset,
             String description,
             String id,
             Map<String, String> metadata,
             String walletID) {
-        this(description, Optional.empty(), id, metadata, walletID);
+        this(asset, description, Optional.empty(), id, metadata, walletID);
+    }
+
+    @JsonIgnore
+    public String asset() {
+        return asset;
     }
 
     @JsonIgnore
@@ -108,6 +120,12 @@ public class Hold {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public Hold withAsset(String asset) {
+        Utils.checkNotNull(asset, "asset");
+        this.asset = asset;
+        return this;
+    }
 
     public Hold withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -165,6 +183,7 @@ public class Hold {
         }
         Hold other = (Hold) o;
         return 
+            Objects.deepEquals(this.asset, other.asset) &&
             Objects.deepEquals(this.description, other.description) &&
             Objects.deepEquals(this.destination, other.destination) &&
             Objects.deepEquals(this.id, other.id) &&
@@ -175,6 +194,7 @@ public class Hold {
     @Override
     public int hashCode() {
         return Objects.hash(
+            asset,
             description,
             destination,
             id,
@@ -185,6 +205,7 @@ public class Hold {
     @Override
     public String toString() {
         return Utils.toString(Hold.class,
+                "asset", asset,
                 "description", description,
                 "destination", destination,
                 "id", id,
@@ -193,6 +214,8 @@ public class Hold {
     }
     
     public final static class Builder {
+ 
+        private String asset;
  
         private String description;
  
@@ -206,6 +229,12 @@ public class Hold {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder asset(String asset) {
+            Utils.checkNotNull(asset, "asset");
+            this.asset = asset;
+            return this;
         }
 
         public Builder description(String description) {
@@ -255,6 +284,7 @@ public class Hold {
         
         public Hold build() {
             return new Hold(
+                asset,
                 description,
                 destination,
                 id,

@@ -14,6 +14,7 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V3Task {
 
@@ -30,7 +31,7 @@ public class V3Task {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<String> error;
+    private JsonNullable<String> error;
 
     @JsonProperty("id")
     private String id;
@@ -46,7 +47,7 @@ public class V3Task {
             @JsonProperty("connectorID") Optional<String> connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdObjectID") Optional<String> createdObjectID,
-            @JsonProperty("error") Optional<String> error,
+            @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("status") V3TaskStatusEnum status,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
@@ -71,7 +72,7 @@ public class V3Task {
             String id,
             V3TaskStatusEnum status,
             OffsetDateTime updatedAt) {
-        this(Optional.empty(), createdAt, Optional.empty(), Optional.empty(), id, status, updatedAt);
+        this(Optional.empty(), createdAt, Optional.empty(), JsonNullable.undefined(), id, status, updatedAt);
     }
 
     @JsonIgnore
@@ -90,7 +91,7 @@ public class V3Task {
     }
 
     @JsonIgnore
-    public Optional<String> error() {
+    public JsonNullable<String> error() {
         return error;
     }
 
@@ -145,11 +146,11 @@ public class V3Task {
 
     public V3Task withError(String error) {
         Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
+        this.error = JsonNullable.of(error);
         return this;
     }
 
-    public V3Task withError(Optional<String> error) {
+    public V3Task withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -225,7 +226,7 @@ public class V3Task {
  
         private Optional<String> createdObjectID = Optional.empty();
  
-        private Optional<String> error = Optional.empty();
+        private JsonNullable<String> error = JsonNullable.undefined();
  
         private String id;
  
@@ -269,11 +270,11 @@ public class V3Task {
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
+            this.error = JsonNullable.of(error);
             return this;
         }
 
-        public Builder error(Optional<String> error) {
+        public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

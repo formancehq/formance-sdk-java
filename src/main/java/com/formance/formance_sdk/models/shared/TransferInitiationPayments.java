@@ -5,33 +5,37 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransferInitiationPayments {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private String error;
+    private JsonNullable<String> error;
 
     @JsonProperty("paymentID")
     private String paymentID;
 
     @JsonProperty("status")
-    private TransferInitiationStatus status;
+    private PaymentStatus status;
 
     @JsonCreator
     public TransferInitiationPayments(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("error") String error,
+            @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("paymentID") String paymentID,
-            @JsonProperty("status") TransferInitiationStatus status) {
+            @JsonProperty("status") PaymentStatus status) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(paymentID, "paymentID");
@@ -41,6 +45,13 @@ public class TransferInitiationPayments {
         this.paymentID = paymentID;
         this.status = status;
     }
+    
+    public TransferInitiationPayments(
+            OffsetDateTime createdAt,
+            String paymentID,
+            PaymentStatus status) {
+        this(createdAt, JsonNullable.undefined(), paymentID, status);
+    }
 
     @JsonIgnore
     public OffsetDateTime createdAt() {
@@ -48,7 +59,7 @@ public class TransferInitiationPayments {
     }
 
     @JsonIgnore
-    public String error() {
+    public JsonNullable<String> error() {
         return error;
     }
 
@@ -58,7 +69,7 @@ public class TransferInitiationPayments {
     }
 
     @JsonIgnore
-    public TransferInitiationStatus status() {
+    public PaymentStatus status() {
         return status;
     }
 
@@ -74,6 +85,12 @@ public class TransferInitiationPayments {
 
     public TransferInitiationPayments withError(String error) {
         Utils.checkNotNull(error, "error");
+        this.error = JsonNullable.of(error);
+        return this;
+    }
+
+    public TransferInitiationPayments withError(JsonNullable<String> error) {
+        Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
@@ -84,7 +101,7 @@ public class TransferInitiationPayments {
         return this;
     }
 
-    public TransferInitiationPayments withStatus(TransferInitiationStatus status) {
+    public TransferInitiationPayments withStatus(PaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -129,11 +146,11 @@ public class TransferInitiationPayments {
  
         private OffsetDateTime createdAt;
  
-        private String error;
+        private JsonNullable<String> error = JsonNullable.undefined();
  
         private String paymentID;
  
-        private TransferInitiationStatus status;
+        private PaymentStatus status;
         
         private Builder() {
           // force use of static builder() method
@@ -147,6 +164,12 @@ public class TransferInitiationPayments {
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
+            this.error = JsonNullable.of(error);
+            return this;
+        }
+
+        public Builder error(JsonNullable<String> error) {
+            Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
         }
@@ -157,7 +180,7 @@ public class TransferInitiationPayments {
             return this;
         }
 
-        public Builder status(TransferInitiationStatus status) {
+        public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

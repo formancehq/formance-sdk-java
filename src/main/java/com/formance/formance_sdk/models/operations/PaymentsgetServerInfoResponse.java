@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.ServerInfo;
+import com.formance.formance_sdk.models.shared.PaymentsServerInfo;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -25,11 +25,6 @@ public class PaymentsgetServerInfoResponse implements Response {
     private String contentType;
 
     /**
-     * Server information
-     */
-    private Optional<? extends ServerInfo> serverInfo;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -39,27 +34,32 @@ public class PaymentsgetServerInfoResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
+    /**
+     * Server information
+     */
+    private Optional<? extends PaymentsServerInfo> paymentsServerInfo;
+
     @JsonCreator
     public PaymentsgetServerInfoResponse(
             String contentType,
-            Optional<? extends ServerInfo> serverInfo,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            HttpResponse<InputStream> rawResponse,
+            Optional<? extends PaymentsServerInfo> paymentsServerInfo) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(serverInfo, "serverInfo");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
+        Utils.checkNotNull(paymentsServerInfo, "paymentsServerInfo");
         this.contentType = contentType;
-        this.serverInfo = serverInfo;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
+        this.paymentsServerInfo = paymentsServerInfo;
     }
     
     public PaymentsgetServerInfoResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), statusCode, rawResponse);
+        this(contentType, statusCode, rawResponse, Optional.empty());
     }
 
     /**
@@ -68,15 +68,6 @@ public class PaymentsgetServerInfoResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Server information
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ServerInfo> serverInfo() {
-        return (Optional<ServerInfo>) serverInfo;
     }
 
     /**
@@ -95,6 +86,15 @@ public class PaymentsgetServerInfoResponse implements Response {
         return rawResponse;
     }
 
+    /**
+     * Server information
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PaymentsServerInfo> paymentsServerInfo() {
+        return (Optional<PaymentsServerInfo>) paymentsServerInfo;
+    }
+
     public final static Builder builder() {
         return new Builder();
     }    
@@ -105,24 +105,6 @@ public class PaymentsgetServerInfoResponse implements Response {
     public PaymentsgetServerInfoResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Server information
-     */
-    public PaymentsgetServerInfoResponse withServerInfo(ServerInfo serverInfo) {
-        Utils.checkNotNull(serverInfo, "serverInfo");
-        this.serverInfo = Optional.ofNullable(serverInfo);
-        return this;
-    }
-
-    /**
-     * Server information
-     */
-    public PaymentsgetServerInfoResponse withServerInfo(Optional<? extends ServerInfo> serverInfo) {
-        Utils.checkNotNull(serverInfo, "serverInfo");
-        this.serverInfo = serverInfo;
         return this;
     }
 
@@ -144,6 +126,24 @@ public class PaymentsgetServerInfoResponse implements Response {
         return this;
     }
 
+    /**
+     * Server information
+     */
+    public PaymentsgetServerInfoResponse withPaymentsServerInfo(PaymentsServerInfo paymentsServerInfo) {
+        Utils.checkNotNull(paymentsServerInfo, "paymentsServerInfo");
+        this.paymentsServerInfo = Optional.ofNullable(paymentsServerInfo);
+        return this;
+    }
+
+    /**
+     * Server information
+     */
+    public PaymentsgetServerInfoResponse withPaymentsServerInfo(Optional<? extends PaymentsServerInfo> paymentsServerInfo) {
+        Utils.checkNotNull(paymentsServerInfo, "paymentsServerInfo");
+        this.paymentsServerInfo = paymentsServerInfo;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -156,38 +156,38 @@ public class PaymentsgetServerInfoResponse implements Response {
         PaymentsgetServerInfoResponse other = (PaymentsgetServerInfoResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.serverInfo, other.serverInfo) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.paymentsServerInfo, other.paymentsServerInfo);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
             contentType,
-            serverInfo,
             statusCode,
-            rawResponse);
+            rawResponse,
+            paymentsServerInfo);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentsgetServerInfoResponse.class,
                 "contentType", contentType,
-                "serverInfo", serverInfo,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse);
+                "rawResponse", rawResponse,
+                "paymentsServerInfo", paymentsServerInfo);
     }
     
     public final static class Builder {
  
         private String contentType;
  
-        private Optional<? extends ServerInfo> serverInfo = Optional.empty();
- 
         private Integer statusCode;
  
         private HttpResponse<InputStream> rawResponse;
+ 
+        private Optional<? extends PaymentsServerInfo> paymentsServerInfo = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -199,24 +199,6 @@ public class PaymentsgetServerInfoResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Server information
-         */
-        public Builder serverInfo(ServerInfo serverInfo) {
-            Utils.checkNotNull(serverInfo, "serverInfo");
-            this.serverInfo = Optional.ofNullable(serverInfo);
-            return this;
-        }
-
-        /**
-         * Server information
-         */
-        public Builder serverInfo(Optional<? extends ServerInfo> serverInfo) {
-            Utils.checkNotNull(serverInfo, "serverInfo");
-            this.serverInfo = serverInfo;
             return this;
         }
 
@@ -237,13 +219,31 @@ public class PaymentsgetServerInfoResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
+        /**
+         * Server information
+         */
+        public Builder paymentsServerInfo(PaymentsServerInfo paymentsServerInfo) {
+            Utils.checkNotNull(paymentsServerInfo, "paymentsServerInfo");
+            this.paymentsServerInfo = Optional.ofNullable(paymentsServerInfo);
+            return this;
+        }
+
+        /**
+         * Server information
+         */
+        public Builder paymentsServerInfo(Optional<? extends PaymentsServerInfo> paymentsServerInfo) {
+            Utils.checkNotNull(paymentsServerInfo, "paymentsServerInfo");
+            this.paymentsServerInfo = paymentsServerInfo;
+            return this;
+        }
         
         public PaymentsgetServerInfoResponse build() {
             return new PaymentsgetServerInfoResponse(
                 contentType,
-                serverInfo,
                 statusCode,
-                rawResponse);
+                rawResponse,
+                paymentsServerInfo);
         }
     }
 }

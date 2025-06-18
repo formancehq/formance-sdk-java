@@ -30,7 +30,7 @@ public class Log {
     private long id;
 
     @JsonProperty("type")
-    private Type type;
+    private LogType type;
 
     @JsonCreator
     public Log(
@@ -38,7 +38,7 @@ public class Log {
             @JsonProperty("date") OffsetDateTime date,
             @JsonProperty("hash") String hash,
             @JsonProperty("id") long id,
-            @JsonProperty("type") Type type) {
+            @JsonProperty("type") LogType type) {
         data = Utils.emptyMapIfNull(data);
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(hash, "hash");
@@ -72,7 +72,7 @@ public class Log {
     }
 
     @JsonIgnore
-    public Type type() {
+    public LogType type() {
         return type;
     }
 
@@ -104,7 +104,7 @@ public class Log {
         return this;
     }
 
-    public Log withType(Type type) {
+    public Log withType(LogType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -158,7 +158,7 @@ public class Log {
  
         private Long id;
  
-        private Type type;
+        private LogType type;
         
         private Builder() {
           // force use of static builder() method
@@ -188,7 +188,7 @@ public class Log {
             return this;
         }
 
-        public Builder type(Type type) {
+        public Builder type(LogType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

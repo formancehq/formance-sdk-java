@@ -15,6 +15,7 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V3Instance {
 
@@ -26,7 +27,7 @@ public class V3Instance {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<String> error;
+    private JsonNullable<String> error;
 
     @JsonProperty("id")
     private String id;
@@ -41,20 +42,19 @@ public class V3Instance {
     @JsonProperty("terminatedAt")
     private Optional<OffsetDateTime> terminatedAt;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedAt")
-    private Optional<OffsetDateTime> updatedAt;
+    private OffsetDateTime updatedAt;
 
     @JsonCreator
     public V3Instance(
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("error") Optional<String> error,
+            @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("scheduleID") String scheduleID,
             @JsonProperty("terminated") boolean terminated,
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt,
-            @JsonProperty("updatedAt") Optional<OffsetDateTime> updatedAt) {
+            @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(error, "error");
@@ -78,8 +78,9 @@ public class V3Instance {
             OffsetDateTime createdAt,
             String id,
             String scheduleID,
-            boolean terminated) {
-        this(connectorID, createdAt, Optional.empty(), id, scheduleID, terminated, Optional.empty(), Optional.empty());
+            boolean terminated,
+            OffsetDateTime updatedAt) {
+        this(connectorID, createdAt, JsonNullable.undefined(), id, scheduleID, terminated, Optional.empty(), updatedAt);
     }
 
     @JsonIgnore
@@ -93,7 +94,7 @@ public class V3Instance {
     }
 
     @JsonIgnore
-    public Optional<String> error() {
+    public JsonNullable<String> error() {
         return error;
     }
 
@@ -118,7 +119,7 @@ public class V3Instance {
     }
 
     @JsonIgnore
-    public Optional<OffsetDateTime> updatedAt() {
+    public OffsetDateTime updatedAt() {
         return updatedAt;
     }
 
@@ -140,11 +141,11 @@ public class V3Instance {
 
     public V3Instance withError(String error) {
         Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
+        this.error = JsonNullable.of(error);
         return this;
     }
 
-    public V3Instance withError(Optional<String> error) {
+    public V3Instance withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -181,12 +182,6 @@ public class V3Instance {
     }
 
     public V3Instance withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = Optional.ofNullable(updatedAt);
-        return this;
-    }
-
-    public V3Instance withUpdatedAt(Optional<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
         return this;
@@ -245,7 +240,7 @@ public class V3Instance {
  
         private OffsetDateTime createdAt;
  
-        private Optional<String> error = Optional.empty();
+        private JsonNullable<String> error = JsonNullable.undefined();
  
         private String id;
  
@@ -255,7 +250,7 @@ public class V3Instance {
  
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
  
-        private Optional<OffsetDateTime> updatedAt = Optional.empty();
+        private OffsetDateTime updatedAt;
         
         private Builder() {
           // force use of static builder() method
@@ -275,11 +270,11 @@ public class V3Instance {
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
+            this.error = JsonNullable.of(error);
             return this;
         }
 
-        public Builder error(Optional<String> error) {
+        public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
@@ -316,12 +311,6 @@ public class V3Instance {
         }
 
         public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = Optional.ofNullable(updatedAt);
-            return this;
-        }
-
-        public Builder updatedAt(Optional<OffsetDateTime> updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;

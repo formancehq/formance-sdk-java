@@ -57,7 +57,7 @@ public class V2Payment {
     private String reference;
 
     @JsonProperty("scheme")
-    private Scheme scheme;
+    private V2PaymentScheme scheme;
 
     @JsonProperty("sourceAccountID")
     private String sourceAccountID;
@@ -81,7 +81,7 @@ public class V2Payment {
             @JsonProperty("provider") Optional<? extends V2Connector> provider,
             @JsonProperty("raw") Optional<? extends V2PaymentRaw> raw,
             @JsonProperty("reference") String reference,
-            @JsonProperty("scheme") Scheme scheme,
+            @JsonProperty("scheme") V2PaymentScheme scheme,
             @JsonProperty("sourceAccountID") String sourceAccountID,
             @JsonProperty("status") V2PaymentStatus status,
             @JsonProperty("type") V2PaymentType type) {
@@ -126,7 +126,7 @@ public class V2Payment {
             String id,
             BigInteger initialAmount,
             String reference,
-            Scheme scheme,
+            V2PaymentScheme scheme,
             String sourceAccountID,
             V2PaymentStatus status,
             V2PaymentType type) {
@@ -192,7 +192,7 @@ public class V2Payment {
     }
 
     @JsonIgnore
-    public Scheme scheme() {
+    public V2PaymentScheme scheme() {
         return scheme;
     }
 
@@ -304,7 +304,7 @@ public class V2Payment {
         return this;
     }
 
-    public V2Payment withScheme(Scheme scheme) {
+    public V2Payment withScheme(V2PaymentScheme scheme) {
         Utils.checkNotNull(scheme, "scheme");
         this.scheme = scheme;
         return this;
@@ -420,7 +420,7 @@ public class V2Payment {
  
         private String reference;
  
-        private Scheme scheme;
+        private V2PaymentScheme scheme;
  
         private String sourceAccountID;
  
@@ -521,7 +521,7 @@ public class V2Payment {
             return this;
         }
 
-        public Builder scheme(Scheme scheme) {
+        public Builder scheme(V2PaymentScheme scheme) {
             Utils.checkNotNull(scheme, "scheme");
             this.scheme = scheme;
             return this;

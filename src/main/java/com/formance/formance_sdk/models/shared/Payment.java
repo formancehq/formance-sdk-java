@@ -55,7 +55,7 @@ public class Payment {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
-    private Optional<? extends Raw> raw;
+    private Optional<? extends PaymentRaw> raw;
 
     @JsonProperty("reference")
     private String reference;
@@ -84,7 +84,7 @@ public class Payment {
             @JsonProperty("initialAmount") BigInteger initialAmount,
             @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("provider") Optional<? extends Connector> provider,
-            @JsonProperty("raw") Optional<? extends Raw> raw,
+            @JsonProperty("raw") Optional<? extends PaymentRaw> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheme") PaymentScheme scheme,
             @JsonProperty("sourceAccountID") String sourceAccountID,
@@ -195,8 +195,8 @@ public class Payment {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Raw> raw() {
-        return (Optional<Raw>) raw;
+    public Optional<PaymentRaw> raw() {
+        return (Optional<PaymentRaw>) raw;
     }
 
     @JsonIgnore
@@ -310,13 +310,13 @@ public class Payment {
         return this;
     }
 
-    public Payment withRaw(Raw raw) {
+    public Payment withRaw(PaymentRaw raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
         return this;
     }
 
-    public Payment withRaw(Optional<? extends Raw> raw) {
+    public Payment withRaw(Optional<? extends PaymentRaw> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
@@ -445,7 +445,7 @@ public class Payment {
  
         private Optional<? extends Connector> provider = Optional.empty();
  
-        private Optional<? extends Raw> raw = Optional.empty();
+        private Optional<? extends PaymentRaw> raw = Optional.empty();
  
         private String reference;
  
@@ -543,13 +543,13 @@ public class Payment {
             return this;
         }
 
-        public Builder raw(Raw raw) {
+        public Builder raw(PaymentRaw raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
             return this;
         }
 
-        public Builder raw(Optional<? extends Raw> raw) {
+        public Builder raw(Optional<? extends PaymentRaw> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
             return this;

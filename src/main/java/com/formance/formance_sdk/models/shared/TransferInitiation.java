@@ -40,8 +40,9 @@ public class TransferInitiation {
     @JsonProperty("destinationAccountID")
     private String destinationAccountID;
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private String error;
+    private JsonNullable<String> error;
 
     @JsonProperty("id")
     private String id;
@@ -88,7 +89,7 @@ public class TransferInitiation {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("description") String description,
             @JsonProperty("destinationAccountID") String destinationAccountID,
-            @JsonProperty("error") String error,
+            @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("initialAmount") BigInteger initialAmount,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
@@ -145,7 +146,6 @@ public class TransferInitiation {
             OffsetDateTime createdAt,
             String description,
             String destinationAccountID,
-            String error,
             String id,
             BigInteger initialAmount,
             String reference,
@@ -153,7 +153,7 @@ public class TransferInitiation {
             String sourceAccountID,
             TransferInitiationStatus status,
             TransferInitiationType type) {
-        this(amount, asset, connectorID, createdAt, description, destinationAccountID, error, id, initialAmount, JsonNullable.undefined(), Optional.empty(), reference, Optional.empty(), JsonNullable.undefined(), scheduledAt, sourceAccountID, status, type);
+        this(amount, asset, connectorID, createdAt, description, destinationAccountID, JsonNullable.undefined(), id, initialAmount, JsonNullable.undefined(), Optional.empty(), reference, Optional.empty(), JsonNullable.undefined(), scheduledAt, sourceAccountID, status, type);
     }
 
     @JsonIgnore
@@ -187,7 +187,7 @@ public class TransferInitiation {
     }
 
     @JsonIgnore
-    public String error() {
+    public JsonNullable<String> error() {
         return error;
     }
 
@@ -295,6 +295,12 @@ public class TransferInitiation {
     }
 
     public TransferInitiation withError(String error) {
+        Utils.checkNotNull(error, "error");
+        this.error = JsonNullable.of(error);
+        return this;
+    }
+
+    public TransferInitiation withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -486,7 +492,7 @@ public class TransferInitiation {
  
         private String destinationAccountID;
  
-        private String error;
+        private JsonNullable<String> error = JsonNullable.undefined();
  
         private String id;
  
@@ -556,6 +562,12 @@ public class TransferInitiation {
         }
 
         public Builder error(String error) {
+            Utils.checkNotNull(error, "error");
+            this.error = JsonNullable.of(error);
+            return this;
+        }
+
+        public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

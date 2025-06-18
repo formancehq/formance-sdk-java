@@ -17,14 +17,14 @@ import java.util.Objects;
 public class WalletsErrorResponse extends RuntimeException {
 
     @JsonProperty("errorCode")
-    private SchemasWalletsErrorResponseErrorCode errorCode;
+    private WalletsErrorResponseErrorCode errorCode;
 
     @JsonProperty("errorMessage")
     private String errorMessage;
 
     @JsonCreator
     public WalletsErrorResponse(
-            @JsonProperty("errorCode") SchemasWalletsErrorResponseErrorCode errorCode,
+            @JsonProperty("errorCode") WalletsErrorResponseErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
@@ -33,7 +33,7 @@ public class WalletsErrorResponse extends RuntimeException {
     }
 
     @JsonIgnore
-    public SchemasWalletsErrorResponseErrorCode errorCode() {
+    public WalletsErrorResponseErrorCode errorCode() {
         return errorCode;
     }
 
@@ -46,7 +46,7 @@ public class WalletsErrorResponse extends RuntimeException {
         return new Builder();
     }    
 
-    public WalletsErrorResponse withErrorCode(SchemasWalletsErrorResponseErrorCode errorCode) {
+    public WalletsErrorResponse withErrorCode(WalletsErrorResponseErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
@@ -89,7 +89,7 @@ public class WalletsErrorResponse extends RuntimeException {
     
     public final static class Builder {
  
-        private SchemasWalletsErrorResponseErrorCode errorCode;
+        private WalletsErrorResponseErrorCode errorCode;
  
         private String errorMessage;
         
@@ -97,7 +97,7 @@ public class WalletsErrorResponse extends RuntimeException {
           // force use of static builder() method
         }
 
-        public Builder errorCode(SchemasWalletsErrorResponseErrorCode errorCode) {
+        public Builder errorCode(WalletsErrorResponseErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;

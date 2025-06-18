@@ -14,7 +14,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TaskCurrencyCloud {
@@ -30,7 +29,7 @@ public class TaskCurrencyCloud {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<String> error;
+    private JsonNullable<String> error;
 
     @JsonProperty("id")
     private String id;
@@ -50,7 +49,7 @@ public class TaskCurrencyCloud {
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("descriptor") TaskCurrencyCloudDescriptor descriptor,
-            @JsonProperty("error") Optional<String> error,
+            @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("id") String id,
             @JsonProperty("state") JsonNullable<? extends TaskCurrencyCloudState> state,
             @JsonProperty("status") TaskStatus status,
@@ -80,7 +79,7 @@ public class TaskCurrencyCloud {
             String id,
             TaskStatus status,
             OffsetDateTime updatedAt) {
-        this(connectorID, createdAt, descriptor, Optional.empty(), id, JsonNullable.undefined(), status, updatedAt);
+        this(connectorID, createdAt, descriptor, JsonNullable.undefined(), id, JsonNullable.undefined(), status, updatedAt);
     }
 
     @JsonIgnore
@@ -99,7 +98,7 @@ public class TaskCurrencyCloud {
     }
 
     @JsonIgnore
-    public Optional<String> error() {
+    public JsonNullable<String> error() {
         return error;
     }
 
@@ -148,11 +147,11 @@ public class TaskCurrencyCloud {
 
     public TaskCurrencyCloud withError(String error) {
         Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
+        this.error = JsonNullable.of(error);
         return this;
     }
 
-    public TaskCurrencyCloud withError(Optional<String> error) {
+    public TaskCurrencyCloud withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -243,7 +242,7 @@ public class TaskCurrencyCloud {
  
         private TaskCurrencyCloudDescriptor descriptor;
  
-        private Optional<String> error = Optional.empty();
+        private JsonNullable<String> error = JsonNullable.undefined();
  
         private String id;
  
@@ -277,11 +276,11 @@ public class TaskCurrencyCloud {
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
+            this.error = JsonNullable.of(error);
             return this;
         }
 
-        public Builder error(Optional<String> error) {
+        public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

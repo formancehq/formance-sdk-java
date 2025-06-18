@@ -9,22 +9,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 
 public class V3ConnectorConfigsResponse {
 
     @JsonProperty("data")
-    private V3ConnectorConfigsResponseData data;
+    private Map<String, Map<String, V3ConnectorConfigsResponseData>> data;
 
     @JsonCreator
     public V3ConnectorConfigsResponse(
-            @JsonProperty("data") V3ConnectorConfigsResponseData data) {
-        Utils.checkNotNull(data, "data");
+            @JsonProperty("data") Map<String, Map<String, V3ConnectorConfigsResponseData>> data) {
+        data = Utils.emptyMapIfNull(data);
         this.data = data;
     }
 
     @JsonIgnore
-    public V3ConnectorConfigsResponseData data() {
+    public Map<String, Map<String, V3ConnectorConfigsResponseData>> data() {
         return data;
     }
 
@@ -32,7 +33,7 @@ public class V3ConnectorConfigsResponse {
         return new Builder();
     }    
 
-    public V3ConnectorConfigsResponse withData(V3ConnectorConfigsResponseData data) {
+    public V3ConnectorConfigsResponse withData(Map<String, Map<String, V3ConnectorConfigsResponseData>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -66,13 +67,13 @@ public class V3ConnectorConfigsResponse {
     
     public final static class Builder {
  
-        private V3ConnectorConfigsResponseData data;
+        private Map<String, Map<String, V3ConnectorConfigsResponseData>> data;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(V3ConnectorConfigsResponseData data) {
+        public Builder data(Map<String, Map<String, V3ConnectorConfigsResponseData>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

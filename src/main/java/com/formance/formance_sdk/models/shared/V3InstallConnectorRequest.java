@@ -15,12 +15,14 @@ import java.lang.String;
     @Type(value = V3AdyenConfig.class, name="Adyen"),
     @Type(value = V3AtlarConfig.class, name="Atlar"),
     @Type(value = V3BankingcircleConfig.class, name="Bankingcircle"),
+    @Type(value = V3ColumnConfig.class, name="Column"),
     @Type(value = V3CurrencycloudConfig.class, name="Currencycloud"),
     @Type(value = V3DummypayConfig.class, name="Dummypay"),
     @Type(value = V3GenericConfig.class, name="Generic"),
     @Type(value = V3MangopayConfig.class, name="Mangopay"),
     @Type(value = V3ModulrConfig.class, name="Modulr"),
     @Type(value = V3MoneycorpConfig.class, name="Moneycorp"),
+    @Type(value = V3QontoConfig.class, name="Qonto"),
     @Type(value = V3StripeConfig.class, name="Stripe"),
     @Type(value = V3WiseConfig.class, name="Wise")})
 public interface V3InstallConnectorRequest {

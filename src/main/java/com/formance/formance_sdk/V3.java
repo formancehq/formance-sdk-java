@@ -4,12 +4,16 @@
 package com.formance.formance_sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
 import com.formance.formance_sdk.models.operations.V3AddAccountToPoolRequest;
 import com.formance.formance_sdk.models.operations.V3AddAccountToPoolRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3AddAccountToPoolResponse;
+import com.formance.formance_sdk.models.operations.V3AddBankAccountToPaymentServiceUserRequest;
+import com.formance.formance_sdk.models.operations.V3AddBankAccountToPaymentServiceUserRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3AddBankAccountToPaymentServiceUserResponse;
 import com.formance.formance_sdk.models.operations.V3ApprovePaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3ApprovePaymentInitiationRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ApprovePaymentInitiationResponse;
@@ -19,6 +23,8 @@ import com.formance.formance_sdk.models.operations.V3CreateBankAccountRequestBui
 import com.formance.formance_sdk.models.operations.V3CreateBankAccountResponse;
 import com.formance.formance_sdk.models.operations.V3CreatePaymentRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3CreatePaymentResponse;
+import com.formance.formance_sdk.models.operations.V3CreatePaymentServiceUserRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3CreatePaymentServiceUserResponse;
 import com.formance.formance_sdk.models.operations.V3CreatePoolRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3CreatePoolResponse;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentInitiationRequest;
@@ -30,6 +36,9 @@ import com.formance.formance_sdk.models.operations.V3DeletePoolResponse;
 import com.formance.formance_sdk.models.operations.V3ForwardBankAccountRequest;
 import com.formance.formance_sdk.models.operations.V3ForwardBankAccountRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ForwardBankAccountResponse;
+import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserBankAccountRequest;
+import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserBankAccountRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserBankAccountResponse;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesRequest;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesResponse;
@@ -51,6 +60,12 @@ import com.formance.formance_sdk.models.operations.V3GetPaymentInitiationRespons
 import com.formance.formance_sdk.models.operations.V3GetPaymentRequest;
 import com.formance.formance_sdk.models.operations.V3GetPaymentRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetPaymentResponse;
+import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserRequest;
+import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserResponse;
+import com.formance.formance_sdk.models.operations.V3GetPoolBalancesLatestRequest;
+import com.formance.formance_sdk.models.operations.V3GetPoolBalancesLatestRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3GetPoolBalancesLatestResponse;
 import com.formance.formance_sdk.models.operations.V3GetPoolBalancesRequest;
 import com.formance.formance_sdk.models.operations.V3GetPoolBalancesRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetPoolBalancesResponse;
@@ -92,6 +107,9 @@ import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationRelate
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsResponse;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUsersRequest;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUsersRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUsersResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentsRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ListPaymentsResponse;
@@ -119,6 +137,9 @@ import com.formance.formance_sdk.models.operations.V3UninstallConnectorResponse;
 import com.formance.formance_sdk.models.operations.V3UpdateBankAccountMetadataRequest;
 import com.formance.formance_sdk.models.operations.V3UpdateBankAccountMetadataRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3UpdateBankAccountMetadataResponse;
+import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigRequest;
+import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigResponse;
 import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataRequest;
 import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataResponse;
@@ -133,10 +154,12 @@ import com.formance.formance_sdk.models.shared.V3ConnectorsCursorResponse;
 import com.formance.formance_sdk.models.shared.V3CreateAccountRequest;
 import com.formance.formance_sdk.models.shared.V3CreateBankAccountRequest;
 import com.formance.formance_sdk.models.shared.V3CreatePaymentRequest;
+import com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserRequest;
 import com.formance.formance_sdk.models.shared.V3CreatePoolRequest;
 import com.formance.formance_sdk.models.shared.V3PaymentInitiationAdjustmentsCursorResponse;
 import com.formance.formance_sdk.models.shared.V3PaymentInitiationRelatedPaymentsCursorResponse;
 import com.formance.formance_sdk.models.shared.V3PaymentInitiationsCursorResponse;
+import com.formance.formance_sdk.models.shared.V3PaymentServiceUsersCursorResponse;
 import com.formance.formance_sdk.models.shared.V3PaymentsCursorResponse;
 import com.formance.formance_sdk.models.shared.V3PoolBalancesResponse;
 import com.formance.formance_sdk.models.shared.V3PoolsCursorResponse;
@@ -159,14 +182,17 @@ import java.util.Optional;
 
 public class V3 implements
             MethodCallV3AddAccountToPool,
+            MethodCallV3AddBankAccountToPaymentServiceUser,
             MethodCallV3ApprovePaymentInitiation,
             MethodCallV3CreateAccount,
             MethodCallV3CreateBankAccount,
             MethodCallV3CreatePayment,
+            MethodCallV3CreatePaymentServiceUser,
             MethodCallV3CreatePool,
             MethodCallV3DeletePaymentInitiation,
             MethodCallV3DeletePool,
             MethodCallV3ForwardBankAccount,
+            MethodCallV3ForwardPaymentServiceUserBankAccount,
             MethodCallV3GetAccount,
             MethodCallV3GetAccountBalances,
             MethodCallV3GetBankAccount,
@@ -174,8 +200,10 @@ public class V3 implements
             MethodCallV3GetConnectorSchedule,
             MethodCallV3GetPayment,
             MethodCallV3GetPaymentInitiation,
+            MethodCallV3GetPaymentServiceUser,
             MethodCallV3GetPool,
             MethodCallV3GetPoolBalances,
+            MethodCallV3GetPoolBalancesLatest,
             MethodCallV3GetTask,
             MethodCallV3InitiatePayment,
             MethodCallV3InstallConnector,
@@ -188,6 +216,7 @@ public class V3 implements
             MethodCallV3ListPaymentInitiationAdjustments,
             MethodCallV3ListPaymentInitiationRelatedPayments,
             MethodCallV3ListPaymentInitiations,
+            MethodCallV3ListPaymentServiceUsers,
             MethodCallV3ListPayments,
             MethodCallV3ListPools,
             MethodCallV3RejectPaymentInitiation,
@@ -197,14 +226,14 @@ public class V3 implements
             MethodCallV3ReversePaymentInitiation,
             MethodCallV3UninstallConnector,
             MethodCallV3UpdateBankAccountMetadata,
-            MethodCallV3UpdatePaymentMetadata {
+            MethodCallV3UpdatePaymentMetadata,
+            MethodCallV3UpdateConnectorConfig {
 
     private final SDKConfiguration sdkConfiguration;
 
     V3(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
 
     /**
      * Add an account to a pool
@@ -225,7 +254,7 @@ public class V3 implements
     public V3AddAccountToPoolResponse addAccountToPool(
             V3AddAccountToPoolRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3AddAccountToPoolRequest.class,
                 _baseUrl,
@@ -237,14 +266,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3AddAccountToPool", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -257,6 +287,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3AddAccountToPool",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -267,6 +298,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3AddAccountToPool",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -277,6 +309,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3AddAccountToPool",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -323,6 +356,126 @@ public class V3 implements
     }
 
 
+    /**
+     * Add a bank account to a payment service user
+     * 
+     * @return The call builder
+     */
+    public V3AddBankAccountToPaymentServiceUserRequestBuilder addBankAccountToPaymentServiceUser() {
+        return new V3AddBankAccountToPaymentServiceUserRequestBuilder(this);
+    }
+
+    /**
+     * Add a bank account to a payment service user
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3AddBankAccountToPaymentServiceUserResponse addBankAccountToPaymentServiceUser(
+            V3AddBankAccountToPaymentServiceUserRequest request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                V3AddBankAccountToPaymentServiceUserRequest.class,
+                _baseUrl,
+                "/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
+                      _baseUrl,
+                      "v3AddBankAccountToPaymentServiceUser", 
+                      Optional.of(List.of("auth:read", "payments:write")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3AddBankAccountToPaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:write")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3AddBankAccountToPaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:write")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3AddBankAccountToPaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:write")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3AddBankAccountToPaymentServiceUserResponse.Builder _resBuilder = 
+            V3AddBankAccountToPaymentServiceUserResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3AddBankAccountToPaymentServiceUserResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
+            // no content 
+            return _res;
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3ErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3ErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
 
     /**
      * Approve a payment initiation
@@ -343,7 +496,7 @@ public class V3 implements
     public V3ApprovePaymentInitiationResponse approvePaymentInitiation(
             V3ApprovePaymentInitiationRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3ApprovePaymentInitiationRequest.class,
                 _baseUrl,
@@ -355,14 +508,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ApprovePaymentInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -375,6 +529,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ApprovePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -385,6 +540,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ApprovePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -395,6 +551,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ApprovePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -452,7 +609,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
      * 
@@ -482,7 +638,7 @@ public class V3 implements
     public V3CreateAccountResponse createAccount(
             Optional<? extends V3CreateAccountRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/accounts");
@@ -502,14 +658,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3CreateAccount", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -522,6 +679,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreateAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -532,6 +690,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreateAccount",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -542,6 +701,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreateAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -599,7 +759,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
      * 
@@ -629,7 +788,7 @@ public class V3 implements
     public V3CreateBankAccountResponse createBankAccount(
             Optional<? extends V3CreateBankAccountRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/bank-accounts");
@@ -649,14 +808,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3CreateBankAccount", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -669,6 +829,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreateBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -679,6 +840,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreateBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -689,6 +851,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreateBankAccount",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -746,7 +909,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
      * 
@@ -776,7 +938,7 @@ public class V3 implements
     public V3CreatePaymentResponse createPayment(
             Optional<? extends V3CreatePaymentRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/payments");
@@ -796,14 +958,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3CreatePayment", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -816,6 +979,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreatePayment",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -826,6 +990,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreatePayment",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -836,6 +1001,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreatePayment",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -893,6 +1059,155 @@ public class V3 implements
     }
 
 
+    /**
+     * Create a formance payment service user object
+     * 
+     * @return The call builder
+     */
+    public V3CreatePaymentServiceUserRequestBuilder createPaymentServiceUser() {
+        return new V3CreatePaymentServiceUserRequestBuilder(this);
+    }
+
+    /**
+     * Create a formance payment service user object
+     * 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3CreatePaymentServiceUserResponse createPaymentServiceUserDirect() throws Exception {
+        return createPaymentServiceUser(Optional.empty());
+    }
+    
+    /**
+     * Create a formance payment service user object
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3CreatePaymentServiceUserResponse createPaymentServiceUser(
+            Optional<? extends V3CreatePaymentServiceUserRequest> request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/api/payments/v3/payment-service-users");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Optional<? extends V3CreatePaymentServiceUserRequest>>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
+                      _baseUrl,
+                      "v3CreatePaymentServiceUser", 
+                      Optional.of(List.of("auth:read", "payments:write")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3CreatePaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:write")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3CreatePaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:write")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3CreatePaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:write")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3CreatePaymentServiceUserResponse.Builder _resBuilder = 
+            V3CreatePaymentServiceUserResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3CreatePaymentServiceUserResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse>() {});
+                _res.withV3CreatePaymentServiceUserResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3ErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3ErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
 
     /**
      * Create a formance pool object
@@ -923,7 +1238,7 @@ public class V3 implements
     public V3CreatePoolResponse createPool(
             Optional<? extends V3CreatePoolRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/pools");
@@ -943,14 +1258,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3CreatePool", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -963,6 +1279,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreatePool",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -973,6 +1290,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreatePool",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -983,6 +1301,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3CreatePool",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -1040,7 +1359,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Delete a payment initiation by ID
      * 
@@ -1060,7 +1378,7 @@ public class V3 implements
     public V3DeletePaymentInitiationResponse deletePaymentInitiation(
             V3DeletePaymentInitiationRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3DeletePaymentInitiationRequest.class,
                 _baseUrl,
@@ -1072,14 +1390,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3DeletePaymentInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -1092,6 +1411,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3DeletePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -1102,6 +1422,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3DeletePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -1112,6 +1433,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3DeletePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -1158,7 +1480,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Delete a pool by ID
      * 
@@ -1178,7 +1499,7 @@ public class V3 implements
     public V3DeletePoolResponse deletePool(
             V3DeletePoolRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3DeletePoolRequest.class,
                 _baseUrl,
@@ -1190,14 +1511,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3DeletePool", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -1210,6 +1532,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3DeletePool",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -1220,6 +1543,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3DeletePool",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -1230,6 +1554,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3DeletePool",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -1276,7 +1601,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Forward a Bank Account to a PSP for creation
      * 
@@ -1296,7 +1620,7 @@ public class V3 implements
     public V3ForwardBankAccountResponse forwardBankAccount(
             V3ForwardBankAccountRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3ForwardBankAccountRequest.class,
                 _baseUrl,
@@ -1318,14 +1642,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ForwardBankAccount", 
                       Optional.of(List.of("auth:read")), 
@@ -1338,6 +1663,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ForwardBankAccount",
                             Optional.of(List.of("auth:read")),
@@ -1348,6 +1674,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ForwardBankAccount",
                             Optional.of(List.of("auth:read")), 
@@ -1358,6 +1685,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ForwardBankAccount",
                             Optional.of(List.of("auth:read")),
@@ -1415,6 +1743,147 @@ public class V3 implements
     }
 
 
+    /**
+     * Forward a payment service user's bank account to a connector
+     * 
+     * @return The call builder
+     */
+    public V3ForwardPaymentServiceUserBankAccountRequestBuilder forwardPaymentServiceUserBankAccount() {
+        return new V3ForwardPaymentServiceUserBankAccountRequestBuilder(this);
+    }
+
+    /**
+     * Forward a payment service user's bank account to a connector
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3ForwardPaymentServiceUserBankAccountResponse forwardPaymentServiceUserBankAccount(
+            V3ForwardPaymentServiceUserBankAccountRequest request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                V3ForwardPaymentServiceUserBankAccountRequest.class,
+                _baseUrl,
+                "/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V3ForwardPaymentServiceUserBankAccountRequest>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "v3ForwardPaymentServiceUserBankAccountRequest",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
+                      _baseUrl,
+                      "v3ForwardPaymentServiceUserBankAccount", 
+                      Optional.of(List.of("auth:read", "payments:write")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3ForwardPaymentServiceUserBankAccount",
+                            Optional.of(List.of("auth:read", "payments:write")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3ForwardPaymentServiceUserBankAccount",
+                            Optional.of(List.of("auth:read", "payments:write")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3ForwardPaymentServiceUserBankAccount",
+                            Optional.of(List.of("auth:read", "payments:write")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3ForwardPaymentServiceUserBankAccountResponse.Builder _resBuilder = 
+            V3ForwardPaymentServiceUserBankAccountResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3ForwardPaymentServiceUserBankAccountResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "202")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse>() {});
+                _res.withV3ForwardPaymentServiceUserBankAccountResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3ErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3ErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
 
     /**
      * Get an account by ID
@@ -1435,7 +1904,7 @@ public class V3 implements
     public V3GetAccountResponse getAccount(
             V3GetAccountRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetAccountRequest.class,
                 _baseUrl,
@@ -1447,14 +1916,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetAccount", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -1467,6 +1937,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetAccount",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -1477,6 +1948,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetAccount",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -1487,6 +1959,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetAccount",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -1544,7 +2017,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Get account balances
      * 
@@ -1564,7 +2036,7 @@ public class V3 implements
     public V3GetAccountBalancesResponse getAccountBalances(
             V3GetAccountBalancesRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetAccountBalancesRequest.class,
                 _baseUrl,
@@ -1581,14 +2053,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetAccountBalances", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -1601,6 +2074,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetAccountBalances",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -1611,6 +2085,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetAccountBalances",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -1621,6 +2096,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetAccountBalances",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -1678,7 +2154,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Get a Bank Account by ID
      * 
@@ -1698,7 +2173,7 @@ public class V3 implements
     public V3GetBankAccountResponse getBankAccount(
             V3GetBankAccountRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetBankAccountRequest.class,
                 _baseUrl,
@@ -1710,14 +2185,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetBankAccount", 
                       Optional.of(List.of("auth:read")), 
@@ -1730,6 +2206,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetBankAccount",
                             Optional.of(List.of("auth:read")),
@@ -1740,6 +2217,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetBankAccount",
                             Optional.of(List.of("auth:read")), 
@@ -1750,6 +2228,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetBankAccount",
                             Optional.of(List.of("auth:read")),
@@ -1807,7 +2286,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Get a connector configuration by ID
      * 
@@ -1827,7 +2305,7 @@ public class V3 implements
     public V3GetConnectorConfigResponse getConnectorConfig(
             V3GetConnectorConfigRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetConnectorConfigRequest.class,
                 _baseUrl,
@@ -1839,14 +2317,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetConnectorConfig", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -1859,6 +2338,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetConnectorConfig",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -1869,6 +2349,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetConnectorConfig",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -1879,6 +2360,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetConnectorConfig",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -1936,7 +2418,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Get a connector schedule by ID
      * 
@@ -1956,7 +2437,7 @@ public class V3 implements
     public V3GetConnectorScheduleResponse getConnectorSchedule(
             V3GetConnectorScheduleRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetConnectorScheduleRequest.class,
                 _baseUrl,
@@ -1968,14 +2449,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetConnectorSchedule", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -1988,6 +2470,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetConnectorSchedule",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -1998,6 +2481,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetConnectorSchedule",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -2008,6 +2492,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetConnectorSchedule",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2065,7 +2550,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Get a payment by ID
      * 
@@ -2085,7 +2569,7 @@ public class V3 implements
     public V3GetPaymentResponse getPayment(
             V3GetPaymentRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetPaymentRequest.class,
                 _baseUrl,
@@ -2097,14 +2581,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetPayment", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -2117,6 +2602,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPayment",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2127,6 +2613,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPayment",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -2137,6 +2624,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPayment",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2194,7 +2682,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Get a payment initiation by ID
      * 
@@ -2214,7 +2701,7 @@ public class V3 implements
     public V3GetPaymentInitiationResponse getPaymentInitiation(
             V3GetPaymentInitiationRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetPaymentInitiationRequest.class,
                 _baseUrl,
@@ -2226,14 +2713,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetPaymentInitiation", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -2246,6 +2734,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2256,6 +2745,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -2266,6 +2756,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2323,6 +2814,137 @@ public class V3 implements
     }
 
 
+    /**
+     * Get a payment service user by ID
+     * 
+     * @return The call builder
+     */
+    public V3GetPaymentServiceUserRequestBuilder getPaymentServiceUser() {
+        return new V3GetPaymentServiceUserRequestBuilder(this);
+    }
+
+    /**
+     * Get a payment service user by ID
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3GetPaymentServiceUserResponse getPaymentServiceUser(
+            V3GetPaymentServiceUserRequest request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                V3GetPaymentServiceUserRequest.class,
+                _baseUrl,
+                "/api/payments/v3/payment-service-users/{paymentServiceUserID}",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
+                      _baseUrl,
+                      "v3GetPaymentServiceUser", 
+                      Optional.of(List.of("auth:read", "payments:read")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3GetPaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:read")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3GetPaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:read")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3GetPaymentServiceUser",
+                            Optional.of(List.of("auth:read", "payments:read")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3GetPaymentServiceUserResponse.Builder _resBuilder = 
+            V3GetPaymentServiceUserResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3GetPaymentServiceUserResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                com.formance.formance_sdk.models.shared.V3GetPaymentServiceUserResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.formance.formance_sdk.models.shared.V3GetPaymentServiceUserResponse>() {});
+                _res.withV3GetPaymentServiceUserResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3ErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3ErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
 
     /**
      * Get a pool by ID
@@ -2343,7 +2965,7 @@ public class V3 implements
     public V3GetPoolResponse getPool(
             V3GetPoolRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetPoolRequest.class,
                 _baseUrl,
@@ -2355,14 +2977,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetPool", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -2375,6 +2998,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPool",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2385,6 +3009,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPool",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -2395,6 +3020,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPool",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2452,9 +3078,8 @@ public class V3 implements
     }
 
 
-
     /**
-     * Get pool balances
+     * Get historical pool balances from a particular point in time
      * 
      * @return The call builder
      */
@@ -2463,7 +3088,7 @@ public class V3 implements
     }
 
     /**
-     * Get pool balances
+     * Get historical pool balances from a particular point in time
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -2472,7 +3097,7 @@ public class V3 implements
     public V3GetPoolBalancesResponse getPoolBalances(
             V3GetPoolBalancesRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetPoolBalancesRequest.class,
                 _baseUrl,
@@ -2489,14 +3114,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetPoolBalances", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -2509,6 +3135,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPoolBalances",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2519,6 +3146,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPoolBalances",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -2529,6 +3157,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetPoolBalances",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2586,6 +3215,137 @@ public class V3 implements
     }
 
 
+    /**
+     * Get latest pool balances
+     * 
+     * @return The call builder
+     */
+    public V3GetPoolBalancesLatestRequestBuilder getPoolBalancesLatest() {
+        return new V3GetPoolBalancesLatestRequestBuilder(this);
+    }
+
+    /**
+     * Get latest pool balances
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3GetPoolBalancesLatestResponse getPoolBalancesLatest(
+            V3GetPoolBalancesLatestRequest request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                V3GetPoolBalancesLatestRequest.class,
+                _baseUrl,
+                "/api/payments/v3/pools/{poolID}/balances/latest",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
+                      _baseUrl,
+                      "v3GetPoolBalancesLatest", 
+                      Optional.of(List.of("auth:read", "payments:read")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3GetPoolBalancesLatest",
+                            Optional.of(List.of("auth:read", "payments:read")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3GetPoolBalancesLatest",
+                            Optional.of(List.of("auth:read", "payments:read")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3GetPoolBalancesLatest",
+                            Optional.of(List.of("auth:read", "payments:read")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3GetPoolBalancesLatestResponse.Builder _resBuilder = 
+            V3GetPoolBalancesLatestResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3GetPoolBalancesLatestResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3PoolBalancesResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3PoolBalancesResponse>() {});
+                _res.withV3PoolBalancesResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3ErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3ErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
 
     /**
      * Get a task and its result by ID
@@ -2606,7 +3366,7 @@ public class V3 implements
     public V3GetTaskResponse getTask(
             V3GetTaskRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3GetTaskRequest.class,
                 _baseUrl,
@@ -2618,14 +3378,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3GetTask", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -2638,6 +3399,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetTask",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2648,6 +3410,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetTask",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -2658,6 +3421,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3GetTask",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -2715,7 +3479,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Initiate a payment
      * 
@@ -2735,7 +3498,7 @@ public class V3 implements
     public V3InitiatePaymentResponse initiatePayment(
             V3InitiatePaymentRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/payment-initiations");
@@ -2760,14 +3523,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3InitiatePayment", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -2780,6 +3544,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3InitiatePayment",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -2790,6 +3555,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3InitiatePayment",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -2800,6 +3566,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3InitiatePayment",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -2857,7 +3624,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Install a connector
      * 
@@ -2877,7 +3643,7 @@ public class V3 implements
     public V3InstallConnectorResponse installConnector(
             V3InstallConnectorRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3InstallConnectorRequest.class,
                 _baseUrl,
@@ -2899,14 +3665,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3InstallConnector", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -2919,6 +3686,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3InstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -2929,6 +3697,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3InstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -2939,6 +3708,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3InstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -2996,7 +3766,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all accounts
      * 
@@ -3016,7 +3785,7 @@ public class V3 implements
     public V3ListAccountsResponse listAccounts(
             V3ListAccountsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/accounts");
@@ -3041,14 +3810,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListAccounts", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -3061,6 +3831,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListAccounts",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3071,6 +3842,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListAccounts",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -3081,6 +3853,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListAccounts",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3138,7 +3911,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all bank accounts
      * 
@@ -3158,7 +3930,7 @@ public class V3 implements
     public V3ListBankAccountsResponse listBankAccounts(
             V3ListBankAccountsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/bank-accounts");
@@ -3183,14 +3955,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListBankAccounts", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -3203,6 +3976,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListBankAccounts",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3213,6 +3987,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListBankAccounts",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -3223,6 +3998,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListBankAccounts",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3280,7 +4056,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all connector configurations
      * 
@@ -3298,7 +4073,7 @@ public class V3 implements
      */
     public V3ListConnectorConfigsResponse listConnectorConfigsDirect() throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/connectors/configs");
@@ -3308,14 +4083,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListConnectorConfigs", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -3328,6 +4104,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorConfigs",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3338,6 +4115,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorConfigs",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -3348,6 +4126,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorConfigs",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3405,7 +4184,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all connector schedule instances
      * 
@@ -3425,7 +4203,7 @@ public class V3 implements
     public V3ListConnectorScheduleInstancesResponse listConnectorScheduleInstances(
             V3ListConnectorScheduleInstancesRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3ListConnectorScheduleInstancesRequest.class,
                 _baseUrl,
@@ -3442,14 +4220,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListConnectorScheduleInstances", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -3462,6 +4241,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorScheduleInstances",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3472,6 +4252,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorScheduleInstances",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -3482,6 +4263,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorScheduleInstances",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3539,7 +4321,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all connector schedules
      * 
@@ -3559,7 +4340,7 @@ public class V3 implements
     public V3ListConnectorSchedulesResponse listConnectorSchedules(
             V3ListConnectorSchedulesRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3ListConnectorSchedulesRequest.class,
                 _baseUrl,
@@ -3586,14 +4367,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListConnectorSchedules", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -3606,6 +4388,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorSchedules",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3616,6 +4399,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorSchedules",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -3626,6 +4410,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectorSchedules",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3683,7 +4468,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all connectors
      * 
@@ -3703,7 +4487,7 @@ public class V3 implements
     public V3ListConnectorsResponse listConnectors(
             V3ListConnectorsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/connectors");
@@ -3728,14 +4512,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListConnectors", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -3748,6 +4533,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectors",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3758,6 +4544,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectors",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -3768,6 +4555,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListConnectors",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3825,7 +4613,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all payment initiation adjustments
      * 
@@ -3845,7 +4632,7 @@ public class V3 implements
     public V3ListPaymentInitiationAdjustmentsResponse listPaymentInitiationAdjustments(
             V3ListPaymentInitiationAdjustmentsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3ListPaymentInitiationAdjustmentsRequest.class,
                 _baseUrl,
@@ -3872,14 +4659,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListPaymentInitiationAdjustments", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -3892,6 +4680,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiationAdjustments",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3902,6 +4691,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiationAdjustments",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -3912,6 +4702,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiationAdjustments",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -3969,7 +4760,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all payments related to a payment initiation
      * 
@@ -3989,7 +4779,7 @@ public class V3 implements
     public V3ListPaymentInitiationRelatedPaymentsResponse listPaymentInitiationRelatedPayments(
             V3ListPaymentInitiationRelatedPaymentsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3ListPaymentInitiationRelatedPaymentsRequest.class,
                 _baseUrl,
@@ -4016,14 +4806,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListPaymentInitiationRelatedPayments", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -4036,6 +4827,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiationRelatedPayments",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -4046,6 +4838,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiationRelatedPayments",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -4056,6 +4849,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiationRelatedPayments",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -4113,7 +4907,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all payment initiations
      * 
@@ -4133,7 +4926,7 @@ public class V3 implements
     public V3ListPaymentInitiationsResponse listPaymentInitiations(
             V3ListPaymentInitiationsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/payment-initiations");
@@ -4158,14 +4951,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListPaymentInitiations", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -4178,6 +4972,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiations",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -4188,6 +4983,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiations",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -4198,6 +4994,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPaymentInitiations",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -4255,6 +5052,150 @@ public class V3 implements
     }
 
 
+    /**
+     * List all payment service users
+     * 
+     * @return The call builder
+     */
+    public V3ListPaymentServiceUsersRequestBuilder listPaymentServiceUsers() {
+        return new V3ListPaymentServiceUsersRequestBuilder(this);
+    }
+
+    /**
+     * List all payment service users
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3ListPaymentServiceUsersResponse listPaymentServiceUsers(
+            V3ListPaymentServiceUsersRequest request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/api/payments/v3/payment-service-users");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V3ListPaymentServiceUsersRequest>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                V3ListPaymentServiceUsersRequest.class,
+                request, 
+                null));
+        
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
+                      _baseUrl,
+                      "v3ListPaymentServiceUsers", 
+                      Optional.of(List.of("auth:read", "payments:read")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3ListPaymentServiceUsers",
+                            Optional.of(List.of("auth:read", "payments:read")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3ListPaymentServiceUsers",
+                            Optional.of(List.of("auth:read", "payments:read")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3ListPaymentServiceUsers",
+                            Optional.of(List.of("auth:read", "payments:read")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3ListPaymentServiceUsersResponse.Builder _resBuilder = 
+            V3ListPaymentServiceUsersResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3ListPaymentServiceUsersResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3PaymentServiceUsersCursorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3PaymentServiceUsersCursorResponse>() {});
+                _res.withV3PaymentServiceUsersCursorResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                V3ErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<V3ErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
 
     /**
      * List all payments
@@ -4275,7 +5216,7 @@ public class V3 implements
     public V3ListPaymentsResponse listPayments(
             V3ListPaymentsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/payments");
@@ -4300,14 +5241,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListPayments", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -4320,6 +5262,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPayments",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -4330,6 +5273,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPayments",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -4340,6 +5284,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPayments",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -4397,7 +5342,6 @@ public class V3 implements
     }
 
 
-
     /**
      * List all pools
      * 
@@ -4417,7 +5361,7 @@ public class V3 implements
     public V3ListPoolsResponse listPools(
             V3ListPoolsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/payments/v3/pools");
@@ -4442,14 +5386,15 @@ public class V3 implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ListPools", 
                       Optional.of(List.of("auth:read", "payments:read")), 
@@ -4462,6 +5407,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPools",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -4472,6 +5418,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPools",
                             Optional.of(List.of("auth:read", "payments:read")), 
@@ -4482,6 +5429,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ListPools",
                             Optional.of(List.of("auth:read", "payments:read")),
@@ -4539,7 +5487,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Reject a payment initiation
      * 
@@ -4559,7 +5506,7 @@ public class V3 implements
     public V3RejectPaymentInitiationResponse rejectPaymentInitiation(
             V3RejectPaymentInitiationRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3RejectPaymentInitiationRequest.class,
                 _baseUrl,
@@ -4571,14 +5518,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3RejectPaymentInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -4591,6 +5539,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RejectPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -4601,6 +5550,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RejectPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -4611,6 +5561,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RejectPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -4657,7 +5608,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Remove an account from a pool
      * 
@@ -4677,7 +5627,7 @@ public class V3 implements
     public V3RemoveAccountFromPoolResponse removeAccountFromPool(
             V3RemoveAccountFromPoolRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3RemoveAccountFromPoolRequest.class,
                 _baseUrl,
@@ -4689,14 +5639,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3RemoveAccountFromPool", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -4709,6 +5660,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RemoveAccountFromPool",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -4719,6 +5671,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RemoveAccountFromPool",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -4729,6 +5682,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RemoveAccountFromPool",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -4775,7 +5729,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
      * 
@@ -4795,7 +5748,7 @@ public class V3 implements
     public V3ResetConnectorResponse resetConnector(
             V3ResetConnectorRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3ResetConnectorRequest.class,
                 _baseUrl,
@@ -4807,14 +5760,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ResetConnector", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -4827,6 +5781,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ResetConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -4837,6 +5792,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ResetConnector",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -4847,6 +5803,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ResetConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -4904,7 +5861,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Retry a payment initiation
      * 
@@ -4924,7 +5880,7 @@ public class V3 implements
     public V3RetryPaymentInitiationResponse retryPaymentInitiation(
             V3RetryPaymentInitiationRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3RetryPaymentInitiationRequest.class,
                 _baseUrl,
@@ -4936,14 +5892,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3RetryPaymentInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -4956,6 +5913,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RetryPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -4966,6 +5924,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RetryPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -4976,6 +5935,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3RetryPaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -5033,7 +5993,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Reverse a payment initiation
      * 
@@ -5053,7 +6012,7 @@ public class V3 implements
     public V3ReversePaymentInitiationResponse reversePaymentInitiation(
             V3ReversePaymentInitiationRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3ReversePaymentInitiationRequest.class,
                 _baseUrl,
@@ -5075,14 +6034,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3ReversePaymentInitiation", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -5095,6 +6055,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ReversePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -5105,6 +6066,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ReversePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -5115,6 +6077,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3ReversePaymentInitiation",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -5172,7 +6135,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Uninstall a connector
      * 
@@ -5192,7 +6154,7 @@ public class V3 implements
     public V3UninstallConnectorResponse uninstallConnector(
             V3UninstallConnectorRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3UninstallConnectorRequest.class,
                 _baseUrl,
@@ -5204,14 +6166,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3UninstallConnector", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -5224,6 +6187,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UninstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -5234,6 +6198,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UninstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -5244,6 +6209,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UninstallConnector",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -5301,7 +6267,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Update a bank account's metadata
      * 
@@ -5321,7 +6286,7 @@ public class V3 implements
     public V3UpdateBankAccountMetadataResponse updateBankAccountMetadata(
             V3UpdateBankAccountMetadataRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3UpdateBankAccountMetadataRequest.class,
                 _baseUrl,
@@ -5343,14 +6308,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3UpdateBankAccountMetadata", 
                       Optional.of(List.of("auth:read")), 
@@ -5363,6 +6329,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UpdateBankAccountMetadata",
                             Optional.of(List.of("auth:read")),
@@ -5373,6 +6340,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UpdateBankAccountMetadata",
                             Optional.of(List.of("auth:read")), 
@@ -5383,6 +6351,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UpdateBankAccountMetadata",
                             Optional.of(List.of("auth:read")),
@@ -5429,7 +6398,6 @@ public class V3 implements
     }
 
 
-
     /**
      * Update a payment's metadata
      * 
@@ -5449,7 +6417,7 @@ public class V3 implements
     public V3UpdatePaymentMetadataResponse updatePaymentMetadata(
             V3UpdatePaymentMetadataRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 V3UpdatePaymentMetadataRequest.class,
                 _baseUrl,
@@ -5471,14 +6439,15 @@ public class V3 implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "v3UpdatePaymentMetadata", 
                       Optional.of(List.of("auth:read", "payments:write")), 
@@ -5491,6 +6460,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UpdatePaymentMetadata",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -5501,6 +6471,7 @@ public class V3 implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UpdatePaymentMetadata",
                             Optional.of(List.of("auth:read", "payments:write")), 
@@ -5511,6 +6482,7 @@ public class V3 implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "v3UpdatePaymentMetadata",
                             Optional.of(List.of("auth:read", "payments:write")),
@@ -5540,6 +6512,141 @@ public class V3 implements
                 V3ErrorResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<V3ErrorResponse>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+    /**
+     * Update the config of a connector
+     * 
+     * <p>Update connector config
+     * 
+     * @return The call builder
+     */
+    public V3UpdateConnectorConfigRequestBuilder v3UpdateConnectorConfig() {
+        return new V3UpdateConnectorConfigRequestBuilder(this);
+    }
+
+    /**
+     * Update the config of a connector
+     * 
+     * <p>Update connector config
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V3UpdateConnectorConfigResponse v3UpdateConnectorConfig(
+            V3UpdateConnectorConfigRequest request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                V3UpdateConnectorConfigRequest.class,
+                _baseUrl,
+                "/api/payments/v3/connectors/{connectorID}/config",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "PATCH");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<V3UpdateConnectorConfigRequest>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "v3InstallConnectorRequest",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
+                      _baseUrl,
+                      "v3UpdateConnectorConfig", 
+                      Optional.of(List.of("auth:read", "payments:write")), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3UpdateConnectorConfig",
+                            Optional.of(List.of("auth:read", "payments:write")),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3UpdateConnectorConfig",
+                            Optional.of(List.of("auth:read", "payments:write")), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            this.sdkConfiguration,
+                            _baseUrl,
+                            "v3UpdateConnectorConfig",
+                            Optional.of(List.of("auth:read", "payments:write")),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        V3UpdateConnectorConfigResponse.Builder _resBuilder = 
+            V3UpdateConnectorConfigResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        V3UpdateConnectorConfigResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "204")) {
+            // no content 
+            return _res;
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                PaymentsErrorResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<PaymentsErrorResponse>() {});
                 throw _out;
             } else {
                 throw new SDKError(

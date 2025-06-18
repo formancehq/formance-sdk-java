@@ -14,17 +14,17 @@ import java.util.Objects;
 public class ActivityDebitWalletOutput {
 
     @JsonProperty("data")
-    private Hold data;
+    private OrchestrationHold data;
 
     @JsonCreator
     public ActivityDebitWalletOutput(
-            @JsonProperty("data") Hold data) {
+            @JsonProperty("data") OrchestrationHold data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
     @JsonIgnore
-    public Hold data() {
+    public OrchestrationHold data() {
         return data;
     }
 
@@ -32,7 +32,7 @@ public class ActivityDebitWalletOutput {
         return new Builder();
     }    
 
-    public ActivityDebitWalletOutput withData(Hold data) {
+    public ActivityDebitWalletOutput withData(OrchestrationHold data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -66,13 +66,13 @@ public class ActivityDebitWalletOutput {
     
     public final static class Builder {
  
-        private Hold data;
+        private OrchestrationHold data;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder data(Hold data) {
+        public Builder data(OrchestrationHold data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

@@ -10,8 +10,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 
 public class V2DeleteAccountMetadataRequest {
+
+    /**
+     * Use an idempotency key
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
+    private Optional<String> idempotencyKey;
 
     /**
      * Account address
@@ -33,15 +40,33 @@ public class V2DeleteAccountMetadataRequest {
 
     @JsonCreator
     public V2DeleteAccountMetadataRequest(
+            Optional<String> idempotencyKey,
             String address,
             String key,
             String ledger) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(key, "key");
         Utils.checkNotNull(ledger, "ledger");
+        this.idempotencyKey = idempotencyKey;
         this.address = address;
         this.key = key;
         this.ledger = ledger;
+    }
+    
+    public V2DeleteAccountMetadataRequest(
+            String address,
+            String key,
+            String ledger) {
+        this(Optional.empty(), address, key, ledger);
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     /**
@@ -71,6 +96,24 @@ public class V2DeleteAccountMetadataRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    /**
+     * Use an idempotency key
+     */
+    public V2DeleteAccountMetadataRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    public V2DeleteAccountMetadataRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
 
     /**
      * Account address
@@ -110,6 +153,7 @@ public class V2DeleteAccountMetadataRequest {
         }
         V2DeleteAccountMetadataRequest other = (V2DeleteAccountMetadataRequest) o;
         return 
+            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Objects.deepEquals(this.address, other.address) &&
             Objects.deepEquals(this.key, other.key) &&
             Objects.deepEquals(this.ledger, other.ledger);
@@ -118,6 +162,7 @@ public class V2DeleteAccountMetadataRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            idempotencyKey,
             address,
             key,
             ledger);
@@ -126,12 +171,15 @@ public class V2DeleteAccountMetadataRequest {
     @Override
     public String toString() {
         return Utils.toString(V2DeleteAccountMetadataRequest.class,
+                "idempotencyKey", idempotencyKey,
                 "address", address,
                 "key", key,
                 "ledger", ledger);
     }
     
     public final static class Builder {
+ 
+        private Optional<String> idempotencyKey = Optional.empty();
  
         private String address;
  
@@ -141,6 +189,24 @@ public class V2DeleteAccountMetadataRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
         }
 
         /**
@@ -172,6 +238,7 @@ public class V2DeleteAccountMetadataRequest {
         
         public V2DeleteAccountMetadataRequest build() {
             return new V2DeleteAccountMetadataRequest(
+                idempotencyKey,
                 address,
                 key,
                 ledger);
