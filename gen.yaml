@@ -53,7 +53,6 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 0
   nullFriendlyParameters: false
-  ossrhURL: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
   outputModelSuffix: output
   projectName: formance-sdk
   templateVersion: v2
