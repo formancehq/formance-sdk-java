@@ -10,12 +10,13 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
+
 
 public class PoolBalance {
 
     @JsonProperty("amount")
     private BigInteger amount;
+
 
     @JsonProperty("asset")
     private String asset;
@@ -40,9 +41,10 @@ public class PoolBalance {
         return asset;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PoolBalance withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -61,7 +63,6 @@ public class PoolBalance {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,15 +73,14 @@ public class PoolBalance {
         }
         PoolBalance other = (PoolBalance) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset);
+        return Utils.enhancedHash(
+            amount, asset);
     }
     
     @Override
@@ -89,16 +89,18 @@ public class PoolBalance {
                 "amount", amount,
                 "asset", asset);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger amount;
- 
+
         private String asset;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
@@ -111,16 +113,18 @@ public class PoolBalance {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
-        
+
         public PoolBalance build() {
+
             return new PoolBalance(
-                amount,
-                asset);
+                amount, asset);
         }
+
     }
 }

@@ -15,11 +15,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetAccountBalancesRequest {
 
+public class GetAccountBalancesRequest {
     /**
      * The account ID.
      */
@@ -104,7 +103,9 @@ public class GetAccountBalancesRequest {
     
     public GetAccountBalancesRequest(
             String accountId) {
-        this(accountId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(accountId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -178,9 +179,10 @@ public class GetAccountBalancesRequest {
         return to;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The account ID.
@@ -200,6 +202,7 @@ public class GetAccountBalancesRequest {
         this.asset = Optional.ofNullable(asset);
         return this;
     }
+
 
     /**
      * Filter balances by currency.
@@ -223,6 +226,7 @@ public class GetAccountBalancesRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -245,6 +249,7 @@ public class GetAccountBalancesRequest {
         return this;
     }
 
+
     /**
      * Filter balances by date.
      * If not specified, all account's balances will be returned.
@@ -264,6 +269,7 @@ public class GetAccountBalancesRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -282,6 +288,7 @@ public class GetAccountBalancesRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -299,6 +306,7 @@ public class GetAccountBalancesRequest {
         this.sort = Optional.ofNullable(sort);
         return this;
     }
+
 
     /**
      * Fields used to sort payments (default is date:desc).
@@ -319,6 +327,7 @@ public class GetAccountBalancesRequest {
         return this;
     }
 
+
     /**
      * Filter balances by date.
      * If not specified, default will be set to now.
@@ -329,7 +338,6 @@ public class GetAccountBalancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -340,27 +348,22 @@ public class GetAccountBalancesRequest {
         }
         GetAccountBalancesRequest other = (GetAccountBalancesRequest) o;
         return 
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.sort, other.sort) &&
-            Objects.deepEquals(this.to, other.to);
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.to, other.to);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountId,
-            asset,
-            cursor,
-            from,
-            limit,
-            pageSize,
-            sort,
-            to);
+        return Utils.enhancedHash(
+            accountId, asset, cursor,
+            from, limit, pageSize,
+            sort, to);
     }
     
     @Override
@@ -375,28 +378,30 @@ public class GetAccountBalancesRequest {
                 "sort", sort,
                 "to", to);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountId;
- 
+
         private Optional<String> asset = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<OffsetDateTime> from = Optional.empty();
- 
+
         private Optional<Long> limit = Optional.empty();
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<? extends List<String>> sort = Optional.empty();
- 
+
         private Optional<OffsetDateTime> to = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The account ID.
@@ -406,6 +411,7 @@ public class GetAccountBalancesRequest {
             this.accountId = accountId;
             return this;
         }
+
 
         /**
          * Filter balances by currency.
@@ -426,6 +432,7 @@ public class GetAccountBalancesRequest {
             this.asset = asset;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -451,6 +458,7 @@ public class GetAccountBalancesRequest {
             return this;
         }
 
+
         /**
          * Filter balances by date.
          * If not specified, all account's balances will be returned.
@@ -471,6 +479,7 @@ public class GetAccountBalancesRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -488,6 +497,7 @@ public class GetAccountBalancesRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * The maximum number of results to return per page.
@@ -507,6 +517,7 @@ public class GetAccountBalancesRequest {
             return this;
         }
 
+
         /**
          * Fields used to sort payments (default is date:desc).
          */
@@ -524,6 +535,7 @@ public class GetAccountBalancesRequest {
             this.sort = sort;
             return this;
         }
+
 
         /**
          * Filter balances by date.
@@ -544,21 +556,18 @@ public class GetAccountBalancesRequest {
             this.to = to;
             return this;
         }
-        
+
         public GetAccountBalancesRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
             }
+
             return new GetAccountBalancesRequest(
-                accountId,
-                asset,
-                cursor,
-                from,
-                limit,
-                pageSize,
-                sort,
-                to);
+                accountId, asset, cursor,
+                from, limit, pageSize,
+                sort, to);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

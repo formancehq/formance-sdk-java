@@ -9,15 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2BulkElementDeleteMetadataData {
 
     @JsonProperty("key")
     private String key;
 
+
     @JsonProperty("targetId")
     private V2TargetId targetId;
+
 
     @JsonProperty("targetType")
     private V2TargetType targetType;
@@ -50,9 +52,10 @@ public class V2BulkElementDeleteMetadataData {
         return targetType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2BulkElementDeleteMetadataData withKey(String key) {
         Utils.checkNotNull(key, "key");
@@ -72,7 +75,6 @@ public class V2BulkElementDeleteMetadataData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -83,17 +85,15 @@ public class V2BulkElementDeleteMetadataData {
         }
         V2BulkElementDeleteMetadataData other = (V2BulkElementDeleteMetadataData) o;
         return 
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.targetId, other.targetId) &&
-            Objects.deepEquals(this.targetType, other.targetType);
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.targetId, other.targetId) &&
+            Utils.enhancedDeepEquals(this.targetType, other.targetType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            key,
-            targetId,
-            targetType);
+        return Utils.enhancedHash(
+            key, targetId, targetType);
     }
     
     @Override
@@ -103,18 +103,20 @@ public class V2BulkElementDeleteMetadataData {
                 "targetId", targetId,
                 "targetType", targetType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String key;
- 
+
         private V2TargetId targetId;
- 
+
         private V2TargetType targetType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
@@ -122,23 +124,25 @@ public class V2BulkElementDeleteMetadataData {
             return this;
         }
 
+
         public Builder targetId(V2TargetId targetId) {
             Utils.checkNotNull(targetId, "targetId");
             this.targetId = targetId;
             return this;
         }
 
+
         public Builder targetType(V2TargetType targetType) {
             Utils.checkNotNull(targetType, "targetType");
             this.targetType = targetType;
             return this;
         }
-        
+
         public V2BulkElementDeleteMetadataData build() {
+
             return new V2BulkElementDeleteMetadataData(
-                key,
-                targetId,
-                targetType);
+                key, targetId, targetType);
         }
+
     }
 }

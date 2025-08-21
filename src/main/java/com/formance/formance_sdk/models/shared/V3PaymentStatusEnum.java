@@ -30,7 +30,7 @@ public enum V3PaymentStatusEnum {
     @JsonValue
     private final String value;
 
-    private V3PaymentStatusEnum(String value) {
+    V3PaymentStatusEnum(String value) {
         this.value = value;
     }
     

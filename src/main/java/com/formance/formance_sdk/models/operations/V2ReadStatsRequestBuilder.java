@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2ReadStats;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2ReadStatsRequestBuilder {
 
     private V2ReadStatsRequest request;
-    private final SDKMethodInterfaces.MethodCallV2ReadStats sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2ReadStatsRequestBuilder(SDKMethodInterfaces.MethodCallV2ReadStats sdk) {
-        this.sdk = sdk;
+    public V2ReadStatsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2ReadStatsRequestBuilder request(V2ReadStatsRequest request) {
@@ -22,8 +26,10 @@ public class V2ReadStatsRequestBuilder {
     }
 
     public V2ReadStatsResponse call() throws Exception {
+        
+        RequestOperation<V2ReadStatsRequest, V2ReadStatsResponse> operation
+              = new V2ReadStats.Sync(sdkConfiguration);
 
-        return sdk.readStats(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

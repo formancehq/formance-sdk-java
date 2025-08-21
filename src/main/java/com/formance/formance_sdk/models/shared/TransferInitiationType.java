@@ -15,7 +15,7 @@ public enum TransferInitiationType {
     @JsonValue
     private final String value;
 
-    private TransferInitiationType(String value) {
+    TransferInitiationType(String value) {
         this.value = value;
     }
     

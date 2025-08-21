@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.UpdateTransferInitiationStatus;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class UpdateTransferInitiationStatusRequestBuilder {
 
     private UpdateTransferInitiationStatusRequest request;
-    private final SDKMethodInterfaces.MethodCallUpdateTransferInitiationStatus sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateTransferInitiationStatusRequestBuilder(SDKMethodInterfaces.MethodCallUpdateTransferInitiationStatus sdk) {
-        this.sdk = sdk;
+    public UpdateTransferInitiationStatusRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateTransferInitiationStatusRequestBuilder request(UpdateTransferInitiationStatusRequest request) {
@@ -22,8 +26,10 @@ public class UpdateTransferInitiationStatusRequestBuilder {
     }
 
     public UpdateTransferInitiationStatusResponse call() throws Exception {
+        
+        RequestOperation<UpdateTransferInitiationStatusRequest, UpdateTransferInitiationStatusResponse> operation
+              = new UpdateTransferInitiationStatus.Sync(sdkConfiguration);
 
-        return sdk.updateTransferInitiationStatus(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

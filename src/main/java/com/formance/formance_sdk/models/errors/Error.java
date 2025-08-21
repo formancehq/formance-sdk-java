@@ -11,7 +11,6 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 
 /**
  * Error
@@ -24,6 +23,7 @@ public class Error extends RuntimeException {
     @JsonProperty("errorCode")
     private ErrorErrorCode errorCode;
 
+
     @JsonProperty("errorMessage")
     private String errorMessage;
 
@@ -31,6 +31,7 @@ public class Error extends RuntimeException {
     public Error(
             @JsonProperty("errorCode") ErrorErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
+        super("API error occurred");
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorCode = errorCode;
@@ -47,9 +48,10 @@ public class Error extends RuntimeException {
         return errorMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Error withErrorCode(ErrorErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
@@ -63,7 +65,6 @@ public class Error extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -74,15 +75,14 @@ public class Error extends RuntimeException {
         }
         Error other = (Error) o;
         return 
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            errorCode,
-            errorMessage);
+        return Utils.enhancedHash(
+            errorCode, errorMessage);
     }
     
     @Override
@@ -91,16 +91,18 @@ public class Error extends RuntimeException {
                 "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ErrorErrorCode errorCode;
- 
+
         private String errorMessage;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorCode(ErrorErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
@@ -108,17 +110,19 @@ public class Error extends RuntimeException {
             return this;
         }
 
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
         }
-        
+
         public Error build() {
+
             return new Error(
-                errorCode,
-                errorMessage);
+                errorCode, errorMessage);
         }
+
     }
 }
 

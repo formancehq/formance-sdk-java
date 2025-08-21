@@ -15,7 +15,7 @@ public enum MigrationInfoState {
     @JsonValue
     private final String value;
 
-    private MigrationInfoState(String value) {
+    MigrationInfoState(String value) {
         this.value = value;
     }
     

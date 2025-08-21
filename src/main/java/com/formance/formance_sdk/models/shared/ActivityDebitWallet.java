@@ -12,14 +12,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ActivityDebitWallet {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends DebitWalletRequest> data;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -50,15 +51,17 @@ public class ActivityDebitWallet {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ActivityDebitWallet withData(DebitWalletRequest data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
     }
+
 
     public ActivityDebitWallet withData(Optional<? extends DebitWalletRequest> data) {
         Utils.checkNotNull(data, "data");
@@ -72,13 +75,13 @@ public class ActivityDebitWallet {
         return this;
     }
 
+
     public ActivityDebitWallet withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +92,14 @@ public class ActivityDebitWallet {
         }
         ActivityDebitWallet other = (ActivityDebitWallet) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            id);
+        return Utils.enhancedHash(
+            data, id);
     }
     
     @Override
@@ -106,16 +108,18 @@ public class ActivityDebitWallet {
                 "data", data,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DebitWalletRequest> data = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(DebitWalletRequest data) {
             Utils.checkNotNull(data, "data");
@@ -129,6 +133,7 @@ public class ActivityDebitWallet {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
@@ -140,11 +145,12 @@ public class ActivityDebitWallet {
             this.id = id;
             return this;
         }
-        
+
         public ActivityDebitWallet build() {
+
             return new ActivityDebitWallet(
-                data,
-                id);
+                data, id);
         }
+
     }
 }

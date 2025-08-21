@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateBalanceRequest {
 
@@ -23,6 +23,7 @@ public class CreateBalanceRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
     private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
@@ -64,15 +65,17 @@ public class CreateBalanceRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateBalanceRequest withCreateBalanceRequest(com.formance.formance_sdk.models.shared.CreateBalanceRequest createBalanceRequest) {
         Utils.checkNotNull(createBalanceRequest, "createBalanceRequest");
         this.createBalanceRequest = Optional.ofNullable(createBalanceRequest);
         return this;
     }
+
 
     public CreateBalanceRequest withCreateBalanceRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest) {
         Utils.checkNotNull(createBalanceRequest, "createBalanceRequest");
@@ -89,6 +92,7 @@ public class CreateBalanceRequest {
         return this;
     }
 
+
     /**
      * Use an idempotency key
      */
@@ -104,7 +108,6 @@ public class CreateBalanceRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +118,15 @@ public class CreateBalanceRequest {
         }
         CreateBalanceRequest other = (CreateBalanceRequest) o;
         return 
-            Objects.deepEquals(this.createBalanceRequest, other.createBalanceRequest) &&
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.createBalanceRequest, other.createBalanceRequest) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createBalanceRequest,
-            idempotencyKey,
-            id);
+        return Utils.enhancedHash(
+            createBalanceRequest, idempotencyKey, id);
     }
     
     @Override
@@ -135,18 +136,20 @@ public class CreateBalanceRequest {
                 "idempotencyKey", idempotencyKey,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest = Optional.empty();
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createBalanceRequest(com.formance.formance_sdk.models.shared.CreateBalanceRequest createBalanceRequest) {
             Utils.checkNotNull(createBalanceRequest, "createBalanceRequest");
@@ -159,6 +162,7 @@ public class CreateBalanceRequest {
             this.createBalanceRequest = createBalanceRequest;
             return this;
         }
+
 
         /**
          * Use an idempotency key
@@ -178,17 +182,18 @@ public class CreateBalanceRequest {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
-        
+
         public CreateBalanceRequest build() {
+
             return new CreateBalanceRequest(
-                createBalanceRequest,
-                idempotencyKey,
-                id);
+                createBalanceRequest, idempotencyKey, id);
         }
+
     }
 }

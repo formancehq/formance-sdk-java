@@ -15,31 +15,37 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Trigger {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("event")
     private String event;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
     private Optional<String> filter;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
     private Optional<? extends Map<String, Object>> vars;
+
 
     @JsonProperty("workflowID")
     private String workflowID;
@@ -74,7 +80,9 @@ public class Trigger {
             String event,
             String id,
             String workflowID) {
-        this(createdAt, event, Optional.empty(), id, Optional.empty(), Optional.empty(), workflowID);
+        this(createdAt, event, Optional.empty(),
+            id, Optional.empty(), Optional.empty(),
+            workflowID);
     }
 
     @JsonIgnore
@@ -113,9 +121,10 @@ public class Trigger {
         return workflowID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Trigger withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -135,6 +144,7 @@ public class Trigger {
         return this;
     }
 
+
     public Trigger withFilter(Optional<String> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
@@ -153,6 +163,7 @@ public class Trigger {
         return this;
     }
 
+
     public Trigger withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -164,6 +175,7 @@ public class Trigger {
         this.vars = Optional.ofNullable(vars);
         return this;
     }
+
 
     public Trigger withVars(Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(vars, "vars");
@@ -177,7 +189,6 @@ public class Trigger {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -188,24 +199,20 @@ public class Trigger {
         }
         Trigger other = (Trigger) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.event, other.event) &&
-            Objects.deepEquals(this.filter, other.filter) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.vars, other.vars) &&
-            Objects.deepEquals(this.workflowID, other.workflowID);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.event, other.event) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.vars, other.vars) &&
+            Utils.enhancedDeepEquals(this.workflowID, other.workflowID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            event,
-            filter,
-            id,
-            name,
-            vars,
+        return Utils.enhancedHash(
+            createdAt, event, filter,
+            id, name, vars,
             workflowID);
     }
     
@@ -220,26 +227,28 @@ public class Trigger {
                 "vars", vars,
                 "workflowID", workflowID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String event;
- 
+
         private Optional<String> filter = Optional.empty();
- 
+
         private String id;
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> vars = Optional.empty();
- 
+
         private String workflowID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -247,11 +256,13 @@ public class Trigger {
             return this;
         }
 
+
         public Builder event(String event) {
             Utils.checkNotNull(event, "event");
             this.event = event;
             return this;
         }
+
 
         public Builder filter(String filter) {
             Utils.checkNotNull(filter, "filter");
@@ -265,11 +276,13 @@ public class Trigger {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -283,6 +296,7 @@ public class Trigger {
             return this;
         }
 
+
         public Builder vars(Map<String, Object> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
@@ -295,21 +309,20 @@ public class Trigger {
             return this;
         }
 
+
         public Builder workflowID(String workflowID) {
             Utils.checkNotNull(workflowID, "workflowID");
             this.workflowID = workflowID;
             return this;
         }
-        
+
         public Trigger build() {
+
             return new Trigger(
-                createdAt,
-                event,
-                filter,
-                id,
-                name,
-                vars,
+                createdAt, event, filter,
+                id, name, vars,
                 workflowID);
         }
+
     }
 }

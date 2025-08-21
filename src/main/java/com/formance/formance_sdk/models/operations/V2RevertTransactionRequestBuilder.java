@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2RevertTransaction;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2RevertTransactionRequestBuilder {
 
     private V2RevertTransactionRequest request;
-    private final SDKMethodInterfaces.MethodCallV2RevertTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2RevertTransactionRequestBuilder(SDKMethodInterfaces.MethodCallV2RevertTransaction sdk) {
-        this.sdk = sdk;
+    public V2RevertTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2RevertTransactionRequestBuilder request(V2RevertTransactionRequest request) {
@@ -22,8 +26,10 @@ public class V2RevertTransactionRequestBuilder {
     }
 
     public V2RevertTransactionResponse call() throws Exception {
+        
+        RequestOperation<V2RevertTransactionRequest, V2RevertTransactionResponse> operation
+              = new V2RevertTransaction.Sync(sdkConfiguration);
 
-        return sdk.revertTransaction(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

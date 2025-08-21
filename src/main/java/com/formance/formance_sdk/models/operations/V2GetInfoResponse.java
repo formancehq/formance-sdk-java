@@ -15,11 +15,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2GetInfoResponse implements Response {
 
+public class V2GetInfoResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -68,7 +67,8 @@ public class V2GetInfoResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty(), Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -113,9 +113,10 @@ public class V2GetInfoResponse implements Response {
         return (Optional<V2ErrorResponse>) v2ErrorResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -153,6 +154,7 @@ public class V2GetInfoResponse implements Response {
         return this;
     }
 
+
     /**
      * OK
      */
@@ -171,6 +173,7 @@ public class V2GetInfoResponse implements Response {
         return this;
     }
 
+
     /**
      * Error
      */
@@ -180,7 +183,6 @@ public class V2GetInfoResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,21 +193,18 @@ public class V2GetInfoResponse implements Response {
         }
         V2GetInfoResponse other = (V2GetInfoResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.v2ConfigInfoResponse, other.v2ConfigInfoResponse) &&
-            Objects.deepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.v2ConfigInfoResponse, other.v2ConfigInfoResponse) &&
+            Utils.enhancedDeepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
-            v2ConfigInfoResponse,
-            v2ErrorResponse);
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
+            v2ConfigInfoResponse, v2ErrorResponse);
     }
     
     @Override
@@ -217,22 +216,24 @@ public class V2GetInfoResponse implements Response {
                 "v2ConfigInfoResponse", v2ConfigInfoResponse,
                 "v2ErrorResponse", v2ErrorResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends V2ConfigInfoResponse> v2ConfigInfoResponse = Optional.empty();
- 
+
         private Optional<? extends V2ErrorResponse> v2ErrorResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -243,6 +244,7 @@ public class V2GetInfoResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -252,6 +254,7 @@ public class V2GetInfoResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -260,6 +263,7 @@ public class V2GetInfoResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * OK
@@ -279,6 +283,7 @@ public class V2GetInfoResponse implements Response {
             return this;
         }
 
+
         /**
          * Error
          */
@@ -296,14 +301,13 @@ public class V2GetInfoResponse implements Response {
             this.v2ErrorResponse = v2ErrorResponse;
             return this;
         }
-        
+
         public V2GetInfoResponse build() {
+
             return new V2GetInfoResponse(
-                contentType,
-                statusCode,
-                rawResponse,
-                v2ConfigInfoResponse,
-                v2ErrorResponse);
+                contentType, statusCode, rawResponse,
+                v2ConfigInfoResponse, v2ErrorResponse);
         }
+
     }
 }

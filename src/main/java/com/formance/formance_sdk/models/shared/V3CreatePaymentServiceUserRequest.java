@@ -14,9 +14,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3CreatePaymentServiceUserRequest {
 
@@ -24,17 +24,21 @@ public class V3CreatePaymentServiceUserRequest {
     @JsonProperty("address")
     private Optional<? extends V3AddressRequest> address;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bankAccountIDs")
     private JsonNullable<? extends List<String>> bankAccountIDs;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("contactDetails")
     private Optional<? extends V3ContactDetailsRequest> contactDetails;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
+
 
     @JsonProperty("name")
     private String name;
@@ -60,7 +64,8 @@ public class V3CreatePaymentServiceUserRequest {
     
     public V3CreatePaymentServiceUserRequest(
             String name) {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), name);
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), name);
     }
 
     @SuppressWarnings("unchecked")
@@ -92,15 +97,17 @@ public class V3CreatePaymentServiceUserRequest {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3CreatePaymentServiceUserRequest withAddress(V3AddressRequest address) {
         Utils.checkNotNull(address, "address");
         this.address = Optional.ofNullable(address);
         return this;
     }
+
 
     public V3CreatePaymentServiceUserRequest withAddress(Optional<? extends V3AddressRequest> address) {
         Utils.checkNotNull(address, "address");
@@ -126,6 +133,7 @@ public class V3CreatePaymentServiceUserRequest {
         return this;
     }
 
+
     public V3CreatePaymentServiceUserRequest withContactDetails(Optional<? extends V3ContactDetailsRequest> contactDetails) {
         Utils.checkNotNull(contactDetails, "contactDetails");
         this.contactDetails = contactDetails;
@@ -150,7 +158,6 @@ public class V3CreatePaymentServiceUserRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,21 +168,18 @@ public class V3CreatePaymentServiceUserRequest {
         }
         V3CreatePaymentServiceUserRequest other = (V3CreatePaymentServiceUserRequest) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.bankAccountIDs, other.bankAccountIDs) &&
-            Objects.deepEquals(this.contactDetails, other.contactDetails) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.bankAccountIDs, other.bankAccountIDs) &&
+            Utils.enhancedDeepEquals(this.contactDetails, other.contactDetails) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            bankAccountIDs,
-            contactDetails,
-            metadata,
-            name);
+        return Utils.enhancedHash(
+            address, bankAccountIDs, contactDetails,
+            metadata, name);
     }
     
     @Override
@@ -187,22 +191,24 @@ public class V3CreatePaymentServiceUserRequest {
                 "metadata", metadata,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends V3AddressRequest> address = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> bankAccountIDs = JsonNullable.undefined();
- 
+
         private Optional<? extends V3ContactDetailsRequest> contactDetails = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder address(V3AddressRequest address) {
             Utils.checkNotNull(address, "address");
@@ -216,6 +222,7 @@ public class V3CreatePaymentServiceUserRequest {
             return this;
         }
 
+
         public Builder bankAccountIDs(List<String> bankAccountIDs) {
             Utils.checkNotNull(bankAccountIDs, "bankAccountIDs");
             this.bankAccountIDs = JsonNullable.of(bankAccountIDs);
@@ -227,6 +234,7 @@ public class V3CreatePaymentServiceUserRequest {
             this.bankAccountIDs = bankAccountIDs;
             return this;
         }
+
 
         public Builder contactDetails(V3ContactDetailsRequest contactDetails) {
             Utils.checkNotNull(contactDetails, "contactDetails");
@@ -240,6 +248,7 @@ public class V3CreatePaymentServiceUserRequest {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
@@ -252,19 +261,19 @@ public class V3CreatePaymentServiceUserRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public V3CreatePaymentServiceUserRequest build() {
+
             return new V3CreatePaymentServiceUserRequest(
-                address,
-                bankAccountIDs,
-                contactDetails,
-                metadata,
-                name);
+                address, bankAccountIDs, contactDetails,
+                metadata, name);
         }
+
     }
 }

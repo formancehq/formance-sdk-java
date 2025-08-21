@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ReversePaymentInitiationRequest {
 
@@ -53,15 +53,17 @@ public class V3ReversePaymentInitiationRequest {
         return paymentInitiationID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ReversePaymentInitiationRequest withV3ReversePaymentInitiationRequest(com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest v3ReversePaymentInitiationRequest) {
         Utils.checkNotNull(v3ReversePaymentInitiationRequest, "v3ReversePaymentInitiationRequest");
         this.v3ReversePaymentInitiationRequest = Optional.ofNullable(v3ReversePaymentInitiationRequest);
         return this;
     }
+
 
     public V3ReversePaymentInitiationRequest withV3ReversePaymentInitiationRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest) {
         Utils.checkNotNull(v3ReversePaymentInitiationRequest, "v3ReversePaymentInitiationRequest");
@@ -78,7 +80,6 @@ public class V3ReversePaymentInitiationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +90,14 @@ public class V3ReversePaymentInitiationRequest {
         }
         V3ReversePaymentInitiationRequest other = (V3ReversePaymentInitiationRequest) o;
         return 
-            Objects.deepEquals(this.v3ReversePaymentInitiationRequest, other.v3ReversePaymentInitiationRequest) &&
-            Objects.deepEquals(this.paymentInitiationID, other.paymentInitiationID);
+            Utils.enhancedDeepEquals(this.v3ReversePaymentInitiationRequest, other.v3ReversePaymentInitiationRequest) &&
+            Utils.enhancedDeepEquals(this.paymentInitiationID, other.paymentInitiationID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v3ReversePaymentInitiationRequest,
-            paymentInitiationID);
+        return Utils.enhancedHash(
+            v3ReversePaymentInitiationRequest, paymentInitiationID);
     }
     
     @Override
@@ -106,16 +106,18 @@ public class V3ReversePaymentInitiationRequest {
                 "v3ReversePaymentInitiationRequest", v3ReversePaymentInitiationRequest,
                 "paymentInitiationID", paymentInitiationID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest = Optional.empty();
- 
+
         private String paymentInitiationID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v3ReversePaymentInitiationRequest(com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest v3ReversePaymentInitiationRequest) {
             Utils.checkNotNull(v3ReversePaymentInitiationRequest, "v3ReversePaymentInitiationRequest");
@@ -129,6 +131,7 @@ public class V3ReversePaymentInitiationRequest {
             return this;
         }
 
+
         /**
          * The payment initiation ID
          */
@@ -137,11 +140,12 @@ public class V3ReversePaymentInitiationRequest {
             this.paymentInitiationID = paymentInitiationID;
             return this;
         }
-        
+
         public V3ReversePaymentInitiationRequest build() {
+
             return new V3ReversePaymentInitiationRequest(
-                v3ReversePaymentInitiationRequest,
-                paymentInitiationID);
+                v3ReversePaymentInitiationRequest, paymentInitiationID);
         }
+
     }
 }

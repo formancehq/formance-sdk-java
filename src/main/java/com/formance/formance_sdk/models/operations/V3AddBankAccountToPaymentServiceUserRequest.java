@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3AddBankAccountToPaymentServiceUserRequest {
-
     /**
      * The bank account ID
      */
@@ -51,9 +50,10 @@ public class V3AddBankAccountToPaymentServiceUserRequest {
         return paymentServiceUserID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The bank account ID
@@ -73,7 +73,6 @@ public class V3AddBankAccountToPaymentServiceUserRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +83,14 @@ public class V3AddBankAccountToPaymentServiceUserRequest {
         }
         V3AddBankAccountToPaymentServiceUserRequest other = (V3AddBankAccountToPaymentServiceUserRequest) o;
         return 
-            Objects.deepEquals(this.bankAccountID, other.bankAccountID) &&
-            Objects.deepEquals(this.paymentServiceUserID, other.paymentServiceUserID);
+            Utils.enhancedDeepEquals(this.bankAccountID, other.bankAccountID) &&
+            Utils.enhancedDeepEquals(this.paymentServiceUserID, other.paymentServiceUserID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            bankAccountID,
-            paymentServiceUserID);
+        return Utils.enhancedHash(
+            bankAccountID, paymentServiceUserID);
     }
     
     @Override
@@ -101,16 +99,18 @@ public class V3AddBankAccountToPaymentServiceUserRequest {
                 "bankAccountID", bankAccountID,
                 "paymentServiceUserID", paymentServiceUserID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String bankAccountID;
- 
+
         private String paymentServiceUserID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The bank account ID
@@ -121,6 +121,7 @@ public class V3AddBankAccountToPaymentServiceUserRequest {
             return this;
         }
 
+
         /**
          * The payment service user ID
          */
@@ -129,11 +130,12 @@ public class V3AddBankAccountToPaymentServiceUserRequest {
             this.paymentServiceUserID = paymentServiceUserID;
             return this;
         }
-        
+
         public V3AddBankAccountToPaymentServiceUserRequest build() {
+
             return new V3AddBankAccountToPaymentServiceUserRequest(
-                bankAccountID,
-                paymentServiceUserID);
+                bankAccountID, paymentServiceUserID);
         }
+
     }
 }

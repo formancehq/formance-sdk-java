@@ -12,20 +12,23 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class TransferInitiationPayments {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
+
     @JsonProperty("paymentID")
     private String paymentID;
+
 
     @JsonProperty("status")
     private PaymentStatus status;
@@ -50,7 +53,8 @@ public class TransferInitiationPayments {
             OffsetDateTime createdAt,
             String paymentID,
             PaymentStatus status) {
-        this(createdAt, JsonNullable.undefined(), paymentID, status);
+        this(createdAt, JsonNullable.undefined(), paymentID,
+            status);
     }
 
     @JsonIgnore
@@ -73,9 +77,10 @@ public class TransferInitiationPayments {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TransferInitiationPayments withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -107,7 +112,6 @@ public class TransferInitiationPayments {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,18 +122,16 @@ public class TransferInitiationPayments {
         }
         TransferInitiationPayments other = (TransferInitiationPayments) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.paymentID, other.paymentID) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.paymentID, other.paymentID) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            error,
-            paymentID,
+        return Utils.enhancedHash(
+            createdAt, error, paymentID,
             status);
     }
     
@@ -141,26 +143,29 @@ public class TransferInitiationPayments {
                 "paymentID", paymentID,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private JsonNullable<String> error = JsonNullable.undefined();
- 
+
         private String paymentID;
- 
+
         private PaymentStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -174,24 +179,26 @@ public class TransferInitiationPayments {
             return this;
         }
 
+
         public Builder paymentID(String paymentID) {
             Utils.checkNotNull(paymentID, "paymentID");
             this.paymentID = paymentID;
             return this;
         }
 
+
         public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public TransferInitiationPayments build() {
+
             return new TransferInitiationPayments(
-                createdAt,
-                error,
-                paymentID,
+                createdAt, error, paymentID,
                 status);
         }
+
     }
 }

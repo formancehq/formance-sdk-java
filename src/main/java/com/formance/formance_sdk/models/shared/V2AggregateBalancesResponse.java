@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V2AggregateBalancesResponse {
 
@@ -22,6 +22,7 @@ public class V2AggregateBalancesResponse {
     public V2AggregateBalancesResponse(
             @JsonProperty("data") Map<String, BigInteger> data) {
         data = Utils.emptyMapIfNull(data);
+        Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
@@ -30,9 +31,10 @@ public class V2AggregateBalancesResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2AggregateBalancesResponse withData(Map<String, BigInteger> data) {
         Utils.checkNotNull(data, "data");
@@ -40,7 +42,6 @@ public class V2AggregateBalancesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -51,12 +52,12 @@ public class V2AggregateBalancesResponse {
         }
         V2AggregateBalancesResponse other = (V2AggregateBalancesResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -65,24 +66,28 @@ public class V2AggregateBalancesResponse {
         return Utils.toString(V2AggregateBalancesResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, BigInteger> data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Map<String, BigInteger> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public V2AggregateBalancesResponse build() {
+
             return new V2AggregateBalancesResponse(
                 data);
         }
+
     }
 }

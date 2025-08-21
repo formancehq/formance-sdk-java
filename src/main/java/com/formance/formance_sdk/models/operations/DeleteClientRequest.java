@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class DeleteClientRequest {
-
     /**
      * Client ID
      */
@@ -34,9 +33,10 @@ public class DeleteClientRequest {
         return clientId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Client ID
@@ -47,7 +47,6 @@ public class DeleteClientRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class DeleteClientRequest {
         }
         DeleteClientRequest other = (DeleteClientRequest) o;
         return 
-            Objects.deepEquals(this.clientId, other.clientId);
+            Utils.enhancedDeepEquals(this.clientId, other.clientId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             clientId);
     }
     
@@ -72,14 +71,16 @@ public class DeleteClientRequest {
         return Utils.toString(DeleteClientRequest.class,
                 "clientId", clientId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String clientId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Client ID
@@ -89,10 +90,12 @@ public class DeleteClientRequest {
             this.clientId = clientId;
             return this;
         }
-        
+
         public DeleteClientRequest build() {
+
             return new DeleteClientRequest(
                 clientId);
         }
+
     }
 }

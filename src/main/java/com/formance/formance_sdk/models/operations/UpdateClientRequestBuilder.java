@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.UpdateClient;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class UpdateClientRequestBuilder {
 
     private UpdateClientRequest request;
-    private final SDKMethodInterfaces.MethodCallUpdateClient sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateClientRequestBuilder(SDKMethodInterfaces.MethodCallUpdateClient sdk) {
-        this.sdk = sdk;
+    public UpdateClientRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateClientRequestBuilder request(UpdateClientRequest request) {
@@ -22,8 +26,10 @@ public class UpdateClientRequestBuilder {
     }
 
     public UpdateClientResponse call() throws Exception {
+        
+        RequestOperation<UpdateClientRequest, UpdateClientResponse> operation
+              = new UpdateClient.Sync(sdkConfiguration);
 
-        return sdk.updateClient(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetOIDCWellKnowns;
 import java.lang.Exception;
 
 public class GetOIDCWellKnownsRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetOIDCWellKnowns sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetOIDCWellKnownsRequestBuilder(SDKMethodInterfaces.MethodCallGetOIDCWellKnowns sdk) {
-        this.sdk = sdk;
+    public GetOIDCWellKnownsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetOIDCWellKnownsResponse call() throws Exception {
+        
+        RequestlessOperation<GetOIDCWellKnownsResponse> operation
+            = new GetOIDCWellKnowns.Sync(sdkConfiguration);
 
-        return sdk.getOIDCWellKnownsDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

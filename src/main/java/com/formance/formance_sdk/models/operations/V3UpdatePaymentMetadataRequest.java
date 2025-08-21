@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3UpdatePaymentMetadataRequest {
 
@@ -53,15 +53,17 @@ public class V3UpdatePaymentMetadataRequest {
         return paymentID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3UpdatePaymentMetadataRequest withV3UpdatePaymentMetadataRequest(com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest v3UpdatePaymentMetadataRequest) {
         Utils.checkNotNull(v3UpdatePaymentMetadataRequest, "v3UpdatePaymentMetadataRequest");
         this.v3UpdatePaymentMetadataRequest = Optional.ofNullable(v3UpdatePaymentMetadataRequest);
         return this;
     }
+
 
     public V3UpdatePaymentMetadataRequest withV3UpdatePaymentMetadataRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest) {
         Utils.checkNotNull(v3UpdatePaymentMetadataRequest, "v3UpdatePaymentMetadataRequest");
@@ -78,7 +80,6 @@ public class V3UpdatePaymentMetadataRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +90,14 @@ public class V3UpdatePaymentMetadataRequest {
         }
         V3UpdatePaymentMetadataRequest other = (V3UpdatePaymentMetadataRequest) o;
         return 
-            Objects.deepEquals(this.v3UpdatePaymentMetadataRequest, other.v3UpdatePaymentMetadataRequest) &&
-            Objects.deepEquals(this.paymentID, other.paymentID);
+            Utils.enhancedDeepEquals(this.v3UpdatePaymentMetadataRequest, other.v3UpdatePaymentMetadataRequest) &&
+            Utils.enhancedDeepEquals(this.paymentID, other.paymentID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v3UpdatePaymentMetadataRequest,
-            paymentID);
+        return Utils.enhancedHash(
+            v3UpdatePaymentMetadataRequest, paymentID);
     }
     
     @Override
@@ -106,16 +106,18 @@ public class V3UpdatePaymentMetadataRequest {
                 "v3UpdatePaymentMetadataRequest", v3UpdatePaymentMetadataRequest,
                 "paymentID", paymentID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest = Optional.empty();
- 
+
         private String paymentID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v3UpdatePaymentMetadataRequest(com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest v3UpdatePaymentMetadataRequest) {
             Utils.checkNotNull(v3UpdatePaymentMetadataRequest, "v3UpdatePaymentMetadataRequest");
@@ -129,6 +131,7 @@ public class V3UpdatePaymentMetadataRequest {
             return this;
         }
 
+
         /**
          * The payment ID
          */
@@ -137,11 +140,12 @@ public class V3UpdatePaymentMetadataRequest {
             this.paymentID = paymentID;
             return this;
         }
-        
+
         public V3UpdatePaymentMetadataRequest build() {
+
             return new V3UpdatePaymentMetadataRequest(
-                v3UpdatePaymentMetadataRequest,
-                paymentID);
+                v3UpdatePaymentMetadataRequest, paymentID);
         }
+
     }
 }

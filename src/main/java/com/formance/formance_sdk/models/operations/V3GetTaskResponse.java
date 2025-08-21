@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3GetTaskResponse implements Response {
 
+public class V3GetTaskResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -58,7 +57,8 @@ public class V3GetTaskResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -94,9 +94,10 @@ public class V3GetTaskResponse implements Response {
         return (Optional<com.formance.formance_sdk.models.shared.V3GetTaskResponse>) v3GetTaskResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -134,6 +135,7 @@ public class V3GetTaskResponse implements Response {
         return this;
     }
 
+
     /**
      * OK
      */
@@ -143,7 +145,6 @@ public class V3GetTaskResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,18 +155,16 @@ public class V3GetTaskResponse implements Response {
         }
         V3GetTaskResponse other = (V3GetTaskResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.v3GetTaskResponse, other.v3GetTaskResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.v3GetTaskResponse, other.v3GetTaskResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
             v3GetTaskResponse);
     }
     
@@ -177,20 +176,22 @@ public class V3GetTaskResponse implements Response {
                 "rawResponse", rawResponse,
                 "v3GetTaskResponse", v3GetTaskResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.V3GetTaskResponse> v3GetTaskResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -201,6 +202,7 @@ public class V3GetTaskResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -210,6 +212,7 @@ public class V3GetTaskResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -218,6 +221,7 @@ public class V3GetTaskResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * OK
@@ -236,13 +240,13 @@ public class V3GetTaskResponse implements Response {
             this.v3GetTaskResponse = v3GetTaskResponse;
             return this;
         }
-        
+
         public V3GetTaskResponse build() {
+
             return new V3GetTaskResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 v3GetTaskResponse);
         }
+
     }
 }

@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3GetAccountBalances;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3GetAccountBalancesRequestBuilder {
 
     private V3GetAccountBalancesRequest request;
-    private final SDKMethodInterfaces.MethodCallV3GetAccountBalances sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3GetAccountBalancesRequestBuilder(SDKMethodInterfaces.MethodCallV3GetAccountBalances sdk) {
-        this.sdk = sdk;
+    public V3GetAccountBalancesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3GetAccountBalancesRequestBuilder request(V3GetAccountBalancesRequest request) {
@@ -22,8 +26,10 @@ public class V3GetAccountBalancesRequestBuilder {
     }
 
     public V3GetAccountBalancesResponse call() throws Exception {
+        
+        RequestOperation<V3GetAccountBalancesRequest, V3GetAccountBalancesResponse> operation
+              = new V3GetAccountBalances.Sync(sdkConfiguration);
 
-        return sdk.getAccountBalances(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

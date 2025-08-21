@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2ListWorkflows;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2ListWorkflowsRequestBuilder {
 
     private V2ListWorkflowsRequest request;
-    private final SDKMethodInterfaces.MethodCallV2ListWorkflows sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2ListWorkflowsRequestBuilder(SDKMethodInterfaces.MethodCallV2ListWorkflows sdk) {
-        this.sdk = sdk;
+    public V2ListWorkflowsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2ListWorkflowsRequestBuilder request(V2ListWorkflowsRequest request) {
@@ -22,8 +26,10 @@ public class V2ListWorkflowsRequestBuilder {
     }
 
     public V2ListWorkflowsResponse call() throws Exception {
+        
+        RequestOperation<V2ListWorkflowsRequest, V2ListWorkflowsResponse> operation
+              = new V2ListWorkflows.Sync(sdkConfiguration);
 
-        return sdk.listWorkflows(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

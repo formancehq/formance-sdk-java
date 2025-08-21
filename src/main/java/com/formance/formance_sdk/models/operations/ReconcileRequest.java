@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ReconcileRequest {
 
@@ -46,9 +46,10 @@ public class ReconcileRequest {
         return policyID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ReconcileRequest withReconciliationRequest(ReconciliationRequest reconciliationRequest) {
         Utils.checkNotNull(reconciliationRequest, "reconciliationRequest");
@@ -65,7 +66,6 @@ public class ReconcileRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,15 +76,14 @@ public class ReconcileRequest {
         }
         ReconcileRequest other = (ReconcileRequest) o;
         return 
-            Objects.deepEquals(this.reconciliationRequest, other.reconciliationRequest) &&
-            Objects.deepEquals(this.policyID, other.policyID);
+            Utils.enhancedDeepEquals(this.reconciliationRequest, other.reconciliationRequest) &&
+            Utils.enhancedDeepEquals(this.policyID, other.policyID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            reconciliationRequest,
-            policyID);
+        return Utils.enhancedHash(
+            reconciliationRequest, policyID);
     }
     
     @Override
@@ -93,22 +92,25 @@ public class ReconcileRequest {
                 "reconciliationRequest", reconciliationRequest,
                 "policyID", policyID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ReconciliationRequest reconciliationRequest;
- 
+
         private String policyID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder reconciliationRequest(ReconciliationRequest reconciliationRequest) {
             Utils.checkNotNull(reconciliationRequest, "reconciliationRequest");
             this.reconciliationRequest = reconciliationRequest;
             return this;
         }
+
 
         /**
          * The policy ID.
@@ -118,11 +120,12 @@ public class ReconcileRequest {
             this.policyID = policyID;
             return this;
         }
-        
+
         public ReconcileRequest build() {
+
             return new ReconcileRequest(
-                reconciliationRequest,
-                policyID);
+                reconciliationRequest, policyID);
         }
+
     }
 }

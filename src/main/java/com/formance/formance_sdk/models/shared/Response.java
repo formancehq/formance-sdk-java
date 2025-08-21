@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Response {
 
@@ -59,15 +59,17 @@ public class Response {
         return (Optional<Map<String, Object>>) data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Response withCursor(ResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     public Response withCursor(Optional<? extends ResponseCursor> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -84,6 +86,7 @@ public class Response {
         return this;
     }
 
+
     /**
      * The payload
      */
@@ -93,7 +96,6 @@ public class Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -104,15 +106,14 @@ public class Response {
         }
         Response other = (Response) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cursor,
-            data);
+        return Utils.enhancedHash(
+            cursor, data);
     }
     
     @Override
@@ -121,16 +122,18 @@ public class Response {
                 "cursor", cursor,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ResponseCursor> cursor = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> data = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder cursor(ResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -143,6 +146,7 @@ public class Response {
             this.cursor = cursor;
             return this;
         }
+
 
         /**
          * The payload
@@ -161,11 +165,12 @@ public class Response {
             this.data = data;
             return this;
         }
-        
+
         public Response build() {
+
             return new Response(
-                cursor,
-                data);
+                cursor, data);
         }
+
     }
 }

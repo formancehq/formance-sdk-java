@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class AddAccountToPoolRequest {
 
@@ -28,9 +28,10 @@ public class AddAccountToPoolRequest {
         return accountID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AddAccountToPoolRequest withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
@@ -38,7 +39,6 @@ public class AddAccountToPoolRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class AddAccountToPoolRequest {
         }
         AddAccountToPoolRequest other = (AddAccountToPoolRequest) o;
         return 
-            Objects.deepEquals(this.accountID, other.accountID);
+            Utils.enhancedDeepEquals(this.accountID, other.accountID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             accountID);
     }
     
@@ -63,24 +63,28 @@ public class AddAccountToPoolRequest {
         return Utils.toString(AddAccountToPoolRequest.class,
                 "accountID", accountID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
             this.accountID = accountID;
             return this;
         }
-        
+
         public AddAccountToPoolRequest build() {
+
             return new AddAccountToPoolRequest(
                 accountID);
         }
+
     }
 }

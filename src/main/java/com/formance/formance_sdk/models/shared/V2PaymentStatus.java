@@ -19,7 +19,7 @@ public enum V2PaymentStatus {
     @JsonValue
     private final String value;
 
-    private V2PaymentStatus(String value) {
+    V2PaymentStatus(String value) {
         this.value = value;
     }
     

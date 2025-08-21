@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetHolds;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetHoldsRequestBuilder {
 
     private GetHoldsRequest request;
-    private final SDKMethodInterfaces.MethodCallGetHolds sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetHoldsRequestBuilder(SDKMethodInterfaces.MethodCallGetHolds sdk) {
-        this.sdk = sdk;
+    public GetHoldsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetHoldsRequestBuilder request(GetHoldsRequest request) {
@@ -22,8 +26,10 @@ public class GetHoldsRequestBuilder {
     }
 
     public GetHoldsResponse call() throws Exception {
+        
+        RequestOperation<GetHoldsRequest, GetHoldsResponse> operation
+              = new GetHolds.Sync(sdkConfiguration);
 
-        return sdk.getHolds(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

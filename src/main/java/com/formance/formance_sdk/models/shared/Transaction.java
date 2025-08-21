@@ -17,9 +17,9 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Transaction {
 
@@ -27,23 +27,29 @@ public class Transaction {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitVolumes")
     private Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes;
 
+
     @JsonProperty("postings")
     private List<Posting> postings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitVolumes")
     private Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
+
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
+
 
     @JsonProperty("txid")
     private BigInteger txid;
@@ -77,7 +83,9 @@ public class Transaction {
             List<Posting> postings,
             OffsetDateTime timestamp,
             BigInteger txid) {
-        this(JsonNullable.undefined(), Optional.empty(), postings, Optional.empty(), Optional.empty(), timestamp, txid);
+        this(JsonNullable.undefined(), Optional.empty(), postings,
+            Optional.empty(), Optional.empty(), timestamp,
+            txid);
     }
 
     @SuppressWarnings("unchecked")
@@ -118,9 +126,10 @@ public class Transaction {
         return txid;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Transaction withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -140,6 +149,7 @@ public class Transaction {
         return this;
     }
 
+
     public Transaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = postCommitVolumes;
@@ -158,6 +168,7 @@ public class Transaction {
         return this;
     }
 
+
     public Transaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = preCommitVolumes;
@@ -169,6 +180,7 @@ public class Transaction {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     public Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -193,7 +205,6 @@ public class Transaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -204,24 +215,20 @@ public class Transaction {
         }
         Transaction other = (Transaction) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
-            Objects.deepEquals(this.postings, other.postings) &&
-            Objects.deepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.txid, other.txid);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
+            Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            metadata,
-            postCommitVolumes,
-            postings,
-            preCommitVolumes,
-            reference,
-            timestamp,
+        return Utils.enhancedHash(
+            metadata, postCommitVolumes, postings,
+            preCommitVolumes, reference, timestamp,
             txid);
     }
     
@@ -236,26 +243,28 @@ public class Transaction {
                 "timestamp", timestamp,
                 "txid", txid);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes = Optional.empty();
- 
+
         private List<Posting> postings;
- 
+
         private Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private OffsetDateTime timestamp;
- 
+
         private BigInteger txid;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -269,6 +278,7 @@ public class Transaction {
             return this;
         }
 
+
         public Builder postCommitVolumes(Map<String, Map<String, Volume>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
@@ -281,11 +291,13 @@ public class Transaction {
             return this;
         }
 
+
         public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
         }
+
 
         public Builder preCommitVolumes(Map<String, Map<String, Volume>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
@@ -299,6 +311,7 @@ public class Transaction {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
@@ -311,11 +324,13 @@ public class Transaction {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;
         }
+
 
         public Builder txid(long txid) {
             this.txid = BigInteger.valueOf(txid);
@@ -327,16 +342,14 @@ public class Transaction {
             this.txid = txid;
             return this;
         }
-        
+
         public Transaction build() {
+
             return new Transaction(
-                metadata,
-                postCommitVolumes,
-                postings,
-                preCommitVolumes,
-                reference,
-                timestamp,
+                metadata, postCommitVolumes, postings,
+                preCommitVolumes, reference, timestamp,
                 txid);
         }
+
     }
 }

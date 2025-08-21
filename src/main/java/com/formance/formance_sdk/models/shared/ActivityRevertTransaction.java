@@ -9,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ActivityRevertTransaction {
 
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("ledger")
     private String ledger;
@@ -39,9 +40,10 @@ public class ActivityRevertTransaction {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ActivityRevertTransaction withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -55,7 +57,6 @@ public class ActivityRevertTransaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class ActivityRevertTransaction {
         }
         ActivityRevertTransaction other = (ActivityRevertTransaction) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            ledger);
+        return Utils.enhancedHash(
+            id, ledger);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class ActivityRevertTransaction {
                 "id", id,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -100,16 +102,18 @@ public class ActivityRevertTransaction {
             return this;
         }
 
+
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
             return this;
         }
-        
+
         public ActivityRevertTransaction build() {
+
             return new ActivityRevertTransaction(
-                id,
-                ledger);
+                id, ledger);
         }
+
     }
 }

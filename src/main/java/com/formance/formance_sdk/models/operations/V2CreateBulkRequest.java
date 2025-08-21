@@ -12,8 +12,8 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2CreateBulkRequest {
 
@@ -66,7 +66,8 @@ public class V2CreateBulkRequest {
     public V2CreateBulkRequest(
             List<V2BulkElement> requestBody,
             String ledger) {
-        this(requestBody, Optional.empty(), Optional.empty(), ledger, Optional.empty());
+        this(requestBody, Optional.empty(), Optional.empty(),
+            ledger, Optional.empty());
     }
 
     @JsonIgnore
@@ -106,9 +107,10 @@ public class V2CreateBulkRequest {
         return parallel;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2CreateBulkRequest withRequestBody(List<V2BulkElement> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -124,6 +126,7 @@ public class V2CreateBulkRequest {
         this.atomic = Optional.ofNullable(atomic);
         return this;
     }
+
 
     /**
      * Make bulk atomic
@@ -142,6 +145,7 @@ public class V2CreateBulkRequest {
         this.continueOnFailure = Optional.ofNullable(continueOnFailure);
         return this;
     }
+
 
     /**
      * Continue on failure
@@ -170,6 +174,7 @@ public class V2CreateBulkRequest {
         return this;
     }
 
+
     /**
      * Process bulk elements in parallel
      */
@@ -179,7 +184,6 @@ public class V2CreateBulkRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,21 +194,18 @@ public class V2CreateBulkRequest {
         }
         V2CreateBulkRequest other = (V2CreateBulkRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.atomic, other.atomic) &&
-            Objects.deepEquals(this.continueOnFailure, other.continueOnFailure) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.parallel, other.parallel);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.atomic, other.atomic) &&
+            Utils.enhancedDeepEquals(this.continueOnFailure, other.continueOnFailure) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.parallel, other.parallel);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            atomic,
-            continueOnFailure,
-            ledger,
-            parallel);
+        return Utils.enhancedHash(
+            requestBody, atomic, continueOnFailure,
+            ledger, parallel);
     }
     
     @Override
@@ -216,28 +217,31 @@ public class V2CreateBulkRequest {
                 "ledger", ledger,
                 "parallel", parallel);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<V2BulkElement> requestBody;
- 
+
         private Optional<Boolean> atomic = Optional.empty();
- 
+
         private Optional<Boolean> continueOnFailure = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<Boolean> parallel = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(List<V2BulkElement> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Make bulk atomic
@@ -257,6 +261,7 @@ public class V2CreateBulkRequest {
             return this;
         }
 
+
         /**
          * Continue on failure
          */
@@ -275,6 +280,7 @@ public class V2CreateBulkRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -283,6 +289,7 @@ public class V2CreateBulkRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Process bulk elements in parallel
@@ -301,14 +308,13 @@ public class V2CreateBulkRequest {
             this.parallel = parallel;
             return this;
         }
-        
+
         public V2CreateBulkRequest build() {
+
             return new V2CreateBulkRequest(
-                requestBody,
-                atomic,
-                continueOnFailure,
-                ledger,
-                parallel);
+                requestBody, atomic, continueOnFailure,
+                ledger, parallel);
         }
+
     }
 }

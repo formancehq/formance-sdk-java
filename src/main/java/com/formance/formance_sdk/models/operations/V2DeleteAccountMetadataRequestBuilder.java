@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2DeleteAccountMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2DeleteAccountMetadataRequestBuilder {
 
     private V2DeleteAccountMetadataRequest request;
-    private final SDKMethodInterfaces.MethodCallV2DeleteAccountMetadata sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2DeleteAccountMetadataRequestBuilder(SDKMethodInterfaces.MethodCallV2DeleteAccountMetadata sdk) {
-        this.sdk = sdk;
+    public V2DeleteAccountMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2DeleteAccountMetadataRequestBuilder request(V2DeleteAccountMetadataRequest request) {
@@ -22,8 +26,10 @@ public class V2DeleteAccountMetadataRequestBuilder {
     }
 
     public V2DeleteAccountMetadataResponse call() throws Exception {
+        
+        RequestOperation<V2DeleteAccountMetadataRequest, V2DeleteAccountMetadataResponse> operation
+              = new V2DeleteAccountMetadata.Sync(sdkConfiguration);
 
-        return sdk.deleteAccountMetadata(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

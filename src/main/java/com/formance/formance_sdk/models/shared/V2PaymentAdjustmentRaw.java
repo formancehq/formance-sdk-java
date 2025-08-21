@@ -7,21 +7,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2PaymentAdjustmentRaw {
-
     @JsonCreator
     public V2PaymentAdjustmentRaw() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -35,7 +32,7 @@ public class V2PaymentAdjustmentRaw {
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             );
     }
     
@@ -43,16 +40,19 @@ public class V2PaymentAdjustmentRaw {
     public String toString() {
         return Utils.toString(V2PaymentAdjustmentRaw.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public V2PaymentAdjustmentRaw build() {
+
             return new V2PaymentAdjustmentRaw(
                 );
         }
+
     }
 }

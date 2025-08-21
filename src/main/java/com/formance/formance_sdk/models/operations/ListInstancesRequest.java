@@ -10,11 +10,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListInstancesRequest {
 
+public class ListInstancesRequest {
     /**
      * Filter running instances
      */
@@ -57,9 +56,10 @@ public class ListInstancesRequest {
         return workflowID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter running instances
@@ -69,6 +69,7 @@ public class ListInstancesRequest {
         this.running = Optional.ofNullable(running);
         return this;
     }
+
 
     /**
      * Filter running instances
@@ -88,6 +89,7 @@ public class ListInstancesRequest {
         return this;
     }
 
+
     /**
      * A workflow id
      */
@@ -97,7 +99,6 @@ public class ListInstancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -108,15 +109,14 @@ public class ListInstancesRequest {
         }
         ListInstancesRequest other = (ListInstancesRequest) o;
         return 
-            Objects.deepEquals(this.running, other.running) &&
-            Objects.deepEquals(this.workflowID, other.workflowID);
+            Utils.enhancedDeepEquals(this.running, other.running) &&
+            Utils.enhancedDeepEquals(this.workflowID, other.workflowID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            running,
-            workflowID);
+        return Utils.enhancedHash(
+            running, workflowID);
     }
     
     @Override
@@ -125,16 +125,18 @@ public class ListInstancesRequest {
                 "running", running,
                 "workflowID", workflowID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> running = Optional.empty();
- 
+
         private Optional<String> workflowID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter running instances
@@ -154,6 +156,7 @@ public class ListInstancesRequest {
             return this;
         }
 
+
         /**
          * A workflow id
          */
@@ -171,11 +174,12 @@ public class ListInstancesRequest {
             this.workflowID = workflowID;
             return this;
         }
-        
+
         public ListInstancesRequest build() {
+
             return new ListInstancesRequest(
-                running,
-                workflowID);
+                running, workflowID);
         }
+
     }
 }

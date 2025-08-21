@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2GetInstanceStageHistory;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2GetInstanceStageHistoryRequestBuilder {
 
     private V2GetInstanceStageHistoryRequest request;
-    private final SDKMethodInterfaces.MethodCallV2GetInstanceStageHistory sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2GetInstanceStageHistoryRequestBuilder(SDKMethodInterfaces.MethodCallV2GetInstanceStageHistory sdk) {
-        this.sdk = sdk;
+    public V2GetInstanceStageHistoryRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2GetInstanceStageHistoryRequestBuilder request(V2GetInstanceStageHistoryRequest request) {
@@ -22,8 +26,10 @@ public class V2GetInstanceStageHistoryRequestBuilder {
     }
 
     public V2GetInstanceStageHistoryResponse call() throws Exception {
+        
+        RequestOperation<V2GetInstanceStageHistoryRequest, V2GetInstanceStageHistoryResponse> operation
+              = new V2GetInstanceStageHistory.Sync(sdkConfiguration);
 
-        return sdk.getInstanceStageHistory(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

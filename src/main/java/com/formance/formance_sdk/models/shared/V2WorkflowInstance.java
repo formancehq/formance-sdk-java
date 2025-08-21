@@ -15,34 +15,41 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2WorkflowInstance {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<? extends List<V2StageStatus>> status;
 
+
     @JsonProperty("terminated")
     private boolean terminated;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
     private Optional<OffsetDateTime> terminatedAt;
 
+
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
+
 
     @JsonProperty("workflowID")
     private String workflowID;
@@ -81,7 +88,9 @@ public class V2WorkflowInstance {
             boolean terminated,
             OffsetDateTime updatedAt,
             String workflowID) {
-        this(createdAt, Optional.empty(), id, Optional.empty(), terminated, Optional.empty(), updatedAt, workflowID);
+        this(createdAt, Optional.empty(), id,
+            Optional.empty(), terminated, Optional.empty(),
+            updatedAt, workflowID);
     }
 
     @JsonIgnore
@@ -125,9 +134,10 @@ public class V2WorkflowInstance {
         return workflowID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2WorkflowInstance withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -140,6 +150,7 @@ public class V2WorkflowInstance {
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     public V2WorkflowInstance withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
@@ -159,6 +170,7 @@ public class V2WorkflowInstance {
         return this;
     }
 
+
     public V2WorkflowInstance withStatus(Optional<? extends List<V2StageStatus>> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -176,6 +188,7 @@ public class V2WorkflowInstance {
         this.terminatedAt = Optional.ofNullable(terminatedAt);
         return this;
     }
+
 
     public V2WorkflowInstance withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
@@ -195,7 +208,6 @@ public class V2WorkflowInstance {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -206,27 +218,22 @@ public class V2WorkflowInstance {
         }
         V2WorkflowInstance other = (V2WorkflowInstance) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.terminated, other.terminated) &&
-            Objects.deepEquals(this.terminatedAt, other.terminatedAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.workflowID, other.workflowID);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.terminated, other.terminated) &&
+            Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.workflowID, other.workflowID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            error,
-            id,
-            status,
-            terminated,
-            terminatedAt,
-            updatedAt,
-            workflowID);
+        return Utils.enhancedHash(
+            createdAt, error, id,
+            status, terminated, terminatedAt,
+            updatedAt, workflowID);
     }
     
     @Override
@@ -241,34 +248,37 @@ public class V2WorkflowInstance {
                 "updatedAt", updatedAt,
                 "workflowID", workflowID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private String id;
- 
+
         private Optional<? extends List<V2StageStatus>> status = Optional.empty();
- 
+
         private Boolean terminated;
- 
+
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
- 
+
         private OffsetDateTime updatedAt;
- 
+
         private String workflowID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -282,11 +292,13 @@ public class V2WorkflowInstance {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder status(List<V2StageStatus> status) {
             Utils.checkNotNull(status, "status");
@@ -300,11 +312,13 @@ public class V2WorkflowInstance {
             return this;
         }
 
+
         public Builder terminated(boolean terminated) {
             Utils.checkNotNull(terminated, "terminated");
             this.terminated = terminated;
             return this;
         }
+
 
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
@@ -318,28 +332,27 @@ public class V2WorkflowInstance {
             return this;
         }
 
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
 
+
         public Builder workflowID(String workflowID) {
             Utils.checkNotNull(workflowID, "workflowID");
             this.workflowID = workflowID;
             return this;
         }
-        
+
         public V2WorkflowInstance build() {
+
             return new V2WorkflowInstance(
-                createdAt,
-                error,
-                id,
-                status,
-                terminated,
-                terminatedAt,
-                updatedAt,
-                workflowID);
+                createdAt, error, id,
+                status, terminated, terminatedAt,
+                updatedAt, workflowID);
         }
+
     }
 }

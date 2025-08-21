@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.UpdateConnectorConfigV1;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class UpdateConnectorConfigV1RequestBuilder {
 
     private UpdateConnectorConfigV1Request request;
-    private final SDKMethodInterfaces.MethodCallUpdateConnectorConfigV1 sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateConnectorConfigV1RequestBuilder(SDKMethodInterfaces.MethodCallUpdateConnectorConfigV1 sdk) {
-        this.sdk = sdk;
+    public UpdateConnectorConfigV1RequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateConnectorConfigV1RequestBuilder request(UpdateConnectorConfigV1Request request) {
@@ -22,8 +26,10 @@ public class UpdateConnectorConfigV1RequestBuilder {
     }
 
     public UpdateConnectorConfigV1Response call() throws Exception {
+        
+        RequestOperation<UpdateConnectorConfigV1Request, UpdateConnectorConfigV1Response> operation
+              = new UpdateConnectorConfigV1.Sync(sdkConfiguration);
 
-        return sdk.updateConnectorConfigV1(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

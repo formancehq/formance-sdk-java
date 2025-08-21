@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2GetInfo;
 import java.lang.Exception;
 
 public class V2GetInfoRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallV2GetInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2GetInfoRequestBuilder(SDKMethodInterfaces.MethodCallV2GetInfo sdk) {
-        this.sdk = sdk;
+    public V2GetInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2GetInfoResponse call() throws Exception {
+        
+        RequestlessOperation<V2GetInfoResponse> operation
+            = new V2GetInfo.Sync(sdkConfiguration);
 
-        return sdk.getInfoDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

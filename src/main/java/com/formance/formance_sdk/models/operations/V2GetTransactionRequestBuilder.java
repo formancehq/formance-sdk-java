@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2GetTransaction;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2GetTransactionRequestBuilder {
 
     private V2GetTransactionRequest request;
-    private final SDKMethodInterfaces.MethodCallV2GetTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2GetTransactionRequestBuilder(SDKMethodInterfaces.MethodCallV2GetTransaction sdk) {
-        this.sdk = sdk;
+    public V2GetTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2GetTransactionRequestBuilder request(V2GetTransactionRequest request) {
@@ -22,8 +26,10 @@ public class V2GetTransactionRequestBuilder {
     }
 
     public V2GetTransactionResponse call() throws Exception {
+        
+        RequestOperation<V2GetTransactionRequest, V2GetTransactionResponse> operation
+              = new V2GetTransaction.Sync(sdkConfiguration);
 
-        return sdk.getTransaction(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

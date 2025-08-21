@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3GetBankAccountRequest {
-
     /**
      * The bank account ID
      */
@@ -34,9 +33,10 @@ public class V3GetBankAccountRequest {
         return bankAccountID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The bank account ID
@@ -47,7 +47,6 @@ public class V3GetBankAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3GetBankAccountRequest {
         }
         V3GetBankAccountRequest other = (V3GetBankAccountRequest) o;
         return 
-            Objects.deepEquals(this.bankAccountID, other.bankAccountID);
+            Utils.enhancedDeepEquals(this.bankAccountID, other.bankAccountID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bankAccountID);
     }
     
@@ -72,14 +71,16 @@ public class V3GetBankAccountRequest {
         return Utils.toString(V3GetBankAccountRequest.class,
                 "bankAccountID", bankAccountID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String bankAccountID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The bank account ID
@@ -89,10 +90,12 @@ public class V3GetBankAccountRequest {
             this.bankAccountID = bankAccountID;
             return this;
         }
-        
+
         public V3GetBankAccountRequest build() {
+
             return new V3GetBankAccountRequest(
                 bankAccountID);
         }
+
     }
 }

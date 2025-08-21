@@ -11,13 +11,14 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
+
 
 @SuppressWarnings("serial")
 public class WalletsErrorResponse extends RuntimeException {
 
     @JsonProperty("errorCode")
     private WalletsErrorResponseErrorCode errorCode;
+
 
     @JsonProperty("errorMessage")
     private String errorMessage;
@@ -26,6 +27,7 @@ public class WalletsErrorResponse extends RuntimeException {
     public WalletsErrorResponse(
             @JsonProperty("errorCode") WalletsErrorResponseErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
+        super("API error occurred");
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorCode = errorCode;
@@ -42,9 +44,10 @@ public class WalletsErrorResponse extends RuntimeException {
         return errorMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WalletsErrorResponse withErrorCode(WalletsErrorResponseErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
@@ -58,7 +61,6 @@ public class WalletsErrorResponse extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -69,15 +71,14 @@ public class WalletsErrorResponse extends RuntimeException {
         }
         WalletsErrorResponse other = (WalletsErrorResponse) o;
         return 
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            errorCode,
-            errorMessage);
+        return Utils.enhancedHash(
+            errorCode, errorMessage);
     }
     
     @Override
@@ -86,16 +87,18 @@ public class WalletsErrorResponse extends RuntimeException {
                 "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private WalletsErrorResponseErrorCode errorCode;
- 
+
         private String errorMessage;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorCode(WalletsErrorResponseErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
@@ -103,17 +106,19 @@ public class WalletsErrorResponse extends RuntimeException {
             return this;
         }
 
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
         }
-        
+
         public WalletsErrorResponse build() {
+
             return new WalletsErrorResponse(
-                errorCode,
-                errorMessage);
+                errorCode, errorMessage);
         }
+
     }
 }
 

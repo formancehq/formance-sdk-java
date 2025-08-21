@@ -16,21 +16,24 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2DebitWalletRequest {
 
     @JsonProperty("amount")
     private V2Monetary amount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
     private Optional<? extends List<String>> balances;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
@@ -70,6 +73,7 @@ public class V2DebitWalletRequest {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destination, "destination");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(pending, "pending");
         Utils.checkNotNull(timestamp, "timestamp");
         this.amount = amount;
@@ -84,7 +88,9 @@ public class V2DebitWalletRequest {
     public V2DebitWalletRequest(
             V2Monetary amount,
             Map<String, String> metadata) {
-        this(amount, Optional.empty(), Optional.empty(), Optional.empty(), metadata, Optional.empty(), Optional.empty());
+        this(amount, Optional.empty(), Optional.empty(),
+            Optional.empty(), metadata, Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -133,9 +139,10 @@ public class V2DebitWalletRequest {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2DebitWalletRequest withAmount(V2Monetary amount) {
         Utils.checkNotNull(amount, "amount");
@@ -149,6 +156,7 @@ public class V2DebitWalletRequest {
         return this;
     }
 
+
     public V2DebitWalletRequest withBalances(Optional<? extends List<String>> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
@@ -161,6 +169,7 @@ public class V2DebitWalletRequest {
         return this;
     }
 
+
     public V2DebitWalletRequest withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
@@ -172,6 +181,7 @@ public class V2DebitWalletRequest {
         this.destination = Optional.ofNullable(destination);
         return this;
     }
+
 
     public V2DebitWalletRequest withDestination(Optional<? extends V2Subject> destination) {
         Utils.checkNotNull(destination, "destination");
@@ -197,6 +207,7 @@ public class V2DebitWalletRequest {
         return this;
     }
 
+
     /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      */
@@ -215,6 +226,7 @@ public class V2DebitWalletRequest {
         return this;
     }
 
+
     /**
      * cannot be used in conjunction with `pending` property
      */
@@ -224,7 +236,6 @@ public class V2DebitWalletRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -235,24 +246,20 @@ public class V2DebitWalletRequest {
         }
         V2DebitWalletRequest other = (V2DebitWalletRequest) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.balances, other.balances) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.pending, other.pending) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.balances, other.balances) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.pending, other.pending) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            balances,
-            description,
-            destination,
-            metadata,
-            pending,
+        return Utils.enhancedHash(
+            amount, balances, description,
+            destination, metadata, pending,
             timestamp);
     }
     
@@ -267,32 +274,35 @@ public class V2DebitWalletRequest {
                 "pending", pending,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V2Monetary amount;
- 
+
         private Optional<? extends List<String>> balances = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends V2Subject> destination = Optional.empty();
- 
+
         private Map<String, String> metadata;
- 
+
         private Optional<Boolean> pending = Optional.empty();
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(V2Monetary amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
+
 
         public Builder balances(List<String> balances) {
             Utils.checkNotNull(balances, "balances");
@@ -306,6 +316,7 @@ public class V2DebitWalletRequest {
             return this;
         }
 
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = Optional.ofNullable(description);
@@ -317,6 +328,7 @@ public class V2DebitWalletRequest {
             this.description = description;
             return this;
         }
+
 
         public Builder destination(V2Subject destination) {
             Utils.checkNotNull(destination, "destination");
@@ -330,6 +342,7 @@ public class V2DebitWalletRequest {
             return this;
         }
 
+
         /**
          * Metadata associated with the wallet.
          */
@@ -338,6 +351,7 @@ public class V2DebitWalletRequest {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Set to true to create a pending hold. If false, the wallet will be debited immediately.
@@ -357,6 +371,7 @@ public class V2DebitWalletRequest {
             return this;
         }
 
+
         /**
          * cannot be used in conjunction with `pending` property
          */
@@ -374,16 +389,14 @@ public class V2DebitWalletRequest {
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public V2DebitWalletRequest build() {
+
             return new V2DebitWalletRequest(
-                amount,
-                balances,
-                description,
-                destination,
-                metadata,
-                pending,
+                amount, balances, description,
+                destination, metadata, pending,
                 timestamp);
         }
+
     }
 }

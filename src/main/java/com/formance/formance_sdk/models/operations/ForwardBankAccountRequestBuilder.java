@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ForwardBankAccount;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ForwardBankAccountRequestBuilder {
 
     private ForwardBankAccountRequest request;
-    private final SDKMethodInterfaces.MethodCallForwardBankAccount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ForwardBankAccountRequestBuilder(SDKMethodInterfaces.MethodCallForwardBankAccount sdk) {
-        this.sdk = sdk;
+    public ForwardBankAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ForwardBankAccountRequestBuilder request(ForwardBankAccountRequest request) {
@@ -22,8 +26,10 @@ public class ForwardBankAccountRequestBuilder {
     }
 
     public ForwardBankAccountResponse call() throws Exception {
+        
+        RequestOperation<ForwardBankAccountRequest, ForwardBankAccountResponse> operation
+              = new ForwardBankAccount.Sync(sdkConfiguration);
 
-        return sdk.forwardBankAccount(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

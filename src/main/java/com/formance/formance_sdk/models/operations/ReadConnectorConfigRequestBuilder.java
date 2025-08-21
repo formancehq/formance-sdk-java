@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ReadConnectorConfig;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ReadConnectorConfigRequestBuilder {
 
     private ReadConnectorConfigRequest request;
-    private final SDKMethodInterfaces.MethodCallReadConnectorConfig sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ReadConnectorConfigRequestBuilder(SDKMethodInterfaces.MethodCallReadConnectorConfig sdk) {
-        this.sdk = sdk;
+    public ReadConnectorConfigRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ReadConnectorConfigRequestBuilder request(ReadConnectorConfigRequest request) {
@@ -22,8 +26,10 @@ public class ReadConnectorConfigRequestBuilder {
     }
 
     public ReadConnectorConfigResponse call() throws Exception {
+        
+        RequestOperation<ReadConnectorConfigRequest, ReadConnectorConfigResponse> operation
+              = new ReadConnectorConfig.Sync(sdkConfiguration);
 
-        return sdk.readConnectorConfig(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

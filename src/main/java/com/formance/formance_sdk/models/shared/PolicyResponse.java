@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * PolicyResponse
@@ -33,9 +32,10 @@ public class PolicyResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PolicyResponse withData(Policy data) {
         Utils.checkNotNull(data, "data");
@@ -43,7 +43,6 @@ public class PolicyResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -54,12 +53,12 @@ public class PolicyResponse {
         }
         PolicyResponse other = (PolicyResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -68,24 +67,28 @@ public class PolicyResponse {
         return Utils.toString(PolicyResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Policy data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Policy data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public PolicyResponse build() {
+
             return new PolicyResponse(
                 data);
         }
+
     }
 }

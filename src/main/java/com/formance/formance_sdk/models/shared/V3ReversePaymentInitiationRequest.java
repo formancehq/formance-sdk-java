@@ -14,23 +14,27 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3ReversePaymentInitiationRequest {
 
     @JsonProperty("amount")
     private BigInteger amount;
 
+
     @JsonProperty("asset")
     private String asset;
+
 
     @JsonProperty("description")
     private String description;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
+
 
     @JsonProperty("reference")
     private String reference;
@@ -59,7 +63,8 @@ public class V3ReversePaymentInitiationRequest {
             String asset,
             String description,
             String reference) {
-        this(amount, asset, description, JsonNullable.undefined(), reference);
+        this(amount, asset, description,
+            JsonNullable.undefined(), reference);
     }
 
     @JsonIgnore
@@ -88,9 +93,10 @@ public class V3ReversePaymentInitiationRequest {
         return reference;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ReversePaymentInitiationRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -133,7 +139,6 @@ public class V3ReversePaymentInitiationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -144,21 +149,18 @@ public class V3ReversePaymentInitiationRequest {
         }
         V3ReversePaymentInitiationRequest other = (V3ReversePaymentInitiationRequest) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset,
-            description,
-            metadata,
-            reference);
+        return Utils.enhancedHash(
+            amount, asset, description,
+            metadata, reference);
     }
     
     @Override
@@ -170,22 +172,24 @@ public class V3ReversePaymentInitiationRequest {
                 "metadata", metadata,
                 "reference", reference);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger amount;
- 
+
         private String asset;
- 
+
         private String description;
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String reference;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
@@ -198,17 +202,20 @@ public class V3ReversePaymentInitiationRequest {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
 
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -222,19 +229,19 @@ public class V3ReversePaymentInitiationRequest {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
-        
+
         public V3ReversePaymentInitiationRequest build() {
+
             return new V3ReversePaymentInitiationRequest(
-                amount,
-                asset,
-                description,
-                metadata,
-                reference);
+                amount, asset, description,
+                metadata, reference);
         }
+
     }
 }

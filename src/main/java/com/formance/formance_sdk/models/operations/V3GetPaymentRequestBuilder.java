@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3GetPayment;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3GetPaymentRequestBuilder {
 
     private V3GetPaymentRequest request;
-    private final SDKMethodInterfaces.MethodCallV3GetPayment sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3GetPaymentRequestBuilder(SDKMethodInterfaces.MethodCallV3GetPayment sdk) {
-        this.sdk = sdk;
+    public V3GetPaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3GetPaymentRequestBuilder request(V3GetPaymentRequest request) {
@@ -22,8 +26,10 @@ public class V3GetPaymentRequestBuilder {
     }
 
     public V3GetPaymentResponse call() throws Exception {
+        
+        RequestOperation<V3GetPaymentRequest, V3GetPaymentResponse> operation
+              = new V3GetPayment.Sync(sdkConfiguration);
 
-        return sdk.getPayment(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

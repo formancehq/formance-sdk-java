@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateWalletResponse implements Response {
 
+public class CreateWalletResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -58,7 +57,8 @@ public class CreateWalletResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), statusCode, rawResponse);
+        this(contentType, Optional.empty(), statusCode,
+            rawResponse);
     }
 
     /**
@@ -94,9 +94,10 @@ public class CreateWalletResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -115,6 +116,7 @@ public class CreateWalletResponse implements Response {
         this.createWalletResponse = Optional.ofNullable(createWalletResponse);
         return this;
     }
+
 
     /**
      * Wallet created
@@ -143,7 +145,6 @@ public class CreateWalletResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,18 +155,16 @@ public class CreateWalletResponse implements Response {
         }
         CreateWalletResponse other = (CreateWalletResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.createWalletResponse, other.createWalletResponse) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.createWalletResponse, other.createWalletResponse) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            createWalletResponse,
-            statusCode,
+        return Utils.enhancedHash(
+            contentType, createWalletResponse, statusCode,
             rawResponse);
     }
     
@@ -177,20 +176,22 @@ public class CreateWalletResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletResponse> createWalletResponse = Optional.empty();
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -200,6 +201,7 @@ public class CreateWalletResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * Wallet created
@@ -219,6 +221,7 @@ public class CreateWalletResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -228,6 +231,7 @@ public class CreateWalletResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -236,13 +240,13 @@ public class CreateWalletResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public CreateWalletResponse build() {
+
             return new CreateWalletResponse(
-                contentType,
-                createWalletResponse,
-                statusCode,
+                contentType, createWalletResponse, statusCode,
                 rawResponse);
         }
+
     }
 }

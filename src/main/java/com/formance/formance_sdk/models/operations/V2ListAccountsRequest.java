@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ListAccountsRequest {
 
@@ -29,6 +29,7 @@ public class V2ListAccountsRequest {
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private Optional<String> cursor;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=expand")
     private Optional<String> expand;
@@ -45,6 +46,7 @@ public class V2ListAccountsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<Long> pageSize;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
 
@@ -57,6 +59,7 @@ public class V2ListAccountsRequest {
             Optional<Long> pageSize,
             Optional<OffsetDateTime> pit) {
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(ledger, "ledger");
@@ -73,7 +76,8 @@ public class V2ListAccountsRequest {
     public V2ListAccountsRequest(
             Map<String, Object> requestBody,
             String ledger) {
-        this(requestBody, Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty());
+        this(requestBody, Optional.empty(), Optional.empty(),
+            ledger, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -118,9 +122,10 @@ public class V2ListAccountsRequest {
         return pit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ListAccountsRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -140,6 +145,7 @@ public class V2ListAccountsRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -157,6 +163,7 @@ public class V2ListAccountsRequest {
         this.expand = Optional.ofNullable(expand);
         return this;
     }
+
 
     public V2ListAccountsRequest withExpand(Optional<String> expand) {
         Utils.checkNotNull(expand, "expand");
@@ -182,6 +189,7 @@ public class V2ListAccountsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -197,13 +205,13 @@ public class V2ListAccountsRequest {
         return this;
     }
 
+
     public V2ListAccountsRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -214,23 +222,19 @@ public class V2ListAccountsRequest {
         }
         V2ListAccountsRequest other = (V2ListAccountsRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.expand, other.expand) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pit, other.pit);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.expand, other.expand) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pit, other.pit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            cursor,
-            expand,
-            ledger,
-            pageSize,
-            pit);
+        return Utils.enhancedHash(
+            requestBody, cursor, expand,
+            ledger, pageSize, pit);
     }
     
     @Override
@@ -243,30 +247,33 @@ public class V2ListAccountsRequest {
                 "pageSize", pageSize,
                 "pit", pit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Object> requestBody;
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<String> expand = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<OffsetDateTime> pit = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -292,6 +299,7 @@ public class V2ListAccountsRequest {
             return this;
         }
 
+
         public Builder expand(String expand) {
             Utils.checkNotNull(expand, "expand");
             this.expand = Optional.ofNullable(expand);
@@ -304,6 +312,7 @@ public class V2ListAccountsRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -312,6 +321,7 @@ public class V2ListAccountsRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * The maximum number of results to return per page.
@@ -331,6 +341,7 @@ public class V2ListAccountsRequest {
             return this;
         }
 
+
         public Builder pit(OffsetDateTime pit) {
             Utils.checkNotNull(pit, "pit");
             this.pit = Optional.ofNullable(pit);
@@ -342,15 +353,13 @@ public class V2ListAccountsRequest {
             this.pit = pit;
             return this;
         }
-        
+
         public V2ListAccountsRequest build() {
+
             return new V2ListAccountsRequest(
-                requestBody,
-                cursor,
-                expand,
-                ledger,
-                pageSize,
-                pit);
+                requestBody, cursor, expand,
+                ledger, pageSize, pit);
         }
+
     }
 }

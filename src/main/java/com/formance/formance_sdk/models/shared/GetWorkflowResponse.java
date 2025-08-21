@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetWorkflowResponse {
 
@@ -28,9 +28,10 @@ public class GetWorkflowResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetWorkflowResponse withData(Workflow data) {
         Utils.checkNotNull(data, "data");
@@ -38,7 +39,6 @@ public class GetWorkflowResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class GetWorkflowResponse {
         }
         GetWorkflowResponse other = (GetWorkflowResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -63,24 +63,28 @@ public class GetWorkflowResponse {
         return Utils.toString(GetWorkflowResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Workflow data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Workflow data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public GetWorkflowResponse build() {
+
             return new GetWorkflowResponse(
                 data);
         }
+
     }
 }

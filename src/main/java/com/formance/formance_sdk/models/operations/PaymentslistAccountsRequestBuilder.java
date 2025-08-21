@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.PaymentslistAccounts;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class PaymentslistAccountsRequestBuilder {
 
     private PaymentslistAccountsRequest request;
-    private final SDKMethodInterfaces.MethodCallPaymentslistAccounts sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PaymentslistAccountsRequestBuilder(SDKMethodInterfaces.MethodCallPaymentslistAccounts sdk) {
-        this.sdk = sdk;
+    public PaymentslistAccountsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PaymentslistAccountsRequestBuilder request(PaymentslistAccountsRequest request) {
@@ -22,8 +26,10 @@ public class PaymentslistAccountsRequestBuilder {
     }
 
     public PaymentslistAccountsResponse call() throws Exception {
+        
+        RequestOperation<PaymentslistAccountsRequest, PaymentslistAccountsResponse> operation
+              = new PaymentslistAccounts.Sync(sdkConfiguration);
 
-        return sdk.paymentslistAccounts(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

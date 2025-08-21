@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunWorkflowRequest {
 
@@ -72,15 +72,17 @@ public class RunWorkflowRequest {
         return workflowID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RunWorkflowRequest withRequestBody(Map<String, String> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     public RunWorkflowRequest withRequestBody(Optional<? extends Map<String, String>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -96,6 +98,7 @@ public class RunWorkflowRequest {
         this.wait_ = Optional.ofNullable(wait_);
         return this;
     }
+
 
     /**
      * Wait end of the workflow before return
@@ -115,7 +118,6 @@ public class RunWorkflowRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -126,17 +128,15 @@ public class RunWorkflowRequest {
         }
         RunWorkflowRequest other = (RunWorkflowRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.wait_, other.wait_) &&
-            Objects.deepEquals(this.workflowID, other.workflowID);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.wait_, other.wait_) &&
+            Utils.enhancedDeepEquals(this.workflowID, other.workflowID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            wait_,
-            workflowID);
+        return Utils.enhancedHash(
+            requestBody, wait_, workflowID);
     }
     
     @Override
@@ -146,18 +146,20 @@ public class RunWorkflowRequest {
                 "wait_", wait_,
                 "workflowID", workflowID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, String>> requestBody = Optional.empty();
- 
+
         private Optional<Boolean> wait_ = Optional.empty();
- 
+
         private String workflowID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, String> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -170,6 +172,7 @@ public class RunWorkflowRequest {
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Wait end of the workflow before return
@@ -189,6 +192,7 @@ public class RunWorkflowRequest {
             return this;
         }
 
+
         /**
          * The flow id
          */
@@ -197,12 +201,12 @@ public class RunWorkflowRequest {
             this.workflowID = workflowID;
             return this;
         }
-        
+
         public RunWorkflowRequest build() {
+
             return new RunWorkflowRequest(
-                requestBody,
-                wait_,
-                workflowID);
+                requestBody, wait_, workflowID);
         }
+
     }
 }

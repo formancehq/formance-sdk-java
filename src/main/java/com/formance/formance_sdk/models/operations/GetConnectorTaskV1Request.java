@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetConnectorTaskV1Request {
-
     /**
      * The name of the connector.
      */
@@ -69,9 +68,10 @@ public class GetConnectorTaskV1Request {
         return taskId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the connector.
@@ -100,7 +100,6 @@ public class GetConnectorTaskV1Request {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,17 +110,15 @@ public class GetConnectorTaskV1Request {
         }
         GetConnectorTaskV1Request other = (GetConnectorTaskV1Request) o;
         return 
-            Objects.deepEquals(this.connector, other.connector) &&
-            Objects.deepEquals(this.connectorId, other.connectorId) &&
-            Objects.deepEquals(this.taskId, other.taskId);
+            Utils.enhancedDeepEquals(this.connector, other.connector) &&
+            Utils.enhancedDeepEquals(this.connectorId, other.connectorId) &&
+            Utils.enhancedDeepEquals(this.taskId, other.taskId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connector,
-            connectorId,
-            taskId);
+        return Utils.enhancedHash(
+            connector, connectorId, taskId);
     }
     
     @Override
@@ -131,18 +128,20 @@ public class GetConnectorTaskV1Request {
                 "connectorId", connectorId,
                 "taskId", taskId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Connector connector;
- 
+
         private String connectorId;
- 
+
         private String taskId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the connector.
@@ -153,6 +152,7 @@ public class GetConnectorTaskV1Request {
             return this;
         }
 
+
         /**
          * The connector ID.
          */
@@ -162,6 +162,7 @@ public class GetConnectorTaskV1Request {
             return this;
         }
 
+
         /**
          * The task ID.
          */
@@ -170,12 +171,12 @@ public class GetConnectorTaskV1Request {
             this.taskId = taskId;
             return this;
         }
-        
+
         public GetConnectorTaskV1Request build() {
+
             return new GetConnectorTaskV1Request(
-                connector,
-                connectorId,
-                taskId);
+                connector, connectorId, taskId);
         }
+
     }
 }

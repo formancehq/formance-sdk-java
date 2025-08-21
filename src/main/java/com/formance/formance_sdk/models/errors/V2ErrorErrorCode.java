@@ -16,7 +16,7 @@ public enum V2ErrorErrorCode {
     @JsonValue
     private final String value;
 
-    private V2ErrorErrorCode(String value) {
+    V2ErrorErrorCode(String value) {
         this.value = value;
     }
     

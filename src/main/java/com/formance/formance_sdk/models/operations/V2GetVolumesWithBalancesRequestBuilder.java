@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2GetVolumesWithBalances;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2GetVolumesWithBalancesRequestBuilder {
 
     private V2GetVolumesWithBalancesRequest request;
-    private final SDKMethodInterfaces.MethodCallV2GetVolumesWithBalances sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2GetVolumesWithBalancesRequestBuilder(SDKMethodInterfaces.MethodCallV2GetVolumesWithBalances sdk) {
-        this.sdk = sdk;
+    public V2GetVolumesWithBalancesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2GetVolumesWithBalancesRequestBuilder request(V2GetVolumesWithBalancesRequest request) {
@@ -22,8 +26,10 @@ public class V2GetVolumesWithBalancesRequestBuilder {
     }
 
     public V2GetVolumesWithBalancesResponse call() throws Exception {
+        
+        RequestOperation<V2GetVolumesWithBalancesRequest, V2GetVolumesWithBalancesResponse> operation
+              = new V2GetVolumesWithBalances.Sync(sdkConfiguration);
 
-        return sdk.getVolumesWithBalances(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

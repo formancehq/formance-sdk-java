@@ -13,11 +13,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AddMetadataOnTransactionRequest {
 
+public class AddMetadataOnTransactionRequest {
     /**
      * metadata
      */
@@ -80,9 +79,10 @@ public class AddMetadataOnTransactionRequest {
         return txid;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * metadata
@@ -92,6 +92,7 @@ public class AddMetadataOnTransactionRequest {
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     /**
      * metadata
@@ -111,9 +112,9 @@ public class AddMetadataOnTransactionRequest {
         return this;
     }
 
-        /**
-         * Transaction ID.
-         */
+    /**
+     * Transaction ID.
+     */
     public AddMetadataOnTransactionRequest withTxid(long txid) {
         this.txid = BigInteger.valueOf(txid);
         return this;
@@ -128,7 +129,6 @@ public class AddMetadataOnTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,17 +139,15 @@ public class AddMetadataOnTransactionRequest {
         }
         AddMetadataOnTransactionRequest other = (AddMetadataOnTransactionRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.txid, other.txid);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            ledger,
-            txid);
+        return Utils.enhancedHash(
+            requestBody, ledger, txid);
     }
     
     @Override
@@ -159,18 +157,20 @@ public class AddMetadataOnTransactionRequest {
                 "ledger", ledger,
                 "txid", txid);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
- 
+
         private String ledger;
- 
+
         private BigInteger txid;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * metadata
@@ -190,6 +190,7 @@ public class AddMetadataOnTransactionRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -198,6 +199,7 @@ public class AddMetadataOnTransactionRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Transaction ID.
@@ -215,12 +217,12 @@ public class AddMetadataOnTransactionRequest {
             this.txid = txid;
             return this;
         }
-        
+
         public AddMetadataOnTransactionRequest build() {
+
             return new AddMetadataOnTransactionRequest(
-                requestBody,
-                ledger,
-                txid);
+                requestBody, ledger, txid);
         }
+
     }
 }

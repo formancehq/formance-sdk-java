@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.SearchgetServerInfo;
 import java.lang.Exception;
 
 public class SearchgetServerInfoRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallSearchgetServerInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SearchgetServerInfoRequestBuilder(SDKMethodInterfaces.MethodCallSearchgetServerInfo sdk) {
-        this.sdk = sdk;
+    public SearchgetServerInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SearchgetServerInfoResponse call() throws Exception {
+        
+        RequestlessOperation<SearchgetServerInfoResponse> operation
+            = new SearchgetServerInfo.Sync(sdkConfiguration);
 
-        return sdk.searchgetServerInfoDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

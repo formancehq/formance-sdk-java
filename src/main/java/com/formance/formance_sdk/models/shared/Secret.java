@@ -14,23 +14,27 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Secret {
 
     @JsonProperty("clear")
     private String clear;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("lastDigits")
     private String lastDigits;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
+
 
     @JsonProperty("name")
     private String name;
@@ -59,7 +63,8 @@ public class Secret {
             String id,
             String lastDigits,
             String name) {
-        this(clear, id, lastDigits, JsonNullable.undefined(), name);
+        this(clear, id, lastDigits,
+            JsonNullable.undefined(), name);
     }
 
     @JsonIgnore
@@ -88,9 +93,10 @@ public class Secret {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Secret withClear(String clear) {
         Utils.checkNotNull(clear, "clear");
@@ -128,7 +134,6 @@ public class Secret {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,21 +144,18 @@ public class Secret {
         }
         Secret other = (Secret) o;
         return 
-            Objects.deepEquals(this.clear, other.clear) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.lastDigits, other.lastDigits) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.clear, other.clear) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.lastDigits, other.lastDigits) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clear,
-            id,
-            lastDigits,
-            metadata,
-            name);
+        return Utils.enhancedHash(
+            clear, id, lastDigits,
+            metadata, name);
     }
     
     @Override
@@ -165,22 +167,24 @@ public class Secret {
                 "metadata", metadata,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String clear;
- 
+
         private String id;
- 
+
         private String lastDigits;
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder clear(String clear) {
             Utils.checkNotNull(clear, "clear");
@@ -188,17 +192,20 @@ public class Secret {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
 
+
         public Builder lastDigits(String lastDigits) {
             Utils.checkNotNull(lastDigits, "lastDigits");
             this.lastDigits = lastDigits;
             return this;
         }
+
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -212,19 +219,19 @@ public class Secret {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public Secret build() {
+
             return new Secret(
-                clear,
-                id,
-                lastDigits,
-                metadata,
-                name);
+                clear, id, lastDigits,
+                metadata, name);
         }
+
     }
 }

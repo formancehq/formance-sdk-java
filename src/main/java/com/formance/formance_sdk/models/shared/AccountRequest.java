@@ -14,9 +14,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class AccountRequest {
 
@@ -24,22 +24,28 @@ public class AccountRequest {
     @JsonProperty("accountName")
     private Optional<String> accountName;
 
+
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaultAsset")
     private Optional<String> defaultAsset;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("type")
     private AccountType type;
@@ -74,7 +80,9 @@ public class AccountRequest {
             OffsetDateTime createdAt,
             String reference,
             AccountType type) {
-        this(Optional.empty(), connectorID, createdAt, Optional.empty(), JsonNullable.undefined(), reference, type);
+        this(Optional.empty(), connectorID, createdAt,
+            Optional.empty(), JsonNullable.undefined(), reference,
+            type);
     }
 
     @JsonIgnore
@@ -113,15 +121,17 @@ public class AccountRequest {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AccountRequest withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
         this.accountName = Optional.ofNullable(accountName);
         return this;
     }
+
 
     public AccountRequest withAccountName(Optional<String> accountName) {
         Utils.checkNotNull(accountName, "accountName");
@@ -146,6 +156,7 @@ public class AccountRequest {
         this.defaultAsset = Optional.ofNullable(defaultAsset);
         return this;
     }
+
 
     public AccountRequest withDefaultAsset(Optional<String> defaultAsset) {
         Utils.checkNotNull(defaultAsset, "defaultAsset");
@@ -177,7 +188,6 @@ public class AccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -188,24 +198,20 @@ public class AccountRequest {
         }
         AccountRequest other = (AccountRequest) o;
         return 
-            Objects.deepEquals(this.accountName, other.accountName) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.defaultAsset, other.defaultAsset) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.defaultAsset, other.defaultAsset) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountName,
-            connectorID,
-            createdAt,
-            defaultAsset,
-            metadata,
-            reference,
+        return Utils.enhancedHash(
+            accountName, connectorID, createdAt,
+            defaultAsset, metadata, reference,
             type);
     }
     
@@ -220,26 +226,28 @@ public class AccountRequest {
                 "reference", reference,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> accountName = Optional.empty();
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private Optional<String> defaultAsset = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String reference;
- 
+
         private AccountType type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountName(String accountName) {
             Utils.checkNotNull(accountName, "accountName");
@@ -253,17 +261,20 @@ public class AccountRequest {
             return this;
         }
 
+
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder defaultAsset(String defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
@@ -277,6 +288,7 @@ public class AccountRequest {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
@@ -289,27 +301,27 @@ public class AccountRequest {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
         public Builder type(AccountType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public AccountRequest build() {
+
             return new AccountRequest(
-                accountName,
-                connectorID,
-                createdAt,
-                defaultAsset,
-                metadata,
-                reference,
+                accountName, connectorID, createdAt,
+                defaultAsset, metadata, reference,
                 type);
         }
+
     }
 }

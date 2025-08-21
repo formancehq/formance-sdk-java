@@ -14,20 +14,23 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class ClientSecret {
 
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("lastDigits")
     private String lastDigits;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
+
 
     @JsonProperty("name")
     private String name;
@@ -52,7 +55,8 @@ public class ClientSecret {
             String id,
             String lastDigits,
             String name) {
-        this(id, lastDigits, JsonNullable.undefined(), name);
+        this(id, lastDigits, JsonNullable.undefined(),
+            name);
     }
 
     @JsonIgnore
@@ -76,9 +80,10 @@ public class ClientSecret {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ClientSecret withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -110,7 +115,6 @@ public class ClientSecret {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,18 +125,16 @@ public class ClientSecret {
         }
         ClientSecret other = (ClientSecret) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.lastDigits, other.lastDigits) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.lastDigits, other.lastDigits) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            lastDigits,
-            metadata,
+        return Utils.enhancedHash(
+            id, lastDigits, metadata,
             name);
     }
     
@@ -144,20 +146,22 @@ public class ClientSecret {
                 "metadata", metadata,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String lastDigits;
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -165,11 +169,13 @@ public class ClientSecret {
             return this;
         }
 
+
         public Builder lastDigits(String lastDigits) {
             Utils.checkNotNull(lastDigits, "lastDigits");
             this.lastDigits = lastDigits;
             return this;
         }
+
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -183,18 +189,19 @@ public class ClientSecret {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public ClientSecret build() {
+
             return new ClientSecret(
-                id,
-                lastDigits,
-                metadata,
+                id, lastDigits, metadata,
                 name);
         }
+
     }
 }

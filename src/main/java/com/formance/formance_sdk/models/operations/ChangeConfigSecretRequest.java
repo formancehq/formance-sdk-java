@@ -11,8 +11,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ChangeConfigSecretRequest {
 
@@ -54,15 +54,17 @@ public class ChangeConfigSecretRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ChangeConfigSecretRequest withConfigChangeSecret(ConfigChangeSecret configChangeSecret) {
         Utils.checkNotNull(configChangeSecret, "configChangeSecret");
         this.configChangeSecret = Optional.ofNullable(configChangeSecret);
         return this;
     }
+
 
     public ChangeConfigSecretRequest withConfigChangeSecret(Optional<? extends ConfigChangeSecret> configChangeSecret) {
         Utils.checkNotNull(configChangeSecret, "configChangeSecret");
@@ -79,7 +81,6 @@ public class ChangeConfigSecretRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +91,14 @@ public class ChangeConfigSecretRequest {
         }
         ChangeConfigSecretRequest other = (ChangeConfigSecretRequest) o;
         return 
-            Objects.deepEquals(this.configChangeSecret, other.configChangeSecret) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.configChangeSecret, other.configChangeSecret) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            configChangeSecret,
-            id);
+        return Utils.enhancedHash(
+            configChangeSecret, id);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class ChangeConfigSecretRequest {
                 "configChangeSecret", configChangeSecret,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ConfigChangeSecret> configChangeSecret = Optional.empty();
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder configChangeSecret(ConfigChangeSecret configChangeSecret) {
             Utils.checkNotNull(configChangeSecret, "configChangeSecret");
@@ -130,6 +132,7 @@ public class ChangeConfigSecretRequest {
             return this;
         }
 
+
         /**
          * Config ID
          */
@@ -138,11 +141,12 @@ public class ChangeConfigSecretRequest {
             this.id = id;
             return this;
         }
-        
+
         public ChangeConfigSecretRequest build() {
+
             return new ChangeConfigSecretRequest(
-                configChangeSecret,
-                id);
+                configChangeSecret, id);
         }
+
     }
 }

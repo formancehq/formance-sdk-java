@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateSecretRequest {
 
@@ -53,15 +53,17 @@ public class CreateSecretRequest {
         return clientId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateSecretRequest withCreateSecretRequest(com.formance.formance_sdk.models.shared.CreateSecretRequest createSecretRequest) {
         Utils.checkNotNull(createSecretRequest, "createSecretRequest");
         this.createSecretRequest = Optional.ofNullable(createSecretRequest);
         return this;
     }
+
 
     public CreateSecretRequest withCreateSecretRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest) {
         Utils.checkNotNull(createSecretRequest, "createSecretRequest");
@@ -78,7 +80,6 @@ public class CreateSecretRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +90,14 @@ public class CreateSecretRequest {
         }
         CreateSecretRequest other = (CreateSecretRequest) o;
         return 
-            Objects.deepEquals(this.createSecretRequest, other.createSecretRequest) &&
-            Objects.deepEquals(this.clientId, other.clientId);
+            Utils.enhancedDeepEquals(this.createSecretRequest, other.createSecretRequest) &&
+            Utils.enhancedDeepEquals(this.clientId, other.clientId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createSecretRequest,
-            clientId);
+        return Utils.enhancedHash(
+            createSecretRequest, clientId);
     }
     
     @Override
@@ -106,16 +106,18 @@ public class CreateSecretRequest {
                 "createSecretRequest", createSecretRequest,
                 "clientId", clientId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest = Optional.empty();
- 
+
         private String clientId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createSecretRequest(com.formance.formance_sdk.models.shared.CreateSecretRequest createSecretRequest) {
             Utils.checkNotNull(createSecretRequest, "createSecretRequest");
@@ -129,6 +131,7 @@ public class CreateSecretRequest {
             return this;
         }
 
+
         /**
          * Client ID
          */
@@ -137,11 +140,12 @@ public class CreateSecretRequest {
             this.clientId = clientId;
             return this;
         }
-        
+
         public CreateSecretRequest build() {
+
             return new CreateSecretRequest(
-                createSecretRequest,
-                clientId);
+                createSecretRequest, clientId);
         }
+
     }
 }

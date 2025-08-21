@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2ServerInfo {
 
@@ -28,9 +28,10 @@ public class V2ServerInfo {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ServerInfo withVersion(String version) {
         Utils.checkNotNull(version, "version");
@@ -38,7 +39,6 @@ public class V2ServerInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V2ServerInfo {
         }
         V2ServerInfo other = (V2ServerInfo) o;
         return 
-            Objects.deepEquals(this.version, other.version);
+            Utils.enhancedDeepEquals(this.version, other.version);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             version);
     }
     
@@ -63,24 +63,28 @@ public class V2ServerInfo {
         return Utils.toString(V2ServerInfo.class,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String version;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
             return this;
         }
-        
+
         public V2ServerInfo build() {
+
             return new V2ServerInfo(
                 version);
         }
+
     }
 }

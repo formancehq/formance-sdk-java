@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class StageSendDestinationWallet {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance")
     private Optional<String> balance;
+
 
     @JsonProperty("id")
     private String id;
@@ -48,15 +49,17 @@ public class StageSendDestinationWallet {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public StageSendDestinationWallet withBalance(String balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = Optional.ofNullable(balance);
         return this;
     }
+
 
     public StageSendDestinationWallet withBalance(Optional<String> balance) {
         Utils.checkNotNull(balance, "balance");
@@ -70,7 +73,6 @@ public class StageSendDestinationWallet {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -81,15 +83,14 @@ public class StageSendDestinationWallet {
         }
         StageSendDestinationWallet other = (StageSendDestinationWallet) o;
         return 
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            balance,
-            id);
+        return Utils.enhancedHash(
+            balance, id);
     }
     
     @Override
@@ -98,16 +99,18 @@ public class StageSendDestinationWallet {
                 "balance", balance,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> balance = Optional.empty();
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder balance(String balance) {
             Utils.checkNotNull(balance, "balance");
@@ -121,16 +124,18 @@ public class StageSendDestinationWallet {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
-        
+
         public StageSendDestinationWallet build() {
+
             return new StageSendDestinationWallet(
-                balance,
-                id);
+                balance, id);
         }
+
     }
 }

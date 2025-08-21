@@ -10,11 +10,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListReconciliationsRequest {
 
+public class ListReconciliationsRequest {
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -63,9 +62,10 @@ public class ListReconciliationsRequest {
         return pageSize;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -78,6 +78,7 @@ public class ListReconciliationsRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -100,6 +101,7 @@ public class ListReconciliationsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -109,7 +111,6 @@ public class ListReconciliationsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,15 +121,14 @@ public class ListReconciliationsRequest {
         }
         ListReconciliationsRequest other = (ListReconciliationsRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cursor,
-            pageSize);
+        return Utils.enhancedHash(
+            cursor, pageSize);
     }
     
     @Override
@@ -137,16 +137,18 @@ public class ListReconciliationsRequest {
                 "cursor", cursor,
                 "pageSize", pageSize);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -172,6 +174,7 @@ public class ListReconciliationsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -189,11 +192,12 @@ public class ListReconciliationsRequest {
             this.pageSize = pageSize;
             return this;
         }
-        
+
         public ListReconciliationsRequest build() {
+
             return new ListReconciliationsRequest(
-                cursor,
-                pageSize);
+                cursor, pageSize);
         }
+
     }
 }

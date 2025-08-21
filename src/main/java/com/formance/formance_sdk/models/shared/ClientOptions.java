@@ -16,9 +16,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class ClientOptions {
 
@@ -26,28 +26,35 @@ public class ClientOptions {
     @JsonProperty("description")
     private Optional<String> description;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postLogoutRedirectUris")
     private Optional<? extends List<String>> postLogoutRedirectUris;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("public")
     private Optional<Boolean> public_;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUris")
     private Optional<? extends List<String>> redirectUris;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scopes")
     private Optional<? extends List<String>> scopes;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trusted")
@@ -83,7 +90,9 @@ public class ClientOptions {
     
     public ClientOptions(
             String name) {
-        this(Optional.empty(), JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), name,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -130,15 +139,17 @@ public class ClientOptions {
         return trusted;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ClientOptions withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     public ClientOptions withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -170,6 +181,7 @@ public class ClientOptions {
         return this;
     }
 
+
     public ClientOptions withPostLogoutRedirectUris(Optional<? extends List<String>> postLogoutRedirectUris) {
         Utils.checkNotNull(postLogoutRedirectUris, "postLogoutRedirectUris");
         this.postLogoutRedirectUris = postLogoutRedirectUris;
@@ -181,6 +193,7 @@ public class ClientOptions {
         this.public_ = Optional.ofNullable(public_);
         return this;
     }
+
 
     public ClientOptions withPublic(Optional<Boolean> public_) {
         Utils.checkNotNull(public_, "public_");
@@ -194,6 +207,7 @@ public class ClientOptions {
         return this;
     }
 
+
     public ClientOptions withRedirectUris(Optional<? extends List<String>> redirectUris) {
         Utils.checkNotNull(redirectUris, "redirectUris");
         this.redirectUris = redirectUris;
@@ -205,6 +219,7 @@ public class ClientOptions {
         this.scopes = Optional.ofNullable(scopes);
         return this;
     }
+
 
     public ClientOptions withScopes(Optional<? extends List<String>> scopes) {
         Utils.checkNotNull(scopes, "scopes");
@@ -218,13 +233,13 @@ public class ClientOptions {
         return this;
     }
 
+
     public ClientOptions withTrusted(Optional<Boolean> trusted) {
         Utils.checkNotNull(trusted, "trusted");
         this.trusted = trusted;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -235,27 +250,22 @@ public class ClientOptions {
         }
         ClientOptions other = (ClientOptions) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.postLogoutRedirectUris, other.postLogoutRedirectUris) &&
-            Objects.deepEquals(this.public_, other.public_) &&
-            Objects.deepEquals(this.redirectUris, other.redirectUris) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.trusted, other.trusted);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.postLogoutRedirectUris, other.postLogoutRedirectUris) &&
+            Utils.enhancedDeepEquals(this.public_, other.public_) &&
+            Utils.enhancedDeepEquals(this.redirectUris, other.redirectUris) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.trusted, other.trusted);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            description,
-            metadata,
-            name,
-            postLogoutRedirectUris,
-            public_,
-            redirectUris,
-            scopes,
-            trusted);
+        return Utils.enhancedHash(
+            description, metadata, name,
+            postLogoutRedirectUris, public_, redirectUris,
+            scopes, trusted);
     }
     
     @Override
@@ -270,28 +280,30 @@ public class ClientOptions {
                 "scopes", scopes,
                 "trusted", trusted);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private String name;
- 
+
         private Optional<? extends List<String>> postLogoutRedirectUris = Optional.empty();
- 
+
         private Optional<Boolean> public_ = Optional.empty();
- 
+
         private Optional<? extends List<String>> redirectUris = Optional.empty();
- 
+
         private Optional<? extends List<String>> scopes = Optional.empty();
- 
+
         private Optional<Boolean> trusted = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -305,6 +317,7 @@ public class ClientOptions {
             return this;
         }
 
+
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
@@ -317,11 +330,13 @@ public class ClientOptions {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder postLogoutRedirectUris(List<String> postLogoutRedirectUris) {
             Utils.checkNotNull(postLogoutRedirectUris, "postLogoutRedirectUris");
@@ -335,6 +350,7 @@ public class ClientOptions {
             return this;
         }
 
+
         public Builder public_(boolean public_) {
             Utils.checkNotNull(public_, "public_");
             this.public_ = Optional.ofNullable(public_);
@@ -346,6 +362,7 @@ public class ClientOptions {
             this.public_ = public_;
             return this;
         }
+
 
         public Builder redirectUris(List<String> redirectUris) {
             Utils.checkNotNull(redirectUris, "redirectUris");
@@ -359,6 +376,7 @@ public class ClientOptions {
             return this;
         }
 
+
         public Builder scopes(List<String> scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = Optional.ofNullable(scopes);
@@ -371,6 +389,7 @@ public class ClientOptions {
             return this;
         }
 
+
         public Builder trusted(boolean trusted) {
             Utils.checkNotNull(trusted, "trusted");
             this.trusted = Optional.ofNullable(trusted);
@@ -382,17 +401,14 @@ public class ClientOptions {
             this.trusted = trusted;
             return this;
         }
-        
+
         public ClientOptions build() {
+
             return new ClientOptions(
-                description,
-                metadata,
-                name,
-                postLogoutRedirectUris,
-                public_,
-                redirectUris,
-                scopes,
-                trusted);
+                description, metadata, name,
+                postLogoutRedirectUris, public_, redirectUris,
+                scopes, trusted);
         }
+
     }
 }

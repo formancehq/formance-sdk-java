@@ -10,12 +10,13 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class LedgerStorage {
 
     @JsonProperty("driver")
     private String driver;
+
 
     @JsonProperty("ledgers")
     private List<String> ledgers;
@@ -40,9 +41,10 @@ public class LedgerStorage {
         return ledgers;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public LedgerStorage withDriver(String driver) {
         Utils.checkNotNull(driver, "driver");
@@ -56,7 +58,6 @@ public class LedgerStorage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class LedgerStorage {
         }
         LedgerStorage other = (LedgerStorage) o;
         return 
-            Objects.deepEquals(this.driver, other.driver) &&
-            Objects.deepEquals(this.ledgers, other.ledgers);
+            Utils.enhancedDeepEquals(this.driver, other.driver) &&
+            Utils.enhancedDeepEquals(this.ledgers, other.ledgers);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            driver,
-            ledgers);
+        return Utils.enhancedHash(
+            driver, ledgers);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class LedgerStorage {
                 "driver", driver,
                 "ledgers", ledgers);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String driver;
- 
+
         private List<String> ledgers;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder driver(String driver) {
             Utils.checkNotNull(driver, "driver");
@@ -101,16 +103,18 @@ public class LedgerStorage {
             return this;
         }
 
+
         public Builder ledgers(List<String> ledgers) {
             Utils.checkNotNull(ledgers, "ledgers");
             this.ledgers = ledgers;
             return this;
         }
-        
+
         public LedgerStorage build() {
+
             return new LedgerStorage(
-                driver,
-                ledgers);
+                driver, ledgers);
         }
+
     }
 }

@@ -12,11 +12,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AddMetadataToAccountRequest {
 
+public class AddMetadataToAccountRequest {
     /**
      * metadata
      */
@@ -85,9 +84,10 @@ public class AddMetadataToAccountRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * metadata
@@ -97,6 +97,7 @@ public class AddMetadataToAccountRequest {
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     /**
      * metadata
@@ -128,7 +129,6 @@ public class AddMetadataToAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,17 +139,15 @@ public class AddMetadataToAccountRequest {
         }
         AddMetadataToAccountRequest other = (AddMetadataToAccountRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            address,
-            ledger);
+        return Utils.enhancedHash(
+            requestBody, address, ledger);
     }
     
     @Override
@@ -159,18 +157,20 @@ public class AddMetadataToAccountRequest {
                 "address", address,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
- 
+
         private String address;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * metadata
@@ -190,6 +190,7 @@ public class AddMetadataToAccountRequest {
             return this;
         }
 
+
         /**
          * Exact address of the account. It must match the following regular expressions pattern:
          * ```
@@ -202,6 +203,7 @@ public class AddMetadataToAccountRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -210,12 +212,12 @@ public class AddMetadataToAccountRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public AddMetadataToAccountRequest build() {
+
             return new AddMetadataToAccountRequest(
-                requestBody,
-                address,
-                ledger);
+                requestBody, address, ledger);
         }
+
     }
 }

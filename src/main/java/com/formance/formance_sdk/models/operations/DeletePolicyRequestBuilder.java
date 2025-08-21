@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DeletePolicy;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DeletePolicyRequestBuilder {
 
     private DeletePolicyRequest request;
-    private final SDKMethodInterfaces.MethodCallDeletePolicy sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeletePolicyRequestBuilder(SDKMethodInterfaces.MethodCallDeletePolicy sdk) {
-        this.sdk = sdk;
+    public DeletePolicyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeletePolicyRequestBuilder request(DeletePolicyRequest request) {
@@ -22,8 +26,10 @@ public class DeletePolicyRequestBuilder {
     }
 
     public DeletePolicyResponse call() throws Exception {
+        
+        RequestOperation<DeletePolicyRequest, DeletePolicyResponse> operation
+              = new DeletePolicy.Sync(sdkConfiguration);
 
-        return sdk.deletePolicy(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

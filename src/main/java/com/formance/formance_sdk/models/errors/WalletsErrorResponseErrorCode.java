@@ -17,7 +17,7 @@ public enum WalletsErrorResponseErrorCode {
     @JsonValue
     private final String value;
 
-    private WalletsErrorResponseErrorCode(String value) {
+    WalletsErrorResponseErrorCode(String value) {
         this.value = value;
     }
     

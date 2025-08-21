@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ReverseTransferInitiation;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ReverseTransferInitiationRequestBuilder {
 
     private ReverseTransferInitiationRequest request;
-    private final SDKMethodInterfaces.MethodCallReverseTransferInitiation sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ReverseTransferInitiationRequestBuilder(SDKMethodInterfaces.MethodCallReverseTransferInitiation sdk) {
-        this.sdk = sdk;
+    public ReverseTransferInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ReverseTransferInitiationRequestBuilder request(ReverseTransferInitiationRequest request) {
@@ -22,8 +26,10 @@ public class ReverseTransferInitiationRequestBuilder {
     }
 
     public ReverseTransferInitiationResponse call() throws Exception {
+        
+        RequestOperation<ReverseTransferInitiationRequest, ReverseTransferInitiationResponse> operation
+              = new ReverseTransferInitiation.Sync(sdkConfiguration);
 
-        return sdk.reverseTransferInitiation(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

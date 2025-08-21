@@ -14,30 +14,36 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ModulrConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("apiKey")
     private String apiKey;
 
+
     @JsonProperty("apiSecret")
     private String apiSecret;
+
 
     @JsonProperty("endpoint")
     private String endpoint;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -73,7 +79,9 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
             String apiSecret,
             String endpoint,
             String name) {
-        this(apiKey, apiSecret, endpoint, name, Optional.empty(), Optional.empty(), Optional.empty());
+        this(apiKey, apiSecret, endpoint,
+            name, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -112,9 +120,10 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
         return Utils.discriminatorToString(provider);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ModulrConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -146,6 +155,7 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3ModulrConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -157,6 +167,7 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
         this.pollingPeriod = Optional.ofNullable(pollingPeriod);
         return this;
     }
+
 
     public V3ModulrConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -170,13 +181,13 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3ModulrConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,24 +198,20 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
         }
         V3ModulrConfig other = (V3ModulrConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.apiSecret, other.apiSecret) &&
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.apiSecret, other.apiSecret) &&
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            apiSecret,
-            endpoint,
-            name,
-            pageSize,
-            pollingPeriod,
+        return Utils.enhancedHash(
+            apiKey, apiSecret, endpoint,
+            name, pageSize, pollingPeriod,
             provider);
     }
     
@@ -219,26 +226,28 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
                 "pollingPeriod", pollingPeriod,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String apiSecret;
- 
+
         private String endpoint;
- 
+
         private String name;
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -246,11 +255,13 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder apiSecret(String apiSecret) {
             Utils.checkNotNull(apiSecret, "apiSecret");
             this.apiSecret = apiSecret;
             return this;
         }
+
 
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
@@ -258,11 +269,13 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -276,6 +289,7 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = Optional.ofNullable(pollingPeriod);
@@ -288,6 +302,7 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -299,7 +314,7 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
             this.provider = provider;
             return this;
         }
-        
+
         public V3ModulrConfig build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
@@ -310,15 +325,13 @@ public class V3ModulrConfig implements V3InstallConnectorRequest {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new V3ModulrConfig(
-                apiKey,
-                apiSecret,
-                endpoint,
-                name,
-                pageSize,
-                pollingPeriod,
+                apiKey, apiSecret, endpoint,
+                name, pageSize, pollingPeriod,
                 provider);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

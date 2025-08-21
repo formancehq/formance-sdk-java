@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.V3CreatePoolRequest;
+import com.formance.formance_sdk.operations.V3CreatePool;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3CreatePoolRequestBuilder {
 
     private Optional<? extends V3CreatePoolRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3CreatePool sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3CreatePoolRequestBuilder(SDKMethodInterfaces.MethodCallV3CreatePool sdk) {
-        this.sdk = sdk;
+    public V3CreatePoolRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3CreatePoolRequestBuilder request(V3CreatePoolRequest request) {
@@ -30,8 +34,10 @@ public class V3CreatePoolRequestBuilder {
     }
 
     public V3CreatePoolResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3CreatePoolRequest>, V3CreatePoolResponse> operation
+              = new V3CreatePool.Sync(sdkConfiguration);
 
-        return sdk.createPool(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

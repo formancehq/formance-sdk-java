@@ -15,21 +15,24 @@ import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class BalanceWithAssets {
 
     @JsonProperty("assets")
     private Map<String, BigInteger> assets;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiresAt")
     private JsonNullable<OffsetDateTime> expiresAt;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("priority")
@@ -42,6 +45,7 @@ public class BalanceWithAssets {
             @JsonProperty("name") String name,
             @JsonProperty("priority") Optional<? extends BigInteger> priority) {
         assets = Utils.emptyMapIfNull(assets);
+        Utils.checkNotNull(assets, "assets");
         Utils.checkNotNull(expiresAt, "expiresAt");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(priority, "priority");
@@ -54,7 +58,8 @@ public class BalanceWithAssets {
     public BalanceWithAssets(
             Map<String, BigInteger> assets,
             String name) {
-        this(assets, JsonNullable.undefined(), name, Optional.empty());
+        this(assets, JsonNullable.undefined(), name,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -78,9 +83,10 @@ public class BalanceWithAssets {
         return (Optional<BigInteger>) priority;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BalanceWithAssets withAssets(Map<String, BigInteger> assets) {
         Utils.checkNotNull(assets, "assets");
@@ -117,13 +123,13 @@ public class BalanceWithAssets {
         return this;
     }
 
+
     public BalanceWithAssets withPriority(Optional<? extends BigInteger> priority) {
         Utils.checkNotNull(priority, "priority");
         this.priority = priority;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -134,18 +140,16 @@ public class BalanceWithAssets {
         }
         BalanceWithAssets other = (BalanceWithAssets) o;
         return 
-            Objects.deepEquals(this.assets, other.assets) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.priority, other.priority);
+            Utils.enhancedDeepEquals(this.assets, other.assets) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.priority, other.priority);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            assets,
-            expiresAt,
-            name,
+        return Utils.enhancedHash(
+            assets, expiresAt, name,
             priority);
     }
     
@@ -157,26 +161,29 @@ public class BalanceWithAssets {
                 "name", name,
                 "priority", priority);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, BigInteger> assets;
- 
+
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
- 
+
         private String name;
- 
+
         private Optional<? extends BigInteger> priority = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder assets(Map<String, BigInteger> assets) {
             Utils.checkNotNull(assets, "assets");
             this.assets = assets;
             return this;
         }
+
 
         public Builder expiresAt(OffsetDateTime expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
@@ -190,11 +197,13 @@ public class BalanceWithAssets {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder priority(BigInteger priority) {
             Utils.checkNotNull(priority, "priority");
@@ -212,13 +221,13 @@ public class BalanceWithAssets {
             this.priority = priority;
             return this;
         }
-        
+
         public BalanceWithAssets build() {
+
             return new BalanceWithAssets(
-                assets,
-                expiresAt,
-                name,
+                assets, expiresAt, name,
                 priority);
         }
+
     }
 }

@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateBankAccountResponse implements Response {
 
+public class CreateBankAccountResponse implements Response {
     /**
      * OK
      */
@@ -59,7 +58,8 @@ public class CreateBankAccountResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode,
+            rawResponse);
     }
 
     /**
@@ -95,9 +95,10 @@ public class CreateBankAccountResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * OK
@@ -107,6 +108,7 @@ public class CreateBankAccountResponse implements Response {
         this.bankAccountResponse = Optional.ofNullable(bankAccountResponse);
         return this;
     }
+
 
     /**
      * OK
@@ -144,7 +146,6 @@ public class CreateBankAccountResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,18 +156,16 @@ public class CreateBankAccountResponse implements Response {
         }
         CreateBankAccountResponse other = (CreateBankAccountResponse) o;
         return 
-            Objects.deepEquals(this.bankAccountResponse, other.bankAccountResponse) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.bankAccountResponse, other.bankAccountResponse) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            bankAccountResponse,
-            contentType,
-            statusCode,
+        return Utils.enhancedHash(
+            bankAccountResponse, contentType, statusCode,
             rawResponse);
     }
     
@@ -178,20 +177,22 @@ public class CreateBankAccountResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends BankAccountResponse> bankAccountResponse = Optional.empty();
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * OK
@@ -211,6 +212,7 @@ public class CreateBankAccountResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response content type for this operation
          */
@@ -219,6 +221,7 @@ public class CreateBankAccountResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * HTTP response status code for this operation
@@ -229,6 +232,7 @@ public class CreateBankAccountResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -237,13 +241,13 @@ public class CreateBankAccountResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public CreateBankAccountResponse build() {
+
             return new CreateBankAccountResponse(
-                bankAccountResponse,
-                contentType,
-                statusCode,
+                bankAccountResponse, contentType, statusCode,
                 rawResponse);
         }
+
     }
 }

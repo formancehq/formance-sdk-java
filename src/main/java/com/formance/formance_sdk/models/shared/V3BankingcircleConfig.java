@@ -14,40 +14,49 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3BankingcircleConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("authorizationEndpoint")
     private String authorizationEndpoint;
 
+
     @JsonProperty("endpoint")
     private String endpoint;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
 
+
     @JsonProperty("password")
     private String password;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
 
+
     @JsonProperty("userCertificate")
     private String userCertificate;
 
+
     @JsonProperty("userCertificateKey")
     private String userCertificateKey;
+
 
     @JsonProperty("username")
     private String username;
@@ -94,7 +103,10 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
             String userCertificate,
             String userCertificateKey,
             String username) {
-        this(authorizationEndpoint, endpoint, name, Optional.empty(), password, Optional.empty(), Optional.empty(), userCertificate, userCertificateKey, username);
+        this(authorizationEndpoint, endpoint, name,
+            Optional.empty(), password, Optional.empty(),
+            Optional.empty(), userCertificate, userCertificateKey,
+            username);
     }
 
     @JsonIgnore
@@ -148,9 +160,10 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
         return username;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3BankingcircleConfig withAuthorizationEndpoint(String authorizationEndpoint) {
         Utils.checkNotNull(authorizationEndpoint, "authorizationEndpoint");
@@ -176,6 +189,7 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3BankingcircleConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -194,6 +208,7 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3BankingcircleConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         this.pollingPeriod = pollingPeriod;
@@ -205,6 +220,7 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
         this.provider = Optional.ofNullable(provider);
         return this;
     }
+
 
     public V3BankingcircleConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
@@ -230,7 +246,6 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -241,30 +256,24 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
         }
         V3BankingcircleConfig other = (V3BankingcircleConfig) o;
         return 
-            Objects.deepEquals(this.authorizationEndpoint, other.authorizationEndpoint) &&
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.password, other.password) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.userCertificate, other.userCertificate) &&
-            Objects.deepEquals(this.userCertificateKey, other.userCertificateKey) &&
-            Objects.deepEquals(this.username, other.username);
+            Utils.enhancedDeepEquals(this.authorizationEndpoint, other.authorizationEndpoint) &&
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.password, other.password) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.userCertificate, other.userCertificate) &&
+            Utils.enhancedDeepEquals(this.userCertificateKey, other.userCertificateKey) &&
+            Utils.enhancedDeepEquals(this.username, other.username);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            authorizationEndpoint,
-            endpoint,
-            name,
-            pageSize,
-            password,
-            pollingPeriod,
-            provider,
-            userCertificate,
-            userCertificateKey,
+        return Utils.enhancedHash(
+            authorizationEndpoint, endpoint, name,
+            pageSize, password, pollingPeriod,
+            provider, userCertificate, userCertificateKey,
             username);
     }
     
@@ -282,32 +291,34 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
                 "userCertificateKey", userCertificateKey,
                 "username", username);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String authorizationEndpoint;
- 
+
         private String endpoint;
- 
+
         private String name;
- 
+
         private Optional<Long> pageSize;
- 
+
         private String password;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
- 
+
         private String userCertificate;
- 
+
         private String userCertificateKey;
- 
+
         private String username;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder authorizationEndpoint(String authorizationEndpoint) {
             Utils.checkNotNull(authorizationEndpoint, "authorizationEndpoint");
@@ -315,17 +326,20 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -339,11 +353,13 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder password(String password) {
             Utils.checkNotNull(password, "password");
             this.password = password;
             return this;
         }
+
 
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -357,6 +373,7 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -369,11 +386,13 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder userCertificate(String userCertificate) {
             Utils.checkNotNull(userCertificate, "userCertificate");
             this.userCertificate = userCertificate;
             return this;
         }
+
 
         public Builder userCertificateKey(String userCertificateKey) {
             Utils.checkNotNull(userCertificateKey, "userCertificateKey");
@@ -381,12 +400,13 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder username(String username) {
             Utils.checkNotNull(username, "username");
             this.username = username;
             return this;
         }
-        
+
         public V3BankingcircleConfig build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
@@ -397,18 +417,14 @@ public class V3BankingcircleConfig implements V3InstallConnectorRequest {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new V3BankingcircleConfig(
-                authorizationEndpoint,
-                endpoint,
-                name,
-                pageSize,
-                password,
-                pollingPeriod,
-                provider,
-                userCertificate,
-                userCertificateKey,
+                authorizationEndpoint, endpoint, name,
+                pageSize, password, pollingPeriod,
+                provider, userCertificate, userCertificateKey,
                 username);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2Volume {
 
@@ -22,8 +22,10 @@ public class V2Volume {
     @JsonProperty("balance")
     private Optional<? extends BigInteger> balance;
 
+
     @JsonProperty("input")
     private BigInteger input;
+
 
     @JsonProperty("output")
     private BigInteger output;
@@ -63,9 +65,10 @@ public class V2Volume {
         return output;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2Volume withBalance(BigInteger balance) {
         Utils.checkNotNull(balance, "balance");
@@ -77,6 +80,7 @@ public class V2Volume {
         this.balance = Optional.of(BigInteger.valueOf(balance));
         return this;
     }
+
 
     public V2Volume withBalance(Optional<? extends BigInteger> balance) {
         Utils.checkNotNull(balance, "balance");
@@ -106,7 +110,6 @@ public class V2Volume {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,17 +120,15 @@ public class V2Volume {
         }
         V2Volume other = (V2Volume) o;
         return 
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.input, other.input) &&
-            Objects.deepEquals(this.output, other.output);
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.input, other.input) &&
+            Utils.enhancedDeepEquals(this.output, other.output);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            balance,
-            input,
-            output);
+        return Utils.enhancedHash(
+            balance, input, output);
     }
     
     @Override
@@ -137,18 +138,20 @@ public class V2Volume {
                 "input", input,
                 "output", output);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends BigInteger> balance = Optional.empty();
- 
+
         private BigInteger input;
- 
+
         private BigInteger output;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder balance(BigInteger balance) {
             Utils.checkNotNull(balance, "balance");
@@ -167,6 +170,7 @@ public class V2Volume {
             return this;
         }
 
+
         public Builder input(long input) {
             this.input = BigInteger.valueOf(input);
             return this;
@@ -178,6 +182,7 @@ public class V2Volume {
             return this;
         }
 
+
         public Builder output(long output) {
             this.output = BigInteger.valueOf(output);
             return this;
@@ -188,12 +193,12 @@ public class V2Volume {
             this.output = output;
             return this;
         }
-        
+
         public V2Volume build() {
+
             return new V2Volume(
-                balance,
-                input,
-                output);
+                balance, input, output);
         }
+
     }
 }

@@ -12,14 +12,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ActivityCreateTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends OrchestrationV2PostTransaction> data;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
@@ -50,15 +51,17 @@ public class V2ActivityCreateTransaction {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ActivityCreateTransaction withData(OrchestrationV2PostTransaction data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
     }
+
 
     public V2ActivityCreateTransaction withData(Optional<? extends OrchestrationV2PostTransaction> data) {
         Utils.checkNotNull(data, "data");
@@ -72,13 +75,13 @@ public class V2ActivityCreateTransaction {
         return this;
     }
 
+
     public V2ActivityCreateTransaction withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +92,14 @@ public class V2ActivityCreateTransaction {
         }
         V2ActivityCreateTransaction other = (V2ActivityCreateTransaction) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            ledger);
+        return Utils.enhancedHash(
+            data, ledger);
     }
     
     @Override
@@ -106,16 +108,18 @@ public class V2ActivityCreateTransaction {
                 "data", data,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends OrchestrationV2PostTransaction> data = Optional.empty();
- 
+
         private Optional<String> ledger = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(OrchestrationV2PostTransaction data) {
             Utils.checkNotNull(data, "data");
@@ -129,6 +133,7 @@ public class V2ActivityCreateTransaction {
             return this;
         }
 
+
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = Optional.ofNullable(ledger);
@@ -140,11 +145,12 @@ public class V2ActivityCreateTransaction {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2ActivityCreateTransaction build() {
+
             return new V2ActivityCreateTransaction(
-                data,
-                ledger);
+                data, ledger);
         }
+
     }
 }

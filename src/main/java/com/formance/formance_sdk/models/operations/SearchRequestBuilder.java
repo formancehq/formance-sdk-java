@@ -3,17 +3,21 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.Query;
+import com.formance.formance_sdk.operations.Search;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class SearchRequestBuilder {
 
     private Query request;
-    private final SDKMethodInterfaces.MethodCallSearch sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SearchRequestBuilder(SDKMethodInterfaces.MethodCallSearch sdk) {
-        this.sdk = sdk;
+    public SearchRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SearchRequestBuilder request(Query request) {
@@ -23,8 +27,10 @@ public class SearchRequestBuilder {
     }
 
     public SearchResponse call() throws Exception {
+        
+        RequestOperation<Query, SearchResponse> operation
+              = new Search.Sync(sdkConfiguration);
 
-        return sdk.search(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

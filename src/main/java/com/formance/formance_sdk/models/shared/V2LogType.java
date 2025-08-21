@@ -17,7 +17,7 @@ public enum V2LogType {
     @JsonValue
     private final String value;
 
-    private V2LogType(String value) {
+    V2LogType(String value) {
         this.value = value;
     }
     

@@ -15,27 +15,32 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class TriggerOccurrence {
 
     @JsonProperty("date")
     private OffsetDateTime date;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
+
     @JsonProperty("event")
     private Map<String, Object> event;
+
 
     @JsonProperty("triggerID")
     private String triggerID;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowInstance")
     private Optional<? extends WorkflowInstance> workflowInstance;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowInstanceID")
@@ -52,6 +57,7 @@ public class TriggerOccurrence {
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(error, "error");
         event = Utils.emptyMapIfNull(event);
+        Utils.checkNotNull(event, "event");
         Utils.checkNotNull(triggerID, "triggerID");
         Utils.checkNotNull(workflowInstance, "workflowInstance");
         Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
@@ -67,7 +73,8 @@ public class TriggerOccurrence {
             OffsetDateTime date,
             Map<String, Object> event,
             String triggerID) {
-        this(date, Optional.empty(), event, triggerID, Optional.empty(), Optional.empty());
+        this(date, Optional.empty(), event,
+            triggerID, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -101,9 +108,10 @@ public class TriggerOccurrence {
         return workflowInstanceID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TriggerOccurrence withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
@@ -116,6 +124,7 @@ public class TriggerOccurrence {
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     public TriggerOccurrence withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
@@ -141,6 +150,7 @@ public class TriggerOccurrence {
         return this;
     }
 
+
     public TriggerOccurrence withWorkflowInstance(Optional<? extends WorkflowInstance> workflowInstance) {
         Utils.checkNotNull(workflowInstance, "workflowInstance");
         this.workflowInstance = workflowInstance;
@@ -153,13 +163,13 @@ public class TriggerOccurrence {
         return this;
     }
 
+
     public TriggerOccurrence withWorkflowInstanceID(Optional<String> workflowInstanceID) {
         Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
         this.workflowInstanceID = workflowInstanceID;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -170,23 +180,19 @@ public class TriggerOccurrence {
         }
         TriggerOccurrence other = (TriggerOccurrence) o;
         return 
-            Objects.deepEquals(this.date, other.date) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.event, other.event) &&
-            Objects.deepEquals(this.triggerID, other.triggerID) &&
-            Objects.deepEquals(this.workflowInstance, other.workflowInstance) &&
-            Objects.deepEquals(this.workflowInstanceID, other.workflowInstanceID);
+            Utils.enhancedDeepEquals(this.date, other.date) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.event, other.event) &&
+            Utils.enhancedDeepEquals(this.triggerID, other.triggerID) &&
+            Utils.enhancedDeepEquals(this.workflowInstance, other.workflowInstance) &&
+            Utils.enhancedDeepEquals(this.workflowInstanceID, other.workflowInstanceID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            date,
-            error,
-            event,
-            triggerID,
-            workflowInstance,
-            workflowInstanceID);
+        return Utils.enhancedHash(
+            date, error, event,
+            triggerID, workflowInstance, workflowInstanceID);
     }
     
     @Override
@@ -199,30 +205,33 @@ public class TriggerOccurrence {
                 "workflowInstance", workflowInstance,
                 "workflowInstanceID", workflowInstanceID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime date;
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private Map<String, Object> event;
- 
+
         private String triggerID;
- 
+
         private Optional<? extends WorkflowInstance> workflowInstance = Optional.empty();
- 
+
         private Optional<String> workflowInstanceID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
             return this;
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -236,17 +245,20 @@ public class TriggerOccurrence {
             return this;
         }
 
+
         public Builder event(Map<String, Object> event) {
             Utils.checkNotNull(event, "event");
             this.event = event;
             return this;
         }
 
+
         public Builder triggerID(String triggerID) {
             Utils.checkNotNull(triggerID, "triggerID");
             this.triggerID = triggerID;
             return this;
         }
+
 
         public Builder workflowInstance(WorkflowInstance workflowInstance) {
             Utils.checkNotNull(workflowInstance, "workflowInstance");
@@ -260,6 +272,7 @@ public class TriggerOccurrence {
             return this;
         }
 
+
         public Builder workflowInstanceID(String workflowInstanceID) {
             Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
             this.workflowInstanceID = Optional.ofNullable(workflowInstanceID);
@@ -271,15 +284,13 @@ public class TriggerOccurrence {
             this.workflowInstanceID = workflowInstanceID;
             return this;
         }
-        
+
         public TriggerOccurrence build() {
+
             return new TriggerOccurrence(
-                date,
-                error,
-                event,
-                triggerID,
-                workflowInstance,
-                workflowInstanceID);
+                date, error, event,
+                triggerID, workflowInstance, workflowInstanceID);
         }
+
     }
 }

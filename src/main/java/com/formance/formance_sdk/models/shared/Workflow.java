@@ -10,18 +10,21 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class Workflow {
 
     @JsonProperty("config")
     private WorkflowConfig config;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
@@ -62,9 +65,10 @@ public class Workflow {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Workflow withConfig(WorkflowConfig config) {
         Utils.checkNotNull(config, "config");
@@ -90,7 +94,6 @@ public class Workflow {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,18 +104,16 @@ public class Workflow {
         }
         Workflow other = (Workflow) o;
         return 
-            Objects.deepEquals(this.config, other.config) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.config, other.config) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            config,
-            createdAt,
-            id,
+        return Utils.enhancedHash(
+            config, createdAt, id,
             updatedAt);
     }
     
@@ -124,20 +125,22 @@ public class Workflow {
                 "id", id,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private WorkflowConfig config;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder config(WorkflowConfig config) {
             Utils.checkNotNull(config, "config");
@@ -145,11 +148,13 @@ public class Workflow {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -157,18 +162,19 @@ public class Workflow {
             return this;
         }
 
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public Workflow build() {
+
             return new Workflow(
-                config,
-                createdAt,
-                id,
+                config, createdAt, id,
                 updatedAt);
         }
+
     }
 }

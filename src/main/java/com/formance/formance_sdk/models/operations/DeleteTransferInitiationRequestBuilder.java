@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DeleteTransferInitiation;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DeleteTransferInitiationRequestBuilder {
 
     private DeleteTransferInitiationRequest request;
-    private final SDKMethodInterfaces.MethodCallDeleteTransferInitiation sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteTransferInitiationRequestBuilder(SDKMethodInterfaces.MethodCallDeleteTransferInitiation sdk) {
-        this.sdk = sdk;
+    public DeleteTransferInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteTransferInitiationRequestBuilder request(DeleteTransferInitiationRequest request) {
@@ -22,8 +26,10 @@ public class DeleteTransferInitiationRequestBuilder {
     }
 
     public DeleteTransferInitiationResponse call() throws Exception {
+        
+        RequestOperation<DeleteTransferInitiationRequest, DeleteTransferInitiationResponse> operation
+              = new DeleteTransferInitiation.Sync(sdkConfiguration);
 
-        return sdk.deleteTransferInitiation(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

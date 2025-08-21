@@ -14,30 +14,36 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3CreateAccountRequest {
 
     @JsonProperty("accountName")
     private String accountName;
 
+
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaultAsset")
     private JsonNullable<String> defaultAsset;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("type")
     private V3AccountTypeEnum type;
@@ -73,7 +79,9 @@ public class V3CreateAccountRequest {
             OffsetDateTime createdAt,
             String reference,
             V3AccountTypeEnum type) {
-        this(accountName, connectorID, createdAt, JsonNullable.undefined(), JsonNullable.undefined(), reference, type);
+        this(accountName, connectorID, createdAt,
+            JsonNullable.undefined(), JsonNullable.undefined(), reference,
+            type);
     }
 
     @JsonIgnore
@@ -112,9 +120,10 @@ public class V3CreateAccountRequest {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3CreateAccountRequest withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
@@ -170,7 +179,6 @@ public class V3CreateAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -181,24 +189,20 @@ public class V3CreateAccountRequest {
         }
         V3CreateAccountRequest other = (V3CreateAccountRequest) o;
         return 
-            Objects.deepEquals(this.accountName, other.accountName) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.defaultAsset, other.defaultAsset) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.defaultAsset, other.defaultAsset) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountName,
-            connectorID,
-            createdAt,
-            defaultAsset,
-            metadata,
-            reference,
+        return Utils.enhancedHash(
+            accountName, connectorID, createdAt,
+            defaultAsset, metadata, reference,
             type);
     }
     
@@ -213,26 +217,28 @@ public class V3CreateAccountRequest {
                 "reference", reference,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountName;
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private JsonNullable<String> defaultAsset = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String reference;
- 
+
         private V3AccountTypeEnum type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountName(String accountName) {
             Utils.checkNotNull(accountName, "accountName");
@@ -240,17 +246,20 @@ public class V3CreateAccountRequest {
             return this;
         }
 
+
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder defaultAsset(String defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
@@ -264,6 +273,7 @@ public class V3CreateAccountRequest {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
@@ -276,27 +286,27 @@ public class V3CreateAccountRequest {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
         public Builder type(V3AccountTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public V3CreateAccountRequest build() {
+
             return new V3CreateAccountRequest(
-                accountName,
-                connectorID,
-                createdAt,
-                defaultAsset,
-                metadata,
-                reference,
+                accountName, connectorID, createdAt,
+                defaultAsset, metadata, reference,
                 type);
         }
+
     }
 }

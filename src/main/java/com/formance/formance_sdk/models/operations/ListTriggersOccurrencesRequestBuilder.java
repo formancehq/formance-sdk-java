@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ListTriggersOccurrences;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ListTriggersOccurrencesRequestBuilder {
 
     private ListTriggersOccurrencesRequest request;
-    private final SDKMethodInterfaces.MethodCallListTriggersOccurrences sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListTriggersOccurrencesRequestBuilder(SDKMethodInterfaces.MethodCallListTriggersOccurrences sdk) {
-        this.sdk = sdk;
+    public ListTriggersOccurrencesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListTriggersOccurrencesRequestBuilder request(ListTriggersOccurrencesRequest request) {
@@ -22,8 +26,10 @@ public class ListTriggersOccurrencesRequestBuilder {
     }
 
     public ListTriggersOccurrencesResponse call() throws Exception {
+        
+        RequestOperation<ListTriggersOccurrencesRequest, ListTriggersOccurrencesResponse> operation
+              = new ListTriggersOccurrences.Sync(sdkConfiguration);
 
-        return sdk.listTriggersOccurrences(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

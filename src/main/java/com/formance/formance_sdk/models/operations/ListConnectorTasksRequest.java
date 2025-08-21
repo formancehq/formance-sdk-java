@@ -13,11 +13,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListConnectorTasksRequest {
 
+public class ListConnectorTasksRequest {
     /**
      * The name of the connector.
      */
@@ -84,9 +83,10 @@ public class ListConnectorTasksRequest {
         return pageSize;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the connector.
@@ -109,6 +109,7 @@ public class ListConnectorTasksRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -130,6 +131,7 @@ public class ListConnectorTasksRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -139,7 +141,6 @@ public class ListConnectorTasksRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,17 +151,15 @@ public class ListConnectorTasksRequest {
         }
         ListConnectorTasksRequest other = (ListConnectorTasksRequest) o;
         return 
-            Objects.deepEquals(this.connector, other.connector) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize);
+            Utils.enhancedDeepEquals(this.connector, other.connector) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connector,
-            cursor,
-            pageSize);
+        return Utils.enhancedHash(
+            connector, cursor, pageSize);
     }
     
     @Override
@@ -170,18 +169,20 @@ public class ListConnectorTasksRequest {
                 "cursor", cursor,
                 "pageSize", pageSize);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Connector connector;
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the connector.
@@ -191,6 +192,7 @@ public class ListConnectorTasksRequest {
             this.connector = connector;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -216,6 +218,7 @@ public class ListConnectorTasksRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -233,16 +236,16 @@ public class ListConnectorTasksRequest {
             this.pageSize = pageSize;
             return this;
         }
-        
+
         public ListConnectorTasksRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
             }
+
             return new ListConnectorTasksRequest(
-                connector,
-                cursor,
-                pageSize);
+                connector, cursor, pageSize);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

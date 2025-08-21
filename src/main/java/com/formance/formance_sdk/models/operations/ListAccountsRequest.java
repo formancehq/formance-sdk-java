@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListAccountsRequest {
 
+public class ListAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
@@ -107,7 +106,9 @@ public class ListAccountsRequest {
     
     public ListAccountsRequest(
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), ledger, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -185,9 +186,10 @@ public class ListAccountsRequest {
         return paginationToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
@@ -197,6 +199,7 @@ public class ListAccountsRequest {
         this.address = Optional.ofNullable(address);
         return this;
     }
+
 
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
@@ -216,6 +219,7 @@ public class ListAccountsRequest {
         return this;
     }
 
+
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      */
@@ -233,6 +237,7 @@ public class ListAccountsRequest {
         this.balance = Optional.ofNullable(balance);
         return this;
     }
+
 
     /**
      * Filter accounts by their balance (default operator is gte)
@@ -254,6 +259,7 @@ public class ListAccountsRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -285,6 +291,7 @@ public class ListAccountsRequest {
         return this;
     }
 
+
     /**
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
@@ -302,6 +309,7 @@ public class ListAccountsRequest {
         this.pageSize = Optional.ofNullable(pageSize);
         return this;
     }
+
 
     /**
      * The maximum number of results to return per page.
@@ -328,6 +336,7 @@ public class ListAccountsRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
      * Set to the value of next for the next page of results.
@@ -344,7 +353,6 @@ public class ListAccountsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -355,27 +363,22 @@ public class ListAccountsRequest {
         }
         ListAccountsRequest other = (ListAccountsRequest) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.after, other.after) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.paginationToken, other.paginationToken);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.after, other.after) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.paginationToken, other.paginationToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            after,
-            balance,
-            cursor,
-            ledger,
-            metadata,
-            pageSize,
-            paginationToken);
+        return Utils.enhancedHash(
+            address, after, balance,
+            cursor, ledger, metadata,
+            pageSize, paginationToken);
     }
     
     @Override
@@ -390,29 +393,31 @@ public class ListAccountsRequest {
                 "pageSize", pageSize,
                 "paginationToken", paginationToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> address = Optional.empty();
- 
+
         private Optional<String> after = Optional.empty();
- 
+
         private Optional<Long> balance = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         @Deprecated
         private Optional<String> paginationToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter accounts by address pattern (regular expression placed between ^ and $).
@@ -432,6 +437,7 @@ public class ListAccountsRequest {
             return this;
         }
 
+
         /**
          * Pagination cursor, will return accounts after given address, in descending order.
          */
@@ -450,6 +456,7 @@ public class ListAccountsRequest {
             return this;
         }
 
+
         /**
          * Filter accounts by their balance (default operator is gte)
          */
@@ -467,6 +474,7 @@ public class ListAccountsRequest {
             this.balance = balance;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -492,6 +500,7 @@ public class ListAccountsRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -500,6 +509,7 @@ public class ListAccountsRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
@@ -519,6 +529,7 @@ public class ListAccountsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -536,6 +547,7 @@ public class ListAccountsRequest {
             this.pageSize = pageSize;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -568,17 +580,14 @@ public class ListAccountsRequest {
             this.paginationToken = paginationToken;
             return this;
         }
-        
+
         public ListAccountsRequest build() {
+
             return new ListAccountsRequest(
-                address,
-                after,
-                balance,
-                cursor,
-                ledger,
-                metadata,
-                pageSize,
-                paginationToken);
+                address, after, balance,
+                cursor, ledger, metadata,
+                pageSize, paginationToken);
         }
+
     }
 }

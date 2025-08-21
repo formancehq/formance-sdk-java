@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ResetConnectorRequest {
-
     /**
      * The name of the connector.
      */
@@ -35,9 +34,10 @@ public class ResetConnectorRequest {
         return connector;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the connector.
@@ -48,7 +48,6 @@ public class ResetConnectorRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -59,12 +58,12 @@ public class ResetConnectorRequest {
         }
         ResetConnectorRequest other = (ResetConnectorRequest) o;
         return 
-            Objects.deepEquals(this.connector, other.connector);
+            Utils.enhancedDeepEquals(this.connector, other.connector);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             connector);
     }
     
@@ -73,14 +72,16 @@ public class ResetConnectorRequest {
         return Utils.toString(ResetConnectorRequest.class,
                 "connector", connector);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Connector connector;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the connector.
@@ -90,10 +91,12 @@ public class ResetConnectorRequest {
             this.connector = connector;
             return this;
         }
-        
+
         public ResetConnectorRequest build() {
+
             return new ResetConnectorRequest(
                 connector);
         }
+
     }
 }

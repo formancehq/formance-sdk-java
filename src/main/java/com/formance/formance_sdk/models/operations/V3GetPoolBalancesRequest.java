@@ -10,11 +10,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3GetPoolBalancesRequest {
 
+public class V3GetPoolBalancesRequest {
     /**
      * The time to filter by
      */
@@ -58,9 +57,10 @@ public class V3GetPoolBalancesRequest {
         return poolID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The time to filter by
@@ -70,6 +70,7 @@ public class V3GetPoolBalancesRequest {
         this.at = Optional.ofNullable(at);
         return this;
     }
+
 
     /**
      * The time to filter by
@@ -89,7 +90,6 @@ public class V3GetPoolBalancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -100,15 +100,14 @@ public class V3GetPoolBalancesRequest {
         }
         V3GetPoolBalancesRequest other = (V3GetPoolBalancesRequest) o;
         return 
-            Objects.deepEquals(this.at, other.at) &&
-            Objects.deepEquals(this.poolID, other.poolID);
+            Utils.enhancedDeepEquals(this.at, other.at) &&
+            Utils.enhancedDeepEquals(this.poolID, other.poolID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            at,
-            poolID);
+        return Utils.enhancedHash(
+            at, poolID);
     }
     
     @Override
@@ -117,16 +116,18 @@ public class V3GetPoolBalancesRequest {
                 "at", at,
                 "poolID", poolID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> at = Optional.empty();
- 
+
         private String poolID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The time to filter by
@@ -146,6 +147,7 @@ public class V3GetPoolBalancesRequest {
             return this;
         }
 
+
         /**
          * The pool ID
          */
@@ -154,11 +156,12 @@ public class V3GetPoolBalancesRequest {
             this.poolID = poolID;
             return this;
         }
-        
+
         public V3GetPoolBalancesRequest build() {
+
             return new V3GetPoolBalancesRequest(
-                at,
-                poolID);
+                at, poolID);
         }
+
     }
 }

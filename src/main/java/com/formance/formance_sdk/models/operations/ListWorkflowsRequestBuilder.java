@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ListWorkflows;
 import java.lang.Exception;
 
 public class ListWorkflowsRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallListWorkflows sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListWorkflowsRequestBuilder(SDKMethodInterfaces.MethodCallListWorkflows sdk) {
-        this.sdk = sdk;
+    public ListWorkflowsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListWorkflowsResponse call() throws Exception {
+        
+        RequestlessOperation<ListWorkflowsResponse> operation
+            = new ListWorkflows.Sync(sdkConfiguration);
 
-        return sdk.listWorkflowsDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

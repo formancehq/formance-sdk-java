@@ -15,25 +15,29 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class AccountWithVolumesAndBalances {
 
     @JsonProperty("address")
     private String address;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
     private Optional<? extends Map<String, BigInteger>> balances;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, Object>> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<String> type;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("volumes")
@@ -60,7 +64,8 @@ public class AccountWithVolumesAndBalances {
     
     public AccountWithVolumesAndBalances(
             String address) {
-        this(address, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(address, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -91,9 +96,10 @@ public class AccountWithVolumesAndBalances {
         return (Optional<Map<String, Volume>>) volumes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AccountWithVolumesAndBalances withAddress(String address) {
         Utils.checkNotNull(address, "address");
@@ -107,6 +113,7 @@ public class AccountWithVolumesAndBalances {
         return this;
     }
 
+
     public AccountWithVolumesAndBalances withBalances(Optional<? extends Map<String, BigInteger>> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
@@ -118,6 +125,7 @@ public class AccountWithVolumesAndBalances {
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     public AccountWithVolumesAndBalances withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -131,6 +139,7 @@ public class AccountWithVolumesAndBalances {
         return this;
     }
 
+
     public AccountWithVolumesAndBalances withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -143,13 +152,13 @@ public class AccountWithVolumesAndBalances {
         return this;
     }
 
+
     public AccountWithVolumesAndBalances withVolumes(Optional<? extends Map<String, Volume>> volumes) {
         Utils.checkNotNull(volumes, "volumes");
         this.volumes = volumes;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -160,21 +169,18 @@ public class AccountWithVolumesAndBalances {
         }
         AccountWithVolumesAndBalances other = (AccountWithVolumesAndBalances) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.balances, other.balances) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.volumes, other.volumes);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.balances, other.balances) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.volumes, other.volumes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            balances,
-            metadata,
-            type,
-            volumes);
+        return Utils.enhancedHash(
+            address, balances, metadata,
+            type, volumes);
     }
     
     @Override
@@ -186,28 +192,31 @@ public class AccountWithVolumesAndBalances {
                 "type", type,
                 "volumes", volumes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String address;
- 
+
         private Optional<? extends Map<String, BigInteger>> balances = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<? extends Map<String, Volume>> volumes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder address(String address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
         }
+
 
         public Builder balances(Map<String, BigInteger> balances) {
             Utils.checkNotNull(balances, "balances");
@@ -221,6 +230,7 @@ public class AccountWithVolumesAndBalances {
             return this;
         }
 
+
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
@@ -232,6 +242,7 @@ public class AccountWithVolumesAndBalances {
             this.metadata = metadata;
             return this;
         }
+
 
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
@@ -245,6 +256,7 @@ public class AccountWithVolumesAndBalances {
             return this;
         }
 
+
         public Builder volumes(Map<String, Volume> volumes) {
             Utils.checkNotNull(volumes, "volumes");
             this.volumes = Optional.ofNullable(volumes);
@@ -256,14 +268,13 @@ public class AccountWithVolumesAndBalances {
             this.volumes = volumes;
             return this;
         }
-        
+
         public AccountWithVolumesAndBalances build() {
+
             return new AccountWithVolumesAndBalances(
-                address,
-                balances,
-                metadata,
-                type,
-                volumes);
+                address, balances, metadata,
+                type, volumes);
         }
+
     }
 }

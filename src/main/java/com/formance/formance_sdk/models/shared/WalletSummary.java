@@ -12,21 +12,25 @@ import java.lang.String;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class WalletSummary {
 
     @JsonProperty("availableFunds")
     private Map<String, BigInteger> availableFunds;
 
+
     @JsonProperty("balances")
     private List<BalanceWithAssets> balances;
+
 
     @JsonProperty("expirableFunds")
     private Map<String, BigInteger> expirableFunds;
 
+
     @JsonProperty("expiredFunds")
     private Map<String, BigInteger> expiredFunds;
+
 
     @JsonProperty("holdFunds")
     private Map<String, BigInteger> holdFunds;
@@ -39,10 +43,14 @@ public class WalletSummary {
             @JsonProperty("expiredFunds") Map<String, BigInteger> expiredFunds,
             @JsonProperty("holdFunds") Map<String, BigInteger> holdFunds) {
         availableFunds = Utils.emptyMapIfNull(availableFunds);
+        Utils.checkNotNull(availableFunds, "availableFunds");
         Utils.checkNotNull(balances, "balances");
         expirableFunds = Utils.emptyMapIfNull(expirableFunds);
+        Utils.checkNotNull(expirableFunds, "expirableFunds");
         expiredFunds = Utils.emptyMapIfNull(expiredFunds);
+        Utils.checkNotNull(expiredFunds, "expiredFunds");
         holdFunds = Utils.emptyMapIfNull(holdFunds);
+        Utils.checkNotNull(holdFunds, "holdFunds");
         this.availableFunds = availableFunds;
         this.balances = balances;
         this.expirableFunds = expirableFunds;
@@ -75,9 +83,10 @@ public class WalletSummary {
         return holdFunds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WalletSummary withAvailableFunds(Map<String, BigInteger> availableFunds) {
         Utils.checkNotNull(availableFunds, "availableFunds");
@@ -109,7 +118,6 @@ public class WalletSummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,21 +128,18 @@ public class WalletSummary {
         }
         WalletSummary other = (WalletSummary) o;
         return 
-            Objects.deepEquals(this.availableFunds, other.availableFunds) &&
-            Objects.deepEquals(this.balances, other.balances) &&
-            Objects.deepEquals(this.expirableFunds, other.expirableFunds) &&
-            Objects.deepEquals(this.expiredFunds, other.expiredFunds) &&
-            Objects.deepEquals(this.holdFunds, other.holdFunds);
+            Utils.enhancedDeepEquals(this.availableFunds, other.availableFunds) &&
+            Utils.enhancedDeepEquals(this.balances, other.balances) &&
+            Utils.enhancedDeepEquals(this.expirableFunds, other.expirableFunds) &&
+            Utils.enhancedDeepEquals(this.expiredFunds, other.expiredFunds) &&
+            Utils.enhancedDeepEquals(this.holdFunds, other.holdFunds);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            availableFunds,
-            balances,
-            expirableFunds,
-            expiredFunds,
-            holdFunds);
+        return Utils.enhancedHash(
+            availableFunds, balances, expirableFunds,
+            expiredFunds, holdFunds);
     }
     
     @Override
@@ -146,22 +151,24 @@ public class WalletSummary {
                 "expiredFunds", expiredFunds,
                 "holdFunds", holdFunds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, BigInteger> availableFunds;
- 
+
         private List<BalanceWithAssets> balances;
- 
+
         private Map<String, BigInteger> expirableFunds;
- 
+
         private Map<String, BigInteger> expiredFunds;
- 
+
         private Map<String, BigInteger> holdFunds;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder availableFunds(Map<String, BigInteger> availableFunds) {
             Utils.checkNotNull(availableFunds, "availableFunds");
@@ -169,11 +176,13 @@ public class WalletSummary {
             return this;
         }
 
+
         public Builder balances(List<BalanceWithAssets> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
             return this;
         }
+
 
         public Builder expirableFunds(Map<String, BigInteger> expirableFunds) {
             Utils.checkNotNull(expirableFunds, "expirableFunds");
@@ -181,25 +190,26 @@ public class WalletSummary {
             return this;
         }
 
+
         public Builder expiredFunds(Map<String, BigInteger> expiredFunds) {
             Utils.checkNotNull(expiredFunds, "expiredFunds");
             this.expiredFunds = expiredFunds;
             return this;
         }
 
+
         public Builder holdFunds(Map<String, BigInteger> holdFunds) {
             Utils.checkNotNull(holdFunds, "holdFunds");
             this.holdFunds = holdFunds;
             return this;
         }
-        
+
         public WalletSummary build() {
+
             return new WalletSummary(
-                availableFunds,
-                balances,
-                expirableFunds,
-                expiredFunds,
-                holdFunds);
+                availableFunds, balances, expirableFunds,
+                expiredFunds, holdFunds);
         }
+
     }
 }

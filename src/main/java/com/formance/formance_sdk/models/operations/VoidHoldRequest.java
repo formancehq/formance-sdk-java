@@ -9,16 +9,16 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VoidHoldRequest {
 
+public class VoidHoldRequest {
     /**
      * Use an idempotency key
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
     private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=hold_id")
     private String holdId;
@@ -51,9 +51,10 @@ public class VoidHoldRequest {
         return holdId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Use an idempotency key
@@ -63,6 +64,7 @@ public class VoidHoldRequest {
         this.idempotencyKey = Optional.ofNullable(idempotencyKey);
         return this;
     }
+
 
     /**
      * Use an idempotency key
@@ -79,7 +81,6 @@ public class VoidHoldRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +91,14 @@ public class VoidHoldRequest {
         }
         VoidHoldRequest other = (VoidHoldRequest) o;
         return 
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.holdId, other.holdId);
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.holdId, other.holdId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            idempotencyKey,
-            holdId);
+        return Utils.enhancedHash(
+            idempotencyKey, holdId);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class VoidHoldRequest {
                 "idempotencyKey", idempotencyKey,
                 "holdId", holdId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private String holdId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Use an idempotency key
@@ -136,16 +138,18 @@ public class VoidHoldRequest {
             return this;
         }
 
+
         public Builder holdId(String holdId) {
             Utils.checkNotNull(holdId, "holdId");
             this.holdId = holdId;
             return this;
         }
-        
+
         public VoidHoldRequest build() {
+
             return new VoidHoldRequest(
-                idempotencyKey,
-                holdId);
+                idempotencyKey, holdId);
         }
+
     }
 }

@@ -14,31 +14,37 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3AtlarConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("accessKey")
     private String accessKey;
 
+
     @JsonProperty("baseUrl")
     private String baseUrl;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
+
 
     @JsonProperty("secret")
     private String secret;
@@ -73,7 +79,9 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
             String baseUrl,
             String name,
             String secret) {
-        this(accessKey, baseUrl, name, Optional.empty(), Optional.empty(), Optional.empty(), secret);
+        this(accessKey, baseUrl, name,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            secret);
     }
 
     @JsonIgnore
@@ -112,9 +120,10 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
         return secret;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3AtlarConfig withAccessKey(String accessKey) {
         Utils.checkNotNull(accessKey, "accessKey");
@@ -140,6 +149,7 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3AtlarConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -151,6 +161,7 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
         this.pollingPeriod = Optional.ofNullable(pollingPeriod);
         return this;
     }
+
 
     public V3AtlarConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -164,6 +175,7 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3AtlarConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -176,7 +188,6 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,24 +198,20 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
         }
         V3AtlarConfig other = (V3AtlarConfig) o;
         return 
-            Objects.deepEquals(this.accessKey, other.accessKey) &&
-            Objects.deepEquals(this.baseUrl, other.baseUrl) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.secret, other.secret);
+            Utils.enhancedDeepEquals(this.accessKey, other.accessKey) &&
+            Utils.enhancedDeepEquals(this.baseUrl, other.baseUrl) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.secret, other.secret);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accessKey,
-            baseUrl,
-            name,
-            pageSize,
-            pollingPeriod,
-            provider,
+        return Utils.enhancedHash(
+            accessKey, baseUrl, name,
+            pageSize, pollingPeriod, provider,
             secret);
     }
     
@@ -219,26 +226,28 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
                 "provider", provider,
                 "secret", secret);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accessKey;
- 
+
         private String baseUrl;
- 
+
         private String name;
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
- 
+
         private String secret;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accessKey(String accessKey) {
             Utils.checkNotNull(accessKey, "accessKey");
@@ -246,17 +255,20 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder baseUrl(String baseUrl) {
             Utils.checkNotNull(baseUrl, "baseUrl");
             this.baseUrl = baseUrl;
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -270,6 +282,7 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = Optional.ofNullable(pollingPeriod);
@@ -281,6 +294,7 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
 
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
@@ -294,12 +308,13 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = secret;
             return this;
         }
-        
+
         public V3AtlarConfig build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
@@ -310,15 +325,13 @@ public class V3AtlarConfig implements V3InstallConnectorRequest {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new V3AtlarConfig(
-                accessKey,
-                baseUrl,
-                name,
-                pageSize,
-                pollingPeriod,
-                provider,
+                accessKey, baseUrl, name,
+                pageSize, pollingPeriod, provider,
                 secret);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

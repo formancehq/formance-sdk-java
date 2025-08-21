@@ -13,33 +13,40 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class TaskDummyPay {
 
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("descriptor")
     private TaskDummyPayDescriptor descriptor;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
     private JsonNullable<? extends TaskDummyPayState> state;
 
+
     @JsonProperty("status")
     private TaskStatus status;
+
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
@@ -79,7 +86,9 @@ public class TaskDummyPay {
             String id,
             TaskStatus status,
             OffsetDateTime updatedAt) {
-        this(connectorID, createdAt, descriptor, JsonNullable.undefined(), id, JsonNullable.undefined(), status, updatedAt);
+        this(connectorID, createdAt, descriptor,
+            JsonNullable.undefined(), id, JsonNullable.undefined(),
+            status, updatedAt);
     }
 
     @JsonIgnore
@@ -123,9 +132,10 @@ public class TaskDummyPay {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TaskDummyPay withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -187,7 +197,6 @@ public class TaskDummyPay {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,27 +207,22 @@ public class TaskDummyPay {
         }
         TaskDummyPay other = (TaskDummyPay) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.descriptor, other.descriptor) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.descriptor, other.descriptor) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorID,
-            createdAt,
-            descriptor,
-            error,
-            id,
-            state,
-            status,
-            updatedAt);
+        return Utils.enhancedHash(
+            connectorID, createdAt, descriptor,
+            error, id, state,
+            status, updatedAt);
     }
     
     @Override
@@ -233,28 +237,30 @@ public class TaskDummyPay {
                 "status", status,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private TaskDummyPayDescriptor descriptor;
- 
+
         private JsonNullable<String> error = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private JsonNullable<? extends TaskDummyPayState> state = JsonNullable.undefined();
- 
+
         private TaskStatus status;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -262,17 +268,20 @@ public class TaskDummyPay {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
 
+
         public Builder descriptor(TaskDummyPayDescriptor descriptor) {
             Utils.checkNotNull(descriptor, "descriptor");
             this.descriptor = descriptor;
             return this;
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -286,11 +295,13 @@ public class TaskDummyPay {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder state(TaskDummyPayState state) {
             Utils.checkNotNull(state, "state");
@@ -304,28 +315,27 @@ public class TaskDummyPay {
             return this;
         }
 
+
         public Builder status(TaskStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public TaskDummyPay build() {
+
             return new TaskDummyPay(
-                connectorID,
-                createdAt,
-                descriptor,
-                error,
-                id,
-                state,
-                status,
-                updatedAt);
+                connectorID, createdAt, descriptor,
+                error, id, state,
+                status, updatedAt);
         }
+
     }
 }

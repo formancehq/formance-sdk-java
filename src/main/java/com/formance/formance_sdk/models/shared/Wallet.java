@@ -14,14 +14,15 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Wallet {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
     private Optional<? extends WalletBalances> balances;
+
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
@@ -32,6 +33,7 @@ public class Wallet {
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("ledger")
     private String ledger;
 
@@ -40,6 +42,7 @@ public class Wallet {
      */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
+
 
     @JsonProperty("name")
     private String name;
@@ -57,6 +60,7 @@ public class Wallet {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         this.balances = balances;
         this.createdAt = createdAt;
@@ -72,7 +76,8 @@ public class Wallet {
             String ledger,
             Map<String, String> metadata,
             String name) {
-        this(Optional.empty(), createdAt, id, ledger, metadata, name);
+        this(Optional.empty(), createdAt, id,
+            ledger, metadata, name);
     }
 
     @SuppressWarnings("unchecked")
@@ -112,15 +117,17 @@ public class Wallet {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Wallet withBalances(WalletBalances balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = Optional.ofNullable(balances);
         return this;
     }
+
 
     public Wallet withBalances(Optional<? extends WalletBalances> balances) {
         Utils.checkNotNull(balances, "balances");
@@ -164,7 +171,6 @@ public class Wallet {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -175,23 +181,19 @@ public class Wallet {
         }
         Wallet other = (Wallet) o;
         return 
-            Objects.deepEquals(this.balances, other.balances) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.balances, other.balances) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            balances,
-            createdAt,
-            id,
-            ledger,
-            metadata,
-            name);
+        return Utils.enhancedHash(
+            balances, createdAt, id,
+            ledger, metadata, name);
     }
     
     @Override
@@ -204,24 +206,26 @@ public class Wallet {
                 "metadata", metadata,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends WalletBalances> balances = Optional.empty();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private String ledger;
- 
+
         private Map<String, String> metadata;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder balances(WalletBalances balances) {
             Utils.checkNotNull(balances, "balances");
@@ -235,11 +239,13 @@ public class Wallet {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The unique ID of the wallet.
@@ -250,11 +256,13 @@ public class Wallet {
             return this;
         }
 
+
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Metadata associated with the wallet.
@@ -265,20 +273,19 @@ public class Wallet {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public Wallet build() {
+
             return new Wallet(
-                balances,
-                createdAt,
-                id,
-                ledger,
-                metadata,
-                name);
+                balances, createdAt, id,
+                ledger, metadata, name);
         }
+
     }
 }

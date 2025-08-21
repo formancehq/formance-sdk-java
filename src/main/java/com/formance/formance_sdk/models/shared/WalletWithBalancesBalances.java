@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class WalletWithBalancesBalances {
 
@@ -28,9 +28,10 @@ public class WalletWithBalancesBalances {
         return main;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WalletWithBalancesBalances withMain(AssetHolder main) {
         Utils.checkNotNull(main, "main");
@@ -38,7 +39,6 @@ public class WalletWithBalancesBalances {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class WalletWithBalancesBalances {
         }
         WalletWithBalancesBalances other = (WalletWithBalancesBalances) o;
         return 
-            Objects.deepEquals(this.main, other.main);
+            Utils.enhancedDeepEquals(this.main, other.main);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             main);
     }
     
@@ -63,24 +63,28 @@ public class WalletWithBalancesBalances {
         return Utils.toString(WalletWithBalancesBalances.class,
                 "main", main);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private AssetHolder main;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder main(AssetHolder main) {
             Utils.checkNotNull(main, "main");
             this.main = main;
             return this;
         }
-        
+
         public WalletWithBalancesBalances build() {
+
             return new WalletWithBalancesBalances(
                 main);
         }
+
     }
 }

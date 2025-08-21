@@ -10,21 +10,25 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
+
 
 public class V2VolumesWithBalance {
 
     @JsonProperty("account")
     private String account;
 
+
     @JsonProperty("asset")
     private String asset;
+
 
     @JsonProperty("balance")
     private BigInteger balance;
 
+
     @JsonProperty("input")
     private BigInteger input;
+
 
     @JsonProperty("output")
     private BigInteger output;
@@ -73,9 +77,10 @@ public class V2VolumesWithBalance {
         return output;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2VolumesWithBalance withAccount(String account) {
         Utils.checkNotNull(account, "account");
@@ -122,7 +127,6 @@ public class V2VolumesWithBalance {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -133,21 +137,18 @@ public class V2VolumesWithBalance {
         }
         V2VolumesWithBalance other = (V2VolumesWithBalance) o;
         return 
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.input, other.input) &&
-            Objects.deepEquals(this.output, other.output);
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.input, other.input) &&
+            Utils.enhancedDeepEquals(this.output, other.output);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            account,
-            asset,
-            balance,
-            input,
-            output);
+        return Utils.enhancedHash(
+            account, asset, balance,
+            input, output);
     }
     
     @Override
@@ -159,22 +160,24 @@ public class V2VolumesWithBalance {
                 "input", input,
                 "output", output);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String account;
- 
+
         private String asset;
- 
+
         private BigInteger balance;
- 
+
         private BigInteger input;
- 
+
         private BigInteger output;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder account(String account) {
             Utils.checkNotNull(account, "account");
@@ -182,11 +185,13 @@ public class V2VolumesWithBalance {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder balance(long balance) {
             this.balance = BigInteger.valueOf(balance);
@@ -199,6 +204,7 @@ public class V2VolumesWithBalance {
             return this;
         }
 
+
         public Builder input(long input) {
             this.input = BigInteger.valueOf(input);
             return this;
@@ -210,6 +216,7 @@ public class V2VolumesWithBalance {
             return this;
         }
 
+
         public Builder output(long output) {
             this.output = BigInteger.valueOf(output);
             return this;
@@ -220,14 +227,13 @@ public class V2VolumesWithBalance {
             this.output = output;
             return this;
         }
-        
+
         public V2VolumesWithBalance build() {
+
             return new V2VolumesWithBalance(
-                account,
-                asset,
-                balance,
-                input,
-                output);
+                account, asset, balance,
+                input, output);
         }
+
     }
 }

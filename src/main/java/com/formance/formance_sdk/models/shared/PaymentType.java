@@ -17,7 +17,7 @@ public enum PaymentType {
     @JsonValue
     private final String value;
 
-    private PaymentType(String value) {
+    PaymentType(String value) {
         this.value = value;
     }
     

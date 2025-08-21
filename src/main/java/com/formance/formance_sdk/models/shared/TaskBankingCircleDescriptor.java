@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskBankingCircleDescriptor {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("key")
     private Optional<String> key;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
@@ -48,15 +49,17 @@ public class TaskBankingCircleDescriptor {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TaskBankingCircleDescriptor withKey(String key) {
         Utils.checkNotNull(key, "key");
         this.key = Optional.ofNullable(key);
         return this;
     }
+
 
     public TaskBankingCircleDescriptor withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
@@ -70,13 +73,13 @@ public class TaskBankingCircleDescriptor {
         return this;
     }
 
+
     public TaskBankingCircleDescriptor withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -87,15 +90,14 @@ public class TaskBankingCircleDescriptor {
         }
         TaskBankingCircleDescriptor other = (TaskBankingCircleDescriptor) o;
         return 
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            key,
-            name);
+        return Utils.enhancedHash(
+            key, name);
     }
     
     @Override
@@ -104,16 +106,18 @@ public class TaskBankingCircleDescriptor {
                 "key", key,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> key = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
@@ -127,6 +131,7 @@ public class TaskBankingCircleDescriptor {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -138,11 +143,12 @@ public class TaskBankingCircleDescriptor {
             this.name = name;
             return this;
         }
-        
+
         public TaskBankingCircleDescriptor build() {
+
             return new TaskBankingCircleDescriptor(
-                key,
-                name);
+                key, name);
         }
+
     }
 }

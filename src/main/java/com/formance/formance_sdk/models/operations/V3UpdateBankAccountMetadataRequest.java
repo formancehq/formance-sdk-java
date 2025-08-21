@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3UpdateBankAccountMetadataRequest {
 
@@ -53,15 +53,17 @@ public class V3UpdateBankAccountMetadataRequest {
         return bankAccountID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3UpdateBankAccountMetadataRequest withV3UpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest v3UpdateBankAccountMetadataRequest) {
         Utils.checkNotNull(v3UpdateBankAccountMetadataRequest, "v3UpdateBankAccountMetadataRequest");
         this.v3UpdateBankAccountMetadataRequest = Optional.ofNullable(v3UpdateBankAccountMetadataRequest);
         return this;
     }
+
 
     public V3UpdateBankAccountMetadataRequest withV3UpdateBankAccountMetadataRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest) {
         Utils.checkNotNull(v3UpdateBankAccountMetadataRequest, "v3UpdateBankAccountMetadataRequest");
@@ -78,7 +80,6 @@ public class V3UpdateBankAccountMetadataRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +90,14 @@ public class V3UpdateBankAccountMetadataRequest {
         }
         V3UpdateBankAccountMetadataRequest other = (V3UpdateBankAccountMetadataRequest) o;
         return 
-            Objects.deepEquals(this.v3UpdateBankAccountMetadataRequest, other.v3UpdateBankAccountMetadataRequest) &&
-            Objects.deepEquals(this.bankAccountID, other.bankAccountID);
+            Utils.enhancedDeepEquals(this.v3UpdateBankAccountMetadataRequest, other.v3UpdateBankAccountMetadataRequest) &&
+            Utils.enhancedDeepEquals(this.bankAccountID, other.bankAccountID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v3UpdateBankAccountMetadataRequest,
-            bankAccountID);
+        return Utils.enhancedHash(
+            v3UpdateBankAccountMetadataRequest, bankAccountID);
     }
     
     @Override
@@ -106,16 +106,18 @@ public class V3UpdateBankAccountMetadataRequest {
                 "v3UpdateBankAccountMetadataRequest", v3UpdateBankAccountMetadataRequest,
                 "bankAccountID", bankAccountID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest = Optional.empty();
- 
+
         private String bankAccountID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v3UpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest v3UpdateBankAccountMetadataRequest) {
             Utils.checkNotNull(v3UpdateBankAccountMetadataRequest, "v3UpdateBankAccountMetadataRequest");
@@ -129,6 +131,7 @@ public class V3UpdateBankAccountMetadataRequest {
             return this;
         }
 
+
         /**
          * The bank account ID
          */
@@ -137,11 +140,12 @@ public class V3UpdateBankAccountMetadataRequest {
             this.bankAccountID = bankAccountID;
             return this;
         }
-        
+
         public V3UpdateBankAccountMetadataRequest build() {
+
             return new V3UpdateBankAccountMetadataRequest(
-                v3UpdateBankAccountMetadataRequest,
-                bankAccountID);
+                v3UpdateBankAccountMetadataRequest, bankAccountID);
         }
+
     }
 }

@@ -16,43 +16,53 @@ import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class TransferInitiationRequest {
 
     @JsonProperty("amount")
     private BigInteger amount;
 
+
     @JsonProperty("asset")
     private String asset;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
 
+
     @JsonProperty("description")
     private String description;
 
+
     @JsonProperty("destinationAccountID")
     private String destinationAccountID;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("scheduledAt")
     private OffsetDateTime scheduledAt;
 
+
     @JsonProperty("sourceAccountID")
     private String sourceAccountID;
 
+
     @JsonProperty("type")
     private TransferInitiationRequestType type;
+
 
     @JsonProperty("validated")
     private boolean validated;
@@ -104,7 +114,10 @@ public class TransferInitiationRequest {
             String sourceAccountID,
             TransferInitiationRequestType type,
             boolean validated) {
-        this(amount, asset, Optional.empty(), description, destinationAccountID, JsonNullable.undefined(), reference, scheduledAt, sourceAccountID, type, validated);
+        this(amount, asset, Optional.empty(),
+            description, destinationAccountID, JsonNullable.undefined(),
+            reference, scheduledAt, sourceAccountID,
+            type, validated);
     }
 
     @JsonIgnore
@@ -163,9 +176,10 @@ public class TransferInitiationRequest {
         return validated;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TransferInitiationRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -189,6 +203,7 @@ public class TransferInitiationRequest {
         this.connectorID = Optional.ofNullable(connectorID);
         return this;
     }
+
 
     public TransferInitiationRequest withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -250,7 +265,6 @@ public class TransferInitiationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -261,33 +275,26 @@ public class TransferInitiationRequest {
         }
         TransferInitiationRequest other = (TransferInitiationRequest) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.validated, other.validated);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.validated, other.validated);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset,
-            connectorID,
-            description,
-            destinationAccountID,
-            metadata,
-            reference,
-            scheduledAt,
-            sourceAccountID,
-            type,
-            validated);
+        return Utils.enhancedHash(
+            amount, asset, connectorID,
+            description, destinationAccountID, metadata,
+            reference, scheduledAt, sourceAccountID,
+            type, validated);
     }
     
     @Override
@@ -305,34 +312,36 @@ public class TransferInitiationRequest {
                 "type", type,
                 "validated", validated);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger amount;
- 
+
         private String asset;
- 
+
         private Optional<String> connectorID = Optional.empty();
- 
+
         private String description;
- 
+
         private String destinationAccountID;
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String reference;
- 
+
         private OffsetDateTime scheduledAt;
- 
+
         private String sourceAccountID;
- 
+
         private TransferInitiationRequestType type;
- 
+
         private Boolean validated;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
@@ -345,11 +354,13 @@ public class TransferInitiationRequest {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -363,17 +374,20 @@ public class TransferInitiationRequest {
             return this;
         }
 
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
 
+
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = destinationAccountID;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -387,11 +401,13 @@ public class TransferInitiationRequest {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
+
 
         public Builder scheduledAt(OffsetDateTime scheduledAt) {
             Utils.checkNotNull(scheduledAt, "scheduledAt");
@@ -399,11 +415,13 @@ public class TransferInitiationRequest {
             return this;
         }
 
+
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
             return this;
         }
+
 
         public Builder type(TransferInitiationRequestType type) {
             Utils.checkNotNull(type, "type");
@@ -411,25 +429,21 @@ public class TransferInitiationRequest {
             return this;
         }
 
+
         public Builder validated(boolean validated) {
             Utils.checkNotNull(validated, "validated");
             this.validated = validated;
             return this;
         }
-        
+
         public TransferInitiationRequest build() {
+
             return new TransferInitiationRequest(
-                amount,
-                asset,
-                connectorID,
-                description,
-                destinationAccountID,
-                metadata,
-                reference,
-                scheduledAt,
-                sourceAccountID,
-                type,
-                validated);
+                amount, asset, connectorID,
+                description, destinationAccountID, metadata,
+                reference, scheduledAt, sourceAccountID,
+                type, validated);
         }
+
     }
 }

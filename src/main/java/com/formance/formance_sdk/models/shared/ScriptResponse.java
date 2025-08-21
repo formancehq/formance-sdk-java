@@ -12,8 +12,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ScriptResponse {
 
@@ -21,13 +21,16 @@ public class ScriptResponse {
     @JsonProperty("details")
     private Optional<String> details;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorCode")
     private Optional<? extends ErrorsEnum> errorCode;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
     private Optional<String> errorMessage;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transaction")
@@ -50,7 +53,8 @@ public class ScriptResponse {
     }
     
     public ScriptResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -75,15 +79,17 @@ public class ScriptResponse {
         return (Optional<Transaction>) transaction;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ScriptResponse withDetails(String details) {
         Utils.checkNotNull(details, "details");
         this.details = Optional.ofNullable(details);
         return this;
     }
+
 
     public ScriptResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
@@ -97,6 +103,7 @@ public class ScriptResponse {
         return this;
     }
 
+
     public ScriptResponse withErrorCode(Optional<? extends ErrorsEnum> errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
@@ -108,6 +115,7 @@ public class ScriptResponse {
         this.errorMessage = Optional.ofNullable(errorMessage);
         return this;
     }
+
 
     public ScriptResponse withErrorMessage(Optional<String> errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
@@ -121,13 +129,13 @@ public class ScriptResponse {
         return this;
     }
 
+
     public ScriptResponse withTransaction(Optional<? extends Transaction> transaction) {
         Utils.checkNotNull(transaction, "transaction");
         this.transaction = transaction;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,18 +146,16 @@ public class ScriptResponse {
         }
         ScriptResponse other = (ScriptResponse) o;
         return 
-            Objects.deepEquals(this.details, other.details) &&
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage) &&
-            Objects.deepEquals(this.transaction, other.transaction);
+            Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage) &&
+            Utils.enhancedDeepEquals(this.transaction, other.transaction);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            details,
-            errorCode,
-            errorMessage,
+        return Utils.enhancedHash(
+            details, errorCode, errorMessage,
             transaction);
     }
     
@@ -161,20 +167,22 @@ public class ScriptResponse {
                 "errorMessage", errorMessage,
                 "transaction", transaction);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> details = Optional.empty();
- 
+
         private Optional<? extends ErrorsEnum> errorCode = Optional.empty();
- 
+
         private Optional<String> errorMessage = Optional.empty();
- 
+
         private Optional<? extends Transaction> transaction = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder details(String details) {
             Utils.checkNotNull(details, "details");
@@ -188,6 +196,7 @@ public class ScriptResponse {
             return this;
         }
 
+
         public Builder errorCode(ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = Optional.ofNullable(errorCode);
@@ -199,6 +208,7 @@ public class ScriptResponse {
             this.errorCode = errorCode;
             return this;
         }
+
 
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
@@ -212,6 +222,7 @@ public class ScriptResponse {
             return this;
         }
 
+
         public Builder transaction(Transaction transaction) {
             Utils.checkNotNull(transaction, "transaction");
             this.transaction = Optional.ofNullable(transaction);
@@ -223,13 +234,13 @@ public class ScriptResponse {
             this.transaction = transaction;
             return this;
         }
-        
+
         public ScriptResponse build() {
+
             return new ScriptResponse(
-                details,
-                errorCode,
-                errorMessage,
+                details, errorCode, errorMessage,
                 transaction);
         }
+
     }
 }

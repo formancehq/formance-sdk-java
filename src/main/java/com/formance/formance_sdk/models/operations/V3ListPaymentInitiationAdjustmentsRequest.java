@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ListPaymentInitiationAdjustmentsRequest {
 
@@ -57,7 +57,8 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
     
     public V3ListPaymentInitiationAdjustmentsRequest(
             String paymentInitiationID) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), paymentInitiationID);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            paymentInitiationID);
     }
 
     @SuppressWarnings("unchecked")
@@ -90,15 +91,17 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         return paymentInitiationID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ListPaymentInitiationAdjustmentsRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     public V3ListPaymentInitiationAdjustmentsRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -114,6 +117,7 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
@@ -133,6 +137,7 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         return this;
     }
 
+
     /**
      * The number of items to return
      */
@@ -151,7 +156,6 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,18 +166,16 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         }
         V3ListPaymentInitiationAdjustmentsRequest other = (V3ListPaymentInitiationAdjustmentsRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.paymentInitiationID, other.paymentInitiationID);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.paymentInitiationID, other.paymentInitiationID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            cursor,
-            pageSize,
+        return Utils.enhancedHash(
+            requestBody, cursor, pageSize,
             paymentInitiationID);
     }
     
@@ -185,20 +187,22 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
                 "pageSize", pageSize,
                 "paymentInitiationID", paymentInitiationID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private String paymentInitiationID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -211,6 +215,7 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
@@ -230,6 +235,7 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
             return this;
         }
 
+
         /**
          * The number of items to return
          */
@@ -248,6 +254,7 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
             return this;
         }
 
+
         /**
          * The payment initiation ID
          */
@@ -256,13 +263,13 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
             this.paymentInitiationID = paymentInitiationID;
             return this;
         }
-        
+
         public V3ListPaymentInitiationAdjustmentsRequest build() {
+
             return new V3ListPaymentInitiationAdjustmentsRequest(
-                requestBody,
-                cursor,
-                pageSize,
+                requestBody, cursor, pageSize,
                 paymentInitiationID);
         }
+
     }
 }

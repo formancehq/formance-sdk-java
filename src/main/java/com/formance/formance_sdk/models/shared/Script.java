@@ -14,15 +14,16 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Script {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
+
 
     @JsonProperty("plain")
     private String plain;
@@ -33,6 +34,7 @@ public class Script {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
@@ -56,7 +58,8 @@ public class Script {
     
     public Script(
             String plain) {
-        this(JsonNullable.undefined(), plain, Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), plain, Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -84,9 +87,10 @@ public class Script {
         return (Optional<Map<String, Object>>) vars;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Script withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -115,6 +119,7 @@ public class Script {
         return this;
     }
 
+
     /**
      * Reference to attach to the generated transaction
      */
@@ -130,13 +135,13 @@ public class Script {
         return this;
     }
 
+
     public Script withVars(Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,18 +152,16 @@ public class Script {
         }
         Script other = (Script) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.plain, other.plain) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.vars, other.vars);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.plain, other.plain) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.vars, other.vars);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            metadata,
-            plain,
-            reference,
+        return Utils.enhancedHash(
+            metadata, plain, reference,
             vars);
     }
     
@@ -170,20 +173,22 @@ public class Script {
                 "reference", reference,
                 "vars", vars);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private String plain;
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> vars = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -197,11 +202,13 @@ public class Script {
             return this;
         }
 
+
         public Builder plain(String plain) {
             Utils.checkNotNull(plain, "plain");
             this.plain = plain;
             return this;
         }
+
 
         /**
          * Reference to attach to the generated transaction
@@ -221,6 +228,7 @@ public class Script {
             return this;
         }
 
+
         public Builder vars(Map<String, Object> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
@@ -232,13 +240,13 @@ public class Script {
             this.vars = vars;
             return this;
         }
-        
+
         public Script build() {
+
             return new Script(
-                metadata,
-                plain,
-                reference,
+                metadata, plain, reference,
                 vars);
         }
+
     }
 }

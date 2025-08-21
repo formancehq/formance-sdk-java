@@ -9,7 +9,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UpdateBankAccountMetadataRequest {
 
@@ -45,9 +45,10 @@ public class UpdateBankAccountMetadataRequest {
         return bankAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateBankAccountMetadataRequest withUpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest) {
         Utils.checkNotNull(updateBankAccountMetadataRequest, "updateBankAccountMetadataRequest");
@@ -64,7 +65,6 @@ public class UpdateBankAccountMetadataRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,15 +75,14 @@ public class UpdateBankAccountMetadataRequest {
         }
         UpdateBankAccountMetadataRequest other = (UpdateBankAccountMetadataRequest) o;
         return 
-            Objects.deepEquals(this.updateBankAccountMetadataRequest, other.updateBankAccountMetadataRequest) &&
-            Objects.deepEquals(this.bankAccountId, other.bankAccountId);
+            Utils.enhancedDeepEquals(this.updateBankAccountMetadataRequest, other.updateBankAccountMetadataRequest) &&
+            Utils.enhancedDeepEquals(this.bankAccountId, other.bankAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updateBankAccountMetadataRequest,
-            bankAccountId);
+        return Utils.enhancedHash(
+            updateBankAccountMetadataRequest, bankAccountId);
     }
     
     @Override
@@ -92,22 +91,25 @@ public class UpdateBankAccountMetadataRequest {
                 "updateBankAccountMetadataRequest", updateBankAccountMetadataRequest,
                 "bankAccountId", bankAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest;
- 
+
         private String bankAccountId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest) {
             Utils.checkNotNull(updateBankAccountMetadataRequest, "updateBankAccountMetadataRequest");
             this.updateBankAccountMetadataRequest = updateBankAccountMetadataRequest;
             return this;
         }
+
 
         /**
          * The bank account ID.
@@ -117,11 +119,12 @@ public class UpdateBankAccountMetadataRequest {
             this.bankAccountId = bankAccountId;
             return this;
         }
-        
+
         public UpdateBankAccountMetadataRequest build() {
+
             return new UpdateBankAccountMetadataRequest(
-                updateBankAccountMetadataRequest,
-                bankAccountId);
+                updateBankAccountMetadataRequest, bankAccountId);
         }
+
     }
 }

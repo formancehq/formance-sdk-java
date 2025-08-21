@@ -13,9 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3CreateBankAccountRequest {
 
@@ -23,20 +23,25 @@ public class V3CreateBankAccountRequest {
     @JsonProperty("accountNumber")
     private Optional<String> accountNumber;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private Optional<String> country;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iban")
     private Optional<String> iban;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("swiftBicCode")
@@ -66,7 +71,8 @@ public class V3CreateBankAccountRequest {
     
     public V3CreateBankAccountRequest(
             String name) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), name, Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), name, Optional.empty());
     }
 
     @JsonIgnore
@@ -100,15 +106,17 @@ public class V3CreateBankAccountRequest {
         return swiftBicCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3CreateBankAccountRequest withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = Optional.ofNullable(accountNumber);
         return this;
     }
+
 
     public V3CreateBankAccountRequest withAccountNumber(Optional<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -122,6 +130,7 @@ public class V3CreateBankAccountRequest {
         return this;
     }
 
+
     public V3CreateBankAccountRequest withCountry(Optional<String> country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
@@ -133,6 +142,7 @@ public class V3CreateBankAccountRequest {
         this.iban = Optional.ofNullable(iban);
         return this;
     }
+
 
     public V3CreateBankAccountRequest withIban(Optional<String> iban) {
         Utils.checkNotNull(iban, "iban");
@@ -164,13 +174,13 @@ public class V3CreateBankAccountRequest {
         return this;
     }
 
+
     public V3CreateBankAccountRequest withSwiftBicCode(Optional<String> swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = swiftBicCode;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -181,23 +191,19 @@ public class V3CreateBankAccountRequest {
         }
         V3CreateBankAccountRequest other = (V3CreateBankAccountRequest) o;
         return 
-            Objects.deepEquals(this.accountNumber, other.accountNumber) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.iban, other.iban) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.swiftBicCode, other.swiftBicCode);
+            Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.iban, other.iban) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.swiftBicCode, other.swiftBicCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountNumber,
-            country,
-            iban,
-            metadata,
-            name,
-            swiftBicCode);
+        return Utils.enhancedHash(
+            accountNumber, country, iban,
+            metadata, name, swiftBicCode);
     }
     
     @Override
@@ -210,24 +216,26 @@ public class V3CreateBankAccountRequest {
                 "name", name,
                 "swiftBicCode", swiftBicCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> accountNumber = Optional.empty();
- 
+
         private Optional<String> country = Optional.empty();
- 
+
         private Optional<String> iban = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String name;
- 
+
         private Optional<String> swiftBicCode = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -241,6 +249,7 @@ public class V3CreateBankAccountRequest {
             return this;
         }
 
+
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
             this.country = Optional.ofNullable(country);
@@ -252,6 +261,7 @@ public class V3CreateBankAccountRequest {
             this.country = country;
             return this;
         }
+
 
         public Builder iban(String iban) {
             Utils.checkNotNull(iban, "iban");
@@ -265,6 +275,7 @@ public class V3CreateBankAccountRequest {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
@@ -277,11 +288,13 @@ public class V3CreateBankAccountRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder swiftBicCode(String swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
@@ -294,15 +307,13 @@ public class V3CreateBankAccountRequest {
             this.swiftBicCode = swiftBicCode;
             return this;
         }
-        
+
         public V3CreateBankAccountRequest build() {
+
             return new V3CreateBankAccountRequest(
-                accountNumber,
-                country,
-                iban,
-                metadata,
-                name,
-                swiftBicCode);
+                accountNumber, country, iban,
+                metadata, name, swiftBicCode);
         }
+
     }
 }

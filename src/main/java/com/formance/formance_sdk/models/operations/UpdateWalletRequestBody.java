@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class UpdateWalletRequestBody {
-
     /**
      * Custom metadata to attach to this wallet.
      */
@@ -24,6 +23,7 @@ public class UpdateWalletRequestBody {
     public UpdateWalletRequestBody(
             @JsonProperty("metadata") Map<String, String> metadata) {
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
     }
 
@@ -35,9 +35,10 @@ public class UpdateWalletRequestBody {
         return metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Custom metadata to attach to this wallet.
@@ -48,7 +49,6 @@ public class UpdateWalletRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -59,12 +59,12 @@ public class UpdateWalletRequestBody {
         }
         UpdateWalletRequestBody other = (UpdateWalletRequestBody) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             metadata);
     }
     
@@ -73,14 +73,16 @@ public class UpdateWalletRequestBody {
         return Utils.toString(UpdateWalletRequestBody.class,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, String> metadata;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Custom metadata to attach to this wallet.
@@ -90,10 +92,12 @@ public class UpdateWalletRequestBody {
             this.metadata = metadata;
             return this;
         }
-        
+
         public UpdateWalletRequestBody build() {
+
             return new UpdateWalletRequestBody(
                 metadata);
         }
+
     }
 }

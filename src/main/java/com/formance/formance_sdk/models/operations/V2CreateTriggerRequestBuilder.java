@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.V2TriggerData;
+import com.formance.formance_sdk.operations.V2CreateTrigger;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V2CreateTriggerRequestBuilder {
 
     private Optional<? extends V2TriggerData> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV2CreateTrigger sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2CreateTriggerRequestBuilder(SDKMethodInterfaces.MethodCallV2CreateTrigger sdk) {
-        this.sdk = sdk;
+    public V2CreateTriggerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V2CreateTriggerRequestBuilder request(V2TriggerData request) {
@@ -30,8 +34,10 @@ public class V2CreateTriggerRequestBuilder {
     }
 
     public V2CreateTriggerResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V2TriggerData>, V2CreateTriggerResponse> operation
+              = new V2CreateTrigger.Sync(sdkConfiguration);
 
-        return sdk.createTrigger(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

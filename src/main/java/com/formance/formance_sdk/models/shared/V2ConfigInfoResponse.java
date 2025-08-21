@@ -9,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2ConfigInfoResponse {
 
     @JsonProperty("server")
     private String server;
+
 
     @JsonProperty("version")
     private String version;
@@ -39,9 +40,10 @@ public class V2ConfigInfoResponse {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ConfigInfoResponse withServer(String server) {
         Utils.checkNotNull(server, "server");
@@ -55,7 +57,6 @@ public class V2ConfigInfoResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class V2ConfigInfoResponse {
         }
         V2ConfigInfoResponse other = (V2ConfigInfoResponse) o;
         return 
-            Objects.deepEquals(this.server, other.server) &&
-            Objects.deepEquals(this.version, other.version);
+            Utils.enhancedDeepEquals(this.server, other.server) &&
+            Utils.enhancedDeepEquals(this.version, other.version);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            server,
-            version);
+        return Utils.enhancedHash(
+            server, version);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class V2ConfigInfoResponse {
                 "server", server,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String server;
- 
+
         private String version;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder server(String server) {
             Utils.checkNotNull(server, "server");
@@ -100,16 +102,18 @@ public class V2ConfigInfoResponse {
             return this;
         }
 
+
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
             return this;
         }
-        
+
         public V2ConfigInfoResponse build() {
+
             return new V2ConfigInfoResponse(
-                server,
-                version);
+                server, version);
         }
+
     }
 }

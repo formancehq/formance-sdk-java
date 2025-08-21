@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.Reconcile;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ReconcileRequestBuilder {
 
     private ReconcileRequest request;
-    private final SDKMethodInterfaces.MethodCallReconcile sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ReconcileRequestBuilder(SDKMethodInterfaces.MethodCallReconcile sdk) {
-        this.sdk = sdk;
+    public ReconcileRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ReconcileRequestBuilder request(ReconcileRequest request) {
@@ -22,8 +26,10 @@ public class ReconcileRequestBuilder {
     }
 
     public ReconcileResponse call() throws Exception {
+        
+        RequestOperation<ReconcileRequest, ReconcileResponse> operation
+              = new Reconcile.Sync(sdkConfiguration);
 
-        return sdk.reconcile(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

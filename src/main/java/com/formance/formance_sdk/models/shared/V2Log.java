@@ -13,21 +13,25 @@ import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V2Log {
 
     @JsonProperty("data")
     private Map<String, Object> data;
 
+
     @JsonProperty("date")
     private OffsetDateTime date;
+
 
     @JsonProperty("hash")
     private String hash;
 
+
     @JsonProperty("id")
     private BigInteger id;
+
 
     @JsonProperty("type")
     private V2LogType type;
@@ -40,6 +44,7 @@ public class V2Log {
             @JsonProperty("id") BigInteger id,
             @JsonProperty("type") V2LogType type) {
         data = Utils.emptyMapIfNull(data);
+        Utils.checkNotNull(data, "data");
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(hash, "hash");
         Utils.checkNotNull(id, "id");
@@ -76,9 +81,10 @@ public class V2Log {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2Log withData(Map<String, Object> data) {
         Utils.checkNotNull(data, "data");
@@ -115,7 +121,6 @@ public class V2Log {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -126,21 +131,18 @@ public class V2Log {
         }
         V2Log other = (V2Log) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.date, other.date) &&
-            Objects.deepEquals(this.hash, other.hash) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.date, other.date) &&
+            Utils.enhancedDeepEquals(this.hash, other.hash) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            date,
-            hash,
-            id,
-            type);
+        return Utils.enhancedHash(
+            data, date, hash,
+            id, type);
     }
     
     @Override
@@ -152,22 +154,24 @@ public class V2Log {
                 "id", id,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Object> data;
- 
+
         private OffsetDateTime date;
- 
+
         private String hash;
- 
+
         private BigInteger id;
- 
+
         private V2LogType type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Map<String, Object> data) {
             Utils.checkNotNull(data, "data");
@@ -175,17 +179,20 @@ public class V2Log {
             return this;
         }
 
+
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
             return this;
         }
 
+
         public Builder hash(String hash) {
             Utils.checkNotNull(hash, "hash");
             this.hash = hash;
             return this;
         }
+
 
         public Builder id(long id) {
             this.id = BigInteger.valueOf(id);
@@ -198,19 +205,19 @@ public class V2Log {
             return this;
         }
 
+
         public Builder type(V2LogType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public V2Log build() {
+
             return new V2Log(
-                data,
-                date,
-                hash,
-                id,
-                type);
+                data, date, hash,
+                id, type);
         }
+
     }
 }

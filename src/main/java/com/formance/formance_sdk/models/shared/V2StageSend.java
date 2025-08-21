@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2StageSend {
 
@@ -23,17 +23,21 @@ public class V2StageSend {
     @JsonProperty("amount")
     private Optional<? extends V2Monetary> amount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
     private Optional<? extends V2StageSendDestination> destination;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
     private Optional<? extends V2StageSendSource> source;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
@@ -59,7 +63,8 @@ public class V2StageSend {
     }
     
     public V2StageSend() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -91,15 +96,17 @@ public class V2StageSend {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2StageSend withAmount(V2Monetary amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     public V2StageSend withAmount(Optional<? extends V2Monetary> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -113,6 +120,7 @@ public class V2StageSend {
         return this;
     }
 
+
     public V2StageSend withDestination(Optional<? extends V2StageSendDestination> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
@@ -124,6 +132,7 @@ public class V2StageSend {
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     public V2StageSend withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -137,6 +146,7 @@ public class V2StageSend {
         return this;
     }
 
+
     public V2StageSend withSource(Optional<? extends V2StageSendSource> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
@@ -149,13 +159,13 @@ public class V2StageSend {
         return this;
     }
 
+
     public V2StageSend withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -166,21 +176,18 @@ public class V2StageSend {
         }
         V2StageSend other = (V2StageSend) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.source, other.source) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            destination,
-            metadata,
-            source,
-            timestamp);
+        return Utils.enhancedHash(
+            amount, destination, metadata,
+            source, timestamp);
     }
     
     @Override
@@ -192,22 +199,24 @@ public class V2StageSend {
                 "source", source,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends V2Monetary> amount = Optional.empty();
- 
+
         private Optional<? extends V2StageSendDestination> destination = Optional.empty();
- 
+
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
- 
+
         private Optional<? extends V2StageSendSource> source = Optional.empty();
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(V2Monetary amount) {
             Utils.checkNotNull(amount, "amount");
@@ -221,6 +230,7 @@ public class V2StageSend {
             return this;
         }
 
+
         public Builder destination(V2StageSendDestination destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = Optional.ofNullable(destination);
@@ -232,6 +242,7 @@ public class V2StageSend {
             this.destination = destination;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -245,6 +256,7 @@ public class V2StageSend {
             return this;
         }
 
+
         public Builder source(V2StageSendSource source) {
             Utils.checkNotNull(source, "source");
             this.source = Optional.ofNullable(source);
@@ -257,6 +269,7 @@ public class V2StageSend {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
@@ -268,14 +281,13 @@ public class V2StageSend {
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public V2StageSend build() {
+
             return new V2StageSend(
-                amount,
-                destination,
-                metadata,
-                source,
-                timestamp);
+                amount, destination, metadata,
+                source, timestamp);
         }
+
     }
 }

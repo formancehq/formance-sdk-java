@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetManyConfigs;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetManyConfigsRequestBuilder {
 
     private GetManyConfigsRequest request;
-    private final SDKMethodInterfaces.MethodCallGetManyConfigs sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetManyConfigsRequestBuilder(SDKMethodInterfaces.MethodCallGetManyConfigs sdk) {
-        this.sdk = sdk;
+    public GetManyConfigsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetManyConfigsRequestBuilder request(GetManyConfigsRequest request) {
@@ -22,8 +26,10 @@ public class GetManyConfigsRequestBuilder {
     }
 
     public GetManyConfigsResponse call() throws Exception {
+        
+        RequestOperation<GetManyConfigsRequest, GetManyConfigsResponse> operation
+              = new GetManyConfigs.Sync(sdkConfiguration);
 
-        return sdk.getManyConfigs(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

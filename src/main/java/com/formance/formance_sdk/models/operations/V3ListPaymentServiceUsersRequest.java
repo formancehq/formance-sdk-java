@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ListPaymentServiceUsersRequest {
 
@@ -72,15 +72,17 @@ public class V3ListPaymentServiceUsersRequest {
         return pageSize;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ListPaymentServiceUsersRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     public V3ListPaymentServiceUsersRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -96,6 +98,7 @@ public class V3ListPaymentServiceUsersRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
@@ -115,6 +118,7 @@ public class V3ListPaymentServiceUsersRequest {
         return this;
     }
 
+
     /**
      * The number of items to return
      */
@@ -124,7 +128,6 @@ public class V3ListPaymentServiceUsersRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -135,17 +138,15 @@ public class V3ListPaymentServiceUsersRequest {
         }
         V3ListPaymentServiceUsersRequest other = (V3ListPaymentServiceUsersRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            cursor,
-            pageSize);
+        return Utils.enhancedHash(
+            requestBody, cursor, pageSize);
     }
     
     @Override
@@ -155,18 +156,20 @@ public class V3ListPaymentServiceUsersRequest {
                 "cursor", cursor,
                 "pageSize", pageSize);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -179,6 +182,7 @@ public class V3ListPaymentServiceUsersRequest {
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
@@ -198,6 +202,7 @@ public class V3ListPaymentServiceUsersRequest {
             return this;
         }
 
+
         /**
          * The number of items to return
          */
@@ -215,12 +220,12 @@ public class V3ListPaymentServiceUsersRequest {
             this.pageSize = pageSize;
             return this;
         }
-        
+
         public V3ListPaymentServiceUsersRequest build() {
+
             return new V3ListPaymentServiceUsersRequest(
-                requestBody,
-                cursor,
-                pageSize);
+                requestBody, cursor, pageSize);
         }
+
     }
 }

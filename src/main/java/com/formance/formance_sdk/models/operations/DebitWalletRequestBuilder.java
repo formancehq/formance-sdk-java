@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DebitWallet;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DebitWalletRequestBuilder {
 
     private DebitWalletRequest request;
-    private final SDKMethodInterfaces.MethodCallDebitWallet sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DebitWalletRequestBuilder(SDKMethodInterfaces.MethodCallDebitWallet sdk) {
-        this.sdk = sdk;
+    public DebitWalletRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DebitWalletRequestBuilder request(DebitWalletRequest request) {
@@ -22,8 +26,10 @@ public class DebitWalletRequestBuilder {
     }
 
     public DebitWalletResponse call() throws Exception {
+        
+        RequestOperation<DebitWalletRequest, DebitWalletResponse> operation
+              = new DebitWallet.Sync(sdkConfiguration);
 
-        return sdk.debitWallet(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

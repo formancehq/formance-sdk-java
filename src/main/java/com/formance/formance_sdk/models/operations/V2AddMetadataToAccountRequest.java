@@ -11,11 +11,10 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2AddMetadataToAccountRequest {
 
+public class V2AddMetadataToAccountRequest {
     /**
      * Use an idempotency key
      */
@@ -58,6 +57,7 @@ public class V2AddMetadataToAccountRequest {
             String ledger) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(dryRun, "dryRun");
         Utils.checkNotNull(ledger, "ledger");
@@ -72,7 +72,8 @@ public class V2AddMetadataToAccountRequest {
             Map<String, String> requestBody,
             String address,
             String ledger) {
-        this(Optional.empty(), requestBody, address, Optional.empty(), ledger);
+        this(Optional.empty(), requestBody, address,
+            Optional.empty(), ledger);
     }
 
     /**
@@ -118,9 +119,10 @@ public class V2AddMetadataToAccountRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Use an idempotency key
@@ -130,6 +132,7 @@ public class V2AddMetadataToAccountRequest {
         this.idempotencyKey = Optional.ofNullable(idempotencyKey);
         return this;
     }
+
 
     /**
      * Use an idempotency key
@@ -170,6 +173,7 @@ public class V2AddMetadataToAccountRequest {
         return this;
     }
 
+
     /**
      * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
@@ -188,7 +192,6 @@ public class V2AddMetadataToAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,21 +202,18 @@ public class V2AddMetadataToAccountRequest {
         }
         V2AddMetadataToAccountRequest other = (V2AddMetadataToAccountRequest) o;
         return 
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.dryRun, other.dryRun) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.dryRun, other.dryRun) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            idempotencyKey,
-            requestBody,
-            address,
-            dryRun,
-            ledger);
+        return Utils.enhancedHash(
+            idempotencyKey, requestBody, address,
+            dryRun, ledger);
     }
     
     @Override
@@ -225,22 +225,24 @@ public class V2AddMetadataToAccountRequest {
                 "dryRun", dryRun,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private Map<String, String> requestBody;
- 
+
         private String address;
- 
+
         private Optional<Boolean> dryRun = Optional.empty();
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Use an idempotency key
@@ -260,6 +262,7 @@ public class V2AddMetadataToAccountRequest {
             return this;
         }
 
+
         /**
          * metadata
          */
@@ -268,6 +271,7 @@ public class V2AddMetadataToAccountRequest {
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Exact address of the account. It must match the following regular expressions pattern:
@@ -280,6 +284,7 @@ public class V2AddMetadataToAccountRequest {
             this.address = address;
             return this;
         }
+
 
         /**
          * Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
@@ -299,6 +304,7 @@ public class V2AddMetadataToAccountRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -307,14 +313,13 @@ public class V2AddMetadataToAccountRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2AddMetadataToAccountRequest build() {
+
             return new V2AddMetadataToAccountRequest(
-                idempotencyKey,
-                requestBody,
-                address,
-                dryRun,
-                ledger);
+                idempotencyKey, requestBody, address,
+                dryRun, ledger);
         }
+
     }
 }

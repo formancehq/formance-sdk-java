@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.InstallConnector;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class InstallConnectorRequestBuilder {
 
     private InstallConnectorRequest request;
-    private final SDKMethodInterfaces.MethodCallInstallConnector sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public InstallConnectorRequestBuilder(SDKMethodInterfaces.MethodCallInstallConnector sdk) {
-        this.sdk = sdk;
+    public InstallConnectorRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public InstallConnectorRequestBuilder request(InstallConnectorRequest request) {
@@ -22,8 +26,10 @@ public class InstallConnectorRequestBuilder {
     }
 
     public InstallConnectorResponse call() throws Exception {
+        
+        RequestOperation<InstallConnectorRequest, InstallConnectorResponse> operation
+              = new InstallConnector.Sync(sdkConfiguration);
 
-        return sdk.installConnector(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

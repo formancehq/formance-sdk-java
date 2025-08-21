@@ -10,19 +10,20 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class UpdateWalletRequest {
 
+public class UpdateWalletRequest {
     /**
      * Use an idempotency key
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
     private Optional<String> idempotencyKey;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends UpdateWalletRequestBody> requestBody;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
@@ -64,9 +65,10 @@ public class UpdateWalletRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Use an idempotency key
@@ -76,6 +78,7 @@ public class UpdateWalletRequest {
         this.idempotencyKey = Optional.ofNullable(idempotencyKey);
         return this;
     }
+
 
     /**
      * Use an idempotency key
@@ -92,6 +95,7 @@ public class UpdateWalletRequest {
         return this;
     }
 
+
     public UpdateWalletRequest withRequestBody(Optional<? extends UpdateWalletRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
@@ -104,7 +108,6 @@ public class UpdateWalletRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +118,15 @@ public class UpdateWalletRequest {
         }
         UpdateWalletRequest other = (UpdateWalletRequest) o;
         return 
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            idempotencyKey,
-            requestBody,
-            id);
+        return Utils.enhancedHash(
+            idempotencyKey, requestBody, id);
     }
     
     @Override
@@ -135,18 +136,20 @@ public class UpdateWalletRequest {
                 "requestBody", requestBody,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private Optional<? extends UpdateWalletRequestBody> requestBody = Optional.empty();
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Use an idempotency key
@@ -166,6 +169,7 @@ public class UpdateWalletRequest {
             return this;
         }
 
+
         public Builder requestBody(UpdateWalletRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
@@ -178,17 +182,18 @@ public class UpdateWalletRequest {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
-        
+
         public UpdateWalletRequest build() {
+
             return new UpdateWalletRequest(
-                idempotencyKey,
-                requestBody,
-                id);
+                idempotencyKey, requestBody, id);
         }
+
     }
 }

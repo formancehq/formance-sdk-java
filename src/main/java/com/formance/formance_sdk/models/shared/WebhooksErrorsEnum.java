@@ -16,7 +16,7 @@ public enum WebhooksErrorsEnum {
     @JsonValue
     private final String value;
 
-    private WebhooksErrorsEnum(String value) {
+    WebhooksErrorsEnum(String value) {
         this.value = value;
     }
     

@@ -14,24 +14,28 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class TransferInitiationAdjusments {
 
     @JsonProperty("adjustmentID")
     private String adjustmentID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
+
 
     @JsonProperty("status")
     private TransferInitiationStatus status;
@@ -59,7 +63,8 @@ public class TransferInitiationAdjusments {
             String adjustmentID,
             OffsetDateTime createdAt,
             TransferInitiationStatus status) {
-        this(adjustmentID, createdAt, JsonNullable.undefined(), JsonNullable.undefined(), status);
+        this(adjustmentID, createdAt, JsonNullable.undefined(),
+            JsonNullable.undefined(), status);
     }
 
     @JsonIgnore
@@ -88,9 +93,10 @@ public class TransferInitiationAdjusments {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TransferInitiationAdjusments withAdjustmentID(String adjustmentID) {
         Utils.checkNotNull(adjustmentID, "adjustmentID");
@@ -134,7 +140,6 @@ public class TransferInitiationAdjusments {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -145,21 +150,18 @@ public class TransferInitiationAdjusments {
         }
         TransferInitiationAdjusments other = (TransferInitiationAdjusments) o;
         return 
-            Objects.deepEquals(this.adjustmentID, other.adjustmentID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.adjustmentID, other.adjustmentID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            adjustmentID,
-            createdAt,
-            error,
-            metadata,
-            status);
+        return Utils.enhancedHash(
+            adjustmentID, createdAt, error,
+            metadata, status);
     }
     
     @Override
@@ -171,22 +173,24 @@ public class TransferInitiationAdjusments {
                 "metadata", metadata,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String adjustmentID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private JsonNullable<String> error = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private TransferInitiationStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder adjustmentID(String adjustmentID) {
             Utils.checkNotNull(adjustmentID, "adjustmentID");
@@ -194,11 +198,13 @@ public class TransferInitiationAdjusments {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -212,6 +218,7 @@ public class TransferInitiationAdjusments {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
@@ -224,19 +231,19 @@ public class TransferInitiationAdjusments {
             return this;
         }
 
+
         public Builder status(TransferInitiationStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public TransferInitiationAdjusments build() {
+
             return new TransferInitiationAdjusments(
-                adjustmentID,
-                createdAt,
-                error,
-                metadata,
-                status);
+                adjustmentID, createdAt, error,
+                metadata, status);
         }
+
     }
 }

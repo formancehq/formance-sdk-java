@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetInfo;
 import java.lang.Exception;
 
 public class GetInfoRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetInfoRequestBuilder(SDKMethodInterfaces.MethodCallGetInfo sdk) {
-        this.sdk = sdk;
+    public GetInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetInfoResponse call() throws Exception {
+        
+        RequestlessOperation<GetInfoResponse> operation
+            = new GetInfo.Sync(sdkConfiguration);
 
-        return sdk.getInfoDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

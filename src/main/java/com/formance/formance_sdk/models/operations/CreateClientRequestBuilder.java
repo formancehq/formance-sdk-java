@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.ClientOptions;
+import com.formance.formance_sdk.operations.CreateClient;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class CreateClientRequestBuilder {
 
     private Optional<? extends ClientOptions> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCreateClient sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateClientRequestBuilder(SDKMethodInterfaces.MethodCallCreateClient sdk) {
-        this.sdk = sdk;
+    public CreateClientRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public CreateClientRequestBuilder request(ClientOptions request) {
@@ -30,8 +34,10 @@ public class CreateClientRequestBuilder {
     }
 
     public CreateClientResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends ClientOptions>, CreateClientResponse> operation
+              = new CreateClient.Sync(sdkConfiguration);
 
-        return sdk.createClient(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

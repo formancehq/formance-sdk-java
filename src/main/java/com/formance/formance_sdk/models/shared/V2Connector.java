@@ -21,7 +21,7 @@ public enum V2Connector {
     @JsonValue
     private final String value;
 
-    private V2Connector(String value) {
+    V2Connector(String value) {
         this.value = value;
     }
     

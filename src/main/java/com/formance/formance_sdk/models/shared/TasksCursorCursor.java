@@ -14,23 +14,27 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class TasksCursorCursor {
 
     @JsonProperty("data")
     private List<TasksCursorData> data;
 
+
     @JsonProperty("hasMore")
     private boolean hasMore;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("next")
     private Optional<String> next;
 
+
     @JsonProperty("pageSize")
     private long pageSize;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("previous")
@@ -59,7 +63,8 @@ public class TasksCursorCursor {
             List<TasksCursorData> data,
             boolean hasMore,
             long pageSize) {
-        this(data, hasMore, Optional.empty(), pageSize, Optional.empty());
+        this(data, hasMore, Optional.empty(),
+            pageSize, Optional.empty());
     }
 
     @JsonIgnore
@@ -87,9 +92,10 @@ public class TasksCursorCursor {
         return previous;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TasksCursorCursor withData(List<TasksCursorData> data) {
         Utils.checkNotNull(data, "data");
@@ -109,6 +115,7 @@ public class TasksCursorCursor {
         return this;
     }
 
+
     public TasksCursorCursor withNext(Optional<String> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
@@ -127,13 +134,13 @@ public class TasksCursorCursor {
         return this;
     }
 
+
     public TasksCursorCursor withPrevious(Optional<String> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -144,21 +151,18 @@ public class TasksCursorCursor {
         }
         TasksCursorCursor other = (TasksCursorCursor) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.hasMore, other.hasMore) &&
-            Objects.deepEquals(this.next, other.next) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.previous, other.previous);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.hasMore, other.hasMore) &&
+            Utils.enhancedDeepEquals(this.next, other.next) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.previous, other.previous);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            hasMore,
-            next,
-            pageSize,
-            previous);
+        return Utils.enhancedHash(
+            data, hasMore, next,
+            pageSize, previous);
     }
     
     @Override
@@ -170,22 +174,24 @@ public class TasksCursorCursor {
                 "pageSize", pageSize,
                 "previous", previous);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<TasksCursorData> data;
- 
+
         private Boolean hasMore;
- 
+
         private Optional<String> next = Optional.empty();
- 
+
         private Long pageSize;
- 
+
         private Optional<String> previous = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<TasksCursorData> data) {
             Utils.checkNotNull(data, "data");
@@ -193,11 +199,13 @@ public class TasksCursorCursor {
             return this;
         }
 
+
         public Builder hasMore(boolean hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
             this.hasMore = hasMore;
             return this;
         }
+
 
         public Builder next(String next) {
             Utils.checkNotNull(next, "next");
@@ -211,11 +219,13 @@ public class TasksCursorCursor {
             return this;
         }
 
+
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
         }
+
 
         public Builder previous(String previous) {
             Utils.checkNotNull(previous, "previous");
@@ -228,14 +238,13 @@ public class TasksCursorCursor {
             this.previous = previous;
             return this;
         }
-        
+
         public TasksCursorCursor build() {
+
             return new TasksCursorCursor(
-                data,
-                hasMore,
-                next,
-                pageSize,
-                previous);
+                data, hasMore, next,
+                pageSize, previous);
         }
+
     }
 }

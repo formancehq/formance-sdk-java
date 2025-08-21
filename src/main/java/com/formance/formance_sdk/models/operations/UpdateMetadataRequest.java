@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateMetadataRequest {
 
@@ -54,15 +54,17 @@ public class UpdateMetadataRequest {
         return paymentId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateMetadataRequest withRequestBody(Map<String, String> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     public UpdateMetadataRequest withRequestBody(Optional<? extends Map<String, String>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -79,7 +81,6 @@ public class UpdateMetadataRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +91,14 @@ public class UpdateMetadataRequest {
         }
         UpdateMetadataRequest other = (UpdateMetadataRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.paymentId, other.paymentId);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            paymentId);
+        return Utils.enhancedHash(
+            requestBody, paymentId);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class UpdateMetadataRequest {
                 "requestBody", requestBody,
                 "paymentId", paymentId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, String>> requestBody = Optional.empty();
- 
+
         private String paymentId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, String> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -130,6 +132,7 @@ public class UpdateMetadataRequest {
             return this;
         }
 
+
         /**
          * The payment ID.
          */
@@ -138,11 +141,12 @@ public class UpdateMetadataRequest {
             this.paymentId = paymentId;
             return this;
         }
-        
+
         public UpdateMetadataRequest build() {
+
             return new UpdateMetadataRequest(
-                requestBody,
-                paymentId);
+                requestBody, paymentId);
         }
+
     }
 }

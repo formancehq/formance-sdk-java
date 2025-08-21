@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2DeleteLedgerMetadataRequest {
-
     /**
      * Key to remove.
      */
@@ -51,9 +50,10 @@ public class V2DeleteLedgerMetadataRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Key to remove.
@@ -73,7 +73,6 @@ public class V2DeleteLedgerMetadataRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +83,14 @@ public class V2DeleteLedgerMetadataRequest {
         }
         V2DeleteLedgerMetadataRequest other = (V2DeleteLedgerMetadataRequest) o;
         return 
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            key,
-            ledger);
+        return Utils.enhancedHash(
+            key, ledger);
     }
     
     @Override
@@ -101,16 +99,18 @@ public class V2DeleteLedgerMetadataRequest {
                 "key", key,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String key;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Key to remove.
@@ -121,6 +121,7 @@ public class V2DeleteLedgerMetadataRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -129,11 +130,12 @@ public class V2DeleteLedgerMetadataRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2DeleteLedgerMetadataRequest build() {
+
             return new V2DeleteLedgerMetadataRequest(
-                key,
-                ledger);
+                key, ledger);
         }
+
     }
 }

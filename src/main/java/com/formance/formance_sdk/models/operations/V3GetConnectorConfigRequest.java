@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3GetConnectorConfigRequest {
-
     /**
      * The connector ID
      */
@@ -34,9 +33,10 @@ public class V3GetConnectorConfigRequest {
         return connectorID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The connector ID
@@ -47,7 +47,6 @@ public class V3GetConnectorConfigRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3GetConnectorConfigRequest {
         }
         V3GetConnectorConfigRequest other = (V3GetConnectorConfigRequest) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             connectorID);
     }
     
@@ -72,14 +71,16 @@ public class V3GetConnectorConfigRequest {
         return Utils.toString(V3GetConnectorConfigRequest.class,
                 "connectorID", connectorID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The connector ID
@@ -89,10 +90,12 @@ public class V3GetConnectorConfigRequest {
             this.connectorID = connectorID;
             return this;
         }
-        
+
         public V3GetConnectorConfigRequest build() {
+
             return new V3GetConnectorConfigRequest(
                 connectorID);
         }
+
     }
 }

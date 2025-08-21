@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class LedgerInfoStorage {
 
@@ -39,9 +39,10 @@ public class LedgerInfoStorage {
         return (Optional<List<MigrationInfo>>) migrations;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public LedgerInfoStorage withMigrations(List<MigrationInfo> migrations) {
         Utils.checkNotNull(migrations, "migrations");
@@ -49,13 +50,13 @@ public class LedgerInfoStorage {
         return this;
     }
 
+
     public LedgerInfoStorage withMigrations(Optional<? extends List<MigrationInfo>> migrations) {
         Utils.checkNotNull(migrations, "migrations");
         this.migrations = migrations;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,12 +67,12 @@ public class LedgerInfoStorage {
         }
         LedgerInfoStorage other = (LedgerInfoStorage) o;
         return 
-            Objects.deepEquals(this.migrations, other.migrations);
+            Utils.enhancedDeepEquals(this.migrations, other.migrations);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             migrations);
     }
     
@@ -80,14 +81,16 @@ public class LedgerInfoStorage {
         return Utils.toString(LedgerInfoStorage.class,
                 "migrations", migrations);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<MigrationInfo>> migrations = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder migrations(List<MigrationInfo> migrations) {
             Utils.checkNotNull(migrations, "migrations");
@@ -100,10 +103,12 @@ public class LedgerInfoStorage {
             this.migrations = migrations;
             return this;
         }
-        
+
         public LedgerInfoStorage build() {
+
             return new LedgerInfoStorage(
                 migrations);
         }
+
     }
 }

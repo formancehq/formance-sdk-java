@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2DeleteLedgerMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2DeleteLedgerMetadataRequestBuilder {
 
     private V2DeleteLedgerMetadataRequest request;
-    private final SDKMethodInterfaces.MethodCallV2DeleteLedgerMetadata sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2DeleteLedgerMetadataRequestBuilder(SDKMethodInterfaces.MethodCallV2DeleteLedgerMetadata sdk) {
-        this.sdk = sdk;
+    public V2DeleteLedgerMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2DeleteLedgerMetadataRequestBuilder request(V2DeleteLedgerMetadataRequest request) {
@@ -22,8 +26,10 @@ public class V2DeleteLedgerMetadataRequestBuilder {
     }
 
     public V2DeleteLedgerMetadataResponse call() throws Exception {
+        
+        RequestOperation<V2DeleteLedgerMetadataRequest, V2DeleteLedgerMetadataResponse> operation
+              = new V2DeleteLedgerMetadata.Sync(sdkConfiguration);
 
-        return sdk.deleteLedgerMetadata(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

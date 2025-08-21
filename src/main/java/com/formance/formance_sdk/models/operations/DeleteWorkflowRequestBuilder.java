@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DeleteWorkflow;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DeleteWorkflowRequestBuilder {
 
     private DeleteWorkflowRequest request;
-    private final SDKMethodInterfaces.MethodCallDeleteWorkflow sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteWorkflowRequestBuilder(SDKMethodInterfaces.MethodCallDeleteWorkflow sdk) {
-        this.sdk = sdk;
+    public DeleteWorkflowRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteWorkflowRequestBuilder request(DeleteWorkflowRequest request) {
@@ -22,8 +26,10 @@ public class DeleteWorkflowRequestBuilder {
     }
 
     public DeleteWorkflowResponse call() throws Exception {
+        
+        RequestOperation<DeleteWorkflowRequest, DeleteWorkflowResponse> operation
+              = new DeleteWorkflow.Sync(sdkConfiguration);
 
-        return sdk.deleteWorkflow(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
+
 
 public class Monetary {
-
     /**
      * The amount of the monetary value.
      */
@@ -52,13 +51,14 @@ public class Monetary {
         return asset;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-        /**
-         * The amount of the monetary value.
-         */
+
+    /**
+     * The amount of the monetary value.
+     */
     public Monetary withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
@@ -82,7 +82,6 @@ public class Monetary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,15 +92,14 @@ public class Monetary {
         }
         Monetary other = (Monetary) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset);
+        return Utils.enhancedHash(
+            amount, asset);
     }
     
     @Override
@@ -110,16 +108,18 @@ public class Monetary {
                 "amount", amount,
                 "asset", asset);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger amount;
- 
+
         private String asset;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The amount of the monetary value.
@@ -138,6 +138,7 @@ public class Monetary {
             return this;
         }
 
+
         /**
          * The asset of the monetary value.
          */
@@ -146,11 +147,12 @@ public class Monetary {
             this.asset = asset;
             return this;
         }
-        
+
         public Monetary build() {
+
             return new Monetary(
-                amount,
-                asset);
+                amount, asset);
         }
+
     }
 }

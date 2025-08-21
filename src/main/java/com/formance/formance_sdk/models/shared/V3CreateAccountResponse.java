@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3CreateAccountResponse {
 
@@ -28,9 +28,10 @@ public class V3CreateAccountResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3CreateAccountResponse withData(V3Account data) {
         Utils.checkNotNull(data, "data");
@@ -38,7 +39,6 @@ public class V3CreateAccountResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V3CreateAccountResponse {
         }
         V3CreateAccountResponse other = (V3CreateAccountResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -63,24 +63,28 @@ public class V3CreateAccountResponse {
         return Utils.toString(V3CreateAccountResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V3Account data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(V3Account data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public V3CreateAccountResponse build() {
+
             return new V3CreateAccountResponse(
                 data);
         }
+
     }
 }

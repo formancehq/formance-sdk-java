@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ForwardBankAccountRequest {
 
@@ -28,9 +28,10 @@ public class ForwardBankAccountRequest {
         return connectorID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ForwardBankAccountRequest withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -38,7 +39,6 @@ public class ForwardBankAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class ForwardBankAccountRequest {
         }
         ForwardBankAccountRequest other = (ForwardBankAccountRequest) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             connectorID);
     }
     
@@ -63,24 +63,28 @@ public class ForwardBankAccountRequest {
         return Utils.toString(ForwardBankAccountRequest.class,
                 "connectorID", connectorID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
         }
-        
+
         public ForwardBankAccountRequest build() {
+
             return new ForwardBankAccountRequest(
                 connectorID);
         }
+
     }
 }

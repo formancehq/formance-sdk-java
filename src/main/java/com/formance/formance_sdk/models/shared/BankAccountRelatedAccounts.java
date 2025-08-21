@@ -10,21 +10,25 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class BankAccountRelatedAccounts {
 
     @JsonProperty("accountID")
     private String accountID;
 
+
     @JsonProperty("connectorID")
     private String connectorID;
+
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("provider")
     private String provider;
@@ -73,9 +77,10 @@ public class BankAccountRelatedAccounts {
         return provider;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BankAccountRelatedAccounts withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
@@ -107,7 +112,6 @@ public class BankAccountRelatedAccounts {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,21 +122,18 @@ public class BankAccountRelatedAccounts {
         }
         BankAccountRelatedAccounts other = (BankAccountRelatedAccounts) o;
         return 
-            Objects.deepEquals(this.accountID, other.accountID) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.accountID, other.accountID) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountID,
-            connectorID,
-            createdAt,
-            id,
-            provider);
+        return Utils.enhancedHash(
+            accountID, connectorID, createdAt,
+            id, provider);
     }
     
     @Override
@@ -144,22 +145,24 @@ public class BankAccountRelatedAccounts {
                 "id", id,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountID;
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private String provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
@@ -167,11 +170,13 @@ public class BankAccountRelatedAccounts {
             return this;
         }
 
+
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -179,25 +184,26 @@ public class BankAccountRelatedAccounts {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;
         }
-        
+
         public BankAccountRelatedAccounts build() {
+
             return new BankAccountRelatedAccounts(
-                accountID,
-                connectorID,
-                createdAt,
-                id,
-                provider);
+                accountID, connectorID, createdAt,
+                id, provider);
         }
+
     }
 }

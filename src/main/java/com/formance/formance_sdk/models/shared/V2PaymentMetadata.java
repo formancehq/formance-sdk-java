@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2PaymentMetadata {
 
@@ -36,9 +36,10 @@ public class V2PaymentMetadata {
         return key;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2PaymentMetadata withKey(String key) {
         Utils.checkNotNull(key, "key");
@@ -46,13 +47,13 @@ public class V2PaymentMetadata {
         return this;
     }
 
+
     public V2PaymentMetadata withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -63,12 +64,12 @@ public class V2PaymentMetadata {
         }
         V2PaymentMetadata other = (V2PaymentMetadata) o;
         return 
-            Objects.deepEquals(this.key, other.key);
+            Utils.enhancedDeepEquals(this.key, other.key);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             key);
     }
     
@@ -77,14 +78,16 @@ public class V2PaymentMetadata {
         return Utils.toString(V2PaymentMetadata.class,
                 "key", key);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> key = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
@@ -97,10 +100,12 @@ public class V2PaymentMetadata {
             this.key = key;
             return this;
         }
-        
+
         public V2PaymentMetadata build() {
+
             return new V2PaymentMetadata(
                 key);
         }
+
     }
 }

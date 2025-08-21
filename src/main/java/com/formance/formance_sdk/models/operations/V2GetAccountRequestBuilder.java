@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2GetAccount;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2GetAccountRequestBuilder {
 
     private V2GetAccountRequest request;
-    private final SDKMethodInterfaces.MethodCallV2GetAccount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2GetAccountRequestBuilder(SDKMethodInterfaces.MethodCallV2GetAccount sdk) {
-        this.sdk = sdk;
+    public V2GetAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2GetAccountRequestBuilder request(V2GetAccountRequest request) {
@@ -22,8 +26,10 @@ public class V2GetAccountRequestBuilder {
     }
 
     public V2GetAccountResponse call() throws Exception {
+        
+        RequestOperation<V2GetAccountRequest, V2GetAccountResponse> operation
+              = new V2GetAccount.Sync(sdkConfiguration);
 
-        return sdk.getAccount(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

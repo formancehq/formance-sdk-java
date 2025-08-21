@@ -15,7 +15,7 @@ public enum TransferInitiationRequestType {
     @JsonValue
     private final String value;
 
-    private TransferInitiationRequestType(String value) {
+    TransferInitiationRequestType(String value) {
         this.value = value;
     }
     

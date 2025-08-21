@@ -10,7 +10,6 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * ConnectorsConfigsResponse
@@ -26,6 +25,7 @@ public class ConnectorsConfigsResponse {
     public ConnectorsConfigsResponse(
             @JsonProperty("data") Map<String, Map<String, ConnectorsConfigsResponseData>> data) {
         data = Utils.emptyMapIfNull(data);
+        Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
@@ -34,9 +34,10 @@ public class ConnectorsConfigsResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectorsConfigsResponse withData(Map<String, Map<String, ConnectorsConfigsResponseData>> data) {
         Utils.checkNotNull(data, "data");
@@ -44,7 +45,6 @@ public class ConnectorsConfigsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -55,12 +55,12 @@ public class ConnectorsConfigsResponse {
         }
         ConnectorsConfigsResponse other = (ConnectorsConfigsResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -69,24 +69,28 @@ public class ConnectorsConfigsResponse {
         return Utils.toString(ConnectorsConfigsResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Map<String, ConnectorsConfigsResponseData>> data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Map<String, Map<String, ConnectorsConfigsResponseData>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public ConnectorsConfigsResponse build() {
+
             return new ConnectorsConfigsResponse(
                 data);
         }
+
     }
 }

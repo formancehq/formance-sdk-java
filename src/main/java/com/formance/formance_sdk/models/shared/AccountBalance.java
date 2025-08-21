@@ -12,18 +12,21 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class AccountBalance {
 
     @JsonProperty("accountId")
     private String accountId;
 
+
     @JsonProperty("asset")
     private String asset;
 
+
     @JsonProperty("balance")
     private BigInteger balance;
+
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
@@ -35,6 +38,7 @@ public class AccountBalance {
     @JsonProperty("currency")
     @Deprecated
     private String currency;
+
 
     @JsonProperty("lastUpdatedAt")
     private OffsetDateTime lastUpdatedAt;
@@ -96,9 +100,10 @@ public class AccountBalance {
         return lastUpdatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AccountBalance withAccountId(String accountId) {
         Utils.checkNotNull(accountId, "accountId");
@@ -146,7 +151,6 @@ public class AccountBalance {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -157,23 +161,19 @@ public class AccountBalance {
         }
         AccountBalance other = (AccountBalance) o;
         return 
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.lastUpdatedAt, other.lastUpdatedAt);
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.lastUpdatedAt, other.lastUpdatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountId,
-            asset,
-            balance,
-            createdAt,
-            currency,
-            lastUpdatedAt);
+        return Utils.enhancedHash(
+            accountId, asset, balance,
+            createdAt, currency, lastUpdatedAt);
     }
     
     @Override
@@ -186,25 +186,27 @@ public class AccountBalance {
                 "currency", currency,
                 "lastUpdatedAt", lastUpdatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountId;
- 
+
         private String asset;
- 
+
         private BigInteger balance;
- 
+
         private OffsetDateTime createdAt;
- 
+
         @Deprecated
         private String currency;
- 
+
         private OffsetDateTime lastUpdatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountId(String accountId) {
             Utils.checkNotNull(accountId, "accountId");
@@ -212,11 +214,13 @@ public class AccountBalance {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder balance(long balance) {
             this.balance = BigInteger.valueOf(balance);
@@ -229,11 +233,13 @@ public class AccountBalance {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * 
@@ -246,20 +252,19 @@ public class AccountBalance {
             return this;
         }
 
+
         public Builder lastUpdatedAt(OffsetDateTime lastUpdatedAt) {
             Utils.checkNotNull(lastUpdatedAt, "lastUpdatedAt");
             this.lastUpdatedAt = lastUpdatedAt;
             return this;
         }
-        
+
         public AccountBalance build() {
+
             return new AccountBalance(
-                accountId,
-                asset,
-                balance,
-                createdAt,
-                currency,
-                lastUpdatedAt);
+                accountId, asset, balance,
+                createdAt, currency, lastUpdatedAt);
         }
+
     }
 }

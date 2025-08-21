@@ -10,15 +10,17 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class GetVersionsResponse {
 
     @JsonProperty("env")
     private String env;
 
+
     @JsonProperty("region")
     private String region;
+
 
     @JsonProperty("versions")
     private List<Version> versions;
@@ -51,9 +53,10 @@ public class GetVersionsResponse {
         return versions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetVersionsResponse withEnv(String env) {
         Utils.checkNotNull(env, "env");
@@ -73,7 +76,6 @@ public class GetVersionsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,17 +86,15 @@ public class GetVersionsResponse {
         }
         GetVersionsResponse other = (GetVersionsResponse) o;
         return 
-            Objects.deepEquals(this.env, other.env) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.versions, other.versions);
+            Utils.enhancedDeepEquals(this.env, other.env) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.versions, other.versions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            env,
-            region,
-            versions);
+        return Utils.enhancedHash(
+            env, region, versions);
     }
     
     @Override
@@ -104,18 +104,20 @@ public class GetVersionsResponse {
                 "region", region,
                 "versions", versions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String env;
- 
+
         private String region;
- 
+
         private List<Version> versions;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder env(String env) {
             Utils.checkNotNull(env, "env");
@@ -123,23 +125,25 @@ public class GetVersionsResponse {
             return this;
         }
 
+
         public Builder region(String region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
             return this;
         }
 
+
         public Builder versions(List<Version> versions) {
             Utils.checkNotNull(versions, "versions");
             this.versions = versions;
             return this;
         }
-        
+
         public GetVersionsResponse build() {
+
             return new GetVersionsResponse(
-                env,
-                region,
-                versions);
+                env, region, versions);
         }
+
     }
 }

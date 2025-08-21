@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3DeletePaymentInitiation;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3DeletePaymentInitiationRequestBuilder {
 
     private V3DeletePaymentInitiationRequest request;
-    private final SDKMethodInterfaces.MethodCallV3DeletePaymentInitiation sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3DeletePaymentInitiationRequestBuilder(SDKMethodInterfaces.MethodCallV3DeletePaymentInitiation sdk) {
-        this.sdk = sdk;
+    public V3DeletePaymentInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3DeletePaymentInitiationRequestBuilder request(V3DeletePaymentInitiationRequest request) {
@@ -22,8 +26,10 @@ public class V3DeletePaymentInitiationRequestBuilder {
     }
 
     public V3DeletePaymentInitiationResponse call() throws Exception {
+        
+        RequestOperation<V3DeletePaymentInitiationRequest, V3DeletePaymentInitiationResponse> operation
+              = new V3DeletePaymentInitiation.Sync(sdkConfiguration);
 
-        return sdk.deletePaymentInitiation(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

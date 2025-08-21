@@ -14,34 +14,41 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3QontoConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("apiKey")
     private String apiKey;
 
+
     @JsonProperty("clientID")
     private String clientID;
+
 
     @JsonProperty("endpoint")
     private String endpoint;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stagingToken")
@@ -80,7 +87,9 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
             String clientID,
             String endpoint,
             String name) {
-        this(apiKey, clientID, endpoint, name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(apiKey, clientID, endpoint,
+            name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -124,9 +133,10 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
         return stagingToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3QontoConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -158,6 +168,7 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3QontoConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -169,6 +180,7 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
         this.pollingPeriod = Optional.ofNullable(pollingPeriod);
         return this;
     }
+
 
     public V3QontoConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -182,6 +194,7 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3QontoConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -194,13 +207,13 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3QontoConfig withStagingToken(Optional<String> stagingToken) {
         Utils.checkNotNull(stagingToken, "stagingToken");
         this.stagingToken = stagingToken;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -211,27 +224,22 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
         }
         V3QontoConfig other = (V3QontoConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.clientID, other.clientID) &&
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.stagingToken, other.stagingToken);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.clientID, other.clientID) &&
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.stagingToken, other.stagingToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            clientID,
-            endpoint,
-            name,
-            pageSize,
-            pollingPeriod,
-            provider,
-            stagingToken);
+        return Utils.enhancedHash(
+            apiKey, clientID, endpoint,
+            name, pageSize, pollingPeriod,
+            provider, stagingToken);
     }
     
     @Override
@@ -246,28 +254,30 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
                 "provider", provider,
                 "stagingToken", stagingToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String clientID;
- 
+
         private String endpoint;
- 
+
         private String name;
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
- 
+
         private Optional<String> stagingToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -275,11 +285,13 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder clientID(String clientID) {
             Utils.checkNotNull(clientID, "clientID");
             this.clientID = clientID;
             return this;
         }
+
 
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
@@ -287,11 +299,13 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -305,6 +319,7 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = Optional.ofNullable(pollingPeriod);
@@ -316,6 +331,7 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
 
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
@@ -329,6 +345,7 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder stagingToken(String stagingToken) {
             Utils.checkNotNull(stagingToken, "stagingToken");
             this.stagingToken = Optional.ofNullable(stagingToken);
@@ -340,7 +357,7 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
             this.stagingToken = stagingToken;
             return this;
         }
-        
+
         public V3QontoConfig build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
@@ -351,16 +368,13 @@ public class V3QontoConfig implements V3InstallConnectorRequest {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new V3QontoConfig(
-                apiKey,
-                clientID,
-                endpoint,
-                name,
-                pageSize,
-                pollingPeriod,
-                provider,
-                stagingToken);
+                apiKey, clientID, endpoint,
+                name, pageSize, pollingPeriod,
+                provider, stagingToken);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

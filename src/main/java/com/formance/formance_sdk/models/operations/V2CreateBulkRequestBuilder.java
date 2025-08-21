@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2CreateBulk;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2CreateBulkRequestBuilder {
 
     private V2CreateBulkRequest request;
-    private final SDKMethodInterfaces.MethodCallV2CreateBulk sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2CreateBulkRequestBuilder(SDKMethodInterfaces.MethodCallV2CreateBulk sdk) {
-        this.sdk = sdk;
+    public V2CreateBulkRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2CreateBulkRequestBuilder request(V2CreateBulkRequest request) {
@@ -22,8 +26,10 @@ public class V2CreateBulkRequestBuilder {
     }
 
     public V2CreateBulkResponse call() throws Exception {
+        
+        RequestOperation<V2CreateBulkRequest, V2CreateBulkResponse> operation
+              = new V2CreateBulk.Sync(sdkConfiguration);
 
-        return sdk.createBulk(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

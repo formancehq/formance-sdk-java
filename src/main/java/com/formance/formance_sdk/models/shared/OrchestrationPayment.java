@@ -15,55 +15,69 @@ import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationPayment {
 
     @JsonProperty("adjustments")
     private List<OrchestrationPaymentAdjustment> adjustments;
 
+
     @JsonProperty("asset")
     private String asset;
+
 
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("destinationAccountID")
     private String destinationAccountID;
 
+
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("initialAmount")
     private BigInteger initialAmount;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
     private Optional<? extends OrchestrationPaymentMetadata> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<? extends OrchestrationConnector> provider;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
     private Optional<? extends OrchestrationPaymentRaw> raw;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("scheme")
     private OrchestrationPaymentScheme scheme;
 
+
     @JsonProperty("sourceAccountID")
     private String sourceAccountID;
 
+
     @JsonProperty("status")
     private OrchestrationPaymentStatus status;
+
 
     @JsonProperty("type")
     private OrchestrationPaymentType type;
@@ -130,7 +144,11 @@ public class OrchestrationPayment {
             String sourceAccountID,
             OrchestrationPaymentStatus status,
             OrchestrationPaymentType type) {
-        this(adjustments, asset, connectorID, createdAt, destinationAccountID, id, initialAmount, Optional.empty(), Optional.empty(), Optional.empty(), reference, scheme, sourceAccountID, status, type);
+        this(adjustments, asset, connectorID,
+            createdAt, destinationAccountID, id,
+            initialAmount, Optional.empty(), Optional.empty(),
+            Optional.empty(), reference, scheme,
+            sourceAccountID, status, type);
     }
 
     @JsonIgnore
@@ -211,9 +229,10 @@ public class OrchestrationPayment {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationPayment withAdjustments(List<OrchestrationPaymentAdjustment> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
@@ -268,6 +287,7 @@ public class OrchestrationPayment {
         return this;
     }
 
+
     public OrchestrationPayment withMetadata(Optional<? extends OrchestrationPaymentMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -280,6 +300,7 @@ public class OrchestrationPayment {
         return this;
     }
 
+
     public OrchestrationPayment withProvider(Optional<? extends OrchestrationConnector> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -291,6 +312,7 @@ public class OrchestrationPayment {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     public OrchestrationPayment withRaw(Optional<? extends OrchestrationPaymentRaw> raw) {
         Utils.checkNotNull(raw, "raw");
@@ -328,7 +350,6 @@ public class OrchestrationPayment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -339,41 +360,31 @@ public class OrchestrationPayment {
         }
         OrchestrationPayment other = (OrchestrationPayment) o;
         return 
-            Objects.deepEquals(this.adjustments, other.adjustments) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.initialAmount, other.initialAmount) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.scheme, other.scheme) &&
-            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.adjustments, other.adjustments) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.initialAmount, other.initialAmount) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            adjustments,
-            asset,
-            connectorID,
-            createdAt,
-            destinationAccountID,
-            id,
-            initialAmount,
-            metadata,
-            provider,
-            raw,
-            reference,
-            scheme,
-            sourceAccountID,
-            status,
-            type);
+        return Utils.enhancedHash(
+            adjustments, asset, connectorID,
+            createdAt, destinationAccountID, id,
+            initialAmount, metadata, provider,
+            raw, reference, scheme,
+            sourceAccountID, status, type);
     }
     
     @Override
@@ -395,42 +406,44 @@ public class OrchestrationPayment {
                 "status", status,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<OrchestrationPaymentAdjustment> adjustments;
- 
+
         private String asset;
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String destinationAccountID;
- 
+
         private String id;
- 
+
         private BigInteger initialAmount;
- 
+
         private Optional<? extends OrchestrationPaymentMetadata> metadata = Optional.empty();
- 
+
         private Optional<? extends OrchestrationConnector> provider = Optional.empty();
- 
+
         private Optional<? extends OrchestrationPaymentRaw> raw = Optional.empty();
- 
+
         private String reference;
- 
+
         private OrchestrationPaymentScheme scheme;
- 
+
         private String sourceAccountID;
- 
+
         private OrchestrationPaymentStatus status;
- 
+
         private OrchestrationPaymentType type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder adjustments(List<OrchestrationPaymentAdjustment> adjustments) {
             Utils.checkNotNull(adjustments, "adjustments");
@@ -438,11 +451,13 @@ public class OrchestrationPayment {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -450,11 +465,13 @@ public class OrchestrationPayment {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
@@ -462,11 +479,13 @@ public class OrchestrationPayment {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder initialAmount(long initialAmount) {
             this.initialAmount = BigInteger.valueOf(initialAmount);
@@ -478,6 +497,7 @@ public class OrchestrationPayment {
             this.initialAmount = initialAmount;
             return this;
         }
+
 
         public Builder metadata(OrchestrationPaymentMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -491,6 +511,7 @@ public class OrchestrationPayment {
             return this;
         }
 
+
         public Builder provider(OrchestrationConnector provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -502,6 +523,7 @@ public class OrchestrationPayment {
             this.provider = provider;
             return this;
         }
+
 
         public Builder raw(OrchestrationPaymentRaw raw) {
             Utils.checkNotNull(raw, "raw");
@@ -515,11 +537,13 @@ public class OrchestrationPayment {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
+
 
         public Builder scheme(OrchestrationPaymentScheme scheme) {
             Utils.checkNotNull(scheme, "scheme");
@@ -527,11 +551,13 @@ public class OrchestrationPayment {
             return this;
         }
 
+
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
             return this;
         }
+
 
         public Builder status(OrchestrationPaymentStatus status) {
             Utils.checkNotNull(status, "status");
@@ -539,29 +565,22 @@ public class OrchestrationPayment {
             return this;
         }
 
+
         public Builder type(OrchestrationPaymentType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public OrchestrationPayment build() {
+
             return new OrchestrationPayment(
-                adjustments,
-                asset,
-                connectorID,
-                createdAt,
-                destinationAccountID,
-                id,
-                initialAmount,
-                metadata,
-                provider,
-                raw,
-                reference,
-                scheme,
-                sourceAccountID,
-                status,
-                type);
+                adjustments, asset, connectorID,
+                createdAt, destinationAccountID, id,
+                initialAmount, metadata, provider,
+                raw, reference, scheme,
+                sourceAccountID, status, type);
         }
+
     }
 }

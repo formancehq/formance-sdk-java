@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ConfigChangeSecret {
 
@@ -28,9 +28,10 @@ public class ConfigChangeSecret {
         return secret;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConfigChangeSecret withSecret(String secret) {
         Utils.checkNotNull(secret, "secret");
@@ -38,7 +39,6 @@ public class ConfigChangeSecret {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class ConfigChangeSecret {
         }
         ConfigChangeSecret other = (ConfigChangeSecret) o;
         return 
-            Objects.deepEquals(this.secret, other.secret);
+            Utils.enhancedDeepEquals(this.secret, other.secret);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             secret);
     }
     
@@ -63,24 +63,28 @@ public class ConfigChangeSecret {
         return Utils.toString(ConfigChangeSecret.class,
                 "secret", secret);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String secret;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = secret;
             return this;
         }
-        
+
         public ConfigChangeSecret build() {
+
             return new ConfigChangeSecret(
                 secret);
         }
+
     }
 }

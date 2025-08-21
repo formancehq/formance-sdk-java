@@ -15,41 +15,50 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class WorkflowInstanceHistoryStage {
 
     @JsonProperty("attempt")
     private long attempt;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
+
     @JsonProperty("input")
     private WorkflowInstanceHistoryStageInput input;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastFailure")
     private Optional<String> lastFailure;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextExecution")
     private Optional<OffsetDateTime> nextExecution;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("output")
     private Optional<? extends WorkflowInstanceHistoryStageOutput> output;
 
+
     @JsonProperty("startedAt")
     private OffsetDateTime startedAt;
 
+
     @JsonProperty("terminated")
     private boolean terminated;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
@@ -95,7 +104,10 @@ public class WorkflowInstanceHistoryStage {
             String name,
             OffsetDateTime startedAt,
             boolean terminated) {
-        this(attempt, Optional.empty(), input, Optional.empty(), name, Optional.empty(), Optional.empty(), startedAt, terminated, Optional.empty());
+        this(attempt, Optional.empty(), input,
+            Optional.empty(), name, Optional.empty(),
+            Optional.empty(), startedAt, terminated,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -149,9 +161,10 @@ public class WorkflowInstanceHistoryStage {
         return terminatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WorkflowInstanceHistoryStage withAttempt(long attempt) {
         Utils.checkNotNull(attempt, "attempt");
@@ -164,6 +177,7 @@ public class WorkflowInstanceHistoryStage {
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     public WorkflowInstanceHistoryStage withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
@@ -183,6 +197,7 @@ public class WorkflowInstanceHistoryStage {
         return this;
     }
 
+
     public WorkflowInstanceHistoryStage withLastFailure(Optional<String> lastFailure) {
         Utils.checkNotNull(lastFailure, "lastFailure");
         this.lastFailure = lastFailure;
@@ -201,6 +216,7 @@ public class WorkflowInstanceHistoryStage {
         return this;
     }
 
+
     public WorkflowInstanceHistoryStage withNextExecution(Optional<OffsetDateTime> nextExecution) {
         Utils.checkNotNull(nextExecution, "nextExecution");
         this.nextExecution = nextExecution;
@@ -212,6 +228,7 @@ public class WorkflowInstanceHistoryStage {
         this.output = Optional.ofNullable(output);
         return this;
     }
+
 
     public WorkflowInstanceHistoryStage withOutput(Optional<? extends WorkflowInstanceHistoryStageOutput> output) {
         Utils.checkNotNull(output, "output");
@@ -237,13 +254,13 @@ public class WorkflowInstanceHistoryStage {
         return this;
     }
 
+
     public WorkflowInstanceHistoryStage withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -254,30 +271,24 @@ public class WorkflowInstanceHistoryStage {
         }
         WorkflowInstanceHistoryStage other = (WorkflowInstanceHistoryStage) o;
         return 
-            Objects.deepEquals(this.attempt, other.attempt) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.input, other.input) &&
-            Objects.deepEquals(this.lastFailure, other.lastFailure) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.nextExecution, other.nextExecution) &&
-            Objects.deepEquals(this.output, other.output) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.terminated, other.terminated) &&
-            Objects.deepEquals(this.terminatedAt, other.terminatedAt);
+            Utils.enhancedDeepEquals(this.attempt, other.attempt) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.input, other.input) &&
+            Utils.enhancedDeepEquals(this.lastFailure, other.lastFailure) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.nextExecution, other.nextExecution) &&
+            Utils.enhancedDeepEquals(this.output, other.output) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.terminated, other.terminated) &&
+            Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            attempt,
-            error,
-            input,
-            lastFailure,
-            name,
-            nextExecution,
-            output,
-            startedAt,
-            terminated,
+        return Utils.enhancedHash(
+            attempt, error, input,
+            lastFailure, name, nextExecution,
+            output, startedAt, terminated,
             terminatedAt);
     }
     
@@ -295,38 +306,41 @@ public class WorkflowInstanceHistoryStage {
                 "terminated", terminated,
                 "terminatedAt", terminatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long attempt;
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private WorkflowInstanceHistoryStageInput input;
- 
+
         private Optional<String> lastFailure = Optional.empty();
- 
+
         private String name;
- 
+
         private Optional<OffsetDateTime> nextExecution = Optional.empty();
- 
+
         private Optional<? extends WorkflowInstanceHistoryStageOutput> output = Optional.empty();
- 
+
         private OffsetDateTime startedAt;
- 
+
         private Boolean terminated;
- 
+
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder attempt(long attempt) {
             Utils.checkNotNull(attempt, "attempt");
             this.attempt = attempt;
             return this;
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -340,11 +354,13 @@ public class WorkflowInstanceHistoryStage {
             return this;
         }
 
+
         public Builder input(WorkflowInstanceHistoryStageInput input) {
             Utils.checkNotNull(input, "input");
             this.input = input;
             return this;
         }
+
 
         public Builder lastFailure(String lastFailure) {
             Utils.checkNotNull(lastFailure, "lastFailure");
@@ -358,11 +374,13 @@ public class WorkflowInstanceHistoryStage {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder nextExecution(OffsetDateTime nextExecution) {
             Utils.checkNotNull(nextExecution, "nextExecution");
@@ -376,6 +394,7 @@ public class WorkflowInstanceHistoryStage {
             return this;
         }
 
+
         public Builder output(WorkflowInstanceHistoryStageOutput output) {
             Utils.checkNotNull(output, "output");
             this.output = Optional.ofNullable(output);
@@ -388,17 +407,20 @@ public class WorkflowInstanceHistoryStage {
             return this;
         }
 
+
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
             return this;
         }
 
+
         public Builder terminated(boolean terminated) {
             Utils.checkNotNull(terminated, "terminated");
             this.terminated = terminated;
             return this;
         }
+
 
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
@@ -411,19 +433,15 @@ public class WorkflowInstanceHistoryStage {
             this.terminatedAt = terminatedAt;
             return this;
         }
-        
+
         public WorkflowInstanceHistoryStage build() {
+
             return new WorkflowInstanceHistoryStage(
-                attempt,
-                error,
-                input,
-                lastFailure,
-                name,
-                nextExecution,
-                output,
-                startedAt,
-                terminated,
+                attempt, error, input,
+                lastFailure, name, nextExecution,
+                output, startedAt, terminated,
                 terminatedAt);
         }
+
     }
 }

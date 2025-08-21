@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.V3CreatePaymentRequest;
+import com.formance.formance_sdk.operations.V3CreatePayment;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3CreatePaymentRequestBuilder {
 
     private Optional<? extends V3CreatePaymentRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3CreatePayment sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3CreatePaymentRequestBuilder(SDKMethodInterfaces.MethodCallV3CreatePayment sdk) {
-        this.sdk = sdk;
+    public V3CreatePaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3CreatePaymentRequestBuilder request(V3CreatePaymentRequest request) {
@@ -30,8 +34,10 @@ public class V3CreatePaymentRequestBuilder {
     }
 
     public V3CreatePaymentResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3CreatePaymentRequest>, V3CreatePaymentResponse> operation
+              = new V3CreatePayment.Sync(sdkConfiguration);
 
-        return sdk.createPayment(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

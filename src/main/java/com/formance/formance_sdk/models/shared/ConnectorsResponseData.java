@@ -12,20 +12,23 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConnectorsResponseData {
 
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
     private Optional<Boolean> enabled;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("provider")
     private Connector provider;
@@ -50,7 +53,8 @@ public class ConnectorsResponseData {
             String connectorID,
             String name,
             Connector provider) {
-        this(connectorID, Optional.empty(), name, provider);
+        this(connectorID, Optional.empty(), name,
+            provider);
     }
 
     @JsonIgnore
@@ -73,9 +77,10 @@ public class ConnectorsResponseData {
         return provider;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectorsResponseData withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -88,6 +93,7 @@ public class ConnectorsResponseData {
         this.enabled = Optional.ofNullable(enabled);
         return this;
     }
+
 
     public ConnectorsResponseData withEnabled(Optional<Boolean> enabled) {
         Utils.checkNotNull(enabled, "enabled");
@@ -107,7 +113,6 @@ public class ConnectorsResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,18 +123,16 @@ public class ConnectorsResponseData {
         }
         ConnectorsResponseData other = (ConnectorsResponseData) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.enabled, other.enabled) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.enabled, other.enabled) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorID,
-            enabled,
-            name,
+        return Utils.enhancedHash(
+            connectorID, enabled, name,
             provider);
     }
     
@@ -141,26 +144,29 @@ public class ConnectorsResponseData {
                 "name", name,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
- 
+
         private Optional<Boolean> enabled = Optional.empty();
- 
+
         private String name;
- 
+
         private Connector provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
         }
+
 
         public Builder enabled(boolean enabled) {
             Utils.checkNotNull(enabled, "enabled");
@@ -174,24 +180,26 @@ public class ConnectorsResponseData {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
+
         public Builder provider(Connector provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;
         }
-        
+
         public ConnectorsResponseData build() {
+
             return new ConnectorsResponseData(
-                connectorID,
-                enabled,
-                name,
+                connectorID, enabled, name,
                 provider);
         }
+
     }
 }

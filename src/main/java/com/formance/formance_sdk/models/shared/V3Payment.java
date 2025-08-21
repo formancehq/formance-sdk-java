@@ -16,8 +16,8 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3Payment {
 
@@ -25,47 +25,61 @@ public class V3Payment {
     @JsonProperty("adjustments")
     private JsonNullable<? extends List<V3PaymentAdjustment>> adjustments;
 
+
     @JsonProperty("amount")
     private BigInteger amount;
+
 
     @JsonProperty("asset")
     private String asset;
 
+
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destinationAccountID")
     private JsonNullable<String> destinationAccountID;
 
+
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("initialAmount")
     private BigInteger initialAmount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("provider")
     private String provider;
+
 
     @JsonProperty("reference")
     private String reference;
 
+
     @JsonProperty("scheme")
     private String scheme;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceAccountID")
     private JsonNullable<String> sourceAccountID;
 
+
     @JsonProperty("status")
     private V3PaymentStatusEnum status;
+
 
     @JsonProperty("type")
     private V3PaymentTypeEnum type;
@@ -131,7 +145,11 @@ public class V3Payment {
             String scheme,
             V3PaymentStatusEnum status,
             V3PaymentTypeEnum type) {
-        this(JsonNullable.undefined(), amount, asset, connectorID, createdAt, JsonNullable.undefined(), id, initialAmount, JsonNullable.undefined(), provider, reference, scheme, JsonNullable.undefined(), status, type);
+        this(JsonNullable.undefined(), amount, asset,
+            connectorID, createdAt, JsonNullable.undefined(),
+            id, initialAmount, JsonNullable.undefined(),
+            provider, reference, scheme,
+            JsonNullable.undefined(), status, type);
     }
 
     @SuppressWarnings("unchecked")
@@ -211,9 +229,10 @@ public class V3Payment {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3Payment withAdjustments(List<V3PaymentAdjustment> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
@@ -339,7 +358,6 @@ public class V3Payment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -350,41 +368,31 @@ public class V3Payment {
         }
         V3Payment other = (V3Payment) o;
         return 
-            Objects.deepEquals(this.adjustments, other.adjustments) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.initialAmount, other.initialAmount) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.scheme, other.scheme) &&
-            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.adjustments, other.adjustments) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.initialAmount, other.initialAmount) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            adjustments,
-            amount,
-            asset,
-            connectorID,
-            createdAt,
-            destinationAccountID,
-            id,
-            initialAmount,
-            metadata,
-            provider,
-            reference,
-            scheme,
-            sourceAccountID,
-            status,
-            type);
+        return Utils.enhancedHash(
+            adjustments, amount, asset,
+            connectorID, createdAt, destinationAccountID,
+            id, initialAmount, metadata,
+            provider, reference, scheme,
+            sourceAccountID, status, type);
     }
     
     @Override
@@ -406,42 +414,44 @@ public class V3Payment {
                 "status", status,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends List<V3PaymentAdjustment>> adjustments = JsonNullable.undefined();
- 
+
         private BigInteger amount;
- 
+
         private String asset;
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private JsonNullable<String> destinationAccountID = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private BigInteger initialAmount;
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String provider;
- 
+
         private String reference;
- 
+
         private String scheme;
- 
+
         private JsonNullable<String> sourceAccountID = JsonNullable.undefined();
- 
+
         private V3PaymentStatusEnum status;
- 
+
         private V3PaymentTypeEnum type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder adjustments(List<V3PaymentAdjustment> adjustments) {
             Utils.checkNotNull(adjustments, "adjustments");
@@ -455,6 +465,7 @@ public class V3Payment {
             return this;
         }
 
+
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
@@ -466,11 +477,13 @@ public class V3Payment {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -478,11 +491,13 @@ public class V3Payment {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
@@ -496,11 +511,13 @@ public class V3Payment {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder initialAmount(long initialAmount) {
             this.initialAmount = BigInteger.valueOf(initialAmount);
@@ -512,6 +529,7 @@ public class V3Payment {
             this.initialAmount = initialAmount;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -525,11 +543,13 @@ public class V3Payment {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;
         }
+
 
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -537,11 +557,13 @@ public class V3Payment {
             return this;
         }
 
+
         public Builder scheme(String scheme) {
             Utils.checkNotNull(scheme, "scheme");
             this.scheme = scheme;
             return this;
         }
+
 
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
@@ -555,35 +577,29 @@ public class V3Payment {
             return this;
         }
 
+
         public Builder status(V3PaymentStatusEnum status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
+
         public Builder type(V3PaymentTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public V3Payment build() {
+
             return new V3Payment(
-                adjustments,
-                amount,
-                asset,
-                connectorID,
-                createdAt,
-                destinationAccountID,
-                id,
-                initialAmount,
-                metadata,
-                provider,
-                reference,
-                scheme,
-                sourceAccountID,
-                status,
-                type);
+                adjustments, amount, asset,
+                connectorID, createdAt, destinationAccountID,
+                id, initialAmount, metadata,
+                provider, reference, scheme,
+                sourceAccountID, status, type);
         }
+
     }
 }

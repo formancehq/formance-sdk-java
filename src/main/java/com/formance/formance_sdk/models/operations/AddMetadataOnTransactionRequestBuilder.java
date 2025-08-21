@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.AddMetadataOnTransaction;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class AddMetadataOnTransactionRequestBuilder {
 
     private AddMetadataOnTransactionRequest request;
-    private final SDKMethodInterfaces.MethodCallAddMetadataOnTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AddMetadataOnTransactionRequestBuilder(SDKMethodInterfaces.MethodCallAddMetadataOnTransaction sdk) {
-        this.sdk = sdk;
+    public AddMetadataOnTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AddMetadataOnTransactionRequestBuilder request(AddMetadataOnTransactionRequest request) {
@@ -22,8 +26,10 @@ public class AddMetadataOnTransactionRequestBuilder {
     }
 
     public AddMetadataOnTransactionResponse call() throws Exception {
+        
+        RequestOperation<AddMetadataOnTransactionRequest, AddMetadataOnTransactionResponse> operation
+              = new AddMetadataOnTransaction.Sync(sdkConfiguration);
 
-        return sdk.addMetadataOnTransaction(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

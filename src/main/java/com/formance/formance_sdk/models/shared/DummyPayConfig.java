@@ -14,8 +14,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class DummyPayConfig implements ConnectorConfig {
 
@@ -29,20 +29,25 @@ public class DummyPayConfig implements ConnectorConfig {
     @JsonProperty("filePollingPeriod")
     private Optional<String> filePollingPeriod;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numberOfAccountsPreGenerated")
     private Optional<Long> numberOfAccountsPreGenerated;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numberOfPaymentsPreGenerated")
     private Optional<Long> numberOfPaymentsPreGenerated;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("prefixFileToIngest")
     private Optional<String> prefixFileToIngest;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -76,7 +81,9 @@ public class DummyPayConfig implements ConnectorConfig {
     public DummyPayConfig(
             String directory,
             String name) {
-        this(directory, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(directory, Optional.empty(), name,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -118,9 +125,10 @@ public class DummyPayConfig implements ConnectorConfig {
         return Utils.discriminatorToString(provider);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DummyPayConfig withDirectory(String directory) {
         Utils.checkNotNull(directory, "directory");
@@ -136,6 +144,7 @@ public class DummyPayConfig implements ConnectorConfig {
         this.filePollingPeriod = Optional.ofNullable(filePollingPeriod);
         return this;
     }
+
 
     /**
      * The frequency at which the connector will try to fetch new payment objects from the directory
@@ -158,6 +167,7 @@ public class DummyPayConfig implements ConnectorConfig {
         return this;
     }
 
+
     public DummyPayConfig withNumberOfAccountsPreGenerated(Optional<Long> numberOfAccountsPreGenerated) {
         Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
         this.numberOfAccountsPreGenerated = numberOfAccountsPreGenerated;
@@ -169,6 +179,7 @@ public class DummyPayConfig implements ConnectorConfig {
         this.numberOfPaymentsPreGenerated = Optional.ofNullable(numberOfPaymentsPreGenerated);
         return this;
     }
+
 
     public DummyPayConfig withNumberOfPaymentsPreGenerated(Optional<Long> numberOfPaymentsPreGenerated) {
         Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
@@ -182,6 +193,7 @@ public class DummyPayConfig implements ConnectorConfig {
         return this;
     }
 
+
     public DummyPayConfig withPrefixFileToIngest(Optional<String> prefixFileToIngest) {
         Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
         this.prefixFileToIngest = prefixFileToIngest;
@@ -194,13 +206,13 @@ public class DummyPayConfig implements ConnectorConfig {
         return this;
     }
 
+
     public DummyPayConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -211,24 +223,20 @@ public class DummyPayConfig implements ConnectorConfig {
         }
         DummyPayConfig other = (DummyPayConfig) o;
         return 
-            Objects.deepEquals(this.directory, other.directory) &&
-            Objects.deepEquals(this.filePollingPeriod, other.filePollingPeriod) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.numberOfAccountsPreGenerated, other.numberOfAccountsPreGenerated) &&
-            Objects.deepEquals(this.numberOfPaymentsPreGenerated, other.numberOfPaymentsPreGenerated) &&
-            Objects.deepEquals(this.prefixFileToIngest, other.prefixFileToIngest) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.directory, other.directory) &&
+            Utils.enhancedDeepEquals(this.filePollingPeriod, other.filePollingPeriod) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.numberOfAccountsPreGenerated, other.numberOfAccountsPreGenerated) &&
+            Utils.enhancedDeepEquals(this.numberOfPaymentsPreGenerated, other.numberOfPaymentsPreGenerated) &&
+            Utils.enhancedDeepEquals(this.prefixFileToIngest, other.prefixFileToIngest) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            directory,
-            filePollingPeriod,
-            name,
-            numberOfAccountsPreGenerated,
-            numberOfPaymentsPreGenerated,
-            prefixFileToIngest,
+        return Utils.enhancedHash(
+            directory, filePollingPeriod, name,
+            numberOfAccountsPreGenerated, numberOfPaymentsPreGenerated, prefixFileToIngest,
             provider);
     }
     
@@ -243,32 +251,35 @@ public class DummyPayConfig implements ConnectorConfig {
                 "prefixFileToIngest", prefixFileToIngest,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String directory;
- 
+
         private Optional<String> filePollingPeriod;
- 
+
         private String name;
- 
+
         private Optional<Long> numberOfAccountsPreGenerated = Optional.empty();
- 
+
         private Optional<Long> numberOfPaymentsPreGenerated = Optional.empty();
- 
+
         private Optional<String> prefixFileToIngest = Optional.empty();
- 
+
         private Optional<String> provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder directory(String directory) {
             Utils.checkNotNull(directory, "directory");
             this.directory = directory;
             return this;
         }
+
 
         /**
          * The frequency at which the connector will try to fetch new payment objects from the directory
@@ -288,11 +299,13 @@ public class DummyPayConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder numberOfAccountsPreGenerated(long numberOfAccountsPreGenerated) {
             Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
@@ -306,6 +319,7 @@ public class DummyPayConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder numberOfPaymentsPreGenerated(long numberOfPaymentsPreGenerated) {
             Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
             this.numberOfPaymentsPreGenerated = Optional.ofNullable(numberOfPaymentsPreGenerated);
@@ -317,6 +331,7 @@ public class DummyPayConfig implements ConnectorConfig {
             this.numberOfPaymentsPreGenerated = numberOfPaymentsPreGenerated;
             return this;
         }
+
 
         public Builder prefixFileToIngest(String prefixFileToIngest) {
             Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
@@ -330,6 +345,7 @@ public class DummyPayConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -341,7 +357,7 @@ public class DummyPayConfig implements ConnectorConfig {
             this.provider = provider;
             return this;
         }
-        
+
         public DummyPayConfig build() {
             if (filePollingPeriod == null) {
                 filePollingPeriod = _SINGLETON_VALUE_FilePollingPeriod.value();
@@ -349,15 +365,13 @@ public class DummyPayConfig implements ConnectorConfig {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new DummyPayConfig(
-                directory,
-                filePollingPeriod,
-                name,
-                numberOfAccountsPreGenerated,
-                numberOfPaymentsPreGenerated,
-                prefixFileToIngest,
+                directory, filePollingPeriod, name,
+                numberOfAccountsPreGenerated, numberOfPaymentsPreGenerated, prefixFileToIngest,
                 provider);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_FilePollingPeriod =
                 new LazySingletonValue<>(

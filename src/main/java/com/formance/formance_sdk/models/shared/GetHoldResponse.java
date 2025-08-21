@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetHoldResponse {
 
@@ -28,9 +28,10 @@ public class GetHoldResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetHoldResponse withData(ExpandedDebitHold data) {
         Utils.checkNotNull(data, "data");
@@ -38,7 +39,6 @@ public class GetHoldResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class GetHoldResponse {
         }
         GetHoldResponse other = (GetHoldResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -63,24 +63,28 @@ public class GetHoldResponse {
         return Utils.toString(GetHoldResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ExpandedDebitHold data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(ExpandedDebitHold data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public GetHoldResponse build() {
+
             return new GetHoldResponse(
                 data);
         }
+
     }
 }

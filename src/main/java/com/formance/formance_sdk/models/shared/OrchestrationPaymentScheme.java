@@ -31,7 +31,7 @@ public enum OrchestrationPaymentScheme {
     @JsonValue
     private final String value;
 
-    private OrchestrationPaymentScheme(String value) {
+    OrchestrationPaymentScheme(String value) {
         this.value = value;
     }
     

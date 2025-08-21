@@ -12,11 +12,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2AddMetadataOnTransactionRequest {
 
+public class V2AddMetadataOnTransactionRequest {
     /**
      * Use an idempotency key
      */
@@ -56,6 +55,7 @@ public class V2AddMetadataOnTransactionRequest {
             String ledger) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(dryRun, "dryRun");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
@@ -70,7 +70,8 @@ public class V2AddMetadataOnTransactionRequest {
             Map<String, String> requestBody,
             BigInteger id,
             String ledger) {
-        this(Optional.empty(), requestBody, Optional.empty(), id, ledger);
+        this(Optional.empty(), requestBody, Optional.empty(),
+            id, ledger);
     }
 
     /**
@@ -113,9 +114,10 @@ public class V2AddMetadataOnTransactionRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Use an idempotency key
@@ -125,6 +127,7 @@ public class V2AddMetadataOnTransactionRequest {
         this.idempotencyKey = Optional.ofNullable(idempotencyKey);
         return this;
     }
+
 
     /**
      * Use an idempotency key
@@ -153,6 +156,7 @@ public class V2AddMetadataOnTransactionRequest {
         return this;
     }
 
+
     /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
@@ -162,9 +166,9 @@ public class V2AddMetadataOnTransactionRequest {
         return this;
     }
 
-        /**
-         * Transaction ID.
-         */
+    /**
+     * Transaction ID.
+     */
     public V2AddMetadataOnTransactionRequest withId(long id) {
         this.id = BigInteger.valueOf(id);
         return this;
@@ -188,7 +192,6 @@ public class V2AddMetadataOnTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,21 +202,18 @@ public class V2AddMetadataOnTransactionRequest {
         }
         V2AddMetadataOnTransactionRequest other = (V2AddMetadataOnTransactionRequest) o;
         return 
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.dryRun, other.dryRun) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.dryRun, other.dryRun) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            idempotencyKey,
-            requestBody,
-            dryRun,
-            id,
-            ledger);
+        return Utils.enhancedHash(
+            idempotencyKey, requestBody, dryRun,
+            id, ledger);
     }
     
     @Override
@@ -225,22 +225,24 @@ public class V2AddMetadataOnTransactionRequest {
                 "id", id,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private Map<String, String> requestBody;
- 
+
         private Optional<Boolean> dryRun = Optional.empty();
- 
+
         private BigInteger id;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Use an idempotency key
@@ -260,6 +262,7 @@ public class V2AddMetadataOnTransactionRequest {
             return this;
         }
 
+
         /**
          * metadata
          */
@@ -268,6 +271,7 @@ public class V2AddMetadataOnTransactionRequest {
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
@@ -287,6 +291,7 @@ public class V2AddMetadataOnTransactionRequest {
             return this;
         }
 
+
         /**
          * Transaction ID.
          */
@@ -304,6 +309,7 @@ public class V2AddMetadataOnTransactionRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -312,14 +318,13 @@ public class V2AddMetadataOnTransactionRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2AddMetadataOnTransactionRequest build() {
+
             return new V2AddMetadataOnTransactionRequest(
-                idempotencyKey,
-                requestBody,
-                dryRun,
-                id,
-                ledger);
+                idempotencyKey, requestBody, dryRun,
+                id, ledger);
         }
+
     }
 }

@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2CreateLedger;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2CreateLedgerRequestBuilder {
 
     private V2CreateLedgerRequest request;
-    private final SDKMethodInterfaces.MethodCallV2CreateLedger sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2CreateLedgerRequestBuilder(SDKMethodInterfaces.MethodCallV2CreateLedger sdk) {
-        this.sdk = sdk;
+    public V2CreateLedgerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2CreateLedgerRequestBuilder request(V2CreateLedgerRequest request) {
@@ -22,8 +26,10 @@ public class V2CreateLedgerRequestBuilder {
     }
 
     public V2CreateLedgerResponse call() throws Exception {
+        
+        RequestOperation<V2CreateLedgerRequest, V2CreateLedgerResponse> operation
+              = new V2CreateLedger.Sync(sdkConfiguration);
 
-        return sdk.createLedger(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class ListRunsResponse {
 
@@ -29,9 +29,10 @@ public class ListRunsResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListRunsResponse withData(List<WorkflowInstance> data) {
         Utils.checkNotNull(data, "data");
@@ -39,7 +40,6 @@ public class ListRunsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class ListRunsResponse {
         }
         ListRunsResponse other = (ListRunsResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -64,24 +64,28 @@ public class ListRunsResponse {
         return Utils.toString(ListRunsResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<WorkflowInstance> data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<WorkflowInstance> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public ListRunsResponse build() {
+
             return new ListRunsResponse(
                 data);
         }
+
     }
 }

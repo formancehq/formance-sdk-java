@@ -3,17 +3,21 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.PolicyRequest;
+import com.formance.formance_sdk.operations.CreatePolicy;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class CreatePolicyRequestBuilder {
 
     private PolicyRequest request;
-    private final SDKMethodInterfaces.MethodCallCreatePolicy sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePolicyRequestBuilder(SDKMethodInterfaces.MethodCallCreatePolicy sdk) {
-        this.sdk = sdk;
+    public CreatePolicyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePolicyRequestBuilder request(PolicyRequest request) {
@@ -23,8 +27,10 @@ public class CreatePolicyRequestBuilder {
     }
 
     public CreatePolicyResponse call() throws Exception {
+        
+        RequestOperation<PolicyRequest, CreatePolicyResponse> operation
+              = new CreatePolicy.Sync(sdkConfiguration);
 
-        return sdk.createPolicy(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

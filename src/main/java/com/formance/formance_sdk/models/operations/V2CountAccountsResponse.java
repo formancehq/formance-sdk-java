@@ -14,14 +14,14 @@ import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V2CountAccountsResponse implements Response {
-
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
 
     private Map<String, List<String>> headers;
 
@@ -43,6 +43,7 @@ public class V2CountAccountsResponse implements Response {
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
@@ -80,9 +81,10 @@ public class V2CountAccountsResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -117,7 +119,6 @@ public class V2CountAccountsResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -128,18 +129,16 @@ public class V2CountAccountsResponse implements Response {
         }
         V2CountAccountsResponse other = (V2CountAccountsResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.headers, other.headers) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            headers,
-            statusCode,
+        return Utils.enhancedHash(
+            contentType, headers, statusCode,
             rawResponse);
     }
     
@@ -151,20 +150,22 @@ public class V2CountAccountsResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Map<String, List<String>> headers;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -175,11 +176,13 @@ public class V2CountAccountsResponse implements Response {
             return this;
         }
 
+
         public Builder headers(Map<String, List<String>> headers) {
             Utils.checkNotNull(headers, "headers");
             this.headers = headers;
             return this;
         }
+
 
         /**
          * HTTP response status code for this operation
@@ -190,6 +193,7 @@ public class V2CountAccountsResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -198,13 +202,13 @@ public class V2CountAccountsResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public V2CountAccountsResponse build() {
+
             return new V2CountAccountsResponse(
-                contentType,
-                headers,
-                statusCode,
+                contentType, headers, statusCode,
                 rawResponse);
         }
+
     }
 }

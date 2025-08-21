@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UpdateConfigRequest {
 
@@ -46,9 +46,10 @@ public class UpdateConfigRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateConfigRequest withConfigUser(ConfigUser configUser) {
         Utils.checkNotNull(configUser, "configUser");
@@ -65,7 +66,6 @@ public class UpdateConfigRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,15 +76,14 @@ public class UpdateConfigRequest {
         }
         UpdateConfigRequest other = (UpdateConfigRequest) o;
         return 
-            Objects.deepEquals(this.configUser, other.configUser) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.configUser, other.configUser) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            configUser,
-            id);
+        return Utils.enhancedHash(
+            configUser, id);
     }
     
     @Override
@@ -93,22 +92,25 @@ public class UpdateConfigRequest {
                 "configUser", configUser,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ConfigUser configUser;
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder configUser(ConfigUser configUser) {
             Utils.checkNotNull(configUser, "configUser");
             this.configUser = configUser;
             return this;
         }
+
 
         /**
          * Config ID
@@ -118,11 +120,12 @@ public class UpdateConfigRequest {
             this.id = id;
             return this;
         }
-        
+
         public UpdateConfigRequest build() {
+
             return new UpdateConfigRequest(
-                configUser,
-                id);
+                configUser, id);
         }
+
     }
 }

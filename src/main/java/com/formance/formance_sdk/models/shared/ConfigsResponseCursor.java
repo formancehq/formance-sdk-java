@@ -11,12 +11,13 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class ConfigsResponseCursor {
 
     @JsonProperty("data")
     private List<WebhooksConfig> data;
+
 
     @JsonProperty("hasMore")
     private boolean hasMore;
@@ -41,9 +42,10 @@ public class ConfigsResponseCursor {
         return hasMore;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConfigsResponseCursor withData(List<WebhooksConfig> data) {
         Utils.checkNotNull(data, "data");
@@ -57,7 +59,6 @@ public class ConfigsResponseCursor {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -68,15 +69,14 @@ public class ConfigsResponseCursor {
         }
         ConfigsResponseCursor other = (ConfigsResponseCursor) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.hasMore, other.hasMore);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.hasMore, other.hasMore);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            hasMore);
+        return Utils.enhancedHash(
+            data, hasMore);
     }
     
     @Override
@@ -85,16 +85,18 @@ public class ConfigsResponseCursor {
                 "data", data,
                 "hasMore", hasMore);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<WebhooksConfig> data;
- 
+
         private Boolean hasMore;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<WebhooksConfig> data) {
             Utils.checkNotNull(data, "data");
@@ -102,16 +104,18 @@ public class ConfigsResponseCursor {
             return this;
         }
 
+
         public Builder hasMore(boolean hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
             this.hasMore = hasMore;
             return this;
         }
-        
+
         public ConfigsResponseCursor build() {
+
             return new ConfigsResponseCursor(
-                data,
-                hasMore);
+                data, hasMore);
         }
+
     }
 }

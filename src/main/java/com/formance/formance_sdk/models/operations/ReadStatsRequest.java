@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ReadStatsRequest {
-
     /**
      * name of the ledger
      */
@@ -34,9 +33,10 @@ public class ReadStatsRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * name of the ledger
@@ -47,7 +47,6 @@ public class ReadStatsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class ReadStatsRequest {
         }
         ReadStatsRequest other = (ReadStatsRequest) o;
         return 
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             ledger);
     }
     
@@ -72,14 +71,16 @@ public class ReadStatsRequest {
         return Utils.toString(ReadStatsRequest.class,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * name of the ledger
@@ -89,10 +90,12 @@ public class ReadStatsRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public ReadStatsRequest build() {
+
             return new ReadStatsRequest(
                 ledger);
         }
+
     }
 }

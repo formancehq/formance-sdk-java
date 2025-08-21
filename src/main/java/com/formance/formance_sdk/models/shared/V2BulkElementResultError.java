@@ -12,23 +12,27 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2BulkElementResultError implements V2BulkElementResult {
 
     @JsonProperty("errorCode")
     private String errorCode;
 
+
     @JsonProperty("errorDescription")
     private String errorDescription;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorDetails")
     private Optional<String> errorDetails;
 
+
     @JsonProperty("logID")
     private long logID;
+
 
     @JsonProperty("responseType")
     private String responseType;
@@ -57,7 +61,8 @@ public class V2BulkElementResultError implements V2BulkElementResult {
             String errorDescription,
             long logID,
             String responseType) {
-        this(errorCode, errorDescription, Optional.empty(), logID, responseType);
+        this(errorCode, errorDescription, Optional.empty(),
+            logID, responseType);
     }
 
     @JsonIgnore
@@ -86,9 +91,10 @@ public class V2BulkElementResultError implements V2BulkElementResult {
         return Utils.discriminatorToString(responseType);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2BulkElementResultError withErrorCode(String errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
@@ -108,6 +114,7 @@ public class V2BulkElementResultError implements V2BulkElementResult {
         return this;
     }
 
+
     public V2BulkElementResultError withErrorDetails(Optional<String> errorDetails) {
         Utils.checkNotNull(errorDetails, "errorDetails");
         this.errorDetails = errorDetails;
@@ -126,7 +133,6 @@ public class V2BulkElementResultError implements V2BulkElementResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -137,21 +143,18 @@ public class V2BulkElementResultError implements V2BulkElementResult {
         }
         V2BulkElementResultError other = (V2BulkElementResultError) o;
         return 
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.errorDescription, other.errorDescription) &&
-            Objects.deepEquals(this.errorDetails, other.errorDetails) &&
-            Objects.deepEquals(this.logID, other.logID) &&
-            Objects.deepEquals(this.responseType, other.responseType);
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorDescription, other.errorDescription) &&
+            Utils.enhancedDeepEquals(this.errorDetails, other.errorDetails) &&
+            Utils.enhancedDeepEquals(this.logID, other.logID) &&
+            Utils.enhancedDeepEquals(this.responseType, other.responseType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            errorCode,
-            errorDescription,
-            errorDetails,
-            logID,
-            responseType);
+        return Utils.enhancedHash(
+            errorCode, errorDescription, errorDetails,
+            logID, responseType);
     }
     
     @Override
@@ -163,22 +166,24 @@ public class V2BulkElementResultError implements V2BulkElementResult {
                 "logID", logID,
                 "responseType", responseType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String errorCode;
- 
+
         private String errorDescription;
- 
+
         private Optional<String> errorDetails = Optional.empty();
- 
+
         private Long logID;
- 
+
         private String responseType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorCode(String errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
@@ -186,11 +191,13 @@ public class V2BulkElementResultError implements V2BulkElementResult {
             return this;
         }
 
+
         public Builder errorDescription(String errorDescription) {
             Utils.checkNotNull(errorDescription, "errorDescription");
             this.errorDescription = errorDescription;
             return this;
         }
+
 
         public Builder errorDetails(String errorDetails) {
             Utils.checkNotNull(errorDetails, "errorDetails");
@@ -204,25 +211,26 @@ public class V2BulkElementResultError implements V2BulkElementResult {
             return this;
         }
 
+
         public Builder logID(long logID) {
             Utils.checkNotNull(logID, "logID");
             this.logID = logID;
             return this;
         }
 
+
         public Builder responseType(String responseType) {
             Utils.checkNotNull(responseType, "responseType");
             this.responseType = responseType;
             return this;
         }
-        
+
         public V2BulkElementResultError build() {
+
             return new V2BulkElementResultError(
-                errorCode,
-                errorDescription,
-                errorDetails,
-                logID,
-                responseType);
+                errorCode, errorDescription, errorDetails,
+                logID, responseType);
         }
+
     }
 }

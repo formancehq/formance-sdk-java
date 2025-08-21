@@ -11,11 +11,10 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2RevertTransactionRequest {
 
+public class V2RevertTransactionRequest {
     /**
      * Revert transaction at effective date of the original tx
      */
@@ -68,7 +67,8 @@ public class V2RevertTransactionRequest {
     public V2RevertTransactionRequest(
             BigInteger id,
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), id, ledger);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            id, ledger);
     }
 
     /**
@@ -111,9 +111,10 @@ public class V2RevertTransactionRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Revert transaction at effective date of the original tx
@@ -123,6 +124,7 @@ public class V2RevertTransactionRequest {
         this.atEffectiveDate = Optional.ofNullable(atEffectiveDate);
         return this;
     }
+
 
     /**
      * Revert transaction at effective date of the original tx
@@ -142,6 +144,7 @@ public class V2RevertTransactionRequest {
         return this;
     }
 
+
     /**
      * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
@@ -160,6 +163,7 @@ public class V2RevertTransactionRequest {
         return this;
     }
 
+
     /**
      * Force revert
      */
@@ -169,9 +173,9 @@ public class V2RevertTransactionRequest {
         return this;
     }
 
-        /**
-         * Transaction ID.
-         */
+    /**
+     * Transaction ID.
+     */
     public V2RevertTransactionRequest withId(long id) {
         this.id = BigInteger.valueOf(id);
         return this;
@@ -195,7 +199,6 @@ public class V2RevertTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -206,21 +209,18 @@ public class V2RevertTransactionRequest {
         }
         V2RevertTransactionRequest other = (V2RevertTransactionRequest) o;
         return 
-            Objects.deepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
-            Objects.deepEquals(this.dryRun, other.dryRun) &&
-            Objects.deepEquals(this.force, other.force) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
+            Utils.enhancedDeepEquals(this.dryRun, other.dryRun) &&
+            Utils.enhancedDeepEquals(this.force, other.force) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            atEffectiveDate,
-            dryRun,
-            force,
-            id,
-            ledger);
+        return Utils.enhancedHash(
+            atEffectiveDate, dryRun, force,
+            id, ledger);
     }
     
     @Override
@@ -232,22 +232,24 @@ public class V2RevertTransactionRequest {
                 "id", id,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> atEffectiveDate = Optional.empty();
- 
+
         private Optional<Boolean> dryRun = Optional.empty();
- 
+
         private Optional<Boolean> force = Optional.empty();
- 
+
         private BigInteger id;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Revert transaction at effective date of the original tx
@@ -267,6 +269,7 @@ public class V2RevertTransactionRequest {
             return this;
         }
 
+
         /**
          * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
          */
@@ -284,6 +287,7 @@ public class V2RevertTransactionRequest {
             this.dryRun = dryRun;
             return this;
         }
+
 
         /**
          * Force revert
@@ -303,6 +307,7 @@ public class V2RevertTransactionRequest {
             return this;
         }
 
+
         /**
          * Transaction ID.
          */
@@ -320,6 +325,7 @@ public class V2RevertTransactionRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -328,14 +334,13 @@ public class V2RevertTransactionRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2RevertTransactionRequest build() {
+
             return new V2RevertTransactionRequest(
-                atEffectiveDate,
-                dryRun,
-                force,
-                id,
-                ledger);
+                atEffectiveDate, dryRun, force,
+                id, ledger);
         }
+
     }
 }

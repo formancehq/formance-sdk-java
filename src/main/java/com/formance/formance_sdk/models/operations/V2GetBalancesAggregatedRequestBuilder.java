@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2GetBalancesAggregated;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2GetBalancesAggregatedRequestBuilder {
 
     private V2GetBalancesAggregatedRequest request;
-    private final SDKMethodInterfaces.MethodCallV2GetBalancesAggregated sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2GetBalancesAggregatedRequestBuilder(SDKMethodInterfaces.MethodCallV2GetBalancesAggregated sdk) {
-        this.sdk = sdk;
+    public V2GetBalancesAggregatedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2GetBalancesAggregatedRequestBuilder request(V2GetBalancesAggregatedRequest request) {
@@ -22,8 +26,10 @@ public class V2GetBalancesAggregatedRequestBuilder {
     }
 
     public V2GetBalancesAggregatedResponse call() throws Exception {
+        
+        RequestOperation<V2GetBalancesAggregatedRequest, V2GetBalancesAggregatedResponse> operation
+              = new V2GetBalancesAggregated.Sync(sdkConfiguration);
 
-        return sdk.getBalancesAggregated(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -17,8 +17,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ResponseCursor {
 
@@ -26,21 +26,26 @@ public class ResponseCursor {
     @JsonProperty("data")
     private Optional<? extends List<Map<String, Object>>> data;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hasMore")
     private Optional<Boolean> hasMore;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("next")
     private Optional<String> next;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("previous")
     private Optional<String> previous;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total")
@@ -69,7 +74,8 @@ public class ResponseCursor {
     }
     
     public ResponseCursor() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -104,15 +110,17 @@ public class ResponseCursor {
         return (Optional<Total>) total;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ResponseCursor withData(List<Map<String, Object>> data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
     }
+
 
     public ResponseCursor withData(Optional<? extends List<Map<String, Object>>> data) {
         Utils.checkNotNull(data, "data");
@@ -126,6 +134,7 @@ public class ResponseCursor {
         return this;
     }
 
+
     public ResponseCursor withHasMore(Optional<Boolean> hasMore) {
         Utils.checkNotNull(hasMore, "hasMore");
         this.hasMore = hasMore;
@@ -137,6 +146,7 @@ public class ResponseCursor {
         this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     public ResponseCursor withNext(Optional<String> next) {
         Utils.checkNotNull(next, "next");
@@ -150,6 +160,7 @@ public class ResponseCursor {
         return this;
     }
 
+
     public ResponseCursor withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -161,6 +172,7 @@ public class ResponseCursor {
         this.previous = Optional.ofNullable(previous);
         return this;
     }
+
 
     public ResponseCursor withPrevious(Optional<String> previous) {
         Utils.checkNotNull(previous, "previous");
@@ -174,13 +186,13 @@ public class ResponseCursor {
         return this;
     }
 
+
     public ResponseCursor withTotal(Optional<? extends Total> total) {
         Utils.checkNotNull(total, "total");
         this.total = total;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,23 +203,19 @@ public class ResponseCursor {
         }
         ResponseCursor other = (ResponseCursor) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.hasMore, other.hasMore) &&
-            Objects.deepEquals(this.next, other.next) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.previous, other.previous) &&
-            Objects.deepEquals(this.total, other.total);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.hasMore, other.hasMore) &&
+            Utils.enhancedDeepEquals(this.next, other.next) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.previous, other.previous) &&
+            Utils.enhancedDeepEquals(this.total, other.total);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            hasMore,
-            next,
-            pageSize,
-            previous,
-            total);
+        return Utils.enhancedHash(
+            data, hasMore, next,
+            pageSize, previous, total);
     }
     
     @Override
@@ -220,24 +228,26 @@ public class ResponseCursor {
                 "previous", previous,
                 "total", total);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Map<String, Object>>> data = Optional.empty();
- 
+
         private Optional<Boolean> hasMore = Optional.empty();
- 
+
         private Optional<String> next = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<String> previous = Optional.empty();
- 
+
         private Optional<? extends Total> total = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<Map<String, Object>> data) {
             Utils.checkNotNull(data, "data");
@@ -251,6 +261,7 @@ public class ResponseCursor {
             return this;
         }
 
+
         public Builder hasMore(boolean hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
             this.hasMore = Optional.ofNullable(hasMore);
@@ -262,6 +273,7 @@ public class ResponseCursor {
             this.hasMore = hasMore;
             return this;
         }
+
 
         public Builder next(String next) {
             Utils.checkNotNull(next, "next");
@@ -275,6 +287,7 @@ public class ResponseCursor {
             return this;
         }
 
+
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = Optional.ofNullable(pageSize);
@@ -286,6 +299,7 @@ public class ResponseCursor {
             this.pageSize = pageSize;
             return this;
         }
+
 
         public Builder previous(String previous) {
             Utils.checkNotNull(previous, "previous");
@@ -299,6 +313,7 @@ public class ResponseCursor {
             return this;
         }
 
+
         public Builder total(Total total) {
             Utils.checkNotNull(total, "total");
             this.total = Optional.ofNullable(total);
@@ -310,15 +325,13 @@ public class ResponseCursor {
             this.total = total;
             return this;
         }
-        
+
         public ResponseCursor build() {
+
             return new ResponseCursor(
-                data,
-                hasMore,
-                next,
-                pageSize,
-                previous,
-                total);
+                data, hasMore, next,
+                pageSize, previous, total);
         }
+
     }
 }

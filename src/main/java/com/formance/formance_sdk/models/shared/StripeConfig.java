@@ -14,13 +14,14 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class StripeConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
+
 
     @JsonProperty("name")
     private String name;
@@ -38,6 +39,7 @@ public class StripeConfig implements ConnectorConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -65,7 +67,8 @@ public class StripeConfig implements ConnectorConfig {
     public StripeConfig(
             String apiKey,
             String name) {
-        this(apiKey, name, Optional.empty(), Optional.empty(), Optional.empty());
+        this(apiKey, name, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -100,9 +103,10 @@ public class StripeConfig implements ConnectorConfig {
         return Utils.discriminatorToString(provider);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public StripeConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -125,6 +129,7 @@ public class StripeConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * Number of BalanceTransaction to fetch at each polling interval.
      */
@@ -143,6 +148,7 @@ public class StripeConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
      */
@@ -158,13 +164,13 @@ public class StripeConfig implements ConnectorConfig {
         return this;
     }
 
+
     public StripeConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -175,21 +181,18 @@ public class StripeConfig implements ConnectorConfig {
         }
         StripeConfig other = (StripeConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            name,
-            pageSize,
-            pollingPeriod,
-            provider);
+        return Utils.enhancedHash(
+            apiKey, name, pageSize,
+            pollingPeriod, provider);
     }
     
     @Override
@@ -201,22 +204,24 @@ public class StripeConfig implements ConnectorConfig {
                 "pollingPeriod", pollingPeriod,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String name;
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -224,11 +229,13 @@ public class StripeConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         /**
          * Number of BalanceTransaction to fetch at each polling interval.
@@ -248,6 +255,7 @@ public class StripeConfig implements ConnectorConfig {
             return this;
         }
 
+
         /**
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
          */
@@ -266,6 +274,7 @@ public class StripeConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -277,7 +286,7 @@ public class StripeConfig implements ConnectorConfig {
             this.provider = provider;
             return this;
         }
-        
+
         public StripeConfig build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
@@ -288,13 +297,12 @@ public class StripeConfig implements ConnectorConfig {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new StripeConfig(
-                apiKey,
-                name,
-                pageSize,
-                pollingPeriod,
-                provider);
+                apiKey, name, pageSize,
+                pollingPeriod, provider);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

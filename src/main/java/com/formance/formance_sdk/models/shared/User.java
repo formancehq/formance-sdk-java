@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class User {
 
@@ -20,9 +20,11 @@ public class User {
     @JsonProperty("email")
     private Optional<String> email;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subject")
@@ -60,15 +62,17 @@ public class User {
         return subject;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public User withEmail(String email) {
         Utils.checkNotNull(email, "email");
         this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     public User withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
@@ -82,6 +86,7 @@ public class User {
         return this;
     }
 
+
     public User withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -94,13 +99,13 @@ public class User {
         return this;
     }
 
+
     public User withSubject(Optional<String> subject) {
         Utils.checkNotNull(subject, "subject");
         this.subject = subject;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,17 +116,15 @@ public class User {
         }
         User other = (User) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.subject, other.subject);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.subject, other.subject);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            email,
-            id,
-            subject);
+        return Utils.enhancedHash(
+            email, id, subject);
     }
     
     @Override
@@ -131,18 +134,20 @@ public class User {
                 "id", id,
                 "subject", subject);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> subject = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
@@ -156,6 +161,7 @@ public class User {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
@@ -168,6 +174,7 @@ public class User {
             return this;
         }
 
+
         public Builder subject(String subject) {
             Utils.checkNotNull(subject, "subject");
             this.subject = Optional.ofNullable(subject);
@@ -179,12 +186,12 @@ public class User {
             this.subject = subject;
             return this;
         }
-        
+
         public User build() {
+
             return new User(
-                email,
-                id,
-                subject);
+                email, id, subject);
         }
+
     }
 }

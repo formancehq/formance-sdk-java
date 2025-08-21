@@ -11,18 +11,21 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
+
 
 public class V3Pool {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("poolAccounts")
     private List<String> poolAccounts;
@@ -63,9 +66,10 @@ public class V3Pool {
         return poolAccounts;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3Pool withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -91,7 +95,6 @@ public class V3Pool {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -102,18 +105,16 @@ public class V3Pool {
         }
         V3Pool other = (V3Pool) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.poolAccounts, other.poolAccounts);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.poolAccounts, other.poolAccounts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            id,
-            name,
+        return Utils.enhancedHash(
+            createdAt, id, name,
             poolAccounts);
     }
     
@@ -125,20 +126,22 @@ public class V3Pool {
                 "name", name,
                 "poolAccounts", poolAccounts);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private String name;
- 
+
         private List<String> poolAccounts;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -146,11 +149,13 @@ public class V3Pool {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -158,18 +163,19 @@ public class V3Pool {
             return this;
         }
 
+
         public Builder poolAccounts(List<String> poolAccounts) {
             Utils.checkNotNull(poolAccounts, "poolAccounts");
             this.poolAccounts = poolAccounts;
             return this;
         }
-        
+
         public V3Pool build() {
+
             return new V3Pool(
-                createdAt,
-                id,
-                name,
+                createdAt, id, name,
                 poolAccounts);
         }
+
     }
 }

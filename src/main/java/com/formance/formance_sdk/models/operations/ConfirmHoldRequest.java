@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConfirmHoldRequest {
 
@@ -23,6 +23,7 @@ public class ConfirmHoldRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
     private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=hold_id")
     private String holdId;
@@ -64,15 +65,17 @@ public class ConfirmHoldRequest {
         return holdId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConfirmHoldRequest withConfirmHoldRequest(com.formance.formance_sdk.models.shared.ConfirmHoldRequest confirmHoldRequest) {
         Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
         this.confirmHoldRequest = Optional.ofNullable(confirmHoldRequest);
         return this;
     }
+
 
     public ConfirmHoldRequest withConfirmHoldRequest(Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest) {
         Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
@@ -89,6 +92,7 @@ public class ConfirmHoldRequest {
         return this;
     }
 
+
     /**
      * Use an idempotency key
      */
@@ -104,7 +108,6 @@ public class ConfirmHoldRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +118,15 @@ public class ConfirmHoldRequest {
         }
         ConfirmHoldRequest other = (ConfirmHoldRequest) o;
         return 
-            Objects.deepEquals(this.confirmHoldRequest, other.confirmHoldRequest) &&
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.holdId, other.holdId);
+            Utils.enhancedDeepEquals(this.confirmHoldRequest, other.confirmHoldRequest) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.holdId, other.holdId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            confirmHoldRequest,
-            idempotencyKey,
-            holdId);
+        return Utils.enhancedHash(
+            confirmHoldRequest, idempotencyKey, holdId);
     }
     
     @Override
@@ -135,18 +136,20 @@ public class ConfirmHoldRequest {
                 "idempotencyKey", idempotencyKey,
                 "holdId", holdId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest = Optional.empty();
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private String holdId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder confirmHoldRequest(com.formance.formance_sdk.models.shared.ConfirmHoldRequest confirmHoldRequest) {
             Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
@@ -159,6 +162,7 @@ public class ConfirmHoldRequest {
             this.confirmHoldRequest = confirmHoldRequest;
             return this;
         }
+
 
         /**
          * Use an idempotency key
@@ -178,17 +182,18 @@ public class ConfirmHoldRequest {
             return this;
         }
 
+
         public Builder holdId(String holdId) {
             Utils.checkNotNull(holdId, "holdId");
             this.holdId = holdId;
             return this;
         }
-        
+
         public ConfirmHoldRequest build() {
+
             return new ConfirmHoldRequest(
-                confirmHoldRequest,
-                idempotencyKey,
-                holdId);
+                confirmHoldRequest, idempotencyKey, holdId);
         }
+
     }
 }

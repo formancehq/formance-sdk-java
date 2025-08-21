@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConfirmHoldRequest {
 
+public class ConfirmHoldRequest {
     /**
      * Define the amount to transfer.
      */
@@ -64,9 +63,10 @@ public class ConfirmHoldRequest {
         return final_;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Define the amount to transfer.
@@ -84,6 +84,7 @@ public class ConfirmHoldRequest {
         this.amount = Optional.of(BigInteger.valueOf(amount));
         return this;
     }
+
 
     /**
      * Define the amount to transfer.
@@ -103,6 +104,7 @@ public class ConfirmHoldRequest {
         return this;
     }
 
+
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
      */
@@ -112,7 +114,6 @@ public class ConfirmHoldRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -123,15 +124,14 @@ public class ConfirmHoldRequest {
         }
         ConfirmHoldRequest other = (ConfirmHoldRequest) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.final_, other.final_);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.final_, other.final_);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            final_);
+        return Utils.enhancedHash(
+            amount, final_);
     }
     
     @Override
@@ -140,16 +140,18 @@ public class ConfirmHoldRequest {
                 "amount", amount,
                 "final_", final_);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends BigInteger> amount = Optional.empty();
- 
+
         private Optional<Boolean> final_ = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Define the amount to transfer.
@@ -177,6 +179,7 @@ public class ConfirmHoldRequest {
             return this;
         }
 
+
         /**
          * Define a final confirmation. Remaining funds will be returned to the wallet.
          */
@@ -194,11 +197,12 @@ public class ConfirmHoldRequest {
             this.final_ = final_;
             return this;
         }
-        
+
         public ConfirmHoldRequest build() {
+
             return new ConfirmHoldRequest(
-                amount,
-                final_);
+                amount, final_);
         }
+
     }
 }

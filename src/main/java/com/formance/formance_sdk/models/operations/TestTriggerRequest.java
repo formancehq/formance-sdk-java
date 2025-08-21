@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class TestTriggerRequest {
 
@@ -55,15 +55,17 @@ public class TestTriggerRequest {
         return triggerID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TestTriggerRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     public TestTriggerRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -80,7 +82,6 @@ public class TestTriggerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,15 +92,14 @@ public class TestTriggerRequest {
         }
         TestTriggerRequest other = (TestTriggerRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.triggerID, other.triggerID);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.triggerID, other.triggerID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            triggerID);
+        return Utils.enhancedHash(
+            requestBody, triggerID);
     }
     
     @Override
@@ -108,16 +108,18 @@ public class TestTriggerRequest {
                 "requestBody", requestBody,
                 "triggerID", triggerID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
- 
+
         private String triggerID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -131,6 +133,7 @@ public class TestTriggerRequest {
             return this;
         }
 
+
         /**
          * The trigger id
          */
@@ -139,11 +142,12 @@ public class TestTriggerRequest {
             this.triggerID = triggerID;
             return this;
         }
-        
+
         public TestTriggerRequest build() {
+
             return new TestTriggerRequest(
-                requestBody,
-                triggerID);
+                requestBody, triggerID);
         }
+
     }
 }

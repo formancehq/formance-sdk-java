@@ -16,9 +16,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Client {
 
@@ -26,35 +26,44 @@ public class Client {
     @JsonProperty("description")
     private Optional<String> description;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postLogoutRedirectUris")
     private Optional<? extends List<String>> postLogoutRedirectUris;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("public")
     private Optional<Boolean> public_;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUris")
     private Optional<? extends List<String>> redirectUris;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scopes")
     private Optional<? extends List<String>> scopes;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("secrets")
     private Optional<? extends List<ClientSecret>> secrets;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trusted")
@@ -97,7 +106,10 @@ public class Client {
     public Client(
             String id,
             String name) {
-        this(Optional.empty(), id, JsonNullable.undefined(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), id, JsonNullable.undefined(),
+            name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -155,15 +167,17 @@ public class Client {
         return trusted;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Client withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     public Client withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -201,6 +215,7 @@ public class Client {
         return this;
     }
 
+
     public Client withPostLogoutRedirectUris(Optional<? extends List<String>> postLogoutRedirectUris) {
         Utils.checkNotNull(postLogoutRedirectUris, "postLogoutRedirectUris");
         this.postLogoutRedirectUris = postLogoutRedirectUris;
@@ -212,6 +227,7 @@ public class Client {
         this.public_ = Optional.ofNullable(public_);
         return this;
     }
+
 
     public Client withPublic(Optional<Boolean> public_) {
         Utils.checkNotNull(public_, "public_");
@@ -225,6 +241,7 @@ public class Client {
         return this;
     }
 
+
     public Client withRedirectUris(Optional<? extends List<String>> redirectUris) {
         Utils.checkNotNull(redirectUris, "redirectUris");
         this.redirectUris = redirectUris;
@@ -236,6 +253,7 @@ public class Client {
         this.scopes = Optional.ofNullable(scopes);
         return this;
     }
+
 
     public Client withScopes(Optional<? extends List<String>> scopes) {
         Utils.checkNotNull(scopes, "scopes");
@@ -249,6 +267,7 @@ public class Client {
         return this;
     }
 
+
     public Client withSecrets(Optional<? extends List<ClientSecret>> secrets) {
         Utils.checkNotNull(secrets, "secrets");
         this.secrets = secrets;
@@ -261,13 +280,13 @@ public class Client {
         return this;
     }
 
+
     public Client withTrusted(Optional<Boolean> trusted) {
         Utils.checkNotNull(trusted, "trusted");
         this.trusted = trusted;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -278,30 +297,24 @@ public class Client {
         }
         Client other = (Client) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.postLogoutRedirectUris, other.postLogoutRedirectUris) &&
-            Objects.deepEquals(this.public_, other.public_) &&
-            Objects.deepEquals(this.redirectUris, other.redirectUris) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.secrets, other.secrets) &&
-            Objects.deepEquals(this.trusted, other.trusted);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.postLogoutRedirectUris, other.postLogoutRedirectUris) &&
+            Utils.enhancedDeepEquals(this.public_, other.public_) &&
+            Utils.enhancedDeepEquals(this.redirectUris, other.redirectUris) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.secrets, other.secrets) &&
+            Utils.enhancedDeepEquals(this.trusted, other.trusted);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            description,
-            id,
-            metadata,
-            name,
-            postLogoutRedirectUris,
-            public_,
-            redirectUris,
-            scopes,
-            secrets,
+        return Utils.enhancedHash(
+            description, id, metadata,
+            name, postLogoutRedirectUris, public_,
+            redirectUris, scopes, secrets,
             trusted);
     }
     
@@ -319,32 +332,34 @@ public class Client {
                 "secrets", secrets,
                 "trusted", trusted);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private String id;
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private String name;
- 
+
         private Optional<? extends List<String>> postLogoutRedirectUris = Optional.empty();
- 
+
         private Optional<Boolean> public_ = Optional.empty();
- 
+
         private Optional<? extends List<String>> redirectUris = Optional.empty();
- 
+
         private Optional<? extends List<String>> scopes = Optional.empty();
- 
+
         private Optional<? extends List<ClientSecret>> secrets = Optional.empty();
- 
+
         private Optional<Boolean> trusted = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -358,11 +373,13 @@ public class Client {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -376,11 +393,13 @@ public class Client {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder postLogoutRedirectUris(List<String> postLogoutRedirectUris) {
             Utils.checkNotNull(postLogoutRedirectUris, "postLogoutRedirectUris");
@@ -394,6 +413,7 @@ public class Client {
             return this;
         }
 
+
         public Builder public_(boolean public_) {
             Utils.checkNotNull(public_, "public_");
             this.public_ = Optional.ofNullable(public_);
@@ -405,6 +425,7 @@ public class Client {
             this.public_ = public_;
             return this;
         }
+
 
         public Builder redirectUris(List<String> redirectUris) {
             Utils.checkNotNull(redirectUris, "redirectUris");
@@ -418,6 +439,7 @@ public class Client {
             return this;
         }
 
+
         public Builder scopes(List<String> scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = Optional.ofNullable(scopes);
@@ -429,6 +451,7 @@ public class Client {
             this.scopes = scopes;
             return this;
         }
+
 
         public Builder secrets(List<ClientSecret> secrets) {
             Utils.checkNotNull(secrets, "secrets");
@@ -442,6 +465,7 @@ public class Client {
             return this;
         }
 
+
         public Builder trusted(boolean trusted) {
             Utils.checkNotNull(trusted, "trusted");
             this.trusted = Optional.ofNullable(trusted);
@@ -453,19 +477,15 @@ public class Client {
             this.trusted = trusted;
             return this;
         }
-        
+
         public Client build() {
+
             return new Client(
-                description,
-                id,
-                metadata,
-                name,
-                postLogoutRedirectUris,
-                public_,
-                redirectUris,
-                scopes,
-                secrets,
+                description, id, metadata,
+                name, postLogoutRedirectUris, public_,
+                redirectUris, scopes, secrets,
                 trusted);
         }
+
     }
 }

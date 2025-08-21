@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.UninstallConnector;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class UninstallConnectorRequestBuilder {
 
     private UninstallConnectorRequest request;
-    private final SDKMethodInterfaces.MethodCallUninstallConnector sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UninstallConnectorRequestBuilder(SDKMethodInterfaces.MethodCallUninstallConnector sdk) {
-        this.sdk = sdk;
+    public UninstallConnectorRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UninstallConnectorRequestBuilder request(UninstallConnectorRequest request) {
@@ -22,8 +26,10 @@ public class UninstallConnectorRequestBuilder {
     }
 
     public UninstallConnectorResponse call() throws Exception {
+        
+        RequestOperation<UninstallConnectorRequest, UninstallConnectorResponse> operation
+              = new UninstallConnector.Sync(sdkConfiguration);
 
-        return sdk.uninstallConnector(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

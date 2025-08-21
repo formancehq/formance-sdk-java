@@ -16,8 +16,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ActivityStripeTransfer {
 
@@ -25,13 +25,16 @@ public class V2ActivityStripeTransfer {
     @JsonProperty("amount")
     private Optional<? extends BigInteger> amount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("asset")
     private Optional<String> asset;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
@@ -44,6 +47,7 @@ public class V2ActivityStripeTransfer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends V2ActivityStripeTransferMetadata> metadata;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("waitingValidation")
@@ -72,7 +76,8 @@ public class V2ActivityStripeTransfer {
     }
     
     public V2ActivityStripeTransfer() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -111,9 +116,10 @@ public class V2ActivityStripeTransfer {
         return waitingValidation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ActivityStripeTransfer withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
@@ -125,6 +131,7 @@ public class V2ActivityStripeTransfer {
         this.amount = Optional.of(BigInteger.valueOf(amount));
         return this;
     }
+
 
     public V2ActivityStripeTransfer withAmount(Optional<? extends BigInteger> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -138,6 +145,7 @@ public class V2ActivityStripeTransfer {
         return this;
     }
 
+
     public V2ActivityStripeTransfer withAsset(Optional<String> asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
@@ -150,6 +158,7 @@ public class V2ActivityStripeTransfer {
         return this;
     }
 
+
     public V2ActivityStripeTransfer withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
@@ -161,6 +170,7 @@ public class V2ActivityStripeTransfer {
         this.destination = Optional.ofNullable(destination);
         return this;
     }
+
 
     public V2ActivityStripeTransfer withDestination(Optional<String> destination) {
         Utils.checkNotNull(destination, "destination");
@@ -178,6 +188,7 @@ public class V2ActivityStripeTransfer {
         return this;
     }
 
+
     /**
      * A set of key/value pairs that you can attach to a transfer object.
      * It can be useful for storing additional information about the transfer in a structured format.
@@ -194,13 +205,13 @@ public class V2ActivityStripeTransfer {
         return this;
     }
 
+
     public V2ActivityStripeTransfer withWaitingValidation(Optional<Boolean> waitingValidation) {
         Utils.checkNotNull(waitingValidation, "waitingValidation");
         this.waitingValidation = waitingValidation;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -211,23 +222,19 @@ public class V2ActivityStripeTransfer {
         }
         V2ActivityStripeTransfer other = (V2ActivityStripeTransfer) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.waitingValidation, other.waitingValidation);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.waitingValidation, other.waitingValidation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset,
-            connectorID,
-            destination,
-            metadata,
-            waitingValidation);
+        return Utils.enhancedHash(
+            amount, asset, connectorID,
+            destination, metadata, waitingValidation);
     }
     
     @Override
@@ -240,24 +247,26 @@ public class V2ActivityStripeTransfer {
                 "metadata", metadata,
                 "waitingValidation", waitingValidation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends BigInteger> amount = Optional.empty();
- 
+
         private Optional<String> asset = Optional.empty();
- 
+
         private Optional<String> connectorID = Optional.empty();
- 
+
         private Optional<String> destination = Optional.empty();
- 
+
         private Optional<? extends V2ActivityStripeTransferMetadata> metadata = Optional.empty();
- 
+
         private Optional<Boolean> waitingValidation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
@@ -276,6 +285,7 @@ public class V2ActivityStripeTransfer {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = Optional.ofNullable(asset);
@@ -287,6 +297,7 @@ public class V2ActivityStripeTransfer {
             this.asset = asset;
             return this;
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -300,6 +311,7 @@ public class V2ActivityStripeTransfer {
             return this;
         }
 
+
         public Builder destination(String destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = Optional.ofNullable(destination);
@@ -311,6 +323,7 @@ public class V2ActivityStripeTransfer {
             this.destination = destination;
             return this;
         }
+
 
         /**
          * A set of key/value pairs that you can attach to a transfer object.
@@ -332,6 +345,7 @@ public class V2ActivityStripeTransfer {
             return this;
         }
 
+
         public Builder waitingValidation(boolean waitingValidation) {
             Utils.checkNotNull(waitingValidation, "waitingValidation");
             this.waitingValidation = Optional.ofNullable(waitingValidation);
@@ -343,19 +357,17 @@ public class V2ActivityStripeTransfer {
             this.waitingValidation = waitingValidation;
             return this;
         }
-        
+
         public V2ActivityStripeTransfer build() {
             if (waitingValidation == null) {
                 waitingValidation = _SINGLETON_VALUE_WaitingValidation.value();
             }
+
             return new V2ActivityStripeTransfer(
-                amount,
-                asset,
-                connectorID,
-                destination,
-                metadata,
-                waitingValidation);
+                amount, asset, connectorID,
+                destination, metadata, waitingValidation);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_WaitingValidation =
                 new LazySingletonValue<>(

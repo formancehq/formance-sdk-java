@@ -10,15 +10,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class CreateWalletRequest {
-
     /**
      * Custom metadata to attach to this wallet.
      */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
+
 
     @JsonProperty("name")
     private String name;
@@ -28,6 +28,7 @@ public class CreateWalletRequest {
             @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("name") String name) {
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         this.metadata = metadata;
         this.name = name;
@@ -46,9 +47,10 @@ public class CreateWalletRequest {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Custom metadata to attach to this wallet.
@@ -65,7 +67,6 @@ public class CreateWalletRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,15 +77,14 @@ public class CreateWalletRequest {
         }
         CreateWalletRequest other = (CreateWalletRequest) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            metadata,
-            name);
+        return Utils.enhancedHash(
+            metadata, name);
     }
     
     @Override
@@ -93,16 +93,18 @@ public class CreateWalletRequest {
                 "metadata", metadata,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, String> metadata;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Custom metadata to attach to this wallet.
@@ -113,16 +115,18 @@ public class CreateWalletRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public CreateWalletRequest build() {
+
             return new CreateWalletRequest(
-                metadata,
-                name);
+                metadata, name);
         }
+
     }
 }

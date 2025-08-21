@@ -12,8 +12,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskWiseDescriptor {
 
@@ -21,9 +21,11 @@ public class TaskWiseDescriptor {
     @JsonProperty("key")
     private Optional<String> key;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileID")
@@ -61,15 +63,17 @@ public class TaskWiseDescriptor {
         return profileID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TaskWiseDescriptor withKey(String key) {
         Utils.checkNotNull(key, "key");
         this.key = Optional.ofNullable(key);
         return this;
     }
+
 
     public TaskWiseDescriptor withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
@@ -83,6 +87,7 @@ public class TaskWiseDescriptor {
         return this;
     }
 
+
     public TaskWiseDescriptor withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -95,13 +100,13 @@ public class TaskWiseDescriptor {
         return this;
     }
 
+
     public TaskWiseDescriptor withProfileID(Optional<Long> profileID) {
         Utils.checkNotNull(profileID, "profileID");
         this.profileID = profileID;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,17 +117,15 @@ public class TaskWiseDescriptor {
         }
         TaskWiseDescriptor other = (TaskWiseDescriptor) o;
         return 
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.profileID, other.profileID);
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.profileID, other.profileID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            key,
-            name,
-            profileID);
+        return Utils.enhancedHash(
+            key, name, profileID);
     }
     
     @Override
@@ -132,18 +135,20 @@ public class TaskWiseDescriptor {
                 "name", name,
                 "profileID", profileID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> key = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<Long> profileID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
@@ -157,6 +162,7 @@ public class TaskWiseDescriptor {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -169,6 +175,7 @@ public class TaskWiseDescriptor {
             return this;
         }
 
+
         public Builder profileID(long profileID) {
             Utils.checkNotNull(profileID, "profileID");
             this.profileID = Optional.ofNullable(profileID);
@@ -180,12 +187,12 @@ public class TaskWiseDescriptor {
             this.profileID = profileID;
             return this;
         }
-        
+
         public TaskWiseDescriptor build() {
+
             return new TaskWiseDescriptor(
-                key,
-                name,
-                profileID);
+                key, name, profileID);
         }
+
     }
 }

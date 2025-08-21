@@ -11,7 +11,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ConnectorsTransferRequest {
 
@@ -47,9 +47,10 @@ public class ConnectorsTransferRequest {
         return connector;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectorsTransferRequest withTransferRequest(TransferRequest transferRequest) {
         Utils.checkNotNull(transferRequest, "transferRequest");
@@ -66,7 +67,6 @@ public class ConnectorsTransferRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,15 +77,14 @@ public class ConnectorsTransferRequest {
         }
         ConnectorsTransferRequest other = (ConnectorsTransferRequest) o;
         return 
-            Objects.deepEquals(this.transferRequest, other.transferRequest) &&
-            Objects.deepEquals(this.connector, other.connector);
+            Utils.enhancedDeepEquals(this.transferRequest, other.transferRequest) &&
+            Utils.enhancedDeepEquals(this.connector, other.connector);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            transferRequest,
-            connector);
+        return Utils.enhancedHash(
+            transferRequest, connector);
     }
     
     @Override
@@ -94,22 +93,25 @@ public class ConnectorsTransferRequest {
                 "transferRequest", transferRequest,
                 "connector", connector);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private TransferRequest transferRequest;
- 
+
         private Connector connector;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder transferRequest(TransferRequest transferRequest) {
             Utils.checkNotNull(transferRequest, "transferRequest");
             this.transferRequest = transferRequest;
             return this;
         }
+
 
         /**
          * The name of the connector.
@@ -119,11 +121,12 @@ public class ConnectorsTransferRequest {
             this.connector = connector;
             return this;
         }
-        
+
         public ConnectorsTransferRequest build() {
+
             return new ConnectorsTransferRequest(
-                transferRequest,
-                connector);
+                transferRequest, connector);
         }
+
     }
 }

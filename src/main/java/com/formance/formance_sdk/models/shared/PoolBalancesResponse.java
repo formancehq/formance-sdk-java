@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * PoolBalancesResponse
@@ -33,9 +32,10 @@ public class PoolBalancesResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PoolBalancesResponse withData(PoolBalances data) {
         Utils.checkNotNull(data, "data");
@@ -43,7 +43,6 @@ public class PoolBalancesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -54,12 +53,12 @@ public class PoolBalancesResponse {
         }
         PoolBalancesResponse other = (PoolBalancesResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -68,24 +67,28 @@ public class PoolBalancesResponse {
         return Utils.toString(PoolBalancesResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private PoolBalances data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(PoolBalances data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public PoolBalancesResponse build() {
+
             return new PoolBalancesResponse(
                 data);
         }
+
     }
 }

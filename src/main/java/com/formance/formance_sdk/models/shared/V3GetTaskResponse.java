@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3GetTaskResponse {
 
@@ -28,9 +28,10 @@ public class V3GetTaskResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3GetTaskResponse withData(V3Task data) {
         Utils.checkNotNull(data, "data");
@@ -38,7 +39,6 @@ public class V3GetTaskResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V3GetTaskResponse {
         }
         V3GetTaskResponse other = (V3GetTaskResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -63,24 +63,28 @@ public class V3GetTaskResponse {
         return Utils.toString(V3GetTaskResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V3Task data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(V3Task data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public V3GetTaskResponse build() {
+
             return new V3GetTaskResponse(
                 data);
         }
+
     }
 }

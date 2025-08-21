@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2SendEventRequestBody {
 
@@ -28,9 +28,10 @@ public class V2SendEventRequestBody {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2SendEventRequestBody withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -38,7 +39,6 @@ public class V2SendEventRequestBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V2SendEventRequestBody {
         }
         V2SendEventRequestBody other = (V2SendEventRequestBody) o;
         return 
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name);
     }
     
@@ -63,24 +63,28 @@ public class V2SendEventRequestBody {
         return Utils.toString(V2SendEventRequestBody.class,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public V2SendEventRequestBody build() {
+
             return new V2SendEventRequestBody(
                 name);
         }
+
     }
 }

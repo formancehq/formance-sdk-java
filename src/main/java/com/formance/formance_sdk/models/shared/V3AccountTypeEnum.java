@@ -16,7 +16,7 @@ public enum V3AccountTypeEnum {
     @JsonValue
     private final String value;
 
-    private V3AccountTypeEnum(String value) {
+    V3AccountTypeEnum(String value) {
         this.value = value;
     }
     

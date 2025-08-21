@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class RemoveAccountFromPoolRequest {
-
     /**
      * The account ID.
      */
@@ -51,9 +50,10 @@ public class RemoveAccountFromPoolRequest {
         return poolId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The account ID.
@@ -73,7 +73,6 @@ public class RemoveAccountFromPoolRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +83,14 @@ public class RemoveAccountFromPoolRequest {
         }
         RemoveAccountFromPoolRequest other = (RemoveAccountFromPoolRequest) o;
         return 
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.poolId, other.poolId);
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.poolId, other.poolId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountId,
-            poolId);
+        return Utils.enhancedHash(
+            accountId, poolId);
     }
     
     @Override
@@ -101,16 +99,18 @@ public class RemoveAccountFromPoolRequest {
                 "accountId", accountId,
                 "poolId", poolId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountId;
- 
+
         private String poolId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The account ID.
@@ -121,6 +121,7 @@ public class RemoveAccountFromPoolRequest {
             return this;
         }
 
+
         /**
          * The pool ID.
          */
@@ -129,11 +130,12 @@ public class RemoveAccountFromPoolRequest {
             this.poolId = poolId;
             return this;
         }
-        
+
         public RemoveAccountFromPoolRequest build() {
+
             return new RemoveAccountFromPoolRequest(
-                accountId,
-                poolId);
+                accountId, poolId);
         }
+
     }
 }

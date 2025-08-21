@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListClientsResponse {
 
@@ -39,9 +39,10 @@ public class ListClientsResponse {
         return (Optional<List<Client>>) data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListClientsResponse withData(List<Client> data) {
         Utils.checkNotNull(data, "data");
@@ -49,13 +50,13 @@ public class ListClientsResponse {
         return this;
     }
 
+
     public ListClientsResponse withData(Optional<? extends List<Client>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,12 +67,12 @@ public class ListClientsResponse {
         }
         ListClientsResponse other = (ListClientsResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -80,14 +81,16 @@ public class ListClientsResponse {
         return Utils.toString(ListClientsResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Client>> data = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<Client> data) {
             Utils.checkNotNull(data, "data");
@@ -100,10 +103,12 @@ public class ListClientsResponse {
             this.data = data;
             return this;
         }
-        
+
         public ListClientsResponse build() {
+
             return new ListClientsResponse(
                 data);
         }
+
     }
 }

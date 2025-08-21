@@ -11,8 +11,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateMappingRequest {
 
@@ -54,15 +54,17 @@ public class UpdateMappingRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateMappingRequest withMapping(Mapping mapping) {
         Utils.checkNotNull(mapping, "mapping");
         this.mapping = Optional.ofNullable(mapping);
         return this;
     }
+
 
     public UpdateMappingRequest withMapping(Optional<? extends Mapping> mapping) {
         Utils.checkNotNull(mapping, "mapping");
@@ -79,7 +81,6 @@ public class UpdateMappingRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +91,14 @@ public class UpdateMappingRequest {
         }
         UpdateMappingRequest other = (UpdateMappingRequest) o;
         return 
-            Objects.deepEquals(this.mapping, other.mapping) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.mapping, other.mapping) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            mapping,
-            ledger);
+        return Utils.enhancedHash(
+            mapping, ledger);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class UpdateMappingRequest {
                 "mapping", mapping,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Mapping> mapping = Optional.empty();
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder mapping(Mapping mapping) {
             Utils.checkNotNull(mapping, "mapping");
@@ -130,6 +132,7 @@ public class UpdateMappingRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -138,11 +141,12 @@ public class UpdateMappingRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public UpdateMappingRequest build() {
+
             return new UpdateMappingRequest(
-                mapping,
-                ledger);
+                mapping, ledger);
         }
+
     }
 }

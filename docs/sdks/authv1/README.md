@@ -23,6 +23,7 @@ Create client
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createClient" method="post" path="/api/auth/clients" -->
 ```java
 package hello.world;
 
@@ -37,8 +38,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -74,6 +75,7 @@ Add a secret to a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createSecret" method="post" path="/api/auth/clients/{clientId}/secrets" -->
 ```java
 package hello.world;
 
@@ -89,8 +91,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -131,6 +133,7 @@ Delete client
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deleteClient" method="delete" path="/api/auth/clients/{clientId}" -->
 ```java
 package hello.world;
 
@@ -146,8 +149,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -186,6 +189,7 @@ Delete a secret from a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deleteSecret" method="delete" path="/api/auth/clients/{clientId}/secrets/{secretId}" -->
 ```java
 package hello.world;
 
@@ -201,8 +205,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -242,6 +246,7 @@ Retrieve OpenID connect well-knowns.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getOIDCWellKnowns" method="get" path="/api/auth/.well-known/openid-configuration" -->
 ```java
 package hello.world;
 
@@ -256,8 +261,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -285,6 +290,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getServerInfo" method="get" path="/api/auth/_info" -->
 ```java
 package hello.world;
 
@@ -299,8 +305,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -330,6 +336,7 @@ List clients
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listClients" method="get" path="/api/auth/clients" -->
 ```java
 package hello.world;
 
@@ -344,8 +351,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -375,6 +382,7 @@ List users
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listUsers" method="get" path="/api/auth/users" -->
 ```java
 package hello.world;
 
@@ -389,8 +397,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -420,6 +428,7 @@ Read client
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="readClient" method="get" path="/api/auth/clients/{clientId}" -->
 ```java
 package hello.world;
 
@@ -435,8 +444,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -477,6 +486,7 @@ Read user
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="readUser" method="get" path="/api/auth/users/{userId}" -->
 ```java
 package hello.world;
 
@@ -492,8 +502,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -534,6 +544,7 @@ Update client
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="updateClient" method="put" path="/api/auth/clients/{clientId}" -->
 ```java
 package hello.world;
 
@@ -549,8 +560,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 

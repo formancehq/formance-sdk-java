@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.TestConfig;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class TestConfigRequestBuilder {
 
     private TestConfigRequest request;
-    private final SDKMethodInterfaces.MethodCallTestConfig sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public TestConfigRequestBuilder(SDKMethodInterfaces.MethodCallTestConfig sdk) {
-        this.sdk = sdk;
+    public TestConfigRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public TestConfigRequestBuilder request(TestConfigRequest request) {
@@ -22,8 +26,10 @@ public class TestConfigRequestBuilder {
     }
 
     public TestConfigResponse call() throws Exception {
+        
+        RequestOperation<TestConfigRequest, TestConfigResponse> operation
+              = new TestConfig.Sync(sdkConfiguration);
 
-        return sdk.testConfig(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

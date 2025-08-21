@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetConnectorTaskRequest {
-
     /**
      * The name of the connector.
      */
@@ -52,9 +51,10 @@ public class GetConnectorTaskRequest {
         return taskId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the connector.
@@ -74,7 +74,6 @@ public class GetConnectorTaskRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,15 +84,14 @@ public class GetConnectorTaskRequest {
         }
         GetConnectorTaskRequest other = (GetConnectorTaskRequest) o;
         return 
-            Objects.deepEquals(this.connector, other.connector) &&
-            Objects.deepEquals(this.taskId, other.taskId);
+            Utils.enhancedDeepEquals(this.connector, other.connector) &&
+            Utils.enhancedDeepEquals(this.taskId, other.taskId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connector,
-            taskId);
+        return Utils.enhancedHash(
+            connector, taskId);
     }
     
     @Override
@@ -102,16 +100,18 @@ public class GetConnectorTaskRequest {
                 "connector", connector,
                 "taskId", taskId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Connector connector;
- 
+
         private String taskId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the connector.
@@ -122,6 +122,7 @@ public class GetConnectorTaskRequest {
             return this;
         }
 
+
         /**
          * The task ID.
          */
@@ -130,11 +131,12 @@ public class GetConnectorTaskRequest {
             this.taskId = taskId;
             return this;
         }
-        
+
         public GetConnectorTaskRequest build() {
+
             return new GetConnectorTaskRequest(
-                connector,
-                taskId);
+                connector, taskId);
         }
+
     }
 }

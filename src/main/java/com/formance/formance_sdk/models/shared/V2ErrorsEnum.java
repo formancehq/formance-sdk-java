@@ -31,7 +31,7 @@ public enum V2ErrorsEnum {
     @JsonValue
     private final String value;
 
-    private V2ErrorsEnum(String value) {
+    V2ErrorsEnum(String value) {
         this.value = value;
     }
     

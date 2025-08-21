@@ -12,24 +12,29 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class Policy {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("ledgerName")
     private String ledgerName;
 
+
     @JsonProperty("ledgerQuery")
     private Map<String, Object> ledgerQuery;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("paymentsPoolID")
     private String paymentsPoolID;
@@ -46,6 +51,7 @@ public class Policy {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledgerName, "ledgerName");
         ledgerQuery = Utils.emptyMapIfNull(ledgerQuery);
+        Utils.checkNotNull(ledgerQuery, "ledgerQuery");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(paymentsPoolID, "paymentsPoolID");
         this.createdAt = createdAt;
@@ -86,9 +92,10 @@ public class Policy {
         return paymentsPoolID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Policy withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -126,7 +133,6 @@ public class Policy {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -137,23 +143,19 @@ public class Policy {
         }
         Policy other = (Policy) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledgerName, other.ledgerName) &&
-            Objects.deepEquals(this.ledgerQuery, other.ledgerQuery) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.paymentsPoolID, other.paymentsPoolID);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledgerName, other.ledgerName) &&
+            Utils.enhancedDeepEquals(this.ledgerQuery, other.ledgerQuery) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.paymentsPoolID, other.paymentsPoolID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            id,
-            ledgerName,
-            ledgerQuery,
-            name,
-            paymentsPoolID);
+        return Utils.enhancedHash(
+            createdAt, id, ledgerName,
+            ledgerQuery, name, paymentsPoolID);
     }
     
     @Override
@@ -166,24 +168,26 @@ public class Policy {
                 "name", name,
                 "paymentsPoolID", paymentsPoolID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private String ledgerName;
- 
+
         private Map<String, Object> ledgerQuery;
- 
+
         private String name;
- 
+
         private String paymentsPoolID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -191,11 +195,13 @@ public class Policy {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder ledgerName(String ledgerName) {
             Utils.checkNotNull(ledgerName, "ledgerName");
@@ -203,11 +209,13 @@ public class Policy {
             return this;
         }
 
+
         public Builder ledgerQuery(Map<String, Object> ledgerQuery) {
             Utils.checkNotNull(ledgerQuery, "ledgerQuery");
             this.ledgerQuery = ledgerQuery;
             return this;
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -215,20 +223,19 @@ public class Policy {
             return this;
         }
 
+
         public Builder paymentsPoolID(String paymentsPoolID) {
             Utils.checkNotNull(paymentsPoolID, "paymentsPoolID");
             this.paymentsPoolID = paymentsPoolID;
             return this;
         }
-        
+
         public Policy build() {
+
             return new Policy(
-                createdAt,
-                id,
-                ledgerName,
-                ledgerQuery,
-                name,
-                paymentsPoolID);
+                createdAt, id, ledgerName,
+                ledgerQuery, name, paymentsPoolID);
         }
+
     }
 }

@@ -10,15 +10,17 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class Version {
 
     @JsonProperty("health")
     private boolean health;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("version")
     private String version;
@@ -51,9 +53,10 @@ public class Version {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Version withHealth(boolean health) {
         Utils.checkNotNull(health, "health");
@@ -73,7 +76,6 @@ public class Version {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,17 +86,15 @@ public class Version {
         }
         Version other = (Version) o;
         return 
-            Objects.deepEquals(this.health, other.health) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.version, other.version);
+            Utils.enhancedDeepEquals(this.health, other.health) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.version, other.version);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            health,
-            name,
-            version);
+        return Utils.enhancedHash(
+            health, name, version);
     }
     
     @Override
@@ -104,18 +104,20 @@ public class Version {
                 "name", name,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Boolean health;
- 
+
         private String name;
- 
+
         private String version;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder health(boolean health) {
             Utils.checkNotNull(health, "health");
@@ -123,23 +125,25 @@ public class Version {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
+
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
             return this;
         }
-        
+
         public Version build() {
+
             return new Version(
-                health,
-                name,
-                version);
+                health, name, version);
         }
+
     }
 }

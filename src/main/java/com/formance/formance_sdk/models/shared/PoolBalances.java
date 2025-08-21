@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class PoolBalances {
 
@@ -29,9 +29,10 @@ public class PoolBalances {
         return balances;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PoolBalances withBalances(List<PoolBalance> balances) {
         Utils.checkNotNull(balances, "balances");
@@ -39,7 +40,6 @@ public class PoolBalances {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class PoolBalances {
         }
         PoolBalances other = (PoolBalances) o;
         return 
-            Objects.deepEquals(this.balances, other.balances);
+            Utils.enhancedDeepEquals(this.balances, other.balances);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             balances);
     }
     
@@ -64,24 +64,28 @@ public class PoolBalances {
         return Utils.toString(PoolBalances.class,
                 "balances", balances);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<PoolBalance> balances;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder balances(List<PoolBalance> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
             return this;
         }
-        
+
         public PoolBalances build() {
+
             return new PoolBalances(
                 balances);
         }
+
     }
 }

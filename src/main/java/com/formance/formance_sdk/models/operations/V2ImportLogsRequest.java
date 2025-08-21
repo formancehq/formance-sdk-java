@@ -9,7 +9,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2ImportLogsRequest {
 
@@ -45,9 +45,10 @@ public class V2ImportLogsRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ImportLogsRequest withV2ImportLogsRequest(byte[] v2ImportLogsRequest) {
         Utils.checkNotNull(v2ImportLogsRequest, "v2ImportLogsRequest");
@@ -64,7 +65,6 @@ public class V2ImportLogsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,15 +75,14 @@ public class V2ImportLogsRequest {
         }
         V2ImportLogsRequest other = (V2ImportLogsRequest) o;
         return 
-            Objects.deepEquals(this.v2ImportLogsRequest, other.v2ImportLogsRequest) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.v2ImportLogsRequest, other.v2ImportLogsRequest) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v2ImportLogsRequest,
-            ledger);
+        return Utils.enhancedHash(
+            v2ImportLogsRequest, ledger);
     }
     
     @Override
@@ -92,22 +91,25 @@ public class V2ImportLogsRequest {
                 "v2ImportLogsRequest", v2ImportLogsRequest,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private byte[] v2ImportLogsRequest;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v2ImportLogsRequest(byte[] v2ImportLogsRequest) {
             Utils.checkNotNull(v2ImportLogsRequest, "v2ImportLogsRequest");
             this.v2ImportLogsRequest = v2ImportLogsRequest;
             return this;
         }
+
 
         /**
          * Name of the ledger.
@@ -117,11 +119,12 @@ public class V2ImportLogsRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2ImportLogsRequest build() {
+
             return new V2ImportLogsRequest(
-                v2ImportLogsRequest,
-                ledger);
+                v2ImportLogsRequest, ledger);
         }
+
     }
 }

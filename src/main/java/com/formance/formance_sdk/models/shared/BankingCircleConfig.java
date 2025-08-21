@@ -13,19 +13,22 @@ import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class BankingCircleConfig implements ConnectorConfig {
 
     @JsonProperty("authorizationEndpoint")
     private String authorizationEndpoint;
 
+
     @JsonProperty("endpoint")
     private String endpoint;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("password")
     private String password;
@@ -37,15 +40,19 @@ public class BankingCircleConfig implements ConnectorConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
 
+
     @JsonProperty("userCertificate")
     private String userCertificate;
 
+
     @JsonProperty("userCertificateKey")
     private String userCertificateKey;
+
 
     @JsonProperty("username")
     private String username;
@@ -89,7 +96,9 @@ public class BankingCircleConfig implements ConnectorConfig {
             String userCertificate,
             String userCertificateKey,
             String username) {
-        this(authorizationEndpoint, endpoint, name, password, Optional.empty(), Optional.empty(), userCertificate, userCertificateKey, username);
+        this(authorizationEndpoint, endpoint, name,
+            password, Optional.empty(), Optional.empty(),
+            userCertificate, userCertificateKey, username);
     }
 
     @JsonIgnore
@@ -141,9 +150,10 @@ public class BankingCircleConfig implements ConnectorConfig {
         return username;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BankingCircleConfig withAuthorizationEndpoint(String authorizationEndpoint) {
         Utils.checkNotNull(authorizationEndpoint, "authorizationEndpoint");
@@ -178,6 +188,7 @@ public class BankingCircleConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
      */
@@ -192,6 +203,7 @@ public class BankingCircleConfig implements ConnectorConfig {
         this.provider = Optional.ofNullable(provider);
         return this;
     }
+
 
     public BankingCircleConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
@@ -217,7 +229,6 @@ public class BankingCircleConfig implements ConnectorConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -228,29 +239,23 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
         BankingCircleConfig other = (BankingCircleConfig) o;
         return 
-            Objects.deepEquals(this.authorizationEndpoint, other.authorizationEndpoint) &&
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.password, other.password) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.userCertificate, other.userCertificate) &&
-            Objects.deepEquals(this.userCertificateKey, other.userCertificateKey) &&
-            Objects.deepEquals(this.username, other.username);
+            Utils.enhancedDeepEquals(this.authorizationEndpoint, other.authorizationEndpoint) &&
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.password, other.password) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.userCertificate, other.userCertificate) &&
+            Utils.enhancedDeepEquals(this.userCertificateKey, other.userCertificateKey) &&
+            Utils.enhancedDeepEquals(this.username, other.username);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            authorizationEndpoint,
-            endpoint,
-            name,
-            password,
-            pollingPeriod,
-            provider,
-            userCertificate,
-            userCertificateKey,
-            username);
+        return Utils.enhancedHash(
+            authorizationEndpoint, endpoint, name,
+            password, pollingPeriod, provider,
+            userCertificate, userCertificateKey, username);
     }
     
     @Override
@@ -266,30 +271,32 @@ public class BankingCircleConfig implements ConnectorConfig {
                 "userCertificateKey", userCertificateKey,
                 "username", username);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String authorizationEndpoint;
- 
+
         private String endpoint;
- 
+
         private String name;
- 
+
         private String password;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
- 
+
         private String userCertificate;
- 
+
         private String userCertificateKey;
- 
+
         private String username;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder authorizationEndpoint(String authorizationEndpoint) {
             Utils.checkNotNull(authorizationEndpoint, "authorizationEndpoint");
@@ -297,11 +304,13 @@ public class BankingCircleConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
             return this;
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -309,11 +318,13 @@ public class BankingCircleConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder password(String password) {
             Utils.checkNotNull(password, "password");
             this.password = password;
             return this;
         }
+
 
         /**
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
@@ -333,6 +344,7 @@ public class BankingCircleConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -345,11 +357,13 @@ public class BankingCircleConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder userCertificate(String userCertificate) {
             Utils.checkNotNull(userCertificate, "userCertificate");
             this.userCertificate = userCertificate;
             return this;
         }
+
 
         public Builder userCertificateKey(String userCertificateKey) {
             Utils.checkNotNull(userCertificateKey, "userCertificateKey");
@@ -357,12 +371,13 @@ public class BankingCircleConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder username(String username) {
             Utils.checkNotNull(username, "username");
             this.username = username;
             return this;
         }
-        
+
         public BankingCircleConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
@@ -370,17 +385,13 @@ public class BankingCircleConfig implements ConnectorConfig {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new BankingCircleConfig(
-                authorizationEndpoint,
-                endpoint,
-                name,
-                password,
-                pollingPeriod,
-                provider,
-                userCertificate,
-                userCertificateKey,
-                username);
+                authorizationEndpoint, endpoint, name,
+                password, pollingPeriod, provider,
+                userCertificate, userCertificateKey, username);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(

@@ -12,8 +12,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2WorkflowInstanceHistoryStageInput {
 
@@ -21,41 +21,51 @@ public class V2WorkflowInstanceHistoryStageInput {
     @JsonProperty("AddAccountMetadata")
     private Optional<? extends V2ActivityAddAccountMetadata> addAccountMetadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ConfirmHold")
     private Optional<? extends V2ActivityConfirmHold> confirmHold;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreateTransaction")
     private Optional<? extends V2ActivityCreateTransaction> createTransaction;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreditWallet")
     private Optional<? extends V2ActivityCreditWallet> creditWallet;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("DebitWallet")
     private Optional<? extends V2ActivityDebitWallet> debitWallet;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetAccount")
     private Optional<? extends V2ActivityGetAccount> getAccount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetPayment")
     private Optional<? extends V2ActivityGetPayment> getPayment;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetWallet")
     private Optional<? extends V2ActivityGetWallet> getWallet;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ListWallets")
     private Optional<? extends V2ActivityListWallets> listWallets;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("StripeTransfer")
     private Optional<? extends V2ActivityStripeTransfer> stripeTransfer;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("VoidHold")
@@ -99,7 +109,10 @@ public class V2WorkflowInstanceHistoryStageInput {
     }
     
     public V2WorkflowInstanceHistoryStageInput() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -168,15 +181,17 @@ public class V2WorkflowInstanceHistoryStageInput {
         return (Optional<V2ActivityVoidHold>) voidHold;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2WorkflowInstanceHistoryStageInput withAddAccountMetadata(V2ActivityAddAccountMetadata addAccountMetadata) {
         Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
         this.addAccountMetadata = Optional.ofNullable(addAccountMetadata);
         return this;
     }
+
 
     public V2WorkflowInstanceHistoryStageInput withAddAccountMetadata(Optional<? extends V2ActivityAddAccountMetadata> addAccountMetadata) {
         Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
@@ -190,6 +205,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageInput withConfirmHold(Optional<? extends V2ActivityConfirmHold> confirmHold) {
         Utils.checkNotNull(confirmHold, "confirmHold");
         this.confirmHold = confirmHold;
@@ -201,6 +217,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         this.createTransaction = Optional.ofNullable(createTransaction);
         return this;
     }
+
 
     public V2WorkflowInstanceHistoryStageInput withCreateTransaction(Optional<? extends V2ActivityCreateTransaction> createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
@@ -214,6 +231,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageInput withCreditWallet(Optional<? extends V2ActivityCreditWallet> creditWallet) {
         Utils.checkNotNull(creditWallet, "creditWallet");
         this.creditWallet = creditWallet;
@@ -225,6 +243,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         this.debitWallet = Optional.ofNullable(debitWallet);
         return this;
     }
+
 
     public V2WorkflowInstanceHistoryStageInput withDebitWallet(Optional<? extends V2ActivityDebitWallet> debitWallet) {
         Utils.checkNotNull(debitWallet, "debitWallet");
@@ -238,6 +257,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageInput withGetAccount(Optional<? extends V2ActivityGetAccount> getAccount) {
         Utils.checkNotNull(getAccount, "getAccount");
         this.getAccount = getAccount;
@@ -249,6 +269,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         this.getPayment = Optional.ofNullable(getPayment);
         return this;
     }
+
 
     public V2WorkflowInstanceHistoryStageInput withGetPayment(Optional<? extends V2ActivityGetPayment> getPayment) {
         Utils.checkNotNull(getPayment, "getPayment");
@@ -262,6 +283,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageInput withGetWallet(Optional<? extends V2ActivityGetWallet> getWallet) {
         Utils.checkNotNull(getWallet, "getWallet");
         this.getWallet = getWallet;
@@ -273,6 +295,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         this.listWallets = Optional.ofNullable(listWallets);
         return this;
     }
+
 
     public V2WorkflowInstanceHistoryStageInput withListWallets(Optional<? extends V2ActivityListWallets> listWallets) {
         Utils.checkNotNull(listWallets, "listWallets");
@@ -286,6 +309,7 @@ public class V2WorkflowInstanceHistoryStageInput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageInput withStripeTransfer(Optional<? extends V2ActivityStripeTransfer> stripeTransfer) {
         Utils.checkNotNull(stripeTransfer, "stripeTransfer");
         this.stripeTransfer = stripeTransfer;
@@ -298,13 +322,13 @@ public class V2WorkflowInstanceHistoryStageInput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageInput withVoidHold(Optional<? extends V2ActivityVoidHold> voidHold) {
         Utils.checkNotNull(voidHold, "voidHold");
         this.voidHold = voidHold;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -315,33 +339,26 @@ public class V2WorkflowInstanceHistoryStageInput {
         }
         V2WorkflowInstanceHistoryStageInput other = (V2WorkflowInstanceHistoryStageInput) o;
         return 
-            Objects.deepEquals(this.addAccountMetadata, other.addAccountMetadata) &&
-            Objects.deepEquals(this.confirmHold, other.confirmHold) &&
-            Objects.deepEquals(this.createTransaction, other.createTransaction) &&
-            Objects.deepEquals(this.creditWallet, other.creditWallet) &&
-            Objects.deepEquals(this.debitWallet, other.debitWallet) &&
-            Objects.deepEquals(this.getAccount, other.getAccount) &&
-            Objects.deepEquals(this.getPayment, other.getPayment) &&
-            Objects.deepEquals(this.getWallet, other.getWallet) &&
-            Objects.deepEquals(this.listWallets, other.listWallets) &&
-            Objects.deepEquals(this.stripeTransfer, other.stripeTransfer) &&
-            Objects.deepEquals(this.voidHold, other.voidHold);
+            Utils.enhancedDeepEquals(this.addAccountMetadata, other.addAccountMetadata) &&
+            Utils.enhancedDeepEquals(this.confirmHold, other.confirmHold) &&
+            Utils.enhancedDeepEquals(this.createTransaction, other.createTransaction) &&
+            Utils.enhancedDeepEquals(this.creditWallet, other.creditWallet) &&
+            Utils.enhancedDeepEquals(this.debitWallet, other.debitWallet) &&
+            Utils.enhancedDeepEquals(this.getAccount, other.getAccount) &&
+            Utils.enhancedDeepEquals(this.getPayment, other.getPayment) &&
+            Utils.enhancedDeepEquals(this.getWallet, other.getWallet) &&
+            Utils.enhancedDeepEquals(this.listWallets, other.listWallets) &&
+            Utils.enhancedDeepEquals(this.stripeTransfer, other.stripeTransfer) &&
+            Utils.enhancedDeepEquals(this.voidHold, other.voidHold);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            addAccountMetadata,
-            confirmHold,
-            createTransaction,
-            creditWallet,
-            debitWallet,
-            getAccount,
-            getPayment,
-            getWallet,
-            listWallets,
-            stripeTransfer,
-            voidHold);
+        return Utils.enhancedHash(
+            addAccountMetadata, confirmHold, createTransaction,
+            creditWallet, debitWallet, getAccount,
+            getPayment, getWallet, listWallets,
+            stripeTransfer, voidHold);
     }
     
     @Override
@@ -359,34 +376,36 @@ public class V2WorkflowInstanceHistoryStageInput {
                 "stripeTransfer", stripeTransfer,
                 "voidHold", voidHold);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends V2ActivityAddAccountMetadata> addAccountMetadata = Optional.empty();
- 
+
         private Optional<? extends V2ActivityConfirmHold> confirmHold = Optional.empty();
- 
+
         private Optional<? extends V2ActivityCreateTransaction> createTransaction = Optional.empty();
- 
+
         private Optional<? extends V2ActivityCreditWallet> creditWallet = Optional.empty();
- 
+
         private Optional<? extends V2ActivityDebitWallet> debitWallet = Optional.empty();
- 
+
         private Optional<? extends V2ActivityGetAccount> getAccount = Optional.empty();
- 
+
         private Optional<? extends V2ActivityGetPayment> getPayment = Optional.empty();
- 
+
         private Optional<? extends V2ActivityGetWallet> getWallet = Optional.empty();
- 
+
         private Optional<? extends V2ActivityListWallets> listWallets = Optional.empty();
- 
+
         private Optional<? extends V2ActivityStripeTransfer> stripeTransfer = Optional.empty();
- 
+
         private Optional<? extends V2ActivityVoidHold> voidHold = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder addAccountMetadata(V2ActivityAddAccountMetadata addAccountMetadata) {
             Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
@@ -400,6 +419,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             return this;
         }
 
+
         public Builder confirmHold(V2ActivityConfirmHold confirmHold) {
             Utils.checkNotNull(confirmHold, "confirmHold");
             this.confirmHold = Optional.ofNullable(confirmHold);
@@ -411,6 +431,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             this.confirmHold = confirmHold;
             return this;
         }
+
 
         public Builder createTransaction(V2ActivityCreateTransaction createTransaction) {
             Utils.checkNotNull(createTransaction, "createTransaction");
@@ -424,6 +445,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             return this;
         }
 
+
         public Builder creditWallet(V2ActivityCreditWallet creditWallet) {
             Utils.checkNotNull(creditWallet, "creditWallet");
             this.creditWallet = Optional.ofNullable(creditWallet);
@@ -435,6 +457,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             this.creditWallet = creditWallet;
             return this;
         }
+
 
         public Builder debitWallet(V2ActivityDebitWallet debitWallet) {
             Utils.checkNotNull(debitWallet, "debitWallet");
@@ -448,6 +471,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             return this;
         }
 
+
         public Builder getAccount(V2ActivityGetAccount getAccount) {
             Utils.checkNotNull(getAccount, "getAccount");
             this.getAccount = Optional.ofNullable(getAccount);
@@ -459,6 +483,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             this.getAccount = getAccount;
             return this;
         }
+
 
         public Builder getPayment(V2ActivityGetPayment getPayment) {
             Utils.checkNotNull(getPayment, "getPayment");
@@ -472,6 +497,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             return this;
         }
 
+
         public Builder getWallet(V2ActivityGetWallet getWallet) {
             Utils.checkNotNull(getWallet, "getWallet");
             this.getWallet = Optional.ofNullable(getWallet);
@@ -483,6 +509,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             this.getWallet = getWallet;
             return this;
         }
+
 
         public Builder listWallets(V2ActivityListWallets listWallets) {
             Utils.checkNotNull(listWallets, "listWallets");
@@ -496,6 +523,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             return this;
         }
 
+
         public Builder stripeTransfer(V2ActivityStripeTransfer stripeTransfer) {
             Utils.checkNotNull(stripeTransfer, "stripeTransfer");
             this.stripeTransfer = Optional.ofNullable(stripeTransfer);
@@ -508,6 +536,7 @@ public class V2WorkflowInstanceHistoryStageInput {
             return this;
         }
 
+
         public Builder voidHold(V2ActivityVoidHold voidHold) {
             Utils.checkNotNull(voidHold, "voidHold");
             this.voidHold = Optional.ofNullable(voidHold);
@@ -519,20 +548,15 @@ public class V2WorkflowInstanceHistoryStageInput {
             this.voidHold = voidHold;
             return this;
         }
-        
+
         public V2WorkflowInstanceHistoryStageInput build() {
+
             return new V2WorkflowInstanceHistoryStageInput(
-                addAccountMetadata,
-                confirmHold,
-                createTransaction,
-                creditWallet,
-                debitWallet,
-                getAccount,
-                getPayment,
-                getWallet,
-                listWallets,
-                stripeTransfer,
-                voidHold);
+                addAccountMetadata, confirmHold, createTransaction,
+                creditWallet, debitWallet, getAccount,
+                getPayment, getWallet, listWallets,
+                stripeTransfer, voidHold);
         }
+
     }
 }

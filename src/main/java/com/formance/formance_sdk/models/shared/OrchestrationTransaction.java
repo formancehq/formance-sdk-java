@@ -16,26 +16,31 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationTransaction {
 
     @JsonProperty("id")
     private BigInteger id;
 
+
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
+
     @JsonProperty("postings")
     private List<Posting> postings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
+
     @JsonProperty("reverted")
     private boolean reverted;
+
 
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
@@ -50,6 +55,7 @@ public class OrchestrationTransaction {
             @JsonProperty("timestamp") OffsetDateTime timestamp) {
         Utils.checkNotNull(id, "id");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(postings, "postings");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(reverted, "reverted");
@@ -68,7 +74,8 @@ public class OrchestrationTransaction {
             List<Posting> postings,
             boolean reverted,
             OffsetDateTime timestamp) {
-        this(id, metadata, postings, Optional.empty(), reverted, timestamp);
+        this(id, metadata, postings,
+            Optional.empty(), reverted, timestamp);
     }
 
     @JsonIgnore
@@ -101,9 +108,10 @@ public class OrchestrationTransaction {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationTransaction withId(long id) {
         this.id = BigInteger.valueOf(id);
@@ -134,6 +142,7 @@ public class OrchestrationTransaction {
         return this;
     }
 
+
     public OrchestrationTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -152,7 +161,6 @@ public class OrchestrationTransaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,23 +171,19 @@ public class OrchestrationTransaction {
         }
         OrchestrationTransaction other = (OrchestrationTransaction) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.postings, other.postings) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.reverted, other.reverted) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.reverted, other.reverted) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            metadata,
-            postings,
-            reference,
-            reverted,
-            timestamp);
+        return Utils.enhancedHash(
+            id, metadata, postings,
+            reference, reverted, timestamp);
     }
     
     @Override
@@ -192,24 +196,26 @@ public class OrchestrationTransaction {
                 "reverted", reverted,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger id;
- 
+
         private Map<String, String> metadata;
- 
+
         private List<Posting> postings;
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Boolean reverted;
- 
+
         private OffsetDateTime timestamp;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(long id) {
             this.id = BigInteger.valueOf(id);
@@ -222,17 +228,20 @@ public class OrchestrationTransaction {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
 
+
         public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
         }
+
 
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -246,26 +255,26 @@ public class OrchestrationTransaction {
             return this;
         }
 
+
         public Builder reverted(boolean reverted) {
             Utils.checkNotNull(reverted, "reverted");
             this.reverted = reverted;
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public OrchestrationTransaction build() {
+
             return new OrchestrationTransaction(
-                id,
-                metadata,
-                postings,
-                reference,
-                reverted,
-                timestamp);
+                id, metadata, postings,
+                reference, reverted, timestamp);
         }
+
     }
 }

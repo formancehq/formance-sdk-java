@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3Address {
 
@@ -20,21 +20,26 @@ public class V3Address {
     @JsonProperty("city")
     private Optional<String> city;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private Optional<String> country;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postalCode")
     private Optional<String> postalCode;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("region")
     private Optional<String> region;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("streetName")
     private Optional<String> streetName;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("streetNumber")
@@ -63,7 +68,8 @@ public class V3Address {
     }
     
     public V3Address() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -96,15 +102,17 @@ public class V3Address {
         return streetNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3Address withCity(String city) {
         Utils.checkNotNull(city, "city");
         this.city = Optional.ofNullable(city);
         return this;
     }
+
 
     public V3Address withCity(Optional<String> city) {
         Utils.checkNotNull(city, "city");
@@ -118,6 +126,7 @@ public class V3Address {
         return this;
     }
 
+
     public V3Address withCountry(Optional<String> country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
@@ -129,6 +138,7 @@ public class V3Address {
         this.postalCode = Optional.ofNullable(postalCode);
         return this;
     }
+
 
     public V3Address withPostalCode(Optional<String> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
@@ -142,6 +152,7 @@ public class V3Address {
         return this;
     }
 
+
     public V3Address withRegion(Optional<String> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
@@ -153,6 +164,7 @@ public class V3Address {
         this.streetName = Optional.ofNullable(streetName);
         return this;
     }
+
 
     public V3Address withStreetName(Optional<String> streetName) {
         Utils.checkNotNull(streetName, "streetName");
@@ -166,13 +178,13 @@ public class V3Address {
         return this;
     }
 
+
     public V3Address withStreetNumber(Optional<String> streetNumber) {
         Utils.checkNotNull(streetNumber, "streetNumber");
         this.streetNumber = streetNumber;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -183,23 +195,19 @@ public class V3Address {
         }
         V3Address other = (V3Address) o;
         return 
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.streetName, other.streetName) &&
-            Objects.deepEquals(this.streetNumber, other.streetNumber);
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.streetName, other.streetName) &&
+            Utils.enhancedDeepEquals(this.streetNumber, other.streetNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            city,
-            country,
-            postalCode,
-            region,
-            streetName,
-            streetNumber);
+        return Utils.enhancedHash(
+            city, country, postalCode,
+            region, streetName, streetNumber);
     }
     
     @Override
@@ -212,24 +220,26 @@ public class V3Address {
                 "streetName", streetName,
                 "streetNumber", streetNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> city = Optional.empty();
- 
+
         private Optional<String> country = Optional.empty();
- 
+
         private Optional<String> postalCode = Optional.empty();
- 
+
         private Optional<String> region = Optional.empty();
- 
+
         private Optional<String> streetName = Optional.empty();
- 
+
         private Optional<String> streetNumber = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder city(String city) {
             Utils.checkNotNull(city, "city");
@@ -243,6 +253,7 @@ public class V3Address {
             return this;
         }
 
+
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
             this.country = Optional.ofNullable(country);
@@ -254,6 +265,7 @@ public class V3Address {
             this.country = country;
             return this;
         }
+
 
         public Builder postalCode(String postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
@@ -267,6 +279,7 @@ public class V3Address {
             return this;
         }
 
+
         public Builder region(String region) {
             Utils.checkNotNull(region, "region");
             this.region = Optional.ofNullable(region);
@@ -278,6 +291,7 @@ public class V3Address {
             this.region = region;
             return this;
         }
+
 
         public Builder streetName(String streetName) {
             Utils.checkNotNull(streetName, "streetName");
@@ -291,6 +305,7 @@ public class V3Address {
             return this;
         }
 
+
         public Builder streetNumber(String streetNumber) {
             Utils.checkNotNull(streetNumber, "streetNumber");
             this.streetNumber = Optional.ofNullable(streetNumber);
@@ -302,15 +317,13 @@ public class V3Address {
             this.streetNumber = streetNumber;
             return this;
         }
-        
+
         public V3Address build() {
+
             return new V3Address(
-                city,
-                country,
-                postalCode,
-                region,
-                streetName,
-                streetNumber);
+                city, country, postalCode,
+                region, streetName, streetNumber);
         }
+
     }
 }

@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class MigrationInfo {
 
@@ -22,13 +22,16 @@ public class MigrationInfo {
     @JsonProperty("date")
     private Optional<OffsetDateTime> date;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
     private Optional<? extends MigrationInfoState> state;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
@@ -51,7 +54,8 @@ public class MigrationInfo {
     }
     
     public MigrationInfo() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -75,15 +79,17 @@ public class MigrationInfo {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public MigrationInfo withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
         this.date = Optional.ofNullable(date);
         return this;
     }
+
 
     public MigrationInfo withDate(Optional<OffsetDateTime> date) {
         Utils.checkNotNull(date, "date");
@@ -97,6 +103,7 @@ public class MigrationInfo {
         return this;
     }
 
+
     public MigrationInfo withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -108,6 +115,7 @@ public class MigrationInfo {
         this.state = Optional.ofNullable(state);
         return this;
     }
+
 
     public MigrationInfo withState(Optional<? extends MigrationInfoState> state) {
         Utils.checkNotNull(state, "state");
@@ -121,13 +129,13 @@ public class MigrationInfo {
         return this;
     }
 
+
     public MigrationInfo withVersion(Optional<String> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,18 +146,16 @@ public class MigrationInfo {
         }
         MigrationInfo other = (MigrationInfo) o;
         return 
-            Objects.deepEquals(this.date, other.date) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.version, other.version);
+            Utils.enhancedDeepEquals(this.date, other.date) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.version, other.version);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            date,
-            name,
-            state,
+        return Utils.enhancedHash(
+            date, name, state,
             version);
     }
     
@@ -161,20 +167,22 @@ public class MigrationInfo {
                 "state", state,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> date = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends MigrationInfoState> state = Optional.empty();
- 
+
         private Optional<String> version = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
@@ -188,6 +196,7 @@ public class MigrationInfo {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -199,6 +208,7 @@ public class MigrationInfo {
             this.name = name;
             return this;
         }
+
 
         public Builder state(MigrationInfoState state) {
             Utils.checkNotNull(state, "state");
@@ -212,6 +222,7 @@ public class MigrationInfo {
             return this;
         }
 
+
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = Optional.ofNullable(version);
@@ -223,13 +234,13 @@ public class MigrationInfo {
             this.version = version;
             return this;
         }
-        
+
         public MigrationInfo build() {
+
             return new MigrationInfo(
-                date,
-                name,
-                state,
+                date, name, state,
                 version);
         }
+
     }
 }

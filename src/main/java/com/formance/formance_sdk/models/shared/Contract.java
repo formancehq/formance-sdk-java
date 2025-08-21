@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Contract {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
     private Optional<String> account;
+
 
     @JsonProperty("expr")
     private Expr expr;
@@ -48,15 +49,17 @@ public class Contract {
         return expr;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Contract withAccount(String account) {
         Utils.checkNotNull(account, "account");
         this.account = Optional.ofNullable(account);
         return this;
     }
+
 
     public Contract withAccount(Optional<String> account) {
         Utils.checkNotNull(account, "account");
@@ -70,7 +73,6 @@ public class Contract {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -81,15 +83,14 @@ public class Contract {
         }
         Contract other = (Contract) o;
         return 
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.expr, other.expr);
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.expr, other.expr);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            account,
-            expr);
+        return Utils.enhancedHash(
+            account, expr);
     }
     
     @Override
@@ -98,16 +99,18 @@ public class Contract {
                 "account", account,
                 "expr", expr);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> account = Optional.empty();
- 
+
         private Expr expr;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder account(String account) {
             Utils.checkNotNull(account, "account");
@@ -121,16 +124,18 @@ public class Contract {
             return this;
         }
 
+
         public Builder expr(Expr expr) {
             Utils.checkNotNull(expr, "expr");
             this.expr = expr;
             return this;
         }
-        
+
         public Contract build() {
+
             return new Contract(
-                account,
-                expr);
+                account, expr);
         }
+
     }
 }

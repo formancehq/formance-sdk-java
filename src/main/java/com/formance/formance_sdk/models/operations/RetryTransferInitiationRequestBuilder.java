@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.RetryTransferInitiation;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class RetryTransferInitiationRequestBuilder {
 
     private RetryTransferInitiationRequest request;
-    private final SDKMethodInterfaces.MethodCallRetryTransferInitiation sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RetryTransferInitiationRequestBuilder(SDKMethodInterfaces.MethodCallRetryTransferInitiation sdk) {
-        this.sdk = sdk;
+    public RetryTransferInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RetryTransferInitiationRequestBuilder request(RetryTransferInitiationRequest request) {
@@ -22,8 +26,10 @@ public class RetryTransferInitiationRequestBuilder {
     }
 
     public RetryTransferInitiationResponse call() throws Exception {
+        
+        RequestOperation<RetryTransferInitiationRequest, RetryTransferInitiationResponse> operation
+              = new RetryTransferInitiation.Sync(sdkConfiguration);
 
-        return sdk.retryTransferInitiation(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

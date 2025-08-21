@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.CreateSecret;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class CreateSecretRequestBuilder {
 
     private CreateSecretRequest request;
-    private final SDKMethodInterfaces.MethodCallCreateSecret sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateSecretRequestBuilder(SDKMethodInterfaces.MethodCallCreateSecret sdk) {
-        this.sdk = sdk;
+    public CreateSecretRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateSecretRequestBuilder request(CreateSecretRequest request) {
@@ -22,8 +26,10 @@ public class CreateSecretRequestBuilder {
     }
 
     public CreateSecretResponse call() throws Exception {
+        
+        RequestOperation<CreateSecretRequest, CreateSecretResponse> operation
+              = new CreateSecret.Sync(sdkConfiguration);
 
-        return sdk.createSecret(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

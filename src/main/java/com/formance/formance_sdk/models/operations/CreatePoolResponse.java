@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreatePoolResponse implements Response {
 
+public class CreatePoolResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -59,7 +58,8 @@ public class CreatePoolResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), statusCode, rawResponse);
+        this(contentType, Optional.empty(), statusCode,
+            rawResponse);
     }
 
     /**
@@ -95,9 +95,10 @@ public class CreatePoolResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -116,6 +117,7 @@ public class CreatePoolResponse implements Response {
         this.poolResponse = Optional.ofNullable(poolResponse);
         return this;
     }
+
 
     /**
      * OK
@@ -144,7 +146,6 @@ public class CreatePoolResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,18 +156,16 @@ public class CreatePoolResponse implements Response {
         }
         CreatePoolResponse other = (CreatePoolResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.poolResponse, other.poolResponse) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.poolResponse, other.poolResponse) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            poolResponse,
-            statusCode,
+        return Utils.enhancedHash(
+            contentType, poolResponse, statusCode,
             rawResponse);
     }
     
@@ -178,20 +177,22 @@ public class CreatePoolResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Optional<? extends PoolResponse> poolResponse = Optional.empty();
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -201,6 +202,7 @@ public class CreatePoolResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * OK
@@ -220,6 +222,7 @@ public class CreatePoolResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -229,6 +232,7 @@ public class CreatePoolResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -237,13 +241,13 @@ public class CreatePoolResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public CreatePoolResponse build() {
+
             return new CreatePoolResponse(
-                contentType,
-                poolResponse,
-                statusCode,
+                contentType, poolResponse, statusCode,
                 rawResponse);
         }
+
     }
 }

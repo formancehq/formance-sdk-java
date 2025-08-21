@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UpdateTransferInitiationStatusRequest {
 
@@ -28,9 +28,10 @@ public class UpdateTransferInitiationStatusRequest {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateTransferInitiationStatusRequest withStatus(Status status) {
         Utils.checkNotNull(status, "status");
@@ -38,7 +39,6 @@ public class UpdateTransferInitiationStatusRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class UpdateTransferInitiationStatusRequest {
         }
         UpdateTransferInitiationStatusRequest other = (UpdateTransferInitiationStatusRequest) o;
         return 
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             status);
     }
     
@@ -63,24 +63,28 @@ public class UpdateTransferInitiationStatusRequest {
         return Utils.toString(UpdateTransferInitiationStatusRequest.class,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Status status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder status(Status status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public UpdateTransferInitiationStatusRequest build() {
+
             return new UpdateTransferInitiationStatusRequest(
                 status);
         }
+
     }
 }

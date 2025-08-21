@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3ListConnectorScheduleInstances;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3ListConnectorScheduleInstancesRequestBuilder {
 
     private V3ListConnectorScheduleInstancesRequest request;
-    private final SDKMethodInterfaces.MethodCallV3ListConnectorScheduleInstances sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3ListConnectorScheduleInstancesRequestBuilder(SDKMethodInterfaces.MethodCallV3ListConnectorScheduleInstances sdk) {
-        this.sdk = sdk;
+    public V3ListConnectorScheduleInstancesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3ListConnectorScheduleInstancesRequestBuilder request(V3ListConnectorScheduleInstancesRequest request) {
@@ -22,8 +26,10 @@ public class V3ListConnectorScheduleInstancesRequestBuilder {
     }
 
     public V3ListConnectorScheduleInstancesResponse call() throws Exception {
+        
+        RequestOperation<V3ListConnectorScheduleInstancesRequest, V3ListConnectorScheduleInstancesResponse> operation
+              = new V3ListConnectorScheduleInstances.Sync(sdkConfiguration);
 
-        return sdk.listConnectorScheduleInstances(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

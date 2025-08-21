@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2AddMetadataToAccount;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2AddMetadataToAccountRequestBuilder {
 
     private V2AddMetadataToAccountRequest request;
-    private final SDKMethodInterfaces.MethodCallV2AddMetadataToAccount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2AddMetadataToAccountRequestBuilder(SDKMethodInterfaces.MethodCallV2AddMetadataToAccount sdk) {
-        this.sdk = sdk;
+    public V2AddMetadataToAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2AddMetadataToAccountRequestBuilder request(V2AddMetadataToAccountRequest request) {
@@ -22,8 +26,10 @@ public class V2AddMetadataToAccountRequestBuilder {
     }
 
     public V2AddMetadataToAccountResponse call() throws Exception {
+        
+        RequestOperation<V2AddMetadataToAccountRequest, V2AddMetadataToAccountResponse> operation
+              = new V2AddMetadataToAccount.Sync(sdkConfiguration);
 
-        return sdk.addMetadataToAccount(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

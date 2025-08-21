@@ -19,7 +19,7 @@ public enum V3ErrorsEnum {
     @JsonValue
     private final String value;
 
-    private V3ErrorsEnum(String value) {
+    V3ErrorsEnum(String value) {
         this.value = value;
     }
     

@@ -10,18 +10,21 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
+
 
 public class Posting {
 
     @JsonProperty("amount")
     private BigInteger amount;
 
+
     @JsonProperty("asset")
     private String asset;
 
+
     @JsonProperty("destination")
     private String destination;
+
 
     @JsonProperty("source")
     private String source;
@@ -62,9 +65,10 @@ public class Posting {
         return source;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Posting withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -95,7 +99,6 @@ public class Posting {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -106,18 +109,16 @@ public class Posting {
         }
         Posting other = (Posting) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.source, other.source);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.source, other.source);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset,
-            destination,
+        return Utils.enhancedHash(
+            amount, asset, destination,
             source);
     }
     
@@ -129,20 +130,22 @@ public class Posting {
                 "destination", destination,
                 "source", source);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger amount;
- 
+
         private String asset;
- 
+
         private String destination;
- 
+
         private String source;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
@@ -155,11 +158,13 @@ public class Posting {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder destination(String destination) {
             Utils.checkNotNull(destination, "destination");
@@ -167,18 +172,19 @@ public class Posting {
             return this;
         }
 
+
         public Builder source(String source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;
         }
-        
+
         public Posting build() {
+
             return new Posting(
-                amount,
-                asset,
-                destination,
+                amount, asset, destination,
                 source);
         }
+
     }
 }

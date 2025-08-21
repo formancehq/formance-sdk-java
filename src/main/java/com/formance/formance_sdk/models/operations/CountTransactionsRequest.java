@@ -11,11 +11,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CountTransactionsRequest {
 
+public class CountTransactionsRequest {
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
@@ -96,7 +95,9 @@ public class CountTransactionsRequest {
     
     public CountTransactionsRequest(
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            ledger, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -166,9 +167,10 @@ public class CountTransactionsRequest {
         return startTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
@@ -178,6 +180,7 @@ public class CountTransactionsRequest {
         this.account = Optional.ofNullable(account);
         return this;
     }
+
 
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
@@ -197,6 +200,7 @@ public class CountTransactionsRequest {
         return this;
     }
 
+
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
@@ -215,6 +219,7 @@ public class CountTransactionsRequest {
         this.endTime = Optional.ofNullable(endTime);
         return this;
     }
+
 
     /**
      * Filter transactions that occurred before this timestamp.
@@ -244,6 +249,7 @@ public class CountTransactionsRequest {
         return this;
     }
 
+
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
@@ -262,6 +268,7 @@ public class CountTransactionsRequest {
         return this;
     }
 
+
     /**
      * Filter transactions by reference field.
      */
@@ -279,6 +286,7 @@ public class CountTransactionsRequest {
         this.source = Optional.ofNullable(source);
         return this;
     }
+
 
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
@@ -299,6 +307,7 @@ public class CountTransactionsRequest {
         return this;
     }
 
+
     /**
      * Filter transactions that occurred after this timestamp.
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
@@ -309,7 +318,6 @@ public class CountTransactionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -320,27 +328,22 @@ public class CountTransactionsRequest {
         }
         CountTransactionsRequest other = (CountTransactionsRequest) o;
         return 
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.endTime, other.endTime) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.source, other.source) &&
-            Objects.deepEquals(this.startTime, other.startTime);
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.startTime, other.startTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            account,
-            destination,
-            endTime,
-            ledger,
-            metadata,
-            reference,
-            source,
-            startTime);
+        return Utils.enhancedHash(
+            account, destination, endTime,
+            ledger, metadata, reference,
+            source, startTime);
     }
     
     @Override
@@ -355,28 +358,30 @@ public class CountTransactionsRequest {
                 "source", source,
                 "startTime", startTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> account = Optional.empty();
- 
+
         private Optional<String> destination = Optional.empty();
- 
+
         private Optional<OffsetDateTime> endTime = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<? extends Metadata> metadata = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Optional<String> source = Optional.empty();
- 
+
         private Optional<OffsetDateTime> startTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
@@ -396,6 +401,7 @@ public class CountTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
          */
@@ -413,6 +419,7 @@ public class CountTransactionsRequest {
             this.destination = destination;
             return this;
         }
+
 
         /**
          * Filter transactions that occurred before this timestamp.
@@ -434,6 +441,7 @@ public class CountTransactionsRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -442,6 +450,7 @@ public class CountTransactionsRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
@@ -461,6 +470,7 @@ public class CountTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filter transactions by reference field.
          */
@@ -479,6 +489,7 @@ public class CountTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
          */
@@ -496,6 +507,7 @@ public class CountTransactionsRequest {
             this.source = source;
             return this;
         }
+
 
         /**
          * Filter transactions that occurred after this timestamp.
@@ -516,17 +528,14 @@ public class CountTransactionsRequest {
             this.startTime = startTime;
             return this;
         }
-        
+
         public CountTransactionsRequest build() {
+
             return new CountTransactionsRequest(
-                account,
-                destination,
-                endTime,
-                ledger,
-                metadata,
-                reference,
-                source,
-                startTime);
+                account, destination, endTime,
+                ledger, metadata, reference,
+                source, startTime);
         }
+
     }
 }

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -41,9 +40,10 @@ public class TransferResponse {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TransferResponse withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -51,13 +51,13 @@ public class TransferResponse {
         return this;
     }
 
+
     public TransferResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -68,12 +68,12 @@ public class TransferResponse {
         }
         TransferResponse other = (TransferResponse) o;
         return 
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id);
     }
     
@@ -82,14 +82,16 @@ public class TransferResponse {
         return Utils.toString(TransferResponse.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -102,10 +104,12 @@ public class TransferResponse {
             this.id = id;
             return this;
         }
-        
+
         public TransferResponse build() {
+
             return new TransferResponse(
                 id);
         }
+
     }
 }

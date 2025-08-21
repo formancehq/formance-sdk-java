@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetBankAccount;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetBankAccountRequestBuilder {
 
     private GetBankAccountRequest request;
-    private final SDKMethodInterfaces.MethodCallGetBankAccount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetBankAccountRequestBuilder(SDKMethodInterfaces.MethodCallGetBankAccount sdk) {
-        this.sdk = sdk;
+    public GetBankAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetBankAccountRequestBuilder request(GetBankAccountRequest request) {
@@ -22,8 +26,10 @@ public class GetBankAccountRequestBuilder {
     }
 
     public GetBankAccountResponse call() throws Exception {
+        
+        RequestOperation<GetBankAccountRequest, GetBankAccountResponse> operation
+              = new GetBankAccount.Sync(sdkConfiguration);
 
-        return sdk.getBankAccount(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

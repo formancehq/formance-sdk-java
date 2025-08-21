@@ -3,26 +3,19 @@
  */
 package com.formance.formance_sdk;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetVersionsRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
-import com.formance.formance_sdk.models.operations.SDKMethodInterfaces.*;
+import com.formance.formance_sdk.operations.GetVersions;
 import com.formance.formance_sdk.utils.HTTPClient;
-import com.formance.formance_sdk.utils.HTTPRequest;
-import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
-import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
-import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
 import com.formance.formance_sdk.utils.Hook.SdkInitData;
 import com.formance.formance_sdk.utils.RetryConfig;
+import com.formance.formance_sdk.utils.SpeakeasyHTTPClient;
 import com.formance.formance_sdk.utils.Utils;
-import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -41,8 +34,7 @@ import java.util.function.Consumer;
  * and standard method from web, mobile and desktop applications.
  * &lt;SecurityDefinitions /&gt;
  */
-public class SDK implements
-            MethodCallGetVersions {
+public class SDK {
 
 
     /**
@@ -59,55 +51,71 @@ public class SDK implements
         "https://{organization}.{environment}.formance.cloud",
     };
 
+
     private final Auth auth;
+
 
     private final Ledger ledger;
 
+
     private final Orchestration orchestration;
+
 
     private final Payments payments;
 
+
     private final Reconciliation reconciliation;
+
 
     private final Search search;
 
+
     private final Wallets wallets;
 
+
     private final Webhooks webhooks;
+
 
     public Auth auth() {
         return auth;
     }
 
+
     public Ledger ledger() {
         return ledger;
     }
+
 
     public Orchestration orchestration() {
         return orchestration;
     }
 
+
     public Payments payments() {
         return payments;
     }
+
 
     public Reconciliation reconciliation() {
         return reconciliation;
     }
 
+
     public Search search() {
         return search;
     }
+
 
     public Wallets wallets() {
         return wallets;
     }
 
+
     public Webhooks webhooks() {
         return webhooks;
     }
 
-    private SDKConfiguration sdkConfiguration;
+    private final SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -201,6 +209,23 @@ public class SDK implements
             this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
+
+        /**
+         * Enables debug logging for HTTP requests and responses, including JSON body content.
+         * <p>
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
+         * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
+         * it is up to the custom client to honor this setting.
+         * </p>
+         *
+         * @param enabled Whether to enable debug logging.
+         * @return The builder instance.
+         */
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
+            return this;
+        }
+
         /**
          * ServerEnvironment
          * 
@@ -313,19 +338,20 @@ public class SDK implements
         this.search = new Search(sdkConfiguration);
         this.wallets = new Wallets(sdkConfiguration);
         this.webhooks = new Webhooks(sdkConfiguration);
-        
-        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
+        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(
+                new SdkInitData(
+                        this.sdkConfiguration.resolvedServerUrl(), 
+                        this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());
         this.sdkConfiguration.setClient(data.client());
     }
-
     /**
      * Show stack version information
      * 
      * @return The call builder
      */
     public GetVersionsRequestBuilder getVersions() {
-        return new GetVersionsRequestBuilder(this);
+        return new GetVersionsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -335,109 +361,9 @@ public class SDK implements
      * @throws Exception if the API call fails
      */
     public GetVersionsResponse getVersionsDirect() throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/versions");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "getVersions", 
-                      Optional.of(List.of("auth:read")), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getVersions",
-                            Optional.of(List.of("auth:read")),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getVersions",
-                            Optional.of(List.of("auth:read")), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getVersions",
-                            Optional.of(List.of("auth:read")),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetVersionsResponse.Builder _resBuilder = 
-            GetVersionsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetVersionsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.formance.formance_sdk.models.shared.GetVersionsResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.formance.formance_sdk.models.shared.GetVersionsResponse>() {});
-                _res.withGetVersionsResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestlessOperation<GetVersionsResponse> operation
+            = new GetVersions.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest());
     }
 
 }

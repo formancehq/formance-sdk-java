@@ -13,20 +13,23 @@ import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ModulrConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
 
+
     @JsonProperty("apiSecret")
     private String apiSecret;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("endpoint")
     private Optional<String> endpoint;
+
 
     @JsonProperty("name")
     private String name;
@@ -37,6 +40,7 @@ public class ModulrConfig implements ConnectorConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -68,7 +72,8 @@ public class ModulrConfig implements ConnectorConfig {
             String apiKey,
             String apiSecret,
             String name) {
-        this(apiKey, apiSecret, Optional.empty(), name, Optional.empty(), Optional.empty());
+        this(apiKey, apiSecret, Optional.empty(),
+            name, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -105,9 +110,10 @@ public class ModulrConfig implements ConnectorConfig {
         return Utils.discriminatorToString(provider);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ModulrConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -126,6 +132,7 @@ public class ModulrConfig implements ConnectorConfig {
         this.endpoint = Optional.ofNullable(endpoint);
         return this;
     }
+
 
     public ModulrConfig withEndpoint(Optional<String> endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
@@ -148,6 +155,7 @@ public class ModulrConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
      */
@@ -163,13 +171,13 @@ public class ModulrConfig implements ConnectorConfig {
         return this;
     }
 
+
     public ModulrConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -180,23 +188,19 @@ public class ModulrConfig implements ConnectorConfig {
         }
         ModulrConfig other = (ModulrConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.apiSecret, other.apiSecret) &&
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.apiSecret, other.apiSecret) &&
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            apiSecret,
-            endpoint,
-            name,
-            pollingPeriod,
-            provider);
+        return Utils.enhancedHash(
+            apiKey, apiSecret, endpoint,
+            name, pollingPeriod, provider);
     }
     
     @Override
@@ -209,24 +213,26 @@ public class ModulrConfig implements ConnectorConfig {
                 "pollingPeriod", pollingPeriod,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String apiSecret;
- 
+
         private Optional<String> endpoint = Optional.empty();
- 
+
         private String name;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -234,11 +240,13 @@ public class ModulrConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder apiSecret(String apiSecret) {
             Utils.checkNotNull(apiSecret, "apiSecret");
             this.apiSecret = apiSecret;
             return this;
         }
+
 
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
@@ -252,11 +260,13 @@ public class ModulrConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         /**
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
@@ -276,6 +286,7 @@ public class ModulrConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -287,7 +298,7 @@ public class ModulrConfig implements ConnectorConfig {
             this.provider = provider;
             return this;
         }
-        
+
         public ModulrConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
@@ -295,14 +306,12 @@ public class ModulrConfig implements ConnectorConfig {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new ModulrConfig(
-                apiKey,
-                apiSecret,
-                endpoint,
-                name,
-                pollingPeriod,
-                provider);
+                apiKey, apiSecret, endpoint,
+                name, pollingPeriod, provider);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(

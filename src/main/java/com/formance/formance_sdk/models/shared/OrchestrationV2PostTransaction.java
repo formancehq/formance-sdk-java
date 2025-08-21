@@ -15,25 +15,29 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationV2PostTransaction {
 
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postings")
     private Optional<? extends List<V2Posting>> postings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("script")
     private Optional<? extends OrchestrationV2PostTransactionScript> script;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
@@ -47,6 +51,7 @@ public class OrchestrationV2PostTransaction {
             @JsonProperty("script") Optional<? extends OrchestrationV2PostTransactionScript> script,
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(postings, "postings");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(script, "script");
@@ -60,7 +65,8 @@ public class OrchestrationV2PostTransaction {
     
     public OrchestrationV2PostTransaction(
             Map<String, String> metadata) {
-        this(metadata, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(metadata, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -90,9 +96,10 @@ public class OrchestrationV2PostTransaction {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationV2PostTransaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -106,6 +113,7 @@ public class OrchestrationV2PostTransaction {
         return this;
     }
 
+
     public OrchestrationV2PostTransaction withPostings(Optional<? extends List<V2Posting>> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
@@ -117,6 +125,7 @@ public class OrchestrationV2PostTransaction {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     public OrchestrationV2PostTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -130,6 +139,7 @@ public class OrchestrationV2PostTransaction {
         return this;
     }
 
+
     public OrchestrationV2PostTransaction withScript(Optional<? extends OrchestrationV2PostTransactionScript> script) {
         Utils.checkNotNull(script, "script");
         this.script = script;
@@ -142,13 +152,13 @@ public class OrchestrationV2PostTransaction {
         return this;
     }
 
+
     public OrchestrationV2PostTransaction withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,21 +169,18 @@ public class OrchestrationV2PostTransaction {
         }
         OrchestrationV2PostTransaction other = (OrchestrationV2PostTransaction) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.postings, other.postings) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.script, other.script) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.script, other.script) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            metadata,
-            postings,
-            reference,
-            script,
-            timestamp);
+        return Utils.enhancedHash(
+            metadata, postings, reference,
+            script, timestamp);
     }
     
     @Override
@@ -185,28 +192,31 @@ public class OrchestrationV2PostTransaction {
                 "script", script,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, String> metadata;
- 
+
         private Optional<? extends List<V2Posting>> postings = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Optional<? extends OrchestrationV2PostTransactionScript> script = Optional.empty();
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
+
 
         public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
@@ -220,6 +230,7 @@ public class OrchestrationV2PostTransaction {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
@@ -231,6 +242,7 @@ public class OrchestrationV2PostTransaction {
             this.reference = reference;
             return this;
         }
+
 
         public Builder script(OrchestrationV2PostTransactionScript script) {
             Utils.checkNotNull(script, "script");
@@ -244,6 +256,7 @@ public class OrchestrationV2PostTransaction {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
@@ -255,14 +268,13 @@ public class OrchestrationV2PostTransaction {
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public OrchestrationV2PostTransaction build() {
+
             return new OrchestrationV2PostTransaction(
-                metadata,
-                postings,
-                reference,
-                script,
-                timestamp);
+                metadata, postings, reference,
+                script, timestamp);
         }
+
     }
 }

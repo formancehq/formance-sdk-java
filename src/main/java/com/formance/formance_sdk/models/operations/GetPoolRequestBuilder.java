@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetPool;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetPoolRequestBuilder {
 
     private GetPoolRequest request;
-    private final SDKMethodInterfaces.MethodCallGetPool sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPoolRequestBuilder(SDKMethodInterfaces.MethodCallGetPool sdk) {
-        this.sdk = sdk;
+    public GetPoolRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPoolRequestBuilder request(GetPoolRequest request) {
@@ -22,8 +26,10 @@ public class GetPoolRequestBuilder {
     }
 
     public GetPoolResponse call() throws Exception {
+        
+        RequestOperation<GetPoolRequest, GetPoolResponse> operation
+              = new GetPool.Sync(sdkConfiguration);
 
-        return sdk.getPool(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

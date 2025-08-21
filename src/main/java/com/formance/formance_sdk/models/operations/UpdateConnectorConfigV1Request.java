@@ -11,7 +11,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UpdateConnectorConfigV1Request {
 
@@ -64,9 +64,10 @@ public class UpdateConnectorConfigV1Request {
         return connectorId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateConnectorConfigV1Request withConnectorConfig(ConnectorConfig connectorConfig) {
         Utils.checkNotNull(connectorConfig, "connectorConfig");
@@ -92,7 +93,6 @@ public class UpdateConnectorConfigV1Request {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -103,17 +103,15 @@ public class UpdateConnectorConfigV1Request {
         }
         UpdateConnectorConfigV1Request other = (UpdateConnectorConfigV1Request) o;
         return 
-            Objects.deepEquals(this.connectorConfig, other.connectorConfig) &&
-            Objects.deepEquals(this.connector, other.connector) &&
-            Objects.deepEquals(this.connectorId, other.connectorId);
+            Utils.enhancedDeepEquals(this.connectorConfig, other.connectorConfig) &&
+            Utils.enhancedDeepEquals(this.connector, other.connector) &&
+            Utils.enhancedDeepEquals(this.connectorId, other.connectorId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorConfig,
-            connector,
-            connectorId);
+        return Utils.enhancedHash(
+            connectorConfig, connector, connectorId);
     }
     
     @Override
@@ -123,24 +121,27 @@ public class UpdateConnectorConfigV1Request {
                 "connector", connector,
                 "connectorId", connectorId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ConnectorConfig connectorConfig;
- 
+
         private Connector connector;
- 
+
         private String connectorId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorConfig(ConnectorConfig connectorConfig) {
             Utils.checkNotNull(connectorConfig, "connectorConfig");
             this.connectorConfig = connectorConfig;
             return this;
         }
+
 
         /**
          * The name of the connector.
@@ -151,6 +152,7 @@ public class UpdateConnectorConfigV1Request {
             return this;
         }
 
+
         /**
          * The connector ID.
          */
@@ -159,12 +161,12 @@ public class UpdateConnectorConfigV1Request {
             this.connectorId = connectorId;
             return this;
         }
-        
+
         public UpdateConnectorConfigV1Request build() {
+
             return new UpdateConnectorConfigV1Request(
-                connectorConfig,
-                connector,
-                connectorId);
+                connectorConfig, connector, connectorId);
         }
+
     }
 }

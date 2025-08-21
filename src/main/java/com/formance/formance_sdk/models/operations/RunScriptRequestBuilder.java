@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.RunScript;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class RunScriptRequestBuilder {
 
     private RunScriptRequest request;
-    private final SDKMethodInterfaces.MethodCallRunScript sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RunScriptRequestBuilder(SDKMethodInterfaces.MethodCallRunScript sdk) {
-        this.sdk = sdk;
+    public RunScriptRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RunScriptRequestBuilder request(RunScriptRequest request) {
@@ -22,8 +26,10 @@ public class RunScriptRequestBuilder {
     }
 
     public RunScriptResponse call() throws Exception {
+        
+        RequestOperation<RunScriptRequest, RunScriptResponse> operation
+              = new RunScript.Sync(sdkConfiguration);
 
-        return sdk.runScript(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

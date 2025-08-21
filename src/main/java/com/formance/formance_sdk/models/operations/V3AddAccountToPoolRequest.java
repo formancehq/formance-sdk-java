@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3AddAccountToPoolRequest {
-
     /**
      * The account ID
      */
@@ -51,9 +50,10 @@ public class V3AddAccountToPoolRequest {
         return poolID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The account ID
@@ -73,7 +73,6 @@ public class V3AddAccountToPoolRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +83,14 @@ public class V3AddAccountToPoolRequest {
         }
         V3AddAccountToPoolRequest other = (V3AddAccountToPoolRequest) o;
         return 
-            Objects.deepEquals(this.accountID, other.accountID) &&
-            Objects.deepEquals(this.poolID, other.poolID);
+            Utils.enhancedDeepEquals(this.accountID, other.accountID) &&
+            Utils.enhancedDeepEquals(this.poolID, other.poolID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountID,
-            poolID);
+        return Utils.enhancedHash(
+            accountID, poolID);
     }
     
     @Override
@@ -101,16 +99,18 @@ public class V3AddAccountToPoolRequest {
                 "accountID", accountID,
                 "poolID", poolID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountID;
- 
+
         private String poolID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The account ID
@@ -121,6 +121,7 @@ public class V3AddAccountToPoolRequest {
             return this;
         }
 
+
         /**
          * The pool ID
          */
@@ -129,11 +130,12 @@ public class V3AddAccountToPoolRequest {
             this.poolID = poolID;
             return this;
         }
-        
+
         public V3AddAccountToPoolRequest build() {
+
             return new V3AddAccountToPoolRequest(
-                accountID,
-                poolID);
+                accountID, poolID);
         }
+
     }
 }

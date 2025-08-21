@@ -11,27 +11,33 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class V3Connector {
 
     @JsonProperty("config")
     private V3ConnectorConfig config;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("provider")
     private String provider;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("scheduledForDeletion")
     private boolean scheduledForDeletion;
@@ -96,9 +102,10 @@ public class V3Connector {
         return scheduledForDeletion;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3Connector withConfig(V3ConnectorConfig config) {
         Utils.checkNotNull(config, "config");
@@ -142,7 +149,6 @@ public class V3Connector {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,24 +159,20 @@ public class V3Connector {
         }
         V3Connector other = (V3Connector) o;
         return 
-            Objects.deepEquals(this.config, other.config) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.scheduledForDeletion, other.scheduledForDeletion);
+            Utils.enhancedDeepEquals(this.config, other.config) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.scheduledForDeletion, other.scheduledForDeletion);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            config,
-            createdAt,
-            id,
-            name,
-            provider,
-            reference,
+        return Utils.enhancedHash(
+            config, createdAt, id,
+            name, provider, reference,
             scheduledForDeletion);
     }
     
@@ -185,26 +187,28 @@ public class V3Connector {
                 "reference", reference,
                 "scheduledForDeletion", scheduledForDeletion);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V3ConnectorConfig config;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private String name;
- 
+
         private String provider;
- 
+
         private String reference;
- 
+
         private Boolean scheduledForDeletion;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder config(V3ConnectorConfig config) {
             Utils.checkNotNull(config, "config");
@@ -212,11 +216,13 @@ public class V3Connector {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -224,11 +230,13 @@ public class V3Connector {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
@@ -236,27 +244,27 @@ public class V3Connector {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
         public Builder scheduledForDeletion(boolean scheduledForDeletion) {
             Utils.checkNotNull(scheduledForDeletion, "scheduledForDeletion");
             this.scheduledForDeletion = scheduledForDeletion;
             return this;
         }
-        
+
         public V3Connector build() {
+
             return new V3Connector(
-                config,
-                createdAt,
-                id,
-                name,
-                provider,
-                reference,
+                config, createdAt, id,
+                name, provider, reference,
                 scheduledForDeletion);
         }
+
     }
 }

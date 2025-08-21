@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListBankAccountsRequest {
 
+public class ListBankAccountsRequest {
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -85,9 +84,10 @@ public class ListBankAccountsRequest {
         return (Optional<List<String>>) sort;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -100,6 +100,7 @@ public class ListBankAccountsRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -122,6 +123,7 @@ public class ListBankAccountsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -140,6 +142,7 @@ public class ListBankAccountsRequest {
         return this;
     }
 
+
     /**
      * Fields used to sort payments (default is date:desc).
      */
@@ -149,7 +152,6 @@ public class ListBankAccountsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -160,17 +162,15 @@ public class ListBankAccountsRequest {
         }
         ListBankAccountsRequest other = (ListBankAccountsRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.sort, other.sort);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cursor,
-            pageSize,
-            sort);
+        return Utils.enhancedHash(
+            cursor, pageSize, sort);
     }
     
     @Override
@@ -180,18 +180,20 @@ public class ListBankAccountsRequest {
                 "pageSize", pageSize,
                 "sort", sort);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<? extends List<String>> sort = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -217,6 +219,7 @@ public class ListBankAccountsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -235,6 +238,7 @@ public class ListBankAccountsRequest {
             return this;
         }
 
+
         /**
          * Fields used to sort payments (default is date:desc).
          */
@@ -252,16 +256,16 @@ public class ListBankAccountsRequest {
             this.sort = sort;
             return this;
         }
-        
+
         public ListBankAccountsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
             }
+
             return new ListBankAccountsRequest(
-                cursor,
-                pageSize,
-                sort);
+                cursor, pageSize, sort);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

@@ -10,15 +10,17 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
+
 
 public class WalletsVolume {
 
     @JsonProperty("balance")
     private BigInteger balance;
 
+
     @JsonProperty("input")
     private BigInteger input;
+
 
     @JsonProperty("output")
     private BigInteger output;
@@ -51,9 +53,10 @@ public class WalletsVolume {
         return output;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WalletsVolume withBalance(long balance) {
         this.balance = BigInteger.valueOf(balance);
@@ -88,7 +91,6 @@ public class WalletsVolume {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,17 +101,15 @@ public class WalletsVolume {
         }
         WalletsVolume other = (WalletsVolume) o;
         return 
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.input, other.input) &&
-            Objects.deepEquals(this.output, other.output);
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.input, other.input) &&
+            Utils.enhancedDeepEquals(this.output, other.output);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            balance,
-            input,
-            output);
+        return Utils.enhancedHash(
+            balance, input, output);
     }
     
     @Override
@@ -119,18 +119,20 @@ public class WalletsVolume {
                 "input", input,
                 "output", output);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger balance;
- 
+
         private BigInteger input;
- 
+
         private BigInteger output;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder balance(long balance) {
             this.balance = BigInteger.valueOf(balance);
@@ -143,6 +145,7 @@ public class WalletsVolume {
             return this;
         }
 
+
         public Builder input(long input) {
             this.input = BigInteger.valueOf(input);
             return this;
@@ -154,6 +157,7 @@ public class WalletsVolume {
             return this;
         }
 
+
         public Builder output(long output) {
             this.output = BigInteger.valueOf(output);
             return this;
@@ -164,12 +168,12 @@ public class WalletsVolume {
             this.output = output;
             return this;
         }
-        
+
         public WalletsVolume build() {
+
             return new WalletsVolume(
-                balance,
-                input,
-                output);
+                balance, input, output);
         }
+
     }
 }

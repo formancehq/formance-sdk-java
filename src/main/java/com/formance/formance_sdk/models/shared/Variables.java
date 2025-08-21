@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Variables {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -48,15 +49,17 @@ public class Variables {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Variables withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     public Variables withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
@@ -70,13 +73,13 @@ public class Variables {
         return this;
     }
 
+
     public Variables withValue(Optional<String> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -87,15 +90,14 @@ public class Variables {
         }
         Variables other = (Variables) o;
         return 
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            error,
-            value);
+        return Utils.enhancedHash(
+            error, value);
     }
     
     @Override
@@ -104,16 +106,18 @@ public class Variables {
                 "error", error,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private Optional<String> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -127,6 +131,7 @@ public class Variables {
             return this;
         }
 
+
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
             this.value = Optional.ofNullable(value);
@@ -138,11 +143,12 @@ public class Variables {
             this.value = value;
             return this;
         }
-        
+
         public Variables build() {
+
             return new Variables(
-                error,
-                value);
+                error, value);
         }
+
     }
 }

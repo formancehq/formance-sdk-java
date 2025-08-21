@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3GetTaskRequest {
-
     /**
      * The task ID
      */
@@ -34,9 +33,10 @@ public class V3GetTaskRequest {
         return taskID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The task ID
@@ -47,7 +47,6 @@ public class V3GetTaskRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3GetTaskRequest {
         }
         V3GetTaskRequest other = (V3GetTaskRequest) o;
         return 
-            Objects.deepEquals(this.taskID, other.taskID);
+            Utils.enhancedDeepEquals(this.taskID, other.taskID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             taskID);
     }
     
@@ -72,14 +71,16 @@ public class V3GetTaskRequest {
         return Utils.toString(V3GetTaskRequest.class,
                 "taskID", taskID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String taskID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The task ID
@@ -89,10 +90,12 @@ public class V3GetTaskRequest {
             this.taskID = taskID;
             return this;
         }
-        
+
         public V3GetTaskRequest build() {
+
             return new V3GetTaskRequest(
                 taskID);
         }
+
     }
 }

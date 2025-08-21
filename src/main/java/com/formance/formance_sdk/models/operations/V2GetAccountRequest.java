@@ -10,11 +10,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2GetAccountRequest {
 
+public class V2GetAccountRequest {
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
      * ```
@@ -24,6 +23,7 @@ public class V2GetAccountRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=address")
     private String address;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=expand")
     private Optional<String> expand;
 
@@ -32,6 +32,7 @@ public class V2GetAccountRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
@@ -55,7 +56,8 @@ public class V2GetAccountRequest {
     public V2GetAccountRequest(
             String address,
             String ledger) {
-        this(address, Optional.empty(), ledger, Optional.empty());
+        this(address, Optional.empty(), ledger,
+            Optional.empty());
     }
 
     /**
@@ -87,9 +89,10 @@ public class V2GetAccountRequest {
         return pit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
@@ -108,6 +111,7 @@ public class V2GetAccountRequest {
         this.expand = Optional.ofNullable(expand);
         return this;
     }
+
 
     public V2GetAccountRequest withExpand(Optional<String> expand) {
         Utils.checkNotNull(expand, "expand");
@@ -130,13 +134,13 @@ public class V2GetAccountRequest {
         return this;
     }
 
+
     public V2GetAccountRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,18 +151,16 @@ public class V2GetAccountRequest {
         }
         V2GetAccountRequest other = (V2GetAccountRequest) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.expand, other.expand) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.pit, other.pit);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.expand, other.expand) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.pit, other.pit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            expand,
-            ledger,
+        return Utils.enhancedHash(
+            address, expand, ledger,
             pit);
     }
     
@@ -170,20 +172,22 @@ public class V2GetAccountRequest {
                 "ledger", ledger,
                 "pit", pit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String address;
- 
+
         private Optional<String> expand = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<OffsetDateTime> pit = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Exact address of the account. It must match the following regular expressions pattern:
@@ -197,6 +201,7 @@ public class V2GetAccountRequest {
             return this;
         }
 
+
         public Builder expand(String expand) {
             Utils.checkNotNull(expand, "expand");
             this.expand = Optional.ofNullable(expand);
@@ -209,6 +214,7 @@ public class V2GetAccountRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -217,6 +223,7 @@ public class V2GetAccountRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         public Builder pit(OffsetDateTime pit) {
             Utils.checkNotNull(pit, "pit");
@@ -229,13 +236,13 @@ public class V2GetAccountRequest {
             this.pit = pit;
             return this;
         }
-        
+
         public V2GetAccountRequest build() {
+
             return new V2GetAccountRequest(
-                address,
-                expand,
-                ledger,
+                address, expand, ledger,
                 pit);
         }
+
     }
 }

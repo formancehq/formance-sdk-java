@@ -9,11 +9,10 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2DeleteAccountMetadataRequest {
 
+public class V2DeleteAccountMetadataRequest {
     /**
      * Use an idempotency key
      */
@@ -58,7 +57,8 @@ public class V2DeleteAccountMetadataRequest {
             String address,
             String key,
             String ledger) {
-        this(Optional.empty(), address, key, ledger);
+        this(Optional.empty(), address, key,
+            ledger);
     }
 
     /**
@@ -93,9 +93,10 @@ public class V2DeleteAccountMetadataRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Use an idempotency key
@@ -105,6 +106,7 @@ public class V2DeleteAccountMetadataRequest {
         this.idempotencyKey = Optional.ofNullable(idempotencyKey);
         return this;
     }
+
 
     /**
      * Use an idempotency key
@@ -142,7 +144,6 @@ public class V2DeleteAccountMetadataRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,18 +154,16 @@ public class V2DeleteAccountMetadataRequest {
         }
         V2DeleteAccountMetadataRequest other = (V2DeleteAccountMetadataRequest) o;
         return 
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            idempotencyKey,
-            address,
-            key,
+        return Utils.enhancedHash(
+            idempotencyKey, address, key,
             ledger);
     }
     
@@ -176,20 +175,22 @@ public class V2DeleteAccountMetadataRequest {
                 "key", key,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private String address;
- 
+
         private String key;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Use an idempotency key
@@ -209,6 +210,7 @@ public class V2DeleteAccountMetadataRequest {
             return this;
         }
 
+
         /**
          * Account address
          */
@@ -217,6 +219,7 @@ public class V2DeleteAccountMetadataRequest {
             this.address = address;
             return this;
         }
+
 
         /**
          * The key to remove.
@@ -227,6 +230,7 @@ public class V2DeleteAccountMetadataRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -235,13 +239,13 @@ public class V2DeleteAccountMetadataRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2DeleteAccountMetadataRequest build() {
+
             return new V2DeleteAccountMetadataRequest(
-                idempotencyKey,
-                address,
-                key,
+                idempotencyKey, address, key,
                 ledger);
         }
+
     }
 }

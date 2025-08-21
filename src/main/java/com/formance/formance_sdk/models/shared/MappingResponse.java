@@ -12,8 +12,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class MappingResponse {
 
@@ -38,9 +38,10 @@ public class MappingResponse {
         return (JsonNullable<Mapping>) data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public MappingResponse withData(Mapping data) {
         Utils.checkNotNull(data, "data");
@@ -54,7 +55,6 @@ public class MappingResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -65,12 +65,12 @@ public class MappingResponse {
         }
         MappingResponse other = (MappingResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -79,14 +79,16 @@ public class MappingResponse {
         return Utils.toString(MappingResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Mapping> data = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Mapping data) {
             Utils.checkNotNull(data, "data");
@@ -99,10 +101,12 @@ public class MappingResponse {
             this.data = data;
             return this;
         }
-        
+
         public MappingResponse build() {
+
             return new MappingResponse(
                 data);
         }
+
     }
 }
