@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2DeleteTransactionMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2DeleteTransactionMetadataRequestBuilder {
 
     private V2DeleteTransactionMetadataRequest request;
-    private final SDKMethodInterfaces.MethodCallV2DeleteTransactionMetadata sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2DeleteTransactionMetadataRequestBuilder(SDKMethodInterfaces.MethodCallV2DeleteTransactionMetadata sdk) {
-        this.sdk = sdk;
+    public V2DeleteTransactionMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2DeleteTransactionMetadataRequestBuilder request(V2DeleteTransactionMetadataRequest request) {
@@ -22,8 +26,10 @@ public class V2DeleteTransactionMetadataRequestBuilder {
     }
 
     public V2DeleteTransactionMetadataResponse call() throws Exception {
+        
+        RequestOperation<V2DeleteTransactionMetadataRequest, V2DeleteTransactionMetadataResponse> operation
+              = new V2DeleteTransactionMetadata.Sync(sdkConfiguration);
 
-        return sdk.deleteTransactionMetadata(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

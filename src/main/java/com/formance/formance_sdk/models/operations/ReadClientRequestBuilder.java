@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ReadClient;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ReadClientRequestBuilder {
 
     private ReadClientRequest request;
-    private final SDKMethodInterfaces.MethodCallReadClient sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ReadClientRequestBuilder(SDKMethodInterfaces.MethodCallReadClient sdk) {
-        this.sdk = sdk;
+    public ReadClientRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ReadClientRequestBuilder request(ReadClientRequest request) {
@@ -22,8 +26,10 @@ public class ReadClientRequestBuilder {
     }
 
     public ReadClientResponse call() throws Exception {
+        
+        RequestOperation<ReadClientRequest, ReadClientResponse> operation
+              = new ReadClient.Sync(sdkConfiguration);
 
-        return sdk.readClient(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

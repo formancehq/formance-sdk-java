@@ -12,11 +12,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetTransactionsRequest {
 
+public class GetTransactionsRequest {
     /**
      * Parameter used in pagination requests.
      * Set to the value of next for the next page of results.
@@ -82,9 +81,10 @@ public class GetTransactionsRequest {
         return walletID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Parameter used in pagination requests.
@@ -97,6 +97,7 @@ public class GetTransactionsRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests.
@@ -119,6 +120,7 @@ public class GetTransactionsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page
      */
@@ -137,6 +139,7 @@ public class GetTransactionsRequest {
         return this;
     }
 
+
     /**
      * A wallet ID to filter on
      */
@@ -146,7 +149,6 @@ public class GetTransactionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -157,17 +159,15 @@ public class GetTransactionsRequest {
         }
         GetTransactionsRequest other = (GetTransactionsRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.walletID, other.walletID);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.walletID, other.walletID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cursor,
-            pageSize,
-            walletID);
+        return Utils.enhancedHash(
+            cursor, pageSize, walletID);
     }
     
     @Override
@@ -177,18 +177,20 @@ public class GetTransactionsRequest {
                 "pageSize", pageSize,
                 "walletID", walletID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> walletID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Parameter used in pagination requests.
@@ -214,6 +216,7 @@ public class GetTransactionsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page
          */
@@ -232,6 +235,7 @@ public class GetTransactionsRequest {
             return this;
         }
 
+
         /**
          * A wallet ID to filter on
          */
@@ -249,16 +253,16 @@ public class GetTransactionsRequest {
             this.walletID = walletID;
             return this;
         }
-        
+
         public GetTransactionsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
             }
+
             return new GetTransactionsRequest(
-                cursor,
-                pageSize,
-                walletID);
+                cursor, pageSize, walletID);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

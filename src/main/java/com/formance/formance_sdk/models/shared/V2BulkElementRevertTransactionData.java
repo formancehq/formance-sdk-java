@@ -13,8 +13,8 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2BulkElementRevertTransactionData {
 
@@ -22,9 +22,11 @@ public class V2BulkElementRevertTransactionData {
     @JsonProperty("atEffectiveDate")
     private Optional<Boolean> atEffectiveDate;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("force")
     private Optional<Boolean> force;
+
 
     @JsonProperty("id")
     private BigInteger id;
@@ -62,15 +64,17 @@ public class V2BulkElementRevertTransactionData {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2BulkElementRevertTransactionData withAtEffectiveDate(boolean atEffectiveDate) {
         Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
         this.atEffectiveDate = Optional.ofNullable(atEffectiveDate);
         return this;
     }
+
 
     public V2BulkElementRevertTransactionData withAtEffectiveDate(Optional<Boolean> atEffectiveDate) {
         Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
@@ -83,6 +87,7 @@ public class V2BulkElementRevertTransactionData {
         this.force = Optional.ofNullable(force);
         return this;
     }
+
 
     public V2BulkElementRevertTransactionData withForce(Optional<Boolean> force) {
         Utils.checkNotNull(force, "force");
@@ -101,7 +106,6 @@ public class V2BulkElementRevertTransactionData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,17 +116,15 @@ public class V2BulkElementRevertTransactionData {
         }
         V2BulkElementRevertTransactionData other = (V2BulkElementRevertTransactionData) o;
         return 
-            Objects.deepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
-            Objects.deepEquals(this.force, other.force) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
+            Utils.enhancedDeepEquals(this.force, other.force) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            atEffectiveDate,
-            force,
-            id);
+        return Utils.enhancedHash(
+            atEffectiveDate, force, id);
     }
     
     @Override
@@ -132,18 +134,20 @@ public class V2BulkElementRevertTransactionData {
                 "force", force,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> atEffectiveDate = Optional.empty();
- 
+
         private Optional<Boolean> force = Optional.empty();
- 
+
         private BigInteger id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder atEffectiveDate(boolean atEffectiveDate) {
             Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
@@ -157,6 +161,7 @@ public class V2BulkElementRevertTransactionData {
             return this;
         }
 
+
         public Builder force(boolean force) {
             Utils.checkNotNull(force, "force");
             this.force = Optional.ofNullable(force);
@@ -169,6 +174,7 @@ public class V2BulkElementRevertTransactionData {
             return this;
         }
 
+
         public Builder id(long id) {
             this.id = BigInteger.valueOf(id);
             return this;
@@ -179,12 +185,12 @@ public class V2BulkElementRevertTransactionData {
             this.id = id;
             return this;
         }
-        
+
         public V2BulkElementRevertTransactionData build() {
+
             return new V2BulkElementRevertTransactionData(
-                atEffectiveDate,
-                force,
-                id);
+                atEffectiveDate, force, id);
         }
+
     }
 }

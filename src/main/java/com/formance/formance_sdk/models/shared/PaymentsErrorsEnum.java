@@ -16,7 +16,7 @@ public enum PaymentsErrorsEnum {
     @JsonValue
     private final String value;
 
-    private PaymentsErrorsEnum(String value) {
+    PaymentsErrorsEnum(String value) {
         this.value = value;
     }
     

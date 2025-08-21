@@ -10,11 +10,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2DeleteTransactionMetadataRequest {
 
+public class V2DeleteTransactionMetadataRequest {
     /**
      * Use an idempotency key
      */
@@ -59,7 +58,8 @@ public class V2DeleteTransactionMetadataRequest {
             BigInteger id,
             String key,
             String ledger) {
-        this(Optional.empty(), id, key, ledger);
+        this(Optional.empty(), id, key,
+            ledger);
     }
 
     /**
@@ -94,9 +94,10 @@ public class V2DeleteTransactionMetadataRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Use an idempotency key
@@ -107,6 +108,7 @@ public class V2DeleteTransactionMetadataRequest {
         return this;
     }
 
+
     /**
      * Use an idempotency key
      */
@@ -116,9 +118,9 @@ public class V2DeleteTransactionMetadataRequest {
         return this;
     }
 
-        /**
-         * Transaction ID.
-         */
+    /**
+     * Transaction ID.
+     */
     public V2DeleteTransactionMetadataRequest withId(long id) {
         this.id = BigInteger.valueOf(id);
         return this;
@@ -151,7 +153,6 @@ public class V2DeleteTransactionMetadataRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,18 +163,16 @@ public class V2DeleteTransactionMetadataRequest {
         }
         V2DeleteTransactionMetadataRequest other = (V2DeleteTransactionMetadataRequest) o;
         return 
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            idempotencyKey,
-            id,
-            key,
+        return Utils.enhancedHash(
+            idempotencyKey, id, key,
             ledger);
     }
     
@@ -185,20 +184,22 @@ public class V2DeleteTransactionMetadataRequest {
                 "key", key,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private BigInteger id;
- 
+
         private String key;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Use an idempotency key
@@ -218,6 +219,7 @@ public class V2DeleteTransactionMetadataRequest {
             return this;
         }
 
+
         /**
          * Transaction ID.
          */
@@ -235,6 +237,7 @@ public class V2DeleteTransactionMetadataRequest {
             return this;
         }
 
+
         /**
          * The key to remove.
          */
@@ -244,6 +247,7 @@ public class V2DeleteTransactionMetadataRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -252,13 +256,13 @@ public class V2DeleteTransactionMetadataRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2DeleteTransactionMetadataRequest build() {
+
             return new V2DeleteTransactionMetadataRequest(
-                idempotencyKey,
-                id,
-                key,
+                idempotencyKey, id, key,
                 ledger);
         }
+
     }
 }

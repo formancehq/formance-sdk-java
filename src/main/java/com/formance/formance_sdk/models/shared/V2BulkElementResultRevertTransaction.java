@@ -10,15 +10,17 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2BulkElementResultRevertTransaction implements V2BulkElementResult {
 
     @JsonProperty("data")
     private V2Transaction data;
 
+
     @JsonProperty("logID")
     private long logID;
+
 
     @JsonProperty("responseType")
     private String responseType;
@@ -52,9 +54,10 @@ public class V2BulkElementResultRevertTransaction implements V2BulkElementResult
         return Utils.discriminatorToString(responseType);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2BulkElementResultRevertTransaction withData(V2Transaction data) {
         Utils.checkNotNull(data, "data");
@@ -74,7 +77,6 @@ public class V2BulkElementResultRevertTransaction implements V2BulkElementResult
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,17 +87,15 @@ public class V2BulkElementResultRevertTransaction implements V2BulkElementResult
         }
         V2BulkElementResultRevertTransaction other = (V2BulkElementResultRevertTransaction) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.logID, other.logID) &&
-            Objects.deepEquals(this.responseType, other.responseType);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.logID, other.logID) &&
+            Utils.enhancedDeepEquals(this.responseType, other.responseType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            logID,
-            responseType);
+        return Utils.enhancedHash(
+            data, logID, responseType);
     }
     
     @Override
@@ -105,18 +105,20 @@ public class V2BulkElementResultRevertTransaction implements V2BulkElementResult
                 "logID", logID,
                 "responseType", responseType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V2Transaction data;
- 
+
         private Long logID;
- 
+
         private String responseType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(V2Transaction data) {
             Utils.checkNotNull(data, "data");
@@ -124,23 +126,25 @@ public class V2BulkElementResultRevertTransaction implements V2BulkElementResult
             return this;
         }
 
+
         public Builder logID(long logID) {
             Utils.checkNotNull(logID, "logID");
             this.logID = logID;
             return this;
         }
 
+
         public Builder responseType(String responseType) {
             Utils.checkNotNull(responseType, "responseType");
             this.responseType = responseType;
             return this;
         }
-        
+
         public V2BulkElementResultRevertTransaction build() {
+
             return new V2BulkElementResultRevertTransaction(
-                data,
-                logID,
-                responseType);
+                data, logID, responseType);
         }
+
     }
 }

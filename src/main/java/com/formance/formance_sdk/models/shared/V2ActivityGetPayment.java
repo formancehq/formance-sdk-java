@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2ActivityGetPayment {
 
@@ -28,9 +28,10 @@ public class V2ActivityGetPayment {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ActivityGetPayment withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -38,7 +39,6 @@ public class V2ActivityGetPayment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V2ActivityGetPayment {
         }
         V2ActivityGetPayment other = (V2ActivityGetPayment) o;
         return 
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id);
     }
     
@@ -63,24 +63,28 @@ public class V2ActivityGetPayment {
         return Utils.toString(V2ActivityGetPayment.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
-        
+
         public V2ActivityGetPayment build() {
+
             return new V2ActivityGetPayment(
                 id);
         }
+
     }
 }

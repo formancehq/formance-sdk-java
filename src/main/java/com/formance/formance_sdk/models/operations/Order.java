@@ -17,7 +17,7 @@ public enum Order {
     @JsonValue
     private final String value;
 
-    private Order(String value) {
+    Order(String value) {
         this.value = value;
     }
     

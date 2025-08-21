@@ -31,7 +31,7 @@ public enum V2PaymentScheme {
     @JsonValue
     private final String value;
 
-    private V2PaymentScheme(String value) {
+    V2PaymentScheme(String value) {
         this.value = value;
     }
     

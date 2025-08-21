@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetVersions;
 import java.lang.Exception;
 
 public class GetVersionsRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetVersions sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetVersionsRequestBuilder(SDKMethodInterfaces.MethodCallGetVersions sdk) {
-        this.sdk = sdk;
+    public GetVersionsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetVersionsResponse call() throws Exception {
+        
+        RequestlessOperation<GetVersionsResponse> operation
+            = new GetVersions.Sync(sdkConfiguration);
 
-        return sdk.getVersionsDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

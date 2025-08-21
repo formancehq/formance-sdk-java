@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2StageWaitEvent {
 
@@ -28,9 +28,10 @@ public class V2StageWaitEvent {
         return event;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2StageWaitEvent withEvent(String event) {
         Utils.checkNotNull(event, "event");
@@ -38,7 +39,6 @@ public class V2StageWaitEvent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V2StageWaitEvent {
         }
         V2StageWaitEvent other = (V2StageWaitEvent) o;
         return 
-            Objects.deepEquals(this.event, other.event);
+            Utils.enhancedDeepEquals(this.event, other.event);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             event);
     }
     
@@ -63,24 +63,28 @@ public class V2StageWaitEvent {
         return Utils.toString(V2StageWaitEvent.class,
                 "event", event);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String event;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder event(String event) {
             Utils.checkNotNull(event, "event");
             this.event = event;
             return this;
         }
-        
+
         public V2StageWaitEvent build() {
+
             return new V2StageWaitEvent(
                 event);
         }
+
     }
 }

@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2BulkResponse {
 
@@ -22,9 +22,11 @@ public class V2BulkResponse {
     @JsonProperty("data")
     private Optional<? extends List<V2BulkElementResult>> data;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorCode")
     private Optional<? extends V2ErrorsEnum> errorCode;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
@@ -64,15 +66,17 @@ public class V2BulkResponse {
         return errorMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2BulkResponse withData(List<V2BulkElementResult> data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
     }
+
 
     public V2BulkResponse withData(Optional<? extends List<V2BulkElementResult>> data) {
         Utils.checkNotNull(data, "data");
@@ -86,6 +90,7 @@ public class V2BulkResponse {
         return this;
     }
 
+
     public V2BulkResponse withErrorCode(Optional<? extends V2ErrorsEnum> errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
@@ -98,13 +103,13 @@ public class V2BulkResponse {
         return this;
     }
 
+
     public V2BulkResponse withErrorMessage(Optional<String> errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = errorMessage;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +120,15 @@ public class V2BulkResponse {
         }
         V2BulkResponse other = (V2BulkResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            errorCode,
-            errorMessage);
+        return Utils.enhancedHash(
+            data, errorCode, errorMessage);
     }
     
     @Override
@@ -135,18 +138,20 @@ public class V2BulkResponse {
                 "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<V2BulkElementResult>> data = Optional.empty();
- 
+
         private Optional<? extends V2ErrorsEnum> errorCode = Optional.empty();
- 
+
         private Optional<String> errorMessage = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<V2BulkElementResult> data) {
             Utils.checkNotNull(data, "data");
@@ -160,6 +165,7 @@ public class V2BulkResponse {
             return this;
         }
 
+
         public Builder errorCode(V2ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = Optional.ofNullable(errorCode);
@@ -172,6 +178,7 @@ public class V2BulkResponse {
             return this;
         }
 
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = Optional.ofNullable(errorMessage);
@@ -183,12 +190,12 @@ public class V2BulkResponse {
             this.errorMessage = errorMessage;
             return this;
         }
-        
+
         public V2BulkResponse build() {
+
             return new V2BulkResponse(
-                data,
-                errorCode,
-                errorMessage);
+                data, errorCode, errorMessage);
         }
+
     }
 }

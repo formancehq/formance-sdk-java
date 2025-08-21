@@ -12,17 +12,19 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskStripeDescriptor {
 
     @JsonProperty("account")
     private String account;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("main")
     private Optional<Boolean> main;
+
 
     @JsonProperty("name")
     private String name;
@@ -61,9 +63,10 @@ public class TaskStripeDescriptor {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TaskStripeDescriptor withAccount(String account) {
         Utils.checkNotNull(account, "account");
@@ -77,6 +80,7 @@ public class TaskStripeDescriptor {
         return this;
     }
 
+
     public TaskStripeDescriptor withMain(Optional<Boolean> main) {
         Utils.checkNotNull(main, "main");
         this.main = main;
@@ -89,7 +93,6 @@ public class TaskStripeDescriptor {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -100,17 +103,15 @@ public class TaskStripeDescriptor {
         }
         TaskStripeDescriptor other = (TaskStripeDescriptor) o;
         return 
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.main, other.main) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.main, other.main) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            account,
-            main,
-            name);
+        return Utils.enhancedHash(
+            account, main, name);
     }
     
     @Override
@@ -120,24 +121,27 @@ public class TaskStripeDescriptor {
                 "main", main,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String account;
- 
+
         private Optional<Boolean> main = Optional.empty();
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder account(String account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
             return this;
         }
+
 
         public Builder main(boolean main) {
             Utils.checkNotNull(main, "main");
@@ -151,17 +155,18 @@ public class TaskStripeDescriptor {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public TaskStripeDescriptor build() {
+
             return new TaskStripeDescriptor(
-                account,
-                main,
-                name);
+                account, main, name);
         }
+
     }
 }

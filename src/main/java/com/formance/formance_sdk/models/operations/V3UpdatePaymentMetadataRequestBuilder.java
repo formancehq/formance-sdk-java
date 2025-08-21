@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3UpdatePaymentMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3UpdatePaymentMetadataRequestBuilder {
 
     private V3UpdatePaymentMetadataRequest request;
-    private final SDKMethodInterfaces.MethodCallV3UpdatePaymentMetadata sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3UpdatePaymentMetadataRequestBuilder(SDKMethodInterfaces.MethodCallV3UpdatePaymentMetadata sdk) {
-        this.sdk = sdk;
+    public V3UpdatePaymentMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3UpdatePaymentMetadataRequestBuilder request(V3UpdatePaymentMetadataRequest request) {
@@ -22,8 +26,10 @@ public class V3UpdatePaymentMetadataRequestBuilder {
     }
 
     public V3UpdatePaymentMetadataResponse call() throws Exception {
+        
+        RequestOperation<V3UpdatePaymentMetadataRequest, V3UpdatePaymentMetadataResponse> operation
+              = new V3UpdatePaymentMetadata.Sync(sdkConfiguration);
 
-        return sdk.updatePaymentMetadata(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

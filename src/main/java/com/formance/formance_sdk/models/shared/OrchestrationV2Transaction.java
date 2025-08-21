@@ -15,23 +15,27 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationV2Transaction {
 
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
+
     @JsonProperty("postings")
     private List<V2Posting> postings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
+
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
+
 
     @JsonProperty("txid")
     private BigInteger txid;
@@ -44,6 +48,7 @@ public class OrchestrationV2Transaction {
             @JsonProperty("timestamp") OffsetDateTime timestamp,
             @JsonProperty("txid") BigInteger txid) {
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(postings, "postings");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(timestamp, "timestamp");
@@ -60,7 +65,8 @@ public class OrchestrationV2Transaction {
             List<V2Posting> postings,
             OffsetDateTime timestamp,
             BigInteger txid) {
-        this(metadata, postings, Optional.empty(), timestamp, txid);
+        this(metadata, postings, Optional.empty(),
+            timestamp, txid);
     }
 
     @JsonIgnore
@@ -88,9 +94,10 @@ public class OrchestrationV2Transaction {
         return txid;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationV2Transaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -109,6 +116,7 @@ public class OrchestrationV2Transaction {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     public OrchestrationV2Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -133,7 +141,6 @@ public class OrchestrationV2Transaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -144,21 +151,18 @@ public class OrchestrationV2Transaction {
         }
         OrchestrationV2Transaction other = (OrchestrationV2Transaction) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.postings, other.postings) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.txid, other.txid);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            metadata,
-            postings,
-            reference,
-            timestamp,
-            txid);
+        return Utils.enhancedHash(
+            metadata, postings, reference,
+            timestamp, txid);
     }
     
     @Override
@@ -170,22 +174,24 @@ public class OrchestrationV2Transaction {
                 "timestamp", timestamp,
                 "txid", txid);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, String> metadata;
- 
+
         private List<V2Posting> postings;
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private OffsetDateTime timestamp;
- 
+
         private BigInteger txid;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -193,11 +199,13 @@ public class OrchestrationV2Transaction {
             return this;
         }
 
+
         public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
         }
+
 
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -211,11 +219,13 @@ public class OrchestrationV2Transaction {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;
         }
+
 
         public Builder txid(long txid) {
             this.txid = BigInteger.valueOf(txid);
@@ -227,14 +237,13 @@ public class OrchestrationV2Transaction {
             this.txid = txid;
             return this;
         }
-        
+
         public OrchestrationV2Transaction build() {
+
             return new OrchestrationV2Transaction(
-                metadata,
-                postings,
-                reference,
-                timestamp,
-                txid);
+                metadata, postings, reference,
+                timestamp, txid);
         }
+
     }
 }

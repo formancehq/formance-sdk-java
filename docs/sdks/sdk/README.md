@@ -25,6 +25,7 @@ Show stack version information
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getVersions" method="get" path="/versions" -->
 ```java
 package hello.world;
 
@@ -39,8 +40,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 

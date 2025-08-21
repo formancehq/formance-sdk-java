@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.WalletsgetServerInfo;
 import java.lang.Exception;
 
 public class WalletsgetServerInfoRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallWalletsgetServerInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public WalletsgetServerInfoRequestBuilder(SDKMethodInterfaces.MethodCallWalletsgetServerInfo sdk) {
-        this.sdk = sdk;
+    public WalletsgetServerInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public WalletsgetServerInfoResponse call() throws Exception {
+        
+        RequestlessOperation<WalletsgetServerInfoResponse> operation
+            = new WalletsgetServerInfo.Sync(sdkConfiguration);
 
-        return sdk.walletsgetServerInfoDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

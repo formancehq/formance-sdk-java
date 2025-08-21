@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.PaymentsgetServerInfo;
 import java.lang.Exception;
 
 public class PaymentsgetServerInfoRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallPaymentsgetServerInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PaymentsgetServerInfoRequestBuilder(SDKMethodInterfaces.MethodCallPaymentsgetServerInfo sdk) {
-        this.sdk = sdk;
+    public PaymentsgetServerInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PaymentsgetServerInfoResponse call() throws Exception {
+        
+        RequestlessOperation<PaymentsgetServerInfoResponse> operation
+            = new PaymentsgetServerInfo.Sync(sdkConfiguration);
 
-        return sdk.paymentsgetServerInfoDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

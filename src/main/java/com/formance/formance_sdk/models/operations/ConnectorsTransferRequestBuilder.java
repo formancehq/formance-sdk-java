@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ConnectorsTransfer;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ConnectorsTransferRequestBuilder {
 
     private ConnectorsTransferRequest request;
-    private final SDKMethodInterfaces.MethodCallConnectorsTransfer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConnectorsTransferRequestBuilder(SDKMethodInterfaces.MethodCallConnectorsTransfer sdk) {
-        this.sdk = sdk;
+    public ConnectorsTransferRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ConnectorsTransferRequestBuilder request(ConnectorsTransferRequest request) {
@@ -22,8 +26,10 @@ public class ConnectorsTransferRequestBuilder {
     }
 
     public ConnectorsTransferResponse call() throws Exception {
+        
+        RequestOperation<ConnectorsTransferRequest, ConnectorsTransferResponse> operation
+              = new ConnectorsTransfer.Sync(sdkConfiguration);
 
-        return sdk.connectorsTransfer(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

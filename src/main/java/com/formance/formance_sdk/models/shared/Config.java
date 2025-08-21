@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class Config {
 
@@ -28,9 +28,10 @@ public class Config {
         return storage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Config withStorage(LedgerStorage storage) {
         Utils.checkNotNull(storage, "storage");
@@ -38,7 +39,6 @@ public class Config {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class Config {
         }
         Config other = (Config) o;
         return 
-            Objects.deepEquals(this.storage, other.storage);
+            Utils.enhancedDeepEquals(this.storage, other.storage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             storage);
     }
     
@@ -63,24 +63,28 @@ public class Config {
         return Utils.toString(Config.class,
                 "storage", storage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private LedgerStorage storage;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder storage(LedgerStorage storage) {
             Utils.checkNotNull(storage, "storage");
             this.storage = storage;
             return this;
         }
-        
+
         public Config build() {
+
             return new Config(
                 storage);
         }
+
     }
 }

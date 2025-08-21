@@ -17,50 +17,61 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2Transaction {
 
     @JsonProperty("id")
     private BigInteger id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("insertedAt")
     private Optional<OffsetDateTime> insertedAt;
 
+
     @JsonProperty("metadata")
     private Map<String, String> metadata;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitEffectiveVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes;
 
+
     @JsonProperty("postings")
     private List<V2Posting> postings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitEffectiveVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
+
     @JsonProperty("reverted")
     private boolean reverted;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("revertedAt")
     private Optional<OffsetDateTime> revertedAt;
+
 
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
@@ -82,6 +93,7 @@ public class V2Transaction {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(insertedAt, "insertedAt");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         Utils.checkNotNull(postings, "postings");
@@ -111,7 +123,10 @@ public class V2Transaction {
             List<V2Posting> postings,
             boolean reverted,
             OffsetDateTime timestamp) {
-        this(id, Optional.empty(), metadata, Optional.empty(), Optional.empty(), postings, Optional.empty(), Optional.empty(), Optional.empty(), reverted, Optional.empty(), timestamp);
+        this(id, Optional.empty(), metadata,
+            Optional.empty(), Optional.empty(), postings,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            reverted, Optional.empty(), timestamp);
     }
 
     @JsonIgnore
@@ -178,9 +193,10 @@ public class V2Transaction {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2Transaction withId(long id) {
         this.id = BigInteger.valueOf(id);
@@ -198,6 +214,7 @@ public class V2Transaction {
         this.insertedAt = Optional.ofNullable(insertedAt);
         return this;
     }
+
 
     public V2Transaction withInsertedAt(Optional<OffsetDateTime> insertedAt) {
         Utils.checkNotNull(insertedAt, "insertedAt");
@@ -217,6 +234,7 @@ public class V2Transaction {
         return this;
     }
 
+
     public V2Transaction withPostCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes) {
         Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
         this.postCommitEffectiveVolumes = postCommitEffectiveVolumes;
@@ -228,6 +246,7 @@ public class V2Transaction {
         this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
         return this;
     }
+
 
     public V2Transaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
@@ -247,6 +266,7 @@ public class V2Transaction {
         return this;
     }
 
+
     public V2Transaction withPreCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes) {
         Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
         this.preCommitEffectiveVolumes = preCommitEffectiveVolumes;
@@ -259,6 +279,7 @@ public class V2Transaction {
         return this;
     }
 
+
     public V2Transaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = preCommitVolumes;
@@ -270,6 +291,7 @@ public class V2Transaction {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     public V2Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -289,6 +311,7 @@ public class V2Transaction {
         return this;
     }
 
+
     public V2Transaction withRevertedAt(Optional<OffsetDateTime> revertedAt) {
         Utils.checkNotNull(revertedAt, "revertedAt");
         this.revertedAt = revertedAt;
@@ -301,7 +324,6 @@ public class V2Transaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -312,35 +334,27 @@ public class V2Transaction {
         }
         V2Transaction other = (V2Transaction) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.insertedAt, other.insertedAt) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.postCommitEffectiveVolumes, other.postCommitEffectiveVolumes) &&
-            Objects.deepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
-            Objects.deepEquals(this.postings, other.postings) &&
-            Objects.deepEquals(this.preCommitEffectiveVolumes, other.preCommitEffectiveVolumes) &&
-            Objects.deepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.reverted, other.reverted) &&
-            Objects.deepEquals(this.revertedAt, other.revertedAt) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.insertedAt, other.insertedAt) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postCommitEffectiveVolumes, other.postCommitEffectiveVolumes) &&
+            Utils.enhancedDeepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
+            Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.preCommitEffectiveVolumes, other.preCommitEffectiveVolumes) &&
+            Utils.enhancedDeepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.reverted, other.reverted) &&
+            Utils.enhancedDeepEquals(this.revertedAt, other.revertedAt) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            insertedAt,
-            metadata,
-            postCommitEffectiveVolumes,
-            postCommitVolumes,
-            postings,
-            preCommitEffectiveVolumes,
-            preCommitVolumes,
-            reference,
-            reverted,
-            revertedAt,
-            timestamp);
+        return Utils.enhancedHash(
+            id, insertedAt, metadata,
+            postCommitEffectiveVolumes, postCommitVolumes, postings,
+            preCommitEffectiveVolumes, preCommitVolumes, reference,
+            reverted, revertedAt, timestamp);
     }
     
     @Override
@@ -359,36 +373,38 @@ public class V2Transaction {
                 "revertedAt", revertedAt,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger id;
- 
+
         private Optional<OffsetDateTime> insertedAt = Optional.empty();
- 
+
         private Map<String, String> metadata;
- 
+
         private Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes = Optional.empty();
- 
+
         private Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes = Optional.empty();
- 
+
         private List<V2Posting> postings;
- 
+
         private Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes = Optional.empty();
- 
+
         private Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Boolean reverted;
- 
+
         private Optional<OffsetDateTime> revertedAt = Optional.empty();
- 
+
         private OffsetDateTime timestamp;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(long id) {
             this.id = BigInteger.valueOf(id);
@@ -400,6 +416,7 @@ public class V2Transaction {
             this.id = id;
             return this;
         }
+
 
         public Builder insertedAt(OffsetDateTime insertedAt) {
             Utils.checkNotNull(insertedAt, "insertedAt");
@@ -413,11 +430,13 @@ public class V2Transaction {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
+
 
         public Builder postCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> postCommitEffectiveVolumes) {
             Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
@@ -431,6 +450,7 @@ public class V2Transaction {
             return this;
         }
 
+
         public Builder postCommitVolumes(Map<String, Map<String, V2Volume>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
@@ -443,11 +463,13 @@ public class V2Transaction {
             return this;
         }
 
+
         public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
         }
+
 
         public Builder preCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> preCommitEffectiveVolumes) {
             Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
@@ -461,6 +483,7 @@ public class V2Transaction {
             return this;
         }
 
+
         public Builder preCommitVolumes(Map<String, Map<String, V2Volume>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
@@ -472,6 +495,7 @@ public class V2Transaction {
             this.preCommitVolumes = preCommitVolumes;
             return this;
         }
+
 
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -485,11 +509,13 @@ public class V2Transaction {
             return this;
         }
 
+
         public Builder reverted(boolean reverted) {
             Utils.checkNotNull(reverted, "reverted");
             this.reverted = reverted;
             return this;
         }
+
 
         public Builder revertedAt(OffsetDateTime revertedAt) {
             Utils.checkNotNull(revertedAt, "revertedAt");
@@ -503,26 +529,21 @@ public class V2Transaction {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public V2Transaction build() {
+
             return new V2Transaction(
-                id,
-                insertedAt,
-                metadata,
-                postCommitEffectiveVolumes,
-                postCommitVolumes,
-                postings,
-                preCommitEffectiveVolumes,
-                preCommitVolumes,
-                reference,
-                reverted,
-                revertedAt,
-                timestamp);
+                id, insertedAt, metadata,
+                postCommitEffectiveVolumes, postCommitVolumes, postings,
+                preCommitEffectiveVolumes, preCommitVolumes, reference,
+                reverted, revertedAt, timestamp);
         }
+
     }
 }

@@ -16,9 +16,9 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class PostTransaction {
 
@@ -26,17 +26,21 @@ public class PostTransaction {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postings")
     private Optional<? extends List<Posting>> postings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("script")
     private Optional<? extends PostTransactionScript> script;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
@@ -62,7 +66,8 @@ public class PostTransaction {
     }
     
     public PostTransaction() {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -93,9 +98,10 @@ public class PostTransaction {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PostTransaction withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -115,6 +121,7 @@ public class PostTransaction {
         return this;
     }
 
+
     public PostTransaction withPostings(Optional<? extends List<Posting>> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
@@ -126,6 +133,7 @@ public class PostTransaction {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     public PostTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -139,6 +147,7 @@ public class PostTransaction {
         return this;
     }
 
+
     public PostTransaction withScript(Optional<? extends PostTransactionScript> script) {
         Utils.checkNotNull(script, "script");
         this.script = script;
@@ -151,13 +160,13 @@ public class PostTransaction {
         return this;
     }
 
+
     public PostTransaction withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -168,21 +177,18 @@ public class PostTransaction {
         }
         PostTransaction other = (PostTransaction) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.postings, other.postings) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.script, other.script) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.script, other.script) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            metadata,
-            postings,
-            reference,
-            script,
-            timestamp);
+        return Utils.enhancedHash(
+            metadata, postings, reference,
+            script, timestamp);
     }
     
     @Override
@@ -194,22 +200,24 @@ public class PostTransaction {
                 "script", script,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Posting>> postings = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Optional<? extends PostTransactionScript> script = Optional.empty();
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -223,6 +231,7 @@ public class PostTransaction {
             return this;
         }
 
+
         public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = Optional.ofNullable(postings);
@@ -234,6 +243,7 @@ public class PostTransaction {
             this.postings = postings;
             return this;
         }
+
 
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -247,6 +257,7 @@ public class PostTransaction {
             return this;
         }
 
+
         public Builder script(PostTransactionScript script) {
             Utils.checkNotNull(script, "script");
             this.script = Optional.ofNullable(script);
@@ -259,6 +270,7 @@ public class PostTransaction {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
@@ -270,14 +282,13 @@ public class PostTransaction {
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public PostTransaction build() {
+
             return new PostTransaction(
-                metadata,
-                postings,
-                reference,
-                script,
-                timestamp);
+                metadata, postings, reference,
+                script, timestamp);
         }
+
     }
 }

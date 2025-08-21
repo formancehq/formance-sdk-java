@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * Metadata
@@ -15,18 +14,15 @@ import java.util.Objects;
  * <p>Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
  */
 public class Metadata {
-
     @JsonCreator
     public Metadata() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -40,7 +36,7 @@ public class Metadata {
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             );
     }
     
@@ -48,16 +44,19 @@ public class Metadata {
     public String toString() {
         return Utils.toString(Metadata.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public Metadata build() {
+
             return new Metadata(
                 );
         }
+
     }
 }

@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetWorkflowRequest {
-
     /**
      * The flow id
      */
@@ -34,9 +33,10 @@ public class GetWorkflowRequest {
         return flowId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The flow id
@@ -47,7 +47,6 @@ public class GetWorkflowRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class GetWorkflowRequest {
         }
         GetWorkflowRequest other = (GetWorkflowRequest) o;
         return 
-            Objects.deepEquals(this.flowId, other.flowId);
+            Utils.enhancedDeepEquals(this.flowId, other.flowId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             flowId);
     }
     
@@ -72,14 +71,16 @@ public class GetWorkflowRequest {
         return Utils.toString(GetWorkflowRequest.class,
                 "flowId", flowId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String flowId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The flow id
@@ -89,10 +90,12 @@ public class GetWorkflowRequest {
             this.flowId = flowId;
             return this;
         }
-        
+
         public GetWorkflowRequest build() {
+
             return new GetWorkflowRequest(
                 flowId);
         }
+
     }
 }

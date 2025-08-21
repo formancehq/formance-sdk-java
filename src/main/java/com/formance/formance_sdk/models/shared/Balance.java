@@ -14,9 +14,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Balance {
 
@@ -24,8 +24,10 @@ public class Balance {
     @JsonProperty("expiresAt")
     private JsonNullable<OffsetDateTime> expiresAt;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("priority")
@@ -65,9 +67,10 @@ public class Balance {
         return (Optional<BigInteger>) priority;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Balance withExpiresAt(OffsetDateTime expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -98,13 +101,13 @@ public class Balance {
         return this;
     }
 
+
     public Balance withPriority(Optional<? extends BigInteger> priority) {
         Utils.checkNotNull(priority, "priority");
         this.priority = priority;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +118,15 @@ public class Balance {
         }
         Balance other = (Balance) o;
         return 
-            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.priority, other.priority);
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.priority, other.priority);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            expiresAt,
-            name,
-            priority);
+        return Utils.enhancedHash(
+            expiresAt, name, priority);
     }
     
     @Override
@@ -135,18 +136,20 @@ public class Balance {
                 "name", name,
                 "priority", priority);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
- 
+
         private String name;
- 
+
         private Optional<? extends BigInteger> priority = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder expiresAt(OffsetDateTime expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
@@ -160,11 +163,13 @@ public class Balance {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder priority(BigInteger priority) {
             Utils.checkNotNull(priority, "priority");
@@ -182,12 +187,12 @@ public class Balance {
             this.priority = priority;
             return this;
         }
-        
+
         public Balance build() {
+
             return new Balance(
-                expiresAt,
-                name,
-                priority);
+                expiresAt, name, priority);
         }
+
     }
 }

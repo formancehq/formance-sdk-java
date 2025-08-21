@@ -12,14 +12,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2LedgerInfo {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("storage")
@@ -50,15 +51,17 @@ public class V2LedgerInfo {
         return (Optional<V2LedgerInfoStorage>) storage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2LedgerInfo withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public V2LedgerInfo withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -72,13 +75,13 @@ public class V2LedgerInfo {
         return this;
     }
 
+
     public V2LedgerInfo withStorage(Optional<? extends V2LedgerInfoStorage> storage) {
         Utils.checkNotNull(storage, "storage");
         this.storage = storage;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +92,14 @@ public class V2LedgerInfo {
         }
         V2LedgerInfo other = (V2LedgerInfo) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.storage, other.storage);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.storage, other.storage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            storage);
+        return Utils.enhancedHash(
+            name, storage);
     }
     
     @Override
@@ -106,16 +108,18 @@ public class V2LedgerInfo {
                 "name", name,
                 "storage", storage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends V2LedgerInfoStorage> storage = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -129,6 +133,7 @@ public class V2LedgerInfo {
             return this;
         }
 
+
         public Builder storage(V2LedgerInfoStorage storage) {
             Utils.checkNotNull(storage, "storage");
             this.storage = Optional.ofNullable(storage);
@@ -140,11 +145,12 @@ public class V2LedgerInfo {
             this.storage = storage;
             return this;
         }
-        
+
         public V2LedgerInfo build() {
+
             return new V2LedgerInfo(
-                name,
-                storage);
+                name, storage);
         }
+
     }
 }

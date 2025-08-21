@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.RunWorkflow;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class RunWorkflowRequestBuilder {
 
     private RunWorkflowRequest request;
-    private final SDKMethodInterfaces.MethodCallRunWorkflow sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RunWorkflowRequestBuilder(SDKMethodInterfaces.MethodCallRunWorkflow sdk) {
-        this.sdk = sdk;
+    public RunWorkflowRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RunWorkflowRequestBuilder request(RunWorkflowRequest request) {
@@ -22,8 +26,10 @@ public class RunWorkflowRequestBuilder {
     }
 
     public RunWorkflowResponse call() throws Exception {
+        
+        RequestOperation<RunWorkflowRequest, RunWorkflowResponse> operation
+              = new RunWorkflow.Sync(sdkConfiguration);
 
-        return sdk.runWorkflow(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

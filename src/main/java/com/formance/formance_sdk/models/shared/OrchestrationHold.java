@@ -13,13 +13,14 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationHold {
 
     @JsonProperty("description")
     private String description;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
@@ -54,6 +55,7 @@ public class OrchestrationHold {
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(id, "id");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(walletID, "walletID");
         this.description = description;
         this.destination = destination;
@@ -67,7 +69,8 @@ public class OrchestrationHold {
             String id,
             Map<String, String> metadata,
             String walletID) {
-        this(description, Optional.empty(), id, metadata, walletID);
+        this(description, Optional.empty(), id,
+            metadata, walletID);
     }
 
     @JsonIgnore
@@ -105,9 +108,10 @@ public class OrchestrationHold {
         return walletID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationHold withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -120,6 +124,7 @@ public class OrchestrationHold {
         this.destination = Optional.ofNullable(destination);
         return this;
     }
+
 
     public OrchestrationHold withDestination(Optional<? extends Subject> destination) {
         Utils.checkNotNull(destination, "destination");
@@ -154,7 +159,6 @@ public class OrchestrationHold {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -165,21 +169,18 @@ public class OrchestrationHold {
         }
         OrchestrationHold other = (OrchestrationHold) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.walletID, other.walletID);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.walletID, other.walletID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            description,
-            destination,
-            id,
-            metadata,
-            walletID);
+        return Utils.enhancedHash(
+            description, destination, id,
+            metadata, walletID);
     }
     
     @Override
@@ -191,28 +192,31 @@ public class OrchestrationHold {
                 "metadata", metadata,
                 "walletID", walletID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String description;
- 
+
         private Optional<? extends Subject> destination = Optional.empty();
- 
+
         private String id;
- 
+
         private Map<String, String> metadata;
- 
+
         private String walletID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
+
 
         public Builder destination(Subject destination) {
             Utils.checkNotNull(destination, "destination");
@@ -226,6 +230,7 @@ public class OrchestrationHold {
             return this;
         }
 
+
         /**
          * The unique ID of the hold.
          */
@@ -234,6 +239,7 @@ public class OrchestrationHold {
             this.id = id;
             return this;
         }
+
 
         /**
          * Metadata associated with the hold.
@@ -244,6 +250,7 @@ public class OrchestrationHold {
             return this;
         }
 
+
         /**
          * The ID of the wallet the hold is associated with.
          */
@@ -252,14 +259,13 @@ public class OrchestrationHold {
             this.walletID = walletID;
             return this;
         }
-        
+
         public OrchestrationHold build() {
+
             return new OrchestrationHold(
-                description,
-                destination,
-                id,
-                metadata,
-                walletID);
+                description, destination, id,
+                metadata, walletID);
         }
+
     }
 }

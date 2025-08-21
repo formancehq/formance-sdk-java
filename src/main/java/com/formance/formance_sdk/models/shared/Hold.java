@@ -13,16 +13,18 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Hold {
 
     @JsonProperty("asset")
     private String asset;
 
+
     @JsonProperty("description")
     private String description;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
@@ -59,6 +61,7 @@ public class Hold {
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(id, "id");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(walletID, "walletID");
         this.asset = asset;
         this.description = description;
@@ -74,7 +77,8 @@ public class Hold {
             String id,
             Map<String, String> metadata,
             String walletID) {
-        this(asset, description, Optional.empty(), id, metadata, walletID);
+        this(asset, description, Optional.empty(),
+            id, metadata, walletID);
     }
 
     @JsonIgnore
@@ -117,9 +121,10 @@ public class Hold {
         return walletID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Hold withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
@@ -138,6 +143,7 @@ public class Hold {
         this.destination = Optional.ofNullable(destination);
         return this;
     }
+
 
     public Hold withDestination(Optional<? extends Subject> destination) {
         Utils.checkNotNull(destination, "destination");
@@ -172,7 +178,6 @@ public class Hold {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -183,23 +188,19 @@ public class Hold {
         }
         Hold other = (Hold) o;
         return 
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.walletID, other.walletID);
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.walletID, other.walletID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            asset,
-            description,
-            destination,
-            id,
-            metadata,
-            walletID);
+        return Utils.enhancedHash(
+            asset, description, destination,
+            id, metadata, walletID);
     }
     
     @Override
@@ -212,24 +213,26 @@ public class Hold {
                 "metadata", metadata,
                 "walletID", walletID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String asset;
- 
+
         private String description;
- 
+
         private Optional<? extends Subject> destination = Optional.empty();
- 
+
         private String id;
- 
+
         private Map<String, String> metadata;
- 
+
         private String walletID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
@@ -237,11 +240,13 @@ public class Hold {
             return this;
         }
 
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
+
 
         public Builder destination(Subject destination) {
             Utils.checkNotNull(destination, "destination");
@@ -255,6 +260,7 @@ public class Hold {
             return this;
         }
 
+
         /**
          * The unique ID of the hold.
          */
@@ -263,6 +269,7 @@ public class Hold {
             this.id = id;
             return this;
         }
+
 
         /**
          * Metadata associated with the hold.
@@ -273,6 +280,7 @@ public class Hold {
             return this;
         }
 
+
         /**
          * The ID of the wallet the hold is associated with.
          */
@@ -281,15 +289,13 @@ public class Hold {
             this.walletID = walletID;
             return this;
         }
-        
+
         public Hold build() {
+
             return new Hold(
-                asset,
-                description,
-                destination,
-                id,
-                metadata,
-                walletID);
+                asset, description, destination,
+                id, metadata, walletID);
         }
+
     }
 }

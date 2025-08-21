@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ReadUserRequest {
-
     /**
      * User ID
      */
@@ -34,9 +33,10 @@ public class ReadUserRequest {
         return userId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * User ID
@@ -47,7 +47,6 @@ public class ReadUserRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class ReadUserRequest {
         }
         ReadUserRequest other = (ReadUserRequest) o;
         return 
-            Objects.deepEquals(this.userId, other.userId);
+            Utils.enhancedDeepEquals(this.userId, other.userId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             userId);
     }
     
@@ -72,14 +71,16 @@ public class ReadUserRequest {
         return Utils.toString(ReadUserRequest.class,
                 "userId", userId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String userId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * User ID
@@ -89,10 +90,12 @@ public class ReadUserRequest {
             this.userId = userId;
             return this;
         }
-        
+
         public ReadUserRequest build() {
+
             return new ReadUserRequest(
                 userId);
         }
+
     }
 }

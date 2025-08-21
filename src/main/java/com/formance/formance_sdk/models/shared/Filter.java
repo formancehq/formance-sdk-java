@@ -12,14 +12,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Filter {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("match")
@@ -49,15 +50,17 @@ public class Filter {
         return match;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Filter withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     public Filter withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
@@ -71,13 +74,13 @@ public class Filter {
         return this;
     }
 
+
     public Filter withMatch(Optional<Boolean> match) {
         Utils.checkNotNull(match, "match");
         this.match = match;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,15 +91,14 @@ public class Filter {
         }
         Filter other = (Filter) o;
         return 
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.match, other.match);
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.match, other.match);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            error,
-            match);
+        return Utils.enhancedHash(
+            error, match);
     }
     
     @Override
@@ -105,16 +107,18 @@ public class Filter {
                 "error", error,
                 "match", match);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private Optional<Boolean> match = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -128,6 +132,7 @@ public class Filter {
             return this;
         }
 
+
         public Builder match(boolean match) {
             Utils.checkNotNull(match, "match");
             this.match = Optional.ofNullable(match);
@@ -139,11 +144,12 @@ public class Filter {
             this.match = match;
             return this;
         }
-        
+
         public Filter build() {
+
             return new Filter(
-                error,
-                match);
+                error, match);
         }
+
     }
 }

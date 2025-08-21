@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetWalletResponse implements Response {
 
+public class GetWalletResponse implements Response {
     /**
      * Wallet
      */
@@ -59,7 +58,8 @@ public class GetWalletResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode,
+            rawResponse);
     }
 
     /**
@@ -95,9 +95,10 @@ public class GetWalletResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Wallet
@@ -107,6 +108,7 @@ public class GetWalletResponse implements Response {
         this.activityGetWalletOutput = Optional.ofNullable(activityGetWalletOutput);
         return this;
     }
+
 
     /**
      * Wallet
@@ -144,7 +146,6 @@ public class GetWalletResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,18 +156,16 @@ public class GetWalletResponse implements Response {
         }
         GetWalletResponse other = (GetWalletResponse) o;
         return 
-            Objects.deepEquals(this.activityGetWalletOutput, other.activityGetWalletOutput) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.activityGetWalletOutput, other.activityGetWalletOutput) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            activityGetWalletOutput,
-            contentType,
-            statusCode,
+        return Utils.enhancedHash(
+            activityGetWalletOutput, contentType, statusCode,
             rawResponse);
     }
     
@@ -178,20 +177,22 @@ public class GetWalletResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ActivityGetWalletOutput> activityGetWalletOutput = Optional.empty();
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Wallet
@@ -211,6 +212,7 @@ public class GetWalletResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response content type for this operation
          */
@@ -219,6 +221,7 @@ public class GetWalletResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * HTTP response status code for this operation
@@ -229,6 +232,7 @@ public class GetWalletResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -237,13 +241,13 @@ public class GetWalletResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public GetWalletResponse build() {
+
             return new GetWalletResponse(
-                activityGetWalletOutput,
-                contentType,
-                statusCode,
+                activityGetWalletOutput, contentType, statusCode,
                 rawResponse);
         }
+
     }
 }

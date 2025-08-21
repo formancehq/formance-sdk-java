@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2GetTransactionRequest {
 
@@ -30,6 +30,7 @@ public class V2GetTransactionRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
@@ -53,7 +54,8 @@ public class V2GetTransactionRequest {
     public V2GetTransactionRequest(
             BigInteger id,
             String ledger) {
-        this(Optional.empty(), id, ledger, Optional.empty());
+        this(Optional.empty(), id, ledger,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -82,9 +84,10 @@ public class V2GetTransactionRequest {
         return pit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2GetTransactionRequest withExpand(String expand) {
         Utils.checkNotNull(expand, "expand");
@@ -92,15 +95,16 @@ public class V2GetTransactionRequest {
         return this;
     }
 
+
     public V2GetTransactionRequest withExpand(Optional<String> expand) {
         Utils.checkNotNull(expand, "expand");
         this.expand = expand;
         return this;
     }
 
-        /**
-         * Transaction ID.
-         */
+    /**
+     * Transaction ID.
+     */
     public V2GetTransactionRequest withId(long id) {
         this.id = BigInteger.valueOf(id);
         return this;
@@ -130,13 +134,13 @@ public class V2GetTransactionRequest {
         return this;
     }
 
+
     public V2GetTransactionRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,18 +151,16 @@ public class V2GetTransactionRequest {
         }
         V2GetTransactionRequest other = (V2GetTransactionRequest) o;
         return 
-            Objects.deepEquals(this.expand, other.expand) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.pit, other.pit);
+            Utils.enhancedDeepEquals(this.expand, other.expand) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.pit, other.pit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            expand,
-            id,
-            ledger,
+        return Utils.enhancedHash(
+            expand, id, ledger,
             pit);
     }
     
@@ -170,20 +172,22 @@ public class V2GetTransactionRequest {
                 "ledger", ledger,
                 "pit", pit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> expand = Optional.empty();
- 
+
         private BigInteger id;
- 
+
         private String ledger;
- 
+
         private Optional<OffsetDateTime> pit = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder expand(String expand) {
             Utils.checkNotNull(expand, "expand");
@@ -196,6 +200,7 @@ public class V2GetTransactionRequest {
             this.expand = expand;
             return this;
         }
+
 
         /**
          * Transaction ID.
@@ -214,6 +219,7 @@ public class V2GetTransactionRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -222,6 +228,7 @@ public class V2GetTransactionRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         public Builder pit(OffsetDateTime pit) {
             Utils.checkNotNull(pit, "pit");
@@ -234,13 +241,13 @@ public class V2GetTransactionRequest {
             this.pit = pit;
             return this;
         }
-        
+
         public V2GetTransactionRequest build() {
+
             return new V2GetTransactionRequest(
-                expand,
-                id,
-                ledger,
+                expand, id, ledger,
                 pit);
         }
+
     }
 }

@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3AddAccountToPool;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3AddAccountToPoolRequestBuilder {
 
     private V3AddAccountToPoolRequest request;
-    private final SDKMethodInterfaces.MethodCallV3AddAccountToPool sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3AddAccountToPoolRequestBuilder(SDKMethodInterfaces.MethodCallV3AddAccountToPool sdk) {
-        this.sdk = sdk;
+    public V3AddAccountToPoolRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3AddAccountToPoolRequestBuilder request(V3AddAccountToPoolRequest request) {
@@ -22,8 +26,10 @@ public class V3AddAccountToPoolRequestBuilder {
     }
 
     public V3AddAccountToPoolResponse call() throws Exception {
+        
+        RequestOperation<V3AddAccountToPoolRequest, V3AddAccountToPoolResponse> operation
+              = new V3AddAccountToPool.Sync(sdkConfiguration);
 
-        return sdk.addAccountToPool(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -12,17 +12,19 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConnectorsConfigsResponseData {
 
     @JsonProperty("dataType")
     private String dataType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaultValue")
     private Optional<String> defaultValue;
+
 
     @JsonProperty("required")
     private boolean required;
@@ -61,9 +63,10 @@ public class ConnectorsConfigsResponseData {
         return required;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectorsConfigsResponseData withDataType(String dataType) {
         Utils.checkNotNull(dataType, "dataType");
@@ -77,6 +80,7 @@ public class ConnectorsConfigsResponseData {
         return this;
     }
 
+
     public ConnectorsConfigsResponseData withDefaultValue(Optional<String> defaultValue) {
         Utils.checkNotNull(defaultValue, "defaultValue");
         this.defaultValue = defaultValue;
@@ -89,7 +93,6 @@ public class ConnectorsConfigsResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -100,17 +103,15 @@ public class ConnectorsConfigsResponseData {
         }
         ConnectorsConfigsResponseData other = (ConnectorsConfigsResponseData) o;
         return 
-            Objects.deepEquals(this.dataType, other.dataType) &&
-            Objects.deepEquals(this.defaultValue, other.defaultValue) &&
-            Objects.deepEquals(this.required, other.required);
+            Utils.enhancedDeepEquals(this.dataType, other.dataType) &&
+            Utils.enhancedDeepEquals(this.defaultValue, other.defaultValue) &&
+            Utils.enhancedDeepEquals(this.required, other.required);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            dataType,
-            defaultValue,
-            required);
+        return Utils.enhancedHash(
+            dataType, defaultValue, required);
     }
     
     @Override
@@ -120,24 +121,27 @@ public class ConnectorsConfigsResponseData {
                 "defaultValue", defaultValue,
                 "required", required);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String dataType;
- 
+
         private Optional<String> defaultValue = Optional.empty();
- 
+
         private Boolean required;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder dataType(String dataType) {
             Utils.checkNotNull(dataType, "dataType");
             this.dataType = dataType;
             return this;
         }
+
 
         public Builder defaultValue(String defaultValue) {
             Utils.checkNotNull(defaultValue, "defaultValue");
@@ -151,17 +155,18 @@ public class ConnectorsConfigsResponseData {
             return this;
         }
 
+
         public Builder required(boolean required) {
             Utils.checkNotNull(required, "required");
             this.required = required;
             return this;
         }
-        
+
         public ConnectorsConfigsResponseData build() {
+
             return new ConnectorsConfigsResponseData(
-                dataType,
-                defaultValue,
-                required);
+                dataType, defaultValue, required);
         }
+
     }
 }

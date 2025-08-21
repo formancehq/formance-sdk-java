@@ -13,39 +13,48 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class PaymentRequest {
 
     @JsonProperty("amount")
     private BigInteger amount;
 
+
     @JsonProperty("asset")
     private String asset;
+
 
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destinationAccountID")
     private Optional<String> destinationAccountID;
 
+
     @JsonProperty("reference")
     private String reference;
 
+
     @JsonProperty("scheme")
     private PaymentScheme scheme;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceAccountID")
     private Optional<String> sourceAccountID;
 
+
     @JsonProperty("status")
     private PaymentStatus status;
+
 
     @JsonProperty("type")
     private PaymentType type;
@@ -93,7 +102,10 @@ public class PaymentRequest {
             PaymentScheme scheme,
             PaymentStatus status,
             PaymentType type) {
-        this(amount, asset, connectorID, createdAt, Optional.empty(), reference, scheme, Optional.empty(), status, type);
+        this(amount, asset, connectorID,
+            createdAt, Optional.empty(), reference,
+            scheme, Optional.empty(), status,
+            type);
     }
 
     @JsonIgnore
@@ -146,9 +158,10 @@ public class PaymentRequest {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -185,6 +198,7 @@ public class PaymentRequest {
         return this;
     }
 
+
     public PaymentRequest withDestinationAccountID(Optional<String> destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = destinationAccountID;
@@ -209,6 +223,7 @@ public class PaymentRequest {
         return this;
     }
 
+
     public PaymentRequest withSourceAccountID(Optional<String> sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
@@ -227,7 +242,6 @@ public class PaymentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -238,30 +252,24 @@ public class PaymentRequest {
         }
         PaymentRequest other = (PaymentRequest) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.scheme, other.scheme) &&
-            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset,
-            connectorID,
-            createdAt,
-            destinationAccountID,
-            reference,
-            scheme,
-            sourceAccountID,
-            status,
+        return Utils.enhancedHash(
+            amount, asset, connectorID,
+            createdAt, destinationAccountID, reference,
+            scheme, sourceAccountID, status,
             type);
     }
     
@@ -279,32 +287,34 @@ public class PaymentRequest {
                 "status", status,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger amount;
- 
+
         private String asset;
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private Optional<String> destinationAccountID = Optional.empty();
- 
+
         private String reference;
- 
+
         private PaymentScheme scheme;
- 
+
         private Optional<String> sourceAccountID = Optional.empty();
- 
+
         private PaymentStatus status;
- 
+
         private PaymentType type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
@@ -317,11 +327,13 @@ public class PaymentRequest {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -329,11 +341,13 @@ public class PaymentRequest {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
@@ -347,17 +361,20 @@ public class PaymentRequest {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
         public Builder scheme(PaymentScheme scheme) {
             Utils.checkNotNull(scheme, "scheme");
             this.scheme = scheme;
             return this;
         }
+
 
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
@@ -371,30 +388,28 @@ public class PaymentRequest {
             return this;
         }
 
+
         public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
+
         public Builder type(PaymentType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public PaymentRequest build() {
+
             return new PaymentRequest(
-                amount,
-                asset,
-                connectorID,
-                createdAt,
-                destinationAccountID,
-                reference,
-                scheme,
-                sourceAccountID,
-                status,
+                amount, asset, connectorID,
+                createdAt, destinationAccountID, reference,
+                scheme, sourceAccountID, status,
                 type);
         }
+
     }
 }

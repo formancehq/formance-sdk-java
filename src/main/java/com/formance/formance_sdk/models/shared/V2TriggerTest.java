@@ -13,14 +13,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2TriggerTest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
     private Optional<? extends Filter> filter;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("variables")
@@ -52,15 +53,17 @@ public class V2TriggerTest {
         return (Optional<Map<String, Variables>>) variables;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2TriggerTest withFilter(Filter filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
     }
+
 
     public V2TriggerTest withFilter(Optional<? extends Filter> filter) {
         Utils.checkNotNull(filter, "filter");
@@ -74,13 +77,13 @@ public class V2TriggerTest {
         return this;
     }
 
+
     public V2TriggerTest withVariables(Optional<? extends Map<String, Variables>> variables) {
         Utils.checkNotNull(variables, "variables");
         this.variables = variables;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,15 +94,14 @@ public class V2TriggerTest {
         }
         V2TriggerTest other = (V2TriggerTest) o;
         return 
-            Objects.deepEquals(this.filter, other.filter) &&
-            Objects.deepEquals(this.variables, other.variables);
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.variables, other.variables);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            filter,
-            variables);
+        return Utils.enhancedHash(
+            filter, variables);
     }
     
     @Override
@@ -108,16 +110,18 @@ public class V2TriggerTest {
                 "filter", filter,
                 "variables", variables);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Filter> filter = Optional.empty();
- 
+
         private Optional<? extends Map<String, Variables>> variables = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder filter(Filter filter) {
             Utils.checkNotNull(filter, "filter");
@@ -131,6 +135,7 @@ public class V2TriggerTest {
             return this;
         }
 
+
         public Builder variables(Map<String, Variables> variables) {
             Utils.checkNotNull(variables, "variables");
             this.variables = Optional.ofNullable(variables);
@@ -142,11 +147,12 @@ public class V2TriggerTest {
             this.variables = variables;
             return this;
         }
-        
+
         public V2TriggerTest build() {
+
             return new V2TriggerTest(
-                filter,
-                variables);
+                filter, variables);
         }
+
     }
 }

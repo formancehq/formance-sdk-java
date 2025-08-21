@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class DeletePolicyRequest {
-
     /**
      * The policy ID.
      */
@@ -34,9 +33,10 @@ public class DeletePolicyRequest {
         return policyID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The policy ID.
@@ -47,7 +47,6 @@ public class DeletePolicyRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class DeletePolicyRequest {
         }
         DeletePolicyRequest other = (DeletePolicyRequest) o;
         return 
-            Objects.deepEquals(this.policyID, other.policyID);
+            Utils.enhancedDeepEquals(this.policyID, other.policyID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             policyID);
     }
     
@@ -72,14 +71,16 @@ public class DeletePolicyRequest {
         return Utils.toString(DeletePolicyRequest.class,
                 "policyID", policyID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String policyID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The policy ID.
@@ -89,10 +90,12 @@ public class DeletePolicyRequest {
             this.policyID = policyID;
             return this;
         }
-        
+
         public DeletePolicyRequest build() {
+
             return new DeletePolicyRequest(
                 policyID);
         }
+
     }
 }

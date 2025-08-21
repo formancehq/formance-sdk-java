@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreditWalletRequest {
 
@@ -23,6 +23,7 @@ public class CreditWalletRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
     private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
@@ -64,15 +65,17 @@ public class CreditWalletRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreditWalletRequest withCreditWalletRequest(com.formance.formance_sdk.models.shared.CreditWalletRequest creditWalletRequest) {
         Utils.checkNotNull(creditWalletRequest, "creditWalletRequest");
         this.creditWalletRequest = Optional.ofNullable(creditWalletRequest);
         return this;
     }
+
 
     public CreditWalletRequest withCreditWalletRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreditWalletRequest> creditWalletRequest) {
         Utils.checkNotNull(creditWalletRequest, "creditWalletRequest");
@@ -89,6 +92,7 @@ public class CreditWalletRequest {
         return this;
     }
 
+
     /**
      * Use an idempotency key
      */
@@ -104,7 +108,6 @@ public class CreditWalletRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +118,15 @@ public class CreditWalletRequest {
         }
         CreditWalletRequest other = (CreditWalletRequest) o;
         return 
-            Objects.deepEquals(this.creditWalletRequest, other.creditWalletRequest) &&
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.creditWalletRequest, other.creditWalletRequest) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            creditWalletRequest,
-            idempotencyKey,
-            id);
+        return Utils.enhancedHash(
+            creditWalletRequest, idempotencyKey, id);
     }
     
     @Override
@@ -135,18 +136,20 @@ public class CreditWalletRequest {
                 "idempotencyKey", idempotencyKey,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.CreditWalletRequest> creditWalletRequest = Optional.empty();
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder creditWalletRequest(com.formance.formance_sdk.models.shared.CreditWalletRequest creditWalletRequest) {
             Utils.checkNotNull(creditWalletRequest, "creditWalletRequest");
@@ -159,6 +162,7 @@ public class CreditWalletRequest {
             this.creditWalletRequest = creditWalletRequest;
             return this;
         }
+
 
         /**
          * Use an idempotency key
@@ -178,17 +182,18 @@ public class CreditWalletRequest {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
-        
+
         public CreditWalletRequest build() {
+
             return new CreditWalletRequest(
-                creditWalletRequest,
-                idempotencyKey,
-                id);
+                creditWalletRequest, idempotencyKey, id);
         }
+
     }
 }

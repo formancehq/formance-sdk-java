@@ -12,8 +12,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2WorkflowInstanceHistoryStageOutput {
 
@@ -21,21 +21,26 @@ public class V2WorkflowInstanceHistoryStageOutput {
     @JsonProperty("CreateTransaction")
     private Optional<? extends V2ActivityCreateTransactionOutput> createTransaction;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("DebitWallet")
     private Optional<? extends V2ActivityDebitWalletOutput> debitWallet;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetAccount")
     private Optional<? extends V2AccountResponse> getAccount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetPayment")
     private Optional<? extends V2ActivityGetPaymentOutput> getPayment;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetWallet")
     private Optional<? extends V2ActivityGetWalletOutput> getWallet;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ListWallets")
@@ -64,7 +69,8 @@ public class V2WorkflowInstanceHistoryStageOutput {
     }
     
     public V2WorkflowInstanceHistoryStageOutput() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -103,15 +109,17 @@ public class V2WorkflowInstanceHistoryStageOutput {
         return (Optional<V2ListWalletsResponse>) listWallets;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2WorkflowInstanceHistoryStageOutput withCreateTransaction(V2ActivityCreateTransactionOutput createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         this.createTransaction = Optional.ofNullable(createTransaction);
         return this;
     }
+
 
     public V2WorkflowInstanceHistoryStageOutput withCreateTransaction(Optional<? extends V2ActivityCreateTransactionOutput> createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
@@ -125,6 +133,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageOutput withDebitWallet(Optional<? extends V2ActivityDebitWalletOutput> debitWallet) {
         Utils.checkNotNull(debitWallet, "debitWallet");
         this.debitWallet = debitWallet;
@@ -136,6 +145,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
         this.getAccount = Optional.ofNullable(getAccount);
         return this;
     }
+
 
     public V2WorkflowInstanceHistoryStageOutput withGetAccount(Optional<? extends V2AccountResponse> getAccount) {
         Utils.checkNotNull(getAccount, "getAccount");
@@ -149,6 +159,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageOutput withGetPayment(Optional<? extends V2ActivityGetPaymentOutput> getPayment) {
         Utils.checkNotNull(getPayment, "getPayment");
         this.getPayment = getPayment;
@@ -160,6 +171,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
         this.getWallet = Optional.ofNullable(getWallet);
         return this;
     }
+
 
     public V2WorkflowInstanceHistoryStageOutput withGetWallet(Optional<? extends V2ActivityGetWalletOutput> getWallet) {
         Utils.checkNotNull(getWallet, "getWallet");
@@ -173,13 +185,13 @@ public class V2WorkflowInstanceHistoryStageOutput {
         return this;
     }
 
+
     public V2WorkflowInstanceHistoryStageOutput withListWallets(Optional<? extends V2ListWalletsResponse> listWallets) {
         Utils.checkNotNull(listWallets, "listWallets");
         this.listWallets = listWallets;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,23 +202,19 @@ public class V2WorkflowInstanceHistoryStageOutput {
         }
         V2WorkflowInstanceHistoryStageOutput other = (V2WorkflowInstanceHistoryStageOutput) o;
         return 
-            Objects.deepEquals(this.createTransaction, other.createTransaction) &&
-            Objects.deepEquals(this.debitWallet, other.debitWallet) &&
-            Objects.deepEquals(this.getAccount, other.getAccount) &&
-            Objects.deepEquals(this.getPayment, other.getPayment) &&
-            Objects.deepEquals(this.getWallet, other.getWallet) &&
-            Objects.deepEquals(this.listWallets, other.listWallets);
+            Utils.enhancedDeepEquals(this.createTransaction, other.createTransaction) &&
+            Utils.enhancedDeepEquals(this.debitWallet, other.debitWallet) &&
+            Utils.enhancedDeepEquals(this.getAccount, other.getAccount) &&
+            Utils.enhancedDeepEquals(this.getPayment, other.getPayment) &&
+            Utils.enhancedDeepEquals(this.getWallet, other.getWallet) &&
+            Utils.enhancedDeepEquals(this.listWallets, other.listWallets);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createTransaction,
-            debitWallet,
-            getAccount,
-            getPayment,
-            getWallet,
-            listWallets);
+        return Utils.enhancedHash(
+            createTransaction, debitWallet, getAccount,
+            getPayment, getWallet, listWallets);
     }
     
     @Override
@@ -219,24 +227,26 @@ public class V2WorkflowInstanceHistoryStageOutput {
                 "getWallet", getWallet,
                 "listWallets", listWallets);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends V2ActivityCreateTransactionOutput> createTransaction = Optional.empty();
- 
+
         private Optional<? extends V2ActivityDebitWalletOutput> debitWallet = Optional.empty();
- 
+
         private Optional<? extends V2AccountResponse> getAccount = Optional.empty();
- 
+
         private Optional<? extends V2ActivityGetPaymentOutput> getPayment = Optional.empty();
- 
+
         private Optional<? extends V2ActivityGetWalletOutput> getWallet = Optional.empty();
- 
+
         private Optional<? extends V2ListWalletsResponse> listWallets = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createTransaction(V2ActivityCreateTransactionOutput createTransaction) {
             Utils.checkNotNull(createTransaction, "createTransaction");
@@ -250,6 +260,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
             return this;
         }
 
+
         public Builder debitWallet(V2ActivityDebitWalletOutput debitWallet) {
             Utils.checkNotNull(debitWallet, "debitWallet");
             this.debitWallet = Optional.ofNullable(debitWallet);
@@ -261,6 +272,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
             this.debitWallet = debitWallet;
             return this;
         }
+
 
         public Builder getAccount(V2AccountResponse getAccount) {
             Utils.checkNotNull(getAccount, "getAccount");
@@ -274,6 +286,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
             return this;
         }
 
+
         public Builder getPayment(V2ActivityGetPaymentOutput getPayment) {
             Utils.checkNotNull(getPayment, "getPayment");
             this.getPayment = Optional.ofNullable(getPayment);
@@ -285,6 +298,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
             this.getPayment = getPayment;
             return this;
         }
+
 
         public Builder getWallet(V2ActivityGetWalletOutput getWallet) {
             Utils.checkNotNull(getWallet, "getWallet");
@@ -298,6 +312,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
             return this;
         }
 
+
         public Builder listWallets(V2ListWalletsResponse listWallets) {
             Utils.checkNotNull(listWallets, "listWallets");
             this.listWallets = Optional.ofNullable(listWallets);
@@ -309,15 +324,13 @@ public class V2WorkflowInstanceHistoryStageOutput {
             this.listWallets = listWallets;
             return this;
         }
-        
+
         public V2WorkflowInstanceHistoryStageOutput build() {
+
             return new V2WorkflowInstanceHistoryStageOutput(
-                createTransaction,
-                debitWallet,
-                getAccount,
-                getPayment,
-                getWallet,
-                listWallets);
+                createTransaction, debitWallet, getAccount,
+                getPayment, getWallet, listWallets);
         }
+
     }
 }

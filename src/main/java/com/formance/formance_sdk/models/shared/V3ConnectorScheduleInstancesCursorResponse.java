@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3ConnectorScheduleInstancesCursorResponse {
 
@@ -28,9 +28,10 @@ public class V3ConnectorScheduleInstancesCursorResponse {
         return cursor;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ConnectorScheduleInstancesCursorResponse withCursor(V3ConnectorScheduleInstancesCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -38,7 +39,6 @@ public class V3ConnectorScheduleInstancesCursorResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V3ConnectorScheduleInstancesCursorResponse {
         }
         V3ConnectorScheduleInstancesCursorResponse other = (V3ConnectorScheduleInstancesCursorResponse) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cursor);
     }
     
@@ -63,24 +63,28 @@ public class V3ConnectorScheduleInstancesCursorResponse {
         return Utils.toString(V3ConnectorScheduleInstancesCursorResponse.class,
                 "cursor", cursor);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V3ConnectorScheduleInstancesCursorResponseCursor cursor;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder cursor(V3ConnectorScheduleInstancesCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
         }
-        
+
         public V3ConnectorScheduleInstancesCursorResponse build() {
+
             return new V3ConnectorScheduleInstancesCursorResponse(
                 cursor);
         }
+
     }
 }

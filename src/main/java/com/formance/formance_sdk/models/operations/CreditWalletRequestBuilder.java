@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.CreditWallet;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class CreditWalletRequestBuilder {
 
     private CreditWalletRequest request;
-    private final SDKMethodInterfaces.MethodCallCreditWallet sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreditWalletRequestBuilder(SDKMethodInterfaces.MethodCallCreditWallet sdk) {
-        this.sdk = sdk;
+    public CreditWalletRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreditWalletRequestBuilder request(CreditWalletRequest request) {
@@ -22,8 +26,10 @@ public class CreditWalletRequestBuilder {
     }
 
     public CreditWalletResponse call() throws Exception {
+        
+        RequestOperation<CreditWalletRequest, CreditWalletResponse> operation
+              = new CreditWallet.Sync(sdkConfiguration);
 
-        return sdk.creditWallet(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

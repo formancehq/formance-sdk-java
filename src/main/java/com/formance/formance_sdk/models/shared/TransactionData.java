@@ -16,9 +16,9 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class TransactionData {
 
@@ -26,12 +26,15 @@ public class TransactionData {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
 
+
     @JsonProperty("postings")
     private List<Posting> postings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
@@ -55,7 +58,8 @@ public class TransactionData {
     
     public TransactionData(
             List<Posting> postings) {
-        this(JsonNullable.undefined(), postings, Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), postings, Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -79,9 +83,10 @@ public class TransactionData {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TransactionData withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -107,6 +112,7 @@ public class TransactionData {
         return this;
     }
 
+
     public TransactionData withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -119,13 +125,13 @@ public class TransactionData {
         return this;
     }
 
+
     public TransactionData withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,18 +142,16 @@ public class TransactionData {
         }
         TransactionData other = (TransactionData) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.postings, other.postings) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            metadata,
-            postings,
-            reference,
+        return Utils.enhancedHash(
+            metadata, postings, reference,
             timestamp);
     }
     
@@ -159,20 +163,22 @@ public class TransactionData {
                 "reference", reference,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private List<Posting> postings;
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -186,11 +192,13 @@ public class TransactionData {
             return this;
         }
 
+
         public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
         }
+
 
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -204,6 +212,7 @@ public class TransactionData {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
@@ -215,13 +224,13 @@ public class TransactionData {
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public TransactionData build() {
+
             return new TransactionData(
-                metadata,
-                postings,
-                reference,
+                metadata, postings, reference,
                 timestamp);
         }
+
     }
 }

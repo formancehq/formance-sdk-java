@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ReadConnectorConfigRequest {
-
     /**
      * The name of the connector.
      */
@@ -35,9 +34,10 @@ public class ReadConnectorConfigRequest {
         return connector;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the connector.
@@ -48,7 +48,6 @@ public class ReadConnectorConfigRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -59,12 +58,12 @@ public class ReadConnectorConfigRequest {
         }
         ReadConnectorConfigRequest other = (ReadConnectorConfigRequest) o;
         return 
-            Objects.deepEquals(this.connector, other.connector);
+            Utils.enhancedDeepEquals(this.connector, other.connector);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             connector);
     }
     
@@ -73,14 +72,16 @@ public class ReadConnectorConfigRequest {
         return Utils.toString(ReadConnectorConfigRequest.class,
                 "connector", connector);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Connector connector;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the connector.
@@ -90,10 +91,12 @@ public class ReadConnectorConfigRequest {
             this.connector = connector;
             return this;
         }
-        
+
         public ReadConnectorConfigRequest build() {
+
             return new ReadConnectorConfigRequest(
                 connector);
         }
+
     }
 }

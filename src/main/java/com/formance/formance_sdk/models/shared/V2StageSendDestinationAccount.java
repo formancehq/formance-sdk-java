@@ -11,13 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2StageSendDestinationAccount {
 
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
@@ -48,9 +49,10 @@ public class V2StageSendDestinationAccount {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2StageSendDestinationAccount withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -64,13 +66,13 @@ public class V2StageSendDestinationAccount {
         return this;
     }
 
+
     public V2StageSendDestinationAccount withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -81,15 +83,14 @@ public class V2StageSendDestinationAccount {
         }
         V2StageSendDestinationAccount other = (V2StageSendDestinationAccount) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            ledger);
+        return Utils.enhancedHash(
+            id, ledger);
     }
     
     @Override
@@ -98,22 +99,25 @@ public class V2StageSendDestinationAccount {
                 "id", id,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> ledger = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
@@ -126,11 +130,12 @@ public class V2StageSendDestinationAccount {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2StageSendDestinationAccount build() {
+
             return new V2StageSendDestinationAccount(
-                id,
-                ledger);
+                id, ledger);
         }
+
     }
 }

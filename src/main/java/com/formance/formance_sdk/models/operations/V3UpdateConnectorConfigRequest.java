@@ -11,8 +11,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3UpdateConnectorConfigRequest {
 
@@ -54,15 +54,17 @@ public class V3UpdateConnectorConfigRequest {
         return connectorID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3UpdateConnectorConfigRequest withV3InstallConnectorRequest(V3InstallConnectorRequest v3InstallConnectorRequest) {
         Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
         this.v3InstallConnectorRequest = Optional.ofNullable(v3InstallConnectorRequest);
         return this;
     }
+
 
     public V3UpdateConnectorConfigRequest withV3InstallConnectorRequest(Optional<? extends V3InstallConnectorRequest> v3InstallConnectorRequest) {
         Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
@@ -79,7 +81,6 @@ public class V3UpdateConnectorConfigRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +91,14 @@ public class V3UpdateConnectorConfigRequest {
         }
         V3UpdateConnectorConfigRequest other = (V3UpdateConnectorConfigRequest) o;
         return 
-            Objects.deepEquals(this.v3InstallConnectorRequest, other.v3InstallConnectorRequest) &&
-            Objects.deepEquals(this.connectorID, other.connectorID);
+            Utils.enhancedDeepEquals(this.v3InstallConnectorRequest, other.v3InstallConnectorRequest) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v3InstallConnectorRequest,
-            connectorID);
+        return Utils.enhancedHash(
+            v3InstallConnectorRequest, connectorID);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class V3UpdateConnectorConfigRequest {
                 "v3InstallConnectorRequest", v3InstallConnectorRequest,
                 "connectorID", connectorID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends V3InstallConnectorRequest> v3InstallConnectorRequest = Optional.empty();
- 
+
         private String connectorID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v3InstallConnectorRequest(V3InstallConnectorRequest v3InstallConnectorRequest) {
             Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
@@ -130,6 +132,7 @@ public class V3UpdateConnectorConfigRequest {
             return this;
         }
 
+
         /**
          * The connector ID
          */
@@ -138,11 +141,12 @@ public class V3UpdateConnectorConfigRequest {
             this.connectorID = connectorID;
             return this;
         }
-        
+
         public V3UpdateConnectorConfigRequest build() {
+
             return new V3UpdateConnectorConfigRequest(
-                v3InstallConnectorRequest,
-                connectorID);
+                v3InstallConnectorRequest, connectorID);
         }
+
     }
 }

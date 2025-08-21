@@ -20,6 +20,7 @@ Create a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createPolicy" method="post" path="/api/reconciliation/policies" -->
 ```java
 package hello.world;
 
@@ -37,8 +38,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -84,6 +85,7 @@ Delete a policy by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deletePolicy" method="delete" path="/api/reconciliation/policies/{policyID}" -->
 ```java
 package hello.world;
 
@@ -100,8 +102,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -141,6 +143,7 @@ Get a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getPolicy" method="get" path="/api/reconciliation/policies/{policyID}" -->
 ```java
 package hello.world;
 
@@ -157,8 +160,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -200,6 +203,7 @@ Get a reconciliation
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getReconciliation" method="get" path="/api/reconciliation/reconciliations/{reconciliationID}" -->
 ```java
 package hello.world;
 
@@ -216,8 +220,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -259,6 +263,7 @@ List policies
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listPolicies" method="get" path="/api/reconciliation/policies" -->
 ```java
 package hello.world;
 
@@ -275,8 +280,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -319,6 +324,7 @@ List reconciliations
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listReconciliations" method="get" path="/api/reconciliation/reconciliations" -->
 ```java
 package hello.world;
 
@@ -335,8 +341,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -379,6 +385,7 @@ Reconcile using a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="reconcile" method="post" path="/api/reconciliation/policies/{policyID}/reconciliation" -->
 ```java
 package hello.world;
 
@@ -397,8 +404,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -444,6 +451,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="reconciliationgetServerInfo" method="get" path="/api/reconciliation/_info" -->
 ```java
 package hello.world;
 
@@ -459,8 +467,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 

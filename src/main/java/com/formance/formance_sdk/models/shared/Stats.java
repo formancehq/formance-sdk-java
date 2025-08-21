@@ -10,12 +10,13 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class Stats {
 
     @JsonProperty("accounts")
     private long accounts;
+
 
     @JsonProperty("transactions")
     private long transactions;
@@ -40,9 +41,10 @@ public class Stats {
         return transactions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Stats withAccounts(long accounts) {
         Utils.checkNotNull(accounts, "accounts");
@@ -56,7 +58,6 @@ public class Stats {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class Stats {
         }
         Stats other = (Stats) o;
         return 
-            Objects.deepEquals(this.accounts, other.accounts) &&
-            Objects.deepEquals(this.transactions, other.transactions);
+            Utils.enhancedDeepEquals(this.accounts, other.accounts) &&
+            Utils.enhancedDeepEquals(this.transactions, other.transactions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accounts,
-            transactions);
+        return Utils.enhancedHash(
+            accounts, transactions);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class Stats {
                 "accounts", accounts,
                 "transactions", transactions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long accounts;
- 
+
         private Long transactions;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accounts(long accounts) {
             Utils.checkNotNull(accounts, "accounts");
@@ -101,16 +103,18 @@ public class Stats {
             return this;
         }
 
+
         public Builder transactions(long transactions) {
             Utils.checkNotNull(transactions, "transactions");
             this.transactions = transactions;
             return this;
         }
-        
+
         public Stats build() {
+
             return new Stats(
-                accounts,
-                transactions);
+                accounts, transactions);
         }
+
     }
 }

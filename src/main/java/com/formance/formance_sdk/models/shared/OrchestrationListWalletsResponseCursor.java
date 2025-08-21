@@ -14,24 +14,28 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationListWalletsResponseCursor {
 
     @JsonProperty("data")
     private List<OrchestrationWallet> data;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hasMore")
     private Optional<Boolean> hasMore;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("next")
     private Optional<String> next;
 
+
     @JsonProperty("pageSize")
     private long pageSize;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("previous")
@@ -59,7 +63,8 @@ public class OrchestrationListWalletsResponseCursor {
     public OrchestrationListWalletsResponseCursor(
             List<OrchestrationWallet> data,
             long pageSize) {
-        this(data, Optional.empty(), Optional.empty(), pageSize, Optional.empty());
+        this(data, Optional.empty(), Optional.empty(),
+            pageSize, Optional.empty());
     }
 
     @JsonIgnore
@@ -87,9 +92,10 @@ public class OrchestrationListWalletsResponseCursor {
         return previous;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationListWalletsResponseCursor withData(List<OrchestrationWallet> data) {
         Utils.checkNotNull(data, "data");
@@ -103,6 +109,7 @@ public class OrchestrationListWalletsResponseCursor {
         return this;
     }
 
+
     public OrchestrationListWalletsResponseCursor withHasMore(Optional<Boolean> hasMore) {
         Utils.checkNotNull(hasMore, "hasMore");
         this.hasMore = hasMore;
@@ -114,6 +121,7 @@ public class OrchestrationListWalletsResponseCursor {
         this.next = Optional.ofNullable(next);
         return this;
     }
+
 
     public OrchestrationListWalletsResponseCursor withNext(Optional<String> next) {
         Utils.checkNotNull(next, "next");
@@ -133,13 +141,13 @@ public class OrchestrationListWalletsResponseCursor {
         return this;
     }
 
+
     public OrchestrationListWalletsResponseCursor withPrevious(Optional<String> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,21 +158,18 @@ public class OrchestrationListWalletsResponseCursor {
         }
         OrchestrationListWalletsResponseCursor other = (OrchestrationListWalletsResponseCursor) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.hasMore, other.hasMore) &&
-            Objects.deepEquals(this.next, other.next) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.previous, other.previous);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.hasMore, other.hasMore) &&
+            Utils.enhancedDeepEquals(this.next, other.next) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.previous, other.previous);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            hasMore,
-            next,
-            pageSize,
-            previous);
+        return Utils.enhancedHash(
+            data, hasMore, next,
+            pageSize, previous);
     }
     
     @Override
@@ -176,28 +181,31 @@ public class OrchestrationListWalletsResponseCursor {
                 "pageSize", pageSize,
                 "previous", previous);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<OrchestrationWallet> data;
- 
+
         private Optional<Boolean> hasMore = Optional.empty();
- 
+
         private Optional<String> next = Optional.empty();
- 
+
         private Long pageSize;
- 
+
         private Optional<String> previous = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<OrchestrationWallet> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         public Builder hasMore(boolean hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
@@ -211,6 +219,7 @@ public class OrchestrationListWalletsResponseCursor {
             return this;
         }
 
+
         public Builder next(String next) {
             Utils.checkNotNull(next, "next");
             this.next = Optional.ofNullable(next);
@@ -223,11 +232,13 @@ public class OrchestrationListWalletsResponseCursor {
             return this;
         }
 
+
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
         }
+
 
         public Builder previous(String previous) {
             Utils.checkNotNull(previous, "previous");
@@ -240,14 +251,13 @@ public class OrchestrationListWalletsResponseCursor {
             this.previous = previous;
             return this;
         }
-        
+
         public OrchestrationListWalletsResponseCursor build() {
+
             return new OrchestrationListWalletsResponseCursor(
-                data,
-                hasMore,
-                next,
-                pageSize,
-                previous);
+                data, hasMore, next,
+                pageSize, previous);
         }
+
     }
 }

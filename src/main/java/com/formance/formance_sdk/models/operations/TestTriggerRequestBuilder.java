@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.TestTrigger;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class TestTriggerRequestBuilder {
 
     private TestTriggerRequest request;
-    private final SDKMethodInterfaces.MethodCallTestTrigger sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public TestTriggerRequestBuilder(SDKMethodInterfaces.MethodCallTestTrigger sdk) {
-        this.sdk = sdk;
+    public TestTriggerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public TestTriggerRequestBuilder request(TestTriggerRequest request) {
@@ -22,8 +26,10 @@ public class TestTriggerRequestBuilder {
     }
 
     public TestTriggerResponse call() throws Exception {
+        
+        RequestOperation<TestTriggerRequest, TestTriggerResponse> operation
+              = new TestTrigger.Sync(sdkConfiguration);
 
-        return sdk.testTrigger(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

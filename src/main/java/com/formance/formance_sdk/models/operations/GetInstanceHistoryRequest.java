@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetInstanceHistoryRequest {
-
     /**
      * The instance id
      */
@@ -34,9 +33,10 @@ public class GetInstanceHistoryRequest {
         return instanceID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The instance id
@@ -47,7 +47,6 @@ public class GetInstanceHistoryRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class GetInstanceHistoryRequest {
         }
         GetInstanceHistoryRequest other = (GetInstanceHistoryRequest) o;
         return 
-            Objects.deepEquals(this.instanceID, other.instanceID);
+            Utils.enhancedDeepEquals(this.instanceID, other.instanceID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             instanceID);
     }
     
@@ -72,14 +71,16 @@ public class GetInstanceHistoryRequest {
         return Utils.toString(GetInstanceHistoryRequest.class,
                 "instanceID", instanceID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String instanceID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The instance id
@@ -89,10 +90,12 @@ public class GetInstanceHistoryRequest {
             this.instanceID = instanceID;
             return this;
         }
-        
+
         public GetInstanceHistoryRequest build() {
+
             return new GetInstanceHistoryRequest(
                 instanceID);
         }
+
     }
 }

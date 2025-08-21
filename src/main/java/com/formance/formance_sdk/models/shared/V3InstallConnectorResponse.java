@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3InstallConnectorResponse {
-
     /**
      * The ID of the created connector
      */
@@ -34,9 +33,10 @@ public class V3InstallConnectorResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the created connector
@@ -47,7 +47,6 @@ public class V3InstallConnectorResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3InstallConnectorResponse {
         }
         V3InstallConnectorResponse other = (V3InstallConnectorResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -72,14 +71,16 @@ public class V3InstallConnectorResponse {
         return Utils.toString(V3InstallConnectorResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the created connector
@@ -89,10 +90,12 @@ public class V3InstallConnectorResponse {
             this.data = data;
             return this;
         }
-        
+
         public V3InstallConnectorResponse build() {
+
             return new V3InstallConnectorResponse(
                 data);
         }
+
     }
 }

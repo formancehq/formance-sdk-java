@@ -9,7 +9,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ForwardBankAccountRequest {
 
@@ -45,9 +45,10 @@ public class ForwardBankAccountRequest {
         return bankAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ForwardBankAccountRequest withForwardBankAccountRequest(com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest) {
         Utils.checkNotNull(forwardBankAccountRequest, "forwardBankAccountRequest");
@@ -64,7 +65,6 @@ public class ForwardBankAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,15 +75,14 @@ public class ForwardBankAccountRequest {
         }
         ForwardBankAccountRequest other = (ForwardBankAccountRequest) o;
         return 
-            Objects.deepEquals(this.forwardBankAccountRequest, other.forwardBankAccountRequest) &&
-            Objects.deepEquals(this.bankAccountId, other.bankAccountId);
+            Utils.enhancedDeepEquals(this.forwardBankAccountRequest, other.forwardBankAccountRequest) &&
+            Utils.enhancedDeepEquals(this.bankAccountId, other.bankAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            forwardBankAccountRequest,
-            bankAccountId);
+        return Utils.enhancedHash(
+            forwardBankAccountRequest, bankAccountId);
     }
     
     @Override
@@ -92,22 +91,25 @@ public class ForwardBankAccountRequest {
                 "forwardBankAccountRequest", forwardBankAccountRequest,
                 "bankAccountId", bankAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest;
- 
+
         private String bankAccountId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder forwardBankAccountRequest(com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest) {
             Utils.checkNotNull(forwardBankAccountRequest, "forwardBankAccountRequest");
             this.forwardBankAccountRequest = forwardBankAccountRequest;
             return this;
         }
+
 
         /**
          * The bank account ID.
@@ -117,11 +119,12 @@ public class ForwardBankAccountRequest {
             this.bankAccountId = bankAccountId;
             return this;
         }
-        
+
         public ForwardBankAccountRequest build() {
+
             return new ForwardBankAccountRequest(
-                forwardBankAccountRequest,
-                bankAccountId);
+                forwardBankAccountRequest, bankAccountId);
         }
+
     }
 }

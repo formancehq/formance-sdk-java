@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ListTransactionsRequest {
 
@@ -32,6 +32,7 @@ public class V2ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private Optional<String> cursor;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=expand")
     private Optional<String> expand;
 
@@ -40,6 +41,7 @@ public class V2ListTransactionsRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=order")
     private Optional<? extends Order> order;
@@ -50,8 +52,10 @@ public class V2ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<Long> pageSize;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reverse")
     private Optional<Boolean> reverse;
@@ -67,6 +71,7 @@ public class V2ListTransactionsRequest {
             Optional<OffsetDateTime> pit,
             Optional<Boolean> reverse) {
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(ledger, "ledger");
@@ -87,7 +92,9 @@ public class V2ListTransactionsRequest {
     public V2ListTransactionsRequest(
             Map<String, Object> requestBody,
             String ledger) {
-        this(requestBody, Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(requestBody, Optional.empty(), Optional.empty(),
+            ledger, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -143,9 +150,10 @@ public class V2ListTransactionsRequest {
         return reverse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ListTransactionsRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -165,6 +173,7 @@ public class V2ListTransactionsRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -182,6 +191,7 @@ public class V2ListTransactionsRequest {
         this.expand = Optional.ofNullable(expand);
         return this;
     }
+
 
     public V2ListTransactionsRequest withExpand(Optional<String> expand) {
         Utils.checkNotNull(expand, "expand");
@@ -204,6 +214,7 @@ public class V2ListTransactionsRequest {
         return this;
     }
 
+
     public V2ListTransactionsRequest withOrder(Optional<? extends Order> order) {
         Utils.checkNotNull(order, "order");
         this.order = order;
@@ -218,6 +229,7 @@ public class V2ListTransactionsRequest {
         this.pageSize = Optional.ofNullable(pageSize);
         return this;
     }
+
 
     /**
      * The maximum number of results to return per page.
@@ -234,6 +246,7 @@ public class V2ListTransactionsRequest {
         return this;
     }
 
+
     public V2ListTransactionsRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
@@ -246,13 +259,13 @@ public class V2ListTransactionsRequest {
         return this;
     }
 
+
     public V2ListTransactionsRequest withReverse(Optional<Boolean> reverse) {
         Utils.checkNotNull(reverse, "reverse");
         this.reverse = reverse;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -263,27 +276,22 @@ public class V2ListTransactionsRequest {
         }
         V2ListTransactionsRequest other = (V2ListTransactionsRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.expand, other.expand) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.order, other.order) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pit, other.pit) &&
-            Objects.deepEquals(this.reverse, other.reverse);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.expand, other.expand) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.order, other.order) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pit, other.pit) &&
+            Utils.enhancedDeepEquals(this.reverse, other.reverse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            cursor,
-            expand,
-            ledger,
-            order,
-            pageSize,
-            pit,
-            reverse);
+        return Utils.enhancedHash(
+            requestBody, cursor, expand,
+            ledger, order, pageSize,
+            pit, reverse);
     }
     
     @Override
@@ -298,34 +306,37 @@ public class V2ListTransactionsRequest {
                 "pit", pit,
                 "reverse", reverse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Object> requestBody;
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<String> expand = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<? extends Order> order = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<OffsetDateTime> pit = Optional.empty();
- 
+
         private Optional<Boolean> reverse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -351,6 +362,7 @@ public class V2ListTransactionsRequest {
             return this;
         }
 
+
         public Builder expand(String expand) {
             Utils.checkNotNull(expand, "expand");
             this.expand = Optional.ofNullable(expand);
@@ -363,6 +375,7 @@ public class V2ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -371,6 +384,7 @@ public class V2ListTransactionsRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         public Builder order(Order order) {
             Utils.checkNotNull(order, "order");
@@ -383,6 +397,7 @@ public class V2ListTransactionsRequest {
             this.order = order;
             return this;
         }
+
 
         /**
          * The maximum number of results to return per page.
@@ -402,6 +417,7 @@ public class V2ListTransactionsRequest {
             return this;
         }
 
+
         public Builder pit(OffsetDateTime pit) {
             Utils.checkNotNull(pit, "pit");
             this.pit = Optional.ofNullable(pit);
@@ -414,6 +430,7 @@ public class V2ListTransactionsRequest {
             return this;
         }
 
+
         public Builder reverse(boolean reverse) {
             Utils.checkNotNull(reverse, "reverse");
             this.reverse = Optional.ofNullable(reverse);
@@ -425,17 +442,14 @@ public class V2ListTransactionsRequest {
             this.reverse = reverse;
             return this;
         }
-        
+
         public V2ListTransactionsRequest build() {
+
             return new V2ListTransactionsRequest(
-                requestBody,
-                cursor,
-                expand,
-                ledger,
-                order,
-                pageSize,
-                pit,
-                reverse);
+                requestBody, cursor, expand,
+                ledger, order, pageSize,
+                pit, reverse);
         }
+
     }
 }

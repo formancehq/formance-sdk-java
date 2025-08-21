@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2WalletSubject implements V2Subject {
 
@@ -20,8 +20,10 @@ public class V2WalletSubject implements V2Subject {
     @JsonProperty("balance")
     private Optional<String> balance;
 
+
     @JsonProperty("identifier")
     private String identifier;
+
 
     @JsonProperty("type")
     private String type;
@@ -61,15 +63,17 @@ public class V2WalletSubject implements V2Subject {
         return Utils.discriminatorToString(type);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2WalletSubject withBalance(String balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = Optional.ofNullable(balance);
         return this;
     }
+
 
     public V2WalletSubject withBalance(Optional<String> balance) {
         Utils.checkNotNull(balance, "balance");
@@ -89,7 +93,6 @@ public class V2WalletSubject implements V2Subject {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -100,17 +103,15 @@ public class V2WalletSubject implements V2Subject {
         }
         V2WalletSubject other = (V2WalletSubject) o;
         return 
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.identifier, other.identifier) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.identifier, other.identifier) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            balance,
-            identifier,
-            type);
+        return Utils.enhancedHash(
+            balance, identifier, type);
     }
     
     @Override
@@ -120,18 +121,20 @@ public class V2WalletSubject implements V2Subject {
                 "identifier", identifier,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> balance = Optional.empty();
- 
+
         private String identifier;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder balance(String balance) {
             Utils.checkNotNull(balance, "balance");
@@ -145,23 +148,25 @@ public class V2WalletSubject implements V2Subject {
             return this;
         }
 
+
         public Builder identifier(String identifier) {
             Utils.checkNotNull(identifier, "identifier");
             this.identifier = identifier;
             return this;
         }
 
+
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public V2WalletSubject build() {
+
             return new V2WalletSubject(
-                balance,
-                identifier,
-                type);
+                balance, identifier, type);
         }
+
     }
 }

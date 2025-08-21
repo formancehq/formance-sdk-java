@@ -14,11 +14,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AtlarConfig implements ConnectorConfig {
 
+public class AtlarConfig implements ConnectorConfig {
     /**
      * The access key used by the connector for authorizing requests to the Atlar API.
      * You can obtain it along with the associated secret from the Atlar dashboard.
@@ -32,6 +31,7 @@ public class AtlarConfig implements ConnectorConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("baseUrl")
     private Optional<String> baseUrl;
+
 
     @JsonProperty("name")
     private String name;
@@ -49,6 +49,7 @@ public class AtlarConfig implements ConnectorConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -100,7 +101,9 @@ public class AtlarConfig implements ConnectorConfig {
             String accessKey,
             String name,
             String secret) {
-        this(accessKey, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), secret, Optional.empty());
+        this(accessKey, Optional.empty(), name,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            secret, Optional.empty());
     }
 
     /**
@@ -164,9 +167,10 @@ public class AtlarConfig implements ConnectorConfig {
         return transferInitiationStatusPollingPeriod;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The access key used by the connector for authorizing requests to the Atlar API.
@@ -186,6 +190,7 @@ public class AtlarConfig implements ConnectorConfig {
         this.baseUrl = Optional.ofNullable(baseUrl);
         return this;
     }
+
 
     /**
      * The base URL the client uses for making requests towards the Atlar API.
@@ -211,6 +216,7 @@ public class AtlarConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * Number of items to fetch when querying paginated APIs.
      */
@@ -229,6 +235,7 @@ public class AtlarConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
      */
@@ -243,6 +250,7 @@ public class AtlarConfig implements ConnectorConfig {
         this.provider = Optional.ofNullable(provider);
         return this;
     }
+
 
     public AtlarConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
@@ -269,6 +277,7 @@ public class AtlarConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
      */
@@ -278,7 +287,6 @@ public class AtlarConfig implements ConnectorConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -289,27 +297,22 @@ public class AtlarConfig implements ConnectorConfig {
         }
         AtlarConfig other = (AtlarConfig) o;
         return 
-            Objects.deepEquals(this.accessKey, other.accessKey) &&
-            Objects.deepEquals(this.baseUrl, other.baseUrl) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.secret, other.secret) &&
-            Objects.deepEquals(this.transferInitiationStatusPollingPeriod, other.transferInitiationStatusPollingPeriod);
+            Utils.enhancedDeepEquals(this.accessKey, other.accessKey) &&
+            Utils.enhancedDeepEquals(this.baseUrl, other.baseUrl) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.secret, other.secret) &&
+            Utils.enhancedDeepEquals(this.transferInitiationStatusPollingPeriod, other.transferInitiationStatusPollingPeriod);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accessKey,
-            baseUrl,
-            name,
-            pageSize,
-            pollingPeriod,
-            provider,
-            secret,
-            transferInitiationStatusPollingPeriod);
+        return Utils.enhancedHash(
+            accessKey, baseUrl, name,
+            pageSize, pollingPeriod, provider,
+            secret, transferInitiationStatusPollingPeriod);
     }
     
     @Override
@@ -324,28 +327,30 @@ public class AtlarConfig implements ConnectorConfig {
                 "secret", secret,
                 "transferInitiationStatusPollingPeriod", transferInitiationStatusPollingPeriod);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accessKey;
- 
+
         private Optional<String> baseUrl;
- 
+
         private String name;
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
- 
+
         private String secret;
- 
+
         private Optional<String> transferInitiationStatusPollingPeriod;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The access key used by the connector for authorizing requests to the Atlar API.
@@ -356,6 +361,7 @@ public class AtlarConfig implements ConnectorConfig {
             this.accessKey = accessKey;
             return this;
         }
+
 
         /**
          * The base URL the client uses for making requests towards the Atlar API.
@@ -375,11 +381,13 @@ public class AtlarConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         /**
          * Number of items to fetch when querying paginated APIs.
@@ -399,6 +407,7 @@ public class AtlarConfig implements ConnectorConfig {
             return this;
         }
 
+
         /**
          * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
          */
@@ -417,6 +426,7 @@ public class AtlarConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -429,6 +439,7 @@ public class AtlarConfig implements ConnectorConfig {
             return this;
         }
 
+
         /**
          * The secret used by the connector for authorizing requests to the Atlar API.
          * You can obtain it along with the associated access key from the Atlar dashboard.
@@ -438,6 +449,7 @@ public class AtlarConfig implements ConnectorConfig {
             this.secret = secret;
             return this;
         }
+
 
         /**
          * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
@@ -456,7 +468,7 @@ public class AtlarConfig implements ConnectorConfig {
             this.transferInitiationStatusPollingPeriod = transferInitiationStatusPollingPeriod;
             return this;
         }
-        
+
         public AtlarConfig build() {
             if (baseUrl == null) {
                 baseUrl = _SINGLETON_VALUE_BaseUrl.value();
@@ -473,16 +485,13 @@ public class AtlarConfig implements ConnectorConfig {
             if (transferInitiationStatusPollingPeriod == null) {
                 transferInitiationStatusPollingPeriod = _SINGLETON_VALUE_TransferInitiationStatusPollingPeriod.value();
             }
+
             return new AtlarConfig(
-                accessKey,
-                baseUrl,
-                name,
-                pageSize,
-                pollingPeriod,
-                provider,
-                secret,
-                transferInitiationStatusPollingPeriod);
+                accessKey, baseUrl, name,
+                pageSize, pollingPeriod, provider,
+                secret, transferInitiationStatusPollingPeriod);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_BaseUrl =
                 new LazySingletonValue<>(

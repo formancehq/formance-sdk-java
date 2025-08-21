@@ -29,6 +29,7 @@ Cancel a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="cancelEvent" method="put" path="/api/orchestration/instances/{instanceID}/abort" -->
 ```java
 package hello.world;
 
@@ -45,8 +46,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -86,6 +87,7 @@ Create trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createTrigger" method="post" path="/api/orchestration/triggers" -->
 ```java
 package hello.world;
 
@@ -101,8 +103,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -139,6 +141,7 @@ Create a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createWorkflow" method="post" path="/api/orchestration/workflows" -->
 ```java
 package hello.world;
 
@@ -154,8 +157,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -192,6 +195,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deleteTrigger" method="delete" path="/api/orchestration/triggers/{triggerID}" -->
 ```java
 package hello.world;
 
@@ -208,8 +212,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -249,6 +253,7 @@ Delete a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deleteWorkflow" method="delete" path="/api/orchestration/workflows/{flowId}" -->
 ```java
 package hello.world;
 
@@ -265,8 +270,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -306,6 +311,7 @@ Get a workflow instance by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getInstance" method="get" path="/api/orchestration/instances/{instanceID}" -->
 ```java
 package hello.world;
 
@@ -322,8 +328,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -365,6 +371,7 @@ Get a workflow instance history by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getInstanceHistory" method="get" path="/api/orchestration/instances/{instanceID}/history" -->
 ```java
 package hello.world;
 
@@ -381,8 +388,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -424,6 +431,7 @@ Get a workflow instance stage history
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getInstanceStageHistory" method="get" path="/api/orchestration/instances/{instanceID}/stages/{number}/history" -->
 ```java
 package hello.world;
 
@@ -440,8 +448,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -484,6 +492,7 @@ Get a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getWorkflow" method="get" path="/api/orchestration/workflows/{flowId}" -->
 ```java
 package hello.world;
 
@@ -500,8 +509,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -543,6 +552,7 @@ List instances of a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listInstances" method="get" path="/api/orchestration/instances" -->
 ```java
 package hello.world;
 
@@ -559,8 +569,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -603,6 +613,7 @@ List triggers
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listTriggers" method="get" path="/api/orchestration/triggers" -->
 ```java
 package hello.world;
 
@@ -618,8 +629,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -656,6 +667,7 @@ List triggers occurrences
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listTriggersOccurrences" method="get" path="/api/orchestration/triggers/{triggerID}/occurrences" -->
 ```java
 package hello.world;
 
@@ -672,8 +684,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -715,6 +727,7 @@ List registered workflows
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listWorkflows" method="get" path="/api/orchestration/workflows" -->
 ```java
 package hello.world;
 
@@ -730,8 +743,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -762,6 +775,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="orchestrationgetServerInfo" method="get" path="/api/orchestration/_info" -->
 ```java
 package hello.world;
 
@@ -777,8 +791,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -809,6 +823,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="readTrigger" method="get" path="/api/orchestration/triggers/{triggerID}" -->
 ```java
 package hello.world;
 
@@ -825,8 +840,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -868,6 +883,7 @@ Run workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="runWorkflow" method="post" path="/api/orchestration/workflows/{workflowID}/instances" -->
 ```java
 package hello.world;
 
@@ -884,8 +900,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -927,6 +943,7 @@ Send an event to a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="sendEvent" method="post" path="/api/orchestration/instances/{instanceID}/events" -->
 ```java
 package hello.world;
 
@@ -943,8 +960,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 

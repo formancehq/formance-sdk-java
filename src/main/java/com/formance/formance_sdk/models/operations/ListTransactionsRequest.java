@@ -14,11 +14,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListTransactionsRequest {
 
+public class ListTransactionsRequest {
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
@@ -129,7 +128,10 @@ public class ListTransactionsRequest {
     
     public ListTransactionsRequest(
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), ledger,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -226,9 +228,10 @@ public class ListTransactionsRequest {
         return startTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
@@ -238,6 +241,7 @@ public class ListTransactionsRequest {
         this.account = Optional.ofNullable(account);
         return this;
     }
+
 
     /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
@@ -256,6 +260,7 @@ public class ListTransactionsRequest {
         this.after = Optional.ofNullable(after);
         return this;
     }
+
 
     /**
      * Pagination cursor, will return transactions after given txid (in descending order).
@@ -278,6 +283,7 @@ public class ListTransactionsRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
      * Set to the value of next for the next page of results.
@@ -299,6 +305,7 @@ public class ListTransactionsRequest {
         return this;
     }
 
+
     /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
@@ -317,6 +324,7 @@ public class ListTransactionsRequest {
         this.endTime = Optional.ofNullable(endTime);
         return this;
     }
+
 
     /**
      * Filter transactions that occurred before this timestamp.
@@ -346,6 +354,7 @@ public class ListTransactionsRequest {
         return this;
     }
 
+
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
@@ -363,6 +372,7 @@ public class ListTransactionsRequest {
         this.pageSize = Optional.ofNullable(pageSize);
         return this;
     }
+
 
     /**
      * The maximum number of results to return per page.
@@ -382,6 +392,7 @@ public class ListTransactionsRequest {
         return this;
     }
 
+
     /**
      * Find transactions by reference field.
      */
@@ -399,6 +410,7 @@ public class ListTransactionsRequest {
         this.source = Optional.ofNullable(source);
         return this;
     }
+
 
     /**
      * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
@@ -419,6 +431,7 @@ public class ListTransactionsRequest {
         return this;
     }
 
+
     /**
      * Filter transactions that occurred after this timestamp.
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
@@ -429,7 +442,6 @@ public class ListTransactionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -440,33 +452,26 @@ public class ListTransactionsRequest {
         }
         ListTransactionsRequest other = (ListTransactionsRequest) o;
         return 
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.after, other.after) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.endTime, other.endTime) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.source, other.source) &&
-            Objects.deepEquals(this.startTime, other.startTime);
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.after, other.after) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.startTime, other.startTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            account,
-            after,
-            cursor,
-            destination,
-            endTime,
-            ledger,
-            metadata,
-            pageSize,
-            reference,
-            source,
-            startTime);
+        return Utils.enhancedHash(
+            account, after, cursor,
+            destination, endTime, ledger,
+            metadata, pageSize, reference,
+            source, startTime);
     }
     
     @Override
@@ -484,34 +489,36 @@ public class ListTransactionsRequest {
                 "source", source,
                 "startTime", startTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> account = Optional.empty();
- 
+
         private Optional<String> after = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<String> destination = Optional.empty();
- 
+
         private Optional<OffsetDateTime> endTime = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Optional<String> source = Optional.empty();
- 
+
         private Optional<OffsetDateTime> startTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
@@ -531,6 +538,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Pagination cursor, will return transactions after given txid (in descending order).
          */
@@ -548,6 +556,7 @@ public class ListTransactionsRequest {
             this.after = after;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -573,6 +582,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
          */
@@ -590,6 +600,7 @@ public class ListTransactionsRequest {
             this.destination = destination;
             return this;
         }
+
 
         /**
          * Filter transactions that occurred before this timestamp.
@@ -611,6 +622,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -619,6 +631,7 @@ public class ListTransactionsRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
@@ -638,6 +651,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -655,6 +669,7 @@ public class ListTransactionsRequest {
             this.pageSize = pageSize;
             return this;
         }
+
 
         /**
          * Find transactions by reference field.
@@ -674,6 +689,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
          */
@@ -691,6 +707,7 @@ public class ListTransactionsRequest {
             this.source = source;
             return this;
         }
+
 
         /**
          * Filter transactions that occurred after this timestamp.
@@ -711,20 +728,15 @@ public class ListTransactionsRequest {
             this.startTime = startTime;
             return this;
         }
-        
+
         public ListTransactionsRequest build() {
+
             return new ListTransactionsRequest(
-                account,
-                after,
-                cursor,
-                destination,
-                endTime,
-                ledger,
-                metadata,
-                pageSize,
-                reference,
-                source,
-                startTime);
+                account, after, cursor,
+                destination, endTime, ledger,
+                metadata, pageSize, reference,
+                source, startTime);
         }
+
     }
 }

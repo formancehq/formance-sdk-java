@@ -10,12 +10,13 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class ReconciliationRequest {
 
     @JsonProperty("reconciledAtLedger")
     private OffsetDateTime reconciledAtLedger;
+
 
     @JsonProperty("reconciledAtPayments")
     private OffsetDateTime reconciledAtPayments;
@@ -40,9 +41,10 @@ public class ReconciliationRequest {
         return reconciledAtPayments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ReconciliationRequest withReconciledAtLedger(OffsetDateTime reconciledAtLedger) {
         Utils.checkNotNull(reconciledAtLedger, "reconciledAtLedger");
@@ -56,7 +58,6 @@ public class ReconciliationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class ReconciliationRequest {
         }
         ReconciliationRequest other = (ReconciliationRequest) o;
         return 
-            Objects.deepEquals(this.reconciledAtLedger, other.reconciledAtLedger) &&
-            Objects.deepEquals(this.reconciledAtPayments, other.reconciledAtPayments);
+            Utils.enhancedDeepEquals(this.reconciledAtLedger, other.reconciledAtLedger) &&
+            Utils.enhancedDeepEquals(this.reconciledAtPayments, other.reconciledAtPayments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            reconciledAtLedger,
-            reconciledAtPayments);
+        return Utils.enhancedHash(
+            reconciledAtLedger, reconciledAtPayments);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class ReconciliationRequest {
                 "reconciledAtLedger", reconciledAtLedger,
                 "reconciledAtPayments", reconciledAtPayments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime reconciledAtLedger;
- 
+
         private OffsetDateTime reconciledAtPayments;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder reconciledAtLedger(OffsetDateTime reconciledAtLedger) {
             Utils.checkNotNull(reconciledAtLedger, "reconciledAtLedger");
@@ -101,16 +103,18 @@ public class ReconciliationRequest {
             return this;
         }
 
+
         public Builder reconciledAtPayments(OffsetDateTime reconciledAtPayments) {
             Utils.checkNotNull(reconciledAtPayments, "reconciledAtPayments");
             this.reconciledAtPayments = reconciledAtPayments;
             return this;
         }
-        
+
         public ReconciliationRequest build() {
+
             return new ReconciliationRequest(
-                reconciledAtLedger,
-                reconciledAtPayments);
+                reconciledAtLedger, reconciledAtPayments);
         }
+
     }
 }

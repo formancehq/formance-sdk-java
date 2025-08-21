@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class CreateTransactionsRequest {
 
@@ -46,9 +46,10 @@ public class CreateTransactionsRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateTransactionsRequest withTransactions(Transactions transactions) {
         Utils.checkNotNull(transactions, "transactions");
@@ -65,7 +66,6 @@ public class CreateTransactionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,15 +76,14 @@ public class CreateTransactionsRequest {
         }
         CreateTransactionsRequest other = (CreateTransactionsRequest) o;
         return 
-            Objects.deepEquals(this.transactions, other.transactions) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.transactions, other.transactions) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            transactions,
-            ledger);
+        return Utils.enhancedHash(
+            transactions, ledger);
     }
     
     @Override
@@ -93,22 +92,25 @@ public class CreateTransactionsRequest {
                 "transactions", transactions,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Transactions transactions;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder transactions(Transactions transactions) {
             Utils.checkNotNull(transactions, "transactions");
             this.transactions = transactions;
             return this;
         }
+
 
         /**
          * Name of the ledger.
@@ -118,11 +120,12 @@ public class CreateTransactionsRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public CreateTransactionsRequest build() {
+
             return new CreateTransactionsRequest(
-                transactions,
-                ledger);
+                transactions, ledger);
         }
+
     }
 }

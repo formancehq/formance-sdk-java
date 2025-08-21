@@ -14,28 +14,33 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3WiseConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("apiKey")
     private String apiKey;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
+
 
     @JsonProperty("webhookPublicKey")
     private String webhookPublicKey;
@@ -66,7 +71,8 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
             String apiKey,
             String name,
             String webhookPublicKey) {
-        this(apiKey, name, Optional.empty(), Optional.empty(), Optional.empty(), webhookPublicKey);
+        this(apiKey, name, Optional.empty(),
+            Optional.empty(), Optional.empty(), webhookPublicKey);
     }
 
     @JsonIgnore
@@ -100,9 +106,10 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
         return webhookPublicKey;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3WiseConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -122,6 +129,7 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3WiseConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -133,6 +141,7 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
         this.pollingPeriod = Optional.ofNullable(pollingPeriod);
         return this;
     }
+
 
     public V3WiseConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -146,6 +155,7 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3WiseConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -158,7 +168,6 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -169,23 +178,19 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
         }
         V3WiseConfig other = (V3WiseConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.webhookPublicKey, other.webhookPublicKey);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.webhookPublicKey, other.webhookPublicKey);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            name,
-            pageSize,
-            pollingPeriod,
-            provider,
-            webhookPublicKey);
+        return Utils.enhancedHash(
+            apiKey, name, pageSize,
+            pollingPeriod, provider, webhookPublicKey);
     }
     
     @Override
@@ -198,24 +203,26 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
                 "provider", provider,
                 "webhookPublicKey", webhookPublicKey);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String name;
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
- 
+
         private String webhookPublicKey;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -223,11 +230,13 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -241,6 +250,7 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = Optional.ofNullable(pollingPeriod);
@@ -252,6 +262,7 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
 
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
@@ -265,12 +276,13 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder webhookPublicKey(String webhookPublicKey) {
             Utils.checkNotNull(webhookPublicKey, "webhookPublicKey");
             this.webhookPublicKey = webhookPublicKey;
             return this;
         }
-        
+
         public V3WiseConfig build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
@@ -281,14 +293,12 @@ public class V3WiseConfig implements V3InstallConnectorRequest {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new V3WiseConfig(
-                apiKey,
-                name,
-                pageSize,
-                pollingPeriod,
-                provider,
-                webhookPublicKey);
+                apiKey, name, pageSize,
+                pollingPeriod, provider, webhookPublicKey);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

@@ -12,16 +12,18 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Security implements HasSecurity {
 
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,subtype=client_credentials,name=clientID")
     private Optional<String> clientID;
 
+
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,subtype=client_credentials,name=clientSecret")
     private Optional<String> clientSecret;
+
 
     private Optional<String> tokenURL;
 
@@ -57,15 +59,17 @@ public class Security implements HasSecurity {
         return tokenURL;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Security withClientID(String clientID) {
         Utils.checkNotNull(clientID, "clientID");
         this.clientID = Optional.ofNullable(clientID);
         return this;
     }
+
 
     public Security withClientID(Optional<String> clientID) {
         Utils.checkNotNull(clientID, "clientID");
@@ -79,6 +83,7 @@ public class Security implements HasSecurity {
         return this;
     }
 
+
     public Security withClientSecret(Optional<String> clientSecret) {
         Utils.checkNotNull(clientSecret, "clientSecret");
         this.clientSecret = clientSecret;
@@ -91,13 +96,13 @@ public class Security implements HasSecurity {
         return this;
     }
 
+
     public Security withTokenURL(Optional<String> tokenURL) {
         Utils.checkNotNull(tokenURL, "tokenURL");
         this.tokenURL = tokenURL;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -108,17 +113,15 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.clientID, other.clientID) &&
-            Objects.deepEquals(this.clientSecret, other.clientSecret) &&
-            Objects.deepEquals(this.tokenURL, other.tokenURL);
+            Utils.enhancedDeepEquals(this.clientID, other.clientID) &&
+            Utils.enhancedDeepEquals(this.clientSecret, other.clientSecret) &&
+            Utils.enhancedDeepEquals(this.tokenURL, other.tokenURL);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientID,
-            clientSecret,
-            tokenURL);
+        return Utils.enhancedHash(
+            clientID, clientSecret, tokenURL);
     }
     
     @Override
@@ -128,18 +131,20 @@ public class Security implements HasSecurity {
                 "clientSecret", clientSecret,
                 "tokenURL", tokenURL);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> clientID = Optional.empty();
- 
+
         private Optional<String> clientSecret = Optional.empty();
- 
+
         private Optional<String> tokenURL;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder clientID(String clientID) {
             Utils.checkNotNull(clientID, "clientID");
@@ -153,6 +158,7 @@ public class Security implements HasSecurity {
             return this;
         }
 
+
         public Builder clientSecret(String clientSecret) {
             Utils.checkNotNull(clientSecret, "clientSecret");
             this.clientSecret = Optional.ofNullable(clientSecret);
@@ -165,6 +171,7 @@ public class Security implements HasSecurity {
             return this;
         }
 
+
         public Builder tokenURL(String tokenURL) {
             Utils.checkNotNull(tokenURL, "tokenURL");
             this.tokenURL = Optional.ofNullable(tokenURL);
@@ -176,16 +183,16 @@ public class Security implements HasSecurity {
             this.tokenURL = tokenURL;
             return this;
         }
-        
+
         public Security build() {
             if (tokenURL == null) {
                 tokenURL = _SINGLETON_VALUE_TokenURL.value();
             }
+
             return new Security(
-                clientID,
-                clientSecret,
-                tokenURL);
+                clientID, clientSecret, tokenURL);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_TokenURL =
                 new LazySingletonValue<>(

@@ -16,13 +16,14 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class WalletsTransaction {
 
     @JsonProperty("id")
     private long id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
@@ -34,20 +35,25 @@ public class WalletsTransaction {
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitVolumes")
     private Optional<? extends Map<String, Map<String, WalletsVolume>>> postCommitVolumes;
 
+
     @JsonProperty("postings")
     private List<Posting> postings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitVolumes")
     private Optional<? extends Map<String, Map<String, WalletsVolume>>> preCommitVolumes;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
+
 
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
@@ -65,6 +71,7 @@ public class WalletsTransaction {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         Utils.checkNotNull(postings, "postings");
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
@@ -85,7 +92,9 @@ public class WalletsTransaction {
             Map<String, String> metadata,
             List<Posting> postings,
             OffsetDateTime timestamp) {
-        this(id, Optional.empty(), metadata, Optional.empty(), postings, Optional.empty(), Optional.empty(), timestamp);
+        this(id, Optional.empty(), metadata,
+            Optional.empty(), postings, Optional.empty(),
+            Optional.empty(), timestamp);
     }
 
     @JsonIgnore
@@ -133,9 +142,10 @@ public class WalletsTransaction {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WalletsTransaction withId(long id) {
         Utils.checkNotNull(id, "id");
@@ -148,6 +158,7 @@ public class WalletsTransaction {
         this.ledger = Optional.ofNullable(ledger);
         return this;
     }
+
 
     public WalletsTransaction withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
@@ -170,6 +181,7 @@ public class WalletsTransaction {
         return this;
     }
 
+
     public WalletsTransaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, WalletsVolume>>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = postCommitVolumes;
@@ -188,6 +200,7 @@ public class WalletsTransaction {
         return this;
     }
 
+
     public WalletsTransaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, WalletsVolume>>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = preCommitVolumes;
@@ -199,6 +212,7 @@ public class WalletsTransaction {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     public WalletsTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -212,7 +226,6 @@ public class WalletsTransaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -223,27 +236,22 @@ public class WalletsTransaction {
         }
         WalletsTransaction other = (WalletsTransaction) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
-            Objects.deepEquals(this.postings, other.postings) &&
-            Objects.deepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
+            Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            ledger,
-            metadata,
-            postCommitVolumes,
-            postings,
-            preCommitVolumes,
-            reference,
-            timestamp);
+        return Utils.enhancedHash(
+            id, ledger, metadata,
+            postCommitVolumes, postings, preCommitVolumes,
+            reference, timestamp);
     }
     
     @Override
@@ -258,34 +266,37 @@ public class WalletsTransaction {
                 "reference", reference,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
- 
+
         private Optional<String> ledger = Optional.empty();
- 
+
         private Map<String, String> metadata;
- 
+
         private Optional<? extends Map<String, Map<String, WalletsVolume>>> postCommitVolumes = Optional.empty();
- 
+
         private List<Posting> postings;
- 
+
         private Optional<? extends Map<String, Map<String, WalletsVolume>>> preCommitVolumes = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private OffsetDateTime timestamp;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(long id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
@@ -299,6 +310,7 @@ public class WalletsTransaction {
             return this;
         }
 
+
         /**
          * Metadata associated with the wallet.
          */
@@ -307,6 +319,7 @@ public class WalletsTransaction {
             this.metadata = metadata;
             return this;
         }
+
 
         public Builder postCommitVolumes(Map<String, Map<String, WalletsVolume>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
@@ -320,11 +333,13 @@ public class WalletsTransaction {
             return this;
         }
 
+
         public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
             return this;
         }
+
 
         public Builder preCommitVolumes(Map<String, Map<String, WalletsVolume>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
@@ -338,6 +353,7 @@ public class WalletsTransaction {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
@@ -350,22 +366,20 @@ public class WalletsTransaction {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public WalletsTransaction build() {
+
             return new WalletsTransaction(
-                id,
-                ledger,
-                metadata,
-                postCommitVolumes,
-                postings,
-                preCommitVolumes,
-                reference,
-                timestamp);
+                id, ledger, metadata,
+                postCommitVolumes, postings, preCommitVolumes,
+                reference, timestamp);
         }
+
     }
 }

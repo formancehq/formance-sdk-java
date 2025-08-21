@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class PaymentsgetAccountRequest {
-
     /**
      * The account ID.
      */
@@ -34,9 +33,10 @@ public class PaymentsgetAccountRequest {
         return accountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The account ID.
@@ -47,7 +47,6 @@ public class PaymentsgetAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class PaymentsgetAccountRequest {
         }
         PaymentsgetAccountRequest other = (PaymentsgetAccountRequest) o;
         return 
-            Objects.deepEquals(this.accountId, other.accountId);
+            Utils.enhancedDeepEquals(this.accountId, other.accountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             accountId);
     }
     
@@ -72,14 +71,16 @@ public class PaymentsgetAccountRequest {
         return Utils.toString(PaymentsgetAccountRequest.class,
                 "accountId", accountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The account ID.
@@ -89,10 +90,12 @@ public class PaymentsgetAccountRequest {
             this.accountId = accountId;
             return this;
         }
-        
+
         public PaymentsgetAccountRequest build() {
+
             return new PaymentsgetAccountRequest(
                 accountId);
         }
+
     }
 }

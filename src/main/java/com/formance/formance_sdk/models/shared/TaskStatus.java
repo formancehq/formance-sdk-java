@@ -18,7 +18,7 @@ public enum TaskStatus {
     @JsonValue
     private final String value;
 
-    private TaskStatus(String value) {
+    TaskStatus(String value) {
         this.value = value;
     }
     

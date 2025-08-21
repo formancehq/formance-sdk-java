@@ -11,8 +11,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class UpdateClientRequest {
 
@@ -54,15 +54,17 @@ public class UpdateClientRequest {
         return clientId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateClientRequest withClientOptions(ClientOptions clientOptions) {
         Utils.checkNotNull(clientOptions, "clientOptions");
         this.clientOptions = Optional.ofNullable(clientOptions);
         return this;
     }
+
 
     public UpdateClientRequest withClientOptions(Optional<? extends ClientOptions> clientOptions) {
         Utils.checkNotNull(clientOptions, "clientOptions");
@@ -79,7 +81,6 @@ public class UpdateClientRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +91,14 @@ public class UpdateClientRequest {
         }
         UpdateClientRequest other = (UpdateClientRequest) o;
         return 
-            Objects.deepEquals(this.clientOptions, other.clientOptions) &&
-            Objects.deepEquals(this.clientId, other.clientId);
+            Utils.enhancedDeepEquals(this.clientOptions, other.clientOptions) &&
+            Utils.enhancedDeepEquals(this.clientId, other.clientId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            clientOptions,
-            clientId);
+        return Utils.enhancedHash(
+            clientOptions, clientId);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class UpdateClientRequest {
                 "clientOptions", clientOptions,
                 "clientId", clientId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ClientOptions> clientOptions = Optional.empty();
- 
+
         private String clientId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder clientOptions(ClientOptions clientOptions) {
             Utils.checkNotNull(clientOptions, "clientOptions");
@@ -130,6 +132,7 @@ public class UpdateClientRequest {
             return this;
         }
 
+
         /**
          * Client ID
          */
@@ -138,11 +141,12 @@ public class UpdateClientRequest {
             this.clientId = clientId;
             return this;
         }
-        
+
         public UpdateClientRequest build() {
+
             return new UpdateClientRequest(
-                clientOptions,
-                clientId);
+                clientOptions, clientId);
         }
+
     }
 }

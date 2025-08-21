@@ -16,6 +16,7 @@ Elasticsearch.v1 query engine
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="search" method="post" path="/api/search/" -->
 ```java
 package hello.world;
 
@@ -31,8 +32,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -85,6 +86,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="searchgetServerInfo" method="get" path="/api/search/_info" -->
 ```java
 package hello.world;
 
@@ -99,8 +101,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 

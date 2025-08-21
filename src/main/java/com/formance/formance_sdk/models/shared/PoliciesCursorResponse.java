@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * PoliciesCursorResponse
@@ -33,9 +32,10 @@ public class PoliciesCursorResponse {
         return cursor;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PoliciesCursorResponse withCursor(PoliciesCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -43,7 +43,6 @@ public class PoliciesCursorResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -54,12 +53,12 @@ public class PoliciesCursorResponse {
         }
         PoliciesCursorResponse other = (PoliciesCursorResponse) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cursor);
     }
     
@@ -68,24 +67,28 @@ public class PoliciesCursorResponse {
         return Utils.toString(PoliciesCursorResponse.class,
                 "cursor", cursor);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private PoliciesCursorResponseCursor cursor;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder cursor(PoliciesCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
         }
-        
+
         public PoliciesCursorResponse build() {
+
             return new PoliciesCursorResponse(
                 cursor);
         }
+
     }
 }

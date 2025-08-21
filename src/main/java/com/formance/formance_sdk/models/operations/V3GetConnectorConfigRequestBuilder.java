@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3GetConnectorConfig;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3GetConnectorConfigRequestBuilder {
 
     private V3GetConnectorConfigRequest request;
-    private final SDKMethodInterfaces.MethodCallV3GetConnectorConfig sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3GetConnectorConfigRequestBuilder(SDKMethodInterfaces.MethodCallV3GetConnectorConfig sdk) {
-        this.sdk = sdk;
+    public V3GetConnectorConfigRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3GetConnectorConfigRequestBuilder request(V3GetConnectorConfigRequest request) {
@@ -22,8 +26,10 @@ public class V3GetConnectorConfigRequestBuilder {
     }
 
     public V3GetConnectorConfigResponse call() throws Exception {
+        
+        RequestOperation<V3GetConnectorConfigRequest, V3GetConnectorConfigResponse> operation
+              = new V3GetConnectorConfig.Sync(sdkConfiguration);
 
-        return sdk.getConnectorConfig(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

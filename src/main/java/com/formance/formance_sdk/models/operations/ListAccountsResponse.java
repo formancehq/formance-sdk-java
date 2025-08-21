@@ -15,11 +15,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListAccountsResponse implements Response {
 
+public class ListAccountsResponse implements Response {
     /**
      * OK
      */
@@ -68,7 +67,8 @@ public class ListAccountsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, Optional.empty(), statusCode, rawResponse);
+        this(Optional.empty(), contentType, Optional.empty(),
+            statusCode, rawResponse);
     }
 
     /**
@@ -113,9 +113,10 @@ public class ListAccountsResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * OK
@@ -125,6 +126,7 @@ public class ListAccountsResponse implements Response {
         this.accountsCursorResponse = Optional.ofNullable(accountsCursorResponse);
         return this;
     }
+
 
     /**
      * OK
@@ -153,6 +155,7 @@ public class ListAccountsResponse implements Response {
         return this;
     }
 
+
     /**
      * Not found
      */
@@ -180,7 +183,6 @@ public class ListAccountsResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,21 +193,18 @@ public class ListAccountsResponse implements Response {
         }
         ListAccountsResponse other = (ListAccountsResponse) o;
         return 
-            Objects.deepEquals(this.accountsCursorResponse, other.accountsCursorResponse) &&
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.errorResponse, other.errorResponse) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.accountsCursorResponse, other.accountsCursorResponse) &&
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.errorResponse, other.errorResponse) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountsCursorResponse,
-            contentType,
-            errorResponse,
-            statusCode,
-            rawResponse);
+        return Utils.enhancedHash(
+            accountsCursorResponse, contentType, errorResponse,
+            statusCode, rawResponse);
     }
     
     @Override
@@ -217,22 +216,24 @@ public class ListAccountsResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AccountsCursorResponse> accountsCursorResponse = Optional.empty();
- 
+
         private String contentType;
- 
+
         private Optional<? extends ErrorResponse> errorResponse = Optional.empty();
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * OK
@@ -252,6 +253,7 @@ public class ListAccountsResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response content type for this operation
          */
@@ -260,6 +262,7 @@ public class ListAccountsResponse implements Response {
             this.contentType = contentType;
             return this;
         }
+
 
         /**
          * Not found
@@ -279,6 +282,7 @@ public class ListAccountsResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -288,6 +292,7 @@ public class ListAccountsResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -296,14 +301,13 @@ public class ListAccountsResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public ListAccountsResponse build() {
+
             return new ListAccountsResponse(
-                accountsCursorResponse,
-                contentType,
-                errorResponse,
-                statusCode,
-                rawResponse);
+                accountsCursorResponse, contentType, errorResponse,
+                statusCode, rawResponse);
         }
+
     }
 }

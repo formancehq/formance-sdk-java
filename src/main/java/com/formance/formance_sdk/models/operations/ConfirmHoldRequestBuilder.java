@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ConfirmHold;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ConfirmHoldRequestBuilder {
 
     private ConfirmHoldRequest request;
-    private final SDKMethodInterfaces.MethodCallConfirmHold sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConfirmHoldRequestBuilder(SDKMethodInterfaces.MethodCallConfirmHold sdk) {
-        this.sdk = sdk;
+    public ConfirmHoldRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ConfirmHoldRequestBuilder request(ConfirmHoldRequest request) {
@@ -22,8 +26,10 @@ public class ConfirmHoldRequestBuilder {
     }
 
     public ConfirmHoldResponse call() throws Exception {
+        
+        RequestOperation<ConfirmHoldRequest, ConfirmHoldResponse> operation
+              = new ConfirmHold.Sync(sdkConfiguration);
 
-        return sdk.confirmHold(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

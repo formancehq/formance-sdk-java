@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ContactDetailsRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
     private Optional<String> email;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
@@ -48,15 +49,17 @@ public class V3ContactDetailsRequest {
         return phoneNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ContactDetailsRequest withEmail(String email) {
         Utils.checkNotNull(email, "email");
         this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     public V3ContactDetailsRequest withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
@@ -70,13 +73,13 @@ public class V3ContactDetailsRequest {
         return this;
     }
 
+
     public V3ContactDetailsRequest withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -87,15 +90,14 @@ public class V3ContactDetailsRequest {
         }
         V3ContactDetailsRequest other = (V3ContactDetailsRequest) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            email,
-            phoneNumber);
+        return Utils.enhancedHash(
+            email, phoneNumber);
     }
     
     @Override
@@ -104,16 +106,18 @@ public class V3ContactDetailsRequest {
                 "email", email,
                 "phoneNumber", phoneNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> phoneNumber = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
@@ -127,6 +131,7 @@ public class V3ContactDetailsRequest {
             return this;
         }
 
+
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
             this.phoneNumber = Optional.ofNullable(phoneNumber);
@@ -138,11 +143,12 @@ public class V3ContactDetailsRequest {
             this.phoneNumber = phoneNumber;
             return this;
         }
-        
+
         public V3ContactDetailsRequest build() {
+
             return new V3ContactDetailsRequest(
-                email,
-                phoneNumber);
+                email, phoneNumber);
         }
+
     }
 }

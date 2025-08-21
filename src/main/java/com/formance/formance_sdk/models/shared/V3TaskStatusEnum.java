@@ -16,7 +16,7 @@ public enum V3TaskStatusEnum {
     @JsonValue
     private final String value;
 
-    private V3TaskStatusEnum(String value) {
+    V3TaskStatusEnum(String value) {
         this.value = value;
     }
     

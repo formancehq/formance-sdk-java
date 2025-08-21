@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2AccountsCursorResponse {
 
@@ -28,9 +28,10 @@ public class V2AccountsCursorResponse {
         return cursor;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2AccountsCursorResponse withCursor(V2AccountsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -38,7 +39,6 @@ public class V2AccountsCursorResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V2AccountsCursorResponse {
         }
         V2AccountsCursorResponse other = (V2AccountsCursorResponse) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cursor);
     }
     
@@ -63,24 +63,28 @@ public class V2AccountsCursorResponse {
         return Utils.toString(V2AccountsCursorResponse.class,
                 "cursor", cursor);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V2AccountsCursorResponseCursor cursor;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder cursor(V2AccountsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;
         }
-        
+
         public V2AccountsCursorResponse build() {
+
             return new V2AccountsCursorResponse(
                 cursor);
         }
+
     }
 }

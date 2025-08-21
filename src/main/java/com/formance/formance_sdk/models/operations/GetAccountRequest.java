@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetAccountRequest {
-
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
      * ```
@@ -57,9 +56,10 @@ public class GetAccountRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
@@ -82,7 +82,6 @@ public class GetAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,15 +92,14 @@ public class GetAccountRequest {
         }
         GetAccountRequest other = (GetAccountRequest) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            ledger);
+        return Utils.enhancedHash(
+            address, ledger);
     }
     
     @Override
@@ -110,16 +108,18 @@ public class GetAccountRequest {
                 "address", address,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String address;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Exact address of the account. It must match the following regular expressions pattern:
@@ -133,6 +133,7 @@ public class GetAccountRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -141,11 +142,12 @@ public class GetAccountRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public GetAccountRequest build() {
+
             return new GetAccountRequest(
-                address,
-                ledger);
+                address, ledger);
         }
+
     }
 }

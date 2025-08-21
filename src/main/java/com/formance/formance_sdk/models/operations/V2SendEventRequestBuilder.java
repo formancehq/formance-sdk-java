@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2SendEvent;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2SendEventRequestBuilder {
 
     private V2SendEventRequest request;
-    private final SDKMethodInterfaces.MethodCallV2SendEvent sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2SendEventRequestBuilder(SDKMethodInterfaces.MethodCallV2SendEvent sdk) {
-        this.sdk = sdk;
+    public V2SendEventRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2SendEventRequestBuilder request(V2SendEventRequest request) {
@@ -22,8 +26,10 @@ public class V2SendEventRequestBuilder {
     }
 
     public V2SendEventResponse call() throws Exception {
+        
+        RequestOperation<V2SendEventRequest, V2SendEventResponse> operation
+              = new V2SendEvent.Sync(sdkConfiguration);
 
-        return sdk.sendEvent(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

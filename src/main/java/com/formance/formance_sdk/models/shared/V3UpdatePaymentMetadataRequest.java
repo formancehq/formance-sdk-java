@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3UpdatePaymentMetadataRequest {
 
@@ -39,9 +39,10 @@ public class V3UpdatePaymentMetadataRequest {
         return (Optional<Map<String, String>>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3UpdatePaymentMetadataRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -49,13 +50,13 @@ public class V3UpdatePaymentMetadataRequest {
         return this;
     }
 
+
     public V3UpdatePaymentMetadataRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,12 +67,12 @@ public class V3UpdatePaymentMetadataRequest {
         }
         V3UpdatePaymentMetadataRequest other = (V3UpdatePaymentMetadataRequest) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             metadata);
     }
     
@@ -80,14 +81,16 @@ public class V3UpdatePaymentMetadataRequest {
         return Utils.toString(V3UpdatePaymentMetadataRequest.class,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -100,10 +103,12 @@ public class V3UpdatePaymentMetadataRequest {
             this.metadata = metadata;
             return this;
         }
-        
+
         public V3UpdatePaymentMetadataRequest build() {
+
             return new V3UpdatePaymentMetadataRequest(
                 metadata);
         }
+
     }
 }

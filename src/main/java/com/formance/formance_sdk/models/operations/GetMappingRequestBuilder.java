@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetMapping;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetMappingRequestBuilder {
 
     private GetMappingRequest request;
-    private final SDKMethodInterfaces.MethodCallGetMapping sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetMappingRequestBuilder(SDKMethodInterfaces.MethodCallGetMapping sdk) {
-        this.sdk = sdk;
+    public GetMappingRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetMappingRequestBuilder request(GetMappingRequest request) {
@@ -22,8 +26,10 @@ public class GetMappingRequestBuilder {
     }
 
     public GetMappingResponse call() throws Exception {
+        
+        RequestOperation<GetMappingRequest, GetMappingResponse> operation
+              = new GetMapping.Sync(sdkConfiguration);
 
-        return sdk.getMapping(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

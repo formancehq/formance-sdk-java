@@ -12,8 +12,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class StageSendSource {
 
@@ -21,9 +21,11 @@ public class StageSendSource {
     @JsonProperty("account")
     private Optional<? extends StageSendDestinationAccount> account;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
     private Optional<? extends StageSendSourcePayment> payment;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("wallet")
@@ -64,15 +66,17 @@ public class StageSendSource {
         return (Optional<StageSendDestinationWallet>) wallet;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public StageSendSource withAccount(StageSendDestinationAccount account) {
         Utils.checkNotNull(account, "account");
         this.account = Optional.ofNullable(account);
         return this;
     }
+
 
     public StageSendSource withAccount(Optional<? extends StageSendDestinationAccount> account) {
         Utils.checkNotNull(account, "account");
@@ -86,6 +90,7 @@ public class StageSendSource {
         return this;
     }
 
+
     public StageSendSource withPayment(Optional<? extends StageSendSourcePayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
@@ -98,13 +103,13 @@ public class StageSendSource {
         return this;
     }
 
+
     public StageSendSource withWallet(Optional<? extends StageSendDestinationWallet> wallet) {
         Utils.checkNotNull(wallet, "wallet");
         this.wallet = wallet;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +120,15 @@ public class StageSendSource {
         }
         StageSendSource other = (StageSendSource) o;
         return 
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.payment, other.payment) &&
-            Objects.deepEquals(this.wallet, other.wallet);
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.payment, other.payment) &&
+            Utils.enhancedDeepEquals(this.wallet, other.wallet);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            account,
-            payment,
-            wallet);
+        return Utils.enhancedHash(
+            account, payment, wallet);
     }
     
     @Override
@@ -135,18 +138,20 @@ public class StageSendSource {
                 "payment", payment,
                 "wallet", wallet);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends StageSendDestinationAccount> account = Optional.empty();
- 
+
         private Optional<? extends StageSendSourcePayment> payment = Optional.empty();
- 
+
         private Optional<? extends StageSendDestinationWallet> wallet = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder account(StageSendDestinationAccount account) {
             Utils.checkNotNull(account, "account");
@@ -160,6 +165,7 @@ public class StageSendSource {
             return this;
         }
 
+
         public Builder payment(StageSendSourcePayment payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = Optional.ofNullable(payment);
@@ -172,6 +178,7 @@ public class StageSendSource {
             return this;
         }
 
+
         public Builder wallet(StageSendDestinationWallet wallet) {
             Utils.checkNotNull(wallet, "wallet");
             this.wallet = Optional.ofNullable(wallet);
@@ -183,12 +190,12 @@ public class StageSendSource {
             this.wallet = wallet;
             return this;
         }
-        
+
         public StageSendSource build() {
+
             return new StageSendSource(
-                account,
-                payment,
-                wallet);
+                account, payment, wallet);
         }
+
     }
 }

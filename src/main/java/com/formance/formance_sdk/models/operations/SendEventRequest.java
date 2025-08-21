@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class SendEventRequest {
 
@@ -53,15 +53,17 @@ public class SendEventRequest {
         return instanceID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public SendEventRequest withRequestBody(SendEventRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     public SendEventRequest withRequestBody(Optional<? extends SendEventRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -78,7 +80,6 @@ public class SendEventRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +90,14 @@ public class SendEventRequest {
         }
         SendEventRequest other = (SendEventRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.instanceID, other.instanceID);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.instanceID, other.instanceID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            instanceID);
+        return Utils.enhancedHash(
+            requestBody, instanceID);
     }
     
     @Override
@@ -106,16 +106,18 @@ public class SendEventRequest {
                 "requestBody", requestBody,
                 "instanceID", instanceID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends SendEventRequestBody> requestBody = Optional.empty();
- 
+
         private String instanceID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(SendEventRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -129,6 +131,7 @@ public class SendEventRequest {
             return this;
         }
 
+
         /**
          * The instance id
          */
@@ -137,11 +140,12 @@ public class SendEventRequest {
             this.instanceID = instanceID;
             return this;
         }
-        
+
         public SendEventRequest build() {
+
             return new SendEventRequest(
-                requestBody,
-                instanceID);
+                requestBody, instanceID);
         }
+
     }
 }

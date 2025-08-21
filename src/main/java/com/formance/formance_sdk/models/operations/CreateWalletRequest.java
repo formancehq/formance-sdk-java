@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CreateWalletRequest {
 
@@ -52,15 +52,17 @@ public class CreateWalletRequest {
         return idempotencyKey;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateWalletRequest withCreateWalletRequest(com.formance.formance_sdk.models.shared.CreateWalletRequest createWalletRequest) {
         Utils.checkNotNull(createWalletRequest, "createWalletRequest");
         this.createWalletRequest = Optional.ofNullable(createWalletRequest);
         return this;
     }
+
 
     public CreateWalletRequest withCreateWalletRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> createWalletRequest) {
         Utils.checkNotNull(createWalletRequest, "createWalletRequest");
@@ -77,6 +79,7 @@ public class CreateWalletRequest {
         return this;
     }
 
+
     /**
      * Use an idempotency key
      */
@@ -86,7 +89,6 @@ public class CreateWalletRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,15 +99,14 @@ public class CreateWalletRequest {
         }
         CreateWalletRequest other = (CreateWalletRequest) o;
         return 
-            Objects.deepEquals(this.createWalletRequest, other.createWalletRequest) &&
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey);
+            Utils.enhancedDeepEquals(this.createWalletRequest, other.createWalletRequest) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createWalletRequest,
-            idempotencyKey);
+        return Utils.enhancedHash(
+            createWalletRequest, idempotencyKey);
     }
     
     @Override
@@ -114,16 +115,18 @@ public class CreateWalletRequest {
                 "createWalletRequest", createWalletRequest,
                 "idempotencyKey", idempotencyKey);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> createWalletRequest = Optional.empty();
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createWalletRequest(com.formance.formance_sdk.models.shared.CreateWalletRequest createWalletRequest) {
             Utils.checkNotNull(createWalletRequest, "createWalletRequest");
@@ -136,6 +139,7 @@ public class CreateWalletRequest {
             this.createWalletRequest = createWalletRequest;
             return this;
         }
+
 
         /**
          * Use an idempotency key
@@ -154,11 +158,12 @@ public class CreateWalletRequest {
             this.idempotencyKey = idempotencyKey;
             return this;
         }
-        
+
         public CreateWalletRequest build() {
+
             return new CreateWalletRequest(
-                createWalletRequest,
-                idempotencyKey);
+                createWalletRequest, idempotencyKey);
         }
+
     }
 }

@@ -22,7 +22,7 @@ public enum ErrorsEnum {
     @JsonValue
     private final String value;
 
-    private ErrorsEnum(String value) {
+    ErrorsEnum(String value) {
         this.value = value;
     }
     

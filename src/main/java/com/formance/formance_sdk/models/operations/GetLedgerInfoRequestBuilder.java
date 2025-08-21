@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetLedgerInfo;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetLedgerInfoRequestBuilder {
 
     private GetLedgerInfoRequest request;
-    private final SDKMethodInterfaces.MethodCallGetLedgerInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetLedgerInfoRequestBuilder(SDKMethodInterfaces.MethodCallGetLedgerInfo sdk) {
-        this.sdk = sdk;
+    public GetLedgerInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetLedgerInfoRequestBuilder request(GetLedgerInfoRequest request) {
@@ -22,8 +26,10 @@ public class GetLedgerInfoRequestBuilder {
     }
 
     public GetLedgerInfoResponse call() throws Exception {
+        
+        RequestOperation<GetLedgerInfoRequest, GetLedgerInfoResponse> operation
+              = new GetLedgerInfo.Sync(sdkConfiguration);
 
-        return sdk.getLedgerInfo(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

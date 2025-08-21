@@ -10,11 +10,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3ListConnectorScheduleInstancesRequest {
 
+public class V3ListConnectorScheduleInstancesRequest {
     /**
      * The connector ID
      */
@@ -58,7 +57,8 @@ public class V3ListConnectorScheduleInstancesRequest {
     public V3ListConnectorScheduleInstancesRequest(
             String connectorID,
             String scheduleID) {
-        this(connectorID, Optional.empty(), Optional.empty(), scheduleID);
+        this(connectorID, Optional.empty(), Optional.empty(),
+            scheduleID);
     }
 
     /**
@@ -93,9 +93,10 @@ public class V3ListConnectorScheduleInstancesRequest {
         return scheduleID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The connector ID
@@ -115,6 +116,7 @@ public class V3ListConnectorScheduleInstancesRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
      */
@@ -132,6 +134,7 @@ public class V3ListConnectorScheduleInstancesRequest {
         this.pageSize = Optional.ofNullable(pageSize);
         return this;
     }
+
 
     /**
      * The number of items to return
@@ -151,7 +154,6 @@ public class V3ListConnectorScheduleInstancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,18 +164,16 @@ public class V3ListConnectorScheduleInstancesRequest {
         }
         V3ListConnectorScheduleInstancesRequest other = (V3ListConnectorScheduleInstancesRequest) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.scheduleID, other.scheduleID);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.scheduleID, other.scheduleID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorID,
-            cursor,
-            pageSize,
+        return Utils.enhancedHash(
+            connectorID, cursor, pageSize,
             scheduleID);
     }
     
@@ -185,20 +185,22 @@ public class V3ListConnectorScheduleInstancesRequest {
                 "pageSize", pageSize,
                 "scheduleID", scheduleID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private String scheduleID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The connector ID
@@ -208,6 +210,7 @@ public class V3ListConnectorScheduleInstancesRequest {
             this.connectorID = connectorID;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
@@ -227,6 +230,7 @@ public class V3ListConnectorScheduleInstancesRequest {
             return this;
         }
 
+
         /**
          * The number of items to return
          */
@@ -245,6 +249,7 @@ public class V3ListConnectorScheduleInstancesRequest {
             return this;
         }
 
+
         /**
          * The schedule ID
          */
@@ -253,13 +258,13 @@ public class V3ListConnectorScheduleInstancesRequest {
             this.scheduleID = scheduleID;
             return this;
         }
-        
+
         public V3ListConnectorScheduleInstancesRequest build() {
+
             return new V3ListConnectorScheduleInstancesRequest(
-                connectorID,
-                cursor,
-                pageSize,
+                connectorID, cursor, pageSize,
                 scheduleID);
         }
+
     }
 }

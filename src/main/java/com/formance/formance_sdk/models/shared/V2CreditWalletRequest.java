@@ -14,8 +14,8 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2CreditWalletRequest {
 
@@ -35,12 +35,15 @@ public class V2CreditWalletRequest {
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
+
     @JsonProperty("sources")
     private List<V2Subject> sources;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
@@ -57,6 +60,7 @@ public class V2CreditWalletRequest {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(balance, "balance");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(sources, "sources");
         Utils.checkNotNull(timestamp, "timestamp");
@@ -72,7 +76,8 @@ public class V2CreditWalletRequest {
             V2Monetary amount,
             Map<String, String> metadata,
             List<V2Subject> sources) {
-        this(amount, Optional.empty(), metadata, Optional.empty(), sources, Optional.empty());
+        this(amount, Optional.empty(), metadata,
+            Optional.empty(), sources, Optional.empty());
     }
 
     @JsonIgnore
@@ -111,9 +116,10 @@ public class V2CreditWalletRequest {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2CreditWalletRequest withAmount(V2Monetary amount) {
         Utils.checkNotNull(amount, "amount");
@@ -129,6 +135,7 @@ public class V2CreditWalletRequest {
         this.balance = Optional.ofNullable(balance);
         return this;
     }
+
 
     /**
      * The balance to credit
@@ -154,6 +161,7 @@ public class V2CreditWalletRequest {
         return this;
     }
 
+
     public V2CreditWalletRequest withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -172,13 +180,13 @@ public class V2CreditWalletRequest {
         return this;
     }
 
+
     public V2CreditWalletRequest withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -189,23 +197,19 @@ public class V2CreditWalletRequest {
         }
         V2CreditWalletRequest other = (V2CreditWalletRequest) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.sources, other.sources) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.sources, other.sources) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            balance,
-            metadata,
-            reference,
-            sources,
-            timestamp);
+        return Utils.enhancedHash(
+            amount, balance, metadata,
+            reference, sources, timestamp);
     }
     
     @Override
@@ -218,30 +222,33 @@ public class V2CreditWalletRequest {
                 "sources", sources,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V2Monetary amount;
- 
+
         private Optional<String> balance = Optional.empty();
- 
+
         private Map<String, String> metadata;
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private List<V2Subject> sources;
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(V2Monetary amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The balance to credit
@@ -261,6 +268,7 @@ public class V2CreditWalletRequest {
             return this;
         }
 
+
         /**
          * Metadata associated with the wallet.
          */
@@ -269,6 +277,7 @@ public class V2CreditWalletRequest {
             this.metadata = metadata;
             return this;
         }
+
 
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -282,11 +291,13 @@ public class V2CreditWalletRequest {
             return this;
         }
 
+
         public Builder sources(List<V2Subject> sources) {
             Utils.checkNotNull(sources, "sources");
             this.sources = sources;
             return this;
         }
+
 
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
@@ -299,15 +310,13 @@ public class V2CreditWalletRequest {
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public V2CreditWalletRequest build() {
+
             return new V2CreditWalletRequest(
-                amount,
-                balance,
-                metadata,
-                reference,
-                sources,
-                timestamp);
+                amount, balance, metadata,
+                reference, sources, timestamp);
         }
+
     }
 }

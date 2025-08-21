@@ -11,11 +11,10 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3GetAccountBalancesRequest {
 
+public class V3GetAccountBalancesRequest {
     /**
      * The account ID
      */
@@ -76,7 +75,8 @@ public class V3GetAccountBalancesRequest {
     
     public V3GetAccountBalancesRequest(
             String accountID) {
-        this(accountID, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(accountID, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -127,9 +127,10 @@ public class V3GetAccountBalancesRequest {
         return toTimestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The account ID
@@ -149,6 +150,7 @@ public class V3GetAccountBalancesRequest {
         return this;
     }
 
+
     /**
      * The asset to filter by
      */
@@ -166,6 +168,7 @@ public class V3GetAccountBalancesRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
@@ -185,6 +188,7 @@ public class V3GetAccountBalancesRequest {
         return this;
     }
 
+
     /**
      * The start of the time range to filter by
      */
@@ -202,6 +206,7 @@ public class V3GetAccountBalancesRequest {
         this.pageSize = Optional.ofNullable(pageSize);
         return this;
     }
+
 
     /**
      * The number of items to return
@@ -221,6 +226,7 @@ public class V3GetAccountBalancesRequest {
         return this;
     }
 
+
     /**
      * The end of the time range to filter by
      */
@@ -230,7 +236,6 @@ public class V3GetAccountBalancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -241,23 +246,19 @@ public class V3GetAccountBalancesRequest {
         }
         V3GetAccountBalancesRequest other = (V3GetAccountBalancesRequest) o;
         return 
-            Objects.deepEquals(this.accountID, other.accountID) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.fromTimestamp, other.fromTimestamp) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.toTimestamp, other.toTimestamp);
+            Utils.enhancedDeepEquals(this.accountID, other.accountID) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.fromTimestamp, other.fromTimestamp) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.toTimestamp, other.toTimestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountID,
-            asset,
-            cursor,
-            fromTimestamp,
-            pageSize,
-            toTimestamp);
+        return Utils.enhancedHash(
+            accountID, asset, cursor,
+            fromTimestamp, pageSize, toTimestamp);
     }
     
     @Override
@@ -270,24 +271,26 @@ public class V3GetAccountBalancesRequest {
                 "pageSize", pageSize,
                 "toTimestamp", toTimestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountID;
- 
+
         private Optional<String> asset = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<OffsetDateTime> fromTimestamp = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<OffsetDateTime> toTimestamp = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The account ID
@@ -297,6 +300,7 @@ public class V3GetAccountBalancesRequest {
             this.accountID = accountID;
             return this;
         }
+
 
         /**
          * The asset to filter by
@@ -316,6 +320,7 @@ public class V3GetAccountBalancesRequest {
             return this;
         }
 
+
         /**
          * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
          */
@@ -333,6 +338,7 @@ public class V3GetAccountBalancesRequest {
             this.cursor = cursor;
             return this;
         }
+
 
         /**
          * The start of the time range to filter by
@@ -352,6 +358,7 @@ public class V3GetAccountBalancesRequest {
             return this;
         }
 
+
         /**
          * The number of items to return
          */
@@ -370,6 +377,7 @@ public class V3GetAccountBalancesRequest {
             return this;
         }
 
+
         /**
          * The end of the time range to filter by
          */
@@ -387,15 +395,13 @@ public class V3GetAccountBalancesRequest {
             this.toTimestamp = toTimestamp;
             return this;
         }
-        
+
         public V3GetAccountBalancesRequest build() {
+
             return new V3GetAccountBalancesRequest(
-                accountID,
-                asset,
-                cursor,
-                fromTimestamp,
-                pageSize,
-                toTimestamp);
+                accountID, asset, cursor,
+                fromTimestamp, pageSize, toTimestamp);
         }
+
     }
 }

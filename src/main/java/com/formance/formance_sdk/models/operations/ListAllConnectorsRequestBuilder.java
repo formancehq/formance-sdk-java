@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ListAllConnectors;
 import java.lang.Exception;
 
 public class ListAllConnectorsRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallListAllConnectors sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListAllConnectorsRequestBuilder(SDKMethodInterfaces.MethodCallListAllConnectors sdk) {
-        this.sdk = sdk;
+    public ListAllConnectorsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListAllConnectorsResponse call() throws Exception {
+        
+        RequestlessOperation<ListAllConnectorsResponse> operation
+            = new ListAllConnectors.Sync(sdkConfiguration);
 
-        return sdk.listAllConnectorsDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ListTransferInitiations;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ListTransferInitiationsRequestBuilder {
 
     private ListTransferInitiationsRequest request;
-    private final SDKMethodInterfaces.MethodCallListTransferInitiations sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListTransferInitiationsRequestBuilder(SDKMethodInterfaces.MethodCallListTransferInitiations sdk) {
-        this.sdk = sdk;
+    public ListTransferInitiationsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListTransferInitiationsRequestBuilder request(ListTransferInitiationsRequest request) {
@@ -22,8 +26,10 @@ public class ListTransferInitiationsRequestBuilder {
     }
 
     public ListTransferInitiationsResponse call() throws Exception {
+        
+        RequestOperation<ListTransferInitiationsRequest, ListTransferInitiationsResponse> operation
+              = new ListTransferInitiations.Sync(sdkConfiguration);
 
-        return sdk.listTransferInitiations(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -62,6 +62,7 @@ Add an account to a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3AddAccountToPool" method="post" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```java
 package hello.world;
 
@@ -78,8 +79,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -120,6 +121,7 @@ Add a bank account to a payment service user
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3AddBankAccountToPaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}" -->
 ```java
 package hello.world;
 
@@ -136,8 +138,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -178,6 +180,7 @@ Approve a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ApprovePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/approve" -->
 ```java
 package hello.world;
 
@@ -194,8 +197,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -238,6 +241,7 @@ Create a formance account object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3CreateAccount" method="post" path="/api/payments/v3/accounts" -->
 ```java
 package hello.world;
 
@@ -253,8 +257,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -292,6 +296,7 @@ Create a formance bank account object. This object will not be forwarded to the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3CreateBankAccount" method="post" path="/api/payments/v3/bank-accounts" -->
 ```java
 package hello.world;
 
@@ -307,8 +312,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -346,6 +351,7 @@ Create a formance payment object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3CreatePayment" method="post" path="/api/payments/v3/payments" -->
 ```java
 package hello.world;
 
@@ -361,8 +367,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -399,6 +405,7 @@ Create a formance payment service user object
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3CreatePaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users" -->
 ```java
 package hello.world;
 
@@ -414,8 +421,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -452,6 +459,7 @@ Create a formance pool object
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3CreatePool" method="post" path="/api/payments/v3/pools" -->
 ```java
 package hello.world;
 
@@ -467,8 +475,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -505,6 +513,7 @@ Delete a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3DeletePaymentInitiation" method="delete" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```java
 package hello.world;
 
@@ -521,8 +530,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -562,6 +571,7 @@ Delete a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3DeletePool" method="delete" path="/api/payments/v3/pools/{poolID}" -->
 ```java
 package hello.world;
 
@@ -578,8 +588,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -619,6 +629,7 @@ Forward a Bank Account to a PSP for creation
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ForwardBankAccount" method="post" path="/api/payments/v3/bank-accounts/{bankAccountID}/forward" -->
 ```java
 package hello.world;
 
@@ -635,8 +646,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -678,6 +689,7 @@ Forward a payment service user's bank account to a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ForwardPaymentServiceUserBankAccount" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward" -->
 ```java
 package hello.world;
 
@@ -694,8 +706,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -738,6 +750,7 @@ Get an account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetAccount" method="get" path="/api/payments/v3/accounts/{accountID}" -->
 ```java
 package hello.world;
 
@@ -754,8 +767,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -797,6 +810,7 @@ Get account balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetAccountBalances" method="get" path="/api/payments/v3/accounts/{accountID}/balances" -->
 ```java
 package hello.world;
 
@@ -813,8 +827,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -858,6 +872,7 @@ Get a Bank Account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetBankAccount" method="get" path="/api/payments/v3/bank-accounts/{bankAccountID}" -->
 ```java
 package hello.world;
 
@@ -874,8 +889,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -917,6 +932,7 @@ Get a connector configuration by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetConnectorConfig" method="get" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```java
 package hello.world;
 
@@ -933,8 +949,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -976,6 +992,7 @@ Get a connector schedule by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetConnectorSchedule" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}" -->
 ```java
 package hello.world;
 
@@ -992,8 +1009,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1036,6 +1053,7 @@ Get a payment by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetPayment" method="get" path="/api/payments/v3/payments/{paymentID}" -->
 ```java
 package hello.world;
 
@@ -1052,8 +1070,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1095,6 +1113,7 @@ Get a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetPaymentInitiation" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```java
 package hello.world;
 
@@ -1111,8 +1130,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1154,6 +1173,7 @@ Get a payment service user by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetPaymentServiceUser" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}" -->
 ```java
 package hello.world;
 
@@ -1170,8 +1190,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1213,6 +1233,7 @@ Get a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetPool" method="get" path="/api/payments/v3/pools/{poolID}" -->
 ```java
 package hello.world;
 
@@ -1229,8 +1250,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1272,6 +1293,7 @@ Get historical pool balances from a particular point in time
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetPoolBalances" method="get" path="/api/payments/v3/pools/{poolID}/balances" -->
 ```java
 package hello.world;
 
@@ -1288,8 +1310,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1331,6 +1353,7 @@ Get latest pool balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetPoolBalancesLatest" method="get" path="/api/payments/v3/pools/{poolID}/balances/latest" -->
 ```java
 package hello.world;
 
@@ -1347,8 +1370,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1390,6 +1413,7 @@ Get a task and its result by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3GetTask" method="get" path="/api/payments/v3/tasks/{taskID}" -->
 ```java
 package hello.world;
 
@@ -1406,8 +1430,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1449,6 +1473,7 @@ Initiate a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3InitiatePayment" method="post" path="/api/payments/v3/payment-initiations" -->
 ```java
 package hello.world;
 
@@ -1465,8 +1490,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1507,6 +1532,7 @@ Install a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3InstallConnector" method="post" path="/api/payments/v3/connectors/install/{connector}" -->
 ```java
 package hello.world;
 
@@ -1523,8 +1549,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1566,6 +1592,7 @@ List all accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListAccounts" method="get" path="/api/payments/v3/accounts" -->
 ```java
 package hello.world;
 
@@ -1582,8 +1609,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1626,6 +1653,7 @@ List all bank accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListBankAccounts" method="get" path="/api/payments/v3/bank-accounts" -->
 ```java
 package hello.world;
 
@@ -1642,8 +1670,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1686,6 +1714,7 @@ List all connector configurations
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListConnectorConfigs" method="get" path="/api/payments/v3/connectors/configs" -->
 ```java
 package hello.world;
 
@@ -1701,8 +1730,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1733,6 +1762,7 @@ List all connector schedule instances
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListConnectorScheduleInstances" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances" -->
 ```java
 package hello.world;
 
@@ -1749,8 +1779,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1795,6 +1825,7 @@ List all connector schedules
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListConnectorSchedules" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules" -->
 ```java
 package hello.world;
 
@@ -1811,8 +1842,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1856,6 +1887,7 @@ List all connectors
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListConnectors" method="get" path="/api/payments/v3/connectors" -->
 ```java
 package hello.world;
 
@@ -1872,8 +1904,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1916,6 +1948,7 @@ List all payment initiation adjustments
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListPaymentInitiationAdjustments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments" -->
 ```java
 package hello.world;
 
@@ -1932,8 +1965,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -1977,6 +2010,7 @@ List all payments related to a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListPaymentInitiationRelatedPayments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/payments" -->
 ```java
 package hello.world;
 
@@ -1993,8 +2027,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2038,6 +2072,7 @@ List all payment initiations
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListPaymentInitiations" method="get" path="/api/payments/v3/payment-initiations" -->
 ```java
 package hello.world;
 
@@ -2054,8 +2089,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2098,6 +2133,7 @@ List all payment service users
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListPaymentServiceUsers" method="get" path="/api/payments/v3/payment-service-users" -->
 ```java
 package hello.world;
 
@@ -2114,8 +2150,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2158,6 +2194,7 @@ List all payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListPayments" method="get" path="/api/payments/v3/payments" -->
 ```java
 package hello.world;
 
@@ -2174,8 +2211,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2218,6 +2255,7 @@ List all pools
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ListPools" method="get" path="/api/payments/v3/pools" -->
 ```java
 package hello.world;
 
@@ -2234,8 +2272,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2278,6 +2316,7 @@ Reject a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3RejectPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reject" -->
 ```java
 package hello.world;
 
@@ -2294,8 +2333,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2335,6 +2374,7 @@ Remove an account from a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3RemoveAccountFromPool" method="delete" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```java
 package hello.world;
 
@@ -2351,8 +2391,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2393,6 +2433,7 @@ Reset a connector. Be aware that this will delete all data and stop all existing
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ResetConnector" method="post" path="/api/payments/v3/connectors/{connectorID}/reset" -->
 ```java
 package hello.world;
 
@@ -2409,8 +2450,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2452,6 +2493,7 @@ Retry a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3RetryPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/retry" -->
 ```java
 package hello.world;
 
@@ -2468,8 +2510,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2511,6 +2553,7 @@ Reverse a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3ReversePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse" -->
 ```java
 package hello.world;
 
@@ -2527,8 +2570,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2570,6 +2613,7 @@ Uninstall a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3UninstallConnector" method="delete" path="/api/payments/v3/connectors/{connectorID}" -->
 ```java
 package hello.world;
 
@@ -2586,8 +2630,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2629,6 +2673,7 @@ Update a bank account's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3UpdateBankAccountMetadata" method="patch" path="/api/payments/v3/bank-accounts/{bankAccountID}/metadata" -->
 ```java
 package hello.world;
 
@@ -2645,8 +2690,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2686,6 +2731,7 @@ Update a payment's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3UpdatePaymentMetadata" method="patch" path="/api/payments/v3/payments/{paymentID}/metadata" -->
 ```java
 package hello.world;
 
@@ -2702,8 +2748,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -2743,6 +2789,7 @@ Update connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="v3UpdateConnectorConfig" method="patch" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```java
 package hello.world;
 
@@ -2759,8 +2806,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 

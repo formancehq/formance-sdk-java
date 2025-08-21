@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3RetryPaymentInitiation;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3RetryPaymentInitiationRequestBuilder {
 
     private V3RetryPaymentInitiationRequest request;
-    private final SDKMethodInterfaces.MethodCallV3RetryPaymentInitiation sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3RetryPaymentInitiationRequestBuilder(SDKMethodInterfaces.MethodCallV3RetryPaymentInitiation sdk) {
-        this.sdk = sdk;
+    public V3RetryPaymentInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3RetryPaymentInitiationRequestBuilder request(V3RetryPaymentInitiationRequest request) {
@@ -22,8 +26,10 @@ public class V3RetryPaymentInitiationRequestBuilder {
     }
 
     public V3RetryPaymentInitiationResponse call() throws Exception {
+        
+        RequestOperation<V3RetryPaymentInitiationRequest, V3RetryPaymentInitiationResponse> operation
+              = new V3RetryPaymentInitiation.Sync(sdkConfiguration);
 
-        return sdk.retryPaymentInitiation(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

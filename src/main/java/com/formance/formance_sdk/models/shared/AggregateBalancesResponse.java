@@ -11,7 +11,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class AggregateBalancesResponse {
 
@@ -22,6 +22,7 @@ public class AggregateBalancesResponse {
     public AggregateBalancesResponse(
             @JsonProperty("data") Map<String, Long> data) {
         data = Utils.emptyMapIfNull(data);
+        Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
@@ -30,9 +31,10 @@ public class AggregateBalancesResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AggregateBalancesResponse withData(Map<String, Long> data) {
         Utils.checkNotNull(data, "data");
@@ -40,7 +42,6 @@ public class AggregateBalancesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -51,12 +52,12 @@ public class AggregateBalancesResponse {
         }
         AggregateBalancesResponse other = (AggregateBalancesResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -65,24 +66,28 @@ public class AggregateBalancesResponse {
         return Utils.toString(AggregateBalancesResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Long> data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Map<String, Long> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public AggregateBalancesResponse build() {
+
             return new AggregateBalancesResponse(
                 data);
         }
+
     }
 }

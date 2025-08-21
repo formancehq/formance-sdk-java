@@ -13,34 +13,41 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3Instance {
 
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("scheduleID")
     private String scheduleID;
 
+
     @JsonProperty("terminated")
     private boolean terminated;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
     private Optional<OffsetDateTime> terminatedAt;
+
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
@@ -80,7 +87,9 @@ public class V3Instance {
             String scheduleID,
             boolean terminated,
             OffsetDateTime updatedAt) {
-        this(connectorID, createdAt, JsonNullable.undefined(), id, scheduleID, terminated, Optional.empty(), updatedAt);
+        this(connectorID, createdAt, JsonNullable.undefined(),
+            id, scheduleID, terminated,
+            Optional.empty(), updatedAt);
     }
 
     @JsonIgnore
@@ -123,9 +132,10 @@ public class V3Instance {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3Instance withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -175,6 +185,7 @@ public class V3Instance {
         return this;
     }
 
+
     public V3Instance withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
@@ -187,7 +198,6 @@ public class V3Instance {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,27 +208,22 @@ public class V3Instance {
         }
         V3Instance other = (V3Instance) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.scheduleID, other.scheduleID) &&
-            Objects.deepEquals(this.terminated, other.terminated) &&
-            Objects.deepEquals(this.terminatedAt, other.terminatedAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.scheduleID, other.scheduleID) &&
+            Utils.enhancedDeepEquals(this.terminated, other.terminated) &&
+            Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorID,
-            createdAt,
-            error,
-            id,
-            scheduleID,
-            terminated,
-            terminatedAt,
-            updatedAt);
+        return Utils.enhancedHash(
+            connectorID, createdAt, error,
+            id, scheduleID, terminated,
+            terminatedAt, updatedAt);
     }
     
     @Override
@@ -233,28 +238,30 @@ public class V3Instance {
                 "terminatedAt", terminatedAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private JsonNullable<String> error = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private String scheduleID;
- 
+
         private Boolean terminated;
- 
+
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -262,11 +269,13 @@ public class V3Instance {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -280,11 +289,13 @@ public class V3Instance {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder scheduleID(String scheduleID) {
             Utils.checkNotNull(scheduleID, "scheduleID");
@@ -292,11 +303,13 @@ public class V3Instance {
             return this;
         }
 
+
         public Builder terminated(boolean terminated) {
             Utils.checkNotNull(terminated, "terminated");
             this.terminated = terminated;
             return this;
         }
+
 
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
@@ -310,22 +323,20 @@ public class V3Instance {
             return this;
         }
 
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public V3Instance build() {
+
             return new V3Instance(
-                connectorID,
-                createdAt,
-                error,
-                id,
-                scheduleID,
-                terminated,
-                terminatedAt,
-                updatedAt);
+                connectorID, createdAt, error,
+                id, scheduleID, terminated,
+                terminatedAt, updatedAt);
         }
+
     }
 }

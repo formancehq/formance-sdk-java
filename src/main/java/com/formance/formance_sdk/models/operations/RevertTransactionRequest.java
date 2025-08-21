@@ -11,11 +11,10 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
 import java.util.Optional;
 
-public class RevertTransactionRequest {
 
+public class RevertTransactionRequest {
     /**
      * Allow to disable balances checks
      */
@@ -77,9 +76,10 @@ public class RevertTransactionRequest {
         return txid;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Allow to disable balances checks
@@ -89,6 +89,7 @@ public class RevertTransactionRequest {
         this.disableChecks = Optional.ofNullable(disableChecks);
         return this;
     }
+
 
     /**
      * Allow to disable balances checks
@@ -108,9 +109,9 @@ public class RevertTransactionRequest {
         return this;
     }
 
-        /**
-         * Transaction ID.
-         */
+    /**
+     * Transaction ID.
+     */
     public RevertTransactionRequest withTxid(long txid) {
         this.txid = BigInteger.valueOf(txid);
         return this;
@@ -125,7 +126,6 @@ public class RevertTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,17 +136,15 @@ public class RevertTransactionRequest {
         }
         RevertTransactionRequest other = (RevertTransactionRequest) o;
         return 
-            Objects.deepEquals(this.disableChecks, other.disableChecks) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.txid, other.txid);
+            Utils.enhancedDeepEquals(this.disableChecks, other.disableChecks) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            disableChecks,
-            ledger,
-            txid);
+        return Utils.enhancedHash(
+            disableChecks, ledger, txid);
     }
     
     @Override
@@ -156,18 +154,20 @@ public class RevertTransactionRequest {
                 "ledger", ledger,
                 "txid", txid);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> disableChecks = Optional.empty();
- 
+
         private String ledger;
- 
+
         private BigInteger txid;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Allow to disable balances checks
@@ -187,6 +187,7 @@ public class RevertTransactionRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -195,6 +196,7 @@ public class RevertTransactionRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Transaction ID.
@@ -212,12 +214,12 @@ public class RevertTransactionRequest {
             this.txid = txid;
             return this;
         }
-        
+
         public RevertTransactionRequest build() {
+
             return new RevertTransactionRequest(
-                disableChecks,
-                ledger,
-                txid);
+                disableChecks, ledger, txid);
         }
+
     }
 }

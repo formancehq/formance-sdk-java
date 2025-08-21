@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class DeleteTriggerRequest {
-
     /**
      * The trigger id
      */
@@ -34,9 +33,10 @@ public class DeleteTriggerRequest {
         return triggerID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The trigger id
@@ -47,7 +47,6 @@ public class DeleteTriggerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class DeleteTriggerRequest {
         }
         DeleteTriggerRequest other = (DeleteTriggerRequest) o;
         return 
-            Objects.deepEquals(this.triggerID, other.triggerID);
+            Utils.enhancedDeepEquals(this.triggerID, other.triggerID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             triggerID);
     }
     
@@ -72,14 +71,16 @@ public class DeleteTriggerRequest {
         return Utils.toString(DeleteTriggerRequest.class,
                 "triggerID", triggerID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String triggerID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The trigger id
@@ -89,10 +90,12 @@ public class DeleteTriggerRequest {
             this.triggerID = triggerID;
             return this;
         }
-        
+
         public DeleteTriggerRequest build() {
+
             return new DeleteTriggerRequest(
                 triggerID);
         }
+
     }
 }

@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3GetPoolBalancesLatest;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3GetPoolBalancesLatestRequestBuilder {
 
     private V3GetPoolBalancesLatestRequest request;
-    private final SDKMethodInterfaces.MethodCallV3GetPoolBalancesLatest sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3GetPoolBalancesLatestRequestBuilder(SDKMethodInterfaces.MethodCallV3GetPoolBalancesLatest sdk) {
-        this.sdk = sdk;
+    public V3GetPoolBalancesLatestRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3GetPoolBalancesLatestRequestBuilder request(V3GetPoolBalancesLatestRequest request) {
@@ -22,8 +26,10 @@ public class V3GetPoolBalancesLatestRequestBuilder {
     }
 
     public V3GetPoolBalancesLatestResponse call() throws Exception {
+        
+        RequestOperation<V3GetPoolBalancesLatestRequest, V3GetPoolBalancesLatestResponse> operation
+              = new V3GetPoolBalancesLatest.Sync(sdkConfiguration);
 
-        return sdk.getPoolBalancesLatest(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

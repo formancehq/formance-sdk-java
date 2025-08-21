@@ -13,11 +13,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListConnectorTasksV1Request {
 
+public class ListConnectorTasksV1Request {
     /**
      * The name of the connector.
      */
@@ -64,7 +63,8 @@ public class ListConnectorTasksV1Request {
     public ListConnectorTasksV1Request(
             Connector connector,
             String connectorId) {
-        this(connector, connectorId, Optional.empty(), Optional.empty());
+        this(connector, connectorId, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -102,9 +102,10 @@ public class ListConnectorTasksV1Request {
         return pageSize;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the connector.
@@ -136,6 +137,7 @@ public class ListConnectorTasksV1Request {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -157,6 +159,7 @@ public class ListConnectorTasksV1Request {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -166,7 +169,6 @@ public class ListConnectorTasksV1Request {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -177,18 +179,16 @@ public class ListConnectorTasksV1Request {
         }
         ListConnectorTasksV1Request other = (ListConnectorTasksV1Request) o;
         return 
-            Objects.deepEquals(this.connector, other.connector) &&
-            Objects.deepEquals(this.connectorId, other.connectorId) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize);
+            Utils.enhancedDeepEquals(this.connector, other.connector) &&
+            Utils.enhancedDeepEquals(this.connectorId, other.connectorId) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connector,
-            connectorId,
-            cursor,
+        return Utils.enhancedHash(
+            connector, connectorId, cursor,
             pageSize);
     }
     
@@ -200,20 +200,22 @@ public class ListConnectorTasksV1Request {
                 "cursor", cursor,
                 "pageSize", pageSize);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Connector connector;
- 
+
         private String connectorId;
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the connector.
@@ -224,6 +226,7 @@ public class ListConnectorTasksV1Request {
             return this;
         }
 
+
         /**
          * The connector ID.
          */
@@ -232,6 +235,7 @@ public class ListConnectorTasksV1Request {
             this.connectorId = connectorId;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -257,6 +261,7 @@ public class ListConnectorTasksV1Request {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -274,17 +279,17 @@ public class ListConnectorTasksV1Request {
             this.pageSize = pageSize;
             return this;
         }
-        
+
         public ListConnectorTasksV1Request build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
             }
+
             return new ListConnectorTasksV1Request(
-                connector,
-                connectorId,
-                cursor,
+                connector, connectorId, cursor,
                 pageSize);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

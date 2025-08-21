@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ResetConnector;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ResetConnectorRequestBuilder {
 
     private ResetConnectorRequest request;
-    private final SDKMethodInterfaces.MethodCallResetConnector sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ResetConnectorRequestBuilder(SDKMethodInterfaces.MethodCallResetConnector sdk) {
-        this.sdk = sdk;
+    public ResetConnectorRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ResetConnectorRequestBuilder request(ResetConnectorRequest request) {
@@ -22,8 +26,10 @@ public class ResetConnectorRequestBuilder {
     }
 
     public ResetConnectorResponse call() throws Exception {
+        
+        RequestOperation<ResetConnectorRequest, ResetConnectorResponse> operation
+              = new ResetConnector.Sync(sdkConfiguration);
 
-        return sdk.resetConnector(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

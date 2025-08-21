@@ -11,21 +11,25 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class PaymentAdjustment {
 
     @JsonProperty("amount")
     private BigInteger amount;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("raw")
     private PaymentAdjustmentRaw raw;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("status")
     private PaymentStatus status;
@@ -74,9 +78,10 @@ public class PaymentAdjustment {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentAdjustment withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -113,7 +118,6 @@ public class PaymentAdjustment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -124,21 +128,18 @@ public class PaymentAdjustment {
         }
         PaymentAdjustment other = (PaymentAdjustment) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            createdAt,
-            raw,
-            reference,
-            status);
+        return Utils.enhancedHash(
+            amount, createdAt, raw,
+            reference, status);
     }
     
     @Override
@@ -150,22 +151,24 @@ public class PaymentAdjustment {
                 "reference", reference,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger amount;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private PaymentAdjustmentRaw raw;
- 
+
         private String reference;
- 
+
         private PaymentStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
@@ -178,11 +181,13 @@ public class PaymentAdjustment {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder raw(PaymentAdjustmentRaw raw) {
             Utils.checkNotNull(raw, "raw");
@@ -190,25 +195,26 @@ public class PaymentAdjustment {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
         public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public PaymentAdjustment build() {
+
             return new PaymentAdjustment(
-                amount,
-                createdAt,
-                raw,
-                reference,
-                status);
+                amount, createdAt, raw,
+                reference, status);
         }
+
     }
 }

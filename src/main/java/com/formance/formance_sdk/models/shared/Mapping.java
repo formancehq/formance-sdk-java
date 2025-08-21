@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class Mapping {
 
@@ -29,9 +29,10 @@ public class Mapping {
         return contracts;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Mapping withContracts(List<Contract> contracts) {
         Utils.checkNotNull(contracts, "contracts");
@@ -39,7 +40,6 @@ public class Mapping {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class Mapping {
         }
         Mapping other = (Mapping) o;
         return 
-            Objects.deepEquals(this.contracts, other.contracts);
+            Utils.enhancedDeepEquals(this.contracts, other.contracts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             contracts);
     }
     
@@ -64,24 +64,28 @@ public class Mapping {
         return Utils.toString(Mapping.class,
                 "contracts", contracts);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Contract> contracts;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder contracts(List<Contract> contracts) {
             Utils.checkNotNull(contracts, "contracts");
             this.contracts = contracts;
             return this;
         }
-        
+
         public Mapping build() {
+
             return new Mapping(
                 contracts);
         }
+
     }
 }

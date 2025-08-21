@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationPaymentMetadata {
 
@@ -36,9 +36,10 @@ public class OrchestrationPaymentMetadata {
         return key;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationPaymentMetadata withKey(String key) {
         Utils.checkNotNull(key, "key");
@@ -46,13 +47,13 @@ public class OrchestrationPaymentMetadata {
         return this;
     }
 
+
     public OrchestrationPaymentMetadata withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -63,12 +64,12 @@ public class OrchestrationPaymentMetadata {
         }
         OrchestrationPaymentMetadata other = (OrchestrationPaymentMetadata) o;
         return 
-            Objects.deepEquals(this.key, other.key);
+            Utils.enhancedDeepEquals(this.key, other.key);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             key);
     }
     
@@ -77,14 +78,16 @@ public class OrchestrationPaymentMetadata {
         return Utils.toString(OrchestrationPaymentMetadata.class,
                 "key", key);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> key = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
@@ -97,10 +100,12 @@ public class OrchestrationPaymentMetadata {
             this.key = key;
             return this;
         }
-        
+
         public OrchestrationPaymentMetadata build() {
+
             return new OrchestrationPaymentMetadata(
                 key);
         }
+
     }
 }

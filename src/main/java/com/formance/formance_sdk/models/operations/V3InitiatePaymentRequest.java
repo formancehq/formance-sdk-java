@@ -13,8 +13,8 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3InitiatePaymentRequest {
 
@@ -55,15 +55,17 @@ public class V3InitiatePaymentRequest {
         return noValidation;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3InitiatePaymentRequest withV3InitiatePaymentRequest(com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest v3InitiatePaymentRequest) {
         Utils.checkNotNull(v3InitiatePaymentRequest, "v3InitiatePaymentRequest");
         this.v3InitiatePaymentRequest = Optional.ofNullable(v3InitiatePaymentRequest);
         return this;
     }
+
 
     public V3InitiatePaymentRequest withV3InitiatePaymentRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest) {
         Utils.checkNotNull(v3InitiatePaymentRequest, "v3InitiatePaymentRequest");
@@ -80,6 +82,7 @@ public class V3InitiatePaymentRequest {
         return this;
     }
 
+
     /**
      * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
      */
@@ -89,7 +92,6 @@ public class V3InitiatePaymentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -100,15 +102,14 @@ public class V3InitiatePaymentRequest {
         }
         V3InitiatePaymentRequest other = (V3InitiatePaymentRequest) o;
         return 
-            Objects.deepEquals(this.v3InitiatePaymentRequest, other.v3InitiatePaymentRequest) &&
-            Objects.deepEquals(this.noValidation, other.noValidation);
+            Utils.enhancedDeepEquals(this.v3InitiatePaymentRequest, other.v3InitiatePaymentRequest) &&
+            Utils.enhancedDeepEquals(this.noValidation, other.noValidation);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v3InitiatePaymentRequest,
-            noValidation);
+        return Utils.enhancedHash(
+            v3InitiatePaymentRequest, noValidation);
     }
     
     @Override
@@ -117,16 +118,18 @@ public class V3InitiatePaymentRequest {
                 "v3InitiatePaymentRequest", v3InitiatePaymentRequest,
                 "noValidation", noValidation);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest = Optional.empty();
- 
+
         private Optional<Boolean> noValidation;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v3InitiatePaymentRequest(com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest v3InitiatePaymentRequest) {
             Utils.checkNotNull(v3InitiatePaymentRequest, "v3InitiatePaymentRequest");
@@ -139,6 +142,7 @@ public class V3InitiatePaymentRequest {
             this.v3InitiatePaymentRequest = v3InitiatePaymentRequest;
             return this;
         }
+
 
         /**
          * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
@@ -157,15 +161,16 @@ public class V3InitiatePaymentRequest {
             this.noValidation = noValidation;
             return this;
         }
-        
+
         public V3InitiatePaymentRequest build() {
             if (noValidation == null) {
                 noValidation = _SINGLETON_VALUE_NoValidation.value();
             }
+
             return new V3InitiatePaymentRequest(
-                v3InitiatePaymentRequest,
-                noValidation);
+                v3InitiatePaymentRequest, noValidation);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_NoValidation =
                 new LazySingletonValue<>(

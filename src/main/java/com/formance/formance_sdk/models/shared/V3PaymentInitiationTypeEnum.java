@@ -16,7 +16,7 @@ public enum V3PaymentInitiationTypeEnum {
     @JsonValue
     private final String value;
 
-    private V3PaymentInitiationTypeEnum(String value) {
+    V3PaymentInitiationTypeEnum(String value) {
         this.value = value;
     }
     

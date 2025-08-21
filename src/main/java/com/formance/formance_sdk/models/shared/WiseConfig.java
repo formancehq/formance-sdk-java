@@ -13,13 +13,14 @@ import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class WiseConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
+
 
     @JsonProperty("name")
     private String name;
@@ -30,6 +31,7 @@ public class WiseConfig implements ConnectorConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -54,7 +56,8 @@ public class WiseConfig implements ConnectorConfig {
     public WiseConfig(
             String apiKey,
             String name) {
-        this(apiKey, name, Optional.empty(), Optional.empty());
+        this(apiKey, name, Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -81,9 +84,10 @@ public class WiseConfig implements ConnectorConfig {
         return Utils.discriminatorToString(provider);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WiseConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -106,6 +110,7 @@ public class WiseConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
      */
@@ -121,13 +126,13 @@ public class WiseConfig implements ConnectorConfig {
         return this;
     }
 
+
     public WiseConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,18 +143,16 @@ public class WiseConfig implements ConnectorConfig {
         }
         WiseConfig other = (WiseConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            name,
-            pollingPeriod,
+        return Utils.enhancedHash(
+            apiKey, name, pollingPeriod,
             provider);
     }
     
@@ -161,20 +164,22 @@ public class WiseConfig implements ConnectorConfig {
                 "pollingPeriod", pollingPeriod,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String name;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -182,11 +187,13 @@ public class WiseConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         /**
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
@@ -206,6 +213,7 @@ public class WiseConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -217,7 +225,7 @@ public class WiseConfig implements ConnectorConfig {
             this.provider = provider;
             return this;
         }
-        
+
         public WiseConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
@@ -225,12 +233,12 @@ public class WiseConfig implements ConnectorConfig {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new WiseConfig(
-                apiKey,
-                name,
-                pollingPeriod,
+                apiKey, name, pollingPeriod,
                 provider);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(

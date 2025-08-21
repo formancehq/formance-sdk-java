@@ -14,23 +14,27 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ReverseTransferInitiationRequest {
 
     @JsonProperty("amount")
     private BigInteger amount;
 
+
     @JsonProperty("asset")
     private String asset;
+
 
     @JsonProperty("description")
     private String description;
 
+
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
+
 
     @JsonProperty("reference")
     private String reference;
@@ -59,7 +63,8 @@ public class ReverseTransferInitiationRequest {
             String asset,
             String description,
             String reference) {
-        this(amount, asset, description, Optional.empty(), reference);
+        this(amount, asset, description,
+            Optional.empty(), reference);
     }
 
     @JsonIgnore
@@ -88,9 +93,10 @@ public class ReverseTransferInitiationRequest {
         return reference;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ReverseTransferInitiationRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -121,6 +127,7 @@ public class ReverseTransferInitiationRequest {
         return this;
     }
 
+
     public ReverseTransferInitiationRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -133,7 +140,6 @@ public class ReverseTransferInitiationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -144,21 +150,18 @@ public class ReverseTransferInitiationRequest {
         }
         ReverseTransferInitiationRequest other = (ReverseTransferInitiationRequest) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset,
-            description,
-            metadata,
-            reference);
+        return Utils.enhancedHash(
+            amount, asset, description,
+            metadata, reference);
     }
     
     @Override
@@ -170,22 +173,24 @@ public class ReverseTransferInitiationRequest {
                 "metadata", metadata,
                 "reference", reference);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private BigInteger amount;
- 
+
         private String asset;
- 
+
         private String description;
- 
+
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
- 
+
         private String reference;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
@@ -198,17 +203,20 @@ public class ReverseTransferInitiationRequest {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
 
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -222,19 +230,19 @@ public class ReverseTransferInitiationRequest {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
-        
+
         public ReverseTransferInitiationRequest build() {
+
             return new ReverseTransferInitiationRequest(
-                amount,
-                asset,
-                description,
-                metadata,
-                reference);
+                amount, asset, description,
+                metadata, reference);
         }
+
     }
 }

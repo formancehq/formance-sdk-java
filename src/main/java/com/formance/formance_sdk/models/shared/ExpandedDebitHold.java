@@ -14,16 +14,18 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ExpandedDebitHold {
 
     @JsonProperty("asset")
     private String asset;
 
+
     @JsonProperty("description")
     private String description;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
@@ -74,6 +76,7 @@ public class ExpandedDebitHold {
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(id, "id");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(originalAmount, "originalAmount");
         Utils.checkNotNull(remaining, "remaining");
         Utils.checkNotNull(walletID, "walletID");
@@ -95,7 +98,9 @@ public class ExpandedDebitHold {
             BigInteger originalAmount,
             BigInteger remaining,
             String walletID) {
-        this(asset, description, Optional.empty(), id, metadata, originalAmount, remaining, walletID);
+        this(asset, description, Optional.empty(),
+            id, metadata, originalAmount,
+            remaining, walletID);
     }
 
     @JsonIgnore
@@ -154,9 +159,10 @@ public class ExpandedDebitHold {
         return walletID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ExpandedDebitHold withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
@@ -175,6 +181,7 @@ public class ExpandedDebitHold {
         this.destination = Optional.ofNullable(destination);
         return this;
     }
+
 
     public ExpandedDebitHold withDestination(Optional<? extends Subject> destination) {
         Utils.checkNotNull(destination, "destination");
@@ -200,9 +207,9 @@ public class ExpandedDebitHold {
         return this;
     }
 
-        /**
-         * Original amount on hold
-         */
+    /**
+     * Original amount on hold
+     */
     public ExpandedDebitHold withOriginalAmount(long originalAmount) {
         this.originalAmount = BigInteger.valueOf(originalAmount);
         return this;
@@ -217,9 +224,9 @@ public class ExpandedDebitHold {
         return this;
     }
 
-        /**
-         * Remaining amount on hold
-         */
+    /**
+     * Remaining amount on hold
+     */
     public ExpandedDebitHold withRemaining(long remaining) {
         this.remaining = BigInteger.valueOf(remaining);
         return this;
@@ -243,7 +250,6 @@ public class ExpandedDebitHold {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -254,27 +260,22 @@ public class ExpandedDebitHold {
         }
         ExpandedDebitHold other = (ExpandedDebitHold) o;
         return 
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destination, other.destination) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.originalAmount, other.originalAmount) &&
-            Objects.deepEquals(this.remaining, other.remaining) &&
-            Objects.deepEquals(this.walletID, other.walletID);
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.originalAmount, other.originalAmount) &&
+            Utils.enhancedDeepEquals(this.remaining, other.remaining) &&
+            Utils.enhancedDeepEquals(this.walletID, other.walletID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            asset,
-            description,
-            destination,
-            id,
-            metadata,
-            originalAmount,
-            remaining,
-            walletID);
+        return Utils.enhancedHash(
+            asset, description, destination,
+            id, metadata, originalAmount,
+            remaining, walletID);
     }
     
     @Override
@@ -289,28 +290,30 @@ public class ExpandedDebitHold {
                 "remaining", remaining,
                 "walletID", walletID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String asset;
- 
+
         private String description;
- 
+
         private Optional<? extends Subject> destination = Optional.empty();
- 
+
         private String id;
- 
+
         private Map<String, String> metadata;
- 
+
         private BigInteger originalAmount;
- 
+
         private BigInteger remaining;
- 
+
         private String walletID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
@@ -318,11 +321,13 @@ public class ExpandedDebitHold {
             return this;
         }
 
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
+
 
         public Builder destination(Subject destination) {
             Utils.checkNotNull(destination, "destination");
@@ -336,6 +341,7 @@ public class ExpandedDebitHold {
             return this;
         }
 
+
         /**
          * The unique ID of the hold.
          */
@@ -345,6 +351,7 @@ public class ExpandedDebitHold {
             return this;
         }
 
+
         /**
          * Metadata associated with the hold.
          */
@@ -353,6 +360,7 @@ public class ExpandedDebitHold {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Original amount on hold
@@ -371,6 +379,7 @@ public class ExpandedDebitHold {
             return this;
         }
 
+
         /**
          * Remaining amount on hold
          */
@@ -388,6 +397,7 @@ public class ExpandedDebitHold {
             return this;
         }
 
+
         /**
          * The ID of the wallet the hold is associated with.
          */
@@ -396,17 +406,14 @@ public class ExpandedDebitHold {
             this.walletID = walletID;
             return this;
         }
-        
+
         public ExpandedDebitHold build() {
+
             return new ExpandedDebitHold(
-                asset,
-                description,
-                destination,
-                id,
-                metadata,
-                originalAmount,
-                remaining,
-                walletID);
+                asset, description, destination,
+                id, metadata, originalAmount,
+                remaining, walletID);
         }
+
     }
 }

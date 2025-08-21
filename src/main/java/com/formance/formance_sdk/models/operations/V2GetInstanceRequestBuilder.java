@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2GetInstance;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2GetInstanceRequestBuilder {
 
     private V2GetInstanceRequest request;
-    private final SDKMethodInterfaces.MethodCallV2GetInstance sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2GetInstanceRequestBuilder(SDKMethodInterfaces.MethodCallV2GetInstance sdk) {
-        this.sdk = sdk;
+    public V2GetInstanceRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2GetInstanceRequestBuilder request(V2GetInstanceRequest request) {
@@ -22,8 +26,10 @@ public class V2GetInstanceRequestBuilder {
     }
 
     public V2GetInstanceResponse call() throws Exception {
+        
+        RequestOperation<V2GetInstanceRequest, V2GetInstanceResponse> operation
+              = new V2GetInstance.Sync(sdkConfiguration);
 
-        return sdk.getInstance(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetPolicy;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetPolicyRequestBuilder {
 
     private GetPolicyRequest request;
-    private final SDKMethodInterfaces.MethodCallGetPolicy sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPolicyRequestBuilder(SDKMethodInterfaces.MethodCallGetPolicy sdk) {
-        this.sdk = sdk;
+    public GetPolicyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPolicyRequestBuilder request(GetPolicyRequest request) {
@@ -22,8 +26,10 @@ public class GetPolicyRequestBuilder {
     }
 
     public GetPolicyResponse call() throws Exception {
+        
+        RequestOperation<GetPolicyRequest, GetPolicyResponse> operation
+              = new GetPolicy.Sync(sdkConfiguration);
 
-        return sdk.getPolicy(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

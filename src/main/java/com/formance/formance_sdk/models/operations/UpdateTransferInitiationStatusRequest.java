@@ -9,7 +9,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class UpdateTransferInitiationStatusRequest {
 
@@ -45,9 +45,10 @@ public class UpdateTransferInitiationStatusRequest {
         return transferId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateTransferInitiationStatusRequest withUpdateTransferInitiationStatusRequest(com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
         Utils.checkNotNull(updateTransferInitiationStatusRequest, "updateTransferInitiationStatusRequest");
@@ -64,7 +65,6 @@ public class UpdateTransferInitiationStatusRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,15 +75,14 @@ public class UpdateTransferInitiationStatusRequest {
         }
         UpdateTransferInitiationStatusRequest other = (UpdateTransferInitiationStatusRequest) o;
         return 
-            Objects.deepEquals(this.updateTransferInitiationStatusRequest, other.updateTransferInitiationStatusRequest) &&
-            Objects.deepEquals(this.transferId, other.transferId);
+            Utils.enhancedDeepEquals(this.updateTransferInitiationStatusRequest, other.updateTransferInitiationStatusRequest) &&
+            Utils.enhancedDeepEquals(this.transferId, other.transferId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updateTransferInitiationStatusRequest,
-            transferId);
+        return Utils.enhancedHash(
+            updateTransferInitiationStatusRequest, transferId);
     }
     
     @Override
@@ -92,22 +91,25 @@ public class UpdateTransferInitiationStatusRequest {
                 "updateTransferInitiationStatusRequest", updateTransferInitiationStatusRequest,
                 "transferId", transferId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
- 
+
         private String transferId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updateTransferInitiationStatusRequest(com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
             Utils.checkNotNull(updateTransferInitiationStatusRequest, "updateTransferInitiationStatusRequest");
             this.updateTransferInitiationStatusRequest = updateTransferInitiationStatusRequest;
             return this;
         }
+
 
         /**
          * The transfer ID.
@@ -117,11 +119,12 @@ public class UpdateTransferInitiationStatusRequest {
             this.transferId = transferId;
             return this;
         }
-        
+
         public UpdateTransferInitiationStatusRequest build() {
+
             return new UpdateTransferInitiationStatusRequest(
-                updateTransferInitiationStatusRequest,
-                transferId);
+                updateTransferInitiationStatusRequest, transferId);
         }
+
     }
 }

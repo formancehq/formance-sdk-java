@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class GetPoolBalancesRequest {
-
     /**
      * Filter balances by date.
      */
@@ -52,9 +51,10 @@ public class GetPoolBalancesRequest {
         return poolId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter balances by date.
@@ -74,7 +74,6 @@ public class GetPoolBalancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,15 +84,14 @@ public class GetPoolBalancesRequest {
         }
         GetPoolBalancesRequest other = (GetPoolBalancesRequest) o;
         return 
-            Objects.deepEquals(this.at, other.at) &&
-            Objects.deepEquals(this.poolId, other.poolId);
+            Utils.enhancedDeepEquals(this.at, other.at) &&
+            Utils.enhancedDeepEquals(this.poolId, other.poolId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            at,
-            poolId);
+        return Utils.enhancedHash(
+            at, poolId);
     }
     
     @Override
@@ -102,16 +100,18 @@ public class GetPoolBalancesRequest {
                 "at", at,
                 "poolId", poolId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime at;
- 
+
         private String poolId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter balances by date.
@@ -122,6 +122,7 @@ public class GetPoolBalancesRequest {
             return this;
         }
 
+
         /**
          * The pool ID.
          */
@@ -130,11 +131,12 @@ public class GetPoolBalancesRequest {
             this.poolId = poolId;
             return this;
         }
-        
+
         public GetPoolBalancesRequest build() {
+
             return new GetPoolBalancesRequest(
-                at,
-                poolId);
+                at, poolId);
         }
+
     }
 }

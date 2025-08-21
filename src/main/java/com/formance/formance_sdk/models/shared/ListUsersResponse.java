@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ListUsersResponse {
 
@@ -39,9 +39,10 @@ public class ListUsersResponse {
         return (Optional<List<User>>) data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListUsersResponse withData(List<User> data) {
         Utils.checkNotNull(data, "data");
@@ -49,13 +50,13 @@ public class ListUsersResponse {
         return this;
     }
 
+
     public ListUsersResponse withData(Optional<? extends List<User>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,12 +67,12 @@ public class ListUsersResponse {
         }
         ListUsersResponse other = (ListUsersResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -80,14 +81,16 @@ public class ListUsersResponse {
         return Utils.toString(ListUsersResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<User>> data = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<User> data) {
             Utils.checkNotNull(data, "data");
@@ -100,10 +103,12 @@ public class ListUsersResponse {
             this.data = data;
             return this;
         }
-        
+
         public ListUsersResponse build() {
+
             return new ListUsersResponse(
                 data);
         }
+
     }
 }

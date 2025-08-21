@@ -10,15 +10,17 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V2BulkElementAddMetadataData {
 
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
+
     @JsonProperty("targetId")
     private V2TargetId targetId;
+
 
     @JsonProperty("targetType")
     private V2TargetType targetType;
@@ -29,6 +31,7 @@ public class V2BulkElementAddMetadataData {
             @JsonProperty("targetId") V2TargetId targetId,
             @JsonProperty("targetType") V2TargetType targetType) {
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(targetId, "targetId");
         Utils.checkNotNull(targetType, "targetType");
         this.metadata = metadata;
@@ -51,9 +54,10 @@ public class V2BulkElementAddMetadataData {
         return targetType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2BulkElementAddMetadataData withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -73,7 +77,6 @@ public class V2BulkElementAddMetadataData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,17 +87,15 @@ public class V2BulkElementAddMetadataData {
         }
         V2BulkElementAddMetadataData other = (V2BulkElementAddMetadataData) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.targetId, other.targetId) &&
-            Objects.deepEquals(this.targetType, other.targetType);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.targetId, other.targetId) &&
+            Utils.enhancedDeepEquals(this.targetType, other.targetType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            metadata,
-            targetId,
-            targetType);
+        return Utils.enhancedHash(
+            metadata, targetId, targetType);
     }
     
     @Override
@@ -104,18 +105,20 @@ public class V2BulkElementAddMetadataData {
                 "targetId", targetId,
                 "targetType", targetType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, String> metadata;
- 
+
         private V2TargetId targetId;
- 
+
         private V2TargetType targetType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -123,23 +126,25 @@ public class V2BulkElementAddMetadataData {
             return this;
         }
 
+
         public Builder targetId(V2TargetId targetId) {
             Utils.checkNotNull(targetId, "targetId");
             this.targetId = targetId;
             return this;
         }
 
+
         public Builder targetType(V2TargetType targetType) {
             Utils.checkNotNull(targetType, "targetType");
             this.targetType = targetType;
             return this;
         }
-        
+
         public V2BulkElementAddMetadataData build() {
+
             return new V2BulkElementAddMetadataData(
-                metadata,
-                targetId,
-                targetType);
+                metadata, targetId, targetType);
         }
+
     }
 }

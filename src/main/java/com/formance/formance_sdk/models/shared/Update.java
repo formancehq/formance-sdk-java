@@ -12,8 +12,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Update {
 
@@ -38,9 +38,10 @@ public class Update {
         return (Optional<UpdateAccount>) account;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Update withAccount(UpdateAccount account) {
         Utils.checkNotNull(account, "account");
@@ -48,13 +49,13 @@ public class Update {
         return this;
     }
 
+
     public Update withAccount(Optional<? extends UpdateAccount> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -65,12 +66,12 @@ public class Update {
         }
         Update other = (Update) o;
         return 
-            Objects.deepEquals(this.account, other.account);
+            Utils.enhancedDeepEquals(this.account, other.account);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             account);
     }
     
@@ -79,14 +80,16 @@ public class Update {
         return Utils.toString(Update.class,
                 "account", account);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends UpdateAccount> account = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder account(UpdateAccount account) {
             Utils.checkNotNull(account, "account");
@@ -99,10 +102,12 @@ public class Update {
             this.account = account;
             return this;
         }
-        
+
         public Update build() {
+
             return new Update(
                 account);
         }
+
     }
 }

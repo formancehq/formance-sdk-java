@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class V2GetWorkflowInstanceHistoryResponse {
 
@@ -29,9 +29,10 @@ public class V2GetWorkflowInstanceHistoryResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2GetWorkflowInstanceHistoryResponse withData(List<V2WorkflowInstanceHistory> data) {
         Utils.checkNotNull(data, "data");
@@ -39,7 +40,6 @@ public class V2GetWorkflowInstanceHistoryResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class V2GetWorkflowInstanceHistoryResponse {
         }
         V2GetWorkflowInstanceHistoryResponse other = (V2GetWorkflowInstanceHistoryResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -64,24 +64,28 @@ public class V2GetWorkflowInstanceHistoryResponse {
         return Utils.toString(V2GetWorkflowInstanceHistoryResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<V2WorkflowInstanceHistory> data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<V2WorkflowInstanceHistory> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public V2GetWorkflowInstanceHistoryResponse build() {
+
             return new V2GetWorkflowInstanceHistoryResponse(
                 data);
         }
+
     }
 }

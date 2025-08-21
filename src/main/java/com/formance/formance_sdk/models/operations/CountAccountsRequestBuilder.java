@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.CountAccounts;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class CountAccountsRequestBuilder {
 
     private CountAccountsRequest request;
-    private final SDKMethodInterfaces.MethodCallCountAccounts sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CountAccountsRequestBuilder(SDKMethodInterfaces.MethodCallCountAccounts sdk) {
-        this.sdk = sdk;
+    public CountAccountsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CountAccountsRequestBuilder request(CountAccountsRequest request) {
@@ -22,8 +26,10 @@ public class CountAccountsRequestBuilder {
     }
 
     public CountAccountsResponse call() throws Exception {
+        
+        RequestOperation<CountAccountsRequest, CountAccountsResponse> operation
+              = new CountAccounts.Sync(sdkConfiguration);
 
-        return sdk.countAccounts(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

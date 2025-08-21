@@ -16,19 +16,22 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class PaymentsAccount {
 
     @JsonProperty("accountName")
     private String accountName;
 
+
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("defaultAsset")
     private String defaultAsset;
@@ -41,27 +44,34 @@ public class PaymentsAccount {
     @Deprecated
     private String defaultCurrency;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pools")
     private Optional<? extends List<String>> pools;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
 
+
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
     private Optional<? extends PaymentsAccountRaw> raw;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("type")
     private AccountType type;
@@ -115,7 +125,10 @@ public class PaymentsAccount {
             String id,
             String reference,
             AccountType type) {
-        this(accountName, connectorID, createdAt, defaultAsset, defaultCurrency, id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), reference, type);
+        this(accountName, connectorID, createdAt,
+            defaultAsset, defaultCurrency, id,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), reference, type);
     }
 
     @JsonIgnore
@@ -186,9 +199,10 @@ public class PaymentsAccount {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentsAccount withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
@@ -237,6 +251,7 @@ public class PaymentsAccount {
         return this;
     }
 
+
     public PaymentsAccount withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -248,6 +263,7 @@ public class PaymentsAccount {
         this.pools = Optional.ofNullable(pools);
         return this;
     }
+
 
     public PaymentsAccount withPools(Optional<? extends List<String>> pools) {
         Utils.checkNotNull(pools, "pools");
@@ -261,6 +277,7 @@ public class PaymentsAccount {
         return this;
     }
 
+
     public PaymentsAccount withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -272,6 +289,7 @@ public class PaymentsAccount {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     public PaymentsAccount withRaw(Optional<? extends PaymentsAccountRaw> raw) {
         Utils.checkNotNull(raw, "raw");
@@ -291,7 +309,6 @@ public class PaymentsAccount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -302,35 +319,27 @@ public class PaymentsAccount {
         }
         PaymentsAccount other = (PaymentsAccount) o;
         return 
-            Objects.deepEquals(this.accountName, other.accountName) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.defaultAsset, other.defaultAsset) &&
-            Objects.deepEquals(this.defaultCurrency, other.defaultCurrency) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.pools, other.pools) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.defaultAsset, other.defaultAsset) &&
+            Utils.enhancedDeepEquals(this.defaultCurrency, other.defaultCurrency) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.pools, other.pools) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountName,
-            connectorID,
-            createdAt,
-            defaultAsset,
-            defaultCurrency,
-            id,
-            metadata,
-            pools,
-            provider,
-            raw,
-            reference,
-            type);
+        return Utils.enhancedHash(
+            accountName, connectorID, createdAt,
+            defaultAsset, defaultCurrency, id,
+            metadata, pools, provider,
+            raw, reference, type);
     }
     
     @Override
@@ -349,37 +358,39 @@ public class PaymentsAccount {
                 "reference", reference,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountName;
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String defaultAsset;
- 
+
         @Deprecated
         private String defaultCurrency;
- 
+
         private String id;
- 
+
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
- 
+
         private Optional<? extends List<String>> pools = Optional.empty();
- 
+
         private Optional<String> provider = Optional.empty();
- 
+
         private Optional<? extends PaymentsAccountRaw> raw = Optional.empty();
- 
+
         private String reference;
- 
+
         private AccountType type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountName(String accountName) {
             Utils.checkNotNull(accountName, "accountName");
@@ -387,11 +398,13 @@ public class PaymentsAccount {
             return this;
         }
 
+
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -399,11 +412,13 @@ public class PaymentsAccount {
             return this;
         }
 
+
         public Builder defaultAsset(String defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
             this.defaultAsset = defaultAsset;
             return this;
         }
+
 
         /**
          * 
@@ -416,11 +431,13 @@ public class PaymentsAccount {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -434,6 +451,7 @@ public class PaymentsAccount {
             return this;
         }
 
+
         public Builder pools(List<String> pools) {
             Utils.checkNotNull(pools, "pools");
             this.pools = Optional.ofNullable(pools);
@@ -445,6 +463,7 @@ public class PaymentsAccount {
             this.pools = pools;
             return this;
         }
+
 
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
@@ -458,6 +477,7 @@ public class PaymentsAccount {
             return this;
         }
 
+
         public Builder raw(PaymentsAccountRaw raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
@@ -470,32 +490,28 @@ public class PaymentsAccount {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
         public Builder type(AccountType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public PaymentsAccount build() {
+
             return new PaymentsAccount(
-                accountName,
-                connectorID,
-                createdAt,
-                defaultAsset,
-                defaultCurrency,
-                id,
-                metadata,
-                pools,
-                provider,
-                raw,
-                reference,
-                type);
+                accountName, connectorID, createdAt,
+                defaultAsset, defaultCurrency, id,
+                metadata, pools, provider,
+                raw, reference, type);
         }
+
     }
 }

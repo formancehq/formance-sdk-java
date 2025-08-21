@@ -12,17 +12,19 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2BulkElementRevertTransaction implements V2BulkElement {
 
     @JsonProperty("action")
     private String action;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends V2BulkElementRevertTransactionData> data;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ik")
@@ -63,9 +65,10 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         return ik;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2BulkElementRevertTransaction withAction(String action) {
         Utils.checkNotNull(action, "action");
@@ -79,6 +82,7 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         return this;
     }
 
+
     public V2BulkElementRevertTransaction withData(Optional<? extends V2BulkElementRevertTransactionData> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -91,13 +95,13 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         return this;
     }
 
+
     public V2BulkElementRevertTransaction withIk(Optional<String> ik) {
         Utils.checkNotNull(ik, "ik");
         this.ik = ik;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -108,17 +112,15 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         }
         V2BulkElementRevertTransaction other = (V2BulkElementRevertTransaction) o;
         return 
-            Objects.deepEquals(this.action, other.action) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.ik, other.ik);
+            Utils.enhancedDeepEquals(this.action, other.action) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.ik, other.ik);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            action,
-            data,
-            ik);
+        return Utils.enhancedHash(
+            action, data, ik);
     }
     
     @Override
@@ -128,24 +130,27 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
                 "data", data,
                 "ik", ik);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String action;
- 
+
         private Optional<? extends V2BulkElementRevertTransactionData> data = Optional.empty();
- 
+
         private Optional<String> ik = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder action(String action) {
             Utils.checkNotNull(action, "action");
             this.action = action;
             return this;
         }
+
 
         public Builder data(V2BulkElementRevertTransactionData data) {
             Utils.checkNotNull(data, "data");
@@ -159,6 +164,7 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
             return this;
         }
 
+
         public Builder ik(String ik) {
             Utils.checkNotNull(ik, "ik");
             this.ik = Optional.ofNullable(ik);
@@ -170,12 +176,12 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
             this.ik = ik;
             return this;
         }
-        
+
         public V2BulkElementRevertTransaction build() {
+
             return new V2BulkElementRevertTransaction(
-                action,
-                data,
-                ik);
+                action, data, ik);
         }
+
     }
 }

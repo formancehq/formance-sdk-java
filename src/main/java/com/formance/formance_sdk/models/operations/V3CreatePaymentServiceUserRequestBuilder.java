@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserRequest;
+import com.formance.formance_sdk.operations.V3CreatePaymentServiceUser;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class V3CreatePaymentServiceUserRequestBuilder {
 
     private Optional<? extends V3CreatePaymentServiceUserRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallV3CreatePaymentServiceUser sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3CreatePaymentServiceUserRequestBuilder(SDKMethodInterfaces.MethodCallV3CreatePaymentServiceUser sdk) {
-        this.sdk = sdk;
+    public V3CreatePaymentServiceUserRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public V3CreatePaymentServiceUserRequestBuilder request(V3CreatePaymentServiceUserRequest request) {
@@ -30,8 +34,10 @@ public class V3CreatePaymentServiceUserRequestBuilder {
     }
 
     public V3CreatePaymentServiceUserResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends V3CreatePaymentServiceUserRequest>, V3CreatePaymentServiceUserResponse> operation
+              = new V3CreatePaymentServiceUser.Sync(sdkConfiguration);
 
-        return sdk.createPaymentServiceUser(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

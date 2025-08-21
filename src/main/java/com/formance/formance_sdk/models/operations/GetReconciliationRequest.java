@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetReconciliationRequest {
-
     /**
      * The reconciliation ID.
      */
@@ -34,9 +33,10 @@ public class GetReconciliationRequest {
         return reconciliationID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The reconciliation ID.
@@ -47,7 +47,6 @@ public class GetReconciliationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class GetReconciliationRequest {
         }
         GetReconciliationRequest other = (GetReconciliationRequest) o;
         return 
-            Objects.deepEquals(this.reconciliationID, other.reconciliationID);
+            Utils.enhancedDeepEquals(this.reconciliationID, other.reconciliationID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             reconciliationID);
     }
     
@@ -72,14 +71,16 @@ public class GetReconciliationRequest {
         return Utils.toString(GetReconciliationRequest.class,
                 "reconciliationID", reconciliationID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String reconciliationID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The reconciliation ID.
@@ -89,10 +90,12 @@ public class GetReconciliationRequest {
             this.reconciliationID = reconciliationID;
             return this;
         }
-        
+
         public GetReconciliationRequest build() {
+
             return new GetReconciliationRequest(
                 reconciliationID);
         }
+
     }
 }

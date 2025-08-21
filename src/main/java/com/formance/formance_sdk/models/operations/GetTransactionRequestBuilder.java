@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetTransaction;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetTransactionRequestBuilder {
 
     private GetTransactionRequest request;
-    private final SDKMethodInterfaces.MethodCallGetTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetTransactionRequestBuilder(SDKMethodInterfaces.MethodCallGetTransaction sdk) {
-        this.sdk = sdk;
+    public GetTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetTransactionRequestBuilder request(GetTransactionRequest request) {
@@ -22,8 +26,10 @@ public class GetTransactionRequestBuilder {
     }
 
     public GetTransactionResponse call() throws Exception {
+        
+        RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
+              = new GetTransaction.Sync(sdkConfiguration);
 
-        return sdk.getTransaction(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

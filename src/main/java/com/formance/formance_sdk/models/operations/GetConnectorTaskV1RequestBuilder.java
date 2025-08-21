@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetConnectorTaskV1;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetConnectorTaskV1RequestBuilder {
 
     private GetConnectorTaskV1Request request;
-    private final SDKMethodInterfaces.MethodCallGetConnectorTaskV1 sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetConnectorTaskV1RequestBuilder(SDKMethodInterfaces.MethodCallGetConnectorTaskV1 sdk) {
-        this.sdk = sdk;
+    public GetConnectorTaskV1RequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetConnectorTaskV1RequestBuilder request(GetConnectorTaskV1Request request) {
@@ -22,8 +26,10 @@ public class GetConnectorTaskV1RequestBuilder {
     }
 
     public GetConnectorTaskV1Response call() throws Exception {
+        
+        RequestOperation<GetConnectorTaskV1Request, GetConnectorTaskV1Response> operation
+              = new GetConnectorTaskV1.Sync(sdkConfiguration);
 
-        return sdk.getConnectorTaskV1(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetMetrics;
 import java.lang.Exception;
 
 public class GetMetricsRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallGetMetrics sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetMetricsRequestBuilder(SDKMethodInterfaces.MethodCallGetMetrics sdk) {
-        this.sdk = sdk;
+    public GetMetricsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetMetricsResponse call() throws Exception {
+        
+        RequestlessOperation<GetMetricsResponse> operation
+            = new GetMetrics.Sync(sdkConfiguration);
 
-        return sdk.getMetricsDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

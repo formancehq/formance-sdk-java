@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ListReconciliations;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ListReconciliationsRequestBuilder {
 
     private ListReconciliationsRequest request;
-    private final SDKMethodInterfaces.MethodCallListReconciliations sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListReconciliationsRequestBuilder(SDKMethodInterfaces.MethodCallListReconciliations sdk) {
-        this.sdk = sdk;
+    public ListReconciliationsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListReconciliationsRequestBuilder request(ListReconciliationsRequest request) {
@@ -22,8 +26,10 @@ public class ListReconciliationsRequestBuilder {
     }
 
     public ListReconciliationsResponse call() throws Exception {
+        
+        RequestOperation<ListReconciliationsRequest, ListReconciliationsResponse> operation
+              = new ListReconciliations.Sync(sdkConfiguration);
 
-        return sdk.listReconciliations(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

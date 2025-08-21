@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.VoidHold;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class VoidHoldRequestBuilder {
 
     private VoidHoldRequest request;
-    private final SDKMethodInterfaces.MethodCallVoidHold sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VoidHoldRequestBuilder(SDKMethodInterfaces.MethodCallVoidHold sdk) {
-        this.sdk = sdk;
+    public VoidHoldRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public VoidHoldRequestBuilder request(VoidHoldRequest request) {
@@ -22,8 +26,10 @@ public class VoidHoldRequestBuilder {
     }
 
     public VoidHoldResponse call() throws Exception {
+        
+        RequestOperation<VoidHoldRequest, VoidHoldResponse> operation
+              = new VoidHold.Sync(sdkConfiguration);
 
-        return sdk.voidHold(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -9,7 +9,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ReverseTransferInitiationRequest {
 
@@ -45,9 +45,10 @@ public class ReverseTransferInitiationRequest {
         return transferId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ReverseTransferInitiationRequest withReverseTransferInitiationRequest(com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest) {
         Utils.checkNotNull(reverseTransferInitiationRequest, "reverseTransferInitiationRequest");
@@ -64,7 +65,6 @@ public class ReverseTransferInitiationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,15 +75,14 @@ public class ReverseTransferInitiationRequest {
         }
         ReverseTransferInitiationRequest other = (ReverseTransferInitiationRequest) o;
         return 
-            Objects.deepEquals(this.reverseTransferInitiationRequest, other.reverseTransferInitiationRequest) &&
-            Objects.deepEquals(this.transferId, other.transferId);
+            Utils.enhancedDeepEquals(this.reverseTransferInitiationRequest, other.reverseTransferInitiationRequest) &&
+            Utils.enhancedDeepEquals(this.transferId, other.transferId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            reverseTransferInitiationRequest,
-            transferId);
+        return Utils.enhancedHash(
+            reverseTransferInitiationRequest, transferId);
     }
     
     @Override
@@ -92,22 +91,25 @@ public class ReverseTransferInitiationRequest {
                 "reverseTransferInitiationRequest", reverseTransferInitiationRequest,
                 "transferId", transferId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest;
- 
+
         private String transferId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder reverseTransferInitiationRequest(com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest) {
             Utils.checkNotNull(reverseTransferInitiationRequest, "reverseTransferInitiationRequest");
             this.reverseTransferInitiationRequest = reverseTransferInitiationRequest;
             return this;
         }
+
 
         /**
          * The transfer ID.
@@ -117,11 +119,12 @@ public class ReverseTransferInitiationRequest {
             this.transferId = transferId;
             return this;
         }
-        
+
         public ReverseTransferInitiationRequest build() {
+
             return new ReverseTransferInitiationRequest(
-                reverseTransferInitiationRequest,
-                transferId);
+                reverseTransferInitiationRequest, transferId);
         }
+
     }
 }

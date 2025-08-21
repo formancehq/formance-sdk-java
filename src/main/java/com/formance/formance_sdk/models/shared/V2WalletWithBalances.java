@@ -11,12 +11,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V2WalletWithBalances {
 
     @JsonProperty("balances")
     private V2WalletWithBalancesBalances balances;
+
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
@@ -27,6 +28,7 @@ public class V2WalletWithBalances {
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("ledger")
     private String ledger;
 
@@ -35,6 +37,7 @@ public class V2WalletWithBalances {
      */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
+
 
     @JsonProperty("name")
     private String name;
@@ -52,6 +55,7 @@ public class V2WalletWithBalances {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         this.balances = balances;
         this.createdAt = createdAt;
@@ -97,9 +101,10 @@ public class V2WalletWithBalances {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2WalletWithBalances withBalances(V2WalletWithBalancesBalances balances) {
         Utils.checkNotNull(balances, "balances");
@@ -143,7 +148,6 @@ public class V2WalletWithBalances {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,23 +158,19 @@ public class V2WalletWithBalances {
         }
         V2WalletWithBalances other = (V2WalletWithBalances) o;
         return 
-            Objects.deepEquals(this.balances, other.balances) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.balances, other.balances) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            balances,
-            createdAt,
-            id,
-            ledger,
-            metadata,
-            name);
+        return Utils.enhancedHash(
+            balances, createdAt, id,
+            ledger, metadata, name);
     }
     
     @Override
@@ -183,24 +183,26 @@ public class V2WalletWithBalances {
                 "metadata", metadata,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V2WalletWithBalancesBalances balances;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private String ledger;
- 
+
         private Map<String, String> metadata;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder balances(V2WalletWithBalancesBalances balances) {
             Utils.checkNotNull(balances, "balances");
@@ -208,11 +210,13 @@ public class V2WalletWithBalances {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The unique ID of the wallet.
@@ -223,11 +227,13 @@ public class V2WalletWithBalances {
             return this;
         }
 
+
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Metadata associated with the wallet.
@@ -238,20 +244,19 @@ public class V2WalletWithBalances {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public V2WalletWithBalances build() {
+
             return new V2WalletWithBalances(
-                balances,
-                createdAt,
-                id,
-                ledger,
-                metadata,
-                name);
+                balances, createdAt, id,
+                ledger, metadata, name);
         }
+
     }
 }

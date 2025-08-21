@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ReadConnectorConfigV1Request {
-
     /**
      * The name of the connector.
      */
@@ -52,9 +51,10 @@ public class ReadConnectorConfigV1Request {
         return connectorId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the connector.
@@ -74,7 +74,6 @@ public class ReadConnectorConfigV1Request {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,15 +84,14 @@ public class ReadConnectorConfigV1Request {
         }
         ReadConnectorConfigV1Request other = (ReadConnectorConfigV1Request) o;
         return 
-            Objects.deepEquals(this.connector, other.connector) &&
-            Objects.deepEquals(this.connectorId, other.connectorId);
+            Utils.enhancedDeepEquals(this.connector, other.connector) &&
+            Utils.enhancedDeepEquals(this.connectorId, other.connectorId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connector,
-            connectorId);
+        return Utils.enhancedHash(
+            connector, connectorId);
     }
     
     @Override
@@ -102,16 +100,18 @@ public class ReadConnectorConfigV1Request {
                 "connector", connector,
                 "connectorId", connectorId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Connector connector;
- 
+
         private String connectorId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the connector.
@@ -122,6 +122,7 @@ public class ReadConnectorConfigV1Request {
             return this;
         }
 
+
         /**
          * The connector ID.
          */
@@ -130,11 +131,12 @@ public class ReadConnectorConfigV1Request {
             this.connectorId = connectorId;
             return this;
         }
-        
+
         public ReadConnectorConfigV1Request build() {
+
             return new ReadConnectorConfigV1Request(
-                connector,
-                connectorId);
+                connector, connectorId);
         }
+
     }
 }

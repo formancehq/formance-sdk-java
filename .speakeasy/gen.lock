@@ -3,10 +3,10 @@ id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
   docChecksum: 2303b8447e474d428256a66f5ab2f945
   docVersion: v3.0.5
-  speakeasyVersion: 1.564.1
-  generationVersion: 2.630.9
-  releaseVersion: 7.1.0
-  configChecksum: 93c4b0cb024d1970e3f22ca68e34ef83
+  speakeasyVersion: 1.606.0
+  generationVersion: 2.686.7
+  releaseVersion: 7.2.0
+  configChecksum: 14f70f922e1c18fa26e6a05f7d39dc0b
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -15,12 +15,12 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.39.0
+    core: 3.45.4
     deprecations: 2.81.1
     downloadStreams: 0.1.1
-    errors: 0.3.1
+    errors: 0.5.0
     getRequestBodies: 2.81.1
-    globalSecurity: 2.82.8
+    globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
     ignores: 2.81.1
@@ -1373,7 +1373,6 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/operations/RunWorkflowRequest.java
   - src/main/java/com/formance/formance_sdk/models/operations/RunWorkflowRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/RunWorkflowResponse.java
-  - src/main/java/com/formance/formance_sdk/models/operations/SDKMethodInterfaces.java
   - src/main/java/com/formance/formance_sdk/models/operations/SearchRequestBuilder.java
   - src/main/java/com/formance/formance_sdk/models/operations/SearchResponse.java
   - src/main/java/com/formance/formance_sdk/models/operations/SearchgetServerInfoRequestBuilder.java
@@ -2227,16 +2226,238 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/models/shared/WorkflowInstanceHistoryStage.java
   - src/main/java/com/formance/formance_sdk/models/shared/WorkflowInstanceHistoryStageInput.java
   - src/main/java/com/formance/formance_sdk/models/shared/WorkflowInstanceHistoryStageOutput.java
+  - src/main/java/com/formance/formance_sdk/operations/ActivateConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/AddAccountToPool.java
+  - src/main/java/com/formance/formance_sdk/operations/AddMetadataOnTransaction.java
+  - src/main/java/com/formance/formance_sdk/operations/AddMetadataToAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/CancelEvent.java
+  - src/main/java/com/formance/formance_sdk/operations/ChangeConfigSecret.java
+  - src/main/java/com/formance/formance_sdk/operations/ConfirmHold.java
+  - src/main/java/com/formance/formance_sdk/operations/ConnectorsTransfer.java
+  - src/main/java/com/formance/formance_sdk/operations/CountAccounts.java
+  - src/main/java/com/formance/formance_sdk/operations/CountTransactions.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateBalance.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateBankAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateClient.java
+  - src/main/java/com/formance/formance_sdk/operations/CreatePayment.java
+  - src/main/java/com/formance/formance_sdk/operations/CreatePolicy.java
+  - src/main/java/com/formance/formance_sdk/operations/CreatePool.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateSecret.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateTransaction.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateTransactions.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateTransferInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateTrigger.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateWallet.java
+  - src/main/java/com/formance/formance_sdk/operations/CreateWorkflow.java
+  - src/main/java/com/formance/formance_sdk/operations/CreditWallet.java
+  - src/main/java/com/formance/formance_sdk/operations/DeactivateConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/DebitWallet.java
+  - src/main/java/com/formance/formance_sdk/operations/DeleteClient.java
+  - src/main/java/com/formance/formance_sdk/operations/DeleteConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/DeletePolicy.java
+  - src/main/java/com/formance/formance_sdk/operations/DeletePool.java
+  - src/main/java/com/formance/formance_sdk/operations/DeleteSecret.java
+  - src/main/java/com/formance/formance_sdk/operations/DeleteTransferInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/DeleteTrigger.java
+  - src/main/java/com/formance/formance_sdk/operations/DeleteWorkflow.java
+  - src/main/java/com/formance/formance_sdk/operations/ForwardBankAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/GetAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/GetAccountBalances.java
+  - src/main/java/com/formance/formance_sdk/operations/GetBalance.java
+  - src/main/java/com/formance/formance_sdk/operations/GetBalances.java
+  - src/main/java/com/formance/formance_sdk/operations/GetBalancesAggregated.java
+  - src/main/java/com/formance/formance_sdk/operations/GetBankAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/GetConnectorTask.java
+  - src/main/java/com/formance/formance_sdk/operations/GetConnectorTaskV1.java
+  - src/main/java/com/formance/formance_sdk/operations/GetHold.java
+  - src/main/java/com/formance/formance_sdk/operations/GetHolds.java
+  - src/main/java/com/formance/formance_sdk/operations/GetInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/GetInstance.java
+  - src/main/java/com/formance/formance_sdk/operations/GetInstanceHistory.java
+  - src/main/java/com/formance/formance_sdk/operations/GetInstanceStageHistory.java
+  - src/main/java/com/formance/formance_sdk/operations/GetLedgerInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/GetManyConfigs.java
+  - src/main/java/com/formance/formance_sdk/operations/GetMapping.java
+  - src/main/java/com/formance/formance_sdk/operations/GetMetrics.java
+  - src/main/java/com/formance/formance_sdk/operations/GetOIDCWellKnowns.java
+  - src/main/java/com/formance/formance_sdk/operations/GetPayment.java
+  - src/main/java/com/formance/formance_sdk/operations/GetPolicy.java
+  - src/main/java/com/formance/formance_sdk/operations/GetPool.java
+  - src/main/java/com/formance/formance_sdk/operations/GetPoolBalances.java
+  - src/main/java/com/formance/formance_sdk/operations/GetPoolBalancesLatest.java
+  - src/main/java/com/formance/formance_sdk/operations/GetReconciliation.java
+  - src/main/java/com/formance/formance_sdk/operations/GetServerInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/GetTransaction.java
+  - src/main/java/com/formance/formance_sdk/operations/GetTransactions.java
+  - src/main/java/com/formance/formance_sdk/operations/GetTransferInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/GetVersions.java
+  - src/main/java/com/formance/formance_sdk/operations/GetWallet.java
+  - src/main/java/com/formance/formance_sdk/operations/GetWalletSummary.java
+  - src/main/java/com/formance/formance_sdk/operations/GetWorkflow.java
+  - src/main/java/com/formance/formance_sdk/operations/InsertConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/InstallConnector.java
+  - src/main/java/com/formance/formance_sdk/operations/ListAccounts.java
+  - src/main/java/com/formance/formance_sdk/operations/ListAllConnectors.java
+  - src/main/java/com/formance/formance_sdk/operations/ListBalances.java
+  - src/main/java/com/formance/formance_sdk/operations/ListBankAccounts.java
+  - src/main/java/com/formance/formance_sdk/operations/ListClients.java
+  - src/main/java/com/formance/formance_sdk/operations/ListConfigsAvailableConnectors.java
+  - src/main/java/com/formance/formance_sdk/operations/ListConnectorTasks.java
+  - src/main/java/com/formance/formance_sdk/operations/ListConnectorTasksV1.java
+  - src/main/java/com/formance/formance_sdk/operations/ListInstances.java
+  - src/main/java/com/formance/formance_sdk/operations/ListLogs.java
+  - src/main/java/com/formance/formance_sdk/operations/ListPayments.java
+  - src/main/java/com/formance/formance_sdk/operations/ListPolicies.java
+  - src/main/java/com/formance/formance_sdk/operations/ListPools.java
+  - src/main/java/com/formance/formance_sdk/operations/ListReconciliations.java
+  - src/main/java/com/formance/formance_sdk/operations/ListTransactions.java
+  - src/main/java/com/formance/formance_sdk/operations/ListTransferInitiations.java
+  - src/main/java/com/formance/formance_sdk/operations/ListTriggers.java
+  - src/main/java/com/formance/formance_sdk/operations/ListTriggersOccurrences.java
+  - src/main/java/com/formance/formance_sdk/operations/ListUsers.java
+  - src/main/java/com/formance/formance_sdk/operations/ListWallets.java
+  - src/main/java/com/formance/formance_sdk/operations/ListWorkflows.java
+  - src/main/java/com/formance/formance_sdk/operations/Operations.java
+  - src/main/java/com/formance/formance_sdk/operations/OrchestrationgetServerInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/PaymentsgetAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/PaymentsgetServerInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/PaymentslistAccounts.java
+  - src/main/java/com/formance/formance_sdk/operations/ReadClient.java
+  - src/main/java/com/formance/formance_sdk/operations/ReadConnectorConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/ReadConnectorConfigV1.java
+  - src/main/java/com/formance/formance_sdk/operations/ReadStats.java
+  - src/main/java/com/formance/formance_sdk/operations/ReadTrigger.java
+  - src/main/java/com/formance/formance_sdk/operations/ReadUser.java
+  - src/main/java/com/formance/formance_sdk/operations/Reconcile.java
+  - src/main/java/com/formance/formance_sdk/operations/ReconciliationgetServerInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/RemoveAccountFromPool.java
+  - src/main/java/com/formance/formance_sdk/operations/ResetConnector.java
+  - src/main/java/com/formance/formance_sdk/operations/ResetConnectorV1.java
+  - src/main/java/com/formance/formance_sdk/operations/RetryTransferInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/ReverseTransferInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/RevertTransaction.java
+  - src/main/java/com/formance/formance_sdk/operations/RunScript.java
+  - src/main/java/com/formance/formance_sdk/operations/RunWorkflow.java
+  - src/main/java/com/formance/formance_sdk/operations/Search.java
+  - src/main/java/com/formance/formance_sdk/operations/SearchgetServerInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/SendEvent.java
+  - src/main/java/com/formance/formance_sdk/operations/TestConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/TestTrigger.java
+  - src/main/java/com/formance/formance_sdk/operations/UninstallConnector.java
+  - src/main/java/com/formance/formance_sdk/operations/UninstallConnectorV1.java
+  - src/main/java/com/formance/formance_sdk/operations/UpdateBankAccountMetadata.java
+  - src/main/java/com/formance/formance_sdk/operations/UpdateClient.java
+  - src/main/java/com/formance/formance_sdk/operations/UpdateConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/UpdateConnectorConfigV1.java
+  - src/main/java/com/formance/formance_sdk/operations/UpdateMapping.java
+  - src/main/java/com/formance/formance_sdk/operations/UpdateMetadata.java
+  - src/main/java/com/formance/formance_sdk/operations/UpdateTransferInitiationStatus.java
+  - src/main/java/com/formance/formance_sdk/operations/UpdateWallet.java
+  - src/main/java/com/formance/formance_sdk/operations/V2AddMetadataOnTransaction.java
+  - src/main/java/com/formance/formance_sdk/operations/V2AddMetadataToAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/V2CancelEvent.java
+  - src/main/java/com/formance/formance_sdk/operations/V2CountAccounts.java
+  - src/main/java/com/formance/formance_sdk/operations/V2CountTransactions.java
+  - src/main/java/com/formance/formance_sdk/operations/V2CreateBulk.java
+  - src/main/java/com/formance/formance_sdk/operations/V2CreateLedger.java
+  - src/main/java/com/formance/formance_sdk/operations/V2CreateTransaction.java
+  - src/main/java/com/formance/formance_sdk/operations/V2CreateTrigger.java
+  - src/main/java/com/formance/formance_sdk/operations/V2CreateWorkflow.java
+  - src/main/java/com/formance/formance_sdk/operations/V2DeleteAccountMetadata.java
+  - src/main/java/com/formance/formance_sdk/operations/V2DeleteLedgerMetadata.java
+  - src/main/java/com/formance/formance_sdk/operations/V2DeleteTransactionMetadata.java
+  - src/main/java/com/formance/formance_sdk/operations/V2DeleteTrigger.java
+  - src/main/java/com/formance/formance_sdk/operations/V2DeleteWorkflow.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ExportLogs.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetBalancesAggregated.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetInstance.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetInstanceHistory.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetInstanceStageHistory.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetLedger.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetLedgerInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetServerInfo.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetTransaction.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetVolumesWithBalances.java
+  - src/main/java/com/formance/formance_sdk/operations/V2GetWorkflow.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ImportLogs.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ListAccounts.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ListInstances.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ListLedgers.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ListLogs.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ListTransactions.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ListTriggers.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ListTriggersOccurrences.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ListWorkflows.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ReadStats.java
+  - src/main/java/com/formance/formance_sdk/operations/V2ReadTrigger.java
+  - src/main/java/com/formance/formance_sdk/operations/V2RevertTransaction.java
+  - src/main/java/com/formance/formance_sdk/operations/V2RunWorkflow.java
+  - src/main/java/com/formance/formance_sdk/operations/V2SendEvent.java
+  - src/main/java/com/formance/formance_sdk/operations/V2UpdateLedgerMetadata.java
+  - src/main/java/com/formance/formance_sdk/operations/V3AddAccountToPool.java
+  - src/main/java/com/formance/formance_sdk/operations/V3AddBankAccountToPaymentServiceUser.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ApprovePaymentInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/V3CreateAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/V3CreateBankAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/V3CreatePayment.java
+  - src/main/java/com/formance/formance_sdk/operations/V3CreatePaymentServiceUser.java
+  - src/main/java/com/formance/formance_sdk/operations/V3CreatePool.java
+  - src/main/java/com/formance/formance_sdk/operations/V3DeletePaymentInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/V3DeletePool.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ForwardBankAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ForwardPaymentServiceUserBankAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetAccountBalances.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetBankAccount.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetConnectorConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetConnectorSchedule.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetPayment.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetPaymentInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetPaymentServiceUser.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetPool.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetPoolBalances.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetPoolBalancesLatest.java
+  - src/main/java/com/formance/formance_sdk/operations/V3GetTask.java
+  - src/main/java/com/formance/formance_sdk/operations/V3InitiatePayment.java
+  - src/main/java/com/formance/formance_sdk/operations/V3InstallConnector.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListAccounts.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListBankAccounts.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListConnectorConfigs.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListConnectorScheduleInstances.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListConnectorSchedules.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListConnectors.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListPaymentInitiationAdjustments.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListPaymentInitiationRelatedPayments.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListPaymentInitiations.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListPaymentServiceUsers.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListPayments.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ListPools.java
+  - src/main/java/com/formance/formance_sdk/operations/V3RejectPaymentInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/V3RemoveAccountFromPool.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ResetConnector.java
+  - src/main/java/com/formance/formance_sdk/operations/V3RetryPaymentInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/V3ReversePaymentInitiation.java
+  - src/main/java/com/formance/formance_sdk/operations/V3UninstallConnector.java
+  - src/main/java/com/formance/formance_sdk/operations/V3UpdateBankAccountMetadata.java
+  - src/main/java/com/formance/formance_sdk/operations/V3UpdateConnectorConfig.java
+  - src/main/java/com/formance/formance_sdk/operations/V3UpdatePaymentMetadata.java
+  - src/main/java/com/formance/formance_sdk/operations/VoidHold.java
+  - src/main/java/com/formance/formance_sdk/operations/WalletsgetServerInfo.java
   - src/main/java/com/formance/formance_sdk/utils/BackoffStrategy.java
   - src/main/java/com/formance/formance_sdk/utils/BigDecimalString.java
   - src/main/java/com/formance/formance_sdk/utils/BigIntegerString.java
+  - src/main/java/com/formance/formance_sdk/utils/BlockingParser.java
   - src/main/java/com/formance/formance_sdk/utils/Constants.java
+  - src/main/java/com/formance/formance_sdk/utils/CopiableInputStream.java
   - src/main/java/com/formance/formance_sdk/utils/Deserializers.java
   - src/main/java/com/formance/formance_sdk/utils/EventStream.java
-  - src/main/java/com/formance/formance_sdk/utils/EventStreamLineReader.java
   - src/main/java/com/formance/formance_sdk/utils/EventStreamMessage.java
-  - src/main/java/com/formance/formance_sdk/utils/EventStreamReader.java
+  - src/main/java/com/formance/formance_sdk/utils/Exceptions.java
   - src/main/java/com/formance/formance_sdk/utils/FormMetadata.java
+  - src/main/java/com/formance/formance_sdk/utils/Globals.java
   - src/main/java/com/formance/formance_sdk/utils/HTTPClient.java
   - src/main/java/com/formance/formance_sdk/utils/HTTPRequest.java
   - src/main/java/com/formance/formance_sdk/utils/HasSecurity.java
@@ -2261,6 +2482,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/utils/RequestBody.java
   - src/main/java/com/formance/formance_sdk/utils/RequestMetadata.java
   - src/main/java/com/formance/formance_sdk/utils/Response.java
+  - src/main/java/com/formance/formance_sdk/utils/ResponseWithBody.java
   - src/main/java/com/formance/formance_sdk/utils/Retries.java
   - src/main/java/com/formance/formance_sdk/utils/RetryConfig.java
   - src/main/java/com/formance/formance_sdk/utils/Security.java
@@ -2269,6 +2491,7 @@ generatedFiles:
   - src/main/java/com/formance/formance_sdk/utils/SessionManager.java
   - src/main/java/com/formance/formance_sdk/utils/SpeakeasyHTTPClient.java
   - src/main/java/com/formance/formance_sdk/utils/SpeakeasyMetadata.java
+  - src/main/java/com/formance/formance_sdk/utils/StreamingParser.java
   - src/main/java/com/formance/formance_sdk/utils/TypedObject.java
   - src/main/java/com/formance/formance_sdk/utils/Types.java
   - src/main/java/com/formance/formance_sdk/utils/Utf8UrlEncoder.java

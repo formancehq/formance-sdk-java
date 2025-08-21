@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3ReversePaymentInitiation;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3ReversePaymentInitiationRequestBuilder {
 
     private V3ReversePaymentInitiationRequest request;
-    private final SDKMethodInterfaces.MethodCallV3ReversePaymentInitiation sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3ReversePaymentInitiationRequestBuilder(SDKMethodInterfaces.MethodCallV3ReversePaymentInitiation sdk) {
-        this.sdk = sdk;
+    public V3ReversePaymentInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3ReversePaymentInitiationRequestBuilder request(V3ReversePaymentInitiationRequest request) {
@@ -22,8 +26,10 @@ public class V3ReversePaymentInitiationRequestBuilder {
     }
 
     public V3ReversePaymentInitiationResponse call() throws Exception {
+        
+        RequestOperation<V3ReversePaymentInitiationRequest, V3ReversePaymentInitiationResponse> operation
+              = new V3ReversePaymentInitiation.Sync(sdkConfiguration);
 
-        return sdk.reversePaymentInitiation(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

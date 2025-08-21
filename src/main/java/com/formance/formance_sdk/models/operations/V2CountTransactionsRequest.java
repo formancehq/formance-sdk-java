@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2CountTransactionsRequest {
 
@@ -26,6 +26,7 @@ public class V2CountTransactionsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
 
@@ -35,6 +36,7 @@ public class V2CountTransactionsRequest {
             String ledger,
             Optional<OffsetDateTime> pit) {
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pit, "pit");
         this.requestBody = requestBody;
@@ -66,9 +68,10 @@ public class V2CountTransactionsRequest {
         return pit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2CountTransactionsRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -91,13 +94,13 @@ public class V2CountTransactionsRequest {
         return this;
     }
 
+
     public V2CountTransactionsRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -108,17 +111,15 @@ public class V2CountTransactionsRequest {
         }
         V2CountTransactionsRequest other = (V2CountTransactionsRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.pit, other.pit);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.pit, other.pit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            ledger,
-            pit);
+        return Utils.enhancedHash(
+            requestBody, ledger, pit);
     }
     
     @Override
@@ -128,24 +129,27 @@ public class V2CountTransactionsRequest {
                 "ledger", ledger,
                 "pit", pit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Object> requestBody;
- 
+
         private String ledger;
- 
+
         private Optional<OffsetDateTime> pit = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Name of the ledger.
@@ -155,6 +159,7 @@ public class V2CountTransactionsRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         public Builder pit(OffsetDateTime pit) {
             Utils.checkNotNull(pit, "pit");
@@ -167,12 +172,12 @@ public class V2CountTransactionsRequest {
             this.pit = pit;
             return this;
         }
-        
+
         public V2CountTransactionsRequest build() {
+
             return new V2CountTransactionsRequest(
-                requestBody,
-                ledger,
-                pit);
+                requestBody, ledger, pit);
         }
+
     }
 }

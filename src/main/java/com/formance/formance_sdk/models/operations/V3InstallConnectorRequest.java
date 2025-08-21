@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3InstallConnectorRequest {
 
@@ -53,15 +53,17 @@ public class V3InstallConnectorRequest {
         return connector;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3InstallConnectorRequest withV3InstallConnectorRequest(com.formance.formance_sdk.models.shared.V3InstallConnectorRequest v3InstallConnectorRequest) {
         Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
         this.v3InstallConnectorRequest = Optional.ofNullable(v3InstallConnectorRequest);
         return this;
     }
+
 
     public V3InstallConnectorRequest withV3InstallConnectorRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorRequest> v3InstallConnectorRequest) {
         Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
@@ -78,7 +80,6 @@ public class V3InstallConnectorRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +90,14 @@ public class V3InstallConnectorRequest {
         }
         V3InstallConnectorRequest other = (V3InstallConnectorRequest) o;
         return 
-            Objects.deepEquals(this.v3InstallConnectorRequest, other.v3InstallConnectorRequest) &&
-            Objects.deepEquals(this.connector, other.connector);
+            Utils.enhancedDeepEquals(this.v3InstallConnectorRequest, other.v3InstallConnectorRequest) &&
+            Utils.enhancedDeepEquals(this.connector, other.connector);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v3InstallConnectorRequest,
-            connector);
+        return Utils.enhancedHash(
+            v3InstallConnectorRequest, connector);
     }
     
     @Override
@@ -106,16 +106,18 @@ public class V3InstallConnectorRequest {
                 "v3InstallConnectorRequest", v3InstallConnectorRequest,
                 "connector", connector);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorRequest> v3InstallConnectorRequest = Optional.empty();
- 
+
         private String connector;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v3InstallConnectorRequest(com.formance.formance_sdk.models.shared.V3InstallConnectorRequest v3InstallConnectorRequest) {
             Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
@@ -129,6 +131,7 @@ public class V3InstallConnectorRequest {
             return this;
         }
 
+
         /**
          * The connector to filter by
          */
@@ -137,11 +140,12 @@ public class V3InstallConnectorRequest {
             this.connector = connector;
             return this;
         }
-        
+
         public V3InstallConnectorRequest build() {
+
             return new V3InstallConnectorRequest(
-                v3InstallConnectorRequest,
-                connector);
+                v3InstallConnectorRequest, connector);
         }
+
     }
 }

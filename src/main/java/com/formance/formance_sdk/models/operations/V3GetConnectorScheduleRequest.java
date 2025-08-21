@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3GetConnectorScheduleRequest {
-
     /**
      * The connector ID
      */
@@ -51,9 +50,10 @@ public class V3GetConnectorScheduleRequest {
         return scheduleID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The connector ID
@@ -73,7 +73,6 @@ public class V3GetConnectorScheduleRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +83,14 @@ public class V3GetConnectorScheduleRequest {
         }
         V3GetConnectorScheduleRequest other = (V3GetConnectorScheduleRequest) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.scheduleID, other.scheduleID);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.scheduleID, other.scheduleID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorID,
-            scheduleID);
+        return Utils.enhancedHash(
+            connectorID, scheduleID);
     }
     
     @Override
@@ -101,16 +99,18 @@ public class V3GetConnectorScheduleRequest {
                 "connectorID", connectorID,
                 "scheduleID", scheduleID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
- 
+
         private String scheduleID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The connector ID
@@ -121,6 +121,7 @@ public class V3GetConnectorScheduleRequest {
             return this;
         }
 
+
         /**
          * The schedule ID
          */
@@ -129,11 +130,12 @@ public class V3GetConnectorScheduleRequest {
             this.scheduleID = scheduleID;
             return this;
         }
-        
+
         public V3GetConnectorScheduleRequest build() {
+
             return new V3GetConnectorScheduleRequest(
-                connectorID,
-                scheduleID);
+                connectorID, scheduleID);
         }
+
     }
 }

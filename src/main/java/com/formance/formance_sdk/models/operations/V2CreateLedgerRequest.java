@@ -9,7 +9,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2CreateLedgerRequest {
 
@@ -45,9 +45,10 @@ public class V2CreateLedgerRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2CreateLedgerRequest withV2CreateLedgerRequest(com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest) {
         Utils.checkNotNull(v2CreateLedgerRequest, "v2CreateLedgerRequest");
@@ -64,7 +65,6 @@ public class V2CreateLedgerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,15 +75,14 @@ public class V2CreateLedgerRequest {
         }
         V2CreateLedgerRequest other = (V2CreateLedgerRequest) o;
         return 
-            Objects.deepEquals(this.v2CreateLedgerRequest, other.v2CreateLedgerRequest) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.v2CreateLedgerRequest, other.v2CreateLedgerRequest) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v2CreateLedgerRequest,
-            ledger);
+        return Utils.enhancedHash(
+            v2CreateLedgerRequest, ledger);
     }
     
     @Override
@@ -92,22 +91,25 @@ public class V2CreateLedgerRequest {
                 "v2CreateLedgerRequest", v2CreateLedgerRequest,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v2CreateLedgerRequest(com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest) {
             Utils.checkNotNull(v2CreateLedgerRequest, "v2CreateLedgerRequest");
             this.v2CreateLedgerRequest = v2CreateLedgerRequest;
             return this;
         }
+
 
         /**
          * Name of the ledger.
@@ -117,11 +119,12 @@ public class V2CreateLedgerRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2CreateLedgerRequest build() {
+
             return new V2CreateLedgerRequest(
-                v2CreateLedgerRequest,
-                ledger);
+                v2CreateLedgerRequest, ledger);
         }
+
     }
 }

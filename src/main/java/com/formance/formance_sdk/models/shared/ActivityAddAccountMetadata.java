@@ -10,15 +10,17 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class ActivityAddAccountMetadata {
 
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("ledger")
     private String ledger;
+
 
     @JsonProperty("metadata")
     private Map<String, String> metadata;
@@ -31,6 +33,7 @@ public class ActivityAddAccountMetadata {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         this.id = id;
         this.ledger = ledger;
         this.metadata = metadata;
@@ -51,9 +54,10 @@ public class ActivityAddAccountMetadata {
         return metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ActivityAddAccountMetadata withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -73,7 +77,6 @@ public class ActivityAddAccountMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,17 +87,15 @@ public class ActivityAddAccountMetadata {
         }
         ActivityAddAccountMetadata other = (ActivityAddAccountMetadata) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            ledger,
-            metadata);
+        return Utils.enhancedHash(
+            id, ledger, metadata);
     }
     
     @Override
@@ -104,18 +105,20 @@ public class ActivityAddAccountMetadata {
                 "ledger", ledger,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String ledger;
- 
+
         private Map<String, String> metadata;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -123,23 +126,25 @@ public class ActivityAddAccountMetadata {
             return this;
         }
 
+
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
-        
+
         public ActivityAddAccountMetadata build() {
+
             return new ActivityAddAccountMetadata(
-                id,
-                ledger,
-                metadata);
+                id, ledger, metadata);
         }
+
     }
 }

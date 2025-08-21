@@ -11,21 +11,25 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class V3Balance {
 
     @JsonProperty("accountID")
     private String accountID;
 
+
     @JsonProperty("asset")
     private String asset;
+
 
     @JsonProperty("balance")
     private BigInteger balance;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("lastUpdatedAt")
     private OffsetDateTime lastUpdatedAt;
@@ -74,9 +78,10 @@ public class V3Balance {
         return lastUpdatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3Balance withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
@@ -113,7 +118,6 @@ public class V3Balance {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -124,21 +128,18 @@ public class V3Balance {
         }
         V3Balance other = (V3Balance) o;
         return 
-            Objects.deepEquals(this.accountID, other.accountID) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.lastUpdatedAt, other.lastUpdatedAt);
+            Utils.enhancedDeepEquals(this.accountID, other.accountID) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.lastUpdatedAt, other.lastUpdatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountID,
-            asset,
-            balance,
-            createdAt,
-            lastUpdatedAt);
+        return Utils.enhancedHash(
+            accountID, asset, balance,
+            createdAt, lastUpdatedAt);
     }
     
     @Override
@@ -150,22 +151,24 @@ public class V3Balance {
                 "createdAt", createdAt,
                 "lastUpdatedAt", lastUpdatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountID;
- 
+
         private String asset;
- 
+
         private BigInteger balance;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime lastUpdatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
@@ -173,11 +176,13 @@ public class V3Balance {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder balance(long balance) {
             this.balance = BigInteger.valueOf(balance);
@@ -190,25 +195,26 @@ public class V3Balance {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
 
+
         public Builder lastUpdatedAt(OffsetDateTime lastUpdatedAt) {
             Utils.checkNotNull(lastUpdatedAt, "lastUpdatedAt");
             this.lastUpdatedAt = lastUpdatedAt;
             return this;
         }
-        
+
         public V3Balance build() {
+
             return new V3Balance(
-                accountID,
-                asset,
-                balance,
-                createdAt,
-                lastUpdatedAt);
+                accountID, asset, balance,
+                createdAt, lastUpdatedAt);
         }
+
     }
 }

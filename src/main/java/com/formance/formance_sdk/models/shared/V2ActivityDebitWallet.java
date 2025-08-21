@@ -12,14 +12,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ActivityDebitWallet {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends V2DebitWalletRequest> data;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -50,15 +51,17 @@ public class V2ActivityDebitWallet {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ActivityDebitWallet withData(V2DebitWalletRequest data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
     }
+
 
     public V2ActivityDebitWallet withData(Optional<? extends V2DebitWalletRequest> data) {
         Utils.checkNotNull(data, "data");
@@ -72,13 +75,13 @@ public class V2ActivityDebitWallet {
         return this;
     }
 
+
     public V2ActivityDebitWallet withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +92,14 @@ public class V2ActivityDebitWallet {
         }
         V2ActivityDebitWallet other = (V2ActivityDebitWallet) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            id);
+        return Utils.enhancedHash(
+            data, id);
     }
     
     @Override
@@ -106,16 +108,18 @@ public class V2ActivityDebitWallet {
                 "data", data,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends V2DebitWalletRequest> data = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(V2DebitWalletRequest data) {
             Utils.checkNotNull(data, "data");
@@ -129,6 +133,7 @@ public class V2ActivityDebitWallet {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
@@ -140,11 +145,12 @@ public class V2ActivityDebitWallet {
             this.id = id;
             return this;
         }
-        
+
         public V2ActivityDebitWallet build() {
+
             return new V2ActivityDebitWallet(
-                data,
-                id);
+                data, id);
         }
+
     }
 }

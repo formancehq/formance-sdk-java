@@ -12,20 +12,23 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConfigUser {
 
     @JsonProperty("endpoint")
     private String endpoint;
 
+
     @JsonProperty("eventTypes")
     private List<String> eventTypes;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("secret")
@@ -50,7 +53,8 @@ public class ConfigUser {
     public ConfigUser(
             String endpoint,
             List<String> eventTypes) {
-        this(endpoint, eventTypes, Optional.empty(), Optional.empty());
+        this(endpoint, eventTypes, Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -73,9 +77,10 @@ public class ConfigUser {
         return secret;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConfigUser withEndpoint(String endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
@@ -95,6 +100,7 @@ public class ConfigUser {
         return this;
     }
 
+
     public ConfigUser withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -107,13 +113,13 @@ public class ConfigUser {
         return this;
     }
 
+
     public ConfigUser withSecret(Optional<String> secret) {
         Utils.checkNotNull(secret, "secret");
         this.secret = secret;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -124,18 +130,16 @@ public class ConfigUser {
         }
         ConfigUser other = (ConfigUser) o;
         return 
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.eventTypes, other.eventTypes) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.secret, other.secret);
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.eventTypes, other.eventTypes) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.secret, other.secret);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            endpoint,
-            eventTypes,
-            name,
+        return Utils.enhancedHash(
+            endpoint, eventTypes, name,
             secret);
     }
     
@@ -147,20 +151,22 @@ public class ConfigUser {
                 "name", name,
                 "secret", secret);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String endpoint;
- 
+
         private List<String> eventTypes;
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> secret = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
@@ -168,11 +174,13 @@ public class ConfigUser {
             return this;
         }
 
+
         public Builder eventTypes(List<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -186,6 +194,7 @@ public class ConfigUser {
             return this;
         }
 
+
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = Optional.ofNullable(secret);
@@ -197,13 +206,13 @@ public class ConfigUser {
             this.secret = secret;
             return this;
         }
-        
+
         public ConfigUser build() {
+
             return new ConfigUser(
-                endpoint,
-                eventTypes,
-                name,
+                endpoint, eventTypes, name,
                 secret);
         }
+
     }
 }

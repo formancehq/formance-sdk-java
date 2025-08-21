@@ -37,7 +37,7 @@ public enum PaymentScheme {
     @JsonValue
     private final String value;
 
-    private PaymentScheme(String value) {
+    PaymentScheme(String value) {
         this.value = value;
     }
     

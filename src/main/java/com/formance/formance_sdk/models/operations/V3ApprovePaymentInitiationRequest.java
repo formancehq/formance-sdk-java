@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3ApprovePaymentInitiationRequest {
-
     /**
      * The payment initiation ID
      */
@@ -34,9 +33,10 @@ public class V3ApprovePaymentInitiationRequest {
         return paymentInitiationID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The payment initiation ID
@@ -47,7 +47,6 @@ public class V3ApprovePaymentInitiationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3ApprovePaymentInitiationRequest {
         }
         V3ApprovePaymentInitiationRequest other = (V3ApprovePaymentInitiationRequest) o;
         return 
-            Objects.deepEquals(this.paymentInitiationID, other.paymentInitiationID);
+            Utils.enhancedDeepEquals(this.paymentInitiationID, other.paymentInitiationID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentInitiationID);
     }
     
@@ -72,14 +71,16 @@ public class V3ApprovePaymentInitiationRequest {
         return Utils.toString(V3ApprovePaymentInitiationRequest.class,
                 "paymentInitiationID", paymentInitiationID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentInitiationID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The payment initiation ID
@@ -89,10 +90,12 @@ public class V3ApprovePaymentInitiationRequest {
             this.paymentInitiationID = paymentInitiationID;
             return this;
         }
-        
+
         public V3ApprovePaymentInitiationRequest build() {
+
             return new V3ApprovePaymentInitiationRequest(
                 paymentInitiationID);
         }
+
     }
 }

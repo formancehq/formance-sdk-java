@@ -10,12 +10,13 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class PoolRequest {
 
     @JsonProperty("accountIDs")
     private List<String> accountIDs;
+
 
     @JsonProperty("name")
     private String name;
@@ -40,9 +41,10 @@ public class PoolRequest {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PoolRequest withAccountIDs(List<String> accountIDs) {
         Utils.checkNotNull(accountIDs, "accountIDs");
@@ -56,7 +58,6 @@ public class PoolRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class PoolRequest {
         }
         PoolRequest other = (PoolRequest) o;
         return 
-            Objects.deepEquals(this.accountIDs, other.accountIDs) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.accountIDs, other.accountIDs) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountIDs,
-            name);
+        return Utils.enhancedHash(
+            accountIDs, name);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class PoolRequest {
                 "accountIDs", accountIDs,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<String> accountIDs;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountIDs(List<String> accountIDs) {
             Utils.checkNotNull(accountIDs, "accountIDs");
@@ -101,16 +103,18 @@ public class PoolRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public PoolRequest build() {
+
             return new PoolRequest(
-                accountIDs,
-                name);
+                accountIDs, name);
         }
+
     }
 }

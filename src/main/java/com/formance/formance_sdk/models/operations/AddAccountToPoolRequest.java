@@ -9,7 +9,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class AddAccountToPoolRequest {
 
@@ -45,9 +45,10 @@ public class AddAccountToPoolRequest {
         return poolId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AddAccountToPoolRequest withAddAccountToPoolRequest(com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest) {
         Utils.checkNotNull(addAccountToPoolRequest, "addAccountToPoolRequest");
@@ -64,7 +65,6 @@ public class AddAccountToPoolRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,15 +75,14 @@ public class AddAccountToPoolRequest {
         }
         AddAccountToPoolRequest other = (AddAccountToPoolRequest) o;
         return 
-            Objects.deepEquals(this.addAccountToPoolRequest, other.addAccountToPoolRequest) &&
-            Objects.deepEquals(this.poolId, other.poolId);
+            Utils.enhancedDeepEquals(this.addAccountToPoolRequest, other.addAccountToPoolRequest) &&
+            Utils.enhancedDeepEquals(this.poolId, other.poolId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            addAccountToPoolRequest,
-            poolId);
+        return Utils.enhancedHash(
+            addAccountToPoolRequest, poolId);
     }
     
     @Override
@@ -92,22 +91,25 @@ public class AddAccountToPoolRequest {
                 "addAccountToPoolRequest", addAccountToPoolRequest,
                 "poolId", poolId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest;
- 
+
         private String poolId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder addAccountToPoolRequest(com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest) {
             Utils.checkNotNull(addAccountToPoolRequest, "addAccountToPoolRequest");
             this.addAccountToPoolRequest = addAccountToPoolRequest;
             return this;
         }
+
 
         /**
          * The pool ID.
@@ -117,11 +119,12 @@ public class AddAccountToPoolRequest {
             this.poolId = poolId;
             return this;
         }
-        
+
         public AddAccountToPoolRequest build() {
+
             return new AddAccountToPoolRequest(
-                addAccountToPoolRequest,
-                poolId);
+                addAccountToPoolRequest, poolId);
         }
+
     }
 }

@@ -12,8 +12,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2LedgerInfoResponse {
 
@@ -38,9 +38,10 @@ public class V2LedgerInfoResponse {
         return (Optional<V2LedgerInfo>) data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2LedgerInfoResponse withData(V2LedgerInfo data) {
         Utils.checkNotNull(data, "data");
@@ -48,13 +49,13 @@ public class V2LedgerInfoResponse {
         return this;
     }
 
+
     public V2LedgerInfoResponse withData(Optional<? extends V2LedgerInfo> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -65,12 +66,12 @@ public class V2LedgerInfoResponse {
         }
         V2LedgerInfoResponse other = (V2LedgerInfoResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -79,14 +80,16 @@ public class V2LedgerInfoResponse {
         return Utils.toString(V2LedgerInfoResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends V2LedgerInfo> data = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(V2LedgerInfo data) {
             Utils.checkNotNull(data, "data");
@@ -99,10 +102,12 @@ public class V2LedgerInfoResponse {
             this.data = data;
             return this;
         }
-        
+
         public V2LedgerInfoResponse build() {
+
             return new V2LedgerInfoResponse(
                 data);
         }
+
     }
 }

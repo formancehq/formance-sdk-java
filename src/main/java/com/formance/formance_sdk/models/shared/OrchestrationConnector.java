@@ -21,7 +21,7 @@ public enum OrchestrationConnector {
     @JsonValue
     private final String value;
 
-    private OrchestrationConnector(String value) {
+    OrchestrationConnector(String value) {
         this.value = value;
     }
     

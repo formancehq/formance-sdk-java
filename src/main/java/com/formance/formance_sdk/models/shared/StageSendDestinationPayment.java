@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class StageSendDestinationPayment {
 
@@ -28,9 +28,10 @@ public class StageSendDestinationPayment {
         return psp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public StageSendDestinationPayment withPsp(String psp) {
         Utils.checkNotNull(psp, "psp");
@@ -38,7 +39,6 @@ public class StageSendDestinationPayment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class StageSendDestinationPayment {
         }
         StageSendDestinationPayment other = (StageSendDestinationPayment) o;
         return 
-            Objects.deepEquals(this.psp, other.psp);
+            Utils.enhancedDeepEquals(this.psp, other.psp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             psp);
     }
     
@@ -63,24 +63,28 @@ public class StageSendDestinationPayment {
         return Utils.toString(StageSendDestinationPayment.class,
                 "psp", psp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String psp;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder psp(String psp) {
             Utils.checkNotNull(psp, "psp");
             this.psp = psp;
             return this;
         }
-        
+
         public StageSendDestinationPayment build() {
+
             return new StageSendDestinationPayment(
                 psp);
         }
+
     }
 }

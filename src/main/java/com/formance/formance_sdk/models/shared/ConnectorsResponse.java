@@ -10,7 +10,6 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * ConnectorsResponse
@@ -34,9 +33,10 @@ public class ConnectorsResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectorsResponse withData(List<ConnectorsResponseData> data) {
         Utils.checkNotNull(data, "data");
@@ -44,7 +44,6 @@ public class ConnectorsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -55,12 +54,12 @@ public class ConnectorsResponse {
         }
         ConnectorsResponse other = (ConnectorsResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -69,24 +68,28 @@ public class ConnectorsResponse {
         return Utils.toString(ConnectorsResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ConnectorsResponseData> data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<ConnectorsResponseData> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public ConnectorsResponse build() {
+
             return new ConnectorsResponse(
                 data);
         }
+
     }
 }

@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3GetPaymentInitiationRequest {
-
     /**
      * The payment initiation ID
      */
@@ -34,9 +33,10 @@ public class V3GetPaymentInitiationRequest {
         return paymentInitiationID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The payment initiation ID
@@ -47,7 +47,6 @@ public class V3GetPaymentInitiationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3GetPaymentInitiationRequest {
         }
         V3GetPaymentInitiationRequest other = (V3GetPaymentInitiationRequest) o;
         return 
-            Objects.deepEquals(this.paymentInitiationID, other.paymentInitiationID);
+            Utils.enhancedDeepEquals(this.paymentInitiationID, other.paymentInitiationID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentInitiationID);
     }
     
@@ -72,14 +71,16 @@ public class V3GetPaymentInitiationRequest {
         return Utils.toString(V3GetPaymentInitiationRequest.class,
                 "paymentInitiationID", paymentInitiationID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentInitiationID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The payment initiation ID
@@ -89,10 +90,12 @@ public class V3GetPaymentInitiationRequest {
             this.paymentInitiationID = paymentInitiationID;
             return this;
         }
-        
+
         public V3GetPaymentInitiationRequest build() {
+
             return new V3GetPaymentInitiationRequest(
                 paymentInitiationID);
         }
+
     }
 }

@@ -5,6 +5,7 @@ package com.formance.formance_sdk.models.errors;
 
 import java.net.http.HttpResponse;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import com.formance.formance_sdk.utils.Utils;
 
 /**
@@ -61,10 +62,12 @@ public class SDKError extends Exception {
     @Override
     public String toString() {
         return Utils.toString(SDKError.class,
-                "rawResponse", rawResponse,
+                "requestMethod", rawResponse.request().method(),
+                "requestUri", rawResponse.request().uri(),
                 "code", code,
+                "responseHeaders", rawResponse.headers().map(), 
                 "message", message,
-                "body", body);
+                "body", bodyAsString());
     }
 
     public HttpResponse<InputStream> rawResponse() {
@@ -81,5 +84,9 @@ public class SDKError extends Exception {
 
     public byte[] body() {
         return this.body;
+    }
+
+    public String bodyAsString() {
+    	return new String(body(), StandardCharsets.UTF_8);
     }
 }

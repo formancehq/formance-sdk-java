@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2CreateLedgerRequest {
 
@@ -22,9 +22,11 @@ public class V2CreateLedgerRequest {
     @JsonProperty("bucket")
     private Optional<String> bucket;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("features")
     private Optional<? extends Map<String, String>> features;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -64,15 +66,17 @@ public class V2CreateLedgerRequest {
         return (Optional<Map<String, String>>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2CreateLedgerRequest withBucket(String bucket) {
         Utils.checkNotNull(bucket, "bucket");
         this.bucket = Optional.ofNullable(bucket);
         return this;
     }
+
 
     public V2CreateLedgerRequest withBucket(Optional<String> bucket) {
         Utils.checkNotNull(bucket, "bucket");
@@ -86,6 +90,7 @@ public class V2CreateLedgerRequest {
         return this;
     }
 
+
     public V2CreateLedgerRequest withFeatures(Optional<? extends Map<String, String>> features) {
         Utils.checkNotNull(features, "features");
         this.features = features;
@@ -98,13 +103,13 @@ public class V2CreateLedgerRequest {
         return this;
     }
 
+
     public V2CreateLedgerRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,17 +120,15 @@ public class V2CreateLedgerRequest {
         }
         V2CreateLedgerRequest other = (V2CreateLedgerRequest) o;
         return 
-            Objects.deepEquals(this.bucket, other.bucket) &&
-            Objects.deepEquals(this.features, other.features) &&
-            Objects.deepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.bucket, other.bucket) &&
+            Utils.enhancedDeepEquals(this.features, other.features) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            bucket,
-            features,
-            metadata);
+        return Utils.enhancedHash(
+            bucket, features, metadata);
     }
     
     @Override
@@ -135,18 +138,20 @@ public class V2CreateLedgerRequest {
                 "features", features,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> bucket = Optional.empty();
- 
+
         private Optional<? extends Map<String, String>> features = Optional.empty();
- 
+
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder bucket(String bucket) {
             Utils.checkNotNull(bucket, "bucket");
@@ -160,6 +165,7 @@ public class V2CreateLedgerRequest {
             return this;
         }
 
+
         public Builder features(Map<String, String> features) {
             Utils.checkNotNull(features, "features");
             this.features = Optional.ofNullable(features);
@@ -172,6 +178,7 @@ public class V2CreateLedgerRequest {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
@@ -183,12 +190,12 @@ public class V2CreateLedgerRequest {
             this.metadata = metadata;
             return this;
         }
-        
+
         public V2CreateLedgerRequest build() {
+
             return new V2CreateLedgerRequest(
-                bucket,
-                features,
-                metadata);
+                bucket, features, metadata);
         }
+
     }
 }

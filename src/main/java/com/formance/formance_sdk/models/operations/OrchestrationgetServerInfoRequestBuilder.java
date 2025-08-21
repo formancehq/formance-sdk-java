@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.OrchestrationgetServerInfo;
 import java.lang.Exception;
 
 public class OrchestrationgetServerInfoRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallOrchestrationgetServerInfo sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public OrchestrationgetServerInfoRequestBuilder(SDKMethodInterfaces.MethodCallOrchestrationgetServerInfo sdk) {
-        this.sdk = sdk;
+    public OrchestrationgetServerInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public OrchestrationgetServerInfoResponse call() throws Exception {
+        
+        RequestlessOperation<OrchestrationgetServerInfoResponse> operation
+            = new OrchestrationgetServerInfo.Sync(sdkConfiguration);
 
-        return sdk.orchestrationgetServerInfoDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

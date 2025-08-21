@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3InitiatePayment;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3InitiatePaymentRequestBuilder {
 
     private V3InitiatePaymentRequest request;
-    private final SDKMethodInterfaces.MethodCallV3InitiatePayment sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3InitiatePaymentRequestBuilder(SDKMethodInterfaces.MethodCallV3InitiatePayment sdk) {
-        this.sdk = sdk;
+    public V3InitiatePaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3InitiatePaymentRequestBuilder request(V3InitiatePaymentRequest request) {
@@ -22,8 +26,10 @@ public class V3InitiatePaymentRequestBuilder {
     }
 
     public V3InitiatePaymentResponse call() throws Exception {
+        
+        RequestOperation<V3InitiatePaymentRequest, V3InitiatePaymentResponse> operation
+              = new V3InitiatePayment.Sync(sdkConfiguration);
 
-        return sdk.initiatePayment(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

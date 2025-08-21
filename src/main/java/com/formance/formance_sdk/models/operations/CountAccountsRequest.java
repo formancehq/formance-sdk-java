@@ -12,11 +12,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CountAccountsRequest {
 
+public class CountAccountsRequest {
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
      */
@@ -78,9 +77,10 @@ public class CountAccountsRequest {
         return (Optional<Map<String, Object>>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
@@ -90,6 +90,7 @@ public class CountAccountsRequest {
         this.address = Optional.ofNullable(address);
         return this;
     }
+
 
     /**
      * Filter accounts by address pattern (regular expression placed between ^ and $).
@@ -118,6 +119,7 @@ public class CountAccountsRequest {
         return this;
     }
 
+
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
@@ -127,7 +129,6 @@ public class CountAccountsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,17 +139,15 @@ public class CountAccountsRequest {
         }
         CountAccountsRequest other = (CountAccountsRequest) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            ledger,
-            metadata);
+        return Utils.enhancedHash(
+            address, ledger, metadata);
     }
     
     @Override
@@ -158,18 +157,20 @@ public class CountAccountsRequest {
                 "ledger", ledger,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> address = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter accounts by address pattern (regular expression placed between ^ and $).
@@ -189,6 +190,7 @@ public class CountAccountsRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -197,6 +199,7 @@ public class CountAccountsRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
@@ -215,12 +218,12 @@ public class CountAccountsRequest {
             this.metadata = metadata;
             return this;
         }
-        
+
         public CountAccountsRequest build() {
+
             return new CountAccountsRequest(
-                address,
-                ledger,
-                metadata);
+                address, ledger, metadata);
         }
+
     }
 }

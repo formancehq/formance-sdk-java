@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 @SuppressWarnings("serial")
 public class ErrorResponse extends RuntimeException {
@@ -24,8 +24,10 @@ public class ErrorResponse extends RuntimeException {
     @JsonProperty("details")
     private Optional<String> details;
 
+
     @JsonProperty("errorCode")
     private ErrorsEnum errorCode;
+
 
     @JsonProperty("errorMessage")
     private String errorMessage;
@@ -35,6 +37,7 @@ public class ErrorResponse extends RuntimeException {
             @JsonProperty("details") Optional<String> details,
             @JsonProperty("errorCode") ErrorsEnum errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
+        super("API error occurred");
         Utils.checkNotNull(details, "details");
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
@@ -64,15 +67,17 @@ public class ErrorResponse extends RuntimeException {
         return errorMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ErrorResponse withDetails(String details) {
         Utils.checkNotNull(details, "details");
         this.details = Optional.ofNullable(details);
         return this;
     }
+
 
     public ErrorResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
@@ -92,7 +97,6 @@ public class ErrorResponse extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -103,17 +107,15 @@ public class ErrorResponse extends RuntimeException {
         }
         ErrorResponse other = (ErrorResponse) o;
         return 
-            Objects.deepEquals(this.details, other.details) &&
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            details,
-            errorCode,
-            errorMessage);
+        return Utils.enhancedHash(
+            details, errorCode, errorMessage);
     }
     
     @Override
@@ -123,18 +125,20 @@ public class ErrorResponse extends RuntimeException {
                 "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> details = Optional.empty();
- 
+
         private ErrorsEnum errorCode;
- 
+
         private String errorMessage;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder details(String details) {
             Utils.checkNotNull(details, "details");
@@ -148,24 +152,26 @@ public class ErrorResponse extends RuntimeException {
             return this;
         }
 
+
         public Builder errorCode(ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
         }
-        
+
         public ErrorResponse build() {
+
             return new ErrorResponse(
-                details,
-                errorCode,
-                errorMessage);
+                details, errorCode, errorMessage);
         }
+
     }
 }
 

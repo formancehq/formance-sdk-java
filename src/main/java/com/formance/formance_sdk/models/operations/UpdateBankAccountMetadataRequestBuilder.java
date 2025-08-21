@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.UpdateBankAccountMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class UpdateBankAccountMetadataRequestBuilder {
 
     private UpdateBankAccountMetadataRequest request;
-    private final SDKMethodInterfaces.MethodCallUpdateBankAccountMetadata sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateBankAccountMetadataRequestBuilder(SDKMethodInterfaces.MethodCallUpdateBankAccountMetadata sdk) {
-        this.sdk = sdk;
+    public UpdateBankAccountMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateBankAccountMetadataRequestBuilder request(UpdateBankAccountMetadataRequest request) {
@@ -22,8 +26,10 @@ public class UpdateBankAccountMetadataRequestBuilder {
     }
 
     public UpdateBankAccountMetadataResponse call() throws Exception {
+        
+        RequestOperation<UpdateBankAccountMetadataRequest, UpdateBankAccountMetadataResponse> operation
+              = new UpdateBankAccountMetadata.Sync(sdkConfiguration);
 
-        return sdk.updateBankAccountMetadata(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

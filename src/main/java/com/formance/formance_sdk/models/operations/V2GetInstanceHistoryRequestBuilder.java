@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2GetInstanceHistory;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2GetInstanceHistoryRequestBuilder {
 
     private V2GetInstanceHistoryRequest request;
-    private final SDKMethodInterfaces.MethodCallV2GetInstanceHistory sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2GetInstanceHistoryRequestBuilder(SDKMethodInterfaces.MethodCallV2GetInstanceHistory sdk) {
-        this.sdk = sdk;
+    public V2GetInstanceHistoryRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2GetInstanceHistoryRequestBuilder request(V2GetInstanceHistoryRequest request) {
@@ -22,8 +26,10 @@ public class V2GetInstanceHistoryRequestBuilder {
     }
 
     public V2GetInstanceHistoryResponse call() throws Exception {
+        
+        RequestOperation<V2GetInstanceHistoryRequest, V2GetInstanceHistoryResponse> operation
+              = new V2GetInstanceHistory.Sync(sdkConfiguration);
 
-        return sdk.getInstanceHistory(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

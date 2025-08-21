@@ -12,9 +12,9 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3Task {
 
@@ -22,22 +22,28 @@ public class V3Task {
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdObjectID")
     private Optional<String> createdObjectID;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
+
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("status")
     private V3TaskStatusEnum status;
+
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
@@ -72,7 +78,9 @@ public class V3Task {
             String id,
             V3TaskStatusEnum status,
             OffsetDateTime updatedAt) {
-        this(Optional.empty(), createdAt, Optional.empty(), JsonNullable.undefined(), id, status, updatedAt);
+        this(Optional.empty(), createdAt, Optional.empty(),
+            JsonNullable.undefined(), id, status,
+            updatedAt);
     }
 
     @JsonIgnore
@@ -110,15 +118,17 @@ public class V3Task {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3Task withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = Optional.ofNullable(connectorID);
         return this;
     }
+
 
     public V3Task withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -137,6 +147,7 @@ public class V3Task {
         this.createdObjectID = Optional.ofNullable(createdObjectID);
         return this;
     }
+
 
     public V3Task withCreatedObjectID(Optional<String> createdObjectID) {
         Utils.checkNotNull(createdObjectID, "createdObjectID");
@@ -174,7 +185,6 @@ public class V3Task {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -185,24 +195,20 @@ public class V3Task {
         }
         V3Task other = (V3Task) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdObjectID, other.createdObjectID) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdObjectID, other.createdObjectID) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorID,
-            createdAt,
-            createdObjectID,
-            error,
-            id,
-            status,
+        return Utils.enhancedHash(
+            connectorID, createdAt, createdObjectID,
+            error, id, status,
             updatedAt);
     }
     
@@ -217,26 +223,28 @@ public class V3Task {
                 "status", status,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> connectorID = Optional.empty();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private Optional<String> createdObjectID = Optional.empty();
- 
+
         private JsonNullable<String> error = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private V3TaskStatusEnum status;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -250,11 +258,13 @@ public class V3Task {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder createdObjectID(String createdObjectID) {
             Utils.checkNotNull(createdObjectID, "createdObjectID");
@@ -268,6 +278,7 @@ public class V3Task {
             return this;
         }
 
+
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
@@ -280,11 +291,13 @@ public class V3Task {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder status(V3TaskStatusEnum status) {
             Utils.checkNotNull(status, "status");
@@ -292,21 +305,20 @@ public class V3Task {
             return this;
         }
 
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public V3Task build() {
+
             return new V3Task(
-                connectorID,
-                createdAt,
-                createdObjectID,
-                error,
-                id,
-                status,
+                connectorID, createdAt, createdObjectID,
+                error, id, status,
                 updatedAt);
         }
+
     }
 }

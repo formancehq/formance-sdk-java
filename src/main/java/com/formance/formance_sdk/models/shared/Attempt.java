@@ -13,38 +13,47 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Attempt {
 
     @JsonProperty("config")
     private WebhooksConfig config;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextRetryAfter")
     private Optional<OffsetDateTime> nextRetryAfter;
 
+
     @JsonProperty("payload")
     private String payload;
+
 
     @JsonProperty("retryAttempt")
     private long retryAttempt;
 
+
     @JsonProperty("status")
     private String status;
+
 
     @JsonProperty("statusCode")
     private long statusCode;
 
+
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
+
 
     @JsonProperty("webhookID")
     private String webhookID;
@@ -93,7 +102,10 @@ public class Attempt {
             long statusCode,
             OffsetDateTime updatedAt,
             String webhookID) {
-        this(config, createdAt, id, Optional.empty(), payload, retryAttempt, status, statusCode, updatedAt, webhookID);
+        this(config, createdAt, id,
+            Optional.empty(), payload, retryAttempt,
+            status, statusCode, updatedAt,
+            webhookID);
     }
 
     @JsonIgnore
@@ -146,9 +158,10 @@ public class Attempt {
         return webhookID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Attempt withConfig(WebhooksConfig config) {
         Utils.checkNotNull(config, "config");
@@ -173,6 +186,7 @@ public class Attempt {
         this.nextRetryAfter = Optional.ofNullable(nextRetryAfter);
         return this;
     }
+
 
     public Attempt withNextRetryAfter(Optional<OffsetDateTime> nextRetryAfter) {
         Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
@@ -216,7 +230,6 @@ public class Attempt {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -227,30 +240,24 @@ public class Attempt {
         }
         Attempt other = (Attempt) o;
         return 
-            Objects.deepEquals(this.config, other.config) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.nextRetryAfter, other.nextRetryAfter) &&
-            Objects.deepEquals(this.payload, other.payload) &&
-            Objects.deepEquals(this.retryAttempt, other.retryAttempt) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.webhookID, other.webhookID);
+            Utils.enhancedDeepEquals(this.config, other.config) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.nextRetryAfter, other.nextRetryAfter) &&
+            Utils.enhancedDeepEquals(this.payload, other.payload) &&
+            Utils.enhancedDeepEquals(this.retryAttempt, other.retryAttempt) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.webhookID, other.webhookID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            config,
-            createdAt,
-            id,
-            nextRetryAfter,
-            payload,
-            retryAttempt,
-            status,
-            statusCode,
-            updatedAt,
+        return Utils.enhancedHash(
+            config, createdAt, id,
+            nextRetryAfter, payload, retryAttempt,
+            status, statusCode, updatedAt,
             webhookID);
     }
     
@@ -268,32 +275,34 @@ public class Attempt {
                 "updatedAt", updatedAt,
                 "webhookID", webhookID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private WebhooksConfig config;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private Optional<OffsetDateTime> nextRetryAfter = Optional.empty();
- 
+
         private String payload;
- 
+
         private Long retryAttempt;
- 
+
         private String status;
- 
+
         private Long statusCode;
- 
+
         private OffsetDateTime updatedAt;
- 
+
         private String webhookID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder config(WebhooksConfig config) {
             Utils.checkNotNull(config, "config");
@@ -301,17 +310,20 @@ public class Attempt {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder nextRetryAfter(OffsetDateTime nextRetryAfter) {
             Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
@@ -325,11 +337,13 @@ public class Attempt {
             return this;
         }
 
+
         public Builder payload(String payload) {
             Utils.checkNotNull(payload, "payload");
             this.payload = payload;
             return this;
         }
+
 
         public Builder retryAttempt(long retryAttempt) {
             Utils.checkNotNull(retryAttempt, "retryAttempt");
@@ -337,11 +351,13 @@ public class Attempt {
             return this;
         }
 
+
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         public Builder statusCode(long statusCode) {
             Utils.checkNotNull(statusCode, "statusCode");
@@ -349,30 +365,28 @@ public class Attempt {
             return this;
         }
 
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
 
+
         public Builder webhookID(String webhookID) {
             Utils.checkNotNull(webhookID, "webhookID");
             this.webhookID = webhookID;
             return this;
         }
-        
+
         public Attempt build() {
+
             return new Attempt(
-                config,
-                createdAt,
-                id,
-                nextRetryAfter,
-                payload,
-                retryAttempt,
-                status,
-                statusCode,
-                updatedAt,
+                config, createdAt, id,
+                nextRetryAfter, payload, retryAttempt,
+                status, statusCode, updatedAt,
                 webhookID);
         }
+
     }
 }

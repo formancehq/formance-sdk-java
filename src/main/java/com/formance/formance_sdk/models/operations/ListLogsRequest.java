@@ -11,11 +11,10 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListLogsRequest {
 
+public class ListLogsRequest {
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
      */
@@ -81,7 +80,8 @@ public class ListLogsRequest {
     
     public ListLogsRequest(
             String ledger) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), ledger, Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            ledger, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,9 +137,10 @@ public class ListLogsRequest {
         return startTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
@@ -149,6 +150,7 @@ public class ListLogsRequest {
         this.after = Optional.ofNullable(after);
         return this;
     }
+
 
     /**
      * Pagination cursor, will return the logs after a given ID. (in descending order).
@@ -171,6 +173,7 @@ public class ListLogsRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 1000.
      * Set to the value of next for the next page of results.
@@ -192,6 +195,7 @@ public class ListLogsRequest {
         this.endTime = Optional.ofNullable(endTime);
         return this;
     }
+
 
     /**
      * Filter transactions that occurred before this timestamp.
@@ -221,6 +225,7 @@ public class ListLogsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -240,6 +245,7 @@ public class ListLogsRequest {
         return this;
     }
 
+
     /**
      * Filter transactions that occurred after this timestamp.
      * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
@@ -250,7 +256,6 @@ public class ListLogsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -261,23 +266,19 @@ public class ListLogsRequest {
         }
         ListLogsRequest other = (ListLogsRequest) o;
         return 
-            Objects.deepEquals(this.after, other.after) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.endTime, other.endTime) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.startTime, other.startTime);
+            Utils.enhancedDeepEquals(this.after, other.after) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.startTime, other.startTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            after,
-            cursor,
-            endTime,
-            ledger,
-            pageSize,
-            startTime);
+        return Utils.enhancedHash(
+            after, cursor, endTime,
+            ledger, pageSize, startTime);
     }
     
     @Override
@@ -290,24 +291,26 @@ public class ListLogsRequest {
                 "pageSize", pageSize,
                 "startTime", startTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> after = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<OffsetDateTime> endTime = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<OffsetDateTime> startTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Pagination cursor, will return the logs after a given ID. (in descending order).
@@ -326,6 +329,7 @@ public class ListLogsRequest {
             this.after = after;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 1000.
@@ -351,6 +355,7 @@ public class ListLogsRequest {
             return this;
         }
 
+
         /**
          * Filter transactions that occurred before this timestamp.
          * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
@@ -371,6 +376,7 @@ public class ListLogsRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -379,6 +385,7 @@ public class ListLogsRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * The maximum number of results to return per page.
@@ -397,6 +404,7 @@ public class ListLogsRequest {
             this.pageSize = pageSize;
             return this;
         }
+
 
         /**
          * Filter transactions that occurred after this timestamp.
@@ -417,15 +425,13 @@ public class ListLogsRequest {
             this.startTime = startTime;
             return this;
         }
-        
+
         public ListLogsRequest build() {
+
             return new ListLogsRequest(
-                after,
-                cursor,
-                endTime,
-                ledger,
-                pageSize,
-                startTime);
+                after, cursor, endTime,
+                ledger, pageSize, startTime);
         }
+
     }
 }

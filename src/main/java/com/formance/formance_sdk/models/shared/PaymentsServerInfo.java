@@ -12,7 +12,6 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -25,6 +24,7 @@ public class PaymentsServerInfo {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("debug")
     private Optional<Boolean> debug;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
@@ -54,15 +54,17 @@ public class PaymentsServerInfo {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentsServerInfo withDebug(boolean debug) {
         Utils.checkNotNull(debug, "debug");
         this.debug = Optional.ofNullable(debug);
         return this;
     }
+
 
     public PaymentsServerInfo withDebug(Optional<Boolean> debug) {
         Utils.checkNotNull(debug, "debug");
@@ -76,13 +78,13 @@ public class PaymentsServerInfo {
         return this;
     }
 
+
     public PaymentsServerInfo withVersion(Optional<String> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,15 +95,14 @@ public class PaymentsServerInfo {
         }
         PaymentsServerInfo other = (PaymentsServerInfo) o;
         return 
-            Objects.deepEquals(this.debug, other.debug) &&
-            Objects.deepEquals(this.version, other.version);
+            Utils.enhancedDeepEquals(this.debug, other.debug) &&
+            Utils.enhancedDeepEquals(this.version, other.version);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            debug,
-            version);
+        return Utils.enhancedHash(
+            debug, version);
     }
     
     @Override
@@ -110,16 +111,18 @@ public class PaymentsServerInfo {
                 "debug", debug,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> debug = Optional.empty();
- 
+
         private Optional<String> version = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder debug(boolean debug) {
             Utils.checkNotNull(debug, "debug");
@@ -133,6 +136,7 @@ public class PaymentsServerInfo {
             return this;
         }
 
+
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = Optional.ofNullable(version);
@@ -144,11 +148,12 @@ public class PaymentsServerInfo {
             this.version = version;
             return this;
         }
-        
+
         public PaymentsServerInfo build() {
+
             return new PaymentsServerInfo(
-                debug,
-                version);
+                debug, version);
         }
+
     }
 }

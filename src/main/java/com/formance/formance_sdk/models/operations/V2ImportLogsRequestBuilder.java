@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2ImportLogs;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2ImportLogsRequestBuilder {
 
     private V2ImportLogsRequest request;
-    private final SDKMethodInterfaces.MethodCallV2ImportLogs sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2ImportLogsRequestBuilder(SDKMethodInterfaces.MethodCallV2ImportLogs sdk) {
-        this.sdk = sdk;
+    public V2ImportLogsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2ImportLogsRequestBuilder request(V2ImportLogsRequest request) {
@@ -22,8 +26,10 @@ public class V2ImportLogsRequestBuilder {
     }
 
     public V2ImportLogsResponse call() throws Exception {
+        
+        RequestOperation<V2ImportLogsRequest, V2ImportLogsResponse> operation
+              = new V2ImportLogs.Sync(sdkConfiguration);
 
-        return sdk.importLogs(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

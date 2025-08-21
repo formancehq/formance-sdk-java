@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ErrorResponse {
 
@@ -20,8 +20,10 @@ public class ErrorResponse {
     @JsonProperty("details")
     private Optional<String> details;
 
+
     @JsonProperty("errorCode")
     private ErrorsEnum errorCode;
+
 
     @JsonProperty("errorMessage")
     private String errorMessage;
@@ -60,15 +62,17 @@ public class ErrorResponse {
         return errorMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ErrorResponse withDetails(String details) {
         Utils.checkNotNull(details, "details");
         this.details = Optional.ofNullable(details);
         return this;
     }
+
 
     public ErrorResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
@@ -88,7 +92,6 @@ public class ErrorResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,17 +102,15 @@ public class ErrorResponse {
         }
         ErrorResponse other = (ErrorResponse) o;
         return 
-            Objects.deepEquals(this.details, other.details) &&
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            details,
-            errorCode,
-            errorMessage);
+        return Utils.enhancedHash(
+            details, errorCode, errorMessage);
     }
     
     @Override
@@ -119,18 +120,20 @@ public class ErrorResponse {
                 "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> details = Optional.empty();
- 
+
         private ErrorsEnum errorCode;
- 
+
         private String errorMessage;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder details(String details) {
             Utils.checkNotNull(details, "details");
@@ -144,23 +147,25 @@ public class ErrorResponse {
             return this;
         }
 
+
         public Builder errorCode(ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
         }
-        
+
         public ErrorResponse build() {
+
             return new ErrorResponse(
-                details,
-                errorCode,
-                errorMessage);
+                details, errorCode, errorMessage);
         }
+
     }
 }

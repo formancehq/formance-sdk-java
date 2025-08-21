@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2ActivityListWallets {
 
@@ -36,9 +36,10 @@ public class V2ActivityListWallets {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2ActivityListWallets withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -46,13 +47,13 @@ public class V2ActivityListWallets {
         return this;
     }
 
+
     public V2ActivityListWallets withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -63,12 +64,12 @@ public class V2ActivityListWallets {
         }
         V2ActivityListWallets other = (V2ActivityListWallets) o;
         return 
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name);
     }
     
@@ -77,14 +78,16 @@ public class V2ActivityListWallets {
         return Utils.toString(V2ActivityListWallets.class,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -97,10 +100,12 @@ public class V2ActivityListWallets {
             this.name = name;
             return this;
         }
-        
+
         public V2ActivityListWallets build() {
+
             return new V2ActivityListWallets(
                 name);
         }
+
     }
 }

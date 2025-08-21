@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListTransferInitiationsRequest {
 
+public class ListTransferInitiationsRequest {
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -63,7 +62,8 @@ public class ListTransferInitiationsRequest {
     }
     
     public ListTransferInitiationsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -102,9 +102,10 @@ public class ListTransferInitiationsRequest {
         return (Optional<List<String>>) sort;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -117,6 +118,7 @@ public class ListTransferInitiationsRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -139,6 +141,7 @@ public class ListTransferInitiationsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -156,6 +159,7 @@ public class ListTransferInitiationsRequest {
         this.query = Optional.ofNullable(query);
         return this;
     }
+
 
     /**
      * Filters used to filter resources.
@@ -175,6 +179,7 @@ public class ListTransferInitiationsRequest {
         return this;
     }
 
+
     /**
      * Fields used to sort payments (default is date:desc).
      */
@@ -184,7 +189,6 @@ public class ListTransferInitiationsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -195,18 +199,16 @@ public class ListTransferInitiationsRequest {
         }
         ListTransferInitiationsRequest other = (ListTransferInitiationsRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.sort, other.sort);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cursor,
-            pageSize,
-            query,
+        return Utils.enhancedHash(
+            cursor, pageSize, query,
             sort);
     }
     
@@ -218,20 +220,22 @@ public class ListTransferInitiationsRequest {
                 "query", query,
                 "sort", sort);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> query = Optional.empty();
- 
+
         private Optional<? extends List<String>> sort = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -257,6 +261,7 @@ public class ListTransferInitiationsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -274,6 +279,7 @@ public class ListTransferInitiationsRequest {
             this.pageSize = pageSize;
             return this;
         }
+
 
         /**
          * Filters used to filter resources.
@@ -293,6 +299,7 @@ public class ListTransferInitiationsRequest {
             return this;
         }
 
+
         /**
          * Fields used to sort payments (default is date:desc).
          */
@@ -310,17 +317,17 @@ public class ListTransferInitiationsRequest {
             this.sort = sort;
             return this;
         }
-        
+
         public ListTransferInitiationsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
             }
+
             return new ListTransferInitiationsRequest(
-                cursor,
-                pageSize,
-                query,
+                cursor, pageSize, query,
                 sort);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

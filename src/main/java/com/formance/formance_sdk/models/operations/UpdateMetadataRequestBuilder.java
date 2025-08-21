@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.UpdateMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class UpdateMetadataRequestBuilder {
 
     private UpdateMetadataRequest request;
-    private final SDKMethodInterfaces.MethodCallUpdateMetadata sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateMetadataRequestBuilder(SDKMethodInterfaces.MethodCallUpdateMetadata sdk) {
-        this.sdk = sdk;
+    public UpdateMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateMetadataRequestBuilder request(UpdateMetadataRequest request) {
@@ -22,8 +26,10 @@ public class UpdateMetadataRequestBuilder {
     }
 
     public UpdateMetadataResponse call() throws Exception {
+        
+        RequestOperation<UpdateMetadataRequest, UpdateMetadataResponse> operation
+              = new UpdateMetadata.Sync(sdkConfiguration);
 
-        return sdk.updateMetadata(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

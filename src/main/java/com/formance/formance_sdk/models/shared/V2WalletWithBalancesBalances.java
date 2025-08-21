@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2WalletWithBalancesBalances {
 
@@ -28,9 +28,10 @@ public class V2WalletWithBalancesBalances {
         return main;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2WalletWithBalancesBalances withMain(V2AssetHolder main) {
         Utils.checkNotNull(main, "main");
@@ -38,7 +39,6 @@ public class V2WalletWithBalancesBalances {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class V2WalletWithBalancesBalances {
         }
         V2WalletWithBalancesBalances other = (V2WalletWithBalancesBalances) o;
         return 
-            Objects.deepEquals(this.main, other.main);
+            Utils.enhancedDeepEquals(this.main, other.main);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             main);
     }
     
@@ -63,24 +63,28 @@ public class V2WalletWithBalancesBalances {
         return Utils.toString(V2WalletWithBalancesBalances.class,
                 "main", main);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V2AssetHolder main;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder main(V2AssetHolder main) {
             Utils.checkNotNull(main, "main");
             this.main = main;
             return this;
         }
-        
+
         public V2WalletWithBalancesBalances build() {
+
             return new V2WalletWithBalancesBalances(
                 main);
         }
+
     }
 }

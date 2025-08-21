@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V2AssetHolder {
 
@@ -22,6 +22,7 @@ public class V2AssetHolder {
     public V2AssetHolder(
             @JsonProperty("assets") Map<String, BigInteger> assets) {
         assets = Utils.emptyMapIfNull(assets);
+        Utils.checkNotNull(assets, "assets");
         this.assets = assets;
     }
 
@@ -30,9 +31,10 @@ public class V2AssetHolder {
         return assets;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2AssetHolder withAssets(Map<String, BigInteger> assets) {
         Utils.checkNotNull(assets, "assets");
@@ -40,7 +42,6 @@ public class V2AssetHolder {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -51,12 +52,12 @@ public class V2AssetHolder {
         }
         V2AssetHolder other = (V2AssetHolder) o;
         return 
-            Objects.deepEquals(this.assets, other.assets);
+            Utils.enhancedDeepEquals(this.assets, other.assets);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             assets);
     }
     
@@ -65,24 +66,28 @@ public class V2AssetHolder {
         return Utils.toString(V2AssetHolder.class,
                 "assets", assets);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, BigInteger> assets;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder assets(Map<String, BigInteger> assets) {
             Utils.checkNotNull(assets, "assets");
             this.assets = assets;
             return this;
         }
-        
+
         public V2AssetHolder build() {
+
             return new V2AssetHolder(
                 assets);
         }
+
     }
 }

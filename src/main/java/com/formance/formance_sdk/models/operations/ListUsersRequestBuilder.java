@@ -3,18 +3,25 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ListUsers;
 import java.lang.Exception;
 
 public class ListUsersRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallListUsers sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListUsersRequestBuilder(SDKMethodInterfaces.MethodCallListUsers sdk) {
-        this.sdk = sdk;
+    public ListUsersRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListUsersResponse call() throws Exception {
+        
+        RequestlessOperation<ListUsersResponse> operation
+            = new ListUsers.Sync(sdkConfiguration);
 
-        return sdk.listUsersDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

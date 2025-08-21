@@ -10,12 +10,13 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class V3BankAccountRelatedAccount {
 
     @JsonProperty("accountID")
     private String accountID;
+
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
@@ -40,9 +41,10 @@ public class V3BankAccountRelatedAccount {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3BankAccountRelatedAccount withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
@@ -56,7 +58,6 @@ public class V3BankAccountRelatedAccount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class V3BankAccountRelatedAccount {
         }
         V3BankAccountRelatedAccount other = (V3BankAccountRelatedAccount) o;
         return 
-            Objects.deepEquals(this.accountID, other.accountID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.accountID, other.accountID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountID,
-            createdAt);
+        return Utils.enhancedHash(
+            accountID, createdAt);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class V3BankAccountRelatedAccount {
                 "accountID", accountID,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accountID;
- 
+
         private OffsetDateTime createdAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
@@ -101,16 +103,18 @@ public class V3BankAccountRelatedAccount {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public V3BankAccountRelatedAccount build() {
+
             return new V3BankAccountRelatedAccount(
-                accountID,
-                createdAt);
+                accountID, createdAt);
         }
+
     }
 }

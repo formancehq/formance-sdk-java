@@ -11,8 +11,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class RunScriptRequest {
 
@@ -71,9 +71,10 @@ public class RunScriptRequest {
         return preview;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RunScriptRequest withScript(Script script) {
         Utils.checkNotNull(script, "script");
@@ -99,6 +100,7 @@ public class RunScriptRequest {
         return this;
     }
 
+
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
@@ -108,7 +110,6 @@ public class RunScriptRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,17 +120,15 @@ public class RunScriptRequest {
         }
         RunScriptRequest other = (RunScriptRequest) o;
         return 
-            Objects.deepEquals(this.script, other.script) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.preview, other.preview);
+            Utils.enhancedDeepEquals(this.script, other.script) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.preview, other.preview);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            script,
-            ledger,
-            preview);
+        return Utils.enhancedHash(
+            script, ledger, preview);
     }
     
     @Override
@@ -139,24 +138,27 @@ public class RunScriptRequest {
                 "ledger", ledger,
                 "preview", preview);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Script script;
- 
+
         private String ledger;
- 
+
         private Optional<Boolean> preview = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder script(Script script) {
             Utils.checkNotNull(script, "script");
             this.script = script;
             return this;
         }
+
 
         /**
          * Name of the ledger.
@@ -166,6 +168,7 @@ public class RunScriptRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
@@ -184,12 +187,12 @@ public class RunScriptRequest {
             this.preview = preview;
             return this;
         }
-        
+
         public RunScriptRequest build() {
+
             return new RunScriptRequest(
-                script,
-                ledger,
-                preview);
+                script, ledger, preview);
         }
+
     }
 }

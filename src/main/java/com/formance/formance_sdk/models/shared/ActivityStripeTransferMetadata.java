@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * ActivityStripeTransferMetadata
@@ -16,18 +15,15 @@ import java.util.Objects;
  * It can be useful for storing additional information about the transfer in a structured format.
  */
 public class ActivityStripeTransferMetadata {
-
     @JsonCreator
     public ActivityStripeTransferMetadata() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -41,7 +37,7 @@ public class ActivityStripeTransferMetadata {
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             );
     }
     
@@ -49,16 +45,19 @@ public class ActivityStripeTransferMetadata {
     public String toString() {
         return Utils.toString(ActivityStripeTransferMetadata.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public ActivityStripeTransferMetadata build() {
+
             return new ActivityStripeTransferMetadata(
                 );
         }
+
     }
 }

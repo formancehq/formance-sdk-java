@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3ForwardPaymentServiceUserBankAccount;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3ForwardPaymentServiceUserBankAccountRequestBuilder {
 
     private V3ForwardPaymentServiceUserBankAccountRequest request;
-    private final SDKMethodInterfaces.MethodCallV3ForwardPaymentServiceUserBankAccount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3ForwardPaymentServiceUserBankAccountRequestBuilder(SDKMethodInterfaces.MethodCallV3ForwardPaymentServiceUserBankAccount sdk) {
-        this.sdk = sdk;
+    public V3ForwardPaymentServiceUserBankAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3ForwardPaymentServiceUserBankAccountRequestBuilder request(V3ForwardPaymentServiceUserBankAccountRequest request) {
@@ -22,8 +26,10 @@ public class V3ForwardPaymentServiceUserBankAccountRequestBuilder {
     }
 
     public V3ForwardPaymentServiceUserBankAccountResponse call() throws Exception {
+        
+        RequestOperation<V3ForwardPaymentServiceUserBankAccountRequest, V3ForwardPaymentServiceUserBankAccountResponse> operation
+              = new V3ForwardPaymentServiceUserBankAccount.Sync(sdkConfiguration);
 
-        return sdk.forwardPaymentServiceUserBankAccount(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

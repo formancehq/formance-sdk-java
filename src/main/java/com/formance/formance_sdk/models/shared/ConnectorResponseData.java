@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ConnectorResponseData {
 
@@ -28,9 +28,10 @@ public class ConnectorResponseData {
         return connectorID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectorResponseData withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -38,7 +39,6 @@ public class ConnectorResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,12 +49,12 @@ public class ConnectorResponseData {
         }
         ConnectorResponseData other = (ConnectorResponseData) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             connectorID);
     }
     
@@ -63,24 +63,28 @@ public class ConnectorResponseData {
         return Utils.toString(ConnectorResponseData.class,
                 "connectorID", connectorID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
             return this;
         }
-        
+
         public ConnectorResponseData build() {
+
             return new ConnectorResponseData(
                 connectorID);
         }
+
     }
 }

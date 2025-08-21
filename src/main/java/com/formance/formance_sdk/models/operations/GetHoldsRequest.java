@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetHoldsRequest {
 
+public class GetHoldsRequest {
     /**
      * Parameter used in pagination requests.
      * Set to the value of next for the next page of results.
@@ -63,7 +62,8 @@ public class GetHoldsRequest {
     }
     
     public GetHoldsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -102,9 +102,10 @@ public class GetHoldsRequest {
         return walletID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Parameter used in pagination requests.
@@ -117,6 +118,7 @@ public class GetHoldsRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests.
@@ -139,6 +141,7 @@ public class GetHoldsRequest {
         return this;
     }
 
+
     /**
      * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
@@ -156,6 +159,7 @@ public class GetHoldsRequest {
         this.pageSize = Optional.ofNullable(pageSize);
         return this;
     }
+
 
     /**
      * The maximum number of results to return per page
@@ -175,6 +179,7 @@ public class GetHoldsRequest {
         return this;
     }
 
+
     /**
      * The wallet to filter on
      */
@@ -184,7 +189,6 @@ public class GetHoldsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -195,18 +199,16 @@ public class GetHoldsRequest {
         }
         GetHoldsRequest other = (GetHoldsRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.walletID, other.walletID);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.walletID, other.walletID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cursor,
-            metadata,
-            pageSize,
+        return Utils.enhancedHash(
+            cursor, metadata, pageSize,
             walletID);
     }
     
@@ -218,20 +220,22 @@ public class GetHoldsRequest {
                 "pageSize", pageSize,
                 "walletID", walletID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> walletID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Parameter used in pagination requests.
@@ -257,6 +261,7 @@ public class GetHoldsRequest {
             return this;
         }
 
+
         /**
          * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
          */
@@ -274,6 +279,7 @@ public class GetHoldsRequest {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * The maximum number of results to return per page
@@ -293,6 +299,7 @@ public class GetHoldsRequest {
             return this;
         }
 
+
         /**
          * The wallet to filter on
          */
@@ -310,17 +317,17 @@ public class GetHoldsRequest {
             this.walletID = walletID;
             return this;
         }
-        
+
         public GetHoldsRequest build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
             }
+
             return new GetHoldsRequest(
-                cursor,
-                metadata,
-                pageSize,
+                cursor, metadata, pageSize,
                 walletID);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

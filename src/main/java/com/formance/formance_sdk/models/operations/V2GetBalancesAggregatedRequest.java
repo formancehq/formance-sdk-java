@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2GetBalancesAggregatedRequest {
 
@@ -26,6 +26,7 @@ public class V2GetBalancesAggregatedRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
@@ -43,6 +44,7 @@ public class V2GetBalancesAggregatedRequest {
             Optional<OffsetDateTime> pit,
             Optional<Boolean> useInsertionDate) {
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pit, "pit");
         Utils.checkNotNull(useInsertionDate, "useInsertionDate");
@@ -55,7 +57,8 @@ public class V2GetBalancesAggregatedRequest {
     public V2GetBalancesAggregatedRequest(
             Map<String, Object> requestBody,
             String ledger) {
-        this(requestBody, ledger, Optional.empty(), Optional.empty());
+        this(requestBody, ledger, Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -84,9 +87,10 @@ public class V2GetBalancesAggregatedRequest {
         return useInsertionDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2GetBalancesAggregatedRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -109,6 +113,7 @@ public class V2GetBalancesAggregatedRequest {
         return this;
     }
 
+
     public V2GetBalancesAggregatedRequest withPit(Optional<OffsetDateTime> pit) {
         Utils.checkNotNull(pit, "pit");
         this.pit = pit;
@@ -124,6 +129,7 @@ public class V2GetBalancesAggregatedRequest {
         return this;
     }
 
+
     /**
      * Use insertion date instead of effective date
      */
@@ -133,7 +139,6 @@ public class V2GetBalancesAggregatedRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -144,18 +149,16 @@ public class V2GetBalancesAggregatedRequest {
         }
         V2GetBalancesAggregatedRequest other = (V2GetBalancesAggregatedRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.pit, other.pit) &&
-            Objects.deepEquals(this.useInsertionDate, other.useInsertionDate);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.pit, other.pit) &&
+            Utils.enhancedDeepEquals(this.useInsertionDate, other.useInsertionDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            ledger,
-            pit,
+        return Utils.enhancedHash(
+            requestBody, ledger, pit,
             useInsertionDate);
     }
     
@@ -167,26 +170,29 @@ public class V2GetBalancesAggregatedRequest {
                 "pit", pit,
                 "useInsertionDate", useInsertionDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Object> requestBody;
- 
+
         private String ledger;
- 
+
         private Optional<OffsetDateTime> pit = Optional.empty();
- 
+
         private Optional<Boolean> useInsertionDate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Name of the ledger.
@@ -196,6 +202,7 @@ public class V2GetBalancesAggregatedRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         public Builder pit(OffsetDateTime pit) {
             Utils.checkNotNull(pit, "pit");
@@ -208,6 +215,7 @@ public class V2GetBalancesAggregatedRequest {
             this.pit = pit;
             return this;
         }
+
 
         /**
          * Use insertion date instead of effective date
@@ -226,13 +234,13 @@ public class V2GetBalancesAggregatedRequest {
             this.useInsertionDate = useInsertionDate;
             return this;
         }
-        
+
         public V2GetBalancesAggregatedRequest build() {
+
             return new V2GetBalancesAggregatedRequest(
-                requestBody,
-                ledger,
-                pit,
+                requestBody, ledger, pit,
                 useInsertionDate);
         }
+
     }
 }

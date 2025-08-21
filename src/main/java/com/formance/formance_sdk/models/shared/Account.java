@@ -14,17 +14,19 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Account {
 
     @JsonProperty("address")
     private String address;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, Object>> metadata;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
@@ -64,9 +66,10 @@ public class Account {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Account withAddress(String address) {
         Utils.checkNotNull(address, "address");
@@ -80,6 +83,7 @@ public class Account {
         return this;
     }
 
+
     public Account withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -92,13 +96,13 @@ public class Account {
         return this;
     }
 
+
     public Account withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -109,17 +113,15 @@ public class Account {
         }
         Account other = (Account) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            metadata,
-            type);
+        return Utils.enhancedHash(
+            address, metadata, type);
     }
     
     @Override
@@ -129,24 +131,27 @@ public class Account {
                 "metadata", metadata,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String address;
- 
+
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder address(String address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
         }
+
 
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -160,6 +165,7 @@ public class Account {
             return this;
         }
 
+
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
@@ -171,12 +177,12 @@ public class Account {
             this.type = type;
             return this;
         }
-        
+
         public Account build() {
+
             return new Account(
-                address,
-                metadata,
-                type);
+                address, metadata, type);
         }
+
     }
 }

@@ -9,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class LedgerAccountSubject implements Subject {
 
     @JsonProperty("identifier")
     private String identifier;
+
 
     @JsonProperty("type")
     private String type;
@@ -40,9 +41,10 @@ public class LedgerAccountSubject implements Subject {
         return Utils.discriminatorToString(type);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public LedgerAccountSubject withIdentifier(String identifier) {
         Utils.checkNotNull(identifier, "identifier");
@@ -56,7 +58,6 @@ public class LedgerAccountSubject implements Subject {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,15 +68,14 @@ public class LedgerAccountSubject implements Subject {
         }
         LedgerAccountSubject other = (LedgerAccountSubject) o;
         return 
-            Objects.deepEquals(this.identifier, other.identifier) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.identifier, other.identifier) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            identifier,
-            type);
+        return Utils.enhancedHash(
+            identifier, type);
     }
     
     @Override
@@ -84,16 +84,18 @@ public class LedgerAccountSubject implements Subject {
                 "identifier", identifier,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String identifier;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder identifier(String identifier) {
             Utils.checkNotNull(identifier, "identifier");
@@ -101,16 +103,18 @@ public class LedgerAccountSubject implements Subject {
             return this;
         }
 
+
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public LedgerAccountSubject build() {
+
             return new LedgerAccountSubject(
-                identifier,
-                type);
+                identifier, type);
         }
+
     }
 }

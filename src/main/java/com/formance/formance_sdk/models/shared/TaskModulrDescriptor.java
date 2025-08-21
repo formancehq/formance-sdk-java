@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class TaskModulrDescriptor {
 
@@ -20,9 +20,11 @@ public class TaskModulrDescriptor {
     @JsonProperty("accountID")
     private Optional<String> accountID;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("key")
     private Optional<String> key;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
@@ -60,15 +62,17 @@ public class TaskModulrDescriptor {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TaskModulrDescriptor withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
         this.accountID = Optional.ofNullable(accountID);
         return this;
     }
+
 
     public TaskModulrDescriptor withAccountID(Optional<String> accountID) {
         Utils.checkNotNull(accountID, "accountID");
@@ -82,6 +86,7 @@ public class TaskModulrDescriptor {
         return this;
     }
 
+
     public TaskModulrDescriptor withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
@@ -94,13 +99,13 @@ public class TaskModulrDescriptor {
         return this;
     }
 
+
     public TaskModulrDescriptor withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,17 +116,15 @@ public class TaskModulrDescriptor {
         }
         TaskModulrDescriptor other = (TaskModulrDescriptor) o;
         return 
-            Objects.deepEquals(this.accountID, other.accountID) &&
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.accountID, other.accountID) &&
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountID,
-            key,
-            name);
+        return Utils.enhancedHash(
+            accountID, key, name);
     }
     
     @Override
@@ -131,18 +134,20 @@ public class TaskModulrDescriptor {
                 "key", key,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> accountID = Optional.empty();
- 
+
         private Optional<String> key = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
@@ -156,6 +161,7 @@ public class TaskModulrDescriptor {
             return this;
         }
 
+
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
             this.key = Optional.ofNullable(key);
@@ -168,6 +174,7 @@ public class TaskModulrDescriptor {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -179,12 +186,12 @@ public class TaskModulrDescriptor {
             this.name = name;
             return this;
         }
-        
+
         public TaskModulrDescriptor build() {
+
             return new TaskModulrDescriptor(
-                accountID,
-                key,
-                name);
+                accountID, key, name);
         }
+
     }
 }

@@ -12,21 +12,25 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class OrchestrationPaymentAdjustment {
 
     @JsonProperty("absolute")
     private boolean absolute;
 
+
     @JsonProperty("amount")
     private BigInteger amount;
+
 
     @JsonProperty("date")
     private OffsetDateTime date;
 
+
     @JsonProperty("raw")
     private OrchestrationPaymentAdjustmentRaw raw;
+
 
     @JsonProperty("status")
     private OrchestrationPaymentStatus status;
@@ -75,9 +79,10 @@ public class OrchestrationPaymentAdjustment {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationPaymentAdjustment withAbsolute(boolean absolute) {
         Utils.checkNotNull(absolute, "absolute");
@@ -114,7 +119,6 @@ public class OrchestrationPaymentAdjustment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,21 +129,18 @@ public class OrchestrationPaymentAdjustment {
         }
         OrchestrationPaymentAdjustment other = (OrchestrationPaymentAdjustment) o;
         return 
-            Objects.deepEquals(this.absolute, other.absolute) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.date, other.date) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.absolute, other.absolute) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.date, other.date) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            absolute,
-            amount,
-            date,
-            raw,
-            status);
+        return Utils.enhancedHash(
+            absolute, amount, date,
+            raw, status);
     }
     
     @Override
@@ -151,28 +152,31 @@ public class OrchestrationPaymentAdjustment {
                 "raw", raw,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Boolean absolute;
- 
+
         private BigInteger amount;
- 
+
         private OffsetDateTime date;
- 
+
         private OrchestrationPaymentAdjustmentRaw raw;
- 
+
         private OrchestrationPaymentStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder absolute(boolean absolute) {
             Utils.checkNotNull(absolute, "absolute");
             this.absolute = absolute;
             return this;
         }
+
 
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
@@ -185,11 +189,13 @@ public class OrchestrationPaymentAdjustment {
             return this;
         }
 
+
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
             return this;
         }
+
 
         public Builder raw(OrchestrationPaymentAdjustmentRaw raw) {
             Utils.checkNotNull(raw, "raw");
@@ -197,19 +203,19 @@ public class OrchestrationPaymentAdjustment {
             return this;
         }
 
+
         public Builder status(OrchestrationPaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public OrchestrationPaymentAdjustment build() {
+
             return new OrchestrationPaymentAdjustment(
-                absolute,
-                amount,
-                date,
-                raw,
-                status);
+                absolute, amount, date,
+                raw, status);
         }
+
     }
 }

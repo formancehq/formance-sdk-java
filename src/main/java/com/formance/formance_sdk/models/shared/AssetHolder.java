@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class AssetHolder {
 
@@ -22,6 +22,7 @@ public class AssetHolder {
     public AssetHolder(
             @JsonProperty("assets") Map<String, BigInteger> assets) {
         assets = Utils.emptyMapIfNull(assets);
+        Utils.checkNotNull(assets, "assets");
         this.assets = assets;
     }
 
@@ -30,9 +31,10 @@ public class AssetHolder {
         return assets;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AssetHolder withAssets(Map<String, BigInteger> assets) {
         Utils.checkNotNull(assets, "assets");
@@ -40,7 +42,6 @@ public class AssetHolder {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -51,12 +52,12 @@ public class AssetHolder {
         }
         AssetHolder other = (AssetHolder) o;
         return 
-            Objects.deepEquals(this.assets, other.assets);
+            Utils.enhancedDeepEquals(this.assets, other.assets);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             assets);
     }
     
@@ -65,24 +66,28 @@ public class AssetHolder {
         return Utils.toString(AssetHolder.class,
                 "assets", assets);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, BigInteger> assets;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder assets(Map<String, BigInteger> assets) {
             Utils.checkNotNull(assets, "assets");
             this.assets = assets;
             return this;
         }
-        
+
         public AssetHolder build() {
+
             return new AssetHolder(
                 assets);
         }
+
     }
 }

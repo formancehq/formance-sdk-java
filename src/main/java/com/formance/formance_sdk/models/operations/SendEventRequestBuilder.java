@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.SendEvent;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class SendEventRequestBuilder {
 
     private SendEventRequest request;
-    private final SDKMethodInterfaces.MethodCallSendEvent sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SendEventRequestBuilder(SDKMethodInterfaces.MethodCallSendEvent sdk) {
-        this.sdk = sdk;
+    public SendEventRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SendEventRequestBuilder request(SendEventRequest request) {
@@ -22,8 +26,10 @@ public class SendEventRequestBuilder {
     }
 
     public SendEventResponse call() throws Exception {
+        
+        RequestOperation<SendEventRequest, SendEventResponse> operation
+              = new SendEvent.Sync(sdkConfiguration);
 
-        return sdk.sendEvent(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

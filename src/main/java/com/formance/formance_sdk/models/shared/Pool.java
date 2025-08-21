@@ -10,15 +10,17 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class Pool {
 
     @JsonProperty("accounts")
     private List<String> accounts;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("name")
     private String name;
@@ -51,9 +53,10 @@ public class Pool {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Pool withAccounts(List<String> accounts) {
         Utils.checkNotNull(accounts, "accounts");
@@ -73,7 +76,6 @@ public class Pool {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,17 +86,15 @@ public class Pool {
         }
         Pool other = (Pool) o;
         return 
-            Objects.deepEquals(this.accounts, other.accounts) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.accounts, other.accounts) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accounts,
-            id,
-            name);
+        return Utils.enhancedHash(
+            accounts, id, name);
     }
     
     @Override
@@ -104,18 +104,20 @@ public class Pool {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<String> accounts;
- 
+
         private String id;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accounts(List<String> accounts) {
             Utils.checkNotNull(accounts, "accounts");
@@ -123,23 +125,25 @@ public class Pool {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public Pool build() {
+
             return new Pool(
-                accounts,
-                id,
-                name);
+                accounts, id, name);
         }
+
     }
 }

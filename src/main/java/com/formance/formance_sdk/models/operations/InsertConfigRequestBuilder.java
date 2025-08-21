@@ -3,17 +3,21 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.ConfigUser;
+import com.formance.formance_sdk.operations.InsertConfig;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class InsertConfigRequestBuilder {
 
     private ConfigUser request;
-    private final SDKMethodInterfaces.MethodCallInsertConfig sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public InsertConfigRequestBuilder(SDKMethodInterfaces.MethodCallInsertConfig sdk) {
-        this.sdk = sdk;
+    public InsertConfigRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public InsertConfigRequestBuilder request(ConfigUser request) {
@@ -23,8 +27,10 @@ public class InsertConfigRequestBuilder {
     }
 
     public InsertConfigResponse call() throws Exception {
+        
+        RequestOperation<ConfigUser, InsertConfigResponse> operation
+              = new InsertConfig.Sync(sdkConfiguration);
 
-        return sdk.insertConfig(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

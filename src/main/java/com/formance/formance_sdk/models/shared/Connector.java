@@ -24,7 +24,7 @@ public enum Connector {
     @JsonValue
     private final String value;
 
-    private Connector(String value) {
+    Connector(String value) {
         this.value = value;
     }
     

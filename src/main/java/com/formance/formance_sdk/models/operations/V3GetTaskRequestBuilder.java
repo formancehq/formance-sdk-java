@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3GetTask;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3GetTaskRequestBuilder {
 
     private V3GetTaskRequest request;
-    private final SDKMethodInterfaces.MethodCallV3GetTask sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3GetTaskRequestBuilder(SDKMethodInterfaces.MethodCallV3GetTask sdk) {
-        this.sdk = sdk;
+    public V3GetTaskRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3GetTaskRequestBuilder request(V3GetTaskRequest request) {
@@ -22,8 +26,10 @@ public class V3GetTaskRequestBuilder {
     }
 
     public V3GetTaskResponse call() throws Exception {
+        
+        RequestOperation<V3GetTaskRequest, V3GetTaskResponse> operation
+              = new V3GetTask.Sync(sdkConfiguration);
 
-        return sdk.getTask(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

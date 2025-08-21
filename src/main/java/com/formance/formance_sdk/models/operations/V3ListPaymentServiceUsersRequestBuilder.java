@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3ListPaymentServiceUsers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3ListPaymentServiceUsersRequestBuilder {
 
     private V3ListPaymentServiceUsersRequest request;
-    private final SDKMethodInterfaces.MethodCallV3ListPaymentServiceUsers sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3ListPaymentServiceUsersRequestBuilder(SDKMethodInterfaces.MethodCallV3ListPaymentServiceUsers sdk) {
-        this.sdk = sdk;
+    public V3ListPaymentServiceUsersRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3ListPaymentServiceUsersRequestBuilder request(V3ListPaymentServiceUsersRequest request) {
@@ -22,8 +26,10 @@ public class V3ListPaymentServiceUsersRequestBuilder {
     }
 
     public V3ListPaymentServiceUsersResponse call() throws Exception {
+        
+        RequestOperation<V3ListPaymentServiceUsersRequest, V3ListPaymentServiceUsersResponse> operation
+              = new V3ListPaymentServiceUsers.Sync(sdkConfiguration);
 
-        return sdk.listPaymentServiceUsers(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

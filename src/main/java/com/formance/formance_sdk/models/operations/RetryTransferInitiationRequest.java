@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class RetryTransferInitiationRequest {
-
     /**
      * The transfer ID.
      */
@@ -34,9 +33,10 @@ public class RetryTransferInitiationRequest {
         return transferId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The transfer ID.
@@ -47,7 +47,6 @@ public class RetryTransferInitiationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class RetryTransferInitiationRequest {
         }
         RetryTransferInitiationRequest other = (RetryTransferInitiationRequest) o;
         return 
-            Objects.deepEquals(this.transferId, other.transferId);
+            Utils.enhancedDeepEquals(this.transferId, other.transferId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             transferId);
     }
     
@@ -72,14 +71,16 @@ public class RetryTransferInitiationRequest {
         return Utils.toString(RetryTransferInitiationRequest.class,
                 "transferId", transferId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transferId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The transfer ID.
@@ -89,10 +90,12 @@ public class RetryTransferInitiationRequest {
             this.transferId = transferId;
             return this;
         }
-        
+
         public RetryTransferInitiationRequest build() {
+
             return new RetryTransferInitiationRequest(
                 transferId);
         }
+
     }
 }

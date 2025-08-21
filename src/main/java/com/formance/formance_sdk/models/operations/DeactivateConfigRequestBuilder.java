@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DeactivateConfig;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DeactivateConfigRequestBuilder {
 
     private DeactivateConfigRequest request;
-    private final SDKMethodInterfaces.MethodCallDeactivateConfig sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeactivateConfigRequestBuilder(SDKMethodInterfaces.MethodCallDeactivateConfig sdk) {
-        this.sdk = sdk;
+    public DeactivateConfigRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeactivateConfigRequestBuilder request(DeactivateConfigRequest request) {
@@ -22,8 +26,10 @@ public class DeactivateConfigRequestBuilder {
     }
 
     public DeactivateConfigResponse call() throws Exception {
+        
+        RequestOperation<DeactivateConfigRequest, DeactivateConfigResponse> operation
+              = new DeactivateConfig.Sync(sdkConfiguration);
 
-        return sdk.deactivateConfig(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

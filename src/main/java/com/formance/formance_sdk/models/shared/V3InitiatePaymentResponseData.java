@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3InitiatePaymentResponseData {
 
+public class V3InitiatePaymentResponseData {
     /**
      * Related payment initiation object ID created.
      */
@@ -60,9 +59,10 @@ public class V3InitiatePaymentResponseData {
         return taskID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Related payment initiation object ID created.
@@ -72,6 +72,7 @@ public class V3InitiatePaymentResponseData {
         this.paymentInitiationID = Optional.ofNullable(paymentInitiationID);
         return this;
     }
+
 
     /**
      * Related payment initiation object ID created.
@@ -91,6 +92,7 @@ public class V3InitiatePaymentResponseData {
         return this;
     }
 
+
     /**
      * Will be filled if the noValidation query parameter is set to true. Since this call is asynchronous, the response will contain the ID of the task that was created to create the payment on the PSP. You can use the task API to check the status of the task and get the resulting payment ID
      */
@@ -100,7 +102,6 @@ public class V3InitiatePaymentResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +112,14 @@ public class V3InitiatePaymentResponseData {
         }
         V3InitiatePaymentResponseData other = (V3InitiatePaymentResponseData) o;
         return 
-            Objects.deepEquals(this.paymentInitiationID, other.paymentInitiationID) &&
-            Objects.deepEquals(this.taskID, other.taskID);
+            Utils.enhancedDeepEquals(this.paymentInitiationID, other.paymentInitiationID) &&
+            Utils.enhancedDeepEquals(this.taskID, other.taskID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            paymentInitiationID,
-            taskID);
+        return Utils.enhancedHash(
+            paymentInitiationID, taskID);
     }
     
     @Override
@@ -128,16 +128,18 @@ public class V3InitiatePaymentResponseData {
                 "paymentInitiationID", paymentInitiationID,
                 "taskID", taskID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> paymentInitiationID = Optional.empty();
- 
+
         private Optional<String> taskID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Related payment initiation object ID created.
@@ -157,6 +159,7 @@ public class V3InitiatePaymentResponseData {
             return this;
         }
 
+
         /**
          * Will be filled if the noValidation query parameter is set to true. Since this call is asynchronous, the response will contain the ID of the task that was created to create the payment on the PSP. You can use the task API to check the status of the task and get the resulting payment ID
          */
@@ -174,11 +177,12 @@ public class V3InitiatePaymentResponseData {
             this.taskID = taskID;
             return this;
         }
-        
+
         public V3InitiatePaymentResponseData build() {
+
             return new V3InitiatePaymentResponseData(
-                paymentInitiationID,
-                taskID);
+                paymentInitiationID, taskID);
         }
+
     }
 }

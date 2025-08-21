@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DeleteConfig;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DeleteConfigRequestBuilder {
 
     private DeleteConfigRequest request;
-    private final SDKMethodInterfaces.MethodCallDeleteConfig sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteConfigRequestBuilder(SDKMethodInterfaces.MethodCallDeleteConfig sdk) {
-        this.sdk = sdk;
+    public DeleteConfigRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteConfigRequestBuilder request(DeleteConfigRequest request) {
@@ -22,8 +26,10 @@ public class DeleteConfigRequestBuilder {
     }
 
     public DeleteConfigResponse call() throws Exception {
+        
+        RequestOperation<DeleteConfigRequest, DeleteConfigResponse> operation
+              = new DeleteConfig.Sync(sdkConfiguration);
 
-        return sdk.deleteConfig(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

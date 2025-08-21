@@ -14,39 +14,47 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3AdyenConfig implements V3InstallConnectorRequest {
 
     @JsonProperty("apiKey")
     private String apiKey;
 
+
     @JsonProperty("companyID")
     private String companyID;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("liveEndpointPrefix")
     private Optional<String> liveEndpointPrefix;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookPassword")
     private Optional<String> webhookPassword;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUsername")
@@ -87,7 +95,9 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             String apiKey,
             String companyID,
             String name) {
-        this(apiKey, companyID, Optional.empty(), name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(apiKey, companyID, Optional.empty(),
+            name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -136,9 +146,10 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
         return webhookUsername;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3AdyenConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -158,6 +169,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3AdyenConfig withLiveEndpointPrefix(Optional<String> liveEndpointPrefix) {
         Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
         this.liveEndpointPrefix = liveEndpointPrefix;
@@ -176,6 +188,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3AdyenConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -187,6 +200,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
         this.pollingPeriod = Optional.ofNullable(pollingPeriod);
         return this;
     }
+
 
     public V3AdyenConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -200,6 +214,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3AdyenConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -211,6 +226,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
         this.webhookPassword = Optional.ofNullable(webhookPassword);
         return this;
     }
+
 
     public V3AdyenConfig withWebhookPassword(Optional<String> webhookPassword) {
         Utils.checkNotNull(webhookPassword, "webhookPassword");
@@ -224,13 +240,13 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+
     public V3AdyenConfig withWebhookUsername(Optional<String> webhookUsername) {
         Utils.checkNotNull(webhookUsername, "webhookUsername");
         this.webhookUsername = webhookUsername;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -241,29 +257,23 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
         }
         V3AdyenConfig other = (V3AdyenConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.companyID, other.companyID) &&
-            Objects.deepEquals(this.liveEndpointPrefix, other.liveEndpointPrefix) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.webhookPassword, other.webhookPassword) &&
-            Objects.deepEquals(this.webhookUsername, other.webhookUsername);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.companyID, other.companyID) &&
+            Utils.enhancedDeepEquals(this.liveEndpointPrefix, other.liveEndpointPrefix) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.webhookPassword, other.webhookPassword) &&
+            Utils.enhancedDeepEquals(this.webhookUsername, other.webhookUsername);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            companyID,
-            liveEndpointPrefix,
-            name,
-            pageSize,
-            pollingPeriod,
-            provider,
-            webhookPassword,
-            webhookUsername);
+        return Utils.enhancedHash(
+            apiKey, companyID, liveEndpointPrefix,
+            name, pageSize, pollingPeriod,
+            provider, webhookPassword, webhookUsername);
     }
     
     @Override
@@ -279,30 +289,32 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
                 "webhookPassword", webhookPassword,
                 "webhookUsername", webhookUsername);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String companyID;
- 
+
         private Optional<String> liveEndpointPrefix = Optional.empty();
- 
+
         private String name;
- 
+
         private Optional<Long> pageSize;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
- 
+
         private Optional<String> webhookPassword = Optional.empty();
- 
+
         private Optional<String> webhookUsername = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -310,11 +322,13 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder companyID(String companyID) {
             Utils.checkNotNull(companyID, "companyID");
             this.companyID = companyID;
             return this;
         }
+
 
         public Builder liveEndpointPrefix(String liveEndpointPrefix) {
             Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
@@ -328,11 +342,13 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -346,6 +362,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = Optional.ofNullable(pollingPeriod);
@@ -357,6 +374,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             this.pollingPeriod = pollingPeriod;
             return this;
         }
+
 
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
@@ -370,6 +388,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder webhookPassword(String webhookPassword) {
             Utils.checkNotNull(webhookPassword, "webhookPassword");
             this.webhookPassword = Optional.ofNullable(webhookPassword);
@@ -382,6 +401,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
         public Builder webhookUsername(String webhookUsername) {
             Utils.checkNotNull(webhookUsername, "webhookUsername");
             this.webhookUsername = Optional.ofNullable(webhookUsername);
@@ -393,7 +413,7 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             this.webhookUsername = webhookUsername;
             return this;
         }
-        
+
         public V3AdyenConfig build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
@@ -404,17 +424,13 @@ public class V3AdyenConfig implements V3InstallConnectorRequest {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new V3AdyenConfig(
-                apiKey,
-                companyID,
-                liveEndpointPrefix,
-                name,
-                pageSize,
-                pollingPeriod,
-                provider,
-                webhookPassword,
-                webhookUsername);
+                apiKey, companyID, liveEndpointPrefix,
+                name, pageSize, pollingPeriod,
+                provider, webhookPassword, webhookUsername);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(

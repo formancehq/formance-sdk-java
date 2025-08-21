@@ -13,21 +13,25 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class Log {
 
     @JsonProperty("data")
     private Map<String, Object> data;
 
+
     @JsonProperty("date")
     private OffsetDateTime date;
+
 
     @JsonProperty("hash")
     private String hash;
 
+
     @JsonProperty("id")
     private long id;
+
 
     @JsonProperty("type")
     private LogType type;
@@ -40,6 +44,7 @@ public class Log {
             @JsonProperty("id") long id,
             @JsonProperty("type") LogType type) {
         data = Utils.emptyMapIfNull(data);
+        Utils.checkNotNull(data, "data");
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(hash, "hash");
         Utils.checkNotNull(id, "id");
@@ -76,9 +81,10 @@ public class Log {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Log withData(Map<String, Object> data) {
         Utils.checkNotNull(data, "data");
@@ -110,7 +116,6 @@ public class Log {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,21 +126,18 @@ public class Log {
         }
         Log other = (Log) o;
         return 
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.date, other.date) &&
-            Objects.deepEquals(this.hash, other.hash) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.date, other.date) &&
+            Utils.enhancedDeepEquals(this.hash, other.hash) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            data,
-            date,
-            hash,
-            id,
-            type);
+        return Utils.enhancedHash(
+            data, date, hash,
+            id, type);
     }
     
     @Override
@@ -147,22 +149,24 @@ public class Log {
                 "id", id,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Object> data;
- 
+
         private OffsetDateTime date;
- 
+
         private String hash;
- 
+
         private Long id;
- 
+
         private LogType type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Map<String, Object> data) {
             Utils.checkNotNull(data, "data");
@@ -170,11 +174,13 @@ public class Log {
             return this;
         }
 
+
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
             return this;
         }
+
 
         public Builder hash(String hash) {
             Utils.checkNotNull(hash, "hash");
@@ -182,25 +188,26 @@ public class Log {
             return this;
         }
 
+
         public Builder id(long id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
 
+
         public Builder type(LogType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public Log build() {
+
             return new Log(
-                data,
-                date,
-                hash,
-                id,
-                type);
+                data, date, hash,
+                id, type);
         }
+
     }
 }

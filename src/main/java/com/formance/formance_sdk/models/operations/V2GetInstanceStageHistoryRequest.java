@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V2GetInstanceStageHistoryRequest {
-
     /**
      * The instance id
      */
@@ -52,9 +51,10 @@ public class V2GetInstanceStageHistoryRequest {
         return number;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The instance id
@@ -74,7 +74,6 @@ public class V2GetInstanceStageHistoryRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,15 +84,14 @@ public class V2GetInstanceStageHistoryRequest {
         }
         V2GetInstanceStageHistoryRequest other = (V2GetInstanceStageHistoryRequest) o;
         return 
-            Objects.deepEquals(this.instanceID, other.instanceID) &&
-            Objects.deepEquals(this.number, other.number);
+            Utils.enhancedDeepEquals(this.instanceID, other.instanceID) &&
+            Utils.enhancedDeepEquals(this.number, other.number);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            instanceID,
-            number);
+        return Utils.enhancedHash(
+            instanceID, number);
     }
     
     @Override
@@ -102,16 +100,18 @@ public class V2GetInstanceStageHistoryRequest {
                 "instanceID", instanceID,
                 "number", number);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String instanceID;
- 
+
         private Long number;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The instance id
@@ -122,6 +122,7 @@ public class V2GetInstanceStageHistoryRequest {
             return this;
         }
 
+
         /**
          * The stage number
          */
@@ -130,11 +131,12 @@ public class V2GetInstanceStageHistoryRequest {
             this.number = number;
             return this;
         }
-        
+
         public V2GetInstanceStageHistoryRequest build() {
+
             return new V2GetInstanceStageHistoryRequest(
-                instanceID,
-                number);
+                instanceID, number);
         }
+
     }
 }

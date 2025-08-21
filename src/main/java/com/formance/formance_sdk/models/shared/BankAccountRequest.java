@@ -13,9 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class BankAccountRequest {
 
@@ -23,23 +23,29 @@ public class BankAccountRequest {
     @JsonProperty("accountNumber")
     private Optional<String> accountNumber;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
 
+
     @JsonProperty("country")
     private String country;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iban")
     private Optional<String> iban;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("swiftBicCode")
@@ -73,7 +79,9 @@ public class BankAccountRequest {
     public BankAccountRequest(
             String country,
             String name) {
-        this(Optional.empty(), Optional.empty(), country, Optional.empty(), JsonNullable.undefined(), name, Optional.empty());
+        this(Optional.empty(), Optional.empty(), country,
+            Optional.empty(), JsonNullable.undefined(), name,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -112,15 +120,17 @@ public class BankAccountRequest {
         return swiftBicCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BankAccountRequest withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = Optional.ofNullable(accountNumber);
         return this;
     }
+
 
     public BankAccountRequest withAccountNumber(Optional<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -133,6 +143,7 @@ public class BankAccountRequest {
         this.connectorID = Optional.ofNullable(connectorID);
         return this;
     }
+
 
     public BankAccountRequest withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -151,6 +162,7 @@ public class BankAccountRequest {
         this.iban = Optional.ofNullable(iban);
         return this;
     }
+
 
     public BankAccountRequest withIban(Optional<String> iban) {
         Utils.checkNotNull(iban, "iban");
@@ -182,13 +194,13 @@ public class BankAccountRequest {
         return this;
     }
 
+
     public BankAccountRequest withSwiftBicCode(Optional<String> swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = swiftBicCode;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,24 +211,20 @@ public class BankAccountRequest {
         }
         BankAccountRequest other = (BankAccountRequest) o;
         return 
-            Objects.deepEquals(this.accountNumber, other.accountNumber) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.iban, other.iban) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.swiftBicCode, other.swiftBicCode);
+            Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.iban, other.iban) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.swiftBicCode, other.swiftBicCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountNumber,
-            connectorID,
-            country,
-            iban,
-            metadata,
-            name,
+        return Utils.enhancedHash(
+            accountNumber, connectorID, country,
+            iban, metadata, name,
             swiftBicCode);
     }
     
@@ -231,26 +239,28 @@ public class BankAccountRequest {
                 "name", name,
                 "swiftBicCode", swiftBicCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> accountNumber = Optional.empty();
- 
+
         private Optional<String> connectorID = Optional.empty();
- 
+
         private String country;
- 
+
         private Optional<String> iban = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String name;
- 
+
         private Optional<String> swiftBicCode = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -264,6 +274,7 @@ public class BankAccountRequest {
             return this;
         }
 
+
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = Optional.ofNullable(connectorID);
@@ -276,11 +287,13 @@ public class BankAccountRequest {
             return this;
         }
 
+
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
             this.country = country;
             return this;
         }
+
 
         public Builder iban(String iban) {
             Utils.checkNotNull(iban, "iban");
@@ -294,6 +307,7 @@ public class BankAccountRequest {
             return this;
         }
 
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
@@ -306,11 +320,13 @@ public class BankAccountRequest {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder swiftBicCode(String swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
@@ -323,16 +339,14 @@ public class BankAccountRequest {
             this.swiftBicCode = swiftBicCode;
             return this;
         }
-        
+
         public BankAccountRequest build() {
+
             return new BankAccountRequest(
-                accountNumber,
-                connectorID,
-                country,
-                iban,
-                metadata,
-                name,
+                accountNumber, connectorID, country,
+                iban, metadata, name,
                 swiftBicCode);
         }
+
     }
 }

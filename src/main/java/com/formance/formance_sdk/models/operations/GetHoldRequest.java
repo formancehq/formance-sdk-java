@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetHoldRequest {
-
     /**
      * The hold ID
      */
@@ -34,9 +33,10 @@ public class GetHoldRequest {
         return holdID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The hold ID
@@ -47,7 +47,6 @@ public class GetHoldRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class GetHoldRequest {
         }
         GetHoldRequest other = (GetHoldRequest) o;
         return 
-            Objects.deepEquals(this.holdID, other.holdID);
+            Utils.enhancedDeepEquals(this.holdID, other.holdID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             holdID);
     }
     
@@ -72,14 +71,16 @@ public class GetHoldRequest {
         return Utils.toString(GetHoldRequest.class,
                 "holdID", holdID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String holdID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The hold ID
@@ -89,10 +90,12 @@ public class GetHoldRequest {
             this.holdID = holdID;
             return this;
         }
-        
+
         public GetHoldRequest build() {
+
             return new GetHoldRequest(
                 holdID);
         }
+
     }
 }

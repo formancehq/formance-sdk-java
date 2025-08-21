@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.GetWalletSummary;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class GetWalletSummaryRequestBuilder {
 
     private GetWalletSummaryRequest request;
-    private final SDKMethodInterfaces.MethodCallGetWalletSummary sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetWalletSummaryRequestBuilder(SDKMethodInterfaces.MethodCallGetWalletSummary sdk) {
-        this.sdk = sdk;
+    public GetWalletSummaryRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetWalletSummaryRequestBuilder request(GetWalletSummaryRequest request) {
@@ -22,8 +26,10 @@ public class GetWalletSummaryRequestBuilder {
     }
 
     public GetWalletSummaryResponse call() throws Exception {
+        
+        RequestOperation<GetWalletSummaryRequest, GetWalletSummaryResponse> operation
+              = new GetWalletSummary.Sync(sdkConfiguration);
 
-        return sdk.getWalletSummary(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

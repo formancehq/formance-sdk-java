@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class DeletePoolRequest {
-
     /**
      * The pool ID.
      */
@@ -34,9 +33,10 @@ public class DeletePoolRequest {
         return poolId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The pool ID.
@@ -47,7 +47,6 @@ public class DeletePoolRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class DeletePoolRequest {
         }
         DeletePoolRequest other = (DeletePoolRequest) o;
         return 
-            Objects.deepEquals(this.poolId, other.poolId);
+            Utils.enhancedDeepEquals(this.poolId, other.poolId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             poolId);
     }
     
@@ -72,14 +71,16 @@ public class DeletePoolRequest {
         return Utils.toString(DeletePoolRequest.class,
                 "poolId", poolId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String poolId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The pool ID.
@@ -89,10 +90,12 @@ public class DeletePoolRequest {
             this.poolId = poolId;
             return this;
         }
-        
+
         public DeletePoolRequest build() {
+
             return new DeletePoolRequest(
                 poolId);
         }
+
     }
 }

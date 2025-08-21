@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3ForwardPaymentServiceUserBankAccountResponseData {
-
     /**
      * Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
      */
@@ -34,9 +33,10 @@ public class V3ForwardPaymentServiceUserBankAccountResponseData {
         return taskID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
@@ -47,7 +47,6 @@ public class V3ForwardPaymentServiceUserBankAccountResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3ForwardPaymentServiceUserBankAccountResponseData {
         }
         V3ForwardPaymentServiceUserBankAccountResponseData other = (V3ForwardPaymentServiceUserBankAccountResponseData) o;
         return 
-            Objects.deepEquals(this.taskID, other.taskID);
+            Utils.enhancedDeepEquals(this.taskID, other.taskID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             taskID);
     }
     
@@ -72,14 +71,16 @@ public class V3ForwardPaymentServiceUserBankAccountResponseData {
         return Utils.toString(V3ForwardPaymentServiceUserBankAccountResponseData.class,
                 "taskID", taskID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String taskID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
@@ -89,10 +90,12 @@ public class V3ForwardPaymentServiceUserBankAccountResponseData {
             this.taskID = taskID;
             return this;
         }
-        
+
         public V3ForwardPaymentServiceUserBankAccountResponseData build() {
+
             return new V3ForwardPaymentServiceUserBankAccountResponseData(
                 taskID);
         }
+
     }
 }

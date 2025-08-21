@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DeleteSecret;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DeleteSecretRequestBuilder {
 
     private DeleteSecretRequest request;
-    private final SDKMethodInterfaces.MethodCallDeleteSecret sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteSecretRequestBuilder(SDKMethodInterfaces.MethodCallDeleteSecret sdk) {
-        this.sdk = sdk;
+    public DeleteSecretRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteSecretRequestBuilder request(DeleteSecretRequest request) {
@@ -22,8 +26,10 @@ public class DeleteSecretRequestBuilder {
     }
 
     public DeleteSecretResponse call() throws Exception {
+        
+        RequestOperation<DeleteSecretRequest, DeleteSecretResponse> operation
+              = new DeleteSecret.Sync(sdkConfiguration);
 
-        return sdk.deleteSecret(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

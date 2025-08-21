@@ -17,7 +17,7 @@ public enum OrchestrationPaymentType {
     @JsonValue
     private final String value;
 
-    private OrchestrationPaymentType(String value) {
+    OrchestrationPaymentType(String value) {
         this.value = value;
     }
     

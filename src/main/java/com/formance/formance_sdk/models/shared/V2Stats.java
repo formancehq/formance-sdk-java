@@ -11,12 +11,13 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
+
 
 public class V2Stats {
 
     @JsonProperty("accounts")
     private long accounts;
+
 
     @JsonProperty("transactions")
     private BigInteger transactions;
@@ -41,9 +42,10 @@ public class V2Stats {
         return transactions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2Stats withAccounts(long accounts) {
         Utils.checkNotNull(accounts, "accounts");
@@ -62,7 +64,6 @@ public class V2Stats {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -73,15 +74,14 @@ public class V2Stats {
         }
         V2Stats other = (V2Stats) o;
         return 
-            Objects.deepEquals(this.accounts, other.accounts) &&
-            Objects.deepEquals(this.transactions, other.transactions);
+            Utils.enhancedDeepEquals(this.accounts, other.accounts) &&
+            Utils.enhancedDeepEquals(this.transactions, other.transactions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accounts,
-            transactions);
+        return Utils.enhancedHash(
+            accounts, transactions);
     }
     
     @Override
@@ -90,22 +90,25 @@ public class V2Stats {
                 "accounts", accounts,
                 "transactions", transactions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long accounts;
- 
+
         private BigInteger transactions;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accounts(long accounts) {
             Utils.checkNotNull(accounts, "accounts");
             this.accounts = accounts;
             return this;
         }
+
 
         public Builder transactions(long transactions) {
             this.transactions = BigInteger.valueOf(transactions);
@@ -117,11 +120,12 @@ public class V2Stats {
             this.transactions = transactions;
             return this;
         }
-        
+
         public V2Stats build() {
+
             return new V2Stats(
-                accounts,
-                transactions);
+                accounts, transactions);
         }
+
     }
 }

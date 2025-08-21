@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ChangeConfigSecret;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ChangeConfigSecretRequestBuilder {
 
     private ChangeConfigSecretRequest request;
-    private final SDKMethodInterfaces.MethodCallChangeConfigSecret sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ChangeConfigSecretRequestBuilder(SDKMethodInterfaces.MethodCallChangeConfigSecret sdk) {
-        this.sdk = sdk;
+    public ChangeConfigSecretRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ChangeConfigSecretRequestBuilder request(ChangeConfigSecretRequest request) {
@@ -22,8 +26,10 @@ public class ChangeConfigSecretRequestBuilder {
     }
 
     public ChangeConfigSecretResponse call() throws Exception {
+        
+        RequestOperation<ChangeConfigSecretRequest, ChangeConfigSecretResponse> operation
+              = new ChangeConfigSecret.Sync(sdkConfiguration);
 
-        return sdk.changeConfigSecret(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

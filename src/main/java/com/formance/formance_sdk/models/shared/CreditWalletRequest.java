@@ -15,9 +15,9 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class CreditWalletRequest {
 
@@ -38,13 +38,16 @@ public class CreditWalletRequest {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sources")
     private JsonNullable<? extends List<Subject>> sources;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
@@ -74,7 +77,8 @@ public class CreditWalletRequest {
     
     public CreditWalletRequest(
             Monetary amount) {
-        this(amount, Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(amount, Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     @JsonIgnore
@@ -115,9 +119,10 @@ public class CreditWalletRequest {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreditWalletRequest withAmount(Monetary amount) {
         Utils.checkNotNull(amount, "amount");
@@ -133,6 +138,7 @@ public class CreditWalletRequest {
         this.balance = Optional.ofNullable(balance);
         return this;
     }
+
 
     /**
      * The balance to credit
@@ -167,6 +173,7 @@ public class CreditWalletRequest {
         return this;
     }
 
+
     public CreditWalletRequest withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -191,13 +198,13 @@ public class CreditWalletRequest {
         return this;
     }
 
+
     public CreditWalletRequest withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -208,23 +215,19 @@ public class CreditWalletRequest {
         }
         CreditWalletRequest other = (CreditWalletRequest) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.sources, other.sources) &&
-            Objects.deepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.sources, other.sources) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            balance,
-            metadata,
-            reference,
-            sources,
-            timestamp);
+        return Utils.enhancedHash(
+            amount, balance, metadata,
+            reference, sources, timestamp);
     }
     
     @Override
@@ -237,30 +240,33 @@ public class CreditWalletRequest {
                 "sources", sources,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Monetary amount;
- 
+
         private Optional<String> balance = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private JsonNullable<? extends List<Subject>> sources = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(Monetary amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The balance to credit
@@ -280,6 +286,7 @@ public class CreditWalletRequest {
             return this;
         }
 
+
         /**
          * Metadata associated with the wallet.
          */
@@ -298,6 +305,7 @@ public class CreditWalletRequest {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
@@ -309,6 +317,7 @@ public class CreditWalletRequest {
             this.reference = reference;
             return this;
         }
+
 
         public Builder sources(List<Subject> sources) {
             Utils.checkNotNull(sources, "sources");
@@ -322,6 +331,7 @@ public class CreditWalletRequest {
             return this;
         }
 
+
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
@@ -333,15 +343,13 @@ public class CreditWalletRequest {
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public CreditWalletRequest build() {
+
             return new CreditWalletRequest(
-                amount,
-                balance,
-                metadata,
-                reference,
-                sources,
-                timestamp);
+                amount, balance, metadata,
+                reference, sources, timestamp);
         }
+
     }
 }

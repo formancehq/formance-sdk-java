@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class Transactions {
 
@@ -29,9 +29,10 @@ public class Transactions {
         return transactions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Transactions withTransactions(List<TransactionData> transactions) {
         Utils.checkNotNull(transactions, "transactions");
@@ -39,7 +40,6 @@ public class Transactions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class Transactions {
         }
         Transactions other = (Transactions) o;
         return 
-            Objects.deepEquals(this.transactions, other.transactions);
+            Utils.enhancedDeepEquals(this.transactions, other.transactions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             transactions);
     }
     
@@ -64,24 +64,28 @@ public class Transactions {
         return Utils.toString(Transactions.class,
                 "transactions", transactions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<TransactionData> transactions;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder transactions(List<TransactionData> transactions) {
             Utils.checkNotNull(transactions, "transactions");
             this.transactions = transactions;
             return this;
         }
-        
+
         public Transactions build() {
+
             return new Transactions(
                 transactions);
         }
+
     }
 }

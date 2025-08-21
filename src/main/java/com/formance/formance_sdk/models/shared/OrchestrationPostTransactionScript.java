@@ -14,13 +14,14 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OrchestrationPostTransactionScript {
 
     @JsonProperty("plain")
     private String plain;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
@@ -52,9 +53,10 @@ public class OrchestrationPostTransactionScript {
         return (Optional<Map<String, Object>>) vars;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationPostTransactionScript withPlain(String plain) {
         Utils.checkNotNull(plain, "plain");
@@ -68,13 +70,13 @@ public class OrchestrationPostTransactionScript {
         return this;
     }
 
+
     public OrchestrationPostTransactionScript withVars(Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,15 +87,14 @@ public class OrchestrationPostTransactionScript {
         }
         OrchestrationPostTransactionScript other = (OrchestrationPostTransactionScript) o;
         return 
-            Objects.deepEquals(this.plain, other.plain) &&
-            Objects.deepEquals(this.vars, other.vars);
+            Utils.enhancedDeepEquals(this.plain, other.plain) &&
+            Utils.enhancedDeepEquals(this.vars, other.vars);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            plain,
-            vars);
+        return Utils.enhancedHash(
+            plain, vars);
     }
     
     @Override
@@ -102,22 +103,25 @@ public class OrchestrationPostTransactionScript {
                 "plain", plain,
                 "vars", vars);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String plain;
- 
+
         private Optional<? extends Map<String, Object>> vars = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder plain(String plain) {
             Utils.checkNotNull(plain, "plain");
             this.plain = plain;
             return this;
         }
+
 
         public Builder vars(Map<String, Object> vars) {
             Utils.checkNotNull(vars, "vars");
@@ -130,11 +134,12 @@ public class OrchestrationPostTransactionScript {
             this.vars = vars;
             return this;
         }
-        
+
         public OrchestrationPostTransactionScript build() {
+
             return new OrchestrationPostTransactionScript(
-                plain,
-                vars);
+                plain, vars);
         }
+
     }
 }

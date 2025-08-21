@@ -14,14 +14,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class WorkflowConfig {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonProperty("stages")
     private List<Map<String, Object>> stages;
@@ -51,15 +52,17 @@ public class WorkflowConfig {
         return stages;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WorkflowConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public WorkflowConfig withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -73,7 +76,6 @@ public class WorkflowConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +86,14 @@ public class WorkflowConfig {
         }
         WorkflowConfig other = (WorkflowConfig) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.stages, other.stages);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.stages, other.stages);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            stages);
+        return Utils.enhancedHash(
+            name, stages);
     }
     
     @Override
@@ -101,16 +102,18 @@ public class WorkflowConfig {
                 "name", name,
                 "stages", stages);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private List<Map<String, Object>> stages;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -124,16 +127,18 @@ public class WorkflowConfig {
             return this;
         }
 
+
         public Builder stages(List<Map<String, Object>> stages) {
             Utils.checkNotNull(stages, "stages");
             this.stages = stages;
             return this;
         }
-        
+
         public WorkflowConfig build() {
+
             return new WorkflowConfig(
-                name,
-                stages);
+                name, stages);
         }
+
     }
 }

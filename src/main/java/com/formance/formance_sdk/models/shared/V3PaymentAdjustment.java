@@ -15,9 +15,9 @@ import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3PaymentAdjustment {
 
@@ -25,25 +25,32 @@ public class V3PaymentAdjustment {
     @JsonProperty("amount")
     private Optional<? extends BigInteger> amount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("asset")
     private Optional<String> asset;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("raw")
     private V3PaymentAdjustmentRaw raw;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("status")
     private V3PaymentStatusEnum status;
@@ -82,7 +89,9 @@ public class V3PaymentAdjustment {
             V3PaymentAdjustmentRaw raw,
             String reference,
             V3PaymentStatusEnum status) {
-        this(Optional.empty(), Optional.empty(), createdAt, id, JsonNullable.undefined(), raw, reference, status);
+        this(Optional.empty(), Optional.empty(), createdAt,
+            id, JsonNullable.undefined(), raw,
+            reference, status);
     }
 
     @SuppressWarnings("unchecked")
@@ -127,9 +136,10 @@ public class V3PaymentAdjustment {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3PaymentAdjustment withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
@@ -142,6 +152,7 @@ public class V3PaymentAdjustment {
         return this;
     }
 
+
     public V3PaymentAdjustment withAmount(Optional<? extends BigInteger> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
@@ -153,6 +164,7 @@ public class V3PaymentAdjustment {
         this.asset = Optional.ofNullable(asset);
         return this;
     }
+
 
     public V3PaymentAdjustment withAsset(Optional<String> asset) {
         Utils.checkNotNull(asset, "asset");
@@ -202,7 +214,6 @@ public class V3PaymentAdjustment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -213,27 +224,22 @@ public class V3PaymentAdjustment {
         }
         V3PaymentAdjustment other = (V3PaymentAdjustment) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            amount,
-            asset,
-            createdAt,
-            id,
-            metadata,
-            raw,
-            reference,
-            status);
+        return Utils.enhancedHash(
+            amount, asset, createdAt,
+            id, metadata, raw,
+            reference, status);
     }
     
     @Override
@@ -248,28 +254,30 @@ public class V3PaymentAdjustment {
                 "reference", reference,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends BigInteger> amount = Optional.empty();
- 
+
         private Optional<String> asset = Optional.empty();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private V3PaymentAdjustmentRaw raw;
- 
+
         private String reference;
- 
+
         private V3PaymentStatusEnum status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
@@ -288,6 +296,7 @@ public class V3PaymentAdjustment {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = Optional.ofNullable(asset);
@@ -300,17 +309,20 @@ public class V3PaymentAdjustment {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -324,11 +336,13 @@ public class V3PaymentAdjustment {
             return this;
         }
 
+
         public Builder raw(V3PaymentAdjustmentRaw raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
             return this;
         }
+
 
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -336,22 +350,20 @@ public class V3PaymentAdjustment {
             return this;
         }
 
+
         public Builder status(V3PaymentStatusEnum status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public V3PaymentAdjustment build() {
+
             return new V3PaymentAdjustment(
-                amount,
-                asset,
-                createdAt,
-                id,
-                metadata,
-                raw,
-                reference,
-                status);
+                amount, asset, createdAt,
+                id, metadata, raw,
+                reference, status);
         }
+
     }
 }

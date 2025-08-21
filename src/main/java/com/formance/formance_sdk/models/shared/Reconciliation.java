@@ -14,38 +14,47 @@ import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Reconciliation {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("driftBalances")
     private Map<String, BigInteger> driftBalances;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("ledgerBalances")
     private Map<String, BigInteger> ledgerBalances;
 
+
     @JsonProperty("paymentsBalances")
     private Map<String, BigInteger> paymentsBalances;
+
 
     @JsonProperty("policyID")
     private String policyID;
 
+
     @JsonProperty("reconciledAtLedger")
     private OffsetDateTime reconciledAtLedger;
 
+
     @JsonProperty("reconciledAtPayments")
     private OffsetDateTime reconciledAtPayments;
+
 
     @JsonProperty("status")
     private String status;
@@ -64,10 +73,13 @@ public class Reconciliation {
             @JsonProperty("status") String status) {
         Utils.checkNotNull(createdAt, "createdAt");
         driftBalances = Utils.emptyMapIfNull(driftBalances);
+        Utils.checkNotNull(driftBalances, "driftBalances");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(id, "id");
         ledgerBalances = Utils.emptyMapIfNull(ledgerBalances);
+        Utils.checkNotNull(ledgerBalances, "ledgerBalances");
         paymentsBalances = Utils.emptyMapIfNull(paymentsBalances);
+        Utils.checkNotNull(paymentsBalances, "paymentsBalances");
         Utils.checkNotNull(policyID, "policyID");
         Utils.checkNotNull(reconciledAtLedger, "reconciledAtLedger");
         Utils.checkNotNull(reconciledAtPayments, "reconciledAtPayments");
@@ -94,7 +106,10 @@ public class Reconciliation {
             OffsetDateTime reconciledAtLedger,
             OffsetDateTime reconciledAtPayments,
             String status) {
-        this(createdAt, driftBalances, Optional.empty(), id, ledgerBalances, paymentsBalances, policyID, reconciledAtLedger, reconciledAtPayments, status);
+        this(createdAt, driftBalances, Optional.empty(),
+            id, ledgerBalances, paymentsBalances,
+            policyID, reconciledAtLedger, reconciledAtPayments,
+            status);
     }
 
     @JsonIgnore
@@ -147,9 +162,10 @@ public class Reconciliation {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Reconciliation withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -168,6 +184,7 @@ public class Reconciliation {
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     public Reconciliation withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
@@ -217,7 +234,6 @@ public class Reconciliation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -228,30 +244,24 @@ public class Reconciliation {
         }
         Reconciliation other = (Reconciliation) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.driftBalances, other.driftBalances) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledgerBalances, other.ledgerBalances) &&
-            Objects.deepEquals(this.paymentsBalances, other.paymentsBalances) &&
-            Objects.deepEquals(this.policyID, other.policyID) &&
-            Objects.deepEquals(this.reconciledAtLedger, other.reconciledAtLedger) &&
-            Objects.deepEquals(this.reconciledAtPayments, other.reconciledAtPayments) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.driftBalances, other.driftBalances) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledgerBalances, other.ledgerBalances) &&
+            Utils.enhancedDeepEquals(this.paymentsBalances, other.paymentsBalances) &&
+            Utils.enhancedDeepEquals(this.policyID, other.policyID) &&
+            Utils.enhancedDeepEquals(this.reconciledAtLedger, other.reconciledAtLedger) &&
+            Utils.enhancedDeepEquals(this.reconciledAtPayments, other.reconciledAtPayments) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            driftBalances,
-            error,
-            id,
-            ledgerBalances,
-            paymentsBalances,
-            policyID,
-            reconciledAtLedger,
-            reconciledAtPayments,
+        return Utils.enhancedHash(
+            createdAt, driftBalances, error,
+            id, ledgerBalances, paymentsBalances,
+            policyID, reconciledAtLedger, reconciledAtPayments,
             status);
     }
     
@@ -269,32 +279,34 @@ public class Reconciliation {
                 "reconciledAtPayments", reconciledAtPayments,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private Map<String, BigInteger> driftBalances;
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private String id;
- 
+
         private Map<String, BigInteger> ledgerBalances;
- 
+
         private Map<String, BigInteger> paymentsBalances;
- 
+
         private String policyID;
- 
+
         private OffsetDateTime reconciledAtLedger;
- 
+
         private OffsetDateTime reconciledAtPayments;
- 
+
         private String status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -302,11 +314,13 @@ public class Reconciliation {
             return this;
         }
 
+
         public Builder driftBalances(Map<String, BigInteger> driftBalances) {
             Utils.checkNotNull(driftBalances, "driftBalances");
             this.driftBalances = driftBalances;
             return this;
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -320,11 +334,13 @@ public class Reconciliation {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder ledgerBalances(Map<String, BigInteger> ledgerBalances) {
             Utils.checkNotNull(ledgerBalances, "ledgerBalances");
@@ -332,11 +348,13 @@ public class Reconciliation {
             return this;
         }
 
+
         public Builder paymentsBalances(Map<String, BigInteger> paymentsBalances) {
             Utils.checkNotNull(paymentsBalances, "paymentsBalances");
             this.paymentsBalances = paymentsBalances;
             return this;
         }
+
 
         public Builder policyID(String policyID) {
             Utils.checkNotNull(policyID, "policyID");
@@ -344,11 +362,13 @@ public class Reconciliation {
             return this;
         }
 
+
         public Builder reconciledAtLedger(OffsetDateTime reconciledAtLedger) {
             Utils.checkNotNull(reconciledAtLedger, "reconciledAtLedger");
             this.reconciledAtLedger = reconciledAtLedger;
             return this;
         }
+
 
         public Builder reconciledAtPayments(OffsetDateTime reconciledAtPayments) {
             Utils.checkNotNull(reconciledAtPayments, "reconciledAtPayments");
@@ -356,24 +376,21 @@ public class Reconciliation {
             return this;
         }
 
+
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public Reconciliation build() {
+
             return new Reconciliation(
-                createdAt,
-                driftBalances,
-                error,
-                id,
-                ledgerBalances,
-                paymentsBalances,
-                policyID,
-                reconciledAtLedger,
-                reconciledAtPayments,
+                createdAt, driftBalances, error,
+                id, ledgerBalances, paymentsBalances,
+                policyID, reconciledAtLedger, reconciledAtPayments,
                 status);
         }
+
     }
 }

@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3GetPoolBalancesLatestRequest {
-
     /**
      * The pool ID
      */
@@ -34,9 +33,10 @@ public class V3GetPoolBalancesLatestRequest {
         return poolID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The pool ID
@@ -47,7 +47,6 @@ public class V3GetPoolBalancesLatestRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3GetPoolBalancesLatestRequest {
         }
         V3GetPoolBalancesLatestRequest other = (V3GetPoolBalancesLatestRequest) o;
         return 
-            Objects.deepEquals(this.poolID, other.poolID);
+            Utils.enhancedDeepEquals(this.poolID, other.poolID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             poolID);
     }
     
@@ -72,14 +71,16 @@ public class V3GetPoolBalancesLatestRequest {
         return Utils.toString(V3GetPoolBalancesLatestRequest.class,
                 "poolID", poolID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String poolID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The pool ID
@@ -89,10 +90,12 @@ public class V3GetPoolBalancesLatestRequest {
             this.poolID = poolID;
             return this;
         }
-        
+
         public V3GetPoolBalancesLatestRequest build() {
+
             return new V3GetPoolBalancesLatestRequest(
                 poolID);
         }
+
     }
 }

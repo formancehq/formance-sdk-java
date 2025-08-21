@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V3ConnectorConfigsResponse {
 
@@ -21,6 +21,7 @@ public class V3ConnectorConfigsResponse {
     public V3ConnectorConfigsResponse(
             @JsonProperty("data") Map<String, Map<String, V3ConnectorConfigsResponseData>> data) {
         data = Utils.emptyMapIfNull(data);
+        Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
@@ -29,9 +30,10 @@ public class V3ConnectorConfigsResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ConnectorConfigsResponse withData(Map<String, Map<String, V3ConnectorConfigsResponseData>> data) {
         Utils.checkNotNull(data, "data");
@@ -39,7 +41,6 @@ public class V3ConnectorConfigsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +51,12 @@ public class V3ConnectorConfigsResponse {
         }
         V3ConnectorConfigsResponse other = (V3ConnectorConfigsResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -64,24 +65,28 @@ public class V3ConnectorConfigsResponse {
         return Utils.toString(V3ConnectorConfigsResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Map<String, V3ConnectorConfigsResponseData>> data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(Map<String, Map<String, V3ConnectorConfigsResponseData>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public V3ConnectorConfigsResponse build() {
+
             return new V3ConnectorConfigsResponse(
                 data);
         }
+
     }
 }

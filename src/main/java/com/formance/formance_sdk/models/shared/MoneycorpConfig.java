@@ -13,19 +13,22 @@ import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class MoneycorpConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
 
+
     @JsonProperty("clientID")
     private String clientID;
 
+
     @JsonProperty("endpoint")
     private String endpoint;
+
 
     @JsonProperty("name")
     private String name;
@@ -36,6 +39,7 @@ public class MoneycorpConfig implements ConnectorConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -68,7 +72,8 @@ public class MoneycorpConfig implements ConnectorConfig {
             String clientID,
             String endpoint,
             String name) {
-        this(apiKey, clientID, endpoint, name, Optional.empty(), Optional.empty());
+        this(apiKey, clientID, endpoint,
+            name, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -105,9 +110,10 @@ public class MoneycorpConfig implements ConnectorConfig {
         return Utils.discriminatorToString(provider);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public MoneycorpConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -142,6 +148,7 @@ public class MoneycorpConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
      */
@@ -157,13 +164,13 @@ public class MoneycorpConfig implements ConnectorConfig {
         return this;
     }
 
+
     public MoneycorpConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -174,23 +181,19 @@ public class MoneycorpConfig implements ConnectorConfig {
         }
         MoneycorpConfig other = (MoneycorpConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.clientID, other.clientID) &&
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.clientID, other.clientID) &&
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            clientID,
-            endpoint,
-            name,
-            pollingPeriod,
-            provider);
+        return Utils.enhancedHash(
+            apiKey, clientID, endpoint,
+            name, pollingPeriod, provider);
     }
     
     @Override
@@ -203,24 +206,26 @@ public class MoneycorpConfig implements ConnectorConfig {
                 "pollingPeriod", pollingPeriod,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String clientID;
- 
+
         private String endpoint;
- 
+
         private String name;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -228,11 +233,13 @@ public class MoneycorpConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder clientID(String clientID) {
             Utils.checkNotNull(clientID, "clientID");
             this.clientID = clientID;
             return this;
         }
+
 
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
@@ -240,11 +247,13 @@ public class MoneycorpConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         /**
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
@@ -264,6 +273,7 @@ public class MoneycorpConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -275,7 +285,7 @@ public class MoneycorpConfig implements ConnectorConfig {
             this.provider = provider;
             return this;
         }
-        
+
         public MoneycorpConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
@@ -283,14 +293,12 @@ public class MoneycorpConfig implements ConnectorConfig {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new MoneycorpConfig(
-                apiKey,
-                clientID,
-                endpoint,
-                name,
-                pollingPeriod,
-                provider);
+                apiKey, clientID, endpoint,
+                name, pollingPeriod, provider);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(

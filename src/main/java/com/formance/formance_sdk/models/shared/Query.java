@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Query {
 
@@ -23,33 +23,41 @@ public class Query {
     @JsonProperty("after")
     private Optional<? extends List<String>> after;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
     private Optional<String> cursor;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledgers")
     private Optional<? extends List<String>> ledgers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("policy")
     private Optional<String> policy;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw")
     private Optional<? extends QueryRaw> raw;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sort")
     private Optional<String> sort;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target")
     private Optional<String> target;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terms")
@@ -87,7 +95,9 @@ public class Query {
     }
     
     public Query() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -139,15 +149,17 @@ public class Query {
         return (Optional<List<String>>) terms;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Query withAfter(List<String> after) {
         Utils.checkNotNull(after, "after");
         this.after = Optional.ofNullable(after);
         return this;
     }
+
 
     public Query withAfter(Optional<? extends List<String>> after) {
         Utils.checkNotNull(after, "after");
@@ -161,6 +173,7 @@ public class Query {
         return this;
     }
 
+
     public Query withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -172,6 +185,7 @@ public class Query {
         this.ledgers = Optional.ofNullable(ledgers);
         return this;
     }
+
 
     public Query withLedgers(Optional<? extends List<String>> ledgers) {
         Utils.checkNotNull(ledgers, "ledgers");
@@ -185,6 +199,7 @@ public class Query {
         return this;
     }
 
+
     public Query withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -196,6 +211,7 @@ public class Query {
         this.policy = Optional.ofNullable(policy);
         return this;
     }
+
 
     public Query withPolicy(Optional<String> policy) {
         Utils.checkNotNull(policy, "policy");
@@ -209,6 +225,7 @@ public class Query {
         return this;
     }
 
+
     public Query withRaw(Optional<? extends QueryRaw> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
@@ -220,6 +237,7 @@ public class Query {
         this.sort = Optional.ofNullable(sort);
         return this;
     }
+
 
     public Query withSort(Optional<String> sort) {
         Utils.checkNotNull(sort, "sort");
@@ -233,6 +251,7 @@ public class Query {
         return this;
     }
 
+
     public Query withTarget(Optional<String> target) {
         Utils.checkNotNull(target, "target");
         this.target = target;
@@ -245,13 +264,13 @@ public class Query {
         return this;
     }
 
+
     public Query withTerms(Optional<? extends List<String>> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = terms;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -262,29 +281,23 @@ public class Query {
         }
         Query other = (Query) o;
         return 
-            Objects.deepEquals(this.after, other.after) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.ledgers, other.ledgers) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.policy, other.policy) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.sort, other.sort) &&
-            Objects.deepEquals(this.target, other.target) &&
-            Objects.deepEquals(this.terms, other.terms);
+            Utils.enhancedDeepEquals(this.after, other.after) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.ledgers, other.ledgers) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.policy, other.policy) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.target, other.target) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            after,
-            cursor,
-            ledgers,
-            pageSize,
-            policy,
-            raw,
-            sort,
-            target,
-            terms);
+        return Utils.enhancedHash(
+            after, cursor, ledgers,
+            pageSize, policy, raw,
+            sort, target, terms);
     }
     
     @Override
@@ -300,30 +313,32 @@ public class Query {
                 "target", target,
                 "terms", terms);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> after = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<? extends List<String>> ledgers = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<String> policy = Optional.empty();
- 
+
         private Optional<? extends QueryRaw> raw = Optional.empty();
- 
+
         private Optional<String> sort = Optional.empty();
- 
+
         private Optional<String> target = Optional.empty();
- 
+
         private Optional<? extends List<String>> terms = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder after(List<String> after) {
             Utils.checkNotNull(after, "after");
@@ -337,6 +352,7 @@ public class Query {
             return this;
         }
 
+
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = Optional.ofNullable(cursor);
@@ -348,6 +364,7 @@ public class Query {
             this.cursor = cursor;
             return this;
         }
+
 
         public Builder ledgers(List<String> ledgers) {
             Utils.checkNotNull(ledgers, "ledgers");
@@ -361,6 +378,7 @@ public class Query {
             return this;
         }
 
+
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = Optional.ofNullable(pageSize);
@@ -372,6 +390,7 @@ public class Query {
             this.pageSize = pageSize;
             return this;
         }
+
 
         public Builder policy(String policy) {
             Utils.checkNotNull(policy, "policy");
@@ -385,6 +404,7 @@ public class Query {
             return this;
         }
 
+
         public Builder raw(QueryRaw raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
@@ -396,6 +416,7 @@ public class Query {
             this.raw = raw;
             return this;
         }
+
 
         public Builder sort(String sort) {
             Utils.checkNotNull(sort, "sort");
@@ -409,6 +430,7 @@ public class Query {
             return this;
         }
 
+
         public Builder target(String target) {
             Utils.checkNotNull(target, "target");
             this.target = Optional.ofNullable(target);
@@ -421,6 +443,7 @@ public class Query {
             return this;
         }
 
+
         public Builder terms(List<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = Optional.ofNullable(terms);
@@ -432,18 +455,14 @@ public class Query {
             this.terms = terms;
             return this;
         }
-        
+
         public Query build() {
+
             return new Query(
-                after,
-                cursor,
-                ledgers,
-                pageSize,
-                policy,
-                raw,
-                sort,
-                target,
-                terms);
+                after, cursor, ledgers,
+                pageSize, policy, raw,
+                sort, target, terms);
         }
+
     }
 }

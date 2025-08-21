@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class OrchestrationWallet {
 
@@ -24,6 +24,7 @@ public class OrchestrationWallet {
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("ledger")
     private String ledger;
 
@@ -32,6 +33,7 @@ public class OrchestrationWallet {
      */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
+
 
     @JsonProperty("name")
     private String name;
@@ -47,6 +49,7 @@ public class OrchestrationWallet {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         this.createdAt = createdAt;
         this.id = id;
@@ -86,9 +89,10 @@ public class OrchestrationWallet {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OrchestrationWallet withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -126,7 +130,6 @@ public class OrchestrationWallet {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -137,21 +140,18 @@ public class OrchestrationWallet {
         }
         OrchestrationWallet other = (OrchestrationWallet) o;
         return 
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            createdAt,
-            id,
-            ledger,
-            metadata,
-            name);
+        return Utils.enhancedHash(
+            createdAt, id, ledger,
+            metadata, name);
     }
     
     @Override
@@ -163,28 +163,31 @@ public class OrchestrationWallet {
                 "metadata", metadata,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
- 
+
         private String ledger;
- 
+
         private Map<String, String> metadata;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The unique ID of the wallet.
@@ -195,11 +198,13 @@ public class OrchestrationWallet {
             return this;
         }
 
+
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Metadata associated with the wallet.
@@ -210,19 +215,19 @@ public class OrchestrationWallet {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public OrchestrationWallet build() {
+
             return new OrchestrationWallet(
-                createdAt,
-                id,
-                ledger,
-                metadata,
-                name);
+                createdAt, id, ledger,
+                metadata, name);
         }
+
     }
 }

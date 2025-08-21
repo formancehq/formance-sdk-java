@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3UpdateBankAccountMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3UpdateBankAccountMetadataRequestBuilder {
 
     private V3UpdateBankAccountMetadataRequest request;
-    private final SDKMethodInterfaces.MethodCallV3UpdateBankAccountMetadata sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3UpdateBankAccountMetadataRequestBuilder(SDKMethodInterfaces.MethodCallV3UpdateBankAccountMetadata sdk) {
-        this.sdk = sdk;
+    public V3UpdateBankAccountMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3UpdateBankAccountMetadataRequestBuilder request(V3UpdateBankAccountMetadataRequest request) {
@@ -22,8 +26,10 @@ public class V3UpdateBankAccountMetadataRequestBuilder {
     }
 
     public V3UpdateBankAccountMetadataResponse call() throws Exception {
+        
+        RequestOperation<V3UpdateBankAccountMetadataRequest, V3UpdateBankAccountMetadataResponse> operation
+              = new V3UpdateBankAccountMetadata.Sync(sdkConfiguration);
 
-        return sdk.updateBankAccountMetadata(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

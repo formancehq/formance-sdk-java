@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2DeleteTrigger;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2DeleteTriggerRequestBuilder {
 
     private V2DeleteTriggerRequest request;
-    private final SDKMethodInterfaces.MethodCallV2DeleteTrigger sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2DeleteTriggerRequestBuilder(SDKMethodInterfaces.MethodCallV2DeleteTrigger sdk) {
-        this.sdk = sdk;
+    public V2DeleteTriggerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2DeleteTriggerRequestBuilder request(V2DeleteTriggerRequest request) {
@@ -22,8 +26,10 @@ public class V2DeleteTriggerRequestBuilder {
     }
 
     public V2DeleteTriggerResponse call() throws Exception {
+        
+        RequestOperation<V2DeleteTriggerRequest, V2DeleteTriggerResponse> operation
+              = new V2DeleteTrigger.Sync(sdkConfiguration);
 
-        return sdk.deleteTrigger(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

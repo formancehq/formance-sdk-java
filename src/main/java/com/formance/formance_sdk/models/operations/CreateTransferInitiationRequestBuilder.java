@@ -3,17 +3,21 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
+import com.formance.formance_sdk.operations.CreateTransferInitiation;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class CreateTransferInitiationRequestBuilder {
 
     private TransferInitiationRequest request;
-    private final SDKMethodInterfaces.MethodCallCreateTransferInitiation sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateTransferInitiationRequestBuilder(SDKMethodInterfaces.MethodCallCreateTransferInitiation sdk) {
-        this.sdk = sdk;
+    public CreateTransferInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateTransferInitiationRequestBuilder request(TransferInitiationRequest request) {
@@ -23,8 +27,10 @@ public class CreateTransferInitiationRequestBuilder {
     }
 
     public CreateTransferInitiationResponse call() throws Exception {
+        
+        RequestOperation<TransferInitiationRequest, CreateTransferInitiationResponse> operation
+              = new CreateTransferInitiation.Sync(sdkConfiguration);
 
-        return sdk.createTransferInitiation(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

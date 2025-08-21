@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3ResetConnectorResponse {
-
     /**
      * Since this call is asynchronous, the response will contain the ID of the task that was created to reset the connector. You can use the task API to check the status of the task and get the results.
      */
@@ -34,9 +33,10 @@ public class V3ResetConnectorResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Since this call is asynchronous, the response will contain the ID of the task that was created to reset the connector. You can use the task API to check the status of the task and get the results.
@@ -47,7 +47,6 @@ public class V3ResetConnectorResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3ResetConnectorResponse {
         }
         V3ResetConnectorResponse other = (V3ResetConnectorResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -72,14 +71,16 @@ public class V3ResetConnectorResponse {
         return Utils.toString(V3ResetConnectorResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Since this call is asynchronous, the response will contain the ID of the task that was created to reset the connector. You can use the task API to check the status of the task and get the results.
@@ -89,10 +90,12 @@ public class V3ResetConnectorResponse {
             this.data = data;
             return this;
         }
-        
+
         public V3ResetConnectorResponse build() {
+
             return new V3ResetConnectorResponse(
                 data);
         }
+
     }
 }

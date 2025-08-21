@@ -10,11 +10,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetBalancesAggregatedRequest {
 
+public class GetBalancesAggregatedRequest {
     /**
      * Filter balances involving given account, either as source or destination.
      */
@@ -75,9 +74,10 @@ public class GetBalancesAggregatedRequest {
         return useInsertionDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter balances involving given account, either as source or destination.
@@ -87,6 +87,7 @@ public class GetBalancesAggregatedRequest {
         this.address = Optional.ofNullable(address);
         return this;
     }
+
 
     /**
      * Filter balances involving given account, either as source or destination.
@@ -115,6 +116,7 @@ public class GetBalancesAggregatedRequest {
         return this;
     }
 
+
     /**
      * Use insertion date instead of effective date
      */
@@ -124,7 +126,6 @@ public class GetBalancesAggregatedRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -135,17 +136,15 @@ public class GetBalancesAggregatedRequest {
         }
         GetBalancesAggregatedRequest other = (GetBalancesAggregatedRequest) o;
         return 
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.useInsertionDate, other.useInsertionDate);
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.useInsertionDate, other.useInsertionDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            address,
-            ledger,
-            useInsertionDate);
+        return Utils.enhancedHash(
+            address, ledger, useInsertionDate);
     }
     
     @Override
@@ -155,18 +154,20 @@ public class GetBalancesAggregatedRequest {
                 "ledger", ledger,
                 "useInsertionDate", useInsertionDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> address = Optional.empty();
- 
+
         private String ledger;
- 
+
         private Optional<Boolean> useInsertionDate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter balances involving given account, either as source or destination.
@@ -186,6 +187,7 @@ public class GetBalancesAggregatedRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -194,6 +196,7 @@ public class GetBalancesAggregatedRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Use insertion date instead of effective date
@@ -212,12 +215,12 @@ public class GetBalancesAggregatedRequest {
             this.useInsertionDate = useInsertionDate;
             return this;
         }
-        
+
         public GetBalancesAggregatedRequest build() {
+
             return new GetBalancesAggregatedRequest(
-                address,
-                ledger,
-                useInsertionDate);
+                address, ledger, useInsertionDate);
         }
+
     }
 }

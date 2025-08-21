@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ActivateConfigRequest {
-
     /**
      * Config ID
      */
@@ -34,9 +33,10 @@ public class ActivateConfigRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Config ID
@@ -47,7 +47,6 @@ public class ActivateConfigRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class ActivateConfigRequest {
         }
         ActivateConfigRequest other = (ActivateConfigRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id);
     }
     
@@ -72,14 +71,16 @@ public class ActivateConfigRequest {
         return Utils.toString(ActivateConfigRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Config ID
@@ -89,10 +90,12 @@ public class ActivateConfigRequest {
             this.id = id;
             return this;
         }
-        
+
         public ActivateConfigRequest build() {
+
             return new ActivateConfigRequest(
                 id);
         }
+
     }
 }

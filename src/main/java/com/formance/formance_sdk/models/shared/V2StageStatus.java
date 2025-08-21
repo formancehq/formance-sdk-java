@@ -13,8 +13,8 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2StageStatus {
 
@@ -22,14 +22,18 @@ public class V2StageStatus {
     @JsonProperty("error")
     private Optional<String> error;
 
+
     @JsonProperty("instanceID")
     private String instanceID;
+
 
     @JsonProperty("stage")
     private double stage;
 
+
     @JsonProperty("startedAt")
     private OffsetDateTime startedAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
@@ -58,7 +62,8 @@ public class V2StageStatus {
             String instanceID,
             double stage,
             OffsetDateTime startedAt) {
-        this(Optional.empty(), instanceID, stage, startedAt, Optional.empty());
+        this(Optional.empty(), instanceID, stage,
+            startedAt, Optional.empty());
     }
 
     @JsonIgnore
@@ -86,15 +91,17 @@ public class V2StageStatus {
         return terminatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2StageStatus withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     public V2StageStatus withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
@@ -126,13 +133,13 @@ public class V2StageStatus {
         return this;
     }
 
+
     public V2StageStatus withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,21 +150,18 @@ public class V2StageStatus {
         }
         V2StageStatus other = (V2StageStatus) o;
         return 
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.instanceID, other.instanceID) &&
-            Objects.deepEquals(this.stage, other.stage) &&
-            Objects.deepEquals(this.startedAt, other.startedAt) &&
-            Objects.deepEquals(this.terminatedAt, other.terminatedAt);
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.instanceID, other.instanceID) &&
+            Utils.enhancedDeepEquals(this.stage, other.stage) &&
+            Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            error,
-            instanceID,
-            stage,
-            startedAt,
-            terminatedAt);
+        return Utils.enhancedHash(
+            error, instanceID, stage,
+            startedAt, terminatedAt);
     }
     
     @Override
@@ -169,22 +173,24 @@ public class V2StageStatus {
                 "startedAt", startedAt,
                 "terminatedAt", terminatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private String instanceID;
- 
+
         private Double stage;
- 
+
         private OffsetDateTime startedAt;
- 
+
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
@@ -198,11 +204,13 @@ public class V2StageStatus {
             return this;
         }
 
+
         public Builder instanceID(String instanceID) {
             Utils.checkNotNull(instanceID, "instanceID");
             this.instanceID = instanceID;
             return this;
         }
+
 
         public Builder stage(double stage) {
             Utils.checkNotNull(stage, "stage");
@@ -210,11 +218,13 @@ public class V2StageStatus {
             return this;
         }
 
+
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
             return this;
         }
+
 
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
@@ -227,14 +237,13 @@ public class V2StageStatus {
             this.terminatedAt = terminatedAt;
             return this;
         }
-        
+
         public V2StageStatus build() {
+
             return new V2StageStatus(
-                error,
-                instanceID,
-                stage,
-                startedAt,
-                terminatedAt);
+                error, instanceID, stage,
+                startedAt, terminatedAt);
         }
+
     }
 }

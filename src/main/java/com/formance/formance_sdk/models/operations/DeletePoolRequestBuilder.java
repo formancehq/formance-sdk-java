@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DeletePool;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DeletePoolRequestBuilder {
 
     private DeletePoolRequest request;
-    private final SDKMethodInterfaces.MethodCallDeletePool sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeletePoolRequestBuilder(SDKMethodInterfaces.MethodCallDeletePool sdk) {
-        this.sdk = sdk;
+    public DeletePoolRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeletePoolRequestBuilder request(DeletePoolRequest request) {
@@ -22,8 +26,10 @@ public class DeletePoolRequestBuilder {
     }
 
     public DeletePoolResponse call() throws Exception {
+        
+        RequestOperation<DeletePoolRequest, DeletePoolResponse> operation
+              = new DeletePool.Sync(sdkConfiguration);
 
-        return sdk.deletePool(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

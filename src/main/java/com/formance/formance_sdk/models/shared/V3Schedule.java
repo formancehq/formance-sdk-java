@@ -10,15 +10,17 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
+
 
 public class V3Schedule {
 
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("id")
     private String id;
@@ -51,9 +53,10 @@ public class V3Schedule {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3Schedule withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -73,7 +76,6 @@ public class V3Schedule {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,17 +86,15 @@ public class V3Schedule {
         }
         V3Schedule other = (V3Schedule) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorID,
-            createdAt,
-            id);
+        return Utils.enhancedHash(
+            connectorID, createdAt, id);
     }
     
     @Override
@@ -104,18 +104,20 @@ public class V3Schedule {
                 "createdAt", createdAt,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -123,23 +125,25 @@ public class V3Schedule {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
-        
+
         public V3Schedule build() {
+
             return new V3Schedule(
-                connectorID,
-                createdAt,
-                id);
+                connectorID, createdAt, id);
         }
+
     }
 }

@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.UpdateWallet;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class UpdateWalletRequestBuilder {
 
     private UpdateWalletRequest request;
-    private final SDKMethodInterfaces.MethodCallUpdateWallet sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateWalletRequestBuilder(SDKMethodInterfaces.MethodCallUpdateWallet sdk) {
-        this.sdk = sdk;
+    public UpdateWalletRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateWalletRequestBuilder request(UpdateWalletRequest request) {
@@ -22,8 +26,10 @@ public class UpdateWalletRequestBuilder {
     }
 
     public UpdateWalletResponse call() throws Exception {
+        
+        RequestOperation<UpdateWalletRequest, UpdateWalletResponse> operation
+              = new UpdateWallet.Sync(sdkConfiguration);
 
-        return sdk.updateWallet(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

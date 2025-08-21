@@ -10,11 +10,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2ListTriggersOccurrencesRequest {
 
+public class V2ListTriggersOccurrencesRequest {
     /**
      * Parameter used in pagination requests.
      * Set to the value of next for the next page of results.
@@ -81,9 +80,10 @@ public class V2ListTriggersOccurrencesRequest {
         return triggerID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Parameter used in pagination requests.
@@ -96,6 +96,7 @@ public class V2ListTriggersOccurrencesRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests.
@@ -118,6 +119,7 @@ public class V2ListTriggersOccurrencesRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -136,7 +138,6 @@ public class V2ListTriggersOccurrencesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,17 +148,15 @@ public class V2ListTriggersOccurrencesRequest {
         }
         V2ListTriggersOccurrencesRequest other = (V2ListTriggersOccurrencesRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.triggerID, other.triggerID);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.triggerID, other.triggerID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cursor,
-            pageSize,
-            triggerID);
+        return Utils.enhancedHash(
+            cursor, pageSize, triggerID);
     }
     
     @Override
@@ -167,18 +166,20 @@ public class V2ListTriggersOccurrencesRequest {
                 "pageSize", pageSize,
                 "triggerID", triggerID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private String triggerID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Parameter used in pagination requests.
@@ -204,6 +205,7 @@ public class V2ListTriggersOccurrencesRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -222,6 +224,7 @@ public class V2ListTriggersOccurrencesRequest {
             return this;
         }
 
+
         /**
          * The trigger id
          */
@@ -230,12 +233,12 @@ public class V2ListTriggersOccurrencesRequest {
             this.triggerID = triggerID;
             return this;
         }
-        
+
         public V2ListTriggersOccurrencesRequest build() {
+
             return new V2ListTriggersOccurrencesRequest(
-                cursor,
-                pageSize,
-                triggerID);
+                cursor, pageSize, triggerID);
         }
+
     }
 }

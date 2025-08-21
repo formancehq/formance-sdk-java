@@ -15,9 +15,9 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3BankAccount {
 
@@ -25,30 +25,38 @@ public class V3BankAccount {
     @JsonProperty("accountNumber")
     private JsonNullable<String> accountNumber;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private JsonNullable<String> country;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iban")
     private JsonNullable<String> iban;
 
+
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedAccounts")
     private Optional<? extends List<V3BankAccountRelatedAccount>> relatedAccounts;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("swiftBicCode")
@@ -89,7 +97,9 @@ public class V3BankAccount {
             OffsetDateTime createdAt,
             String id,
             String name) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), createdAt, JsonNullable.undefined(), id, JsonNullable.undefined(), name, Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), createdAt,
+            JsonNullable.undefined(), id, JsonNullable.undefined(),
+            name, Optional.empty(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -139,9 +149,10 @@ public class V3BankAccount {
         return swiftBicCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3BankAccount withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -215,6 +226,7 @@ public class V3BankAccount {
         return this;
     }
 
+
     public V3BankAccount withRelatedAccounts(Optional<? extends List<V3BankAccountRelatedAccount>> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = relatedAccounts;
@@ -233,7 +245,6 @@ public class V3BankAccount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -244,29 +255,23 @@ public class V3BankAccount {
         }
         V3BankAccount other = (V3BankAccount) o;
         return 
-            Objects.deepEquals(this.accountNumber, other.accountNumber) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.iban, other.iban) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.relatedAccounts, other.relatedAccounts) &&
-            Objects.deepEquals(this.swiftBicCode, other.swiftBicCode);
+            Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.iban, other.iban) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.relatedAccounts, other.relatedAccounts) &&
+            Utils.enhancedDeepEquals(this.swiftBicCode, other.swiftBicCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountNumber,
-            country,
-            createdAt,
-            iban,
-            id,
-            metadata,
-            name,
-            relatedAccounts,
-            swiftBicCode);
+        return Utils.enhancedHash(
+            accountNumber, country, createdAt,
+            iban, id, metadata,
+            name, relatedAccounts, swiftBicCode);
     }
     
     @Override
@@ -282,30 +287,32 @@ public class V3BankAccount {
                 "relatedAccounts", relatedAccounts,
                 "swiftBicCode", swiftBicCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private JsonNullable<String> iban = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String name;
- 
+
         private Optional<? extends List<V3BankAccountRelatedAccount>> relatedAccounts = Optional.empty();
- 
+
         private JsonNullable<String> swiftBicCode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -319,6 +326,7 @@ public class V3BankAccount {
             return this;
         }
 
+
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
             this.country = JsonNullable.of(country);
@@ -331,11 +339,13 @@ public class V3BankAccount {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder iban(String iban) {
             Utils.checkNotNull(iban, "iban");
@@ -349,11 +359,13 @@ public class V3BankAccount {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -367,11 +379,13 @@ public class V3BankAccount {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         public Builder relatedAccounts(List<V3BankAccountRelatedAccount> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
@@ -385,6 +399,7 @@ public class V3BankAccount {
             return this;
         }
 
+
         public Builder swiftBicCode(String swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
             this.swiftBicCode = JsonNullable.of(swiftBicCode);
@@ -396,18 +411,14 @@ public class V3BankAccount {
             this.swiftBicCode = swiftBicCode;
             return this;
         }
-        
+
         public V3BankAccount build() {
+
             return new V3BankAccount(
-                accountNumber,
-                country,
-                createdAt,
-                iban,
-                id,
-                metadata,
-                name,
-                relatedAccounts,
-                swiftBicCode);
+                accountNumber, country, createdAt,
+                iban, id, metadata,
+                name, relatedAccounts, swiftBicCode);
         }
+
     }
 }

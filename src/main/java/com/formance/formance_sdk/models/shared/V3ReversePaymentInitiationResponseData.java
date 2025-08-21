@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3ReversePaymentInitiationResponseData {
 
+public class V3ReversePaymentInitiationResponseData {
     /**
      * Related payment initiation reversal object ID created.
      */
@@ -60,9 +59,10 @@ public class V3ReversePaymentInitiationResponseData {
         return taskID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Related payment initiation reversal object ID created.
@@ -72,6 +72,7 @@ public class V3ReversePaymentInitiationResponseData {
         this.paymentInitiationReversalID = Optional.ofNullable(paymentInitiationReversalID);
         return this;
     }
+
 
     /**
      * Related payment initiation reversal object ID created.
@@ -91,6 +92,7 @@ public class V3ReversePaymentInitiationResponseData {
         return this;
     }
 
+
     /**
      * Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
      */
@@ -100,7 +102,6 @@ public class V3ReversePaymentInitiationResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +112,14 @@ public class V3ReversePaymentInitiationResponseData {
         }
         V3ReversePaymentInitiationResponseData other = (V3ReversePaymentInitiationResponseData) o;
         return 
-            Objects.deepEquals(this.paymentInitiationReversalID, other.paymentInitiationReversalID) &&
-            Objects.deepEquals(this.taskID, other.taskID);
+            Utils.enhancedDeepEquals(this.paymentInitiationReversalID, other.paymentInitiationReversalID) &&
+            Utils.enhancedDeepEquals(this.taskID, other.taskID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            paymentInitiationReversalID,
-            taskID);
+        return Utils.enhancedHash(
+            paymentInitiationReversalID, taskID);
     }
     
     @Override
@@ -128,16 +128,18 @@ public class V3ReversePaymentInitiationResponseData {
                 "paymentInitiationReversalID", paymentInitiationReversalID,
                 "taskID", taskID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> paymentInitiationReversalID = Optional.empty();
- 
+
         private Optional<String> taskID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Related payment initiation reversal object ID created.
@@ -157,6 +159,7 @@ public class V3ReversePaymentInitiationResponseData {
             return this;
         }
 
+
         /**
          * Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
          */
@@ -174,11 +177,12 @@ public class V3ReversePaymentInitiationResponseData {
             this.taskID = taskID;
             return this;
         }
-        
+
         public V3ReversePaymentInitiationResponseData build() {
+
             return new V3ReversePaymentInitiationResponseData(
-                paymentInitiationReversalID,
-                taskID);
+                paymentInitiationReversalID, taskID);
         }
+
     }
 }

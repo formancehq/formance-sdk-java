@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class ListTriggersResponse {
 
@@ -29,9 +29,10 @@ public class ListTriggersResponse {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListTriggersResponse withData(List<Trigger> data) {
         Utils.checkNotNull(data, "data");
@@ -39,7 +40,6 @@ public class ListTriggersResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class ListTriggersResponse {
         }
         ListTriggersResponse other = (ListTriggersResponse) o;
         return 
-            Objects.deepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             data);
     }
     
@@ -64,24 +64,28 @@ public class ListTriggersResponse {
         return Utils.toString(ListTriggersResponse.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Trigger> data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(List<Trigger> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public ListTriggersResponse build() {
+
             return new ListTriggersResponse(
                 data);
         }
+
     }
 }

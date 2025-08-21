@@ -12,14 +12,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Total {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relation")
     private Optional<String> relation;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -49,15 +50,17 @@ public class Total {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Total withRelation(String relation) {
         Utils.checkNotNull(relation, "relation");
         this.relation = Optional.ofNullable(relation);
         return this;
     }
+
 
     public Total withRelation(Optional<String> relation) {
         Utils.checkNotNull(relation, "relation");
@@ -71,13 +74,13 @@ public class Total {
         return this;
     }
 
+
     public Total withValue(Optional<Long> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,15 +91,14 @@ public class Total {
         }
         Total other = (Total) o;
         return 
-            Objects.deepEquals(this.relation, other.relation) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.relation, other.relation) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            relation,
-            value);
+        return Utils.enhancedHash(
+            relation, value);
     }
     
     @Override
@@ -105,16 +107,18 @@ public class Total {
                 "relation", relation,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> relation = Optional.empty();
- 
+
         private Optional<Long> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder relation(String relation) {
             Utils.checkNotNull(relation, "relation");
@@ -128,6 +132,7 @@ public class Total {
             return this;
         }
 
+
         public Builder value(long value) {
             Utils.checkNotNull(value, "value");
             this.value = Optional.ofNullable(value);
@@ -139,11 +144,12 @@ public class Total {
             this.value = value;
             return this;
         }
-        
+
         public Total build() {
+
             return new Total(
-                relation,
-                value);
+                relation, value);
         }
+
     }
 }

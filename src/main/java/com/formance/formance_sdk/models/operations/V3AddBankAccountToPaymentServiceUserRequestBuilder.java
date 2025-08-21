@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3AddBankAccountToPaymentServiceUser;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3AddBankAccountToPaymentServiceUserRequestBuilder {
 
     private V3AddBankAccountToPaymentServiceUserRequest request;
-    private final SDKMethodInterfaces.MethodCallV3AddBankAccountToPaymentServiceUser sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3AddBankAccountToPaymentServiceUserRequestBuilder(SDKMethodInterfaces.MethodCallV3AddBankAccountToPaymentServiceUser sdk) {
-        this.sdk = sdk;
+    public V3AddBankAccountToPaymentServiceUserRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3AddBankAccountToPaymentServiceUserRequestBuilder request(V3AddBankAccountToPaymentServiceUserRequest request) {
@@ -22,8 +26,10 @@ public class V3AddBankAccountToPaymentServiceUserRequestBuilder {
     }
 
     public V3AddBankAccountToPaymentServiceUserResponse call() throws Exception {
+        
+        RequestOperation<V3AddBankAccountToPaymentServiceUserRequest, V3AddBankAccountToPaymentServiceUserResponse> operation
+              = new V3AddBankAccountToPaymentServiceUser.Sync(sdkConfiguration);
 
-        return sdk.addBankAccountToPaymentServiceUser(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

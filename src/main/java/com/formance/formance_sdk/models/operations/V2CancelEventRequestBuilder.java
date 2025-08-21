@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2CancelEvent;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2CancelEventRequestBuilder {
 
     private V2CancelEventRequest request;
-    private final SDKMethodInterfaces.MethodCallV2CancelEvent sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2CancelEventRequestBuilder(SDKMethodInterfaces.MethodCallV2CancelEvent sdk) {
-        this.sdk = sdk;
+    public V2CancelEventRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2CancelEventRequestBuilder request(V2CancelEventRequest request) {
@@ -22,8 +26,10 @@ public class V2CancelEventRequestBuilder {
     }
 
     public V2CancelEventResponse call() throws Exception {
+        
+        RequestOperation<V2CancelEventRequest, V2CancelEventResponse> operation
+              = new V2CancelEvent.Sync(sdkConfiguration);
 
-        return sdk.cancelEvent(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

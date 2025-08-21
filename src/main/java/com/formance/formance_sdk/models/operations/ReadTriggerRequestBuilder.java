@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.ReadTrigger;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class ReadTriggerRequestBuilder {
 
     private ReadTriggerRequest request;
-    private final SDKMethodInterfaces.MethodCallReadTrigger sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ReadTriggerRequestBuilder(SDKMethodInterfaces.MethodCallReadTrigger sdk) {
-        this.sdk = sdk;
+    public ReadTriggerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ReadTriggerRequestBuilder request(ReadTriggerRequest request) {
@@ -22,8 +26,10 @@ public class ReadTriggerRequestBuilder {
     }
 
     public ReadTriggerResponse call() throws Exception {
+        
+        RequestOperation<ReadTriggerRequest, ReadTriggerResponse> operation
+              = new ReadTrigger.Sync(sdkConfiguration);
 
-        return sdk.readTrigger(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

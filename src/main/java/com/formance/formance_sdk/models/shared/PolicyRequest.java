@@ -11,18 +11,21 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class PolicyRequest {
 
     @JsonProperty("ledgerName")
     private String ledgerName;
 
+
     @JsonProperty("ledgerQuery")
     private Map<String, Object> ledgerQuery;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("paymentsPoolID")
     private String paymentsPoolID;
@@ -35,6 +38,7 @@ public class PolicyRequest {
             @JsonProperty("paymentsPoolID") String paymentsPoolID) {
         Utils.checkNotNull(ledgerName, "ledgerName");
         ledgerQuery = Utils.emptyMapIfNull(ledgerQuery);
+        Utils.checkNotNull(ledgerQuery, "ledgerQuery");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(paymentsPoolID, "paymentsPoolID");
         this.ledgerName = ledgerName;
@@ -63,9 +67,10 @@ public class PolicyRequest {
         return paymentsPoolID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PolicyRequest withLedgerName(String ledgerName) {
         Utils.checkNotNull(ledgerName, "ledgerName");
@@ -91,7 +96,6 @@ public class PolicyRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -102,18 +106,16 @@ public class PolicyRequest {
         }
         PolicyRequest other = (PolicyRequest) o;
         return 
-            Objects.deepEquals(this.ledgerName, other.ledgerName) &&
-            Objects.deepEquals(this.ledgerQuery, other.ledgerQuery) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.paymentsPoolID, other.paymentsPoolID);
+            Utils.enhancedDeepEquals(this.ledgerName, other.ledgerName) &&
+            Utils.enhancedDeepEquals(this.ledgerQuery, other.ledgerQuery) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.paymentsPoolID, other.paymentsPoolID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            ledgerName,
-            ledgerQuery,
-            name,
+        return Utils.enhancedHash(
+            ledgerName, ledgerQuery, name,
             paymentsPoolID);
     }
     
@@ -125,20 +127,22 @@ public class PolicyRequest {
                 "name", name,
                 "paymentsPoolID", paymentsPoolID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String ledgerName;
- 
+
         private Map<String, Object> ledgerQuery;
- 
+
         private String name;
- 
+
         private String paymentsPoolID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder ledgerName(String ledgerName) {
             Utils.checkNotNull(ledgerName, "ledgerName");
@@ -146,11 +150,13 @@ public class PolicyRequest {
             return this;
         }
 
+
         public Builder ledgerQuery(Map<String, Object> ledgerQuery) {
             Utils.checkNotNull(ledgerQuery, "ledgerQuery");
             this.ledgerQuery = ledgerQuery;
             return this;
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -158,18 +164,19 @@ public class PolicyRequest {
             return this;
         }
 
+
         public Builder paymentsPoolID(String paymentsPoolID) {
             Utils.checkNotNull(paymentsPoolID, "paymentsPoolID");
             this.paymentsPoolID = paymentsPoolID;
             return this;
         }
-        
+
         public PolicyRequest build() {
+
             return new PolicyRequest(
-                ledgerName,
-                ledgerQuery,
-                name,
+                ledgerName, ledgerQuery, name,
                 paymentsPoolID);
         }
+
     }
 }

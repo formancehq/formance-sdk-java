@@ -10,8 +10,8 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ForwardPaymentServiceUserBankAccountRequest {
 
@@ -71,15 +71,17 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
         return paymentServiceUserID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ForwardPaymentServiceUserBankAccountRequest withV3ForwardPaymentServiceUserBankAccountRequest(com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest v3ForwardPaymentServiceUserBankAccountRequest) {
         Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountRequest, "v3ForwardPaymentServiceUserBankAccountRequest");
         this.v3ForwardPaymentServiceUserBankAccountRequest = Optional.ofNullable(v3ForwardPaymentServiceUserBankAccountRequest);
         return this;
     }
+
 
     public V3ForwardPaymentServiceUserBankAccountRequest withV3ForwardPaymentServiceUserBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest) {
         Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountRequest, "v3ForwardPaymentServiceUserBankAccountRequest");
@@ -105,7 +107,6 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,17 +117,15 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
         }
         V3ForwardPaymentServiceUserBankAccountRequest other = (V3ForwardPaymentServiceUserBankAccountRequest) o;
         return 
-            Objects.deepEquals(this.v3ForwardPaymentServiceUserBankAccountRequest, other.v3ForwardPaymentServiceUserBankAccountRequest) &&
-            Objects.deepEquals(this.bankAccountID, other.bankAccountID) &&
-            Objects.deepEquals(this.paymentServiceUserID, other.paymentServiceUserID);
+            Utils.enhancedDeepEquals(this.v3ForwardPaymentServiceUserBankAccountRequest, other.v3ForwardPaymentServiceUserBankAccountRequest) &&
+            Utils.enhancedDeepEquals(this.bankAccountID, other.bankAccountID) &&
+            Utils.enhancedDeepEquals(this.paymentServiceUserID, other.paymentServiceUserID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            v3ForwardPaymentServiceUserBankAccountRequest,
-            bankAccountID,
-            paymentServiceUserID);
+        return Utils.enhancedHash(
+            v3ForwardPaymentServiceUserBankAccountRequest, bankAccountID, paymentServiceUserID);
     }
     
     @Override
@@ -136,18 +135,20 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
                 "bankAccountID", bankAccountID,
                 "paymentServiceUserID", paymentServiceUserID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest = Optional.empty();
- 
+
         private String bankAccountID;
- 
+
         private String paymentServiceUserID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder v3ForwardPaymentServiceUserBankAccountRequest(com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest v3ForwardPaymentServiceUserBankAccountRequest) {
             Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountRequest, "v3ForwardPaymentServiceUserBankAccountRequest");
@@ -161,6 +162,7 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
             return this;
         }
 
+
         /**
          * The bank account ID
          */
@@ -170,6 +172,7 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
             return this;
         }
 
+
         /**
          * The payment service user ID
          */
@@ -178,12 +181,12 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
             this.paymentServiceUserID = paymentServiceUserID;
             return this;
         }
-        
+
         public V3ForwardPaymentServiceUserBankAccountRequest build() {
+
             return new V3ForwardPaymentServiceUserBankAccountRequest(
-                v3ForwardPaymentServiceUserBankAccountRequest,
-                bankAccountID,
-                paymentServiceUserID);
+                v3ForwardPaymentServiceUserBankAccountRequest, bankAccountID, paymentServiceUserID);
         }
+
     }
 }

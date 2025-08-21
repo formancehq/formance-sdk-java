@@ -28,6 +28,7 @@ Confirm a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="confirmHold" method="post" path="/api/wallets/holds/{hold_id}/confirm" -->
 ```java
 package hello.world;
 
@@ -45,8 +46,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -90,6 +91,7 @@ Create a balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createBalance" method="post" path="/api/wallets/wallets/{id}/balances" -->
 ```java
 package hello.world;
 
@@ -106,8 +108,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -149,6 +151,7 @@ Create a new wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createWallet" method="post" path="/api/wallets/wallets" -->
 ```java
 package hello.world;
 
@@ -164,8 +167,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -202,6 +205,7 @@ Credit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="creditWallet" method="post" path="/api/wallets/wallets/{id}/credit" -->
 ```java
 package hello.world;
 
@@ -222,8 +226,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -272,6 +276,7 @@ Debit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="debitWallet" method="post" path="/api/wallets/wallets/{id}/debit" -->
 ```java
 package hello.world;
 
@@ -291,8 +296,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -343,6 +348,7 @@ Get detailed balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getBalance" method="get" path="/api/wallets/wallets/{id}/balances/{balanceName}" -->
 ```java
 package hello.world;
 
@@ -359,8 +365,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -403,6 +409,7 @@ Get a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getHold" method="get" path="/api/wallets/holds/{holdID}" -->
 ```java
 package hello.world;
 
@@ -419,8 +426,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -462,6 +469,7 @@ Get all holds for a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getHolds" method="get" path="/api/wallets/holds" -->
 ```java
 package hello.world;
 
@@ -479,8 +487,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -524,6 +532,7 @@ public class Application {
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getTransactions" method="get" path="/api/wallets/transactions" -->
 ```java
 package hello.world;
 
@@ -540,8 +549,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -585,6 +594,7 @@ Get a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getWallet" method="get" path="/api/wallets/wallets/{id}" -->
 ```java
 package hello.world;
 
@@ -601,8 +611,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -644,6 +654,7 @@ Get wallet summary
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getWalletSummary" method="get" path="/api/wallets/wallets/{id}/summary" -->
 ```java
 package hello.world;
 
@@ -660,8 +671,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -703,6 +714,7 @@ List balances of a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listBalances" method="get" path="/api/wallets/wallets/{id}/balances" -->
 ```java
 package hello.world;
 
@@ -718,8 +730,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -760,6 +772,7 @@ List all wallets
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listWallets" method="get" path="/api/wallets/wallets" -->
 ```java
 package hello.world;
 
@@ -777,8 +790,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -825,6 +838,7 @@ Update a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="updateWallet" method="patch" path="/api/wallets/wallets/{id}" -->
 ```java
 package hello.world;
 
@@ -841,8 +855,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -882,6 +896,7 @@ Cancel a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="voidHold" method="post" path="/api/wallets/holds/{hold_id}/void" -->
 ```java
 package hello.world;
 
@@ -898,8 +913,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 
@@ -939,6 +954,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
 ```java
 package hello.world;
 
@@ -954,8 +970,8 @@ public class Application {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
-                    .clientID("<YOUR_CLIENT_ID_HERE>")
-                    .clientSecret("<YOUR_CLIENT_SECRET_HERE>")
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
 

@@ -11,7 +11,7 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class InstallConnectorRequest {
 
@@ -47,9 +47,10 @@ public class InstallConnectorRequest {
         return connector;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public InstallConnectorRequest withConnectorConfig(ConnectorConfig connectorConfig) {
         Utils.checkNotNull(connectorConfig, "connectorConfig");
@@ -66,7 +67,6 @@ public class InstallConnectorRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,15 +77,14 @@ public class InstallConnectorRequest {
         }
         InstallConnectorRequest other = (InstallConnectorRequest) o;
         return 
-            Objects.deepEquals(this.connectorConfig, other.connectorConfig) &&
-            Objects.deepEquals(this.connector, other.connector);
+            Utils.enhancedDeepEquals(this.connectorConfig, other.connectorConfig) &&
+            Utils.enhancedDeepEquals(this.connector, other.connector);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            connectorConfig,
-            connector);
+        return Utils.enhancedHash(
+            connectorConfig, connector);
     }
     
     @Override
@@ -94,22 +93,25 @@ public class InstallConnectorRequest {
                 "connectorConfig", connectorConfig,
                 "connector", connector);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ConnectorConfig connectorConfig;
- 
+
         private Connector connector;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder connectorConfig(ConnectorConfig connectorConfig) {
             Utils.checkNotNull(connectorConfig, "connectorConfig");
             this.connectorConfig = connectorConfig;
             return this;
         }
+
 
         /**
          * The name of the connector.
@@ -119,11 +121,12 @@ public class InstallConnectorRequest {
             this.connector = connector;
             return this;
         }
-        
+
         public InstallConnectorRequest build() {
+
             return new InstallConnectorRequest(
-                connectorConfig,
-                connector);
+                connectorConfig, connector);
         }
+
     }
 }

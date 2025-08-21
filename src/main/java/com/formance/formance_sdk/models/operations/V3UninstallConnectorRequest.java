@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class V3UninstallConnectorRequest {
-
     /**
      * The connector ID
      */
@@ -34,9 +33,10 @@ public class V3UninstallConnectorRequest {
         return connectorID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The connector ID
@@ -47,7 +47,6 @@ public class V3UninstallConnectorRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class V3UninstallConnectorRequest {
         }
         V3UninstallConnectorRequest other = (V3UninstallConnectorRequest) o;
         return 
-            Objects.deepEquals(this.connectorID, other.connectorID);
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             connectorID);
     }
     
@@ -72,14 +71,16 @@ public class V3UninstallConnectorRequest {
         return Utils.toString(V3UninstallConnectorRequest.class,
                 "connectorID", connectorID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String connectorID;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The connector ID
@@ -89,10 +90,12 @@ public class V3UninstallConnectorRequest {
             this.connectorID = connectorID;
             return this;
         }
-        
+
         public V3UninstallConnectorRequest build() {
+
             return new V3UninstallConnectorRequest(
                 connectorID);
         }
+
     }
 }

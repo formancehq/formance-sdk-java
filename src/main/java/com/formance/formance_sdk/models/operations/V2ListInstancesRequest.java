@@ -11,11 +11,10 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2ListInstancesRequest {
 
+public class V2ListInstancesRequest {
     /**
      * Parameter used in pagination requests.
      * Set to the value of next for the next page of results.
@@ -60,7 +59,8 @@ public class V2ListInstancesRequest {
     }
     
     public V2ListInstancesRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -98,9 +98,10 @@ public class V2ListInstancesRequest {
         return workflowID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Parameter used in pagination requests.
@@ -113,6 +114,7 @@ public class V2ListInstancesRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Parameter used in pagination requests.
@@ -135,6 +137,7 @@ public class V2ListInstancesRequest {
         return this;
     }
 
+
     /**
      * The maximum number of results to return per page.
      */
@@ -152,6 +155,7 @@ public class V2ListInstancesRequest {
         this.running = Optional.ofNullable(running);
         return this;
     }
+
 
     /**
      * Filter running instances
@@ -171,6 +175,7 @@ public class V2ListInstancesRequest {
         return this;
     }
 
+
     /**
      * A workflow id
      */
@@ -180,7 +185,6 @@ public class V2ListInstancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,18 +195,16 @@ public class V2ListInstancesRequest {
         }
         V2ListInstancesRequest other = (V2ListInstancesRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.running, other.running) &&
-            Objects.deepEquals(this.workflowID, other.workflowID);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.running, other.running) &&
+            Utils.enhancedDeepEquals(this.workflowID, other.workflowID);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            cursor,
-            pageSize,
-            running,
+        return Utils.enhancedHash(
+            cursor, pageSize, running,
             workflowID);
     }
     
@@ -214,20 +216,22 @@ public class V2ListInstancesRequest {
                 "running", running,
                 "workflowID", workflowID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<Boolean> running = Optional.empty();
- 
+
         private Optional<String> workflowID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Parameter used in pagination requests.
@@ -253,6 +257,7 @@ public class V2ListInstancesRequest {
             return this;
         }
 
+
         /**
          * The maximum number of results to return per page.
          */
@@ -270,6 +275,7 @@ public class V2ListInstancesRequest {
             this.pageSize = pageSize;
             return this;
         }
+
 
         /**
          * Filter running instances
@@ -289,6 +295,7 @@ public class V2ListInstancesRequest {
             return this;
         }
 
+
         /**
          * A workflow id
          */
@@ -306,13 +313,13 @@ public class V2ListInstancesRequest {
             this.workflowID = workflowID;
             return this;
         }
-        
+
         public V2ListInstancesRequest build() {
+
             return new V2ListInstancesRequest(
-                cursor,
-                pageSize,
-                running,
+                cursor, pageSize, running,
                 workflowID);
         }
+
     }
 }

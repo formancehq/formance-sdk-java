@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V2CountAccounts;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V2CountAccountsRequestBuilder {
 
     private V2CountAccountsRequest request;
-    private final SDKMethodInterfaces.MethodCallV2CountAccounts sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V2CountAccountsRequestBuilder(SDKMethodInterfaces.MethodCallV2CountAccounts sdk) {
-        this.sdk = sdk;
+    public V2CountAccountsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V2CountAccountsRequestBuilder request(V2CountAccountsRequest request) {
@@ -22,8 +26,10 @@ public class V2CountAccountsRequestBuilder {
     }
 
     public V2CountAccountsResponse call() throws Exception {
+        
+        RequestOperation<V2CountAccountsRequest, V2CountAccountsResponse> operation
+              = new V2CountAccounts.Sync(sdkConfiguration);
 
-        return sdk.countAccounts(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

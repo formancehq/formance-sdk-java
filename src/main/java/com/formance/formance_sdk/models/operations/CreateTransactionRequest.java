@@ -11,11 +11,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateTransactionRequest {
 
+public class CreateTransactionRequest {
     /**
      * The request body must contain at least one of the following objects:
      *   - `postings`: suitable for simple transactions
@@ -81,9 +80,10 @@ public class CreateTransactionRequest {
         return preview;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The request body must contain at least one of the following objects:
@@ -114,6 +114,7 @@ public class CreateTransactionRequest {
         return this;
     }
 
+
     /**
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
@@ -123,7 +124,6 @@ public class CreateTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -134,17 +134,15 @@ public class CreateTransactionRequest {
         }
         CreateTransactionRequest other = (CreateTransactionRequest) o;
         return 
-            Objects.deepEquals(this.postTransaction, other.postTransaction) &&
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.preview, other.preview);
+            Utils.enhancedDeepEquals(this.postTransaction, other.postTransaction) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.preview, other.preview);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            postTransaction,
-            ledger,
-            preview);
+        return Utils.enhancedHash(
+            postTransaction, ledger, preview);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class CreateTransactionRequest {
                 "ledger", ledger,
                 "preview", preview);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private PostTransaction postTransaction;
- 
+
         private String ledger;
- 
+
         private Optional<Boolean> preview = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The request body must contain at least one of the following objects:
@@ -178,6 +178,7 @@ public class CreateTransactionRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -186,6 +187,7 @@ public class CreateTransactionRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
@@ -204,12 +206,12 @@ public class CreateTransactionRequest {
             this.preview = preview;
             return this;
         }
-        
+
         public CreateTransactionRequest build() {
+
             return new CreateTransactionRequest(
-                postTransaction,
-                ledger,
-                preview);
+                postTransaction, ledger, preview);
         }
+
     }
 }

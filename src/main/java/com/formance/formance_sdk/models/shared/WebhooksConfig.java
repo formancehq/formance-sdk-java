@@ -12,27 +12,33 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
+
 
 public class WebhooksConfig {
 
     @JsonProperty("active")
     private boolean active;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonProperty("endpoint")
     private String endpoint;
 
+
     @JsonProperty("eventTypes")
     private List<String> eventTypes;
+
 
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("secret")
     private String secret;
+
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
@@ -97,9 +103,10 @@ public class WebhooksConfig {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WebhooksConfig withActive(boolean active) {
         Utils.checkNotNull(active, "active");
@@ -143,7 +150,6 @@ public class WebhooksConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,24 +160,20 @@ public class WebhooksConfig {
         }
         WebhooksConfig other = (WebhooksConfig) o;
         return 
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.eventTypes, other.eventTypes) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.secret, other.secret) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.eventTypes, other.eventTypes) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.secret, other.secret) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            active,
-            createdAt,
-            endpoint,
-            eventTypes,
-            id,
-            secret,
+        return Utils.enhancedHash(
+            active, createdAt, endpoint,
+            eventTypes, id, secret,
             updatedAt);
     }
     
@@ -186,26 +188,28 @@ public class WebhooksConfig {
                 "secret", secret,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Boolean active;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String endpoint;
- 
+
         private List<String> eventTypes;
- 
+
         private String id;
- 
+
         private String secret;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder active(boolean active) {
             Utils.checkNotNull(active, "active");
@@ -213,11 +217,13 @@ public class WebhooksConfig {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
@@ -225,11 +231,13 @@ public class WebhooksConfig {
             return this;
         }
 
+
         public Builder eventTypes(List<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -237,27 +245,27 @@ public class WebhooksConfig {
             return this;
         }
 
+
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = secret;
             return this;
         }
 
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public WebhooksConfig build() {
+
             return new WebhooksConfig(
-                active,
-                createdAt,
-                endpoint,
-                eventTypes,
-                id,
-                secret,
+                active, createdAt, endpoint,
+                eventTypes, id, secret,
                 updatedAt);
         }
+
     }
 }

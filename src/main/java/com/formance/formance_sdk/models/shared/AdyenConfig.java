@@ -13,20 +13,23 @@ import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class AdyenConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
 
+
     @JsonProperty("hmacKey")
     private String hmacKey;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("liveEndpointPrefix")
     private Optional<String> liveEndpointPrefix;
+
 
     @JsonProperty("name")
     private String name;
@@ -37,6 +40,7 @@ public class AdyenConfig implements ConnectorConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
@@ -68,7 +72,8 @@ public class AdyenConfig implements ConnectorConfig {
             String apiKey,
             String hmacKey,
             String name) {
-        this(apiKey, hmacKey, Optional.empty(), name, Optional.empty(), Optional.empty());
+        this(apiKey, hmacKey, Optional.empty(),
+            name, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -105,9 +110,10 @@ public class AdyenConfig implements ConnectorConfig {
         return Utils.discriminatorToString(provider);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AdyenConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
@@ -126,6 +132,7 @@ public class AdyenConfig implements ConnectorConfig {
         this.liveEndpointPrefix = Optional.ofNullable(liveEndpointPrefix);
         return this;
     }
+
 
     public AdyenConfig withLiveEndpointPrefix(Optional<String> liveEndpointPrefix) {
         Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
@@ -148,6 +155,7 @@ public class AdyenConfig implements ConnectorConfig {
         return this;
     }
 
+
     /**
      * The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
      */
@@ -163,13 +171,13 @@ public class AdyenConfig implements ConnectorConfig {
         return this;
     }
 
+
     public AdyenConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -180,23 +188,19 @@ public class AdyenConfig implements ConnectorConfig {
         }
         AdyenConfig other = (AdyenConfig) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.hmacKey, other.hmacKey) &&
-            Objects.deepEquals(this.liveEndpointPrefix, other.liveEndpointPrefix) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Objects.deepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.hmacKey, other.hmacKey) &&
+            Utils.enhancedDeepEquals(this.liveEndpointPrefix, other.liveEndpointPrefix) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiKey,
-            hmacKey,
-            liveEndpointPrefix,
-            name,
-            pollingPeriod,
-            provider);
+        return Utils.enhancedHash(
+            apiKey, hmacKey, liveEndpointPrefix,
+            name, pollingPeriod, provider);
     }
     
     @Override
@@ -209,24 +213,26 @@ public class AdyenConfig implements ConnectorConfig {
                 "pollingPeriod", pollingPeriod,
                 "provider", provider);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiKey;
- 
+
         private String hmacKey;
- 
+
         private Optional<String> liveEndpointPrefix = Optional.empty();
- 
+
         private String name;
- 
+
         private Optional<String> pollingPeriod;
- 
+
         private Optional<String> provider;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
@@ -234,11 +240,13 @@ public class AdyenConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder hmacKey(String hmacKey) {
             Utils.checkNotNull(hmacKey, "hmacKey");
             this.hmacKey = hmacKey;
             return this;
         }
+
 
         public Builder liveEndpointPrefix(String liveEndpointPrefix) {
             Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
@@ -252,11 +260,13 @@ public class AdyenConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         /**
          * The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
@@ -276,6 +286,7 @@ public class AdyenConfig implements ConnectorConfig {
             return this;
         }
 
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
@@ -287,7 +298,7 @@ public class AdyenConfig implements ConnectorConfig {
             this.provider = provider;
             return this;
         }
-        
+
         public AdyenConfig build() {
             if (pollingPeriod == null) {
                 pollingPeriod = _SINGLETON_VALUE_PollingPeriod.value();
@@ -295,14 +306,12 @@ public class AdyenConfig implements ConnectorConfig {
             if (provider == null) {
                 provider = _SINGLETON_VALUE_Provider.value();
             }
+
             return new AdyenConfig(
-                apiKey,
-                hmacKey,
-                liveEndpointPrefix,
-                name,
-                pollingPeriod,
-                provider);
+                apiKey, hmacKey, liveEndpointPrefix,
+                name, pollingPeriod, provider);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(

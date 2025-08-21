@@ -9,12 +9,13 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetBalanceRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=balanceName")
     private String balanceName;
+
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
@@ -39,9 +40,10 @@ public class GetBalanceRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetBalanceRequest withBalanceName(String balanceName) {
         Utils.checkNotNull(balanceName, "balanceName");
@@ -55,7 +57,6 @@ public class GetBalanceRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,15 +67,14 @@ public class GetBalanceRequest {
         }
         GetBalanceRequest other = (GetBalanceRequest) o;
         return 
-            Objects.deepEquals(this.balanceName, other.balanceName) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.balanceName, other.balanceName) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            balanceName,
-            id);
+        return Utils.enhancedHash(
+            balanceName, id);
     }
     
     @Override
@@ -83,16 +83,18 @@ public class GetBalanceRequest {
                 "balanceName", balanceName,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String balanceName;
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder balanceName(String balanceName) {
             Utils.checkNotNull(balanceName, "balanceName");
@@ -100,16 +102,18 @@ public class GetBalanceRequest {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
-        
+
         public GetBalanceRequest build() {
+
             return new GetBalanceRequest(
-                balanceName,
-                id);
+                balanceName, id);
         }
+
     }
 }

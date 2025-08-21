@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V3ListConnectorSchedulesRequest {
 
@@ -57,7 +57,8 @@ public class V3ListConnectorSchedulesRequest {
     
     public V3ListConnectorSchedulesRequest(
             String connectorID) {
-        this(Optional.empty(), connectorID, Optional.empty(), Optional.empty());
+        this(Optional.empty(), connectorID, Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -90,15 +91,17 @@ public class V3ListConnectorSchedulesRequest {
         return pageSize;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3ListConnectorSchedulesRequest withRequestBody(Map<String, Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
+
 
     public V3ListConnectorSchedulesRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -124,6 +127,7 @@ public class V3ListConnectorSchedulesRequest {
         return this;
     }
 
+
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
      */
@@ -142,6 +146,7 @@ public class V3ListConnectorSchedulesRequest {
         return this;
     }
 
+
     /**
      * The number of items to return
      */
@@ -151,7 +156,6 @@ public class V3ListConnectorSchedulesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,18 +166,16 @@ public class V3ListConnectorSchedulesRequest {
         }
         V3ListConnectorSchedulesRequest other = (V3ListConnectorSchedulesRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.pageSize, other.pageSize);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            connectorID,
-            cursor,
+        return Utils.enhancedHash(
+            requestBody, connectorID, cursor,
             pageSize);
     }
     
@@ -185,20 +187,22 @@ public class V3ListConnectorSchedulesRequest {
                 "cursor", cursor,
                 "pageSize", pageSize);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
- 
+
         private String connectorID;
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -212,6 +216,7 @@ public class V3ListConnectorSchedulesRequest {
             return this;
         }
 
+
         /**
          * The connector ID
          */
@@ -220,6 +225,7 @@ public class V3ListConnectorSchedulesRequest {
             this.connectorID = connectorID;
             return this;
         }
+
 
         /**
          * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
@@ -239,6 +245,7 @@ public class V3ListConnectorSchedulesRequest {
             return this;
         }
 
+
         /**
          * The number of items to return
          */
@@ -256,13 +263,13 @@ public class V3ListConnectorSchedulesRequest {
             this.pageSize = pageSize;
             return this;
         }
-        
+
         public V3ListConnectorSchedulesRequest build() {
+
             return new V3ListConnectorSchedulesRequest(
-                requestBody,
-                connectorID,
-                cursor,
+                requestBody, connectorID, cursor,
                 pageSize);
         }
+
     }
 }

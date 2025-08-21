@@ -9,11 +9,10 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ListTriggersRequest {
 
+public class ListTriggersRequest {
     /**
      * search by name
      */
@@ -39,9 +38,10 @@ public class ListTriggersRequest {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * search by name
@@ -52,6 +52,7 @@ public class ListTriggersRequest {
         return this;
     }
 
+
     /**
      * search by name
      */
@@ -61,7 +62,6 @@ public class ListTriggersRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,12 +72,12 @@ public class ListTriggersRequest {
         }
         ListTriggersRequest other = (ListTriggersRequest) o;
         return 
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name);
     }
     
@@ -86,14 +86,16 @@ public class ListTriggersRequest {
         return Utils.toString(ListTriggersRequest.class,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * search by name
@@ -112,10 +114,12 @@ public class ListTriggersRequest {
             this.name = name;
             return this;
         }
-        
+
         public ListTriggersRequest build() {
+
             return new ListTriggersRequest(
                 name);
         }
+
     }
 }

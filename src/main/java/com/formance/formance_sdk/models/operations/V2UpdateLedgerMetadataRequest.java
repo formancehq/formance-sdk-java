@@ -10,7 +10,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class V2UpdateLedgerMetadataRequest {
 
@@ -28,6 +28,7 @@ public class V2UpdateLedgerMetadataRequest {
             Map<String, String> requestBody,
             String ledger) {
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(ledger, "ledger");
         this.requestBody = requestBody;
         this.ledger = ledger;
@@ -46,9 +47,10 @@ public class V2UpdateLedgerMetadataRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2UpdateLedgerMetadataRequest withRequestBody(Map<String, String> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -65,7 +67,6 @@ public class V2UpdateLedgerMetadataRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,15 +77,14 @@ public class V2UpdateLedgerMetadataRequest {
         }
         V2UpdateLedgerMetadataRequest other = (V2UpdateLedgerMetadataRequest) o;
         return 
-            Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestBody,
-            ledger);
+        return Utils.enhancedHash(
+            requestBody, ledger);
     }
     
     @Override
@@ -93,22 +93,25 @@ public class V2UpdateLedgerMetadataRequest {
                 "requestBody", requestBody,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, String> requestBody;
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requestBody(Map<String, String> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
+
 
         /**
          * Name of the ledger.
@@ -118,11 +121,12 @@ public class V2UpdateLedgerMetadataRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2UpdateLedgerMetadataRequest build() {
+
             return new V2UpdateLedgerMetadataRequest(
-                requestBody,
-                ledger);
+                requestBody, ledger);
         }
+
     }
 }

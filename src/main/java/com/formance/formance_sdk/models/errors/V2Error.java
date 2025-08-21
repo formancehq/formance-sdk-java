@@ -11,7 +11,6 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 
 /**
  * V2Error
@@ -24,6 +23,7 @@ public class V2Error extends RuntimeException {
     @JsonProperty("errorCode")
     private V2ErrorErrorCode errorCode;
 
+
     @JsonProperty("errorMessage")
     private String errorMessage;
 
@@ -31,6 +31,7 @@ public class V2Error extends RuntimeException {
     public V2Error(
             @JsonProperty("errorCode") V2ErrorErrorCode errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
+        super("API error occurred");
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorCode = errorCode;
@@ -47,9 +48,10 @@ public class V2Error extends RuntimeException {
         return errorMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2Error withErrorCode(V2ErrorErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
@@ -63,7 +65,6 @@ public class V2Error extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -74,15 +75,14 @@ public class V2Error extends RuntimeException {
         }
         V2Error other = (V2Error) o;
         return 
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            errorCode,
-            errorMessage);
+        return Utils.enhancedHash(
+            errorCode, errorMessage);
     }
     
     @Override
@@ -91,16 +91,18 @@ public class V2Error extends RuntimeException {
                 "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private V2ErrorErrorCode errorCode;
- 
+
         private String errorMessage;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorCode(V2ErrorErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
@@ -108,17 +110,19 @@ public class V2Error extends RuntimeException {
             return this;
         }
 
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
         }
-        
+
         public V2Error build() {
+
             return new V2Error(
-                errorCode,
-                errorMessage);
+                errorCode, errorMessage);
         }
+
     }
 }
 

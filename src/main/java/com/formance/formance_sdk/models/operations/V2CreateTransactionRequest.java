@@ -11,11 +11,10 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V2CreateTransactionRequest {
 
+public class V2CreateTransactionRequest {
     /**
      * Use an idempotency key
      */
@@ -70,7 +69,8 @@ public class V2CreateTransactionRequest {
     public V2CreateTransactionRequest(
             V2PostTransaction v2PostTransaction,
             String ledger) {
-        this(Optional.empty(), v2PostTransaction, Optional.empty(), Optional.empty(), ledger);
+        this(Optional.empty(), v2PostTransaction, Optional.empty(),
+            Optional.empty(), ledger);
     }
 
     /**
@@ -115,9 +115,10 @@ public class V2CreateTransactionRequest {
         return ledger;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Use an idempotency key
@@ -127,6 +128,7 @@ public class V2CreateTransactionRequest {
         this.idempotencyKey = Optional.ofNullable(idempotencyKey);
         return this;
     }
+
 
     /**
      * Use an idempotency key
@@ -157,6 +159,7 @@ public class V2CreateTransactionRequest {
         return this;
     }
 
+
     /**
      * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
@@ -174,6 +177,7 @@ public class V2CreateTransactionRequest {
         this.force = Optional.ofNullable(force);
         return this;
     }
+
 
     /**
      * Disable balance checks when passing postings
@@ -193,7 +197,6 @@ public class V2CreateTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -204,21 +207,18 @@ public class V2CreateTransactionRequest {
         }
         V2CreateTransactionRequest other = (V2CreateTransactionRequest) o;
         return 
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.v2PostTransaction, other.v2PostTransaction) &&
-            Objects.deepEquals(this.dryRun, other.dryRun) &&
-            Objects.deepEquals(this.force, other.force) &&
-            Objects.deepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.v2PostTransaction, other.v2PostTransaction) &&
+            Utils.enhancedDeepEquals(this.dryRun, other.dryRun) &&
+            Utils.enhancedDeepEquals(this.force, other.force) &&
+            Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            idempotencyKey,
-            v2PostTransaction,
-            dryRun,
-            force,
-            ledger);
+        return Utils.enhancedHash(
+            idempotencyKey, v2PostTransaction, dryRun,
+            force, ledger);
     }
     
     @Override
@@ -230,22 +230,24 @@ public class V2CreateTransactionRequest {
                 "force", force,
                 "ledger", ledger);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> idempotencyKey = Optional.empty();
- 
+
         private V2PostTransaction v2PostTransaction;
- 
+
         private Optional<Boolean> dryRun = Optional.empty();
- 
+
         private Optional<Boolean> force = Optional.empty();
- 
+
         private String ledger;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Use an idempotency key
@@ -265,6 +267,7 @@ public class V2CreateTransactionRequest {
             return this;
         }
 
+
         /**
          * The request body must contain at least one of the following objects:
          *   - `postings`: suitable for simple transactions
@@ -275,6 +278,7 @@ public class V2CreateTransactionRequest {
             this.v2PostTransaction = v2PostTransaction;
             return this;
         }
+
 
         /**
          * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
@@ -294,6 +298,7 @@ public class V2CreateTransactionRequest {
             return this;
         }
 
+
         /**
          * Disable balance checks when passing postings
          */
@@ -312,6 +317,7 @@ public class V2CreateTransactionRequest {
             return this;
         }
 
+
         /**
          * Name of the ledger.
          */
@@ -320,14 +326,13 @@ public class V2CreateTransactionRequest {
             this.ledger = ledger;
             return this;
         }
-        
+
         public V2CreateTransactionRequest build() {
+
             return new V2CreateTransactionRequest(
-                idempotencyKey,
-                v2PostTransaction,
-                dryRun,
-                force,
-                ledger);
+                idempotencyKey, v2PostTransaction, dryRun,
+                force, ledger);
         }
+
     }
 }

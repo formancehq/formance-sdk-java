@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.V3ListPools;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class V3ListPoolsRequestBuilder {
 
     private V3ListPoolsRequest request;
-    private final SDKMethodInterfaces.MethodCallV3ListPools sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public V3ListPoolsRequestBuilder(SDKMethodInterfaces.MethodCallV3ListPools sdk) {
-        this.sdk = sdk;
+    public V3ListPoolsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public V3ListPoolsRequestBuilder request(V3ListPoolsRequest request) {
@@ -22,8 +26,10 @@ public class V3ListPoolsRequestBuilder {
     }
 
     public V3ListPoolsResponse call() throws Exception {
+        
+        RequestOperation<V3ListPoolsRequest, V3ListPoolsResponse> operation
+              = new V3ListPools.Sync(sdkConfiguration);
 
-        return sdk.listPools(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

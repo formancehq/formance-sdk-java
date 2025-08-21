@@ -10,10 +10,9 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
-import java.util.Objects;
+
 
 public class GetTransactionRequest {
-
     /**
      * Name of the ledger.
      */
@@ -52,9 +51,10 @@ public class GetTransactionRequest {
         return txid;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the ledger.
@@ -65,9 +65,9 @@ public class GetTransactionRequest {
         return this;
     }
 
-        /**
-         * Transaction ID.
-         */
+    /**
+     * Transaction ID.
+     */
     public GetTransactionRequest withTxid(long txid) {
         this.txid = BigInteger.valueOf(txid);
         return this;
@@ -82,7 +82,6 @@ public class GetTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,15 +92,14 @@ public class GetTransactionRequest {
         }
         GetTransactionRequest other = (GetTransactionRequest) o;
         return 
-            Objects.deepEquals(this.ledger, other.ledger) &&
-            Objects.deepEquals(this.txid, other.txid);
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.txid, other.txid);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            ledger,
-            txid);
+        return Utils.enhancedHash(
+            ledger, txid);
     }
     
     @Override
@@ -110,16 +108,18 @@ public class GetTransactionRequest {
                 "ledger", ledger,
                 "txid", txid);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String ledger;
- 
+
         private BigInteger txid;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the ledger.
@@ -129,6 +129,7 @@ public class GetTransactionRequest {
             this.ledger = ledger;
             return this;
         }
+
 
         /**
          * Transaction ID.
@@ -146,11 +147,12 @@ public class GetTransactionRequest {
             this.txid = txid;
             return this;
         }
-        
+
         public GetTransactionRequest build() {
+
             return new GetTransactionRequest(
-                ledger,
-                txid);
+                ledger, txid);
         }
+
     }
 }

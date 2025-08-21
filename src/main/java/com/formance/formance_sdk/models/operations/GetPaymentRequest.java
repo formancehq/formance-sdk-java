@@ -9,10 +9,9 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class GetPaymentRequest {
-
     /**
      * The payment ID.
      */
@@ -34,9 +33,10 @@ public class GetPaymentRequest {
         return paymentId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The payment ID.
@@ -47,7 +47,6 @@ public class GetPaymentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class GetPaymentRequest {
         }
         GetPaymentRequest other = (GetPaymentRequest) o;
         return 
-            Objects.deepEquals(this.paymentId, other.paymentId);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentId);
     }
     
@@ -72,14 +71,16 @@ public class GetPaymentRequest {
         return Utils.toString(GetPaymentRequest.class,
                 "paymentId", paymentId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The payment ID.
@@ -89,10 +90,12 @@ public class GetPaymentRequest {
             this.paymentId = paymentId;
             return this;
         }
-        
+
         public GetPaymentRequest build() {
+
             return new GetPaymentRequest(
                 paymentId);
         }
+
     }
 }

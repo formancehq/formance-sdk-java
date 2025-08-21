@@ -14,20 +14,23 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2Ledger {
 
     @JsonProperty("addedAt")
     private OffsetDateTime addedAt;
 
+
     @JsonProperty("bucket")
     private String bucket;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
+
 
     @JsonProperty("name")
     private String name;
@@ -52,7 +55,8 @@ public class V2Ledger {
             OffsetDateTime addedAt,
             String bucket,
             String name) {
-        this(addedAt, bucket, Optional.empty(), name);
+        this(addedAt, bucket, Optional.empty(),
+            name);
     }
 
     @JsonIgnore
@@ -76,9 +80,10 @@ public class V2Ledger {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2Ledger withAddedAt(OffsetDateTime addedAt) {
         Utils.checkNotNull(addedAt, "addedAt");
@@ -98,6 +103,7 @@ public class V2Ledger {
         return this;
     }
 
+
     public V2Ledger withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -110,7 +116,6 @@ public class V2Ledger {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,18 +126,16 @@ public class V2Ledger {
         }
         V2Ledger other = (V2Ledger) o;
         return 
-            Objects.deepEquals(this.addedAt, other.addedAt) &&
-            Objects.deepEquals(this.bucket, other.bucket) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.addedAt, other.addedAt) &&
+            Utils.enhancedDeepEquals(this.bucket, other.bucket) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            addedAt,
-            bucket,
-            metadata,
+        return Utils.enhancedHash(
+            addedAt, bucket, metadata,
             name);
     }
     
@@ -144,20 +147,22 @@ public class V2Ledger {
                 "metadata", metadata,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime addedAt;
- 
+
         private String bucket;
- 
+
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder addedAt(OffsetDateTime addedAt) {
             Utils.checkNotNull(addedAt, "addedAt");
@@ -165,11 +170,13 @@ public class V2Ledger {
             return this;
         }
 
+
         public Builder bucket(String bucket) {
             Utils.checkNotNull(bucket, "bucket");
             this.bucket = bucket;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -183,18 +190,19 @@ public class V2Ledger {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
-        
+
         public V2Ledger build() {
+
             return new V2Ledger(
-                addedAt,
-                bucket,
-                metadata,
+                addedAt, bucket, metadata,
                 name);
         }
+
     }
 }

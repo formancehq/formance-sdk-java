@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class V3GetPaymentResponse implements Response {
 
+public class V3GetPaymentResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -58,7 +57,8 @@ public class V3GetPaymentResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -94,9 +94,10 @@ public class V3GetPaymentResponse implements Response {
         return (Optional<com.formance.formance_sdk.models.shared.V3GetPaymentResponse>) v3GetPaymentResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -134,6 +135,7 @@ public class V3GetPaymentResponse implements Response {
         return this;
     }
 
+
     /**
      * OK
      */
@@ -143,7 +145,6 @@ public class V3GetPaymentResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,18 +155,16 @@ public class V3GetPaymentResponse implements Response {
         }
         V3GetPaymentResponse other = (V3GetPaymentResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.v3GetPaymentResponse, other.v3GetPaymentResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.v3GetPaymentResponse, other.v3GetPaymentResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
             v3GetPaymentResponse);
     }
     
@@ -177,20 +176,22 @@ public class V3GetPaymentResponse implements Response {
                 "rawResponse", rawResponse,
                 "v3GetPaymentResponse", v3GetPaymentResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends com.formance.formance_sdk.models.shared.V3GetPaymentResponse> v3GetPaymentResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -201,6 +202,7 @@ public class V3GetPaymentResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -210,6 +212,7 @@ public class V3GetPaymentResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -218,6 +221,7 @@ public class V3GetPaymentResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * OK
@@ -236,13 +240,13 @@ public class V3GetPaymentResponse implements Response {
             this.v3GetPaymentResponse = v3GetPaymentResponse;
             return this;
         }
-        
+
         public V3GetPaymentResponse build() {
+
             return new V3GetPaymentResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 v3GetPaymentResponse);
         }
+
     }
 }

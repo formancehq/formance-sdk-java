@@ -16,9 +16,9 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class V3CreatePaymentRequest {
 
@@ -26,38 +26,49 @@ public class V3CreatePaymentRequest {
     @JsonProperty("adjustments")
     private Optional<? extends List<V3CreatePaymentAdjustmentRequest>> adjustments;
 
+
     @JsonProperty("amount")
     private BigInteger amount;
+
 
     @JsonProperty("asset")
     private String asset;
 
+
     @JsonProperty("connectorID")
     private String connectorID;
 
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destinationAccountID")
     private Optional<String> destinationAccountID;
 
+
     @JsonProperty("initialAmount")
     private BigInteger initialAmount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
     @JsonProperty("reference")
     private String reference;
+
 
     @JsonProperty("scheme")
     private String scheme;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceAccountID")
     private Optional<String> sourceAccountID;
+
 
     @JsonProperty("type")
     private V3PaymentTypeEnum type;
@@ -111,7 +122,10 @@ public class V3CreatePaymentRequest {
             String reference,
             String scheme,
             V3PaymentTypeEnum type) {
-        this(Optional.empty(), amount, asset, connectorID, createdAt, Optional.empty(), initialAmount, JsonNullable.undefined(), reference, scheme, Optional.empty(), type);
+        this(Optional.empty(), amount, asset,
+            connectorID, createdAt, Optional.empty(),
+            initialAmount, JsonNullable.undefined(), reference,
+            scheme, Optional.empty(), type);
     }
 
     @SuppressWarnings("unchecked")
@@ -176,15 +190,17 @@ public class V3CreatePaymentRequest {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V3CreatePaymentRequest withAdjustments(List<V3CreatePaymentAdjustmentRequest> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
         this.adjustments = Optional.ofNullable(adjustments);
         return this;
     }
+
 
     public V3CreatePaymentRequest withAdjustments(Optional<? extends List<V3CreatePaymentAdjustmentRequest>> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
@@ -226,6 +242,7 @@ public class V3CreatePaymentRequest {
         this.destinationAccountID = Optional.ofNullable(destinationAccountID);
         return this;
     }
+
 
     public V3CreatePaymentRequest withDestinationAccountID(Optional<String> destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
@@ -274,6 +291,7 @@ public class V3CreatePaymentRequest {
         return this;
     }
 
+
     public V3CreatePaymentRequest withSourceAccountID(Optional<String> sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
@@ -286,7 +304,6 @@ public class V3CreatePaymentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -297,35 +314,27 @@ public class V3CreatePaymentRequest {
         }
         V3CreatePaymentRequest other = (V3CreatePaymentRequest) o;
         return 
-            Objects.deepEquals(this.adjustments, other.adjustments) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.asset, other.asset) &&
-            Objects.deepEquals(this.connectorID, other.connectorID) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.destinationAccountID, other.destinationAccountID) &&
-            Objects.deepEquals(this.initialAmount, other.initialAmount) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.scheme, other.scheme) &&
-            Objects.deepEquals(this.sourceAccountID, other.sourceAccountID) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.adjustments, other.adjustments) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Utils.enhancedDeepEquals(this.initialAmount, other.initialAmount) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            adjustments,
-            amount,
-            asset,
-            connectorID,
-            createdAt,
-            destinationAccountID,
-            initialAmount,
-            metadata,
-            reference,
-            scheme,
-            sourceAccountID,
-            type);
+        return Utils.enhancedHash(
+            adjustments, amount, asset,
+            connectorID, createdAt, destinationAccountID,
+            initialAmount, metadata, reference,
+            scheme, sourceAccountID, type);
     }
     
     @Override
@@ -344,36 +353,38 @@ public class V3CreatePaymentRequest {
                 "sourceAccountID", sourceAccountID,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<V3CreatePaymentAdjustmentRequest>> adjustments = Optional.empty();
- 
+
         private BigInteger amount;
- 
+
         private String asset;
- 
+
         private String connectorID;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private Optional<String> destinationAccountID = Optional.empty();
- 
+
         private BigInteger initialAmount;
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private String reference;
- 
+
         private String scheme;
- 
+
         private Optional<String> sourceAccountID = Optional.empty();
- 
+
         private V3PaymentTypeEnum type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder adjustments(List<V3CreatePaymentAdjustmentRequest> adjustments) {
             Utils.checkNotNull(adjustments, "adjustments");
@@ -387,6 +398,7 @@ public class V3CreatePaymentRequest {
             return this;
         }
 
+
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
@@ -398,11 +410,13 @@ public class V3CreatePaymentRequest {
             return this;
         }
 
+
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
             return this;
         }
+
 
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
@@ -410,11 +424,13 @@ public class V3CreatePaymentRequest {
             return this;
         }
 
+
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
+
 
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
@@ -428,6 +444,7 @@ public class V3CreatePaymentRequest {
             return this;
         }
 
+
         public Builder initialAmount(long initialAmount) {
             this.initialAmount = BigInteger.valueOf(initialAmount);
             return this;
@@ -438,6 +455,7 @@ public class V3CreatePaymentRequest {
             this.initialAmount = initialAmount;
             return this;
         }
+
 
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -451,17 +469,20 @@ public class V3CreatePaymentRequest {
             return this;
         }
 
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
         public Builder scheme(String scheme) {
             Utils.checkNotNull(scheme, "scheme");
             this.scheme = scheme;
             return this;
         }
+
 
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
@@ -475,26 +496,21 @@ public class V3CreatePaymentRequest {
             return this;
         }
 
+
         public Builder type(V3PaymentTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public V3CreatePaymentRequest build() {
+
             return new V3CreatePaymentRequest(
-                adjustments,
-                amount,
-                asset,
-                connectorID,
-                createdAt,
-                destinationAccountID,
-                initialAmount,
-                metadata,
-                reference,
-                scheme,
-                sourceAccountID,
-                type);
+                adjustments, amount, asset,
+                connectorID, createdAt, destinationAccountID,
+                initialAmount, metadata, reference,
+                scheme, sourceAccountID, type);
         }
+
     }
 }

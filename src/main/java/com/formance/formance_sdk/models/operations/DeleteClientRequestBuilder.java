@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.DeleteClient;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class DeleteClientRequestBuilder {
 
     private DeleteClientRequest request;
-    private final SDKMethodInterfaces.MethodCallDeleteClient sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteClientRequestBuilder(SDKMethodInterfaces.MethodCallDeleteClient sdk) {
-        this.sdk = sdk;
+    public DeleteClientRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteClientRequestBuilder request(DeleteClientRequest request) {
@@ -22,8 +26,10 @@ public class DeleteClientRequestBuilder {
     }
 
     public DeleteClientResponse call() throws Exception {
+        
+        RequestOperation<DeleteClientRequest, DeleteClientResponse> operation
+              = new DeleteClient.Sync(sdkConfiguration);
 
-        return sdk.deleteClient(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

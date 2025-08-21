@@ -13,13 +13,14 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class V2PostTransactionScript {
 
     @JsonProperty("plain")
     private String plain;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
@@ -51,9 +52,10 @@ public class V2PostTransactionScript {
         return (Optional<Map<String, String>>) vars;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public V2PostTransactionScript withPlain(String plain) {
         Utils.checkNotNull(plain, "plain");
@@ -67,13 +69,13 @@ public class V2PostTransactionScript {
         return this;
     }
 
+
     public V2PostTransactionScript withVars(Optional<? extends Map<String, String>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +86,14 @@ public class V2PostTransactionScript {
         }
         V2PostTransactionScript other = (V2PostTransactionScript) o;
         return 
-            Objects.deepEquals(this.plain, other.plain) &&
-            Objects.deepEquals(this.vars, other.vars);
+            Utils.enhancedDeepEquals(this.plain, other.plain) &&
+            Utils.enhancedDeepEquals(this.vars, other.vars);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            plain,
-            vars);
+        return Utils.enhancedHash(
+            plain, vars);
     }
     
     @Override
@@ -101,22 +102,25 @@ public class V2PostTransactionScript {
                 "plain", plain,
                 "vars", vars);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String plain;
- 
+
         private Optional<? extends Map<String, String>> vars = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder plain(String plain) {
             Utils.checkNotNull(plain, "plain");
             this.plain = plain;
             return this;
         }
+
 
         public Builder vars(Map<String, String> vars) {
             Utils.checkNotNull(vars, "vars");
@@ -129,11 +133,12 @@ public class V2PostTransactionScript {
             this.vars = vars;
             return this;
         }
-        
+
         public V2PostTransactionScript build() {
+
             return new V2PostTransactionScript(
-                plain,
-                vars);
+                plain, vars);
         }
+
     }
 }

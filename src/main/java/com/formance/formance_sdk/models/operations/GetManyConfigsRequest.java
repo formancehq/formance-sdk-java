@@ -9,11 +9,10 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class GetManyConfigsRequest {
 
+public class GetManyConfigsRequest {
     /**
      * Optional filter by endpoint URL
      */
@@ -56,9 +55,10 @@ public class GetManyConfigsRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Optional filter by endpoint URL
@@ -68,6 +68,7 @@ public class GetManyConfigsRequest {
         this.endpoint = Optional.ofNullable(endpoint);
         return this;
     }
+
 
     /**
      * Optional filter by endpoint URL
@@ -87,6 +88,7 @@ public class GetManyConfigsRequest {
         return this;
     }
 
+
     /**
      * Optional filter by Config ID
      */
@@ -96,7 +98,6 @@ public class GetManyConfigsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -107,15 +108,14 @@ public class GetManyConfigsRequest {
         }
         GetManyConfigsRequest other = (GetManyConfigsRequest) o;
         return 
-            Objects.deepEquals(this.endpoint, other.endpoint) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            endpoint,
-            id);
+        return Utils.enhancedHash(
+            endpoint, id);
     }
     
     @Override
@@ -124,16 +124,18 @@ public class GetManyConfigsRequest {
                 "endpoint", endpoint,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> endpoint = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Optional filter by endpoint URL
@@ -153,6 +155,7 @@ public class GetManyConfigsRequest {
             return this;
         }
 
+
         /**
          * Optional filter by Config ID
          */
@@ -170,11 +173,12 @@ public class GetManyConfigsRequest {
             this.id = id;
             return this;
         }
-        
+
         public GetManyConfigsRequest build() {
+
             return new GetManyConfigsRequest(
-                endpoint,
-                id);
+                endpoint, id);
         }
+
     }
 }

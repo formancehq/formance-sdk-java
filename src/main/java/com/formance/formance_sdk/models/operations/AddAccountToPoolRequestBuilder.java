@@ -3,16 +3,20 @@
  */
 package com.formance.formance_sdk.models.operations;
 
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+
+import com.formance.formance_sdk.SDKConfiguration;
+import com.formance.formance_sdk.operations.AddAccountToPool;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
 public class AddAccountToPoolRequestBuilder {
 
     private AddAccountToPoolRequest request;
-    private final SDKMethodInterfaces.MethodCallAddAccountToPool sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AddAccountToPoolRequestBuilder(SDKMethodInterfaces.MethodCallAddAccountToPool sdk) {
-        this.sdk = sdk;
+    public AddAccountToPoolRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AddAccountToPoolRequestBuilder request(AddAccountToPoolRequest request) {
@@ -22,8 +26,10 @@ public class AddAccountToPoolRequestBuilder {
     }
 
     public AddAccountToPoolResponse call() throws Exception {
+        
+        RequestOperation<AddAccountToPoolRequest, AddAccountToPoolResponse> operation
+              = new AddAccountToPool.Sync(sdkConfiguration);
 
-        return sdk.addAccountToPool(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

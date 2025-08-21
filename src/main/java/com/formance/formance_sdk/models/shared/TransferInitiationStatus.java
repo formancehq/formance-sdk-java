@@ -25,7 +25,7 @@ public enum TransferInitiationStatus {
     @JsonValue
     private final String value;
 
-    private TransferInitiationStatus(String value) {
+    TransferInitiationStatus(String value) {
         this.value = value;
     }
     

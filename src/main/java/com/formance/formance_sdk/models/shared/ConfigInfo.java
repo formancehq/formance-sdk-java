@@ -9,15 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ConfigInfo {
 
     @JsonProperty("config")
     private Config config;
 
+
     @JsonProperty("server")
     private String server;
+
 
     @JsonProperty("version")
     private String version;
@@ -50,9 +52,10 @@ public class ConfigInfo {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConfigInfo withConfig(Config config) {
         Utils.checkNotNull(config, "config");
@@ -72,7 +75,6 @@ public class ConfigInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -83,17 +85,15 @@ public class ConfigInfo {
         }
         ConfigInfo other = (ConfigInfo) o;
         return 
-            Objects.deepEquals(this.config, other.config) &&
-            Objects.deepEquals(this.server, other.server) &&
-            Objects.deepEquals(this.version, other.version);
+            Utils.enhancedDeepEquals(this.config, other.config) &&
+            Utils.enhancedDeepEquals(this.server, other.server) &&
+            Utils.enhancedDeepEquals(this.version, other.version);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            config,
-            server,
-            version);
+        return Utils.enhancedHash(
+            config, server, version);
     }
     
     @Override
@@ -103,18 +103,20 @@ public class ConfigInfo {
                 "server", server,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Config config;
- 
+
         private String server;
- 
+
         private String version;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder config(Config config) {
             Utils.checkNotNull(config, "config");
@@ -122,23 +124,25 @@ public class ConfigInfo {
             return this;
         }
 
+
         public Builder server(String server) {
             Utils.checkNotNull(server, "server");
             this.server = server;
             return this;
         }
 
+
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
             return this;
         }
-        
+
         public ConfigInfo build() {
+
             return new ConfigInfo(
-                config,
-                server,
-                version);
+                config, server, version);
         }
+
     }
 }
