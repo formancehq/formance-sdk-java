@@ -13,7 +13,7 @@ sources:
         sourceBlobDigest: sha256:b4f71aed3da317fc4aeaa3a423976f893198810336c71f2ffef1d630f1a925d4
         tags:
             - latest
-            - speakeasy-sdk-regen-1754438707
+            - speakeasy-sdk-regen-1755772980
             - v3.0.5
 targets:
     Java:
@@ -22,7 +22,7 @@ targets:
         sourceRevisionDigest: sha256:fdd647ec761a320ea71c8b1d466fb5e760cf7f2b1296d3522d9d1706afb0e4c3
         sourceBlobDigest: sha256:b4f71aed3da317fc4aeaa3a423976f893198810336c71f2ffef1d630f1a925d4
         codeSamplesNamespace: stacks-source-java-code-samples
-        codeSamplesRevisionDigest: sha256:7ab8a25457d4d5dc75abc933af0b0f874513ddfe2457430ad4621a57830d7baf
+        codeSamplesRevisionDigest: sha256:7afdbacdb0e8a0f2baeeb8fa1215e5e00897b56570d3eb0861c07ac106bfd723
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
