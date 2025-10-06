@@ -14,7 +14,7 @@ sources:
         tags:
             - latest
             - speakeasy-sdk-regen-1755777865
-            - v3.0.5
+            - v3.1.0
 targets:
     Java:
         source: stacks-source
@@ -29,7 +29,7 @@ workflow:
     sources:
         stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v3.0.5/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.1.0/generate.json
             registry:
                 location: registry.speakeasyapi.dev/formance/formance/stacks-source
     targets:
