@@ -72,11 +72,13 @@ import com.formance.formance_sdk.operations.OrchestrationgetServerInfo;
 import com.formance.formance_sdk.operations.ReadTrigger;
 import com.formance.formance_sdk.operations.RunWorkflow;
 import com.formance.formance_sdk.operations.SendEvent;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class OrchestrationV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     OrchestrationV1(SDKConfiguration sdkConfiguration) {
@@ -105,7 +107,7 @@ public class OrchestrationV1 {
      */
     public CancelEventResponse cancelEvent(CancelEventRequest request) throws Exception {
         RequestOperation<CancelEventRequest, CancelEventResponse> operation
-              = new CancelEvent.Sync(sdkConfiguration);
+              = new CancelEvent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -143,7 +145,7 @@ public class OrchestrationV1 {
      */
     public CreateTriggerResponse createTrigger(Optional<? extends TriggerData> request) throws Exception {
         RequestOperation<Optional<? extends TriggerData>, CreateTriggerResponse> operation
-              = new CreateTrigger.Sync(sdkConfiguration);
+              = new CreateTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -181,7 +183,7 @@ public class OrchestrationV1 {
      */
     public CreateWorkflowResponse createWorkflow(Optional<? extends WorkflowConfig> request) throws Exception {
         RequestOperation<Optional<? extends WorkflowConfig>, CreateWorkflowResponse> operation
-              = new CreateWorkflow.Sync(sdkConfiguration);
+              = new CreateWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -207,7 +209,7 @@ public class OrchestrationV1 {
      */
     public DeleteTriggerResponse deleteTrigger(DeleteTriggerRequest request) throws Exception {
         RequestOperation<DeleteTriggerRequest, DeleteTriggerResponse> operation
-              = new DeleteTrigger.Sync(sdkConfiguration);
+              = new DeleteTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +235,7 @@ public class OrchestrationV1 {
      */
     public DeleteWorkflowResponse deleteWorkflow(DeleteWorkflowRequest request) throws Exception {
         RequestOperation<DeleteWorkflowRequest, DeleteWorkflowResponse> operation
-              = new DeleteWorkflow.Sync(sdkConfiguration);
+              = new DeleteWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -259,7 +261,7 @@ public class OrchestrationV1 {
      */
     public GetInstanceResponse getInstance(GetInstanceRequest request) throws Exception {
         RequestOperation<GetInstanceRequest, GetInstanceResponse> operation
-              = new GetInstance.Sync(sdkConfiguration);
+              = new GetInstance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -285,7 +287,7 @@ public class OrchestrationV1 {
      */
     public GetInstanceHistoryResponse getInstanceHistory(GetInstanceHistoryRequest request) throws Exception {
         RequestOperation<GetInstanceHistoryRequest, GetInstanceHistoryResponse> operation
-              = new GetInstanceHistory.Sync(sdkConfiguration);
+              = new GetInstanceHistory.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -311,7 +313,7 @@ public class OrchestrationV1 {
      */
     public GetInstanceStageHistoryResponse getInstanceStageHistory(GetInstanceStageHistoryRequest request) throws Exception {
         RequestOperation<GetInstanceStageHistoryRequest, GetInstanceStageHistoryResponse> operation
-              = new GetInstanceStageHistory.Sync(sdkConfiguration);
+              = new GetInstanceStageHistory.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -337,7 +339,7 @@ public class OrchestrationV1 {
      */
     public GetWorkflowResponse getWorkflow(GetWorkflowRequest request) throws Exception {
         RequestOperation<GetWorkflowRequest, GetWorkflowResponse> operation
-              = new GetWorkflow.Sync(sdkConfiguration);
+              = new GetWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -363,7 +365,7 @@ public class OrchestrationV1 {
      */
     public ListInstancesResponse listInstances(ListInstancesRequest request) throws Exception {
         RequestOperation<ListInstancesRequest, ListInstancesResponse> operation
-              = new ListInstances.Sync(sdkConfiguration);
+              = new ListInstances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -389,7 +391,7 @@ public class OrchestrationV1 {
      */
     public ListTriggersResponse listTriggers(ListTriggersRequest request) throws Exception {
         RequestOperation<ListTriggersRequest, ListTriggersResponse> operation
-              = new ListTriggers.Sync(sdkConfiguration);
+              = new ListTriggers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -415,7 +417,7 @@ public class OrchestrationV1 {
      */
     public ListTriggersOccurrencesResponse listTriggersOccurrences(ListTriggersOccurrencesRequest request) throws Exception {
         RequestOperation<ListTriggersOccurrencesRequest, ListTriggersOccurrencesResponse> operation
-              = new ListTriggersOccurrences.Sync(sdkConfiguration);
+              = new ListTriggersOccurrences.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -440,7 +442,7 @@ public class OrchestrationV1 {
      */
     public ListWorkflowsResponse listWorkflowsDirect() throws Exception {
         RequestlessOperation<ListWorkflowsResponse> operation
-            = new ListWorkflows.Sync(sdkConfiguration);
+            = new ListWorkflows.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -461,7 +463,7 @@ public class OrchestrationV1 {
      */
     public OrchestrationgetServerInfoResponse orchestrationgetServerInfoDirect() throws Exception {
         RequestlessOperation<OrchestrationgetServerInfoResponse> operation
-            = new OrchestrationgetServerInfo.Sync(sdkConfiguration);
+            = new OrchestrationgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -487,7 +489,7 @@ public class OrchestrationV1 {
      */
     public ReadTriggerResponse readTrigger(ReadTriggerRequest request) throws Exception {
         RequestOperation<ReadTriggerRequest, ReadTriggerResponse> operation
-              = new ReadTrigger.Sync(sdkConfiguration);
+              = new ReadTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -513,7 +515,7 @@ public class OrchestrationV1 {
      */
     public RunWorkflowResponse runWorkflow(RunWorkflowRequest request) throws Exception {
         RequestOperation<RunWorkflowRequest, RunWorkflowResponse> operation
-              = new RunWorkflow.Sync(sdkConfiguration);
+              = new RunWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -539,7 +541,7 @@ public class OrchestrationV1 {
      */
     public SendEventResponse sendEvent(SendEventRequest request) throws Exception {
         RequestOperation<SendEventRequest, SendEventResponse> operation
-              = new SendEvent.Sync(sdkConfiguration);
+              = new SendEvent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

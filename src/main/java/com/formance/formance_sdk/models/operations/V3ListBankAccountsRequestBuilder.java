@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListBankAccounts;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V3ListBankAccountsRequestBuilder {
 
     private V3ListBankAccountsRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3ListBankAccountsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V3ListBankAccountsRequestBuilder {
     public V3ListBankAccountsResponse call() throws Exception {
         
         RequestOperation<V3ListBankAccountsRequest, V3ListBankAccountsResponse> operation
-              = new V3ListBankAccounts.Sync(sdkConfiguration);
+              = new V3ListBankAccounts.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

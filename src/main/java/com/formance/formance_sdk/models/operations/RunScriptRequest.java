@@ -26,7 +26,8 @@ public class RunScriptRequest {
     private String ledger;
 
     /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")
     private Optional<Boolean> preview;
@@ -64,7 +65,8 @@ public class RunScriptRequest {
     }
 
     /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @JsonIgnore
     public Optional<Boolean> preview() {
@@ -92,7 +94,8 @@ public class RunScriptRequest {
     }
 
     /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public RunScriptRequest withPreview(boolean preview) {
         Utils.checkNotNull(preview, "preview");
@@ -102,7 +105,8 @@ public class RunScriptRequest {
 
 
     /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public RunScriptRequest withPreview(Optional<Boolean> preview) {
         Utils.checkNotNull(preview, "preview");
@@ -171,7 +175,8 @@ public class RunScriptRequest {
 
 
         /**
-         * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder preview(boolean preview) {
             Utils.checkNotNull(preview, "preview");
@@ -180,7 +185,8 @@ public class RunScriptRequest {
         }
 
         /**
-         * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder preview(Optional<Boolean> preview) {
             Utils.checkNotNull(preview, "preview");

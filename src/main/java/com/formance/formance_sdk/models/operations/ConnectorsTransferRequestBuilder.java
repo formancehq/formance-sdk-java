@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ConnectorsTransfer;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class ConnectorsTransferRequestBuilder {
 
     private ConnectorsTransferRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ConnectorsTransferRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class ConnectorsTransferRequestBuilder {
     public ConnectorsTransferResponse call() throws Exception {
         
         RequestOperation<ConnectorsTransferRequest, ConnectorsTransferResponse> operation
-              = new ConnectorsTransfer.Sync(sdkConfiguration);
+              = new ConnectorsTransfer.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

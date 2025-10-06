@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetInstanceStageHistory;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class GetInstanceStageHistoryRequestBuilder {
 
     private GetInstanceStageHistoryRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetInstanceStageHistoryRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class GetInstanceStageHistoryRequestBuilder {
     public GetInstanceStageHistoryResponse call() throws Exception {
         
         RequestOperation<GetInstanceStageHistoryRequest, GetInstanceStageHistoryResponse> operation
-              = new GetInstanceStageHistory.Sync(sdkConfiguration);
+              = new GetInstanceStageHistory.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

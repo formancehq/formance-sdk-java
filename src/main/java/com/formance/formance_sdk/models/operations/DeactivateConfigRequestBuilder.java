@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DeactivateConfig;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class DeactivateConfigRequestBuilder {
 
     private DeactivateConfigRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeactivateConfigRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class DeactivateConfigRequestBuilder {
     public DeactivateConfigResponse call() throws Exception {
         
         RequestOperation<DeactivateConfigRequest, DeactivateConfigResponse> operation
-              = new DeactivateConfig.Sync(sdkConfiguration);
+              = new DeactivateConfig.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

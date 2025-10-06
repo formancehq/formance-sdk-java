@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk;
 
+import com.formance.formance_sdk.utils.Headers;
+
+
 public class Orchestration {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final OrchestrationV1 v1;
     private final OrchestrationV2 v2;

@@ -23,7 +23,9 @@ public class V3ReversePaymentInitiationResponseData {
     private Optional<String> paymentInitiationReversalID;
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * reverse the payment initiation. You can use the task API to check the status of the task and get the
+     * resulting payment ID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("taskID")
@@ -52,7 +54,9 @@ public class V3ReversePaymentInitiationResponseData {
     }
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * reverse the payment initiation. You can use the task API to check the status of the task and get the
+     * resulting payment ID.
      */
     @JsonIgnore
     public Optional<String> taskID() {
@@ -84,7 +88,9 @@ public class V3ReversePaymentInitiationResponseData {
     }
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * reverse the payment initiation. You can use the task API to check the status of the task and get the
+     * resulting payment ID.
      */
     public V3ReversePaymentInitiationResponseData withTaskID(String taskID) {
         Utils.checkNotNull(taskID, "taskID");
@@ -94,7 +100,9 @@ public class V3ReversePaymentInitiationResponseData {
 
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * reverse the payment initiation. You can use the task API to check the status of the task and get the
+     * resulting payment ID.
      */
     public V3ReversePaymentInitiationResponseData withTaskID(Optional<String> taskID) {
         Utils.checkNotNull(taskID, "taskID");
@@ -161,7 +169,9 @@ public class V3ReversePaymentInitiationResponseData {
 
 
         /**
-         * Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
+         * Since this call is asynchronous, the response will contain the ID of the task that was created to
+         * reverse the payment initiation. You can use the task API to check the status of the task and get the
+         * resulting payment ID.
          */
         public Builder taskID(String taskID) {
             Utils.checkNotNull(taskID, "taskID");
@@ -170,7 +180,9 @@ public class V3ReversePaymentInitiationResponseData {
         }
 
         /**
-         * Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
+         * Since this call is asynchronous, the response will contain the ID of the task that was created to
+         * reverse the payment initiation. You can use the task API to check the status of the task and get the
+         * resulting payment ID.
          */
         public Builder taskID(Optional<String> taskID) {
             Utils.checkNotNull(taskID, "taskID");

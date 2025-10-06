@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UninstallConnectorV1;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class UninstallConnectorV1RequestBuilder {
 
     private UninstallConnectorV1Request request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UninstallConnectorV1RequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class UninstallConnectorV1RequestBuilder {
     public UninstallConnectorV1Response call() throws Exception {
         
         RequestOperation<UninstallConnectorV1Request, UninstallConnectorV1Response> operation
-              = new UninstallConnectorV1.Sync(sdkConfiguration);
+              = new UninstallConnectorV1.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

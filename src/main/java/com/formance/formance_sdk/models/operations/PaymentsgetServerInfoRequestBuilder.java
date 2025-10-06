@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.PaymentsgetServerInfo;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class PaymentsgetServerInfoRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public PaymentsgetServerInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class PaymentsgetServerInfoRequestBuilder {
     public PaymentsgetServerInfoResponse call() throws Exception {
         
         RequestlessOperation<PaymentsgetServerInfoResponse> operation
-            = new PaymentsgetServerInfo.Sync(sdkConfiguration);
+            = new PaymentsgetServerInfo.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

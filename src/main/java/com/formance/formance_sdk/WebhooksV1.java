@@ -37,10 +37,12 @@ import com.formance.formance_sdk.operations.GetManyConfigs;
 import com.formance.formance_sdk.operations.InsertConfig;
 import com.formance.formance_sdk.operations.TestConfig;
 import com.formance.formance_sdk.operations.UpdateConfig;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 
 public class WebhooksV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     WebhooksV1(SDKConfiguration sdkConfiguration) {
@@ -69,7 +71,7 @@ public class WebhooksV1 {
      */
     public ActivateConfigResponse activateConfig(ActivateConfigRequest request) throws Exception {
         RequestOperation<ActivateConfigRequest, ActivateConfigResponse> operation
-              = new ActivateConfig.Sync(sdkConfiguration);
+              = new ActivateConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -101,7 +103,7 @@ public class WebhooksV1 {
      */
     public ChangeConfigSecretResponse changeConfigSecret(ChangeConfigSecretRequest request) throws Exception {
         RequestOperation<ChangeConfigSecretRequest, ChangeConfigSecretResponse> operation
-              = new ChangeConfigSecret.Sync(sdkConfiguration);
+              = new ChangeConfigSecret.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -127,7 +129,7 @@ public class WebhooksV1 {
      */
     public DeactivateConfigResponse deactivateConfig(DeactivateConfigRequest request) throws Exception {
         RequestOperation<DeactivateConfigRequest, DeactivateConfigResponse> operation
-              = new DeactivateConfig.Sync(sdkConfiguration);
+              = new DeactivateConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +155,7 @@ public class WebhooksV1 {
      */
     public DeleteConfigResponse deleteConfig(DeleteConfigRequest request) throws Exception {
         RequestOperation<DeleteConfigRequest, DeleteConfigResponse> operation
-              = new DeleteConfig.Sync(sdkConfiguration);
+              = new DeleteConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -179,7 +181,7 @@ public class WebhooksV1 {
      */
     public GetManyConfigsResponse getManyConfigs(GetManyConfigsRequest request) throws Exception {
         RequestOperation<GetManyConfigsRequest, GetManyConfigsResponse> operation
-              = new GetManyConfigs.Sync(sdkConfiguration);
+              = new GetManyConfigs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -221,7 +223,7 @@ public class WebhooksV1 {
      */
     public InsertConfigResponse insertConfig(ConfigUser request) throws Exception {
         RequestOperation<ConfigUser, InsertConfigResponse> operation
-              = new InsertConfig.Sync(sdkConfiguration);
+              = new InsertConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,7 +249,7 @@ public class WebhooksV1 {
      */
     public TestConfigResponse testConfig(TestConfigRequest request) throws Exception {
         RequestOperation<TestConfigRequest, TestConfigResponse> operation
-              = new TestConfig.Sync(sdkConfiguration);
+              = new TestConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -273,7 +275,7 @@ public class WebhooksV1 {
      */
     public UpdateConfigResponse updateConfig(UpdateConfigRequest request) throws Exception {
         RequestOperation<UpdateConfigRequest, UpdateConfigResponse> operation
-              = new UpdateConfig.Sync(sdkConfiguration);
+              = new UpdateConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -46,11 +46,13 @@ import com.formance.formance_sdk.operations.ListUsers;
 import com.formance.formance_sdk.operations.ReadClient;
 import com.formance.formance_sdk.operations.ReadUser;
 import com.formance.formance_sdk.operations.UpdateClient;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class AuthV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     AuthV1(SDKConfiguration sdkConfiguration) {
@@ -85,7 +87,7 @@ public class AuthV1 {
      */
     public CreateClientResponse createClient(Optional<? extends ClientOptions> request) throws Exception {
         RequestOperation<Optional<? extends ClientOptions>, CreateClientResponse> operation
-              = new CreateClient.Sync(sdkConfiguration);
+              = new CreateClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -107,7 +109,7 @@ public class AuthV1 {
      */
     public CreateSecretResponse createSecret(CreateSecretRequest request) throws Exception {
         RequestOperation<CreateSecretRequest, CreateSecretResponse> operation
-              = new CreateSecret.Sync(sdkConfiguration);
+              = new CreateSecret.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -129,7 +131,7 @@ public class AuthV1 {
      */
     public DeleteClientResponse deleteClient(DeleteClientRequest request) throws Exception {
         RequestOperation<DeleteClientRequest, DeleteClientResponse> operation
-              = new DeleteClient.Sync(sdkConfiguration);
+              = new DeleteClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -151,7 +153,7 @@ public class AuthV1 {
      */
     public DeleteSecretResponse deleteSecret(DeleteSecretRequest request) throws Exception {
         RequestOperation<DeleteSecretRequest, DeleteSecretResponse> operation
-              = new DeleteSecret.Sync(sdkConfiguration);
+              = new DeleteSecret.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -172,7 +174,7 @@ public class AuthV1 {
      */
     public GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() throws Exception {
         RequestlessOperation<GetOIDCWellKnownsResponse> operation
-            = new GetOIDCWellKnowns.Sync(sdkConfiguration);
+            = new GetOIDCWellKnowns.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -193,7 +195,7 @@ public class AuthV1 {
      */
     public GetServerInfoResponse getServerInfoDirect() throws Exception {
         RequestlessOperation<GetServerInfoResponse> operation
-            = new GetServerInfo.Sync(sdkConfiguration);
+            = new GetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -214,7 +216,7 @@ public class AuthV1 {
      */
     public ListClientsResponse listClientsDirect() throws Exception {
         RequestlessOperation<ListClientsResponse> operation
-            = new ListClients.Sync(sdkConfiguration);
+            = new ListClients.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -239,7 +241,7 @@ public class AuthV1 {
      */
     public ListUsersResponse listUsersDirect() throws Exception {
         RequestlessOperation<ListUsersResponse> operation
-            = new ListUsers.Sync(sdkConfiguration);
+            = new ListUsers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -261,7 +263,7 @@ public class AuthV1 {
      */
     public ReadClientResponse readClient(ReadClientRequest request) throws Exception {
         RequestOperation<ReadClientRequest, ReadClientResponse> operation
-              = new ReadClient.Sync(sdkConfiguration);
+              = new ReadClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -287,7 +289,7 @@ public class AuthV1 {
      */
     public ReadUserResponse readUser(ReadUserRequest request) throws Exception {
         RequestOperation<ReadUserRequest, ReadUserResponse> operation
-              = new ReadUser.Sync(sdkConfiguration);
+              = new ReadUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -309,7 +311,7 @@ public class AuthV1 {
      */
     public UpdateClientResponse updateClient(UpdateClientRequest request) throws Exception {
         RequestOperation<UpdateClientRequest, UpdateClientResponse> operation
-              = new UpdateClient.Sync(sdkConfiguration);
+              = new UpdateClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

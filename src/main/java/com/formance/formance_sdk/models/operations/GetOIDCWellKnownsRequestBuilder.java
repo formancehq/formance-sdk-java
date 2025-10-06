@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetOIDCWellKnowns;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class GetOIDCWellKnownsRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetOIDCWellKnownsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class GetOIDCWellKnownsRequestBuilder {
     public GetOIDCWellKnownsResponse call() throws Exception {
         
         RequestlessOperation<GetOIDCWellKnownsResponse> operation
-            = new GetOIDCWellKnowns.Sync(sdkConfiguration);
+            = new GetOIDCWellKnowns.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

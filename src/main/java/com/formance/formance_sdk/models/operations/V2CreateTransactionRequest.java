@@ -9,6 +9,7 @@ import com.formance.formance_sdk.models.shared.V2PostTransaction;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -23,22 +24,26 @@ public class V2CreateTransactionRequest {
 
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
     private V2PostTransaction v2PostTransaction;
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
     private Optional<Boolean> dryRun;
 
     /**
      * Disable balance checks when passing postings
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")
+    @Deprecated
     private Optional<Boolean> force;
 
     /**
@@ -83,8 +88,8 @@ public class V2CreateTransactionRequest {
 
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     @JsonIgnore
     public V2PostTransaction v2PostTransaction() {
@@ -92,7 +97,8 @@ public class V2CreateTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @JsonIgnore
     public Optional<Boolean> dryRun() {
@@ -101,7 +107,10 @@ public class V2CreateTransactionRequest {
 
     /**
      * Disable balance checks when passing postings
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<Boolean> force() {
         return force;
@@ -141,8 +150,8 @@ public class V2CreateTransactionRequest {
 
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     public V2CreateTransactionRequest withV2PostTransaction(V2PostTransaction v2PostTransaction) {
         Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
@@ -151,7 +160,8 @@ public class V2CreateTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2CreateTransactionRequest withDryRun(boolean dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -161,7 +171,8 @@ public class V2CreateTransactionRequest {
 
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2CreateTransactionRequest withDryRun(Optional<Boolean> dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -171,7 +182,10 @@ public class V2CreateTransactionRequest {
 
     /**
      * Disable balance checks when passing postings
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public V2CreateTransactionRequest withForce(boolean force) {
         Utils.checkNotNull(force, "force");
         this.force = Optional.ofNullable(force);
@@ -181,7 +195,10 @@ public class V2CreateTransactionRequest {
 
     /**
      * Disable balance checks when passing postings
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public V2CreateTransactionRequest withForce(Optional<Boolean> force) {
         Utils.checkNotNull(force, "force");
         this.force = force;
@@ -240,6 +257,7 @@ public class V2CreateTransactionRequest {
 
         private Optional<Boolean> dryRun = Optional.empty();
 
+        @Deprecated
         private Optional<Boolean> force = Optional.empty();
 
         private String ledger;
@@ -270,8 +288,8 @@ public class V2CreateTransactionRequest {
 
         /**
          * The request body must contain at least one of the following objects:
-         *   - `postings`: suitable for simple transactions
-         *   - `script`: enabling more complex transactions with Numscript
+         * - `postings`: suitable for simple transactions
+         * - `script`: enabling more complex transactions with Numscript
          */
         public Builder v2PostTransaction(V2PostTransaction v2PostTransaction) {
             Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
@@ -281,7 +299,8 @@ public class V2CreateTransactionRequest {
 
 
         /**
-         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(boolean dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
@@ -290,7 +309,8 @@ public class V2CreateTransactionRequest {
         }
 
         /**
-         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(Optional<Boolean> dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
@@ -301,7 +321,10 @@ public class V2CreateTransactionRequest {
 
         /**
          * Disable balance checks when passing postings
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder force(boolean force) {
             Utils.checkNotNull(force, "force");
             this.force = Optional.ofNullable(force);
@@ -310,7 +333,10 @@ public class V2CreateTransactionRequest {
 
         /**
          * Disable balance checks when passing postings
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder force(Optional<Boolean> force) {
             Utils.checkNotNull(force, "force");
             this.force = force;

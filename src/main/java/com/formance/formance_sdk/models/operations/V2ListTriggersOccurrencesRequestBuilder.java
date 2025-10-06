@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ListTriggersOccurrences;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2ListTriggersOccurrencesRequestBuilder {
 
     private V2ListTriggersOccurrencesRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2ListTriggersOccurrencesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2ListTriggersOccurrencesRequestBuilder {
     public V2ListTriggersOccurrencesResponse call() throws Exception {
         
         RequestOperation<V2ListTriggersOccurrencesRequest, V2ListTriggersOccurrencesResponse> operation
-              = new V2ListTriggersOccurrences.Sync(sdkConfiguration);
+              = new V2ListTriggersOccurrences.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

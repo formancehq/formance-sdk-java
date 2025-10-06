@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2CountTransactions;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2CountTransactionsRequestBuilder {
 
     private V2CountTransactionsRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2CountTransactionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2CountTransactionsRequestBuilder {
     public V2CountTransactionsResponse call() throws Exception {
         
         RequestOperation<V2CountTransactionsRequest, V2CountTransactionsResponse> operation
-              = new V2CountTransactions.Sync(sdkConfiguration);
+              = new V2CountTransactions.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

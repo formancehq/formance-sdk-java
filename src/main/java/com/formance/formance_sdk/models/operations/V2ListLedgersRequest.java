@@ -8,12 +8,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListLedgersRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Map<String, Object> requestBody;
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -29,18 +35,40 @@ public class V2ListLedgersRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<Long> pageSize;
 
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
+    private Optional<String> sort;
+
     @JsonCreator
     public V2ListLedgersRequest(
+            Map<String, Object> requestBody,
             Optional<String> cursor,
-            Optional<Long> pageSize) {
+            Optional<Long> pageSize,
+            Optional<String> sort) {
+        requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
+        Utils.checkNotNull(sort, "sort");
+        this.requestBody = requestBody;
         this.cursor = cursor;
         this.pageSize = pageSize;
+        this.sort = sort;
     }
     
-    public V2ListLedgersRequest() {
-        this(Optional.empty(), Optional.empty());
+    public V2ListLedgersRequest(
+            Map<String, Object> requestBody) {
+        this(requestBody, Optional.empty(), Optional.empty(),
+            Optional.empty());
+    }
+
+    @JsonIgnore
+    public Map<String, Object> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -62,10 +90,26 @@ public class V2ListLedgersRequest {
         return pageSize;
     }
 
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    @JsonIgnore
+    public Optional<String> sort() {
+        return sort;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
+
+    public V2ListLedgersRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -111,6 +155,29 @@ public class V2ListLedgersRequest {
         return this;
     }
 
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    public V2ListLedgersRequest withSort(String sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = Optional.ofNullable(sort);
+        return this;
+    }
+
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    public V2ListLedgersRequest withSort(Optional<String> sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = sort;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,32 +188,48 @@ public class V2ListLedgersRequest {
         }
         V2ListLedgersRequest other = (V2ListLedgersRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
-            Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, pageSize);
+            requestBody, cursor, pageSize,
+            sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListLedgersRequest.class,
+                "requestBody", requestBody,
                 "cursor", cursor,
-                "pageSize", pageSize);
+                "pageSize", pageSize,
+                "sort", sort);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Map<String, Object> requestBody;
+
         private Optional<String> cursor = Optional.empty();
 
         private Optional<Long> pageSize = Optional.empty();
 
+        private Optional<String> sort = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -193,10 +276,34 @@ public class V2ListLedgersRequest {
             return this;
         }
 
+
+        /**
+         * Sort results using a field name and order (ascending or descending).
+         * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+         * is either `asc` or `desc`.
+         */
+        public Builder sort(String sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = Optional.ofNullable(sort);
+            return this;
+        }
+
+        /**
+         * Sort results using a field name and order (ascending or descending).
+         * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+         * is either `asc` or `desc`.
+         */
+        public Builder sort(Optional<String> sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = sort;
+            return this;
+        }
+
         public V2ListLedgersRequest build() {
 
             return new V2ListLedgersRequest(
-                cursor, pageSize);
+                requestBody, cursor, pageSize,
+                sort);
         }
 
     }

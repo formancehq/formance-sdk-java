@@ -34,7 +34,8 @@ public class BankingCircleConfig implements ConnectorConfig {
     private String password;
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking
+     * Circle API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
@@ -122,7 +123,8 @@ public class BankingCircleConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking
+     * Circle API.
      */
     @JsonIgnore
     public Optional<String> pollingPeriod() {
@@ -180,7 +182,8 @@ public class BankingCircleConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking
+     * Circle API.
      */
     public BankingCircleConfig withPollingPeriod(String pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -190,7 +193,8 @@ public class BankingCircleConfig implements ConnectorConfig {
 
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking
+     * Circle API.
      */
     public BankingCircleConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -327,7 +331,8 @@ public class BankingCircleConfig implements ConnectorConfig {
 
 
         /**
-         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
+         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking
+         * Circle API.
          */
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -336,7 +341,8 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
         /**
-         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
+         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking
+         * Circle API.
          */
         public Builder pollingPeriod(Optional<String> pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");

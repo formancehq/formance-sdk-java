@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UpdateConnectorConfigV1;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class UpdateConnectorConfigV1RequestBuilder {
 
     private UpdateConnectorConfigV1Request request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateConnectorConfigV1RequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class UpdateConnectorConfigV1RequestBuilder {
     public UpdateConnectorConfigV1Response call() throws Exception {
         
         RequestOperation<UpdateConnectorConfigV1Request, UpdateConnectorConfigV1Response> operation
-              = new UpdateConnectorConfigV1.Sync(sdkConfiguration);
+              = new UpdateConnectorConfigV1.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

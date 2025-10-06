@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.InstallConnector;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class InstallConnectorRequestBuilder {
 
     private InstallConnectorRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public InstallConnectorRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class InstallConnectorRequestBuilder {
     public InstallConnectorResponse call() throws Exception {
         
         RequestOperation<InstallConnectorRequest, InstallConnectorResponse> operation
-              = new InstallConnector.Sync(sdkConfiguration);
+              = new InstallConnector.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -27,7 +27,6 @@ and standard method from web, mobile and desktop applications.
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [formance-sdk-java](#formance-sdk-java)
-  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
 * [Introduction](#introduction)
 * [Authentication](#authentication)
   * [SDK Installation](#sdk-installation)
@@ -54,7 +53,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:7.2.3'
+implementation 'com.formance:formance-sdk:7.3.0'
 ```
 
 Maven:
@@ -62,7 +61,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>7.2.3</version>
+    <version>7.3.0</version>
 </dependency>
 ```
 
@@ -141,6 +140,8 @@ public class Application {
 
 ### [ledger()](docs/sdks/ledger/README.md)
 
+* [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
+* [getMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
 
 #### [ledger().v1()](docs/sdks/ledgerv1/README.md)
 
@@ -172,27 +173,36 @@ public class Application {
 * [countAccounts](docs/sdks/ledgerv2/README.md#countaccounts) - Count the accounts from a ledger
 * [countTransactions](docs/sdks/ledgerv2/README.md#counttransactions) - Count the transactions from a ledger
 * [createBulk](docs/sdks/ledgerv2/README.md#createbulk) - Bulk request
+* [createExporter](docs/sdks/ledgerv2/README.md#createexporter) - Create exporter
 * [createLedger](docs/sdks/ledgerv2/README.md#createledger) - Create a ledger
+* [createPipeline](docs/sdks/ledgerv2/README.md#createpipeline) - Create pipeline
 * [createTransaction](docs/sdks/ledgerv2/README.md#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](docs/sdks/ledgerv2/README.md#deleteaccountmetadata) - Delete metadata by key
+* [deleteExporter](docs/sdks/ledgerv2/README.md#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](docs/sdks/ledgerv2/README.md#deleteledgermetadata) - Delete ledger metadata by key
+* [deletePipeline](docs/sdks/ledgerv2/README.md#deletepipeline) - Delete pipeline
 * [deleteTransactionMetadata](docs/sdks/ledgerv2/README.md#deletetransactionmetadata) - Delete metadata by key
 * [exportLogs](docs/sdks/ledgerv2/README.md#exportlogs) - Export logs
 * [getAccount](docs/sdks/ledgerv2/README.md#getaccount) - Get account by its address
 * [getBalancesAggregated](docs/sdks/ledgerv2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
-* [getInfo](docs/sdks/ledgerv2/README.md#getinfo) - Show server information
+* [getExporterState](docs/sdks/ledgerv2/README.md#getexporterstate) - Get exporter state
 * [getLedger](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
-* [getMetrics](docs/sdks/ledgerv2/README.md#getmetrics) - Read in memory metrics
+* [getPipelineState](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
 * [getTransaction](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](docs/sdks/ledgerv2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](docs/sdks/ledgerv2/README.md#importlogs)
 * [listAccounts](docs/sdks/ledgerv2/README.md#listaccounts) - List accounts from a ledger
+* [listExporters](docs/sdks/ledgerv2/README.md#listexporters) - List exporters
 * [listLedgers](docs/sdks/ledgerv2/README.md#listledgers) - List ledgers
 * [listLogs](docs/sdks/ledgerv2/README.md#listlogs) - List the logs from a ledger
+* [listPipelines](docs/sdks/ledgerv2/README.md#listpipelines) - List pipelines
 * [listTransactions](docs/sdks/ledgerv2/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/ledgerv2/README.md#readstats) - Get statistics from a ledger
+* [resetPipeline](docs/sdks/ledgerv2/README.md#resetpipeline) - Reset pipeline
 * [revertTransaction](docs/sdks/ledgerv2/README.md#reverttransaction) - Revert a ledger transaction by its ID
+* [startPipeline](docs/sdks/ledgerv2/README.md#startpipeline) - Start pipeline
+* [stopPipeline](docs/sdks/ledgerv2/README.md#stoppipeline) - Stop pipeline
 * [updateLedgerMetadata](docs/sdks/ledgerv2/README.md#updateledgermetadata) - Update ledger metadata
 
 ### [orchestration()](docs/sdks/orchestration/README.md)
@@ -421,10 +431,10 @@ You can override the default server globally using the `.serverIndex(int serverI
 
 If the selected server has variables, you may override its default values using the associated builder method(s):
 
-| Variable       | BuilderMethod                                | Supported Values                                                           | Default           | Description                                                   |
-| -------------- | -------------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `environment(ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-| `organization` | `organization(String organization)`          | java.lang.String                                                           | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| Variable       | BuilderMethod                                | Supported Values                                      | Default           | Description                                                   |
+| -------------- | -------------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment(ServerEnvironment environment)` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
+| `organization` | `organization(String organization)`          | java.lang.String                                      | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -477,7 +487,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         SDK sdk = SDK.builder()
-                .serverURL("https://orgID-stackID.eu.sandbox.formance.cloud")
+                .serverURL("https://orgID-stackID.sandbox.formance.cloud")
                 .security(Security.builder()
                     .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
                     .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
@@ -500,7 +510,7 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `addMetadataOnTransaction` method throws the following exceptions:
+By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `getInfo` method throws the following exceptions:
 
 | Error Type                    | Status Code | Content Type     |
 | ----------------------------- | ----------- | ---------------- |
@@ -514,12 +524,9 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.V2ErrorResponse;
-import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
-import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
+import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.math.BigInteger;
-import java.util.Map;
 
 public class Application {
 
@@ -532,19 +539,12 @@ public class Application {
                     .build())
             .build();
 
-        V2AddMetadataOnTransactionRequest req = V2AddMetadataOnTransactionRequest.builder()
-                .requestBody(Map.ofEntries(
-                    Map.entry("admin", "true")))
-                .id(new BigInteger("1234"))
-                .ledger("ledger001")
-                .dryRun(true)
-                .build();
-
-        V2AddMetadataOnTransactionResponse res = sdk.ledger().v2().addMetadataOnTransaction()
-                .request(req)
+        V2GetInfoResponse res = sdk.ledger().getInfo()
                 .call();
 
-        // handle response
+        if (res.v2ConfigInfoResponse().isPresent()) {
+            // handle response
+        }
     }
 }
 ```

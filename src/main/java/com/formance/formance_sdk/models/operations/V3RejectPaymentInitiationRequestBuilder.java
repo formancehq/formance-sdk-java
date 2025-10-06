@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3RejectPaymentInitiation;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V3RejectPaymentInitiationRequestBuilder {
 
     private V3RejectPaymentInitiationRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3RejectPaymentInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V3RejectPaymentInitiationRequestBuilder {
     public V3RejectPaymentInitiationResponse call() throws Exception {
         
         RequestOperation<V3RejectPaymentInitiationRequest, V3RejectPaymentInitiationResponse> operation
-              = new V3RejectPaymentInitiation.Sync(sdkConfiguration);
+              = new V3RejectPaymentInitiation.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

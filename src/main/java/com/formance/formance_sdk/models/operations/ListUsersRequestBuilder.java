@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListUsers;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class ListUsersRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListUsersRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class ListUsersRequestBuilder {
     public ListUsersResponse call() throws Exception {
         
         RequestlessOperation<ListUsersResponse> operation
-            = new ListUsers.Sync(sdkConfiguration);
+            = new ListUsers.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

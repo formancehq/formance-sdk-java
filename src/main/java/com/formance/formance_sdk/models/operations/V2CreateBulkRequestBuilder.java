@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2CreateBulk;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2CreateBulkRequestBuilder {
 
     private V2CreateBulkRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2CreateBulkRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2CreateBulkRequestBuilder {
     public V2CreateBulkResponse call() throws Exception {
         
         RequestOperation<V2CreateBulkRequest, V2CreateBulkResponse> operation
-              = new V2CreateBulk.Sync(sdkConfiguration);
+              = new V2CreateBulk.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

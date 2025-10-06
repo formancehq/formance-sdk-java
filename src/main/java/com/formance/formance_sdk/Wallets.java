@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk;
 
+import com.formance.formance_sdk.utils.Headers;
+
+
 public class Wallets {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final WalletsV1 v1;
 

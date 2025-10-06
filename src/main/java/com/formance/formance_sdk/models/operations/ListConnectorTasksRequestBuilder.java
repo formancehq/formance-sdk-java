@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListConnectorTasks;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class ListConnectorTasksRequestBuilder {
 
     private ListConnectorTasksRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListConnectorTasksRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class ListConnectorTasksRequestBuilder {
     public ListConnectorTasksResponse call() throws Exception {
         
         RequestOperation<ListConnectorTasksRequest, ListConnectorTasksResponse> operation
-              = new ListConnectorTasks.Sync(sdkConfiguration);
+              = new ListConnectorTasks.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

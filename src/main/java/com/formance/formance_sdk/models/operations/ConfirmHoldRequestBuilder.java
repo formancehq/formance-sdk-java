@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ConfirmHold;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class ConfirmHoldRequestBuilder {
 
     private ConfirmHoldRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ConfirmHoldRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class ConfirmHoldRequestBuilder {
     public ConfirmHoldResponse call() throws Exception {
         
         RequestOperation<ConfirmHoldRequest, ConfirmHoldResponse> operation
-              = new ConfirmHold.Sync(sdkConfiguration);
+              = new ConfirmHold.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

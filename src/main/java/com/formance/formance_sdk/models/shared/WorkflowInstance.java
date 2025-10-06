@@ -51,6 +51,11 @@ public class WorkflowInstance {
     private OffsetDateTime updatedAt;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflow")
+    private Optional<? extends Workflow> workflow;
+
+
     @JsonProperty("workflowID")
     private String workflowID;
 
@@ -63,6 +68,7 @@ public class WorkflowInstance {
             @JsonProperty("terminated") boolean terminated,
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt,
+            @JsonProperty("workflow") Optional<? extends Workflow> workflow,
             @JsonProperty("workflowID") String workflowID) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(error, "error");
@@ -71,6 +77,7 @@ public class WorkflowInstance {
         Utils.checkNotNull(terminated, "terminated");
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        Utils.checkNotNull(workflow, "workflow");
         Utils.checkNotNull(workflowID, "workflowID");
         this.createdAt = createdAt;
         this.error = error;
@@ -79,6 +86,7 @@ public class WorkflowInstance {
         this.terminated = terminated;
         this.terminatedAt = terminatedAt;
         this.updatedAt = updatedAt;
+        this.workflow = workflow;
         this.workflowID = workflowID;
     }
     
@@ -90,7 +98,7 @@ public class WorkflowInstance {
             String workflowID) {
         this(createdAt, Optional.empty(), id,
             Optional.empty(), terminated, Optional.empty(),
-            updatedAt, workflowID);
+            updatedAt, Optional.empty(), workflowID);
     }
 
     @JsonIgnore
@@ -127,6 +135,12 @@ public class WorkflowInstance {
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Workflow> workflow() {
+        return (Optional<Workflow>) workflow;
     }
 
     @JsonIgnore
@@ -202,6 +216,19 @@ public class WorkflowInstance {
         return this;
     }
 
+    public WorkflowInstance withWorkflow(Workflow workflow) {
+        Utils.checkNotNull(workflow, "workflow");
+        this.workflow = Optional.ofNullable(workflow);
+        return this;
+    }
+
+
+    public WorkflowInstance withWorkflow(Optional<? extends Workflow> workflow) {
+        Utils.checkNotNull(workflow, "workflow");
+        this.workflow = workflow;
+        return this;
+    }
+
     public WorkflowInstance withWorkflowID(String workflowID) {
         Utils.checkNotNull(workflowID, "workflowID");
         this.workflowID = workflowID;
@@ -225,6 +252,7 @@ public class WorkflowInstance {
             Utils.enhancedDeepEquals(this.terminated, other.terminated) &&
             Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.workflow, other.workflow) &&
             Utils.enhancedDeepEquals(this.workflowID, other.workflowID);
     }
     
@@ -233,7 +261,7 @@ public class WorkflowInstance {
         return Utils.enhancedHash(
             createdAt, error, id,
             status, terminated, terminatedAt,
-            updatedAt, workflowID);
+            updatedAt, workflow, workflowID);
     }
     
     @Override
@@ -246,6 +274,7 @@ public class WorkflowInstance {
                 "terminated", terminated,
                 "terminatedAt", terminatedAt,
                 "updatedAt", updatedAt,
+                "workflow", workflow,
                 "workflowID", workflowID);
     }
 
@@ -265,6 +294,8 @@ public class WorkflowInstance {
         private Optional<OffsetDateTime> terminatedAt = Optional.empty();
 
         private OffsetDateTime updatedAt;
+
+        private Optional<? extends Workflow> workflow = Optional.empty();
 
         private String workflowID;
 
@@ -340,6 +371,19 @@ public class WorkflowInstance {
         }
 
 
+        public Builder workflow(Workflow workflow) {
+            Utils.checkNotNull(workflow, "workflow");
+            this.workflow = Optional.ofNullable(workflow);
+            return this;
+        }
+
+        public Builder workflow(Optional<? extends Workflow> workflow) {
+            Utils.checkNotNull(workflow, "workflow");
+            this.workflow = workflow;
+            return this;
+        }
+
+
         public Builder workflowID(String workflowID) {
             Utils.checkNotNull(workflowID, "workflowID");
             this.workflowID = workflowID;
@@ -351,7 +395,7 @@ public class WorkflowInstance {
             return new WorkflowInstance(
                 createdAt, error, id,
                 status, terminated, terminatedAt,
-                updatedAt, workflowID);
+                updatedAt, workflow, workflowID);
         }
 
     }

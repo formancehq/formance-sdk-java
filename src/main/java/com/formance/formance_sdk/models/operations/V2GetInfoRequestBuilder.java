@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetInfo;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class V2GetInfoRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2GetInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class V2GetInfoRequestBuilder {
     public V2GetInfoResponse call() throws Exception {
         
         RequestlessOperation<V2GetInfoResponse> operation
-            = new V2GetInfo.Sync(sdkConfiguration);
+            = new V2GetInfo.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

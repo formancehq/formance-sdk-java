@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListWorkflows;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class ListWorkflowsRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListWorkflowsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class ListWorkflowsRequestBuilder {
     public ListWorkflowsResponse call() throws Exception {
         
         RequestlessOperation<ListWorkflowsResponse> operation
-            = new ListWorkflows.Sync(sdkConfiguration);
+            = new ListWorkflows.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

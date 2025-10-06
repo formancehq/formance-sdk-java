@@ -8,6 +8,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.PoolRequest;
 import com.formance.formance_sdk.operations.CreatePool;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class CreatePoolRequestBuilder {
 
     private PoolRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePoolRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class CreatePoolRequestBuilder {
     public CreatePoolResponse call() throws Exception {
         
         RequestOperation<PoolRequest, CreatePoolResponse> operation
-              = new CreatePool.Sync(sdkConfiguration);
+              = new CreatePool.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

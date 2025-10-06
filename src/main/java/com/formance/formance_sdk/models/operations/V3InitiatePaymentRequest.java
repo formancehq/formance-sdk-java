@@ -22,7 +22,8 @@ public class V3InitiatePaymentRequest {
     private Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest;
 
     /**
-     * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
+     * If set to true, the request will not have to be validated. This is useful if we want to directly
+     * forward the request to the PSP.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=noValidation")
     private Optional<Boolean> noValidation;
@@ -48,7 +49,8 @@ public class V3InitiatePaymentRequest {
     }
 
     /**
-     * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
+     * If set to true, the request will not have to be validated. This is useful if we want to directly
+     * forward the request to the PSP.
      */
     @JsonIgnore
     public Optional<Boolean> noValidation() {
@@ -74,7 +76,8 @@ public class V3InitiatePaymentRequest {
     }
 
     /**
-     * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
+     * If set to true, the request will not have to be validated. This is useful if we want to directly
+     * forward the request to the PSP.
      */
     public V3InitiatePaymentRequest withNoValidation(boolean noValidation) {
         Utils.checkNotNull(noValidation, "noValidation");
@@ -84,7 +87,8 @@ public class V3InitiatePaymentRequest {
 
 
     /**
-     * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
+     * If set to true, the request will not have to be validated. This is useful if we want to directly
+     * forward the request to the PSP.
      */
     public V3InitiatePaymentRequest withNoValidation(Optional<Boolean> noValidation) {
         Utils.checkNotNull(noValidation, "noValidation");
@@ -145,7 +149,8 @@ public class V3InitiatePaymentRequest {
 
 
         /**
-         * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
+         * If set to true, the request will not have to be validated. This is useful if we want to directly
+         * forward the request to the PSP.
          */
         public Builder noValidation(boolean noValidation) {
             Utils.checkNotNull(noValidation, "noValidation");
@@ -154,7 +159,8 @@ public class V3InitiatePaymentRequest {
         }
 
         /**
-         * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
+         * If set to true, the request will not have to be validated. This is useful if we want to directly
+         * forward the request to the PSP.
          */
         public Builder noValidation(Optional<Boolean> noValidation) {
             Utils.checkNotNull(noValidation, "noValidation");

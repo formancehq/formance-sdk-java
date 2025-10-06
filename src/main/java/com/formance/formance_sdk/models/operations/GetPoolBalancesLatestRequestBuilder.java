@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetPoolBalancesLatest;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class GetPoolBalancesLatestRequestBuilder {
 
     private GetPoolBalancesLatestRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetPoolBalancesLatestRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class GetPoolBalancesLatestRequestBuilder {
     public GetPoolBalancesLatestResponse call() throws Exception {
         
         RequestOperation<GetPoolBalancesLatestRequest, GetPoolBalancesLatestResponse> operation
-              = new GetPoolBalancesLatest.Sync(sdkConfiguration);
+              = new GetPoolBalancesLatest.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

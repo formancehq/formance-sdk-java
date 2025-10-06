@@ -76,6 +76,11 @@ public class V2Transaction {
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updatedAt")
+    private Optional<OffsetDateTime> updatedAt;
+
     @JsonCreator
     public V2Transaction(
             @JsonProperty("id") BigInteger id,
@@ -89,7 +94,8 @@ public class V2Transaction {
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("reverted") boolean reverted,
             @JsonProperty("revertedAt") Optional<OffsetDateTime> revertedAt,
-            @JsonProperty("timestamp") OffsetDateTime timestamp) {
+            @JsonProperty("timestamp") OffsetDateTime timestamp,
+            @JsonProperty("updatedAt") Optional<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(insertedAt, "insertedAt");
         metadata = Utils.emptyMapIfNull(metadata);
@@ -103,6 +109,7 @@ public class V2Transaction {
         Utils.checkNotNull(reverted, "reverted");
         Utils.checkNotNull(revertedAt, "revertedAt");
         Utils.checkNotNull(timestamp, "timestamp");
+        Utils.checkNotNull(updatedAt, "updatedAt");
         this.id = id;
         this.insertedAt = insertedAt;
         this.metadata = metadata;
@@ -115,6 +122,7 @@ public class V2Transaction {
         this.reverted = reverted;
         this.revertedAt = revertedAt;
         this.timestamp = timestamp;
+        this.updatedAt = updatedAt;
     }
     
     public V2Transaction(
@@ -126,7 +134,8 @@ public class V2Transaction {
         this(id, Optional.empty(), metadata,
             Optional.empty(), Optional.empty(), postings,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            reverted, Optional.empty(), timestamp);
+            reverted, Optional.empty(), timestamp,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -191,6 +200,11 @@ public class V2Transaction {
     @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> updatedAt() {
+        return updatedAt;
     }
 
     public static Builder builder() {
@@ -324,6 +338,19 @@ public class V2Transaction {
         return this;
     }
 
+    public V2Transaction withUpdatedAt(OffsetDateTime updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = Optional.ofNullable(updatedAt);
+        return this;
+    }
+
+
+    public V2Transaction withUpdatedAt(Optional<OffsetDateTime> updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -345,7 +372,8 @@ public class V2Transaction {
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.reverted, other.reverted) &&
             Utils.enhancedDeepEquals(this.revertedAt, other.revertedAt) &&
-            Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
@@ -354,7 +382,8 @@ public class V2Transaction {
             id, insertedAt, metadata,
             postCommitEffectiveVolumes, postCommitVolumes, postings,
             preCommitEffectiveVolumes, preCommitVolumes, reference,
-            reverted, revertedAt, timestamp);
+            reverted, revertedAt, timestamp,
+            updatedAt);
     }
     
     @Override
@@ -371,7 +400,8 @@ public class V2Transaction {
                 "reference", reference,
                 "reverted", reverted,
                 "revertedAt", revertedAt,
-                "timestamp", timestamp);
+                "timestamp", timestamp,
+                "updatedAt", updatedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -400,6 +430,8 @@ public class V2Transaction {
         private Optional<OffsetDateTime> revertedAt = Optional.empty();
 
         private OffsetDateTime timestamp;
+
+        private Optional<OffsetDateTime> updatedAt = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -536,13 +568,27 @@ public class V2Transaction {
             return this;
         }
 
+
+        public Builder updatedAt(OffsetDateTime updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = Optional.ofNullable(updatedAt);
+            return this;
+        }
+
+        public Builder updatedAt(Optional<OffsetDateTime> updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
         public V2Transaction build() {
 
             return new V2Transaction(
                 id, insertedAt, metadata,
                 postCommitEffectiveVolumes, postCommitVolumes, postings,
                 preCommitEffectiveVolumes, preCommitVolumes, reference,
-                reverted, revertedAt, timestamp);
+                reverted, revertedAt, timestamp,
+                updatedAt);
         }
 
     }

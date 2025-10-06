@@ -8,6 +8,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.ClientOptions;
 import com.formance.formance_sdk.operations.CreateClient;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class CreateClientRequestBuilder {
 
     private Optional<? extends ClientOptions> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateClientRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -36,7 +38,7 @@ public class CreateClientRequestBuilder {
     public CreateClientResponse call() throws Exception {
         
         RequestOperation<Optional<? extends ClientOptions>, CreateClientResponse> operation
-              = new CreateClient.Sync(sdkConfiguration);
+              = new CreateClient.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

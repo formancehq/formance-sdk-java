@@ -29,7 +29,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetAccount")
-    private Optional<? extends V2AccountResponse> getAccount;
+    private Optional<? extends V2ActivityGetAccountOutput> getAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -50,7 +50,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
     public V2WorkflowInstanceHistoryStageOutput(
             @JsonProperty("CreateTransaction") Optional<? extends V2ActivityCreateTransactionOutput> createTransaction,
             @JsonProperty("DebitWallet") Optional<? extends V2ActivityDebitWalletOutput> debitWallet,
-            @JsonProperty("GetAccount") Optional<? extends V2AccountResponse> getAccount,
+            @JsonProperty("GetAccount") Optional<? extends V2ActivityGetAccountOutput> getAccount,
             @JsonProperty("GetPayment") Optional<? extends V2ActivityGetPaymentOutput> getPayment,
             @JsonProperty("GetWallet") Optional<? extends V2ActivityGetWalletOutput> getWallet,
             @JsonProperty("ListWallets") Optional<? extends V2ListWalletsResponse> listWallets) {
@@ -87,8 +87,8 @@ public class V2WorkflowInstanceHistoryStageOutput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2AccountResponse> getAccount() {
-        return (Optional<V2AccountResponse>) getAccount;
+    public Optional<V2ActivityGetAccountOutput> getAccount() {
+        return (Optional<V2ActivityGetAccountOutput>) getAccount;
     }
 
     @SuppressWarnings("unchecked")
@@ -140,14 +140,14 @@ public class V2WorkflowInstanceHistoryStageOutput {
         return this;
     }
 
-    public V2WorkflowInstanceHistoryStageOutput withGetAccount(V2AccountResponse getAccount) {
+    public V2WorkflowInstanceHistoryStageOutput withGetAccount(V2ActivityGetAccountOutput getAccount) {
         Utils.checkNotNull(getAccount, "getAccount");
         this.getAccount = Optional.ofNullable(getAccount);
         return this;
     }
 
 
-    public V2WorkflowInstanceHistoryStageOutput withGetAccount(Optional<? extends V2AccountResponse> getAccount) {
+    public V2WorkflowInstanceHistoryStageOutput withGetAccount(Optional<? extends V2ActivityGetAccountOutput> getAccount) {
         Utils.checkNotNull(getAccount, "getAccount");
         this.getAccount = getAccount;
         return this;
@@ -235,7 +235,7 @@ public class V2WorkflowInstanceHistoryStageOutput {
 
         private Optional<? extends V2ActivityDebitWalletOutput> debitWallet = Optional.empty();
 
-        private Optional<? extends V2AccountResponse> getAccount = Optional.empty();
+        private Optional<? extends V2ActivityGetAccountOutput> getAccount = Optional.empty();
 
         private Optional<? extends V2ActivityGetPaymentOutput> getPayment = Optional.empty();
 
@@ -274,13 +274,13 @@ public class V2WorkflowInstanceHistoryStageOutput {
         }
 
 
-        public Builder getAccount(V2AccountResponse getAccount) {
+        public Builder getAccount(V2ActivityGetAccountOutput getAccount) {
             Utils.checkNotNull(getAccount, "getAccount");
             this.getAccount = Optional.ofNullable(getAccount);
             return this;
         }
 
-        public Builder getAccount(Optional<? extends V2AccountResponse> getAccount) {
+        public Builder getAccount(Optional<? extends V2ActivityGetAccountOutput> getAccount) {
             Utils.checkNotNull(getAccount, "getAccount");
             this.getAccount = getAccount;
             return this;

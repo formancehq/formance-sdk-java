@@ -3,23 +3,78 @@
  */
 package com.formance.formance_sdk;
 
+import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+
+import com.formance.formance_sdk.models.operations.GetMetricsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetMetricsResponse;
+import com.formance.formance_sdk.models.operations.V2GetInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
+import com.formance.formance_sdk.operations.GetMetrics;
+import com.formance.formance_sdk.operations.V2GetInfo;
+import com.formance.formance_sdk.utils.Headers;
+import java.lang.Exception;
+
+
 public class Ledger {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
-    private final LedgerV2 v2;
     private final LedgerV1 v1;
+    private final LedgerV2 v2;
 
     Ledger(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.v2 = new LedgerV2(this.sdkConfiguration);
         this.v1 = new LedgerV1(this.sdkConfiguration);
+        this.v2 = new LedgerV2(this.sdkConfiguration);
+    }
+
+    public final LedgerV1 v1() {
+        return v1;
     }
 
     public final LedgerV2 v2() {
         return v2;
     }
 
-    public final LedgerV1 v1() {
-        return v1;
+    /**
+     * Show server information
+     * 
+     * @return The call builder
+     */
+    public V2GetInfoRequestBuilder getInfo() {
+        return new V2GetInfoRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Show server information
+     * 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public V2GetInfoResponse getInfoDirect() throws Exception {
+        RequestlessOperation<V2GetInfoResponse> operation
+            = new V2GetInfo.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest());
+    }
+
+    /**
+     * Read in memory metrics
+     * 
+     * @return The call builder
+     */
+    public GetMetricsRequestBuilder getMetrics() {
+        return new GetMetricsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Read in memory metrics
+     * 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetMetricsResponse getMetricsDirect() throws Exception {
+        RequestlessOperation<GetMetricsResponse> operation
+            = new GetMetrics.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest());
     }
 
 }
