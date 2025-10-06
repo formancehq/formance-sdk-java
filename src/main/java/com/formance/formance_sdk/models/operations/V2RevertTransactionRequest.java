@@ -22,7 +22,8 @@ public class V2RevertTransactionRequest {
     private Optional<Boolean> atEffectiveDate;
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
     private Optional<Boolean> dryRun;
@@ -80,7 +81,8 @@ public class V2RevertTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @JsonIgnore
     public Optional<Boolean> dryRun() {
@@ -136,7 +138,8 @@ public class V2RevertTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2RevertTransactionRequest withDryRun(boolean dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -146,7 +149,8 @@ public class V2RevertTransactionRequest {
 
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2RevertTransactionRequest withDryRun(Optional<Boolean> dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -271,7 +275,8 @@ public class V2RevertTransactionRequest {
 
 
         /**
-         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(boolean dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
@@ -280,7 +285,8 @@ public class V2RevertTransactionRequest {
         }
 
         /**
-         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(Optional<Boolean> dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");

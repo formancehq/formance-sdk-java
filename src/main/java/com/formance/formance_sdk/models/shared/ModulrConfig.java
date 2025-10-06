@@ -35,7 +35,8 @@ public class ModulrConfig implements ConnectorConfig {
     private String name;
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr
+     * API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
@@ -97,7 +98,8 @@ public class ModulrConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr
+     * API.
      */
     @JsonIgnore
     public Optional<String> pollingPeriod() {
@@ -147,7 +149,8 @@ public class ModulrConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr
+     * API.
      */
     public ModulrConfig withPollingPeriod(String pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -157,7 +160,8 @@ public class ModulrConfig implements ConnectorConfig {
 
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr
+     * API.
      */
     public ModulrConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -269,7 +273,8 @@ public class ModulrConfig implements ConnectorConfig {
 
 
         /**
-         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
+         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr
+         * API.
          */
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -278,7 +283,8 @@ public class ModulrConfig implements ConnectorConfig {
         }
 
         /**
-         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
+         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr
+         * API.
          */
         public Builder pollingPeriod(Optional<String> pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");

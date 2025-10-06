@@ -14,6 +14,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
   tests:
     generateTests: true
     generateNewTests: false
@@ -21,7 +22,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 java:
-  version: 7.2.3
+  version: 7.3.0
   additionalDependencies:
     - implementation:org.apache.httpcomponents.client5:httpclient5:5.4.2
   additionalPlugins: []
@@ -32,9 +33,10 @@ java:
   companyName: Formance
   companyURL: https://www.formance.com
   defaultErrorName: SDKError
-  enableAsync: false
   enableCustomCodeRegions: false
+  enableStreamingUploads: false
   flattenGlobalSecurity: false
+  generateSpringBootStarter: true
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance
   imports:

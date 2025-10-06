@@ -193,11 +193,13 @@ import com.formance.formance_sdk.operations.V3UninstallConnector;
 import com.formance.formance_sdk.operations.V3UpdateBankAccountMetadata;
 import com.formance.formance_sdk.operations.V3UpdateConnectorConfig;
 import com.formance.formance_sdk.operations.V3UpdatePaymentMetadata;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class V3 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     V3(SDKConfiguration sdkConfiguration) {
@@ -222,7 +224,7 @@ public class V3 {
      */
     public V3AddAccountToPoolResponse addAccountToPool(V3AddAccountToPoolRequest request) throws Exception {
         RequestOperation<V3AddAccountToPoolRequest, V3AddAccountToPoolResponse> operation
-              = new V3AddAccountToPool.Sync(sdkConfiguration);
+              = new V3AddAccountToPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class V3 {
      */
     public V3AddBankAccountToPaymentServiceUserResponse addBankAccountToPaymentServiceUser(V3AddBankAccountToPaymentServiceUserRequest request) throws Exception {
         RequestOperation<V3AddBankAccountToPaymentServiceUserRequest, V3AddBankAccountToPaymentServiceUserResponse> operation
-              = new V3AddBankAccountToPaymentServiceUser.Sync(sdkConfiguration);
+              = new V3AddBankAccountToPaymentServiceUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -266,12 +268,13 @@ public class V3 {
      */
     public V3ApprovePaymentInitiationResponse approvePaymentInitiation(V3ApprovePaymentInitiationRequest request) throws Exception {
         RequestOperation<V3ApprovePaymentInitiationRequest, V3ApprovePaymentInitiationResponse> operation
-              = new V3ApprovePaymentInitiation.Sync(sdkConfiguration);
+              = new V3ApprovePaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+     * Create a formance account object. This object will not be forwarded to the connector. It is only
+     * used for internal purposes.
      * 
      * @return The call builder
      */
@@ -280,7 +283,8 @@ public class V3 {
     }
 
     /**
-     * Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+     * Create a formance account object. This object will not be forwarded to the connector. It is only
+     * used for internal purposes.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -290,7 +294,8 @@ public class V3 {
     }
 
     /**
-     * Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+     * Create a formance account object. This object will not be forwarded to the connector. It is only
+     * used for internal purposes.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -298,12 +303,13 @@ public class V3 {
      */
     public V3CreateAccountResponse createAccount(Optional<? extends V3CreateAccountRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3CreateAccountRequest>, V3CreateAccountResponse> operation
-              = new V3CreateAccount.Sync(sdkConfiguration);
+              = new V3CreateAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+     * Create a formance bank account object. This object will not be forwarded to the connector until you
+     * called the forwardBankAccount method.
      * 
      * @return The call builder
      */
@@ -312,7 +318,8 @@ public class V3 {
     }
 
     /**
-     * Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+     * Create a formance bank account object. This object will not be forwarded to the connector until you
+     * called the forwardBankAccount method.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -322,7 +329,8 @@ public class V3 {
     }
 
     /**
-     * Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+     * Create a formance bank account object. This object will not be forwarded to the connector until you
+     * called the forwardBankAccount method.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -330,12 +338,13 @@ public class V3 {
      */
     public V3CreateBankAccountResponse createBankAccount(Optional<? extends V3CreateBankAccountRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3CreateBankAccountRequest>, V3CreateBankAccountResponse> operation
-              = new V3CreateBankAccount.Sync(sdkConfiguration);
+              = new V3CreateBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+     * Create a formance payment object. This object will not be forwarded to the connector. It is only
+     * used for internal purposes.
      * 
      * @return The call builder
      */
@@ -344,7 +353,8 @@ public class V3 {
     }
 
     /**
-     * Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+     * Create a formance payment object. This object will not be forwarded to the connector. It is only
+     * used for internal purposes.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -354,7 +364,8 @@ public class V3 {
     }
 
     /**
-     * Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+     * Create a formance payment object. This object will not be forwarded to the connector. It is only
+     * used for internal purposes.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -362,7 +373,7 @@ public class V3 {
      */
     public V3CreatePaymentResponse createPayment(Optional<? extends V3CreatePaymentRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3CreatePaymentRequest>, V3CreatePaymentResponse> operation
-              = new V3CreatePayment.Sync(sdkConfiguration);
+              = new V3CreatePayment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -394,7 +405,7 @@ public class V3 {
      */
     public V3CreatePaymentServiceUserResponse createPaymentServiceUser(Optional<? extends V3CreatePaymentServiceUserRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3CreatePaymentServiceUserRequest>, V3CreatePaymentServiceUserResponse> operation
-              = new V3CreatePaymentServiceUser.Sync(sdkConfiguration);
+              = new V3CreatePaymentServiceUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -426,7 +437,7 @@ public class V3 {
      */
     public V3CreatePoolResponse createPool(Optional<? extends V3CreatePoolRequest> request) throws Exception {
         RequestOperation<Optional<? extends V3CreatePoolRequest>, V3CreatePoolResponse> operation
-              = new V3CreatePool.Sync(sdkConfiguration);
+              = new V3CreatePool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -448,7 +459,7 @@ public class V3 {
      */
     public V3DeletePaymentInitiationResponse deletePaymentInitiation(V3DeletePaymentInitiationRequest request) throws Exception {
         RequestOperation<V3DeletePaymentInitiationRequest, V3DeletePaymentInitiationResponse> operation
-              = new V3DeletePaymentInitiation.Sync(sdkConfiguration);
+              = new V3DeletePaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -470,7 +481,7 @@ public class V3 {
      */
     public V3DeletePoolResponse deletePool(V3DeletePoolRequest request) throws Exception {
         RequestOperation<V3DeletePoolRequest, V3DeletePoolResponse> operation
-              = new V3DeletePool.Sync(sdkConfiguration);
+              = new V3DeletePool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -492,7 +503,7 @@ public class V3 {
      */
     public V3ForwardBankAccountResponse forwardBankAccount(V3ForwardBankAccountRequest request) throws Exception {
         RequestOperation<V3ForwardBankAccountRequest, V3ForwardBankAccountResponse> operation
-              = new V3ForwardBankAccount.Sync(sdkConfiguration);
+              = new V3ForwardBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -514,7 +525,7 @@ public class V3 {
      */
     public V3ForwardPaymentServiceUserBankAccountResponse forwardPaymentServiceUserBankAccount(V3ForwardPaymentServiceUserBankAccountRequest request) throws Exception {
         RequestOperation<V3ForwardPaymentServiceUserBankAccountRequest, V3ForwardPaymentServiceUserBankAccountResponse> operation
-              = new V3ForwardPaymentServiceUserBankAccount.Sync(sdkConfiguration);
+              = new V3ForwardPaymentServiceUserBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -536,7 +547,7 @@ public class V3 {
      */
     public V3GetAccountResponse getAccount(V3GetAccountRequest request) throws Exception {
         RequestOperation<V3GetAccountRequest, V3GetAccountResponse> operation
-              = new V3GetAccount.Sync(sdkConfiguration);
+              = new V3GetAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -558,7 +569,7 @@ public class V3 {
      */
     public V3GetAccountBalancesResponse getAccountBalances(V3GetAccountBalancesRequest request) throws Exception {
         RequestOperation<V3GetAccountBalancesRequest, V3GetAccountBalancesResponse> operation
-              = new V3GetAccountBalances.Sync(sdkConfiguration);
+              = new V3GetAccountBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -580,7 +591,7 @@ public class V3 {
      */
     public V3GetBankAccountResponse getBankAccount(V3GetBankAccountRequest request) throws Exception {
         RequestOperation<V3GetBankAccountRequest, V3GetBankAccountResponse> operation
-              = new V3GetBankAccount.Sync(sdkConfiguration);
+              = new V3GetBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -602,7 +613,7 @@ public class V3 {
      */
     public V3GetConnectorConfigResponse getConnectorConfig(V3GetConnectorConfigRequest request) throws Exception {
         RequestOperation<V3GetConnectorConfigRequest, V3GetConnectorConfigResponse> operation
-              = new V3GetConnectorConfig.Sync(sdkConfiguration);
+              = new V3GetConnectorConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -624,7 +635,7 @@ public class V3 {
      */
     public V3GetConnectorScheduleResponse getConnectorSchedule(V3GetConnectorScheduleRequest request) throws Exception {
         RequestOperation<V3GetConnectorScheduleRequest, V3GetConnectorScheduleResponse> operation
-              = new V3GetConnectorSchedule.Sync(sdkConfiguration);
+              = new V3GetConnectorSchedule.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -646,7 +657,7 @@ public class V3 {
      */
     public V3GetPaymentResponse getPayment(V3GetPaymentRequest request) throws Exception {
         RequestOperation<V3GetPaymentRequest, V3GetPaymentResponse> operation
-              = new V3GetPayment.Sync(sdkConfiguration);
+              = new V3GetPayment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -668,7 +679,7 @@ public class V3 {
      */
     public V3GetPaymentInitiationResponse getPaymentInitiation(V3GetPaymentInitiationRequest request) throws Exception {
         RequestOperation<V3GetPaymentInitiationRequest, V3GetPaymentInitiationResponse> operation
-              = new V3GetPaymentInitiation.Sync(sdkConfiguration);
+              = new V3GetPaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -690,7 +701,7 @@ public class V3 {
      */
     public V3GetPaymentServiceUserResponse getPaymentServiceUser(V3GetPaymentServiceUserRequest request) throws Exception {
         RequestOperation<V3GetPaymentServiceUserRequest, V3GetPaymentServiceUserResponse> operation
-              = new V3GetPaymentServiceUser.Sync(sdkConfiguration);
+              = new V3GetPaymentServiceUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -712,7 +723,7 @@ public class V3 {
      */
     public V3GetPoolResponse getPool(V3GetPoolRequest request) throws Exception {
         RequestOperation<V3GetPoolRequest, V3GetPoolResponse> operation
-              = new V3GetPool.Sync(sdkConfiguration);
+              = new V3GetPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -734,7 +745,7 @@ public class V3 {
      */
     public V3GetPoolBalancesResponse getPoolBalances(V3GetPoolBalancesRequest request) throws Exception {
         RequestOperation<V3GetPoolBalancesRequest, V3GetPoolBalancesResponse> operation
-              = new V3GetPoolBalances.Sync(sdkConfiguration);
+              = new V3GetPoolBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -756,7 +767,7 @@ public class V3 {
      */
     public V3GetPoolBalancesLatestResponse getPoolBalancesLatest(V3GetPoolBalancesLatestRequest request) throws Exception {
         RequestOperation<V3GetPoolBalancesLatestRequest, V3GetPoolBalancesLatestResponse> operation
-              = new V3GetPoolBalancesLatest.Sync(sdkConfiguration);
+              = new V3GetPoolBalancesLatest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -778,7 +789,7 @@ public class V3 {
      */
     public V3GetTaskResponse getTask(V3GetTaskRequest request) throws Exception {
         RequestOperation<V3GetTaskRequest, V3GetTaskResponse> operation
-              = new V3GetTask.Sync(sdkConfiguration);
+              = new V3GetTask.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -800,7 +811,7 @@ public class V3 {
      */
     public V3InitiatePaymentResponse initiatePayment(V3InitiatePaymentRequest request) throws Exception {
         RequestOperation<V3InitiatePaymentRequest, V3InitiatePaymentResponse> operation
-              = new V3InitiatePayment.Sync(sdkConfiguration);
+              = new V3InitiatePayment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -822,7 +833,7 @@ public class V3 {
      */
     public V3InstallConnectorResponse installConnector(V3InstallConnectorRequest request) throws Exception {
         RequestOperation<V3InstallConnectorRequest, V3InstallConnectorResponse> operation
-              = new V3InstallConnector.Sync(sdkConfiguration);
+              = new V3InstallConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -844,7 +855,7 @@ public class V3 {
      */
     public V3ListAccountsResponse listAccounts(V3ListAccountsRequest request) throws Exception {
         RequestOperation<V3ListAccountsRequest, V3ListAccountsResponse> operation
-              = new V3ListAccounts.Sync(sdkConfiguration);
+              = new V3ListAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -866,7 +877,7 @@ public class V3 {
      */
     public V3ListBankAccountsResponse listBankAccounts(V3ListBankAccountsRequest request) throws Exception {
         RequestOperation<V3ListBankAccountsRequest, V3ListBankAccountsResponse> operation
-              = new V3ListBankAccounts.Sync(sdkConfiguration);
+              = new V3ListBankAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -887,7 +898,7 @@ public class V3 {
      */
     public V3ListConnectorConfigsResponse listConnectorConfigsDirect() throws Exception {
         RequestlessOperation<V3ListConnectorConfigsResponse> operation
-            = new V3ListConnectorConfigs.Sync(sdkConfiguration);
+            = new V3ListConnectorConfigs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -909,7 +920,7 @@ public class V3 {
      */
     public V3ListConnectorScheduleInstancesResponse listConnectorScheduleInstances(V3ListConnectorScheduleInstancesRequest request) throws Exception {
         RequestOperation<V3ListConnectorScheduleInstancesRequest, V3ListConnectorScheduleInstancesResponse> operation
-              = new V3ListConnectorScheduleInstances.Sync(sdkConfiguration);
+              = new V3ListConnectorScheduleInstances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -931,7 +942,7 @@ public class V3 {
      */
     public V3ListConnectorSchedulesResponse listConnectorSchedules(V3ListConnectorSchedulesRequest request) throws Exception {
         RequestOperation<V3ListConnectorSchedulesRequest, V3ListConnectorSchedulesResponse> operation
-              = new V3ListConnectorSchedules.Sync(sdkConfiguration);
+              = new V3ListConnectorSchedules.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -953,7 +964,7 @@ public class V3 {
      */
     public V3ListConnectorsResponse listConnectors(V3ListConnectorsRequest request) throws Exception {
         RequestOperation<V3ListConnectorsRequest, V3ListConnectorsResponse> operation
-              = new V3ListConnectors.Sync(sdkConfiguration);
+              = new V3ListConnectors.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -975,7 +986,7 @@ public class V3 {
      */
     public V3ListPaymentInitiationAdjustmentsResponse listPaymentInitiationAdjustments(V3ListPaymentInitiationAdjustmentsRequest request) throws Exception {
         RequestOperation<V3ListPaymentInitiationAdjustmentsRequest, V3ListPaymentInitiationAdjustmentsResponse> operation
-              = new V3ListPaymentInitiationAdjustments.Sync(sdkConfiguration);
+              = new V3ListPaymentInitiationAdjustments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -997,7 +1008,7 @@ public class V3 {
      */
     public V3ListPaymentInitiationRelatedPaymentsResponse listPaymentInitiationRelatedPayments(V3ListPaymentInitiationRelatedPaymentsRequest request) throws Exception {
         RequestOperation<V3ListPaymentInitiationRelatedPaymentsRequest, V3ListPaymentInitiationRelatedPaymentsResponse> operation
-              = new V3ListPaymentInitiationRelatedPayments.Sync(sdkConfiguration);
+              = new V3ListPaymentInitiationRelatedPayments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1019,7 +1030,7 @@ public class V3 {
      */
     public V3ListPaymentInitiationsResponse listPaymentInitiations(V3ListPaymentInitiationsRequest request) throws Exception {
         RequestOperation<V3ListPaymentInitiationsRequest, V3ListPaymentInitiationsResponse> operation
-              = new V3ListPaymentInitiations.Sync(sdkConfiguration);
+              = new V3ListPaymentInitiations.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1041,7 +1052,7 @@ public class V3 {
      */
     public V3ListPaymentServiceUsersResponse listPaymentServiceUsers(V3ListPaymentServiceUsersRequest request) throws Exception {
         RequestOperation<V3ListPaymentServiceUsersRequest, V3ListPaymentServiceUsersResponse> operation
-              = new V3ListPaymentServiceUsers.Sync(sdkConfiguration);
+              = new V3ListPaymentServiceUsers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1063,7 +1074,7 @@ public class V3 {
      */
     public V3ListPaymentsResponse listPayments(V3ListPaymentsRequest request) throws Exception {
         RequestOperation<V3ListPaymentsRequest, V3ListPaymentsResponse> operation
-              = new V3ListPayments.Sync(sdkConfiguration);
+              = new V3ListPayments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1085,7 +1096,7 @@ public class V3 {
      */
     public V3ListPoolsResponse listPools(V3ListPoolsRequest request) throws Exception {
         RequestOperation<V3ListPoolsRequest, V3ListPoolsResponse> operation
-              = new V3ListPools.Sync(sdkConfiguration);
+              = new V3ListPools.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1107,7 +1118,7 @@ public class V3 {
      */
     public V3RejectPaymentInitiationResponse rejectPaymentInitiation(V3RejectPaymentInitiationRequest request) throws Exception {
         RequestOperation<V3RejectPaymentInitiationRequest, V3RejectPaymentInitiationResponse> operation
-              = new V3RejectPaymentInitiation.Sync(sdkConfiguration);
+              = new V3RejectPaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1129,12 +1140,13 @@ public class V3 {
      */
     public V3RemoveAccountFromPoolResponse removeAccountFromPool(V3RemoveAccountFromPoolRequest request) throws Exception {
         RequestOperation<V3RemoveAccountFromPoolRequest, V3RemoveAccountFromPoolResponse> operation
-              = new V3RemoveAccountFromPool.Sync(sdkConfiguration);
+              = new V3RemoveAccountFromPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+     * Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment
+     * initiations and bank account creations.
      * 
      * @return The call builder
      */
@@ -1143,7 +1155,8 @@ public class V3 {
     }
 
     /**
-     * Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+     * Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment
+     * initiations and bank account creations.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -1151,7 +1164,7 @@ public class V3 {
      */
     public V3ResetConnectorResponse resetConnector(V3ResetConnectorRequest request) throws Exception {
         RequestOperation<V3ResetConnectorRequest, V3ResetConnectorResponse> operation
-              = new V3ResetConnector.Sync(sdkConfiguration);
+              = new V3ResetConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1173,7 +1186,7 @@ public class V3 {
      */
     public V3RetryPaymentInitiationResponse retryPaymentInitiation(V3RetryPaymentInitiationRequest request) throws Exception {
         RequestOperation<V3RetryPaymentInitiationRequest, V3RetryPaymentInitiationResponse> operation
-              = new V3RetryPaymentInitiation.Sync(sdkConfiguration);
+              = new V3RetryPaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1195,7 +1208,7 @@ public class V3 {
      */
     public V3ReversePaymentInitiationResponse reversePaymentInitiation(V3ReversePaymentInitiationRequest request) throws Exception {
         RequestOperation<V3ReversePaymentInitiationRequest, V3ReversePaymentInitiationResponse> operation
-              = new V3ReversePaymentInitiation.Sync(sdkConfiguration);
+              = new V3ReversePaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1217,7 +1230,7 @@ public class V3 {
      */
     public V3UninstallConnectorResponse uninstallConnector(V3UninstallConnectorRequest request) throws Exception {
         RequestOperation<V3UninstallConnectorRequest, V3UninstallConnectorResponse> operation
-              = new V3UninstallConnector.Sync(sdkConfiguration);
+              = new V3UninstallConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1239,7 +1252,7 @@ public class V3 {
      */
     public V3UpdateBankAccountMetadataResponse updateBankAccountMetadata(V3UpdateBankAccountMetadataRequest request) throws Exception {
         RequestOperation<V3UpdateBankAccountMetadataRequest, V3UpdateBankAccountMetadataResponse> operation
-              = new V3UpdateBankAccountMetadata.Sync(sdkConfiguration);
+              = new V3UpdateBankAccountMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1261,7 +1274,7 @@ public class V3 {
      */
     public V3UpdatePaymentMetadataResponse updatePaymentMetadata(V3UpdatePaymentMetadataRequest request) throws Exception {
         RequestOperation<V3UpdatePaymentMetadataRequest, V3UpdatePaymentMetadataResponse> operation
-              = new V3UpdatePaymentMetadata.Sync(sdkConfiguration);
+              = new V3UpdatePaymentMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1287,7 +1300,7 @@ public class V3 {
      */
     public V3UpdateConnectorConfigResponse v3UpdateConnectorConfig(V3UpdateConnectorConfigRequest request) throws Exception {
         RequestOperation<V3UpdateConnectorConfigRequest, V3UpdateConnectorConfigResponse> operation
-              = new V3UpdateConnectorConfig.Sync(sdkConfiguration);
+              = new V3UpdateConnectorConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

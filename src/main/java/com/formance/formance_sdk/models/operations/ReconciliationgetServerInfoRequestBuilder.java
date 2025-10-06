@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReconciliationgetServerInfo;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class ReconciliationgetServerInfoRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ReconciliationgetServerInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class ReconciliationgetServerInfoRequestBuilder {
     public ReconciliationgetServerInfoResponse call() throws Exception {
         
         RequestlessOperation<ReconciliationgetServerInfoResponse> operation
-            = new ReconciliationgetServerInfo.Sync(sdkConfiguration);
+            = new ReconciliationgetServerInfo.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

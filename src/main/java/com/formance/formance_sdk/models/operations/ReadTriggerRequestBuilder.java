@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReadTrigger;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class ReadTriggerRequestBuilder {
 
     private ReadTriggerRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ReadTriggerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class ReadTriggerRequestBuilder {
     public ReadTriggerResponse call() throws Exception {
         
         RequestOperation<ReadTriggerRequest, ReadTriggerResponse> operation
-              = new ReadTrigger.Sync(sdkConfiguration);
+              = new ReadTrigger.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

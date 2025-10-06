@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListTransferInitiations;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class ListTransferInitiationsRequestBuilder {
 
     private ListTransferInitiationsRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListTransferInitiationsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class ListTransferInitiationsRequestBuilder {
     public ListTransferInitiationsResponse call() throws Exception {
         
         RequestOperation<ListTransferInitiationsRequest, ListTransferInitiationsResponse> operation
-              = new ListTransferInitiations.Sync(sdkConfiguration);
+              = new ListTransferInitiations.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

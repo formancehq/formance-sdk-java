@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetAccountBalances;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class GetAccountBalancesRequestBuilder {
 
     private GetAccountBalancesRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetAccountBalancesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class GetAccountBalancesRequestBuilder {
     public GetAccountBalancesResponse call() throws Exception {
         
         RequestOperation<GetAccountBalancesRequest, GetAccountBalancesResponse> operation
-              = new GetAccountBalances.Sync(sdkConfiguration);
+              = new GetAccountBalances.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

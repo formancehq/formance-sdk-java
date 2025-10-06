@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.TestConfig;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class TestConfigRequestBuilder {
 
     private TestConfigRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public TestConfigRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class TestConfigRequestBuilder {
     public TestConfigResponse call() throws Exception {
         
         RequestOperation<TestConfigRequest, TestConfigResponse> operation
-              = new TestConfig.Sync(sdkConfiguration);
+              = new TestConfig.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

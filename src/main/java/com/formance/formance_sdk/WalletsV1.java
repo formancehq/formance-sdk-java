@@ -69,10 +69,12 @@ import com.formance.formance_sdk.operations.ListWallets;
 import com.formance.formance_sdk.operations.UpdateWallet;
 import com.formance.formance_sdk.operations.VoidHold;
 import com.formance.formance_sdk.operations.WalletsgetServerInfo;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 
 public class WalletsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     WalletsV1(SDKConfiguration sdkConfiguration) {
@@ -97,7 +99,7 @@ public class WalletsV1 {
      */
     public ConfirmHoldResponse confirmHold(ConfirmHoldRequest request) throws Exception {
         RequestOperation<ConfirmHoldRequest, ConfirmHoldResponse> operation
-              = new ConfirmHold.Sync(sdkConfiguration);
+              = new ConfirmHold.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -119,7 +121,7 @@ public class WalletsV1 {
      */
     public CreateBalanceResponse createBalance(CreateBalanceRequest request) throws Exception {
         RequestOperation<CreateBalanceRequest, CreateBalanceResponse> operation
-              = new CreateBalance.Sync(sdkConfiguration);
+              = new CreateBalance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -141,7 +143,7 @@ public class WalletsV1 {
      */
     public CreateWalletResponse createWallet(CreateWalletRequest request) throws Exception {
         RequestOperation<CreateWalletRequest, CreateWalletResponse> operation
-              = new CreateWallet.Sync(sdkConfiguration);
+              = new CreateWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -163,7 +165,7 @@ public class WalletsV1 {
      */
     public CreditWalletResponse creditWallet(CreditWalletRequest request) throws Exception {
         RequestOperation<CreditWalletRequest, CreditWalletResponse> operation
-              = new CreditWallet.Sync(sdkConfiguration);
+              = new CreditWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -185,7 +187,7 @@ public class WalletsV1 {
      */
     public DebitWalletResponse debitWallet(DebitWalletRequest request) throws Exception {
         RequestOperation<DebitWalletRequest, DebitWalletResponse> operation
-              = new DebitWallet.Sync(sdkConfiguration);
+              = new DebitWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -207,7 +209,7 @@ public class WalletsV1 {
      */
     public GetBalanceResponse getBalance(GetBalanceRequest request) throws Exception {
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalance.Sync(sdkConfiguration);
+              = new GetBalance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -229,7 +231,7 @@ public class WalletsV1 {
      */
     public GetHoldResponse getHold(GetHoldRequest request) throws Exception {
         RequestOperation<GetHoldRequest, GetHoldResponse> operation
-              = new GetHold.Sync(sdkConfiguration);
+              = new GetHold.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,7 +253,7 @@ public class WalletsV1 {
      */
     public GetHoldsResponse getHolds(GetHoldsRequest request) throws Exception {
         RequestOperation<GetHoldsRequest, GetHoldsResponse> operation
-              = new GetHolds.Sync(sdkConfiguration);
+              = new GetHolds.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -273,7 +275,7 @@ public class WalletsV1 {
      */
     public GetTransactionsResponse getTransactions(GetTransactionsRequest request) throws Exception {
         RequestOperation<GetTransactionsRequest, GetTransactionsResponse> operation
-              = new GetTransactions.Sync(sdkConfiguration);
+              = new GetTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -295,7 +297,7 @@ public class WalletsV1 {
      */
     public GetWalletResponse getWallet(GetWalletRequest request) throws Exception {
         RequestOperation<GetWalletRequest, GetWalletResponse> operation
-              = new GetWallet.Sync(sdkConfiguration);
+              = new GetWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -317,7 +319,7 @@ public class WalletsV1 {
      */
     public GetWalletSummaryResponse getWalletSummary(GetWalletSummaryRequest request) throws Exception {
         RequestOperation<GetWalletSummaryRequest, GetWalletSummaryResponse> operation
-              = new GetWalletSummary.Sync(sdkConfiguration);
+              = new GetWalletSummary.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -339,7 +341,7 @@ public class WalletsV1 {
      */
     public ListBalancesResponse listBalances(ListBalancesRequest request) throws Exception {
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
-              = new ListBalances.Sync(sdkConfiguration);
+              = new ListBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -361,7 +363,7 @@ public class WalletsV1 {
      */
     public ListWalletsResponse listWallets(ListWalletsRequest request) throws Exception {
         RequestOperation<ListWalletsRequest, ListWalletsResponse> operation
-              = new ListWallets.Sync(sdkConfiguration);
+              = new ListWallets.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -383,7 +385,7 @@ public class WalletsV1 {
      */
     public UpdateWalletResponse updateWallet(UpdateWalletRequest request) throws Exception {
         RequestOperation<UpdateWalletRequest, UpdateWalletResponse> operation
-              = new UpdateWallet.Sync(sdkConfiguration);
+              = new UpdateWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -405,7 +407,7 @@ public class WalletsV1 {
      */
     public VoidHoldResponse voidHold(VoidHoldRequest request) throws Exception {
         RequestOperation<VoidHoldRequest, VoidHoldResponse> operation
-              = new VoidHold.Sync(sdkConfiguration);
+              = new VoidHold.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -426,7 +428,7 @@ public class WalletsV1 {
      */
     public WalletsgetServerInfoResponse walletsgetServerInfoDirect() throws Exception {
         RequestlessOperation<WalletsgetServerInfoResponse> operation
-            = new WalletsgetServerInfo.Sync(sdkConfiguration);
+            = new WalletsgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

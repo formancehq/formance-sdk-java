@@ -112,10 +112,12 @@ import com.formance.formance_sdk.operations.V2ListTransactions;
 import com.formance.formance_sdk.operations.V2ReadStats;
 import com.formance.formance_sdk.operations.V2RevertTransaction;
 import com.formance.formance_sdk.operations.V2UpdateLedgerMetadata;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 
 public class LedgerV2 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     LedgerV2(SDKConfiguration sdkConfiguration) {
@@ -140,7 +142,7 @@ public class LedgerV2 {
      */
     public V2AddMetadataOnTransactionResponse addMetadataOnTransaction(V2AddMetadataOnTransactionRequest request) throws Exception {
         RequestOperation<V2AddMetadataOnTransactionRequest, V2AddMetadataOnTransactionResponse> operation
-              = new V2AddMetadataOnTransaction.Sync(sdkConfiguration);
+              = new V2AddMetadataOnTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -162,7 +164,7 @@ public class LedgerV2 {
      */
     public V2AddMetadataToAccountResponse addMetadataToAccount(V2AddMetadataToAccountRequest request) throws Exception {
         RequestOperation<V2AddMetadataToAccountRequest, V2AddMetadataToAccountResponse> operation
-              = new V2AddMetadataToAccount.Sync(sdkConfiguration);
+              = new V2AddMetadataToAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -184,7 +186,7 @@ public class LedgerV2 {
      */
     public V2CountAccountsResponse countAccounts(V2CountAccountsRequest request) throws Exception {
         RequestOperation<V2CountAccountsRequest, V2CountAccountsResponse> operation
-              = new V2CountAccounts.Sync(sdkConfiguration);
+              = new V2CountAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -206,7 +208,7 @@ public class LedgerV2 {
      */
     public V2CountTransactionsResponse countTransactions(V2CountTransactionsRequest request) throws Exception {
         RequestOperation<V2CountTransactionsRequest, V2CountTransactionsResponse> operation
-              = new V2CountTransactions.Sync(sdkConfiguration);
+              = new V2CountTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -228,7 +230,7 @@ public class LedgerV2 {
      */
     public V2CreateBulkResponse createBulk(V2CreateBulkRequest request) throws Exception {
         RequestOperation<V2CreateBulkRequest, V2CreateBulkResponse> operation
-              = new V2CreateBulk.Sync(sdkConfiguration);
+              = new V2CreateBulk.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -250,7 +252,7 @@ public class LedgerV2 {
      */
     public V2CreateLedgerResponse createLedger(V2CreateLedgerRequest request) throws Exception {
         RequestOperation<V2CreateLedgerRequest, V2CreateLedgerResponse> operation
-              = new V2CreateLedger.Sync(sdkConfiguration);
+              = new V2CreateLedger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -272,7 +274,7 @@ public class LedgerV2 {
      */
     public V2CreateTransactionResponse createTransaction(V2CreateTransactionRequest request) throws Exception {
         RequestOperation<V2CreateTransactionRequest, V2CreateTransactionResponse> operation
-              = new V2CreateTransaction.Sync(sdkConfiguration);
+              = new V2CreateTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -298,7 +300,7 @@ public class LedgerV2 {
      */
     public V2DeleteAccountMetadataResponse deleteAccountMetadata(V2DeleteAccountMetadataRequest request) throws Exception {
         RequestOperation<V2DeleteAccountMetadataRequest, V2DeleteAccountMetadataResponse> operation
-              = new V2DeleteAccountMetadata.Sync(sdkConfiguration);
+              = new V2DeleteAccountMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -320,7 +322,7 @@ public class LedgerV2 {
      */
     public V2DeleteLedgerMetadataResponse deleteLedgerMetadata(V2DeleteLedgerMetadataRequest request) throws Exception {
         RequestOperation<V2DeleteLedgerMetadataRequest, V2DeleteLedgerMetadataResponse> operation
-              = new V2DeleteLedgerMetadata.Sync(sdkConfiguration);
+              = new V2DeleteLedgerMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -346,7 +348,7 @@ public class LedgerV2 {
      */
     public V2DeleteTransactionMetadataResponse deleteTransactionMetadata(V2DeleteTransactionMetadataRequest request) throws Exception {
         RequestOperation<V2DeleteTransactionMetadataRequest, V2DeleteTransactionMetadataResponse> operation
-              = new V2DeleteTransactionMetadata.Sync(sdkConfiguration);
+              = new V2DeleteTransactionMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -368,7 +370,7 @@ public class LedgerV2 {
      */
     public V2ExportLogsResponse exportLogs(V2ExportLogsRequest request) throws Exception {
         RequestOperation<V2ExportLogsRequest, V2ExportLogsResponse> operation
-              = new V2ExportLogs.Sync(sdkConfiguration);
+              = new V2ExportLogs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -390,7 +392,7 @@ public class LedgerV2 {
      */
     public V2GetAccountResponse getAccount(V2GetAccountRequest request) throws Exception {
         RequestOperation<V2GetAccountRequest, V2GetAccountResponse> operation
-              = new V2GetAccount.Sync(sdkConfiguration);
+              = new V2GetAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -412,7 +414,7 @@ public class LedgerV2 {
      */
     public V2GetBalancesAggregatedResponse getBalancesAggregated(V2GetBalancesAggregatedRequest request) throws Exception {
         RequestOperation<V2GetBalancesAggregatedRequest, V2GetBalancesAggregatedResponse> operation
-              = new V2GetBalancesAggregated.Sync(sdkConfiguration);
+              = new V2GetBalancesAggregated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -433,7 +435,7 @@ public class LedgerV2 {
      */
     public V2GetInfoResponse getInfoDirect() throws Exception {
         RequestlessOperation<V2GetInfoResponse> operation
-            = new V2GetInfo.Sync(sdkConfiguration);
+            = new V2GetInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -455,7 +457,7 @@ public class LedgerV2 {
      */
     public V2GetLedgerResponse getLedger(V2GetLedgerRequest request) throws Exception {
         RequestOperation<V2GetLedgerRequest, V2GetLedgerResponse> operation
-              = new V2GetLedger.Sync(sdkConfiguration);
+              = new V2GetLedger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -477,7 +479,7 @@ public class LedgerV2 {
      */
     public V2GetLedgerInfoResponse getLedgerInfo(V2GetLedgerInfoRequest request) throws Exception {
         RequestOperation<V2GetLedgerInfoRequest, V2GetLedgerInfoResponse> operation
-              = new V2GetLedgerInfo.Sync(sdkConfiguration);
+              = new V2GetLedgerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -498,7 +500,7 @@ public class LedgerV2 {
      */
     public GetMetricsResponse getMetricsDirect() throws Exception {
         RequestlessOperation<GetMetricsResponse> operation
-            = new GetMetrics.Sync(sdkConfiguration);
+            = new GetMetrics.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -520,7 +522,7 @@ public class LedgerV2 {
      */
     public V2GetTransactionResponse getTransaction(V2GetTransactionRequest request) throws Exception {
         RequestOperation<V2GetTransactionRequest, V2GetTransactionResponse> operation
-              = new V2GetTransaction.Sync(sdkConfiguration);
+              = new V2GetTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -542,7 +544,7 @@ public class LedgerV2 {
      */
     public V2GetVolumesWithBalancesResponse getVolumesWithBalances(V2GetVolumesWithBalancesRequest request) throws Exception {
         RequestOperation<V2GetVolumesWithBalancesRequest, V2GetVolumesWithBalancesResponse> operation
-              = new V2GetVolumesWithBalances.Sync(sdkConfiguration);
+              = new V2GetVolumesWithBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -564,7 +566,7 @@ public class LedgerV2 {
      */
     public V2ImportLogsResponse importLogs(V2ImportLogsRequest request) throws Exception {
         RequestOperation<V2ImportLogsRequest, V2ImportLogsResponse> operation
-              = new V2ImportLogs.Sync(sdkConfiguration);
+              = new V2ImportLogs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -590,7 +592,7 @@ public class LedgerV2 {
      */
     public V2ListAccountsResponse listAccounts(V2ListAccountsRequest request) throws Exception {
         RequestOperation<V2ListAccountsRequest, V2ListAccountsResponse> operation
-              = new V2ListAccounts.Sync(sdkConfiguration);
+              = new V2ListAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -612,7 +614,7 @@ public class LedgerV2 {
      */
     public V2ListLedgersResponse listLedgers(V2ListLedgersRequest request) throws Exception {
         RequestOperation<V2ListLedgersRequest, V2ListLedgersResponse> operation
-              = new V2ListLedgers.Sync(sdkConfiguration);
+              = new V2ListLedgers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -638,7 +640,7 @@ public class LedgerV2 {
      */
     public V2ListLogsResponse listLogs(V2ListLogsRequest request) throws Exception {
         RequestOperation<V2ListLogsRequest, V2ListLogsResponse> operation
-              = new V2ListLogs.Sync(sdkConfiguration);
+              = new V2ListLogs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -664,7 +666,7 @@ public class LedgerV2 {
      */
     public V2ListTransactionsResponse listTransactions(V2ListTransactionsRequest request) throws Exception {
         RequestOperation<V2ListTransactionsRequest, V2ListTransactionsResponse> operation
-              = new V2ListTransactions.Sync(sdkConfiguration);
+              = new V2ListTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -690,7 +692,7 @@ public class LedgerV2 {
      */
     public V2ReadStatsResponse readStats(V2ReadStatsRequest request) throws Exception {
         RequestOperation<V2ReadStatsRequest, V2ReadStatsResponse> operation
-              = new V2ReadStats.Sync(sdkConfiguration);
+              = new V2ReadStats.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -712,7 +714,7 @@ public class LedgerV2 {
      */
     public V2RevertTransactionResponse revertTransaction(V2RevertTransactionRequest request) throws Exception {
         RequestOperation<V2RevertTransactionRequest, V2RevertTransactionResponse> operation
-              = new V2RevertTransaction.Sync(sdkConfiguration);
+              = new V2RevertTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -734,7 +736,7 @@ public class LedgerV2 {
      */
     public V2UpdateLedgerMetadataResponse updateLedgerMetadata(V2UpdateLedgerMetadataRequest request) throws Exception {
         RequestOperation<V2UpdateLedgerMetadataRequest, V2UpdateLedgerMetadataResponse> operation
-              = new V2UpdateLedgerMetadata.Sync(sdkConfiguration);
+              = new V2UpdateLedgerMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -34,7 +34,8 @@ public class MoneycorpConfig implements ConnectorConfig {
     private String name;
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp
+     * API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
@@ -97,7 +98,8 @@ public class MoneycorpConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp
+     * API.
      */
     @JsonIgnore
     public Optional<String> pollingPeriod() {
@@ -140,7 +142,8 @@ public class MoneycorpConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp
+     * API.
      */
     public MoneycorpConfig withPollingPeriod(String pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -150,7 +153,8 @@ public class MoneycorpConfig implements ConnectorConfig {
 
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp
+     * API.
      */
     public MoneycorpConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -256,7 +260,8 @@ public class MoneycorpConfig implements ConnectorConfig {
 
 
         /**
-         * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
+         * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp
+         * API.
          */
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -265,7 +270,8 @@ public class MoneycorpConfig implements ConnectorConfig {
         }
 
         /**
-         * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
+         * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp
+         * API.
          */
         public Builder pollingPeriod(Optional<String> pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");

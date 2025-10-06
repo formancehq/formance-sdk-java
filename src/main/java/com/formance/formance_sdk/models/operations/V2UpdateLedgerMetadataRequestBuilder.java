@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2UpdateLedgerMetadata;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2UpdateLedgerMetadataRequestBuilder {
 
     private V2UpdateLedgerMetadataRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2UpdateLedgerMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2UpdateLedgerMetadataRequestBuilder {
     public V2UpdateLedgerMetadataResponse call() throws Exception {
         
         RequestOperation<V2UpdateLedgerMetadataRequest, V2UpdateLedgerMetadataResponse> operation
-              = new V2UpdateLedgerMetadata.Sync(sdkConfiguration);
+              = new V2UpdateLedgerMetadata.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

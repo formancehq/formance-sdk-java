@@ -29,7 +29,8 @@ public class V2AddMetadataOnTransactionRequest {
     private Map<String, String> requestBody;
 
     /**
-     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
     private Optional<Boolean> dryRun;
@@ -91,7 +92,8 @@ public class V2AddMetadataOnTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @JsonIgnore
     public Optional<Boolean> dryRun() {
@@ -148,7 +150,8 @@ public class V2AddMetadataOnTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2AddMetadataOnTransactionRequest withDryRun(boolean dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -158,7 +161,8 @@ public class V2AddMetadataOnTransactionRequest {
 
 
     /**
-     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2AddMetadataOnTransactionRequest withDryRun(Optional<Boolean> dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -274,7 +278,8 @@ public class V2AddMetadataOnTransactionRequest {
 
 
         /**
-         * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(boolean dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
@@ -283,7 +288,8 @@ public class V2AddMetadataOnTransactionRequest {
         }
 
         /**
-         * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(Optional<Boolean> dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");

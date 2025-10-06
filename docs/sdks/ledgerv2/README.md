@@ -1239,7 +1239,6 @@ public class Application {
                 .request(req)
                 .call();
 
-        // handle response
     }
 }
 ```
@@ -1680,7 +1679,9 @@ public class Application {
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.v2ErrorResponse().isPresent()) {
+            // handle response
+        }
     }
 }
 ```

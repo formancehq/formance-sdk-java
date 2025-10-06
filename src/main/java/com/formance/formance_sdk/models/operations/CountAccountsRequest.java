@@ -29,7 +29,8 @@ public class CountAccountsRequest {
     private String ledger;
 
     /**
-     * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
+     * Filter accounts by metadata key value pairs. The filter can be used like this
+     * metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
     private Optional<? extends Map<String, Object>> metadata;
@@ -69,7 +70,8 @@ public class CountAccountsRequest {
     }
 
     /**
-     * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
+     * Filter accounts by metadata key value pairs. The filter can be used like this
+     * metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -111,7 +113,8 @@ public class CountAccountsRequest {
     }
 
     /**
-     * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
+     * Filter accounts by metadata key value pairs. The filter can be used like this
+     * metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
     public CountAccountsRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -121,7 +124,8 @@ public class CountAccountsRequest {
 
 
     /**
-     * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
+     * Filter accounts by metadata key value pairs. The filter can be used like this
+     * metadata[key]=value1&amp;metadata[a.nested.key]=value2
      */
     public CountAccountsRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -202,7 +206,8 @@ public class CountAccountsRequest {
 
 
         /**
-         * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
+         * Filter accounts by metadata key value pairs. The filter can be used like this
+         * metadata[key]=value1&amp;metadata[a.nested.key]=value2
          */
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -211,7 +216,8 @@ public class CountAccountsRequest {
         }
 
         /**
-         * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
+         * Filter accounts by metadata key value pairs. The filter can be used like this
+         * metadata[key]=value1&amp;metadata[a.nested.key]=value2
          */
         public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");

@@ -23,14 +23,15 @@ public class V2CreateTransactionRequest {
 
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
     private V2PostTransaction v2PostTransaction;
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
     private Optional<Boolean> dryRun;
@@ -83,8 +84,8 @@ public class V2CreateTransactionRequest {
 
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     @JsonIgnore
     public V2PostTransaction v2PostTransaction() {
@@ -92,7 +93,8 @@ public class V2CreateTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @JsonIgnore
     public Optional<Boolean> dryRun() {
@@ -141,8 +143,8 @@ public class V2CreateTransactionRequest {
 
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     public V2CreateTransactionRequest withV2PostTransaction(V2PostTransaction v2PostTransaction) {
         Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
@@ -151,7 +153,8 @@ public class V2CreateTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2CreateTransactionRequest withDryRun(boolean dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -161,7 +164,8 @@ public class V2CreateTransactionRequest {
 
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2CreateTransactionRequest withDryRun(Optional<Boolean> dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -270,8 +274,8 @@ public class V2CreateTransactionRequest {
 
         /**
          * The request body must contain at least one of the following objects:
-         *   - `postings`: suitable for simple transactions
-         *   - `script`: enabling more complex transactions with Numscript
+         * - `postings`: suitable for simple transactions
+         * - `script`: enabling more complex transactions with Numscript
          */
         public Builder v2PostTransaction(V2PostTransaction v2PostTransaction) {
             Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
@@ -281,7 +285,8 @@ public class V2CreateTransactionRequest {
 
 
         /**
-         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(boolean dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
@@ -290,7 +295,8 @@ public class V2CreateTransactionRequest {
         }
 
         /**
-         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(Optional<Boolean> dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");

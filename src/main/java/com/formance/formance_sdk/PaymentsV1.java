@@ -179,11 +179,13 @@ import com.formance.formance_sdk.operations.UpdateBankAccountMetadata;
 import com.formance.formance_sdk.operations.UpdateConnectorConfigV1;
 import com.formance.formance_sdk.operations.UpdateMetadata;
 import com.formance.formance_sdk.operations.UpdateTransferInitiationStatus;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 
 
 public class PaymentsV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     PaymentsV1(SDKConfiguration sdkConfiguration) {
@@ -212,7 +214,7 @@ public class PaymentsV1 {
      */
     public AddAccountToPoolResponse addAccountToPool(AddAccountToPoolRequest request) throws Exception {
         RequestOperation<AddAccountToPoolRequest, AddAccountToPoolResponse> operation
-              = new AddAccountToPool.Sync(sdkConfiguration);
+              = new AddAccountToPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -238,7 +240,7 @@ public class PaymentsV1 {
      */
     public ConnectorsTransferResponse connectorsTransfer(ConnectorsTransferRequest request) throws Exception {
         RequestOperation<ConnectorsTransferRequest, ConnectorsTransferResponse> operation
-              = new ConnectorsTransfer.Sync(sdkConfiguration);
+              = new ConnectorsTransfer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -264,7 +266,7 @@ public class PaymentsV1 {
      */
     public CreateAccountResponse createAccount(AccountRequest request) throws Exception {
         RequestOperation<AccountRequest, CreateAccountResponse> operation
-              = new CreateAccount.Sync(sdkConfiguration);
+              = new CreateAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -290,7 +292,7 @@ public class PaymentsV1 {
      */
     public CreateBankAccountResponse createBankAccount(BankAccountRequest request) throws Exception {
         RequestOperation<BankAccountRequest, CreateBankAccountResponse> operation
-              = new CreateBankAccount.Sync(sdkConfiguration);
+              = new CreateBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -316,7 +318,7 @@ public class PaymentsV1 {
      */
     public CreatePaymentResponse createPayment(PaymentRequest request) throws Exception {
         RequestOperation<PaymentRequest, CreatePaymentResponse> operation
-              = new CreatePayment.Sync(sdkConfiguration);
+              = new CreatePayment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -342,7 +344,7 @@ public class PaymentsV1 {
      */
     public CreatePoolResponse createPool(PoolRequest request) throws Exception {
         RequestOperation<PoolRequest, CreatePoolResponse> operation
-              = new CreatePool.Sync(sdkConfiguration);
+              = new CreatePool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -368,7 +370,7 @@ public class PaymentsV1 {
      */
     public CreateTransferInitiationResponse createTransferInitiation(TransferInitiationRequest request) throws Exception {
         RequestOperation<TransferInitiationRequest, CreateTransferInitiationResponse> operation
-              = new CreateTransferInitiation.Sync(sdkConfiguration);
+              = new CreateTransferInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -394,7 +396,7 @@ public class PaymentsV1 {
      */
     public DeletePoolResponse deletePool(DeletePoolRequest request) throws Exception {
         RequestOperation<DeletePoolRequest, DeletePoolResponse> operation
-              = new DeletePool.Sync(sdkConfiguration);
+              = new DeletePool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -420,7 +422,7 @@ public class PaymentsV1 {
      */
     public DeleteTransferInitiationResponse deleteTransferInitiation(DeleteTransferInitiationRequest request) throws Exception {
         RequestOperation<DeleteTransferInitiationRequest, DeleteTransferInitiationResponse> operation
-              = new DeleteTransferInitiation.Sync(sdkConfiguration);
+              = new DeleteTransferInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -442,7 +444,7 @@ public class PaymentsV1 {
      */
     public ForwardBankAccountResponse forwardBankAccount(ForwardBankAccountRequest request) throws Exception {
         RequestOperation<ForwardBankAccountRequest, ForwardBankAccountResponse> operation
-              = new ForwardBankAccount.Sync(sdkConfiguration);
+              = new ForwardBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -464,7 +466,7 @@ public class PaymentsV1 {
      */
     public GetAccountBalancesResponse getAccountBalances(GetAccountBalancesRequest request) throws Exception {
         RequestOperation<GetAccountBalancesRequest, GetAccountBalancesResponse> operation
-              = new GetAccountBalances.Sync(sdkConfiguration);
+              = new GetAccountBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -486,7 +488,7 @@ public class PaymentsV1 {
      */
     public GetBankAccountResponse getBankAccount(GetBankAccountRequest request) throws Exception {
         RequestOperation<GetBankAccountRequest, GetBankAccountResponse> operation
-              = new GetBankAccount.Sync(sdkConfiguration);
+              = new GetBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -516,7 +518,7 @@ public class PaymentsV1 {
     @Deprecated
     public GetConnectorTaskResponse getConnectorTask(GetConnectorTaskRequest request) throws Exception {
         RequestOperation<GetConnectorTaskRequest, GetConnectorTaskResponse> operation
-              = new GetConnectorTask.Sync(sdkConfiguration);
+              = new GetConnectorTask.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -542,7 +544,7 @@ public class PaymentsV1 {
      */
     public GetConnectorTaskV1Response getConnectorTaskV1(GetConnectorTaskV1Request request) throws Exception {
         RequestOperation<GetConnectorTaskV1Request, GetConnectorTaskV1Response> operation
-              = new GetConnectorTaskV1.Sync(sdkConfiguration);
+              = new GetConnectorTaskV1.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -564,7 +566,7 @@ public class PaymentsV1 {
      */
     public GetPaymentResponse getPayment(GetPaymentRequest request) throws Exception {
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
-              = new GetPayment.Sync(sdkConfiguration);
+              = new GetPayment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -586,7 +588,7 @@ public class PaymentsV1 {
      */
     public GetPoolResponse getPool(GetPoolRequest request) throws Exception {
         RequestOperation<GetPoolRequest, GetPoolResponse> operation
-              = new GetPool.Sync(sdkConfiguration);
+              = new GetPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -608,7 +610,7 @@ public class PaymentsV1 {
      */
     public GetPoolBalancesResponse getPoolBalances(GetPoolBalancesRequest request) throws Exception {
         RequestOperation<GetPoolBalancesRequest, GetPoolBalancesResponse> operation
-              = new GetPoolBalances.Sync(sdkConfiguration);
+              = new GetPoolBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -630,7 +632,7 @@ public class PaymentsV1 {
      */
     public GetPoolBalancesLatestResponse getPoolBalancesLatest(GetPoolBalancesLatestRequest request) throws Exception {
         RequestOperation<GetPoolBalancesLatestRequest, GetPoolBalancesLatestResponse> operation
-              = new GetPoolBalancesLatest.Sync(sdkConfiguration);
+              = new GetPoolBalancesLatest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -652,7 +654,7 @@ public class PaymentsV1 {
      */
     public GetTransferInitiationResponse getTransferInitiation(GetTransferInitiationRequest request) throws Exception {
         RequestOperation<GetTransferInitiationRequest, GetTransferInitiationResponse> operation
-              = new GetTransferInitiation.Sync(sdkConfiguration);
+              = new GetTransferInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -678,7 +680,7 @@ public class PaymentsV1 {
      */
     public InstallConnectorResponse installConnector(InstallConnectorRequest request) throws Exception {
         RequestOperation<InstallConnectorRequest, InstallConnectorResponse> operation
-              = new InstallConnector.Sync(sdkConfiguration);
+              = new InstallConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -703,7 +705,7 @@ public class PaymentsV1 {
      */
     public ListAllConnectorsResponse listAllConnectorsDirect() throws Exception {
         RequestlessOperation<ListAllConnectorsResponse> operation
-            = new ListAllConnectors.Sync(sdkConfiguration);
+            = new ListAllConnectors.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -729,7 +731,7 @@ public class PaymentsV1 {
      */
     public ListBankAccountsResponse listBankAccounts(ListBankAccountsRequest request) throws Exception {
         RequestOperation<ListBankAccountsRequest, ListBankAccountsResponse> operation
-              = new ListBankAccounts.Sync(sdkConfiguration);
+              = new ListBankAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -754,7 +756,7 @@ public class PaymentsV1 {
      */
     public ListConfigsAvailableConnectorsResponse listConfigsAvailableConnectorsDirect() throws Exception {
         RequestlessOperation<ListConfigsAvailableConnectorsResponse> operation
-            = new ListConfigsAvailableConnectors.Sync(sdkConfiguration);
+            = new ListConfigsAvailableConnectors.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -784,7 +786,7 @@ public class PaymentsV1 {
     @Deprecated
     public ListConnectorTasksResponse listConnectorTasks(ListConnectorTasksRequest request) throws Exception {
         RequestOperation<ListConnectorTasksRequest, ListConnectorTasksResponse> operation
-              = new ListConnectorTasks.Sync(sdkConfiguration);
+              = new ListConnectorTasks.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -810,7 +812,7 @@ public class PaymentsV1 {
      */
     public ListConnectorTasksV1Response listConnectorTasksV1(ListConnectorTasksV1Request request) throws Exception {
         RequestOperation<ListConnectorTasksV1Request, ListConnectorTasksV1Response> operation
-              = new ListConnectorTasksV1.Sync(sdkConfiguration);
+              = new ListConnectorTasksV1.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -832,7 +834,7 @@ public class PaymentsV1 {
      */
     public ListPaymentsResponse listPayments(ListPaymentsRequest request) throws Exception {
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
-              = new ListPayments.Sync(sdkConfiguration);
+              = new ListPayments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -854,7 +856,7 @@ public class PaymentsV1 {
      */
     public ListPoolsResponse listPools(ListPoolsRequest request) throws Exception {
         RequestOperation<ListPoolsRequest, ListPoolsResponse> operation
-              = new ListPools.Sync(sdkConfiguration);
+              = new ListPools.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -876,7 +878,7 @@ public class PaymentsV1 {
      */
     public ListTransferInitiationsResponse listTransferInitiations(ListTransferInitiationsRequest request) throws Exception {
         RequestOperation<ListTransferInitiationsRequest, ListTransferInitiationsResponse> operation
-              = new ListTransferInitiations.Sync(sdkConfiguration);
+              = new ListTransferInitiations.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -898,7 +900,7 @@ public class PaymentsV1 {
      */
     public PaymentsgetAccountResponse paymentsgetAccount(PaymentsgetAccountRequest request) throws Exception {
         RequestOperation<PaymentsgetAccountRequest, PaymentsgetAccountResponse> operation
-              = new PaymentsgetAccount.Sync(sdkConfiguration);
+              = new PaymentsgetAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -919,7 +921,7 @@ public class PaymentsV1 {
      */
     public PaymentsgetServerInfoResponse paymentsgetServerInfoDirect() throws Exception {
         RequestlessOperation<PaymentsgetServerInfoResponse> operation
-            = new PaymentsgetServerInfo.Sync(sdkConfiguration);
+            = new PaymentsgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -941,7 +943,7 @@ public class PaymentsV1 {
      */
     public PaymentslistAccountsResponse paymentslistAccounts(PaymentslistAccountsRequest request) throws Exception {
         RequestOperation<PaymentslistAccountsRequest, PaymentslistAccountsResponse> operation
-              = new PaymentslistAccounts.Sync(sdkConfiguration);
+              = new PaymentslistAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -971,7 +973,7 @@ public class PaymentsV1 {
     @Deprecated
     public ReadConnectorConfigResponse readConnectorConfig(ReadConnectorConfigRequest request) throws Exception {
         RequestOperation<ReadConnectorConfigRequest, ReadConnectorConfigResponse> operation
-              = new ReadConnectorConfig.Sync(sdkConfiguration);
+              = new ReadConnectorConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -997,7 +999,7 @@ public class PaymentsV1 {
      */
     public ReadConnectorConfigV1Response readConnectorConfigV1(ReadConnectorConfigV1Request request) throws Exception {
         RequestOperation<ReadConnectorConfigV1Request, ReadConnectorConfigV1Response> operation
-              = new ReadConnectorConfigV1.Sync(sdkConfiguration);
+              = new ReadConnectorConfigV1.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1023,7 +1025,7 @@ public class PaymentsV1 {
      */
     public RemoveAccountFromPoolResponse removeAccountFromPool(RemoveAccountFromPoolRequest request) throws Exception {
         RequestOperation<RemoveAccountFromPoolRequest, RemoveAccountFromPoolResponse> operation
-              = new RemoveAccountFromPool.Sync(sdkConfiguration);
+              = new RemoveAccountFromPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1055,7 +1057,7 @@ public class PaymentsV1 {
     @Deprecated
     public ResetConnectorResponse resetConnector(ResetConnectorRequest request) throws Exception {
         RequestOperation<ResetConnectorRequest, ResetConnectorResponse> operation
-              = new ResetConnector.Sync(sdkConfiguration);
+              = new ResetConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1083,7 +1085,7 @@ public class PaymentsV1 {
      */
     public ResetConnectorV1Response resetConnectorV1(ResetConnectorV1Request request) throws Exception {
         RequestOperation<ResetConnectorV1Request, ResetConnectorV1Response> operation
-              = new ResetConnectorV1.Sync(sdkConfiguration);
+              = new ResetConnectorV1.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1109,7 +1111,7 @@ public class PaymentsV1 {
      */
     public RetryTransferInitiationResponse retryTransferInitiation(RetryTransferInitiationRequest request) throws Exception {
         RequestOperation<RetryTransferInitiationRequest, RetryTransferInitiationResponse> operation
-              = new RetryTransferInitiation.Sync(sdkConfiguration);
+              = new RetryTransferInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1135,7 +1137,7 @@ public class PaymentsV1 {
      */
     public ReverseTransferInitiationResponse reverseTransferInitiation(ReverseTransferInitiationRequest request) throws Exception {
         RequestOperation<ReverseTransferInitiationRequest, ReverseTransferInitiationResponse> operation
-              = new ReverseTransferInitiation.Sync(sdkConfiguration);
+              = new ReverseTransferInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1165,7 +1167,7 @@ public class PaymentsV1 {
     @Deprecated
     public UninstallConnectorResponse uninstallConnector(UninstallConnectorRequest request) throws Exception {
         RequestOperation<UninstallConnectorRequest, UninstallConnectorResponse> operation
-              = new UninstallConnector.Sync(sdkConfiguration);
+              = new UninstallConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1191,7 +1193,7 @@ public class PaymentsV1 {
      */
     public UninstallConnectorV1Response uninstallConnectorV1(UninstallConnectorV1Request request) throws Exception {
         RequestOperation<UninstallConnectorV1Request, UninstallConnectorV1Response> operation
-              = new UninstallConnectorV1.Sync(sdkConfiguration);
+              = new UninstallConnectorV1.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1213,7 +1215,7 @@ public class PaymentsV1 {
      */
     public UpdateBankAccountMetadataResponse updateBankAccountMetadata(UpdateBankAccountMetadataRequest request) throws Exception {
         RequestOperation<UpdateBankAccountMetadataRequest, UpdateBankAccountMetadataResponse> operation
-              = new UpdateBankAccountMetadata.Sync(sdkConfiguration);
+              = new UpdateBankAccountMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1239,7 +1241,7 @@ public class PaymentsV1 {
      */
     public UpdateConnectorConfigV1Response updateConnectorConfigV1(UpdateConnectorConfigV1Request request) throws Exception {
         RequestOperation<UpdateConnectorConfigV1Request, UpdateConnectorConfigV1Response> operation
-              = new UpdateConnectorConfigV1.Sync(sdkConfiguration);
+              = new UpdateConnectorConfigV1.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1261,7 +1263,7 @@ public class PaymentsV1 {
      */
     public UpdateMetadataResponse updateMetadata(UpdateMetadataRequest request) throws Exception {
         RequestOperation<UpdateMetadataRequest, UpdateMetadataResponse> operation
-              = new UpdateMetadata.Sync(sdkConfiguration);
+              = new UpdateMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1287,7 +1289,7 @@ public class PaymentsV1 {
      */
     public UpdateTransferInitiationStatusResponse updateTransferInitiationStatus(UpdateTransferInitiationStatusRequest request) throws Exception {
         RequestOperation<UpdateTransferInitiationStatusRequest, UpdateTransferInitiationStatusResponse> operation
-              = new UpdateTransferInitiationStatus.Sync(sdkConfiguration);
+              = new UpdateTransferInitiationStatus.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

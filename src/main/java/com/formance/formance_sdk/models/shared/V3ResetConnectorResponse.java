@@ -13,7 +13,8 @@ import java.lang.String;
 
 public class V3ResetConnectorResponse {
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to reset the connector. You can use the task API to check the status of the task and get the results.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * reset the connector. You can use the task API to check the status of the task and get the results.
      */
     @JsonProperty("data")
     private String data;
@@ -26,7 +27,8 @@ public class V3ResetConnectorResponse {
     }
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to reset the connector. You can use the task API to check the status of the task and get the results.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * reset the connector. You can use the task API to check the status of the task and get the results.
      */
     @JsonIgnore
     public String data() {
@@ -39,7 +41,8 @@ public class V3ResetConnectorResponse {
 
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to reset the connector. You can use the task API to check the status of the task and get the results.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * reset the connector. You can use the task API to check the status of the task and get the results.
      */
     public V3ResetConnectorResponse withData(String data) {
         Utils.checkNotNull(data, "data");
@@ -83,7 +86,8 @@ public class V3ResetConnectorResponse {
 
 
         /**
-         * Since this call is asynchronous, the response will contain the ID of the task that was created to reset the connector. You can use the task API to check the status of the task and get the results.
+         * Since this call is asynchronous, the response will contain the ID of the task that was created to
+         * reset the connector. You can use the task API to check the status of the task and get the results.
          */
         public Builder data(String data) {
             Utils.checkNotNull(data, "data");

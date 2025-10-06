@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3RemoveAccountFromPool;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V3RemoveAccountFromPoolRequestBuilder {
 
     private V3RemoveAccountFromPoolRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3RemoveAccountFromPoolRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V3RemoveAccountFromPoolRequestBuilder {
     public V3RemoveAccountFromPoolResponse call() throws Exception {
         
         RequestOperation<V3RemoveAccountFromPoolRequest, V3RemoveAccountFromPoolResponse> operation
-              = new V3RemoveAccountFromPool.Sync(sdkConfiguration);
+              = new V3RemoveAccountFromPool.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

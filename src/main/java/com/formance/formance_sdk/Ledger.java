@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk;
 
+import com.formance.formance_sdk.utils.Headers;
+
+
 public class Ledger {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final LedgerV2 v2;
     private final LedgerV1 v1;

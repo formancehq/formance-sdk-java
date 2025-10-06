@@ -8,6 +8,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.V3CreateAccountRequest;
 import com.formance.formance_sdk.operations.V3CreateAccount;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class V3CreateAccountRequestBuilder {
 
     private Optional<? extends V3CreateAccountRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3CreateAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -36,7 +38,7 @@ public class V3CreateAccountRequestBuilder {
     public V3CreateAccountResponse call() throws Exception {
         
         RequestOperation<Optional<? extends V3CreateAccountRequest>, V3CreateAccountResponse> operation
-              = new V3CreateAccount.Sync(sdkConfiguration);
+              = new V3CreateAccount.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk;
 
+import com.formance.formance_sdk.utils.Headers;
+
+
 public class Reconciliation {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ReconciliationV1 v1;
 

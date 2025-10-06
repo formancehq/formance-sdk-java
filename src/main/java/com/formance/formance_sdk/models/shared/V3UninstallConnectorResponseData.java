@@ -13,7 +13,9 @@ import java.lang.String;
 
 public class V3UninstallConnectorResponseData {
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * uninstall the connector. You can use the task API to check the status of the task and get the
+     * results.
      */
     @JsonProperty("taskID")
     private String taskID;
@@ -26,7 +28,9 @@ public class V3UninstallConnectorResponseData {
     }
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * uninstall the connector. You can use the task API to check the status of the task and get the
+     * results.
      */
     @JsonIgnore
     public String taskID() {
@@ -39,7 +43,9 @@ public class V3UninstallConnectorResponseData {
 
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * uninstall the connector. You can use the task API to check the status of the task and get the
+     * results.
      */
     public V3UninstallConnectorResponseData withTaskID(String taskID) {
         Utils.checkNotNull(taskID, "taskID");
@@ -83,7 +89,9 @@ public class V3UninstallConnectorResponseData {
 
 
         /**
-         * Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.
+         * Since this call is asynchronous, the response will contain the ID of the task that was created to
+         * uninstall the connector. You can use the task API to check the status of the task and get the
+         * results.
          */
         public Builder taskID(String taskID) {
             Utils.checkNotNull(taskID, "taskID");

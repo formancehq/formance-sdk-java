@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListConnectorConfigs;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class V3ListConnectorConfigsRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3ListConnectorConfigsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class V3ListConnectorConfigsRequestBuilder {
     public V3ListConnectorConfigsResponse call() throws Exception {
         
         RequestlessOperation<V3ListConnectorConfigsResponse> operation
-            = new V3ListConnectorConfigs.Sync(sdkConfiguration);
+            = new V3ListConnectorConfigs.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

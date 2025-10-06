@@ -17,8 +17,8 @@ import java.util.Optional;
 public class CreateTransactionRequest {
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
     private PostTransaction postTransaction;
@@ -30,7 +30,8 @@ public class CreateTransactionRequest {
     private String ledger;
 
     /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")
     private Optional<Boolean> preview;
@@ -56,8 +57,8 @@ public class CreateTransactionRequest {
 
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     @JsonIgnore
     public PostTransaction postTransaction() {
@@ -73,7 +74,8 @@ public class CreateTransactionRequest {
     }
 
     /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @JsonIgnore
     public Optional<Boolean> preview() {
@@ -87,8 +89,8 @@ public class CreateTransactionRequest {
 
     /**
      * The request body must contain at least one of the following objects:
-     *   - `postings`: suitable for simple transactions
-     *   - `script`: enabling more complex transactions with Numscript
+     * - `postings`: suitable for simple transactions
+     * - `script`: enabling more complex transactions with Numscript
      */
     public CreateTransactionRequest withPostTransaction(PostTransaction postTransaction) {
         Utils.checkNotNull(postTransaction, "postTransaction");
@@ -106,7 +108,8 @@ public class CreateTransactionRequest {
     }
 
     /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public CreateTransactionRequest withPreview(boolean preview) {
         Utils.checkNotNull(preview, "preview");
@@ -116,7 +119,8 @@ public class CreateTransactionRequest {
 
 
     /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public CreateTransactionRequest withPreview(Optional<Boolean> preview) {
         Utils.checkNotNull(preview, "preview");
@@ -169,8 +173,8 @@ public class CreateTransactionRequest {
 
         /**
          * The request body must contain at least one of the following objects:
-         *   - `postings`: suitable for simple transactions
-         *   - `script`: enabling more complex transactions with Numscript
+         * - `postings`: suitable for simple transactions
+         * - `script`: enabling more complex transactions with Numscript
          */
         public Builder postTransaction(PostTransaction postTransaction) {
             Utils.checkNotNull(postTransaction, "postTransaction");
@@ -190,7 +194,8 @@ public class CreateTransactionRequest {
 
 
         /**
-         * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder preview(boolean preview) {
             Utils.checkNotNull(preview, "preview");
@@ -199,7 +204,8 @@ public class CreateTransactionRequest {
         }
 
         /**
-         * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder preview(Optional<Boolean> preview) {
             Utils.checkNotNull(preview, "preview");

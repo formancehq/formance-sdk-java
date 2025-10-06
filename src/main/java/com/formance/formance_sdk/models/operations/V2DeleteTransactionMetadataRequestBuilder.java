@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2DeleteTransactionMetadata;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2DeleteTransactionMetadataRequestBuilder {
 
     private V2DeleteTransactionMetadataRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2DeleteTransactionMetadataRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2DeleteTransactionMetadataRequestBuilder {
     public V2DeleteTransactionMetadataResponse call() throws Exception {
         
         RequestOperation<V2DeleteTransactionMetadataRequest, V2DeleteTransactionMetadataResponse> operation
-              = new V2DeleteTransactionMetadata.Sync(sdkConfiguration);
+              = new V2DeleteTransactionMetadata.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetMetrics;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class GetMetricsRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetMetricsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class GetMetricsRequestBuilder {
     public GetMetricsResponse call() throws Exception {
         
         RequestlessOperation<GetMetricsResponse> operation
-            = new GetMetrics.Sync(sdkConfiguration);
+            = new GetMetrics.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

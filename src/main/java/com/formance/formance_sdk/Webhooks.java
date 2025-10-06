@@ -3,7 +3,11 @@
  */
 package com.formance.formance_sdk;
 
+import com.formance.formance_sdk.utils.Headers;
+
+
 public class Webhooks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final WebhooksV1 v1;
 

@@ -8,6 +8,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.PolicyRequest;
 import com.formance.formance_sdk.operations.CreatePolicy;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class CreatePolicyRequestBuilder {
 
     private PolicyRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePolicyRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class CreatePolicyRequestBuilder {
     public CreatePolicyResponse call() throws Exception {
         
         RequestOperation<PolicyRequest, CreatePolicyResponse> operation
-              = new CreatePolicy.Sync(sdkConfiguration);
+              = new CreatePolicy.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

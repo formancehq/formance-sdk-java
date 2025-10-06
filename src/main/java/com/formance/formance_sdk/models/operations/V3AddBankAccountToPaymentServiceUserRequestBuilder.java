@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3AddBankAccountToPaymentServiceUser;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V3AddBankAccountToPaymentServiceUserRequestBuilder {
 
     private V3AddBankAccountToPaymentServiceUserRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3AddBankAccountToPaymentServiceUserRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V3AddBankAccountToPaymentServiceUserRequestBuilder {
     public V3AddBankAccountToPaymentServiceUserResponse call() throws Exception {
         
         RequestOperation<V3AddBankAccountToPaymentServiceUserRequest, V3AddBankAccountToPaymentServiceUserResponse> operation
-              = new V3AddBankAccountToPaymentServiceUser.Sync(sdkConfiguration);
+              = new V3AddBankAccountToPaymentServiceUser.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

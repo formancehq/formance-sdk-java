@@ -27,7 +27,6 @@ and standard method from web, mobile and desktop applications.
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [formance-sdk-java](#formance-sdk-java)
-  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
 * [Introduction](#introduction)
 * [Authentication](#authentication)
   * [SDK Installation](#sdk-installation)
@@ -54,7 +53,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:7.2.3'
+implementation 'com.formance:formance-sdk:7.3.0'
 ```
 
 Maven:
@@ -62,7 +61,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>7.2.3</version>
+    <version>7.3.0</version>
 </dependency>
 ```
 

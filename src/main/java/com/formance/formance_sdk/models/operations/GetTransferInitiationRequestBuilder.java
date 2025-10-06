@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetTransferInitiation;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class GetTransferInitiationRequestBuilder {
 
     private GetTransferInitiationRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetTransferInitiationRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class GetTransferInitiationRequestBuilder {
     public GetTransferInitiationResponse call() throws Exception {
         
         RequestOperation<GetTransferInitiationRequest, GetTransferInitiationResponse> operation
-              = new GetTransferInitiation.Sync(sdkConfiguration);
+              = new GetTransferInitiation.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

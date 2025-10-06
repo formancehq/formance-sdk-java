@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2CreateTransaction;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2CreateTransactionRequestBuilder {
 
     private V2CreateTransactionRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2CreateTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2CreateTransactionRequestBuilder {
     public V2CreateTransactionResponse call() throws Exception {
         
         RequestOperation<V2CreateTransactionRequest, V2CreateTransactionResponse> operation
-              = new V2CreateTransaction.Sync(sdkConfiguration);
+              = new V2CreateTransaction.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

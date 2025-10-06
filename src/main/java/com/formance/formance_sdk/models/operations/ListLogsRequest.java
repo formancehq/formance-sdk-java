@@ -32,7 +32,8 @@ public class ListLogsRequest {
 
     /**
      * Filter transactions that occurred before this timestamp.
-     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+     * second of 4th minute).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")
     private Optional<OffsetDateTime> endTime;
@@ -51,7 +52,8 @@ public class ListLogsRequest {
 
     /**
      * Filter transactions that occurred after this timestamp.
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+     * second of 4th minute).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
     private Optional<OffsetDateTime> startTime;
@@ -105,7 +107,8 @@ public class ListLogsRequest {
 
     /**
      * Filter transactions that occurred before this timestamp.
-     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+     * second of 4th minute).
      */
     @JsonIgnore
     public Optional<OffsetDateTime> endTime() {
@@ -130,7 +133,8 @@ public class ListLogsRequest {
 
     /**
      * Filter transactions that occurred after this timestamp.
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+     * second of 4th minute).
      */
     @JsonIgnore
     public Optional<OffsetDateTime> startTime() {
@@ -188,7 +192,8 @@ public class ListLogsRequest {
 
     /**
      * Filter transactions that occurred before this timestamp.
-     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+     * second of 4th minute).
      */
     public ListLogsRequest withEndTime(OffsetDateTime endTime) {
         Utils.checkNotNull(endTime, "endTime");
@@ -199,7 +204,8 @@ public class ListLogsRequest {
 
     /**
      * Filter transactions that occurred before this timestamp.
-     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+     * second of 4th minute).
      */
     public ListLogsRequest withEndTime(Optional<OffsetDateTime> endTime) {
         Utils.checkNotNull(endTime, "endTime");
@@ -237,7 +243,8 @@ public class ListLogsRequest {
 
     /**
      * Filter transactions that occurred after this timestamp.
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+     * second of 4th minute).
      */
     public ListLogsRequest withStartTime(OffsetDateTime startTime) {
         Utils.checkNotNull(startTime, "startTime");
@@ -248,7 +255,8 @@ public class ListLogsRequest {
 
     /**
      * Filter transactions that occurred after this timestamp.
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+     * second of 4th minute).
      */
     public ListLogsRequest withStartTime(Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(startTime, "startTime");
@@ -358,7 +366,8 @@ public class ListLogsRequest {
 
         /**
          * Filter transactions that occurred before this timestamp.
-         * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+         * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+         * second of 4th minute).
          */
         public Builder endTime(OffsetDateTime endTime) {
             Utils.checkNotNull(endTime, "endTime");
@@ -368,7 +377,8 @@ public class ListLogsRequest {
 
         /**
          * Filter transactions that occurred before this timestamp.
-         * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+         * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+         * second of 4th minute).
          */
         public Builder endTime(Optional<OffsetDateTime> endTime) {
             Utils.checkNotNull(endTime, "endTime");
@@ -408,7 +418,8 @@ public class ListLogsRequest {
 
         /**
          * Filter transactions that occurred after this timestamp.
-         * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+         * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+         * second of 4th minute).
          */
         public Builder startTime(OffsetDateTime startTime) {
             Utils.checkNotNull(startTime, "startTime");
@@ -418,7 +429,8 @@ public class ListLogsRequest {
 
         /**
          * Filter transactions that occurred after this timestamp.
-         * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+         * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+         * second of 4th minute).
          */
         public Builder startTime(Optional<OffsetDateTime> startTime) {
             Utils.checkNotNull(startTime, "startTime");

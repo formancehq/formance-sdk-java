@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class ListTransactionsRequest {
     /**
-     * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account, either as source or destination (regular
+     * expression placed between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=account")
     private Optional<String> account;
@@ -40,14 +41,16 @@ public class ListTransactionsRequest {
     private Optional<String> cursor;
 
     /**
-     * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account at destination (regular expression placed
+     * between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=destination")
     private Optional<String> destination;
 
     /**
      * Filter transactions that occurred before this timestamp.
-     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+     * second of 4th minute).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")
     private Optional<OffsetDateTime> endTime;
@@ -59,7 +62,8 @@ public class ListTransactionsRequest {
     private String ledger;
 
     /**
-     * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example
+     * below.
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
     private Optional<? extends Map<String, Object>> metadata;
@@ -77,14 +81,16 @@ public class ListTransactionsRequest {
     private Optional<String> reference;
 
     /**
-     * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account at source (regular expression placed
+     * between ^ and $).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=source")
     private Optional<String> source;
 
     /**
      * Filter transactions that occurred after this timestamp.
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+     * second of 4th minute).
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")
     private Optional<OffsetDateTime> startTime;
@@ -135,7 +141,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account, either as source or destination (regular
+     * expression placed between ^ and $).
      */
     @JsonIgnore
     public Optional<String> account() {
@@ -162,7 +169,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account at destination (regular expression placed
+     * between ^ and $).
      */
     @JsonIgnore
     public Optional<String> destination() {
@@ -171,7 +179,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filter transactions that occurred before this timestamp.
-     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+     * second of 4th minute).
      */
     @JsonIgnore
     public Optional<OffsetDateTime> endTime() {
@@ -187,7 +196,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example
+     * below.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -212,7 +222,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account at source (regular expression placed
+     * between ^ and $).
      */
     @JsonIgnore
     public Optional<String> source() {
@@ -221,7 +232,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filter transactions that occurred after this timestamp.
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+     * second of 4th minute).
      */
     @JsonIgnore
     public Optional<OffsetDateTime> startTime() {
@@ -234,7 +246,8 @@ public class ListTransactionsRequest {
 
 
     /**
-     * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account, either as source or destination (regular
+     * expression placed between ^ and $).
      */
     public ListTransactionsRequest withAccount(String account) {
         Utils.checkNotNull(account, "account");
@@ -244,7 +257,8 @@ public class ListTransactionsRequest {
 
 
     /**
-     * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account, either as source or destination (regular
+     * expression placed between ^ and $).
      */
     public ListTransactionsRequest withAccount(Optional<String> account) {
         Utils.checkNotNull(account, "account");
@@ -297,7 +311,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account at destination (regular expression placed
+     * between ^ and $).
      */
     public ListTransactionsRequest withDestination(String destination) {
         Utils.checkNotNull(destination, "destination");
@@ -307,7 +322,8 @@ public class ListTransactionsRequest {
 
 
     /**
-     * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account at destination (regular expression placed
+     * between ^ and $).
      */
     public ListTransactionsRequest withDestination(Optional<String> destination) {
         Utils.checkNotNull(destination, "destination");
@@ -317,7 +333,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filter transactions that occurred before this timestamp.
-     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+     * second of 4th minute).
      */
     public ListTransactionsRequest withEndTime(OffsetDateTime endTime) {
         Utils.checkNotNull(endTime, "endTime");
@@ -328,7 +345,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filter transactions that occurred before this timestamp.
-     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+     * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+     * second of 4th minute).
      */
     public ListTransactionsRequest withEndTime(Optional<OffsetDateTime> endTime) {
         Utils.checkNotNull(endTime, "endTime");
@@ -346,7 +364,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example
+     * below.
      */
     public ListTransactionsRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -356,7 +375,8 @@ public class ListTransactionsRequest {
 
 
     /**
-     * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example
+     * below.
      */
     public ListTransactionsRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -403,7 +423,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account at source (regular expression placed
+     * between ^ and $).
      */
     public ListTransactionsRequest withSource(String source) {
         Utils.checkNotNull(source, "source");
@@ -413,7 +434,8 @@ public class ListTransactionsRequest {
 
 
     /**
-     * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+     * Filter transactions with postings involving given account at source (regular expression placed
+     * between ^ and $).
      */
     public ListTransactionsRequest withSource(Optional<String> source) {
         Utils.checkNotNull(source, "source");
@@ -423,7 +445,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filter transactions that occurred after this timestamp.
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+     * second of 4th minute).
      */
     public ListTransactionsRequest withStartTime(OffsetDateTime startTime) {
         Utils.checkNotNull(startTime, "startTime");
@@ -434,7 +457,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filter transactions that occurred after this timestamp.
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+     * second of 4th minute).
      */
     public ListTransactionsRequest withStartTime(Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(startTime, "startTime");
@@ -521,7 +545,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
+         * Filter transactions with postings involving given account, either as source or destination (regular
+         * expression placed between ^ and $).
          */
         public Builder account(String account) {
             Utils.checkNotNull(account, "account");
@@ -530,7 +555,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
+         * Filter transactions with postings involving given account, either as source or destination (regular
+         * expression placed between ^ and $).
          */
         public Builder account(Optional<String> account) {
             Utils.checkNotNull(account, "account");
@@ -584,7 +610,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+         * Filter transactions with postings involving given account at destination (regular expression placed
+         * between ^ and $).
          */
         public Builder destination(String destination) {
             Utils.checkNotNull(destination, "destination");
@@ -593,7 +620,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+         * Filter transactions with postings involving given account at destination (regular expression placed
+         * between ^ and $).
          */
         public Builder destination(Optional<String> destination) {
             Utils.checkNotNull(destination, "destination");
@@ -604,7 +632,8 @@ public class ListTransactionsRequest {
 
         /**
          * Filter transactions that occurred before this timestamp.
-         * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+         * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+         * second of 4th minute).
          */
         public Builder endTime(OffsetDateTime endTime) {
             Utils.checkNotNull(endTime, "endTime");
@@ -614,7 +643,8 @@ public class ListTransactionsRequest {
 
         /**
          * Filter transactions that occurred before this timestamp.
-         * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
+         * The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first
+         * second of 4th minute).
          */
         public Builder endTime(Optional<OffsetDateTime> endTime) {
             Utils.checkNotNull(endTime, "endTime");
@@ -634,7 +664,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
+         * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example
+         * below.
          */
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -643,7 +674,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
+         * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example
+         * below.
          */
         public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -691,7 +723,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+         * Filter transactions with postings involving given account at source (regular expression placed
+         * between ^ and $).
          */
         public Builder source(String source) {
             Utils.checkNotNull(source, "source");
@@ -700,7 +733,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+         * Filter transactions with postings involving given account at source (regular expression placed
+         * between ^ and $).
          */
         public Builder source(Optional<String> source) {
             Utils.checkNotNull(source, "source");
@@ -711,7 +745,8 @@ public class ListTransactionsRequest {
 
         /**
          * Filter transactions that occurred after this timestamp.
-         * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+         * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+         * second of 4th minute).
          */
         public Builder startTime(OffsetDateTime startTime) {
             Utils.checkNotNull(startTime, "startTime");
@@ -721,7 +756,8 @@ public class ListTransactionsRequest {
 
         /**
          * Filter transactions that occurred after this timestamp.
-         * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+         * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first
+         * second of 4th minute).
          */
         public Builder startTime(Optional<OffsetDateTime> startTime) {
             Utils.checkNotNull(startTime, "startTime");

@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetInstanceHistory;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2GetInstanceHistoryRequestBuilder {
 
     private V2GetInstanceHistoryRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2GetInstanceHistoryRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2GetInstanceHistoryRequestBuilder {
     public V2GetInstanceHistoryResponse call() throws Exception {
         
         RequestOperation<V2GetInstanceHistoryRequest, V2GetInstanceHistoryResponse> operation
-              = new V2GetInstanceHistory.Sync(sdkConfiguration);
+              = new V2GetInstanceHistory.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }
