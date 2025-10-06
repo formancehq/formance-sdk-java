@@ -13,11 +13,13 @@ import com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse;
 import com.formance.formance_sdk.models.shared.Query;
 import com.formance.formance_sdk.operations.Search;
 import com.formance.formance_sdk.operations.SearchgetServerInfo;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 
 
 public class SearchV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     SearchV1(SDKConfiguration sdkConfiguration) {
@@ -50,7 +52,7 @@ public class SearchV1 {
     @Deprecated
     public SearchResponse search(Query request) throws Exception {
         RequestOperation<Query, SearchResponse> operation
-              = new Search.Sync(sdkConfiguration);
+              = new Search.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -75,7 +77,7 @@ public class SearchV1 {
     @Deprecated
     public SearchgetServerInfoResponse searchgetServerInfoDirect() throws Exception {
         RequestlessOperation<SearchgetServerInfoResponse> operation
-            = new SearchgetServerInfo.Sync(sdkConfiguration);
+            = new SearchgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

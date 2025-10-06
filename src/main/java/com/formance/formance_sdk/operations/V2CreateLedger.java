@@ -14,6 +14,7 @@ import com.formance.formance_sdk.models.operations.V2CreateLedgerRequest;
 import com.formance.formance_sdk.models.operations.V2CreateLedgerResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
@@ -29,7 +30,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class V2CreateLedger {
 
     static abstract class Base {
@@ -37,9 +37,11 @@ public class V2CreateLedger {
         final String baseUrl;
         final SecuritySource securitySource;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = Utils.templateUrl(
                     this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
@@ -76,10 +78,9 @@ public class V2CreateLedger {
                     java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
                     securitySource());
         }
-
-        HttpRequest buildRequest(V2CreateLedgerRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    V2CreateLedgerRequest.class,
+                    klass,
                     this.baseUrl,
                     "/api/ledger/v2/{ledger}",
                     request, null);
@@ -87,8 +88,7 @@ public class V2CreateLedger {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<V2CreateLedgerRequest>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "v2CreateLedgerRequest",
@@ -100,6 +100,7 @@ public class V2CreateLedger {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -108,12 +109,12 @@ public class V2CreateLedger {
 
     public static class Sync extends Base
             implements RequestOperation<V2CreateLedgerRequest, V2CreateLedgerResponse> {
-        public Sync(SDKConfiguration sdkConfiguration) {
-            super(sdkConfiguration);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(V2CreateLedgerRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, V2CreateLedgerRequest.class, new TypeReference<V2CreateLedgerRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

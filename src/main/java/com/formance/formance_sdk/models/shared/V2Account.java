@@ -12,6 +12,7 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Optional;
 
@@ -27,8 +28,23 @@ public class V2Account {
     private Optional<? extends Map<String, V2Volume>> effectiveVolumes;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("firstUsage")
+    private Optional<OffsetDateTime> firstUsage;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("insertionDate")
+    private Optional<OffsetDateTime> insertionDate;
+
+
     @JsonProperty("metadata")
     private Map<String, String> metadata;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updatedAt")
+    private Optional<OffsetDateTime> updatedAt;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -39,23 +55,33 @@ public class V2Account {
     public V2Account(
             @JsonProperty("address") String address,
             @JsonProperty("effectiveVolumes") Optional<? extends Map<String, V2Volume>> effectiveVolumes,
+            @JsonProperty("firstUsage") Optional<OffsetDateTime> firstUsage,
+            @JsonProperty("insertionDate") Optional<OffsetDateTime> insertionDate,
             @JsonProperty("metadata") Map<String, String> metadata,
+            @JsonProperty("updatedAt") Optional<OffsetDateTime> updatedAt,
             @JsonProperty("volumes") Optional<? extends Map<String, V2Volume>> volumes) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
+        Utils.checkNotNull(firstUsage, "firstUsage");
+        Utils.checkNotNull(insertionDate, "insertionDate");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(volumes, "volumes");
         this.address = address;
         this.effectiveVolumes = effectiveVolumes;
+        this.firstUsage = firstUsage;
+        this.insertionDate = insertionDate;
         this.metadata = metadata;
+        this.updatedAt = updatedAt;
         this.volumes = volumes;
     }
     
     public V2Account(
             String address,
             Map<String, String> metadata) {
-        this(address, Optional.empty(), metadata,
+        this(address, Optional.empty(), Optional.empty(),
+            Optional.empty(), metadata, Optional.empty(),
             Optional.empty());
     }
 
@@ -71,8 +97,23 @@ public class V2Account {
     }
 
     @JsonIgnore
+    public Optional<OffsetDateTime> firstUsage() {
+        return firstUsage;
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> insertionDate() {
+        return insertionDate;
+    }
+
+    @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> updatedAt() {
+        return updatedAt;
     }
 
     @SuppressWarnings("unchecked")
@@ -105,9 +146,48 @@ public class V2Account {
         return this;
     }
 
+    public V2Account withFirstUsage(OffsetDateTime firstUsage) {
+        Utils.checkNotNull(firstUsage, "firstUsage");
+        this.firstUsage = Optional.ofNullable(firstUsage);
+        return this;
+    }
+
+
+    public V2Account withFirstUsage(Optional<OffsetDateTime> firstUsage) {
+        Utils.checkNotNull(firstUsage, "firstUsage");
+        this.firstUsage = firstUsage;
+        return this;
+    }
+
+    public V2Account withInsertionDate(OffsetDateTime insertionDate) {
+        Utils.checkNotNull(insertionDate, "insertionDate");
+        this.insertionDate = Optional.ofNullable(insertionDate);
+        return this;
+    }
+
+
+    public V2Account withInsertionDate(Optional<OffsetDateTime> insertionDate) {
+        Utils.checkNotNull(insertionDate, "insertionDate");
+        this.insertionDate = insertionDate;
+        return this;
+    }
+
     public V2Account withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
+        return this;
+    }
+
+    public V2Account withUpdatedAt(OffsetDateTime updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = Optional.ofNullable(updatedAt);
+        return this;
+    }
+
+
+    public V2Account withUpdatedAt(Optional<OffsetDateTime> updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = updatedAt;
         return this;
     }
 
@@ -136,14 +216,18 @@ public class V2Account {
         return 
             Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.effectiveVolumes, other.effectiveVolumes) &&
+            Utils.enhancedDeepEquals(this.firstUsage, other.firstUsage) &&
+            Utils.enhancedDeepEquals(this.insertionDate, other.insertionDate) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.volumes, other.volumes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            address, effectiveVolumes, metadata,
+            address, effectiveVolumes, firstUsage,
+            insertionDate, metadata, updatedAt,
             volumes);
     }
     
@@ -152,7 +236,10 @@ public class V2Account {
         return Utils.toString(V2Account.class,
                 "address", address,
                 "effectiveVolumes", effectiveVolumes,
+                "firstUsage", firstUsage,
+                "insertionDate", insertionDate,
                 "metadata", metadata,
+                "updatedAt", updatedAt,
                 "volumes", volumes);
     }
 
@@ -163,7 +250,13 @@ public class V2Account {
 
         private Optional<? extends Map<String, V2Volume>> effectiveVolumes = Optional.empty();
 
+        private Optional<OffsetDateTime> firstUsage = Optional.empty();
+
+        private Optional<OffsetDateTime> insertionDate = Optional.empty();
+
         private Map<String, String> metadata;
+
+        private Optional<OffsetDateTime> updatedAt = Optional.empty();
 
         private Optional<? extends Map<String, V2Volume>> volumes = Optional.empty();
 
@@ -192,9 +285,48 @@ public class V2Account {
         }
 
 
+        public Builder firstUsage(OffsetDateTime firstUsage) {
+            Utils.checkNotNull(firstUsage, "firstUsage");
+            this.firstUsage = Optional.ofNullable(firstUsage);
+            return this;
+        }
+
+        public Builder firstUsage(Optional<OffsetDateTime> firstUsage) {
+            Utils.checkNotNull(firstUsage, "firstUsage");
+            this.firstUsage = firstUsage;
+            return this;
+        }
+
+
+        public Builder insertionDate(OffsetDateTime insertionDate) {
+            Utils.checkNotNull(insertionDate, "insertionDate");
+            this.insertionDate = Optional.ofNullable(insertionDate);
+            return this;
+        }
+
+        public Builder insertionDate(Optional<OffsetDateTime> insertionDate) {
+            Utils.checkNotNull(insertionDate, "insertionDate");
+            this.insertionDate = insertionDate;
+            return this;
+        }
+
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
+            return this;
+        }
+
+
+        public Builder updatedAt(OffsetDateTime updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = Optional.ofNullable(updatedAt);
+            return this;
+        }
+
+        public Builder updatedAt(Optional<OffsetDateTime> updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = updatedAt;
             return this;
         }
 
@@ -214,7 +346,8 @@ public class V2Account {
         public V2Account build() {
 
             return new V2Account(
-                address, effectiveVolumes, metadata,
+                address, effectiveVolumes, firstUsage,
+                insertionDate, metadata, updatedAt,
                 volumes);
         }
 

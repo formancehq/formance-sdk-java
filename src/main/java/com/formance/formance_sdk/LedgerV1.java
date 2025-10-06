@@ -85,11 +85,13 @@ import com.formance.formance_sdk.operations.ReadStats;
 import com.formance.formance_sdk.operations.RevertTransaction;
 import com.formance.formance_sdk.operations.RunScript;
 import com.formance.formance_sdk.operations.UpdateMapping;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 
 
 public class LedgerV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     LedgerV1(SDKConfiguration sdkConfiguration) {
@@ -114,7 +116,7 @@ public class LedgerV1 {
      */
     public CreateTransactionsResponse createTransactions(CreateTransactionsRequest request) throws Exception {
         RequestOperation<CreateTransactionsRequest, CreateTransactionsResponse> operation
-              = new CreateTransactions.Sync(sdkConfiguration);
+              = new CreateTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -136,7 +138,7 @@ public class LedgerV1 {
      */
     public AddMetadataOnTransactionResponse addMetadataOnTransaction(AddMetadataOnTransactionRequest request) throws Exception {
         RequestOperation<AddMetadataOnTransactionRequest, AddMetadataOnTransactionResponse> operation
-              = new AddMetadataOnTransaction.Sync(sdkConfiguration);
+              = new AddMetadataOnTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -158,7 +160,7 @@ public class LedgerV1 {
      */
     public AddMetadataToAccountResponse addMetadataToAccount(AddMetadataToAccountRequest request) throws Exception {
         RequestOperation<AddMetadataToAccountRequest, AddMetadataToAccountResponse> operation
-              = new AddMetadataToAccount.Sync(sdkConfiguration);
+              = new AddMetadataToAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -180,7 +182,7 @@ public class LedgerV1 {
      */
     public CountAccountsResponse countAccounts(CountAccountsRequest request) throws Exception {
         RequestOperation<CountAccountsRequest, CountAccountsResponse> operation
-              = new CountAccounts.Sync(sdkConfiguration);
+              = new CountAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -202,7 +204,7 @@ public class LedgerV1 {
      */
     public CountTransactionsResponse countTransactions(CountTransactionsRequest request) throws Exception {
         RequestOperation<CountTransactionsRequest, CountTransactionsResponse> operation
-              = new CountTransactions.Sync(sdkConfiguration);
+              = new CountTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -224,7 +226,7 @@ public class LedgerV1 {
      */
     public CreateTransactionResponse createTransaction(CreateTransactionRequest request) throws Exception {
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransaction.Sync(sdkConfiguration);
+              = new CreateTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -246,7 +248,7 @@ public class LedgerV1 {
      */
     public GetAccountResponse getAccount(GetAccountRequest request) throws Exception {
         RequestOperation<GetAccountRequest, GetAccountResponse> operation
-              = new GetAccount.Sync(sdkConfiguration);
+              = new GetAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -268,7 +270,7 @@ public class LedgerV1 {
      */
     public GetBalancesResponse getBalances(GetBalancesRequest request) throws Exception {
         RequestOperation<GetBalancesRequest, GetBalancesResponse> operation
-              = new GetBalances.Sync(sdkConfiguration);
+              = new GetBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -290,7 +292,7 @@ public class LedgerV1 {
      */
     public GetBalancesAggregatedResponse getBalancesAggregated(GetBalancesAggregatedRequest request) throws Exception {
         RequestOperation<GetBalancesAggregatedRequest, GetBalancesAggregatedResponse> operation
-              = new GetBalancesAggregated.Sync(sdkConfiguration);
+              = new GetBalancesAggregated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -311,7 +313,7 @@ public class LedgerV1 {
      */
     public GetInfoResponse getInfoDirect() throws Exception {
         RequestlessOperation<GetInfoResponse> operation
-            = new GetInfo.Sync(sdkConfiguration);
+            = new GetInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -333,7 +335,7 @@ public class LedgerV1 {
      */
     public GetLedgerInfoResponse getLedgerInfo(GetLedgerInfoRequest request) throws Exception {
         RequestOperation<GetLedgerInfoRequest, GetLedgerInfoResponse> operation
-              = new GetLedgerInfo.Sync(sdkConfiguration);
+              = new GetLedgerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -355,7 +357,7 @@ public class LedgerV1 {
      */
     public GetMappingResponse getMapping(GetMappingRequest request) throws Exception {
         RequestOperation<GetMappingRequest, GetMappingResponse> operation
-              = new GetMapping.Sync(sdkConfiguration);
+              = new GetMapping.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -377,7 +379,7 @@ public class LedgerV1 {
      */
     public GetTransactionResponse getTransaction(GetTransactionRequest request) throws Exception {
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
-              = new GetTransaction.Sync(sdkConfiguration);
+              = new GetTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -403,7 +405,7 @@ public class LedgerV1 {
      */
     public ListAccountsResponse listAccounts(ListAccountsRequest request) throws Exception {
         RequestOperation<ListAccountsRequest, ListAccountsResponse> operation
-              = new ListAccounts.Sync(sdkConfiguration);
+              = new ListAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -429,7 +431,7 @@ public class LedgerV1 {
      */
     public ListLogsResponse listLogs(ListLogsRequest request) throws Exception {
         RequestOperation<ListLogsRequest, ListLogsResponse> operation
-              = new ListLogs.Sync(sdkConfiguration);
+              = new ListLogs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -455,7 +457,7 @@ public class LedgerV1 {
      */
     public ListTransactionsResponse listTransactions(ListTransactionsRequest request) throws Exception {
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
-              = new ListTransactions.Sync(sdkConfiguration);
+              = new ListTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -481,7 +483,7 @@ public class LedgerV1 {
      */
     public ReadStatsResponse readStats(ReadStatsRequest request) throws Exception {
         RequestOperation<ReadStatsRequest, ReadStatsResponse> operation
-              = new ReadStats.Sync(sdkConfiguration);
+              = new ReadStats.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -503,7 +505,7 @@ public class LedgerV1 {
      */
     public RevertTransactionResponse revertTransaction(RevertTransactionRequest request) throws Exception {
         RequestOperation<RevertTransactionRequest, RevertTransactionResponse> operation
-              = new RevertTransaction.Sync(sdkConfiguration);
+              = new RevertTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -533,7 +535,7 @@ public class LedgerV1 {
     @Deprecated
     public RunScriptResponse runScript(RunScriptRequest request) throws Exception {
         RequestOperation<RunScriptRequest, RunScriptResponse> operation
-              = new RunScript.Sync(sdkConfiguration);
+              = new RunScript.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -555,7 +557,7 @@ public class LedgerV1 {
      */
     public UpdateMappingResponse updateMapping(UpdateMappingRequest request) throws Exception {
         RequestOperation<UpdateMappingRequest, UpdateMappingResponse> operation
-              = new UpdateMapping.Sync(sdkConfiguration);
+              = new UpdateMapping.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

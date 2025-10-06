@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -28,6 +29,16 @@ public class V2Ledger {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("features")
+    private Optional<? extends Map<String, String>> features;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("id")
+    private Optional<Long> id;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
 
@@ -39,14 +50,20 @@ public class V2Ledger {
     public V2Ledger(
             @JsonProperty("addedAt") OffsetDateTime addedAt,
             @JsonProperty("bucket") String bucket,
+            @JsonProperty("features") Optional<? extends Map<String, String>> features,
+            @JsonProperty("id") Optional<Long> id,
             @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(addedAt, "addedAt");
         Utils.checkNotNull(bucket, "bucket");
+        Utils.checkNotNull(features, "features");
+        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         this.addedAt = addedAt;
         this.bucket = bucket;
+        this.features = features;
+        this.id = id;
         this.metadata = metadata;
         this.name = name;
     }
@@ -56,7 +73,7 @@ public class V2Ledger {
             String bucket,
             String name) {
         this(addedAt, bucket, Optional.empty(),
-            name);
+            Optional.empty(), Optional.empty(), name);
     }
 
     @JsonIgnore
@@ -67,6 +84,17 @@ public class V2Ledger {
     @JsonIgnore
     public String bucket() {
         return bucket;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, String>> features() {
+        return (Optional<Map<String, String>>) features;
+    }
+
+    @JsonIgnore
+    public Optional<Long> id() {
+        return id;
     }
 
     @SuppressWarnings("unchecked")
@@ -94,6 +122,32 @@ public class V2Ledger {
     public V2Ledger withBucket(String bucket) {
         Utils.checkNotNull(bucket, "bucket");
         this.bucket = bucket;
+        return this;
+    }
+
+    public V2Ledger withFeatures(Map<String, String> features) {
+        Utils.checkNotNull(features, "features");
+        this.features = Optional.ofNullable(features);
+        return this;
+    }
+
+
+    public V2Ledger withFeatures(Optional<? extends Map<String, String>> features) {
+        Utils.checkNotNull(features, "features");
+        this.features = features;
+        return this;
+    }
+
+    public V2Ledger withId(long id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    public V2Ledger withId(Optional<Long> id) {
+        Utils.checkNotNull(id, "id");
+        this.id = id;
         return this;
     }
 
@@ -128,6 +182,8 @@ public class V2Ledger {
         return 
             Utils.enhancedDeepEquals(this.addedAt, other.addedAt) &&
             Utils.enhancedDeepEquals(this.bucket, other.bucket) &&
+            Utils.enhancedDeepEquals(this.features, other.features) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.name, other.name);
     }
@@ -135,8 +191,8 @@ public class V2Ledger {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            addedAt, bucket, metadata,
-            name);
+            addedAt, bucket, features,
+            id, metadata, name);
     }
     
     @Override
@@ -144,6 +200,8 @@ public class V2Ledger {
         return Utils.toString(V2Ledger.class,
                 "addedAt", addedAt,
                 "bucket", bucket,
+                "features", features,
+                "id", id,
                 "metadata", metadata,
                 "name", name);
     }
@@ -154,6 +212,10 @@ public class V2Ledger {
         private OffsetDateTime addedAt;
 
         private String bucket;
+
+        private Optional<? extends Map<String, String>> features = Optional.empty();
+
+        private Optional<Long> id = Optional.empty();
 
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
 
@@ -174,6 +236,32 @@ public class V2Ledger {
         public Builder bucket(String bucket) {
             Utils.checkNotNull(bucket, "bucket");
             this.bucket = bucket;
+            return this;
+        }
+
+
+        public Builder features(Map<String, String> features) {
+            Utils.checkNotNull(features, "features");
+            this.features = Optional.ofNullable(features);
+            return this;
+        }
+
+        public Builder features(Optional<? extends Map<String, String>> features) {
+            Utils.checkNotNull(features, "features");
+            this.features = features;
+            return this;
+        }
+
+
+        public Builder id(long id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        public Builder id(Optional<Long> id) {
+            Utils.checkNotNull(id, "id");
+            this.id = id;
             return this;
         }
 
@@ -200,8 +288,8 @@ public class V2Ledger {
         public V2Ledger build() {
 
             return new V2Ledger(
-                addedAt, bucket, metadata,
-                name);
+                addedAt, bucket, features,
+                id, metadata, name);
         }
 
     }

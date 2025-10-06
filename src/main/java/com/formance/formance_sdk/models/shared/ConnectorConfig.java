@@ -12,17 +12,17 @@ import java.lang.String;
 
 @JsonTypeInfo(use = Id.NAME, property = "provider", include = As.EXISTING_PROPERTY, visible = true)
 @JsonSubTypes({
-    @Type(value = StripeConfig.class, name="Stripe"),
-    @Type(value = DummyPayConfig.class, name="Dummypay"),
-    @Type(value = WiseConfig.class, name="Wise"),
-    @Type(value = ModulrConfig.class, name="Modulr"),
-    @Type(value = CurrencyCloudConfig.class, name="Currencycloud"),
-    @Type(value = BankingCircleConfig.class, name="Bankingcircle"),
-    @Type(value = MangoPayConfig.class, name="Mangopay"),
-    @Type(value = MoneycorpConfig.class, name="Moneycorp"),
-    @Type(value = AtlarConfig.class, name="Atlar"),
     @Type(value = AdyenConfig.class, name="Adyen"),
-    @Type(value = GenericConfig.class, name="Generic")})
+    @Type(value = AtlarConfig.class, name="Atlar"),
+    @Type(value = BankingCircleConfig.class, name="Bankingcircle"),
+    @Type(value = CurrencyCloudConfig.class, name="Currencycloud"),
+    @Type(value = DummyPayConfig.class, name="Dummypay"),
+    @Type(value = GenericConfig.class, name="Generic"),
+    @Type(value = MangoPayConfig.class, name="Mangopay"),
+    @Type(value = ModulrConfig.class, name="Modulr"),
+    @Type(value = MoneycorpConfig.class, name="Moneycorp"),
+    @Type(value = StripeConfig.class, name="Stripe"),
+    @Type(value = WiseConfig.class, name="Wise")})
 public interface ConnectorConfig {
 
     String provider();

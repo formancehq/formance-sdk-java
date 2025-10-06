@@ -10,6 +10,8 @@ import java.util.Optional;
 
 /**
  * Order
+ * 
+ * <p>Deprecated: Use sort param
  */
 public enum Order {
     EFFECTIVE("effective");

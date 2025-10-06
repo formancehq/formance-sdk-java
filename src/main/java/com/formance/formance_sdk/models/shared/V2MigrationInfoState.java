@@ -10,7 +10,8 @@ import java.util.Optional;
 
 public enum V2MigrationInfoState {
     TO_DO("TO DO"),
-    DONE("DONE");
+    DONE("DONE"),
+    PROGRESS("PROGRESS");
 
     @JsonValue
     private final String value;

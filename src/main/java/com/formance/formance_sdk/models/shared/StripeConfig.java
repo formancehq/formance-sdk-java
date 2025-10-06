@@ -34,7 +34,8 @@ public class StripeConfig implements ConnectorConfig {
     private Optional<Long> pageSize;
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe
+     * API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
@@ -90,7 +91,8 @@ public class StripeConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe
+     * API.
      */
     @JsonIgnore
     public Optional<String> pollingPeriod() {
@@ -140,7 +142,8 @@ public class StripeConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe
+     * API.
      */
     public StripeConfig withPollingPeriod(String pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -150,7 +153,8 @@ public class StripeConfig implements ConnectorConfig {
 
 
     /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
+     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe
+     * API.
      */
     public StripeConfig withPollingPeriod(Optional<String> pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -257,7 +261,8 @@ public class StripeConfig implements ConnectorConfig {
 
 
         /**
-         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
+         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe
+         * API.
          */
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
@@ -266,7 +271,8 @@ public class StripeConfig implements ConnectorConfig {
         }
 
         /**
-         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
+         * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe
+         * API.
          */
         public Builder pollingPeriod(Optional<String> pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");

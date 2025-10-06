@@ -14,6 +14,7 @@ import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Reques
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
@@ -29,7 +30,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class UpdateConnectorConfigV1 {
 
     static abstract class Base {
@@ -37,9 +37,11 @@ public class UpdateConnectorConfigV1 {
         final String baseUrl;
         final SecuritySource securitySource;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = Utils.templateUrl(
                     this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
@@ -76,10 +78,9 @@ public class UpdateConnectorConfigV1 {
                     java.util.Optional.of(java.util.List.of("auth:read", "payments:write")),
                     securitySource());
         }
-
-        HttpRequest buildRequest(UpdateConnectorConfigV1Request request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    UpdateConnectorConfigV1Request.class,
+                    klass,
                     this.baseUrl,
                     "/api/payments/connectors/{connector}/{connectorId}/config",
                     request, null);
@@ -87,8 +88,7 @@ public class UpdateConnectorConfigV1 {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<UpdateConnectorConfigV1Request>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "connectorConfig",
@@ -100,6 +100,7 @@ public class UpdateConnectorConfigV1 {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -108,12 +109,12 @@ public class UpdateConnectorConfigV1 {
 
     public static class Sync extends Base
             implements RequestOperation<UpdateConnectorConfigV1Request, UpdateConnectorConfigV1Response> {
-        public Sync(SDKConfiguration sdkConfiguration) {
-            super(sdkConfiguration);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(UpdateConnectorConfigV1Request request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, UpdateConnectorConfigV1Request.class, new TypeReference<UpdateConnectorConfigV1Request>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

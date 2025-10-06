@@ -52,7 +52,8 @@ public class ListAccountsRequest {
     private String ledger;
 
     /**
-     * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example
+     * below.
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")
     private Optional<? extends Map<String, Object>> metadata;
@@ -155,7 +156,8 @@ public class ListAccountsRequest {
     }
 
     /**
-     * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example
+     * below.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -283,7 +285,8 @@ public class ListAccountsRequest {
     }
 
     /**
-     * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example
+     * below.
      */
     public ListAccountsRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -293,7 +296,8 @@ public class ListAccountsRequest {
 
 
     /**
-     * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example
+     * below.
      */
     public ListAccountsRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -512,7 +516,8 @@ public class ListAccountsRequest {
 
 
         /**
-         * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
+         * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example
+         * below.
          */
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -521,7 +526,8 @@ public class ListAccountsRequest {
         }
 
         /**
-         * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
+         * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example
+         * below.
          */
         public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");

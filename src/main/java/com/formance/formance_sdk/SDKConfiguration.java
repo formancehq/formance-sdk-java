@@ -21,9 +21,9 @@ import java.util.Optional;
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
-    public static final String OPENAPI_DOC_VERSION = "v3.0.5";
-    public static final String SDK_VERSION = "7.2.3";
-    public static final String GEN_VERSION = "2.686.7";
+    public static final String OPENAPI_DOC_VERSION = "v3.1.0";
+    public static final String SDK_VERSION = "7.3.0";
+    public static final String GEN_VERSION = "2.721.3";
     private static final String BASE_PACKAGE = "com.formance.formance_sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -90,7 +90,7 @@ public class SDKConfiguration {
     private List<Map<String, String>> serverVariables = new ArrayList<>(){ {
         add(new HashMap<>());
         add(new HashMap<>(){ {
-            put("environment", "eu.sandbox");
+            put("environment", "sandbox");
             put("organization", "orgID-stackID");
         } });
     } };

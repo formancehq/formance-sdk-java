@@ -22,7 +22,10 @@ public class V3ListConnectorsRequest {
     private Optional<? extends Map<String, Object>> requestBody;
 
     /**
-     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
+     * the value of previous for the previous page of results.
+     * 
+     * <p>No other parameters can be set when this parameter is set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private Optional<String> cursor;
@@ -57,7 +60,10 @@ public class V3ListConnectorsRequest {
     }
 
     /**
-     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
+     * the value of previous for the previous page of results.
+     * 
+     * <p>No other parameters can be set when this parameter is set.
      */
     @JsonIgnore
     public Optional<String> cursor() {
@@ -91,7 +97,10 @@ public class V3ListConnectorsRequest {
     }
 
     /**
-     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
+     * the value of previous for the previous page of results.
+     * 
+     * <p>No other parameters can be set when this parameter is set.
      */
     public V3ListConnectorsRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -101,7 +110,10 @@ public class V3ListConnectorsRequest {
 
 
     /**
-     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
+     * the value of previous for the previous page of results.
+     * 
+     * <p>No other parameters can be set when this parameter is set.
      */
     public V3ListConnectorsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -185,7 +197,10 @@ public class V3ListConnectorsRequest {
 
 
         /**
-         * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
+         * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
+         * the value of previous for the previous page of results.
+         * 
+         * <p>No other parameters can be set when this parameter is set.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -194,7 +209,10 @@ public class V3ListConnectorsRequest {
         }
 
         /**
-         * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
+         * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
+         * the value of previous for the previous page of results.
+         * 
+         * <p>No other parameters can be set when this parameter is set.
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

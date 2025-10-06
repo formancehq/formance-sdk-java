@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetBalancesAggregated;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class GetBalancesAggregatedRequestBuilder {
 
     private GetBalancesAggregatedRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetBalancesAggregatedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class GetBalancesAggregatedRequestBuilder {
     public GetBalancesAggregatedResponse call() throws Exception {
         
         RequestOperation<GetBalancesAggregatedRequest, GetBalancesAggregatedResponse> operation
-              = new GetBalancesAggregated.Sync(sdkConfiguration);
+              = new GetBalancesAggregated.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

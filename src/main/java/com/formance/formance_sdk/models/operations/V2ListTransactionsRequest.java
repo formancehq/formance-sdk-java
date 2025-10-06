@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
@@ -42,8 +43,13 @@ public class V2ListTransactionsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
-
+    /**
+     * Deprecated: Use sort param
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=order")
+    @Deprecated
     private Optional<? extends Order> order;
 
     /**
@@ -60,6 +66,14 @@ public class V2ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reverse")
     private Optional<Boolean> reverse;
 
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
+    private Optional<String> sort;
+
     @JsonCreator
     public V2ListTransactionsRequest(
             Map<String, Object> requestBody,
@@ -69,7 +83,8 @@ public class V2ListTransactionsRequest {
             Optional<? extends Order> order,
             Optional<Long> pageSize,
             Optional<OffsetDateTime> pit,
-            Optional<Boolean> reverse) {
+            Optional<Boolean> reverse,
+            Optional<String> sort) {
         requestBody = Utils.emptyMapIfNull(requestBody);
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
@@ -79,6 +94,7 @@ public class V2ListTransactionsRequest {
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pit, "pit");
         Utils.checkNotNull(reverse, "reverse");
+        Utils.checkNotNull(sort, "sort");
         this.requestBody = requestBody;
         this.cursor = cursor;
         this.expand = expand;
@@ -87,6 +103,7 @@ public class V2ListTransactionsRequest {
         this.pageSize = pageSize;
         this.pit = pit;
         this.reverse = reverse;
+        this.sort = sort;
     }
     
     public V2ListTransactionsRequest(
@@ -94,7 +111,7 @@ public class V2ListTransactionsRequest {
             String ledger) {
         this(requestBody, Optional.empty(), Optional.empty(),
             ledger, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -126,6 +143,12 @@ public class V2ListTransactionsRequest {
         return ledger;
     }
 
+    /**
+     * Deprecated: Use sort param
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Order> order() {
@@ -148,6 +171,16 @@ public class V2ListTransactionsRequest {
     @JsonIgnore
     public Optional<Boolean> reverse() {
         return reverse;
+    }
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    @JsonIgnore
+    public Optional<String> sort() {
+        return sort;
     }
 
     public static Builder builder() {
@@ -208,6 +241,12 @@ public class V2ListTransactionsRequest {
         return this;
     }
 
+    /**
+     * Deprecated: Use sort param
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public V2ListTransactionsRequest withOrder(Order order) {
         Utils.checkNotNull(order, "order");
         this.order = Optional.ofNullable(order);
@@ -215,6 +254,12 @@ public class V2ListTransactionsRequest {
     }
 
 
+    /**
+     * Deprecated: Use sort param
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public V2ListTransactionsRequest withOrder(Optional<? extends Order> order) {
         Utils.checkNotNull(order, "order");
         this.order = order;
@@ -266,6 +311,29 @@ public class V2ListTransactionsRequest {
         return this;
     }
 
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    public V2ListTransactionsRequest withSort(String sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = Optional.ofNullable(sort);
+        return this;
+    }
+
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    public V2ListTransactionsRequest withSort(Optional<String> sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = sort;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -283,7 +351,8 @@ public class V2ListTransactionsRequest {
             Utils.enhancedDeepEquals(this.order, other.order) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
             Utils.enhancedDeepEquals(this.pit, other.pit) &&
-            Utils.enhancedDeepEquals(this.reverse, other.reverse);
+            Utils.enhancedDeepEquals(this.reverse, other.reverse) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort);
     }
     
     @Override
@@ -291,7 +360,7 @@ public class V2ListTransactionsRequest {
         return Utils.enhancedHash(
             requestBody, cursor, expand,
             ledger, order, pageSize,
-            pit, reverse);
+            pit, reverse, sort);
     }
     
     @Override
@@ -304,7 +373,8 @@ public class V2ListTransactionsRequest {
                 "order", order,
                 "pageSize", pageSize,
                 "pit", pit,
-                "reverse", reverse);
+                "reverse", reverse,
+                "sort", sort);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -318,6 +388,7 @@ public class V2ListTransactionsRequest {
 
         private String ledger;
 
+        @Deprecated
         private Optional<? extends Order> order = Optional.empty();
 
         private Optional<Long> pageSize = Optional.empty();
@@ -325,6 +396,8 @@ public class V2ListTransactionsRequest {
         private Optional<OffsetDateTime> pit = Optional.empty();
 
         private Optional<Boolean> reverse = Optional.empty();
+
+        private Optional<String> sort = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -386,12 +459,24 @@ public class V2ListTransactionsRequest {
         }
 
 
+        /**
+         * Deprecated: Use sort param
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder order(Order order) {
             Utils.checkNotNull(order, "order");
             this.order = Optional.ofNullable(order);
             return this;
         }
 
+        /**
+         * Deprecated: Use sort param
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder order(Optional<? extends Order> order) {
             Utils.checkNotNull(order, "order");
             this.order = order;
@@ -443,12 +528,35 @@ public class V2ListTransactionsRequest {
             return this;
         }
 
+
+        /**
+         * Sort results using a field name and order (ascending or descending).
+         * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+         * is either `asc` or `desc`.
+         */
+        public Builder sort(String sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = Optional.ofNullable(sort);
+            return this;
+        }
+
+        /**
+         * Sort results using a field name and order (ascending or descending).
+         * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+         * is either `asc` or `desc`.
+         */
+        public Builder sort(Optional<String> sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = sort;
+            return this;
+        }
+
         public V2ListTransactionsRequest build() {
 
             return new V2ListTransactionsRequest(
                 requestBody, cursor, expand,
                 ledger, order, pageSize,
-                pit, reverse);
+                pit, reverse, sort);
         }
 
     }

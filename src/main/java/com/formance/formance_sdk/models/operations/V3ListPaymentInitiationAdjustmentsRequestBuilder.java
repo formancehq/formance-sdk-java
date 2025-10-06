@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListPaymentInitiationAdjustments;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V3ListPaymentInitiationAdjustmentsRequestBuilder {
 
     private V3ListPaymentInitiationAdjustmentsRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3ListPaymentInitiationAdjustmentsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V3ListPaymentInitiationAdjustmentsRequestBuilder {
     public V3ListPaymentInitiationAdjustmentsResponse call() throws Exception {
         
         RequestOperation<V3ListPaymentInitiationAdjustmentsRequest, V3ListPaymentInitiationAdjustmentsResponse> operation
-              = new V3ListPaymentInitiationAdjustments.Sync(sdkConfiguration);
+              = new V3ListPaymentInitiationAdjustments.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -63,7 +63,8 @@ public class AtlarConfig implements ConnectorConfig {
     private String secret;
 
     /**
-     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
+     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
+     * API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferInitiationStatusPollingPeriod")
@@ -160,7 +161,8 @@ public class AtlarConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
+     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
+     * API.
      */
     @JsonIgnore
     public Optional<String> transferInitiationStatusPollingPeriod() {
@@ -269,7 +271,8 @@ public class AtlarConfig implements ConnectorConfig {
     }
 
     /**
-     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
+     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
+     * API.
      */
     public AtlarConfig withTransferInitiationStatusPollingPeriod(String transferInitiationStatusPollingPeriod) {
         Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
@@ -279,7 +282,8 @@ public class AtlarConfig implements ConnectorConfig {
 
 
     /**
-     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
+     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
+     * API.
      */
     public AtlarConfig withTransferInitiationStatusPollingPeriod(Optional<String> transferInitiationStatusPollingPeriod) {
         Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
@@ -452,7 +456,8 @@ public class AtlarConfig implements ConnectorConfig {
 
 
         /**
-         * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
+         * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
+         * API.
          */
         public Builder transferInitiationStatusPollingPeriod(String transferInitiationStatusPollingPeriod) {
             Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
@@ -461,7 +466,8 @@ public class AtlarConfig implements ConnectorConfig {
         }
 
         /**
-         * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
+         * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
+         * API.
          */
         public Builder transferInitiationStatusPollingPeriod(Optional<String> transferInitiationStatusPollingPeriod) {
             Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");

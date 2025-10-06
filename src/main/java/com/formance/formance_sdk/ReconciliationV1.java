@@ -37,10 +37,12 @@ import com.formance.formance_sdk.operations.ListPolicies;
 import com.formance.formance_sdk.operations.ListReconciliations;
 import com.formance.formance_sdk.operations.Reconcile;
 import com.formance.formance_sdk.operations.ReconciliationgetServerInfo;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 
 public class ReconciliationV1 {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
 
     ReconciliationV1(SDKConfiguration sdkConfiguration) {
@@ -69,7 +71,7 @@ public class ReconciliationV1 {
      */
     public CreatePolicyResponse createPolicy(PolicyRequest request) throws Exception {
         RequestOperation<PolicyRequest, CreatePolicyResponse> operation
-              = new CreatePolicy.Sync(sdkConfiguration);
+              = new CreatePolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -95,7 +97,7 @@ public class ReconciliationV1 {
      */
     public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) throws Exception {
         RequestOperation<DeletePolicyRequest, DeletePolicyResponse> operation
-              = new DeletePolicy.Sync(sdkConfiguration);
+              = new DeletePolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -117,7 +119,7 @@ public class ReconciliationV1 {
      */
     public GetPolicyResponse getPolicy(GetPolicyRequest request) throws Exception {
         RequestOperation<GetPolicyRequest, GetPolicyResponse> operation
-              = new GetPolicy.Sync(sdkConfiguration);
+              = new GetPolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -139,7 +141,7 @@ public class ReconciliationV1 {
      */
     public GetReconciliationResponse getReconciliation(GetReconciliationRequest request) throws Exception {
         RequestOperation<GetReconciliationRequest, GetReconciliationResponse> operation
-              = new GetReconciliation.Sync(sdkConfiguration);
+              = new GetReconciliation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,7 +163,7 @@ public class ReconciliationV1 {
      */
     public ListPoliciesResponse listPolicies(ListPoliciesRequest request) throws Exception {
         RequestOperation<ListPoliciesRequest, ListPoliciesResponse> operation
-              = new ListPolicies.Sync(sdkConfiguration);
+              = new ListPolicies.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -183,7 +185,7 @@ public class ReconciliationV1 {
      */
     public ListReconciliationsResponse listReconciliations(ListReconciliationsRequest request) throws Exception {
         RequestOperation<ListReconciliationsRequest, ListReconciliationsResponse> operation
-              = new ListReconciliations.Sync(sdkConfiguration);
+              = new ListReconciliations.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -209,7 +211,7 @@ public class ReconciliationV1 {
      */
     public ReconcileResponse reconcile(ReconcileRequest request) throws Exception {
         RequestOperation<ReconcileRequest, ReconcileResponse> operation
-              = new Reconcile.Sync(sdkConfiguration);
+              = new Reconcile.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -230,7 +232,7 @@ public class ReconciliationV1 {
      */
     public ReconciliationgetServerInfoResponse reconciliationgetServerInfoDirect() throws Exception {
         RequestlessOperation<ReconciliationgetServerInfoResponse> operation
-            = new ReconciliationgetServerInfo.Sync(sdkConfiguration);
+            = new ReconciliationgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

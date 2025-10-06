@@ -10,11 +10,16 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 import java.util.Optional;
 
 
 public class V2RevertTransactionRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest;
+
     /**
      * Revert transaction at effective date of the original tx
      */
@@ -22,7 +27,8 @@ public class V2RevertTransactionRequest {
     private Optional<Boolean> atEffectiveDate;
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")
     private Optional<Boolean> dryRun;
@@ -47,16 +53,19 @@ public class V2RevertTransactionRequest {
 
     @JsonCreator
     public V2RevertTransactionRequest(
+            Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest,
             Optional<Boolean> atEffectiveDate,
             Optional<Boolean> dryRun,
             Optional<Boolean> force,
             BigInteger id,
             String ledger) {
+        Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
         Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
         Utils.checkNotNull(dryRun, "dryRun");
         Utils.checkNotNull(force, "force");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
+        this.v2RevertTransactionRequest = v2RevertTransactionRequest;
         this.atEffectiveDate = atEffectiveDate;
         this.dryRun = dryRun;
         this.force = force;
@@ -68,7 +77,13 @@ public class V2RevertTransactionRequest {
             BigInteger id,
             String ledger) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            id, ledger);
+            Optional.empty(), id, ledger);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest() {
+        return (Optional<com.formance.formance_sdk.models.shared.V2RevertTransactionRequest>) v2RevertTransactionRequest;
     }
 
     /**
@@ -80,7 +95,8 @@ public class V2RevertTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     @JsonIgnore
     public Optional<Boolean> dryRun() {
@@ -116,6 +132,19 @@ public class V2RevertTransactionRequest {
     }
 
 
+    public V2RevertTransactionRequest withV2RevertTransactionRequest(com.formance.formance_sdk.models.shared.V2RevertTransactionRequest v2RevertTransactionRequest) {
+        Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
+        this.v2RevertTransactionRequest = Optional.ofNullable(v2RevertTransactionRequest);
+        return this;
+    }
+
+
+    public V2RevertTransactionRequest withV2RevertTransactionRequest(Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest) {
+        Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
+        this.v2RevertTransactionRequest = v2RevertTransactionRequest;
+        return this;
+    }
+
     /**
      * Revert transaction at effective date of the original tx
      */
@@ -136,7 +165,8 @@ public class V2RevertTransactionRequest {
     }
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2RevertTransactionRequest withDryRun(boolean dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -146,7 +176,8 @@ public class V2RevertTransactionRequest {
 
 
     /**
-     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+     * message broker.
      */
     public V2RevertTransactionRequest withDryRun(Optional<Boolean> dryRun) {
         Utils.checkNotNull(dryRun, "dryRun");
@@ -209,6 +240,7 @@ public class V2RevertTransactionRequest {
         }
         V2RevertTransactionRequest other = (V2RevertTransactionRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.v2RevertTransactionRequest, other.v2RevertTransactionRequest) &&
             Utils.enhancedDeepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
             Utils.enhancedDeepEquals(this.dryRun, other.dryRun) &&
             Utils.enhancedDeepEquals(this.force, other.force) &&
@@ -219,13 +251,14 @@ public class V2RevertTransactionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            atEffectiveDate, dryRun, force,
-            id, ledger);
+            v2RevertTransactionRequest, atEffectiveDate, dryRun,
+            force, id, ledger);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2RevertTransactionRequest.class,
+                "v2RevertTransactionRequest", v2RevertTransactionRequest,
                 "atEffectiveDate", atEffectiveDate,
                 "dryRun", dryRun,
                 "force", force,
@@ -235,6 +268,8 @@ public class V2RevertTransactionRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest = Optional.empty();
 
         private Optional<Boolean> atEffectiveDate = Optional.empty();
 
@@ -248,6 +283,19 @@ public class V2RevertTransactionRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder v2RevertTransactionRequest(com.formance.formance_sdk.models.shared.V2RevertTransactionRequest v2RevertTransactionRequest) {
+            Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
+            this.v2RevertTransactionRequest = Optional.ofNullable(v2RevertTransactionRequest);
+            return this;
+        }
+
+        public Builder v2RevertTransactionRequest(Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest) {
+            Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
+            this.v2RevertTransactionRequest = v2RevertTransactionRequest;
+            return this;
         }
 
 
@@ -271,7 +319,8 @@ public class V2RevertTransactionRequest {
 
 
         /**
-         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(boolean dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
@@ -280,7 +329,8 @@ public class V2RevertTransactionRequest {
         }
 
         /**
-         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+         * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the
+         * message broker.
          */
         public Builder dryRun(Optional<Boolean> dryRun) {
             Utils.checkNotNull(dryRun, "dryRun");
@@ -338,8 +388,8 @@ public class V2RevertTransactionRequest {
         public V2RevertTransactionRequest build() {
 
             return new V2RevertTransactionRequest(
-                atEffectiveDate, dryRun, force,
-                id, ledger);
+                v2RevertTransactionRequest, atEffectiveDate, dryRun,
+                force, id, ledger);
         }
 
     }

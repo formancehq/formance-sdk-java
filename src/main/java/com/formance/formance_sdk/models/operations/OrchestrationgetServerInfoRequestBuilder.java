@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.OrchestrationgetServerInfo;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class OrchestrationgetServerInfoRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public OrchestrationgetServerInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class OrchestrationgetServerInfoRequestBuilder {
     public OrchestrationgetServerInfoResponse call() throws Exception {
         
         RequestlessOperation<OrchestrationgetServerInfoResponse> operation
-            = new OrchestrationgetServerInfo.Sync(sdkConfiguration);
+            = new OrchestrationgetServerInfo.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

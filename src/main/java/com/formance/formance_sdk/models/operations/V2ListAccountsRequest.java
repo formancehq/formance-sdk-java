@@ -50,6 +50,14 @@ public class V2ListAccountsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
 
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
+    private Optional<String> sort;
+
     @JsonCreator
     public V2ListAccountsRequest(
             Map<String, Object> requestBody,
@@ -57,7 +65,8 @@ public class V2ListAccountsRequest {
             Optional<String> expand,
             String ledger,
             Optional<Long> pageSize,
-            Optional<OffsetDateTime> pit) {
+            Optional<OffsetDateTime> pit,
+            Optional<String> sort) {
         requestBody = Utils.emptyMapIfNull(requestBody);
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
@@ -65,19 +74,22 @@ public class V2ListAccountsRequest {
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pit, "pit");
+        Utils.checkNotNull(sort, "sort");
         this.requestBody = requestBody;
         this.cursor = cursor;
         this.expand = expand;
         this.ledger = ledger;
         this.pageSize = pageSize;
         this.pit = pit;
+        this.sort = sort;
     }
     
     public V2ListAccountsRequest(
             Map<String, Object> requestBody,
             String ledger) {
         this(requestBody, Optional.empty(), Optional.empty(),
-            ledger, Optional.empty(), Optional.empty());
+            ledger, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -120,6 +132,16 @@ public class V2ListAccountsRequest {
     @JsonIgnore
     public Optional<OffsetDateTime> pit() {
         return pit;
+    }
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    @JsonIgnore
+    public Optional<String> sort() {
+        return sort;
     }
 
     public static Builder builder() {
@@ -212,6 +234,29 @@ public class V2ListAccountsRequest {
         return this;
     }
 
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    public V2ListAccountsRequest withSort(String sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = Optional.ofNullable(sort);
+        return this;
+    }
+
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    public V2ListAccountsRequest withSort(Optional<String> sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = sort;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -227,14 +272,16 @@ public class V2ListAccountsRequest {
             Utils.enhancedDeepEquals(this.expand, other.expand) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
-            Utils.enhancedDeepEquals(this.pit, other.pit);
+            Utils.enhancedDeepEquals(this.pit, other.pit) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             requestBody, cursor, expand,
-            ledger, pageSize, pit);
+            ledger, pageSize, pit,
+            sort);
     }
     
     @Override
@@ -245,7 +292,8 @@ public class V2ListAccountsRequest {
                 "expand", expand,
                 "ledger", ledger,
                 "pageSize", pageSize,
-                "pit", pit);
+                "pit", pit,
+                "sort", sort);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -262,6 +310,8 @@ public class V2ListAccountsRequest {
         private Optional<Long> pageSize = Optional.empty();
 
         private Optional<OffsetDateTime> pit = Optional.empty();
+
+        private Optional<String> sort = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -354,11 +404,35 @@ public class V2ListAccountsRequest {
             return this;
         }
 
+
+        /**
+         * Sort results using a field name and order (ascending or descending).
+         * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+         * is either `asc` or `desc`.
+         */
+        public Builder sort(String sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = Optional.ofNullable(sort);
+            return this;
+        }
+
+        /**
+         * Sort results using a field name and order (ascending or descending).
+         * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+         * is either `asc` or `desc`.
+         */
+        public Builder sort(Optional<String> sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = sort;
+            return this;
+        }
+
         public V2ListAccountsRequest build() {
 
             return new V2ListAccountsRequest(
                 requestBody, cursor, expand,
-                ledger, pageSize, pit);
+                ledger, pageSize, pit,
+                sort);
         }
 
     }

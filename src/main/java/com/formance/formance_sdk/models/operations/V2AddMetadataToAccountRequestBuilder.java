@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2AddMetadataToAccount;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2AddMetadataToAccountRequestBuilder {
 
     private V2AddMetadataToAccountRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2AddMetadataToAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2AddMetadataToAccountRequestBuilder {
     public V2AddMetadataToAccountResponse call() throws Exception {
         
         RequestOperation<V2AddMetadataToAccountRequest, V2AddMetadataToAccountResponse> operation
-              = new V2AddMetadataToAccount.Sync(sdkConfiguration);
+              = new V2AddMetadataToAccount.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

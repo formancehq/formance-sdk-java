@@ -8,6 +8,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.models.shared.PaymentRequest;
 import com.formance.formance_sdk.operations.CreatePayment;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class CreatePaymentRequestBuilder {
 
     private PaymentRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class CreatePaymentRequestBuilder {
     public CreatePaymentResponse call() throws Exception {
         
         RequestOperation<PaymentRequest, CreatePaymentResponse> operation
-              = new CreatePayment.Sync(sdkConfiguration);
+              = new CreatePayment.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

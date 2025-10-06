@@ -13,7 +13,9 @@ import java.lang.String;
 
 public class V3ForwardBankAccountResponseData {
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * forward the bank account to the PSP. You can use the task API to check the status of the task and
+     * get the resulting bank account ID.
      */
     @JsonProperty("taskID")
     private String taskID;
@@ -26,7 +28,9 @@ public class V3ForwardBankAccountResponseData {
     }
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * forward the bank account to the PSP. You can use the task API to check the status of the task and
+     * get the resulting bank account ID.
      */
     @JsonIgnore
     public String taskID() {
@@ -39,7 +43,9 @@ public class V3ForwardBankAccountResponseData {
 
 
     /**
-     * Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
+     * Since this call is asynchronous, the response will contain the ID of the task that was created to
+     * forward the bank account to the PSP. You can use the task API to check the status of the task and
+     * get the resulting bank account ID.
      */
     public V3ForwardBankAccountResponseData withTaskID(String taskID) {
         Utils.checkNotNull(taskID, "taskID");
@@ -83,7 +89,9 @@ public class V3ForwardBankAccountResponseData {
 
 
         /**
-         * Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
+         * Since this call is asynchronous, the response will contain the ID of the task that was created to
+         * forward the bank account to the PSP. You can use the task API to check the status of the task and
+         * get the resulting bank account ID.
          */
         public Builder taskID(String taskID) {
             Utils.checkNotNull(taskID, "taskID");

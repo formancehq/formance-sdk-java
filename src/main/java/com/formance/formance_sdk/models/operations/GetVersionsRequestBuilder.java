@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetVersions;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class GetVersionsRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetVersionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class GetVersionsRequestBuilder {
     public GetVersionsResponse call() throws Exception {
         
         RequestlessOperation<GetVersionsResponse> operation
-            = new GetVersions.Sync(sdkConfiguration);
+            = new GetVersions.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

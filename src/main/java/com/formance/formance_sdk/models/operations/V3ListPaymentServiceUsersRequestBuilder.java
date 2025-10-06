@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListPaymentServiceUsers;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V3ListPaymentServiceUsersRequestBuilder {
 
     private V3ListPaymentServiceUsersRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V3ListPaymentServiceUsersRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V3ListPaymentServiceUsersRequestBuilder {
     public V3ListPaymentServiceUsersResponse call() throws Exception {
         
         RequestOperation<V3ListPaymentServiceUsersRequest, V3ListPaymentServiceUsersResponse> operation
-              = new V3ListPaymentServiceUsers.Sync(sdkConfiguration);
+              = new V3ListPaymentServiceUsers.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

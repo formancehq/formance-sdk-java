@@ -15,6 +15,7 @@ import com.formance.formance_sdk.models.operations.ConnectorsTransferResponse;
 import com.formance.formance_sdk.models.shared.TransferResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
@@ -30,7 +31,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class ConnectorsTransfer {
 
     static abstract class Base {
@@ -38,9 +38,11 @@ public class ConnectorsTransfer {
         final String baseUrl;
         final SecuritySource securitySource;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = Utils.templateUrl(
                     this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
@@ -77,10 +79,9 @@ public class ConnectorsTransfer {
                     java.util.Optional.of(java.util.List.of("auth:read", "payments:write")),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ConnectorsTransferRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    ConnectorsTransferRequest.class,
+                    klass,
                     this.baseUrl,
                     "/api/payments/connectors/{connector}/transfers",
                     request, null);
@@ -88,8 +89,7 @@ public class ConnectorsTransfer {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<ConnectorsTransferRequest>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "transferRequest",
@@ -101,6 +101,7 @@ public class ConnectorsTransfer {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -109,12 +110,12 @@ public class ConnectorsTransfer {
 
     public static class Sync extends Base
             implements RequestOperation<ConnectorsTransferRequest, ConnectorsTransferResponse> {
-        public Sync(SDKConfiguration sdkConfiguration) {
-            super(sdkConfiguration);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(ConnectorsTransferRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, ConnectorsTransferRequest.class, new TypeReference<ConnectorsTransferRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ListLedgers;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2ListLedgersRequestBuilder {
 
     private V2ListLedgersRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2ListLedgersRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2ListLedgersRequestBuilder {
     public V2ListLedgersResponse call() throws Exception {
         
         RequestOperation<V2ListLedgersRequest, V2ListLedgersResponse> operation
-              = new V2ListLedgers.Sync(sdkConfiguration);
+              = new V2ListLedgers.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

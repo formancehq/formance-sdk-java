@@ -7,11 +7,13 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListAllConnectors;
+import com.formance.formance_sdk.utils.Headers;
 import java.lang.Exception;
 
 public class ListAllConnectorsRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListAllConnectorsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class ListAllConnectorsRequestBuilder {
     public ListAllConnectorsResponse call() throws Exception {
         
         RequestlessOperation<ListAllConnectorsResponse> operation
-            = new ListAllConnectors.Sync(sdkConfiguration);
+            = new ListAllConnectors.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

@@ -47,6 +47,11 @@ public class Trigger {
     private Optional<? extends Map<String, Object>> vars;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("version")
+    private Optional<String> version;
+
+
     @JsonProperty("workflowID")
     private String workflowID;
 
@@ -58,6 +63,7 @@ public class Trigger {
             @JsonProperty("id") String id,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("vars") Optional<? extends Map<String, Object>> vars,
+            @JsonProperty("version") Optional<String> version,
             @JsonProperty("workflowID") String workflowID) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(event, "event");
@@ -65,6 +71,7 @@ public class Trigger {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(vars, "vars");
+        Utils.checkNotNull(version, "version");
         Utils.checkNotNull(workflowID, "workflowID");
         this.createdAt = createdAt;
         this.event = event;
@@ -72,6 +79,7 @@ public class Trigger {
         this.id = id;
         this.name = name;
         this.vars = vars;
+        this.version = version;
         this.workflowID = workflowID;
     }
     
@@ -82,7 +90,7 @@ public class Trigger {
             String workflowID) {
         this(createdAt, event, Optional.empty(),
             id, Optional.empty(), Optional.empty(),
-            workflowID);
+            Optional.empty(), workflowID);
     }
 
     @JsonIgnore
@@ -114,6 +122,11 @@ public class Trigger {
     @JsonIgnore
     public Optional<Map<String, Object>> vars() {
         return (Optional<Map<String, Object>>) vars;
+    }
+
+    @JsonIgnore
+    public Optional<String> version() {
+        return version;
     }
 
     @JsonIgnore
@@ -183,6 +196,19 @@ public class Trigger {
         return this;
     }
 
+    public Trigger withVersion(String version) {
+        Utils.checkNotNull(version, "version");
+        this.version = Optional.ofNullable(version);
+        return this;
+    }
+
+
+    public Trigger withVersion(Optional<String> version) {
+        Utils.checkNotNull(version, "version");
+        this.version = version;
+        return this;
+    }
+
     public Trigger withWorkflowID(String workflowID) {
         Utils.checkNotNull(workflowID, "workflowID");
         this.workflowID = workflowID;
@@ -205,6 +231,7 @@ public class Trigger {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.vars, other.vars) &&
+            Utils.enhancedDeepEquals(this.version, other.version) &&
             Utils.enhancedDeepEquals(this.workflowID, other.workflowID);
     }
     
@@ -213,7 +240,7 @@ public class Trigger {
         return Utils.enhancedHash(
             createdAt, event, filter,
             id, name, vars,
-            workflowID);
+            version, workflowID);
     }
     
     @Override
@@ -225,6 +252,7 @@ public class Trigger {
                 "id", id,
                 "name", name,
                 "vars", vars,
+                "version", version,
                 "workflowID", workflowID);
     }
 
@@ -242,6 +270,8 @@ public class Trigger {
         private Optional<String> name = Optional.empty();
 
         private Optional<? extends Map<String, Object>> vars = Optional.empty();
+
+        private Optional<String> version = Optional.empty();
 
         private String workflowID;
 
@@ -310,6 +340,19 @@ public class Trigger {
         }
 
 
+        public Builder version(String version) {
+            Utils.checkNotNull(version, "version");
+            this.version = Optional.ofNullable(version);
+            return this;
+        }
+
+        public Builder version(Optional<String> version) {
+            Utils.checkNotNull(version, "version");
+            this.version = version;
+            return this;
+        }
+
+
         public Builder workflowID(String workflowID) {
             Utils.checkNotNull(workflowID, "workflowID");
             this.workflowID = workflowID;
@@ -321,7 +364,7 @@ public class Trigger {
             return new Trigger(
                 createdAt, event, filter,
                 id, name, vars,
-                workflowID);
+                version, workflowID);
         }
 
     }

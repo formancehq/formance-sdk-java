@@ -7,6 +7,7 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2RunWorkflow;
+import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class V2RunWorkflowRequestBuilder {
 
     private V2RunWorkflowRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public V2RunWorkflowRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class V2RunWorkflowRequestBuilder {
     public V2RunWorkflowResponse call() throws Exception {
         
         RequestOperation<V2RunWorkflowRequest, V2RunWorkflowResponse> operation
-              = new V2RunWorkflow.Sync(sdkConfiguration);
+              = new V2RunWorkflow.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

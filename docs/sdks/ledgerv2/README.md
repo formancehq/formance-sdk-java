@@ -10,27 +10,36 @@
 * [countAccounts](#countaccounts) - Count the accounts from a ledger
 * [countTransactions](#counttransactions) - Count the transactions from a ledger
 * [createBulk](#createbulk) - Bulk request
+* [createExporter](#createexporter) - Create exporter
 * [createLedger](#createledger) - Create a ledger
+* [createPipeline](#createpipeline) - Create pipeline
 * [createTransaction](#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](#deleteaccountmetadata) - Delete metadata by key
+* [deleteExporter](#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](#deleteledgermetadata) - Delete ledger metadata by key
+* [deletePipeline](#deletepipeline) - Delete pipeline
 * [deleteTransactionMetadata](#deletetransactionmetadata) - Delete metadata by key
 * [exportLogs](#exportlogs) - Export logs
 * [getAccount](#getaccount) - Get account by its address
 * [getBalancesAggregated](#getbalancesaggregated) - Get the aggregated balances from selected accounts
-* [getInfo](#getinfo) - Show server information
+* [getExporterState](#getexporterstate) - Get exporter state
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
-* [getMetrics](#getmetrics) - Read in memory metrics
+* [getPipelineState](#getpipelinestate) - Get pipeline state
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](#importlogs)
 * [listAccounts](#listaccounts) - List accounts from a ledger
+* [listExporters](#listexporters) - List exporters
 * [listLedgers](#listledgers) - List ledgers
 * [listLogs](#listlogs) - List the logs from a ledger
+* [listPipelines](#listpipelines) - List pipelines
 * [listTransactions](#listtransactions) - List transactions from a ledger
 * [readStats](#readstats) - Get statistics from a ledger
+* [resetPipeline](#resetpipeline) - Reset pipeline
 * [revertTransaction](#reverttransaction) - Revert a ledger transaction by its ID
+* [startPipeline](#startpipeline) - Start pipeline
+* [stopPipeline](#stoppipeline) - Stop pipeline
 * [updateLedgerMetadata](#updateledgermetadata) - Update ledger metadata
 
 ## addMetadataOnTransaction
@@ -352,6 +361,69 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## createExporter
+
+Create exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2CreateExporter" method="post" path="/api/ledger/v2/_/exporters" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2CreateExporterResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.V2ExporterConfiguration;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2ExporterConfiguration req = V2ExporterConfiguration.builder()
+                .config(Map.ofEntries(
+                    Map.entry("key", "<value>")))
+                .driver("<value>")
+                .build();
+
+        V2CreateExporterResponse res = sdk.ledger().v2().createExporter()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [V2ExporterConfiguration](../../models/shared/V2ExporterConfiguration.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[V2CreateExporterResponse](../../models/operations/V2CreateExporterResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## createLedger
 
 Create a ledger
@@ -415,6 +487,66 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## createPipeline
+
+Create pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2CreatePipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2CreatePipelineRequest;
+import com.formance.formance_sdk.models.operations.V2CreatePipelineResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2CreatePipelineRequest req = V2CreatePipelineRequest.builder()
+                .ledger("ledger001")
+                .build();
+
+        V2CreatePipelineResponse res = sdk.ledger().v2().createPipeline()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [V2CreatePipelineRequest](../../models/operations/V2CreatePipelineRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[V2CreatePipelineResponse](../../models/operations/V2CreatePipelineResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## createTransaction
 
 Create a new transaction to a ledger
@@ -450,6 +582,13 @@ public class Application {
                 .v2PostTransaction(V2PostTransaction.builder()
                     .metadata(Map.ofEntries(
                         Map.entry("admin", "true")))
+                    .accountMetadata(Map.ofEntries(
+                        Map.entry("key", Map.ofEntries(
+                            Map.entry("admin", "true"))),
+                        Map.entry("key1", Map.ofEntries(
+                            Map.entry("admin", "true"))),
+                        Map.entry("key2", Map.ofEntries(
+                            Map.entry("admin", "true")))))
                     .postings(List.of(
                         V2Posting.builder()
                             .amount(new BigInteger("100"))
@@ -557,6 +696,64 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## deleteExporter
+
+Delete exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2DeleteExporter" method="delete" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2DeleteExporterRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteExporterResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2DeleteExporterRequest req = V2DeleteExporterRequest.builder()
+                .exporterID("<id>")
+                .build();
+
+        V2DeleteExporterResponse res = sdk.ledger().v2().deleteExporter()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [V2DeleteExporterRequest](../../models/operations/V2DeleteExporterRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[V2DeleteExporterResponse](../../models/operations/V2DeleteExporterResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## deleteLedgerMetadata
 
 Delete ledger metadata by key
@@ -608,6 +805,65 @@ public class Application {
 ### Response
 
 **[V2DeleteLedgerMetadataResponse](../../models/operations/V2DeleteLedgerMetadataResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## deletePipeline
+
+Delete pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2DeletePipeline" method="delete" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2DeletePipelineRequest;
+import com.formance.formance_sdk.models.operations.V2DeletePipelineResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2DeletePipelineRequest req = V2DeletePipelineRequest.builder()
+                .ledger("ledger001")
+                .pipelineID("<id>")
+                .build();
+
+        V2DeletePipelineResponse res = sdk.ledger().v2().deletePipeline()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [V2DeletePipelineRequest](../../models/operations/V2DeletePipelineRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[V2DeletePipelineResponse](../../models/operations/V2DeletePipelineResponse.md)**
 
 ### Errors
 
@@ -859,19 +1115,20 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
-## getInfo
+## getExporterState
 
-Show server information
+Get exporter state
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
+<!-- UsageSnippet language="java" operationID="v2GetExporterState" method="get" path="/api/ledger/v2/_/exporters/{exporterID}" -->
 ```java
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.V2ErrorResponse;
-import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
+import com.formance.formance_sdk.models.operations.V2GetExporterStateRequest;
+import com.formance.formance_sdk.models.operations.V2GetExporterStateResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -886,19 +1143,30 @@ public class Application {
                     .build())
             .build();
 
-        V2GetInfoResponse res = sdk.ledger().v2().getInfo()
+        V2GetExporterStateRequest req = V2GetExporterStateRequest.builder()
+                .exporterID("<id>")
+                .build();
+
+        V2GetExporterStateResponse res = sdk.ledger().v2().getExporterState()
+                .request(req)
                 .call();
 
-        if (res.v2ConfigInfoResponse().isPresent()) {
+        if (res.object().isPresent()) {
             // handle response
         }
     }
 }
 ```
 
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [V2GetExporterStateRequest](../../models/operations/V2GetExporterStateRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
 ### Response
 
-**[V2GetInfoResponse](../../models/operations/V2GetInfoResponse.md)**
+**[V2GetExporterStateResponse](../../models/operations/V2GetExporterStateResponse.md)**
 
 ### Errors
 
@@ -1027,19 +1295,20 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
-## getMetrics
+## getPipelineState
 
-Read in memory metrics
+Get pipeline state
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
+<!-- UsageSnippet language="java" operationID="v2GetPipelineState" method="get" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
 ```java
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.V2ErrorResponse;
-import com.formance.formance_sdk.models.operations.GetMetricsResponse;
+import com.formance.formance_sdk.models.operations.V2GetPipelineStateRequest;
+import com.formance.formance_sdk.models.operations.V2GetPipelineStateResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1054,7 +1323,13 @@ public class Application {
                     .build())
             .build();
 
-        GetMetricsResponse res = sdk.ledger().v2().getMetrics()
+        V2GetPipelineStateRequest req = V2GetPipelineStateRequest.builder()
+                .ledger("ledger001")
+                .pipelineID("<id>")
+                .build();
+
+        V2GetPipelineStateResponse res = sdk.ledger().v2().getPipelineState()
+                .request(req)
                 .call();
 
         if (res.object().isPresent()) {
@@ -1064,9 +1339,15 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [V2GetPipelineStateRequest](../../models/operations/V2GetPipelineStateRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
 ### Response
 
-**[GetMetricsResponse](../../models/operations/GetMetricsResponse.md)**
+**[V2GetPipelineStateResponse](../../models/operations/V2GetPipelineStateResponse.md)**
 
 ### Errors
 
@@ -1173,6 +1454,7 @@ public class Application {
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .groupBy(3L)
                 .pageSize(100L)
+                .sort("id:desc")
                 .build();
 
         V2GetVolumesWithBalancesResponse res = sdk.ledger().v2().getVolumesWithBalances()
@@ -1239,7 +1521,6 @@ public class Application {
                 .request(req)
                 .call();
 
-        // handle response
     }
 }
 ```
@@ -1296,6 +1577,7 @@ public class Application {
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
+                .sort("id:desc")
                 .build();
 
         V2ListAccountsResponse res = sdk.ledger().v2().listAccounts()
@@ -1326,6 +1608,54 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## listExporters
+
+List exporters
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2ListExporters" method="get" path="/api/ledger/v2/_/exporters" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2ListExportersResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2ListExportersResponse res = sdk.ledger().v2().listExporters()
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Response
+
+**[V2ListExportersResponse](../../models/operations/V2ListExportersResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## listLedgers
 
 List ledgers
@@ -1342,6 +1672,7 @@ import com.formance.formance_sdk.models.operations.V2ListLedgersRequest;
 import com.formance.formance_sdk.models.operations.V2ListLedgersResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -1355,8 +1686,13 @@ public class Application {
             .build();
 
         V2ListLedgersRequest req = V2ListLedgersRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>"),
+                    Map.entry("key1", "<value>"),
+                    Map.entry("key2", "<value>")))
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
+                .sort("id:desc")
                 .build();
 
         V2ListLedgersResponse res = sdk.ledger().v2().listLedgers()
@@ -1422,6 +1758,7 @@ public class Application {
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
+                .sort("id:desc")
                 .build();
 
         V2ListLogsResponse res = sdk.ledger().v2().listLogs()
@@ -1444,6 +1781,66 @@ public class Application {
 ### Response
 
 **[V2ListLogsResponse](../../models/operations/V2ListLogsResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## listPipelines
+
+List pipelines
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2ListPipelines" method="get" path="/api/ledger/v2/{ledger}/pipelines" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2ListPipelinesRequest;
+import com.formance.formance_sdk.models.operations.V2ListPipelinesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2ListPipelinesRequest req = V2ListPipelinesRequest.builder()
+                .ledger("ledger001")
+                .build();
+
+        V2ListPipelinesResponse res = sdk.ledger().v2().listPipelines()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2ListPipelinesRequest](../../models/operations/V2ListPipelinesRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[V2ListPipelinesResponse](../../models/operations/V2ListPipelinesResponse.md)**
 
 ### Errors
 
@@ -1487,6 +1884,7 @@ public class Application {
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
+                .sort("id:desc")
                 .build();
 
         V2ListTransactionsResponse res = sdk.ledger().v2().listTransactions()
@@ -1578,6 +1976,65 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## resetPipeline
+
+Reset pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2ResetPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2ResetPipelineRequest;
+import com.formance.formance_sdk.models.operations.V2ResetPipelineResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2ResetPipelineRequest req = V2ResetPipelineRequest.builder()
+                .ledger("ledger001")
+                .pipelineID("<id>")
+                .build();
+
+        V2ResetPipelineResponse res = sdk.ledger().v2().resetPipeline()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2ResetPipelineRequest](../../models/operations/V2ResetPipelineRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[V2ResetPipelineResponse](../../models/operations/V2ResetPipelineResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## revertTransaction
 
 Revert a ledger transaction by its ID
@@ -1641,6 +2098,124 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## startPipeline
+
+Start pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2StartPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2StartPipelineRequest;
+import com.formance.formance_sdk.models.operations.V2StartPipelineResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2StartPipelineRequest req = V2StartPipelineRequest.builder()
+                .ledger("ledger001")
+                .pipelineID("<id>")
+                .build();
+
+        V2StartPipelineResponse res = sdk.ledger().v2().startPipeline()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2StartPipelineRequest](../../models/operations/V2StartPipelineRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[V2StartPipelineResponse](../../models/operations/V2StartPipelineResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## stopPipeline
+
+Stop pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2StopPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2StopPipelineRequest;
+import com.formance.formance_sdk.models.operations.V2StopPipelineResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2StopPipelineRequest req = V2StopPipelineRequest.builder()
+                .ledger("ledger001")
+                .pipelineID("<id>")
+                .build();
+
+        V2StopPipelineResponse res = sdk.ledger().v2().stopPipeline()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [V2StopPipelineRequest](../../models/operations/V2StopPipelineRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[V2StopPipelineResponse](../../models/operations/V2StopPipelineResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## updateLedgerMetadata
 
 Update ledger metadata
@@ -1680,7 +2255,9 @@ public class Application {
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.v2ErrorResponse().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
